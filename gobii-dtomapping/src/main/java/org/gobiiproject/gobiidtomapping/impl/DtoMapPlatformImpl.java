@@ -99,9 +99,9 @@ public class DtoMapPlatformImpl implements DtoMapPlatform {
             Integer propertyId = rsPlatformDao.createUpdatePlatformProperty(spParamsParameters);
 
             if (null == propertyId || propertyId <= 0) {
-                throw (new GobiiDaoException("Unable to update platform property with name: "
+                throw (new GobiiDaoException("Unable to update platform property with name: '"
                         + currentProperty.getPropertyName()
-                        + "; the property name must be a cv term"));
+                        + "' the property name must be a cv term"));
             }
 
             currentProperty.setEntityIdId(platformId);

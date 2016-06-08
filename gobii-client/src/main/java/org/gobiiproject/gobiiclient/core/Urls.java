@@ -50,6 +50,10 @@ public class Urls {
                 returnVal += "instructions";
                 break;
 
+            case URL_FILE_EXTRACTOR_INSTRUCTIONS:
+                returnVal += "extractorInstructions";
+                break;
+
             case URL_DISPLAY:
                 returnVal += "display";
                 break;

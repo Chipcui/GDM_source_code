@@ -5,7 +5,7 @@ import org.gobiiproject.gobiidao.resultset.access.RsPlatformDao;
 import org.gobiiproject.gobiidao.resultset.core.EntityPropertyParamNames;
 import org.gobiiproject.gobiidao.resultset.core.SpRunnerCallable;
 import org.gobiiproject.gobiidao.resultset.core.StoredProcExec;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.SpInsPlatformProperties;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsPlatformProperties;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsPlatform;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdPlatform;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.*;
@@ -161,7 +161,7 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
     @Override
     public Integer createUpdatePlatformProperty(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
+        Integer returnVal = 0;
 
         try {
 
@@ -170,7 +170,7 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
 
         } catch (Exception e) {
 
-            LOGGER.error("Error updating project property", e);
+            LOGGER.error("Error updating platform property", e);
             throw (new GobiiDaoException(e));
 
         }

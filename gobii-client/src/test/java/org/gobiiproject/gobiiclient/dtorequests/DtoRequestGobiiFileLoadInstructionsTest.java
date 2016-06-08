@@ -37,7 +37,6 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         Assert.assertTrue(Authenticator.deAuthenticate());
     }
 
-
     @Test
     public void testSendInstructionFile() throws Exception {
 

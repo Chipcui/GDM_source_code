@@ -5,7 +5,9 @@
 // ************************************************************************
 package org.gobiiproject.gobiiweb.controllers;
 
+import org.gobiiproject.gobidomain.services.ExtractorInstructionFilesService;
 import org.gobiiproject.gobidomain.services.PingService;
+import org.gobiiproject.gobiimodel.dto.container.ExtractorInstructionFilesDTO;
 import org.gobiiproject.gobiimodel.dto.container.PingDTO;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class ExtractController {
     @Autowired
     private PingService pingService = null;
 
+    @Autowired
+    private ExtractorInstructionFilesService extractorInstructionFilesService = null;
+    
     @RequestMapping(value = "/ping", method = RequestMethod.POST)
     @ResponseBody
     public PingDTO getPingResponse(@RequestBody PingDTO pingDTORequest) {
@@ -53,5 +58,22 @@ public class ExtractController {
 
 
 
+    @RequestMapping(value = "/extractorInstructions", method = RequestMethod.POST)
+    @ResponseBody
+    public ExtractorInstructionFilesDTO processInstructions(@RequestBody ExtractorInstructionFilesDTO extractorInstructionFilesDTO) {
+
+        ExtractorInstructionFilesDTO returnVal = new ExtractorInstructionFilesDTO();
+
+        try {
+            returnVal = extractorInstructionFilesService.processLoaderFileInstructions(extractorInstructionFilesDTO);
+        } catch (AccessDeniedException e) {
+
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error(e.getMessage());
+        }
+
+        return (returnVal);
+
+    }
 
 }//ResourceController
