@@ -98,8 +98,6 @@ public class DtoRequestFileExtractorInstructionsTest {
         // INSTRUCTION TWO BEGIN
         GobiiExtractorInstruction gobiiExtractorInstructionTwo = new GobiiExtractorInstruction();
 
-        gobiiExtractorInstructionTwo.setTable("bar_table");
-
         // column one
         gobiiDataSetExtractOne = new GobiiDataSetExtract();
         gobiiDataSetExtractOne.setDataSetName( "my_foo_2Dataset");
@@ -151,7 +149,8 @@ public class DtoRequestFileExtractorInstructionsTest {
                         .get(0)
                         .getDataSetExtracts()
                         .get(0)
-                        .getName().equals(instructionOneColumnOneName)
+                        .getDataSetName()
+                        .equals(DataSetExtractOneName)
         );
 
         // ************** VERIFY THAT WE CAN MEANINGFULLY TEST FOR NON EXISTENT DIRECTORIES
@@ -161,9 +160,7 @@ public class DtoRequestFileExtractorInstructionsTest {
         extractorInstructionFilesDTOToSend
                 .getGobiiExtractorInstructions()
                 .get(0)
-                .getGobiiFile()
-                .setSource("foo")
-                .setDestination("bar")
+                .getExtractDestinationDirectory().
                 .setRequireDirectoriesToExist(true); // <== should result in validation error
 
         ExtractorInstructionFilesDTO requiredDirectoriesResponse =
