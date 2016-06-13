@@ -65,7 +65,7 @@ public class ExtractController {
         ExtractorInstructionFilesDTO returnVal = new ExtractorInstructionFilesDTO();
 
         try {
-            returnVal = extractorInstructionFilesService.processLoaderFileInstructions(extractorInstructionFilesDTO);
+            returnVal = extractorInstructionFilesService.processExtractorFileInstructions(extractorInstructionFilesDTO);
         } catch (AccessDeniedException e) {
 
             returnVal.getDtoHeaderResponse().addException(e);

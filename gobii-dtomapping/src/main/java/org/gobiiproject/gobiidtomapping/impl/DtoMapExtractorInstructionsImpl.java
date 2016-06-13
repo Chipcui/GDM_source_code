@@ -88,56 +88,9 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                 "Dataset ID is missing");
                     }
 
-                    if (currentGobiiDataSetExtract) {
-
-                        if (!extractorInstructionsDAO.doesPathExist(currentGobiiDataSetExtract.getSource())) {
-                            allValuesSpecified = false;
-                            returnVal.getDtoHeaderResponse().addStatusMessage(DtoHeaderResponse.StatusLevel.ERROR,
-                                    DtoHeaderResponse.ValidationStatusType.ENTITY_DOES_NOT_EXIST,
-                                    "require-to-exist was set to true, but the source file path does not exist: "
-                                            + currentGobiiDataSetExtract.getSource());
-                        }
-
-                        if (!extractorInstructionsDAO.doesPathExist(currentGobiiDataSetExtract.getDestination())) {
-                            allValuesSpecified = false;
-                            returnVal.getDtoHeaderResponse().addStatusMessage(DtoHeaderResponse.StatusLevel.ERROR,
-                                    DtoHeaderResponse.ValidationStatusType.ENTITY_DOES_NOT_EXIST,
-                                    "require-to-exist was set to true, but the destination file path does not exist: "
-                                            + currentGobiiDataSetExtract.getDestination());
-                        }
-
-                    }
-
-                    // if so, proceed with processing
-                    if (allValuesSpecified) {
-
-                        // "source file" is the data file the user may have already uploaded
-                        if (currentGobiiDataSetExtract.isCreateSource()) {
-
-                            createDirectories(instructionFileDirectory,
-                                    currentGobiiDataSetExtract);
-
-
-                        } else {
-
-                            // it's supposed to exist, so we check
-                            if (extractorInstructionsDAO.doesPathExist(currentGobiiDataSetExtract.getSource())) {
-
-                                createDirectories(instructionFileDirectory,
-                                        currentGobiiDataSetExtract);
-                            } else {
-
-                                returnVal.getDtoHeaderResponse().addStatusMessage(DtoHeaderResponse.StatusLevel.ERROR,
-                                        DtoHeaderResponse.ValidationStatusType.ENTITY_DOES_NOT_EXIST,
-                                        "The load file was specified to exist, but does not exist: " +
-                                                instructionFileFqpn);
-
-                            } // if-else the source file exists
-
-                        } // if-else we're creating a source file
-
-                    } // if we have all the input values we need
                 }
+
+
 
             } // iterate instructions/files
 

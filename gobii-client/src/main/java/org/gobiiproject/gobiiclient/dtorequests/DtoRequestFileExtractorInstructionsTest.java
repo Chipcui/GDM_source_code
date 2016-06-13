@@ -60,7 +60,6 @@ public class DtoRequestFileExtractorInstructionsTest {
 
         extractorInstructionFilesDTOToSend.setInstructionFileName(instructionFileName);
 
-
         GobiiExtractorInstruction gobiiExtractorInstructionOne = new GobiiExtractorInstruction();
 
         // GobiiDataSetExtract one
@@ -157,12 +156,6 @@ public class DtoRequestFileExtractorInstructionsTest {
         String newInstructionFileName = "testapp_" + DateUtils.makeDateIdString();
         extractorInstructionFilesDTOToSend.setInstructionFileName(newInstructionFileName);
 
-        extractorInstructionFilesDTOToSend
-                .getGobiiExtractorInstructions()
-                .get(0)
-                .getExtractDestinationDirectory().
-                .setRequireDirectoriesToExist(true); // <== should result in validation error
-
         ExtractorInstructionFilesDTO requiredDirectoriesResponse =
                 dtoRequestFileExtractorInstructions.process(extractorInstructionFilesDTOToSend);
 
@@ -183,13 +176,6 @@ public class DtoRequestFileExtractorInstructionsTest {
         // ************** VERIFY THAT THE DIRECTORIES WE SHOULD HAVE CREATED DO EXIST
         String newInstructionFileNameNoError = "testapp_" + DateUtils.makeDateIdString();
         extractorInstructionFilesDTOToSend.setInstructionFileName(newInstructionFileNameNoError);
-        extractorInstructionFilesDTOToSend
-                .getGobiiExtractorInstructions()
-                .get(0)
-                .getGobiiFile()
-                .setSource(testSourceDirName)
-                .setDestination(testDestinationDirName)
-                .setRequireDirectoriesToExist(true); // <== should result in validation error
 
         ExtractorInstructionFilesDTO requiredDirectoriesResponseNoError =
                 dtoRequestFileExtractorInstructions.process(extractorInstructionFilesDTOToSend);
@@ -214,14 +200,6 @@ public class DtoRequestFileExtractorInstructionsTest {
         // ************** VERIFY THAT WE ERROR ON USER INPUT FILE THAT SHOULD EXISTS BUT DOESN'T EXIST
 
         extractorInstructionFilesDTOToSend.setInstructionFileName("testapp_" + DateUtils.makeDateIdString());
-
-        extractorInstructionFilesDTOToSend
-                .getGobiiExtractorInstructions()
-                .get(0)
-                .getGobiiFile()
-                .setSource("foo")
-                .setDestination("bar")
-                .setCreateSource(false); // <== should result in validation error
 
 
         ExtractorInstructionFilesDTO testForuserInputFileExistsCausesError =
@@ -251,13 +229,7 @@ public class DtoRequestFileExtractorInstructionsTest {
         String bogusUserInputFile = instructionFileDirectory + newInstructionFileNameNoError + ".json";
 
         extractorInstructionFilesDTOToSend.setInstructionFileName("testapp_" + DateUtils.makeDateIdString());
-        extractorInstructionFilesDTOToSend
-                .getGobiiExtractorInstructions()
-                .get(0)
-                .getGobiiFile()
-                .setSource(bogusUserInputFile)
-                .setDestination(testDestinationDirName)
-                .setCreateSource(false); // <== should result in validation error
+
 
         ExtractorInstructionFilesDTO testForuserInputFileExistsNoError =
                 dtoRequestFileExtractorInstructions.process(extractorInstructionFilesDTOToSend);
