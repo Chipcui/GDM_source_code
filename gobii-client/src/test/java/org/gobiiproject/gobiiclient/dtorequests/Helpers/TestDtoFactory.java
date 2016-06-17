@@ -204,6 +204,7 @@ public static CvDTO makePopulatedCvDTO(DtoMetaData.ProcessType processType,
         returnVal.setCreatedDate(new Date());
         returnVal.setModifiedBy(1);
         returnVal.setModifiedDate(new Date());
+        returnVal.setStatus(1);
 
         return returnVal;
 

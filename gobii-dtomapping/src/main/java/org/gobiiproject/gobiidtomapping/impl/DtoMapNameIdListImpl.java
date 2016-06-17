@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiidtomapping.impl;
 
-import org.apache.commons.lang.math.NumberUtils;
+//import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobiidao.resultset.access.*;
 import org.gobiiproject.gobiidtomapping.DtoMapNameIdList;
 import org.gobiiproject.gobiimodel.dto.container.NameIdListDTO;
@@ -467,23 +467,23 @@ public class DtoMapNameIdListImpl implements DtoMapNameIdList {
         try {
 
             String filter = nameIdListDTO.getFilter();
-            if (NumberUtils.isNumber(filter)) {
-                ResultSet resultSet = rsProjectDao.getProjectNamesForContactId(Integer.parseInt(filter));
-
-                Map<String, String> projectNameIdList = new HashMap<>();
-
-                while (resultSet.next()) {
-                    Integer projectId = resultSet.getInt("project_id");
-                    String name = resultSet.getString("name").toString();
-                    projectNameIdList.put(projectId.toString(), name);
-                }
-
-                returnVal.setNamesById(projectNameIdList);
-            } else {
-                nameIdListDTO.getDtoHeaderResponse()
-                        .addStatusMessage(DtoHeaderResponse.StatusLevel.ERROR,
-                        "Filter value is not numeric: " + filter);
-            }
+//            if (NumberUtils.isNumber(filter)) {
+//                ResultSet resultSet = rsProjectDao.getProjectNamesForContactId(Integer.parseInt(filter));
+//
+//                Map<String, String> projectNameIdList = new HashMap<>();
+//
+//                while (resultSet.next()) {
+//                    Integer projectId = resultSet.getInt("project_id");
+//                    String name = resultSet.getString("name").toString();
+//                    projectNameIdList.put(projectId.toString(), name);
+//                }
+//
+//                returnVal.setNamesById(projectNameIdList);
+//            } else {
+//                nameIdListDTO.getDtoHeaderResponse()
+//                        .addStatusMessage(DtoHeaderResponse.StatusLevel.ERROR,
+//                        "Filter value is not numeric: " + filter);
+//            }
         } catch (Exception e) {
             returnVal.getDtoHeaderResponse().addException(e);
             LOGGER.error("Gobii Maping Error", e);

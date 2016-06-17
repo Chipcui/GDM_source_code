@@ -28,6 +28,7 @@ public class OrganizationDTO extends DtoMetaData {
     private Date createdDate;
     private Integer modifiedBy;
     private Date modifiedDate;
+    private Integer status;
 
     @GobiiEntityParam(paramName = "organizationId")
     public Integer getOrganizationId() {return organizationId;}
@@ -99,6 +100,16 @@ public class OrganizationDTO extends DtoMetaData {
     @GobiiEntityColumn(columnName ="modified_date")
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    @GobiiEntityParam(paramName = "status")
+    public Integer getStatus() {
+        return status;
+    }
+
+    @GobiiEntityColumn(columnName ="status")
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
 }
