@@ -1,6 +1,7 @@
 package org.gobiiproject.gobiiweb;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
+import org.gobiiproject.gobiimodel.config.CropConfig;
 import org.gobiiproject.gobiimodel.types.GobiiCropType;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
@@ -87,46 +88,53 @@ public class CropRequestAnalyzer {
     }
 
 
-    public static GobiiCropType getCropTypeFromUri(HttpServletRequest httpRequest) {
+    public static GobiiCropType getCropTypeFromUri(HttpServletRequest httpRequest) throws Exception {
 
         GobiiCropType returnVal = null;
 
         if (null != httpRequest) {
+
             String requestUrl = httpRequest.getRequestURI();
+            String contextPath = httpRequest.getContextPath();
+            ConfigSettings configSettings = new ConfigSettings();
+            List<CropConfig> cropConfigForContextPathList = configSettings
+                    .getActiveCropConfigs()
+                    .stream()
+                    .filter(e -> e.getServiceDomain().contains(contextPath))
+                    .collect(Collectors.toList());
 
-            List<GobiiCropType> matchedCrops =
-                    Arrays.asList(GobiiCropType.values())
-                            .stream()
-                            .filter(c -> requestUrl.toLowerCase().contains(c.toString().toLowerCase()))
-                            .collect(Collectors.toList());
+            if (1 == cropConfigForContextPathList.size()) {
+                CropConfig cropConfigForContextPath = cropConfigForContextPathList.get(0);
+                returnVal = cropConfigForContextPath.getGobiiCropType();
+            } else {
 
-            if (matchedCrops.size() > 0) {
+                List<GobiiCropType> matchedCrops =
+                        Arrays.asList(GobiiCropType.values())
+                                .stream()
+                                .filter(c -> requestUrl.toLowerCase().contains(c.toString().toLowerCase()))
+                                .collect(Collectors.toList());
 
                 if (1 == matchedCrops.size()) {
+
                     returnVal = matchedCrops.get(0);
                 } else {
                     LOGGER.error("The current url ("
                             + requestUrl
-                            + ") matched more than one one crop");
+                            + ") did not match any crops");
                 }
-
-            } else {
-
-                LOGGER.error("The current url ("
-                        + requestUrl
-                        + ") did not match any crops");
             }
 
         } else {
-            LOGGER.error("Unable to retreive servlet request for crop type analysis from url");
+
+            LOGGER.error("Unable to retreive servlet request for crop type analysis from url: there is no serverlet request");
         }
 
         return returnVal;
     }
 
-    public static GobiiCropType getGobiiCropType() {
+    public static GobiiCropType getGobiiCropType() throws Exception {
 
-        HttpServletRequest httpRequest =  null;
+        HttpServletRequest httpRequest = null;
 
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
 
@@ -140,7 +148,7 @@ public class CropRequestAnalyzer {
     }
 
 
-    public static GobiiCropType getGobiiCropType(HttpServletRequest httpRequest) {
+    public static GobiiCropType getGobiiCropType(HttpServletRequest httpRequest) throws Exception {
 
         GobiiCropType returnVal = CropRequestAnalyzer.getCropTypeFromHeaders(httpRequest);
 

@@ -50,65 +50,72 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)  {
 
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        try {
 
-        // ordinary page GETs pass right through
-        if (!httpRequest.getMethod().equals("GET")) {
 
-            String tokenHeaderVal = httpRequest.getHeader(GobiiHttpHeaderNames.HEADER_TOKEN);
-            boolean hasValidToken = authenticationService.checkToken(tokenHeaderVal);
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-            if (hasValidToken) {
-                chain.doFilter(request, response);
+            // ordinary page GETs pass right through
+            if (!httpRequest.getMethod().equals("GET")) {
+
+                String tokenHeaderVal = httpRequest.getHeader(GobiiHttpHeaderNames.HEADER_TOKEN);
+                boolean hasValidToken = authenticationService.checkToken(tokenHeaderVal);
+
+                if (hasValidToken) {
+                    chain.doFilter(request, response);
+                } else {
+
+                    TokenInfo tokenInfo = null;
+                    String userName = httpRequest.getHeader(GobiiHttpHeaderNames.HEADER_USERNAME);
+                    String password = httpRequest.getHeader(GobiiHttpHeaderNames.HEADER_PASSWORD);
+                    String authorization = httpRequest.getHeader("Authorization");
+
+                    // we assume that the DataSource selector will have done the right thing with the header
+                    // we are just echoing back to the client (the web client needs this)
+
+                    if (null == authorization) {
+
+                        // we're doing HTTP post authentication
+                        tokenInfo = authenticationService.authenticate(userName, password);
+
+                    } else {
+                        tokenInfo = checkBasicAuthorization(authorization, httpResponse);
+
+                    } // if else we're going basic authentication
+
+                    if (null != tokenInfo) {
+
+                        httpResponse.setHeader(GobiiHttpHeaderNames.HEADER_TOKEN, tokenInfo.getToken());
+
+                        GobiiCropType gobiiCropType = CropRequestAnalyzer.getGobiiCropType(httpRequest);
+                        DtoHeaderAuth dtoHeaderAuth = new DtoHeaderAuth();
+                        dtoHeaderAuth.setToken(tokenInfo.getToken());
+                        dtoHeaderAuth.setGobiiCropType(gobiiCropType);
+                        dtoHeaderAuth.setUserName(userName);
+
+
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        String dtoHeaderAuthString = objectMapper.writeValueAsString(dtoHeaderAuth);
+                        httpResponse.getWriter()
+                                .write(dtoHeaderAuthString);
+                        httpResponse.getWriter().flush();
+                        httpResponse.getWriter().close();
+
+                    } else {
+                        httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                    } // if-else the user authenticated
+                }
+
             } else {
-
-                TokenInfo tokenInfo = null;
-                String userName = httpRequest.getHeader(GobiiHttpHeaderNames.HEADER_USERNAME);
-                String password = httpRequest.getHeader(GobiiHttpHeaderNames.HEADER_PASSWORD);
-                String authorization = httpRequest.getHeader("Authorization");
-
-                // we assume that the DataSource selector will have done the right thing with the header
-                // we are just echoing back to the client (the web client needs this)
-
-                if (null == authorization) {
-
-                    // we're doing HTTP post authentication
-                    tokenInfo = authenticationService.authenticate(userName, password);
-
-                } else {
-                    tokenInfo = checkBasicAuthorization(authorization, httpResponse);
-
-                } // if else we're going basic authentication
-
-                if (null != tokenInfo) {
-
-                    httpResponse.setHeader(GobiiHttpHeaderNames.HEADER_TOKEN, tokenInfo.getToken());
-
-                    GobiiCropType gobiiCropType = CropRequestAnalyzer.getGobiiCropType(httpRequest);
-                    DtoHeaderAuth dtoHeaderAuth = new DtoHeaderAuth();
-                    dtoHeaderAuth.setToken(tokenInfo.getToken());
-                    dtoHeaderAuth.setGobiiCropType(gobiiCropType);
-                    dtoHeaderAuth.setUserName(userName);
-
-
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    String dtoHeaderAuthString = objectMapper.writeValueAsString(dtoHeaderAuth);
-                    httpResponse.getWriter()
-                            .write(dtoHeaderAuthString);
-                    httpResponse.getWriter().flush();
-                    httpResponse.getWriter().close();
-
-                } else {
-                    httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                } // if-else the user authenticated
-            }
-
-        } else {
-            chain.doFilter(request, response);
-        } // if-else we're not doing a plain page get
+                chain.doFilter(request, response);
+            } // if-else we're not doing a plain page get
+        }
+        catch (Exception e) {
+            LOGGER.error("Error on token authentication", e);
+        }
 
     } // doFilter()
 

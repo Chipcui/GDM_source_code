@@ -6,16 +6,33 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Phil on 5/25/2016.
  */
 public class DataSourceSelector extends AbstractRoutingDataSource {
 
     Logger LOGGER = LoggerFactory.getLogger(DataSourceSelector.class);
+    private ThreadLocal<HttpServletRequest> currentRequest;
 
     @Override
     protected Object determineCurrentLookupKey() {
 
-        return CropRequestAnalyzer.getGobiiCropType().toString();
+        Object returnVal = null;
+
+        try {
+
+            HttpServletRequest servletRequest = currentRequest.get();
+
+            CropRequestAnalyzer.getGobiiCropType(servletRequest).toString();
+
+        }
+        catch( Exception e) {
+            LOGGER.error("Exception analysizing gobii crop type", e);
+
+        }
+
+        return returnVal;
     }
 }
