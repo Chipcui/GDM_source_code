@@ -7,6 +7,7 @@ import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -21,23 +22,15 @@ import java.util.stream.Collectors;
  */
 public class CropRequestAnalyzer {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(CropRequestAnalyzer.class);
-
-    private static HttpServletRequest getRequest() {
-
-        HttpServletRequest returnVal = null;
-
-        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-
-        if (null != requestAttributes && requestAttributes instanceof ServletRequestAttributes) {
-            returnVal = ((ServletRequestAttributes) requestAttributes).getRequest();
-        }
-
-        return returnVal;
+    private HttpServletRequest httpRequest;
+    public CropRequestAnalyzer(HttpServletRequest httpRequest) {
+        this.httpRequest = httpRequest;
     }
 
 
-    public static GobiiCropType getCropTypeFromHeaders(HttpServletRequest httpRequest) {
+    private final Logger LOGGER = LoggerFactory.getLogger(CropRequestAnalyzer.class);
+
+    private GobiiCropType getCropTypeFromHeaders(HttpServletRequest httpRequest) {
 
         GobiiCropType returnVal = null;
 
@@ -72,7 +65,7 @@ public class CropRequestAnalyzer {
 
     }
 
-    public static GobiiCropType getDefaultCropType() {
+    private GobiiCropType getDefaultCropType() {
 
         GobiiCropType returnVal = GobiiCropType.TEST; // if all else fails
 
@@ -88,7 +81,7 @@ public class CropRequestAnalyzer {
     }
 
 
-    public static GobiiCropType getCropTypeFromUri(HttpServletRequest httpRequest) throws Exception {
+    private GobiiCropType getCropTypeFromUri(HttpServletRequest httpRequest) throws Exception {
 
         GobiiCropType returnVal = null;
 
@@ -132,33 +125,17 @@ public class CropRequestAnalyzer {
         return returnVal;
     }
 
-    public static GobiiCropType getGobiiCropType() throws Exception {
+    public GobiiCropType getGobiiCropType() throws Exception {
 
-        HttpServletRequest httpRequest = null;
-
-        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-
-        if (null != requestAttributes && requestAttributes instanceof ServletRequestAttributes) {
-            httpRequest = ((ServletRequestAttributes) requestAttributes).getRequest();
-        }
-
-
-        return CropRequestAnalyzer.getGobiiCropType(httpRequest);
-
-    }
-
-
-    public static GobiiCropType getGobiiCropType(HttpServletRequest httpRequest) throws Exception {
-
-        GobiiCropType returnVal = CropRequestAnalyzer.getCropTypeFromHeaders(httpRequest);
+        GobiiCropType returnVal = this.getCropTypeFromHeaders(httpRequest);
 
         if (null == returnVal) {
 
-            returnVal = CropRequestAnalyzer.getCropTypeFromUri(httpRequest);
+            returnVal = this.getCropTypeFromUri(httpRequest);
 
             if (null == returnVal) {
 
-                returnVal = CropRequestAnalyzer.getDefaultCropType();
+                returnVal = this.getDefaultCropType();
 
                 if (null == returnVal) {
 

@@ -14,6 +14,7 @@ import org.gobiiproject.gobiiweb.CropRequestAnalyzer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.filter.GenericFilterBean;
@@ -40,6 +41,9 @@ import java.util.StringTokenizer;
 public final class TokenAuthenticationFilter extends GenericFilterBean {
 
     Logger LOGGER = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
+
+
+
 
     private final String logoutLink;
     private final AuthenticationService authenticationService;
@@ -90,7 +94,8 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
 
                         httpResponse.setHeader(GobiiHttpHeaderNames.HEADER_TOKEN, tokenInfo.getToken());
 
-                        GobiiCropType gobiiCropType = CropRequestAnalyzer.getGobiiCropType(httpRequest);
+
+                        GobiiCropType gobiiCropType = (new CropRequestAnalyzer(httpRequest)).getGobiiCropType();
                         DtoHeaderAuth dtoHeaderAuth = new DtoHeaderAuth();
                         dtoHeaderAuth.setToken(tokenInfo.getToken());
                         dtoHeaderAuth.setGobiiCropType(gobiiCropType);

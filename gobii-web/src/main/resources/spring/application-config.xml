@@ -360,6 +360,14 @@
 
 
     <!--**************** Add data sources to manager *********************************-->
+
+    <bean id="currentRequest" class="java.lang.ThreadLocal"/>
+
+    <bean id="currentRequestFilter" class="org.gobiiproject.gobiiweb.CurrentRequestFilter">
+        <property name="currentRequest" ref="currentRequest"/>
+    </bean>
+
+
     <bean id="dataSourceMulti" class="org.gobiiproject.gobiiweb.DataSourceSelector">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
