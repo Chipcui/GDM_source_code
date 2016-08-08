@@ -12,7 +12,7 @@ public class SpInsContact extends SpDef {
 
     public SpInsContact() {
 
-        super("{call createcontact(?,?,?,?,?,?,?,?,?)}");
+        super("{call createcontact(?,?,?,?,?,?,?,?,?,?)}");
 
         this.addParamDef("lastName", String.class).setNullable(false);
         this.addParamDef("firstName", String.class).setNullable(false);
@@ -20,9 +20,10 @@ public class SpInsContact extends SpDef {
         this.addParamDef("email", String.class).setNullable(false);
         this.addParamDef("roles", ArrayList.class).setNullable(true);
         this.addParamDef("createdBy", Integer.class).setNullable(false);
-        this.addParamDef("createdDate", java.util.Date.class).setNullable(false);
+        this.addParamDef("createdDate", Date.class).setNullable(false);
         this.addParamDef("modifiedBy", Integer.class).setNullable(true);
-        this.addParamDef("modifiedDate", java.util.Date.class).setNullable(true);
+        this.addParamDef("modifiedDate", Date.class).setNullable(true);
+        this.addParamDef("organizationId", Integer.class).setNullable(true);
 
 
     } // ctor

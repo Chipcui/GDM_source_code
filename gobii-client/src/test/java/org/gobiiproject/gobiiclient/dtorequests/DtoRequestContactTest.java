@@ -57,12 +57,12 @@ public class DtoRequestContactTest {
         contactDTORequest.setFirstName("Angel Manica");
         contactDTORequest.setLastName("Raquel");
         contactDTORequest.setEmail("added dummy email");
-        contactDTORequest.setCode("added New Code");
+        contactDTORequest.setCode("added New n Code");
         contactDTORequest.setCreatedBy(1);
         contactDTORequest.setCreatedDate(new Date());
         contactDTORequest.setModifiedBy(1);
         contactDTORequest.setModifiedDate(new Date());
-
+        contactDTORequest.setOrganizationId(1);
         contactDTORequest.getRoles().add(1);
         contactDTORequest.getRoles().add(2);
         ContactDTO contactDTOResponse = dtoRequestContact.process(contactDTORequest);
