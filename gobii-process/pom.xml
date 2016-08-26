@@ -118,7 +118,6 @@
     <build>
 
         <plugins>
-
             <!-- Maven Assembly Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -134,10 +133,9 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                         <manifest>
-                            <mainClass>org.gobiiproject.gobiiprocess.ConfigCheck</mainClass>
+                            <mainClass>org.gobiiproject.gobiiprocess.GobiiConfig</mainClass>
                         </manifest>
                     </archive>
-
                 </configuration>
                 <executions>
                     <execution>

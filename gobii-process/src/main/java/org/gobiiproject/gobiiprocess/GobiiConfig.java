@@ -34,15 +34,29 @@ import java.util.List;
 /**
  * Created by Phil on 6/24/2016.
  */
-public class ConfigCheck {
+public class GobiiConfig {
 
-    private static String NAME_COMMAND = "ConfigCheck";
+    private static String NAME_COMMAND = "GobiiConfig";
     private static String TOMCAT_BASE_DIR = "tbase";
     private static String CONFIG_BASE_URL = "burl";
     private static String CONFIG_MKDIRS = "mdirs";
     private static String COPY_WARS = "wcopy";
     private static String PROP_FILE_FQPN = "pfqpn";
     private static String PROP_FILE_PROPS_TO_XML = "toxml";
+    private static String ADD_TO_CONFIG = "add";
+
+    private static String ADD_TO_CONFIG_CROP = "crop";
+    private static String ADD_TO_CONFIG_CROP_WEB_HOST = "host";
+    private static String ADD_TO_CONFIG_CROP_WEB_PORT = "port";
+    private static String ADD_TO_CONFIG_CROP_WEB_CONTEXT = "context";
+
+    private static String ADD_TO_CONFIG_DIRECTORIES = "DIRECTORIES";
+    private static String ADD_TO_CONFIG_DIRECTORIES_TYPE = "host";
+    private static String ADD_TO_CONFIG_DIRECTORIES_HOST = "host";
+    private static String ADD_TO_CONFIG_DIRECTORIES_PORT = "port";
+    private static String ADD_TO_CONFIG_DIRECTORIES_USER = "context";
+    private static String ADD_TO_CONFIG_DIRECTORIES_PASSWORD = "context";
+
 
     private static String WAR_FILES_DIR = "wars/";
 
@@ -82,6 +96,7 @@ public class ConfigCheck {
             options.addOption(COPY_WARS, true, "create war files for active crops from the specified war file (requires " + PROP_FILE_FQPN + ")");
             options.addOption(PROP_FILE_FQPN, true, "fqpn of gobii properties file");
             options.addOption(PROP_FILE_PROPS_TO_XML, false, "Convert existing gobii-properties file to xml (requires " + PROP_FILE_FQPN + ")");
+            options.addOption(ADD_TO_CONFIG, true, "Add to the existing configuration; requires " + ADD_TO_CONFIG_CROP );
 
             // parse our commandline
             CommandLineParser parser = new DefaultParser();
@@ -101,9 +116,9 @@ public class ConfigCheck {
                     File configFileServer = new File(configFileServerFqpn);
                     if (configFileServer.exists()) {
 
-                        ConfigCheck.printSeparator();
-                        ConfigCheck.printField("Configuration Mode", "From tomcat server configuration");
-                        ConfigCheck.printField("Tomcat file found", configFileServerFqpn);
+                        GobiiConfig.printSeparator();
+                        GobiiConfig.printField("Configuration Mode", "From tomcat server configuration");
+                        GobiiConfig.printField("Tomcat file found", configFileServerFqpn);
 
 
                         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -119,13 +134,13 @@ public class ConfigCheck {
 
                         if (null != locationElement) {
 
-                            ConfigCheck.printField("Server configuration", "Proper node found");
+                            GobiiConfig.printField("Server configuration", "Proper node found");
 
                             String propertiesFileFqpn = locationElement.getAttribute("value");
                             File propertiesFile = new File(propertiesFileFqpn);
                             if (propertiesFile.exists()) {
 
-                                ConfigCheck.printField("Local properties file", propertiesFileFqpn);
+                                GobiiConfig.printField("Local properties file", propertiesFileFqpn);
 
                                 ConfigSettings configSettings = new ConfigSettings(propertiesFileFqpn);
 
@@ -143,7 +158,7 @@ public class ConfigCheck {
                                 File configFileContext = new File(configFileContextFqpn);
                                 if (configFileContext.exists()) {
 
-                                    ConfigCheck.printField("Tomcat file found", configFileContextFqpn);
+                                    GobiiConfig.printField("Tomcat file found", configFileContextFqpn);
 
 
                                     Document documentContext = documentBuilder.parse(new FileInputStream(configFileContext));
@@ -154,7 +169,7 @@ public class ConfigCheck {
                                     Element locationElementForLink = (Element) nodesContext.item(0);
 
                                     if (null != locationElementForLink) {
-                                        ConfigCheck.printField("Context configuration", "Proper node found");
+                                        GobiiConfig.printField("Context configuration", "Proper node found");
                                     } else {
                                         System.err.print("The configuration in server.xml does not define ResourceLink to the properties file: " + configFileServerFqpn);
                                     }
@@ -162,7 +177,7 @@ public class ConfigCheck {
                                     ClientContext clientContext = configClientContext(configServerUrl);
 
 
-                                    if (ConfigCheck.showServerInfo(clientContext)) {
+                                    if (GobiiConfig.showServerInfo(clientContext)) {
                                         exitCode = 0;
                                     }
 
@@ -195,12 +210,12 @@ public class ConfigCheck {
 
                 String configUrl = commandLine.getOptionValue(CONFIG_BASE_URL);
 
-                ConfigCheck.printSeparator();
-                ConfigCheck.printField("Configuration Mode", "From url");
+                GobiiConfig.printSeparator();
+                GobiiConfig.printField("Configuration Mode", "From url");
 
                 ClientContext clientContext = configClientContext(configUrl);
 
-                if (ConfigCheck.showServerInfo(clientContext)) {
+                if (GobiiConfig.showServerInfo(clientContext)) {
                     exitCode = 0;
                 }
 
@@ -211,7 +226,7 @@ public class ConfigCheck {
                 String propFileFqpn = commandLine.getOptionValue(PROP_FILE_FQPN);
 
 
-                if (ConfigCheck.makeGobiiDirectories(propFileFqpn)) {
+                if (GobiiConfig.makeGobiiDirectories(propFileFqpn)) {
                     exitCode = 0;
                 }
 
@@ -223,7 +238,7 @@ public class ConfigCheck {
                 String warFileFqpn = commandLine.getOptionValue(COPY_WARS);
 
 
-                if (ConfigCheck.copyWars(propFileFqpn, warFileFqpn)) {
+                if (GobiiConfig.copyWars(propFileFqpn, warFileFqpn)) {
                     exitCode = 0;
                 }
 
@@ -243,6 +258,9 @@ public class ConfigCheck {
 
                 ConfigSettings configSettings = new ConfigSettings(propFileFqpn);
 
+            } else if( commandLine.hasOption(ADD_TO_CONFIG)
+                    && commandLine.hasOption("")) {
+
             } else {
                 formatter.printHelp(NAME_COMMAND, options);
             }
@@ -259,12 +277,12 @@ public class ConfigCheck {
     private static ClientContext configClientContext(String configServerUrl) throws Exception {
         System.out.println();
         System.out.println();
-        ConfigCheck.printSeparator();
-        ConfigCheck.printField("Config request server", configServerUrl);
+        GobiiConfig.printSeparator();
+        GobiiConfig.printField("Config request server", configServerUrl);
 
         System.out.println();
         System.out.println();
-        ConfigCheck.printSeparator();
+        GobiiConfig.printSeparator();
 
         return ClientContext.getInstance(configServerUrl, true);
 
@@ -277,27 +295,27 @@ public class ConfigCheck {
         // The logging framework emits debugging messages before it knows not to emit them.
         // Until we solve this problem, we we'll visually set those messages aside
         List<String> gobiiCropTypes = clientContext.getInstance(null, false).getCropTypeTypes();
-        ConfigCheck.printSeparator();
+        GobiiConfig.printSeparator();
 
-        ConfigCheck.printField("Default crop", ClientContext.getInstance(null, false).getDefaultCropType().toString());
+        GobiiConfig.printField("Default crop", ClientContext.getInstance(null, false).getDefaultCropType().toString());
 
         for (String currentCropType : gobiiCropTypes) {
 
             ClientContext.getInstance(null, false).setCurrentClientCrop(currentCropType);
 
-            ConfigCheck.printSeparator();
-            ConfigCheck.printField("Crop Type", currentCropType.toString());
-            ConfigCheck.printField("Host", ClientContext.getInstance(null, false).getCurrentCropDomain());
-            ConfigCheck.printField("Port", ClientContext.getInstance(null, false).getCurrentCropPort().toString());
-            ConfigCheck.printField("Context root", ClientContext.getInstance(null, false).getCurrentCropContextRoot());
+            GobiiConfig.printSeparator();
+            GobiiConfig.printField("Crop Type", currentCropType.toString());
+            GobiiConfig.printField("Host", ClientContext.getInstance(null, false).getCurrentCropDomain());
+            GobiiConfig.printField("Port", ClientContext.getInstance(null, false).getCurrentCropPort().toString());
+            GobiiConfig.printField("Context root", ClientContext.getInstance(null, false).getCurrentCropContextRoot());
 
-            ConfigCheck.printField("Loader instructions directory", ClientContext.getInstance(null, false)
+            GobiiConfig.printField("Loader instructions directory", ClientContext.getInstance(null, false)
                     .getFileLocationOfCurrenCrop(GobiiFileLocationType.LOADERINSTRUCTION_FILES));
-            ConfigCheck.printField("User file upload directory", ClientContext.getInstance(null, false)
+            GobiiConfig.printField("User file upload directory", ClientContext.getInstance(null, false)
                     .getFileLocationOfCurrenCrop(GobiiFileLocationType.RAWUSER_FILES));
-            ConfigCheck.printField("Digester output directory ", ClientContext.getInstance(null, false)
+            GobiiConfig.printField("Digester output directory ", ClientContext.getInstance(null, false)
                     .getFileLocationOfCurrenCrop(GobiiFileLocationType.INTERMEDIATE_FILES));
-            ConfigCheck.printField("Extractor instructions directory", ClientContext.getInstance(null, false)
+            GobiiConfig.printField("Extractor instructions directory", ClientContext.getInstance(null, false)
                     .getFileLocationOfCurrenCrop(GobiiFileLocationType.EXTRACTORINSTRUCTION_FILES));
 
             //if(!LineUtils.isNullOrEmpty())
@@ -316,11 +334,11 @@ public class ConfigCheck {
                 Integer responseNum = 1;
                 if (pingDTOResponse.getDtoHeaderResponse().isSucceeded()) {
                     for (String currentResponse : pingDTOResponse.getPingResponses()) {
-                        ConfigCheck.printField("Ping response " + (responseNum++).toString(), currentResponse);
+                        GobiiConfig.printField("Ping response " + (responseNum++).toString(), currentResponse);
                     }
                 } else {
                     for (HeaderStatusMessage currentHeader : pingDTOResponse.getDtoHeaderResponse().getStatusMessages()) {
-                        ConfigCheck.printField("Service error " + (responseNum++).toString(), currentHeader.getMessage());
+                        GobiiConfig.printField("Service error " + (responseNum++).toString(), currentHeader.getMessage());
                         returnVal = false;
                     }
                 }
