@@ -1,0 +1,93 @@
+# GOBII Web Services API Specification
+# Author: Phil Glaser
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: GOBII Web Services API Specification
+
+parameters:
+  payloadEnvelopeParam:
+    name: PayloadEnvelope
+    in: body
+    schema: 
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            name:
+              type: string
+            age:
+              type: integer
+              format: int32
+              minimum: 0
+    description: number of items to skip
+    required: true
+
+
+# Describe your paths here
+paths:
+  /contacts:
+    get:
+      description: |
+        Gets `Contact` objects.
+        Optional query param of **size** determines
+        size of returned array
+        
+      # This is array of GET operation parameters:
+      parameters:
+                  # An example parameter that is in query and is required
+        - name: size
+          in: query
+          description: Size of array
+          required: true
+          type: number
+          format: double
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            title: ArrayOfPersons
+            type: array
+            items:
+              title: Person
+              type: object
+              properties:
+                name:
+                  type: string
+                single:
+                  type: boolean
+    put:
+      description: |
+        Gets `Contact` objects.
+        Optional query param of **size** determines
+        size of returned array
+        
+      # This is array of GET operation parameters:
+      parameters:
+        - $ref: '#/parameters/payloadEnvelopeParam'
+
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            title: ArrayOfPersons
+            type: array
+            items:
+              title: Person
+              type: object
+              properties:
+                name:
+                  type: string
+                single:
+                  type: boolean                  

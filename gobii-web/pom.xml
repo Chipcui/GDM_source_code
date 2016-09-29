@@ -326,9 +326,25 @@
 
     </dependencies>
 
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter-snapshots</id>
+            <name>jcenter</name>
+            <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>jcenter-releases</id>
+            <name>jcenter</name>
+            <url>http://jcenter.bintray.com</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -445,6 +461,90 @@
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>io.github.swagger2markup</groupId>
+                <artifactId>swagger2markup-maven-plugin</artifactId>
+                <version>${swagger2markup.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.github.swagger2markup</groupId>
+                        <artifactId>swagger2markup</artifactId>
+                        <version>${swagger2markup.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <swaggerInput>${project.basedir}/src/main/resources/swagger/gobii-web-api.yaml</swaggerInput>
+                    <outputFile>${project.build.directory}/docs/asciidocs/gobii-web-api.adoc</outputFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>convertSwagger2markup</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>${asciidoctor-version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-pdf</artifactId>
+                        <version>1.5.0-alpha.11</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jruby</groupId>
+                        <artifactId>jruby-complete</artifactId>
+                        <version>1.7.21</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDirectory>${project.build.directory}/docs/asciidocs</sourceDirectory>
+                    <!-- You will need to create an .adoc file. This is the input to this plugin -->
+                    <!--<sourceDocumentName>swagger.adoc</sourceDocumentName>-->
+                    <attributes>
+                        <doctype>book</doctype>
+                        <toc>left</toc>
+                        <toclevels>2</toclevels>
+                        <outputDirectory>${project.build.directory}/docs/book</outputDirectory>
+                        <!-- this path is referenced in swagger.adoc file. The given file will simply
+                            point to the previously create adoc files/assemble them. -->
+                    </attributes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>asciidoc-to-html</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html5</backend>
+                            <outputDirectory>${project.build.directory}/docs/html</outputDirectory>
+                            <!-- specify location to place html file -->
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>asciidoc-to-pdf</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <outputDirectory>${project.build.directory}/docs/pdf</outputDirectory>
+                            <!-- specify location to place pdf file -->
                         </configuration>
                     </execution>
                 </executions>

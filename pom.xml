@@ -64,6 +64,14 @@
         <!-- Javax Mail -->
         <javax-mail-version>1.4</javax-mail-version>
 
+        <!-- Swagger tools-->
+        <!--<swagger-2-markup-version>0.9.3</swagger-2-markup-version>-->
+
+        <swagger2markup.version>1.0.1</swagger2markup.version>
+        <swagger2markup.plugin.version>1.0.1</swagger2markup.plugin.version>
+        <swagger2markup.extension.version>1.0.0</swagger2markup.extension.version>
+        <asciidoctor-version>1.5.3</asciidoctor-version>
+
     </properties>
 
     <modules>
