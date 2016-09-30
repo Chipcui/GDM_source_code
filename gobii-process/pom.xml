@@ -194,6 +194,26 @@
 
                     </execution>
 
+                    <!--Yaml Dumper Execution-->
+                    <execution>
+                        <configuration>
+                            <finalName>YamlDump</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>org.gobiiproject.gobiiprocess.web.YamlDump</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                        <id>make-yamldumper</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+
+                    </execution>
+
+
                 </executions>
             </plugin>
         </plugins>
