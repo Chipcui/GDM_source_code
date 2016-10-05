@@ -71,6 +71,8 @@
         <swagger2markup.plugin.version>1.0.1</swagger2markup.plugin.version>
         <swagger2markup.extension.version>1.0.0</swagger2markup.extension.version>
         <asciidoctor-version>1.5.3</asciidoctor-version>
+        <yamlbeans.version>1.08</yamlbeans.version>
+        <springfox.version>2.4.0</springfox.version>
 
     </properties>
 

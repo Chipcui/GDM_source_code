@@ -5,6 +5,7 @@
 // ************************************************************************
 package org.gobiiproject.gobiiweb.controllers;
 
+import io.swagger.annotations.Api;
 import org.gobiiproject.gobidomain.services.AnalysisService;
 import org.gobiiproject.gobidomain.services.ConfigSettingsService;
 import org.gobiiproject.gobidomain.services.ContactService;
@@ -56,6 +57,7 @@ import java.util.List;
 @Scope(value = "request")
 @Controller
 @RequestMapping("/brapi/v1")
+@Api(value = "BRAPI", position = 1)
 public class BRAPIController {
 
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(BRAPIController.class);
