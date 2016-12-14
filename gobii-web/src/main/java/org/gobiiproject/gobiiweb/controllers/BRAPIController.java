@@ -28,10 +28,13 @@ import org.gobiiproject.gobidomain.services.ProjectService;
 import org.gobiiproject.gobidomain.services.ReferenceService;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.EntityNameConverter;
+import org.gobiiproject.gobiiapimodel.restresources.ResourceBuilder;
+import org.gobiiproject.gobiiapimodel.types.ControllerType;
 import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
 import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 import org.gobiiproject.gobiidtomapping.impl.DtoMapNameIds.DtoMapNameIdParams;
 import org.gobiiproject.gobiimodel.config.GobiiException;
+import org.gobiiproject.gobiimodel.headerlesscontainer.brapi.CallsDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ExtractorInstructionFilesDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.DataSetDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ExperimentDTO;
@@ -50,6 +53,8 @@ import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiFilterType;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
+import org.gobiiproject.gobiimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.brapi.BrapiDataTypes;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.gobiiproject.gobiiweb.CropRequestAnalyzer;
 import org.gobiiproject.gobiiweb.automation.ControllerUtils;
@@ -68,6 +73,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -223,6 +229,37 @@ public class BRAPIController {
 
     }
 
+
+    // *********************************************
+    // *************************** CALLS
+    // *********************************************
+    @RequestMapping(value = "/calls", method = RequestMethod.GET)
+    @ResponseBody
+    public PayloadEnvelope<CallsDTO> getCalls(
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        PayloadEnvelope<CallsDTO> returnVal = new PayloadEnvelope<>();
+        try {
+
+            returnVal.getPayload().getData().add(
+                    new CallsDTO(ResourceBuilder.getRelativePath(ServiceRequestId.URL_CALLS),
+                    Arrays.asList(RestMethodTypes.GET),
+                    Arrays.asList(BrapiDataTypes.JSON)));
+            
+
+        } catch (Exception e) {
+            returnVal.getHeader().getStatus().addException(e);
+        }
+
+        ControllerUtils.setHeaderResponse(returnVal.getHeader(),
+                response,
+                HttpStatus.OK,
+                HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return (returnVal);
+
+    }
 
     // *********************************************
     // *************************** CONTACT METHODS

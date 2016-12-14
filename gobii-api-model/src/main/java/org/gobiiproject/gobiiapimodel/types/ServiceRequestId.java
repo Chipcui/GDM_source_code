@@ -32,5 +32,6 @@ public enum ServiceRequestId {
     URL_CONFIGSETTINGS,
     URL_ROLES,
     URL_MARKERS,
-    URL_MARKER_SEARCH
+    URL_MARKER_SEARCH,
+    URL_CALLS
 }
