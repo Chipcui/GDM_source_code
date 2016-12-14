@@ -52,7 +52,7 @@ public class TestBrapiCalls {
         Assert.assertTrue(resultEnvelope.getPayload().getData().size() > 0 );
 
         String callsRelativePath = ResourceBuilder.getRelativePath(ServiceRequestId.URL_CALLS);
-        CallsDTO callsDtoCalls = resultEnvelope
+        CallsDTO callDto = resultEnvelope
                 .getPayload()
                 .getData()
                 .stream()
@@ -60,9 +60,9 @@ public class TestBrapiCalls {
                 .collect(Collectors.toList())
                 .get(0);
 
-        Assert.assertTrue(callsDtoCalls.getDataTypes().get(0).equals(BrapiDataTypes.JSON));
+        Assert.assertTrue(callDto.getDataTypes().get(0).equals(BrapiDataTypes.JSON));
 
-        Assert.assertTrue(callsDtoCalls.getMethods().get(0).equals(RestMethodTypes.GET));
+        Assert.assertTrue(callDto.getMethods().get(0).equals(RestMethodTypes.GET));
 
     }
 }
