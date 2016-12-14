@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiapimodel.hateos;
 
-import org.gobiiproject.gobiiapimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.RestMethodTypes;
 
 import java.util.HashSet;
 import java.util.Set;

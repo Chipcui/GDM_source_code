@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiidtomapping;
 
-import org.gobiiproject.gobiimodel.headerlesscontainer.ProjectDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ProjectDTO;
 
 import java.util.List;
 

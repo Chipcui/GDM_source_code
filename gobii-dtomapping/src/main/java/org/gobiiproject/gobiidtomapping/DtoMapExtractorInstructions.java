@@ -2,7 +2,7 @@ package org.gobiiproject.gobiidtomapping;
 
 
 import org.gobiiproject.gobiimodel.config.GobiiException;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ExtractorInstructionFilesDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ExtractorInstructionFilesDTO;
 
 /**
  * Created by Phil on 4/12/2016.

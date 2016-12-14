@@ -5,14 +5,8 @@ import org.gobiiproject.gobiiapimodel.restresources.RestUri;
 import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
 import org.gobiiproject.gobiiclient.core.ClientContext;
 import org.gobiiproject.gobiiclient.core.restmethods.RestResource;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ContactDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.DTOBase;
 import org.gobiiproject.gobiimodel.tobemovedtoapimodel.HeaderStatusMessage;
-import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
-import org.junit.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

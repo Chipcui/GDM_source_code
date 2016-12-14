@@ -6,7 +6,7 @@ import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.CropConfig;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.config.ServerConfig;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ConfigSettingsDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ConfigSettingsDTO;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

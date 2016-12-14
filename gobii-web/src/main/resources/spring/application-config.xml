@@ -320,7 +320,7 @@
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
                         <constructor-arg ref="storedProcExec"/>
                         <constructor-arg>
-                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.DataSetDTO</value>
+                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.gobii.DataSetDTO</value>
                         </constructor-arg>
                         <constructor-arg>
                             <value>QUERY_ID_DATASET_ALL</value>
@@ -332,7 +332,7 @@
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
                         <constructor-arg ref="storedProcExec"/>
                         <constructor-arg>
-                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.ContactDTO</value>
+                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ContactDTO</value>
                         </constructor-arg>
                         <constructor-arg>
                             <value>QUERY_ID_CONTACT_ALL</value>
@@ -344,7 +344,7 @@
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
                         <constructor-arg ref="storedProcExec"/>
                         <constructor-arg>
-                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.OrganizationDTO</value>
+                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.gobii.OrganizationDTO</value>
                         </constructor-arg>
                         <constructor-arg>
                             <value>QUERY_ID_ORGANIZATION_ALL</value>
@@ -356,7 +356,7 @@
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
                         <constructor-arg ref="storedProcExec"/>
                         <constructor-arg>
-                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.PlatformDTO</value>
+                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.gobii.PlatformDTO</value>
                         </constructor-arg>
                         <constructor-arg>
                             <value>QUERY_ID_PLATFORM_ALL</value>
@@ -368,7 +368,7 @@
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
                         <constructor-arg ref="storedProcExec"/>
                         <constructor-arg>
-                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.ProjectDTO</value>
+                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ProjectDTO</value>
                         </constructor-arg>
                         <constructor-arg>
                             <value>QUERY_ID_PROJECT_ALL</value>
@@ -380,7 +380,7 @@
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
                         <constructor-arg ref="storedProcExec"/>
                         <constructor-arg>
-                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.ExperimentDTO</value>
+                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ExperimentDTO</value>
                         </constructor-arg>
                         <constructor-arg>
                             <value>QUERY_ID_EXPERIMENT</value>
@@ -392,7 +392,7 @@
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
                         <constructor-arg ref="storedProcExec"/>
                         <constructor-arg>
-                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.MarkerDTO</value>
+                            <value>org.gobiiproject.gobiimodel.headerlesscontainer.gobii.MarkerDTO</value>
                         </constructor-arg>
                         <constructor-arg>
                             <value>QUERY_ID_MARKER_ALL</value>

@@ -4,19 +4,16 @@ import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestExperim
 import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestOrganizationTest;
 import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestPlatformTest;
 import org.gobiiproject.gobiimodel.dto.container.*;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ContactDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DataSetDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.MarkerDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.NameIdDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.PlatformDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.ContactDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.DataSetDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.MarkerDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.NameIdDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.PlatformDTO;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
-import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
-import org.gobiiproject.gobiimodel.headerlesscontainer.OrganizationDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.OrganizationDTO;
 import org.gobiiproject.gobiimodel.utils.DateUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.Timestamp;
 import java.util.*;
 

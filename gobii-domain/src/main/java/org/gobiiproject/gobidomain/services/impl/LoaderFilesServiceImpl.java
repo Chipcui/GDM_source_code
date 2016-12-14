@@ -3,15 +3,11 @@ package org.gobiiproject.gobidomain.services.impl;
 import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.services.LoaderFilesService;
 import org.gobiiproject.gobiidtomapping.DtoMapLoaderFiles;
-import org.gobiiproject.gobiimodel.config.GobiiException;
-import org.gobiiproject.gobiimodel.headerlesscontainer.LoaderFilePreviewDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.LoaderFilePreviewDTO;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-
 
 
 /**

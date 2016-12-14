@@ -7,7 +7,7 @@ package org.gobiiproject.gobidomain.services;
 
 import org.gobiiproject.gobiidtomapping.impl.DtoMapNameIds.DtoMapNameIdParams;
 import org.gobiiproject.gobiimodel.config.GobiiException;
-import org.gobiiproject.gobiimodel.headerlesscontainer.NameIdDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.NameIdDTO;
 
 import java.util.List;
 

@@ -1,12 +1,9 @@
 package org.gobiiproject.gobidomain.services.impl;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.services.MarkerService;
-import org.gobiiproject.gobidomain.services.MarkerService;
 import org.gobiiproject.gobiidtomapping.DtoMapMarker;
-import org.gobiiproject.gobiidtomapping.DtoMapMarker;
-import org.gobiiproject.gobiimodel.headerlesscontainer.MarkerDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.MarkerDTO;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
@@ -15,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

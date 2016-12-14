@@ -1,7 +1,7 @@
 package org.gobiiproject.gobiiclient.dtorequests.Helpers;
 
 
-import org.gobiiproject.gobiimodel.headerlesscontainer.NameIdDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.NameIdDTO;
 import org.gobiiproject.gobiimodel.tobemovedtoapimodel.Header;
 import org.gobiiproject.gobiimodel.tobemovedtoapimodel.HeaderStatusMessage;
 //import org.gobiiproject.gobiimodel.tobemovedtoapimodel.Header;;

@@ -1,14 +1,15 @@
-package org.gobiiproject.gobiimodel.headerlesscontainer;
+package org.gobiiproject.gobiimodel.headerlesscontainer.gobii;
 // Generated Mar 31, 2016 1:44:38 PM by Hibernate Tools 3.2.2.GA
 
 
 
 import org.gobiiproject.gobiimodel.dto.annotations.GobiiEntityColumn;
 import org.gobiiproject.gobiimodel.dto.annotations.GobiiEntityParam;
+import org.gobiiproject.gobiimodel.headerlesscontainer.DTOBase;
 
 import java.util.List;
 
-public class MarkerDTO extends  DTOBase {
+public class MarkerDTO extends DTOBase {
 
 
     private Integer markerId = 0;

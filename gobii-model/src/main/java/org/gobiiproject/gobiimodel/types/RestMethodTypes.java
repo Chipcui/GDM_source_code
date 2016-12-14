@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiapimodel.types;
+package org.gobiiproject.gobiimodel.types;
 
 /**
  * Created by Phil on 9/23/2016.

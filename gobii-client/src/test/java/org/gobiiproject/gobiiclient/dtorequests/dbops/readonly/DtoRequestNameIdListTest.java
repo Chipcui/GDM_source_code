@@ -20,8 +20,8 @@ import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestDataSet
 import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestMapsetTest;
 import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestProjectTest;
 import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestReferenceTest;
-import org.gobiiproject.gobiimodel.headerlesscontainer.NameIdDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.PlatformDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.NameIdDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.PlatformDTO;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiFilterType;
 import org.junit.AfterClass;

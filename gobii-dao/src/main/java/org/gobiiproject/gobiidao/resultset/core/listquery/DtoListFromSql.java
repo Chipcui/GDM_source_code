@@ -1,7 +1,6 @@
 package org.gobiiproject.gobiidao.resultset.core.listquery;
 
 import org.gobiiproject.gobiidao.resultset.core.ResultColumnApplicator;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DataSetDTO;
 import org.hibernate.jdbc.Work;
 
 import java.sql.Connection;

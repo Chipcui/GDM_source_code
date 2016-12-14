@@ -2,10 +2,7 @@ package org.gobiiproject.gobiidtomapping;
 
 
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiimodel.headerlesscontainer.LoaderFilePreviewDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.LoaderInstructionFilesDTO;
-
-import java.util.List;
+import org.gobiiproject.gobiimodel.headerlesscontainer.gobii.LoaderFilePreviewDTO;
 
 
 /**

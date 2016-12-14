@@ -1,6 +1,7 @@
-package org.gobiiproject.gobiimodel.headerlesscontainer;
+package org.gobiiproject.gobiimodel.headerlesscontainer.gobii;
 
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
+import org.gobiiproject.gobiimodel.headerlesscontainer.DTOBase;
 
 import java.io.File;
 import java.nio.file.Files;

@@ -1,5 +1,6 @@
-package org.gobiiproject.gobiimodel.headerlesscontainer;
+package org.gobiiproject.gobiimodel.headerlesscontainer.gobii;
 
+import org.gobiiproject.gobiimodel.headerlesscontainer.DTOBase;
 import org.gobiiproject.gobiimodel.tobemovedtoapimodel.Header;
 import org.gobiiproject.gobiimodel.dto.annotations.GobiiEntityColumn;
 import org.gobiiproject.gobiimodel.dto.annotations.GobiiEntityParam;
