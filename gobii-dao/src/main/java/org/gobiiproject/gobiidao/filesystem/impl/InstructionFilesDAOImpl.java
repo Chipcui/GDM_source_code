@@ -3,26 +3,25 @@ package org.gobiiproject.gobiidao.filesystem.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiidao.filesystem.ExtractorInstructionsDAO;
+import org.gobiiproject.gobiidao.filesystem.InstructionFilesDAO;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiDataSetExtract;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiExtractorInstruction;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiFileType;
 import org.gobiiproject.gobiimodel.types.GobiiJobStatus;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+
+import static javafx.scene.input.KeyCode.T;
 
 /**
  * Created by Phil on 4/12/2016.
  * Modified by Angel 12/12/2016
  */
-public class ExtractorInstructionsDAOImpl implements ExtractorInstructionsDAO {
+public class InstructionFilesDAOImpl implements InstructionFilesDAO {
 
     private final String LOADER_FILE_EXT = ".json";
 
@@ -125,7 +124,7 @@ public class ExtractorInstructionsDAOImpl implements ExtractorInstructionsDAO {
     }
 
     @Override
-    public List<GobiiExtractorInstruction> setGobiiJobStatus(boolean applyToAll, List<GobiiExtractorInstruction> instructions, GobiiFileProcessDir gobiiFileProcessDir) throws GobiiDaoException{
+    public List<GobiiExtractorInstruction> setExtractorGobiiJobStatus(boolean applyToAll, List<GobiiExtractorInstruction> instructions, GobiiFileProcessDir gobiiFileProcessDir) throws GobiiDaoException{
         List<GobiiExtractorInstruction> returnVal = instructions;
 
         GobiiJobStatus gobiiJobStatus;
@@ -210,7 +209,7 @@ public class ExtractorInstructionsDAOImpl implements ExtractorInstructionsDAO {
     }
 
     @Override
-    public List<GobiiExtractorInstruction> getGobiiExtractorInstructionsFromFile(String instructionFileFqpn) throws GobiiDaoException {
+    public InstructionFileAcess<T> getGobiiInstructionsFromFile(String instructionFileFqpn) throws GobiiDaoException {
 
         List<GobiiExtractorInstruction> returnVal = null;
 
@@ -238,4 +237,53 @@ public class ExtractorInstructionsDAOImpl implements ExtractorInstructionsDAO {
 
     }
 
-} // ExtractorInstructionsDAOImpl
+
+    @Override
+    public List<List<String>> getFilePreview(File file, String fileFormat) {
+        List<List<String>> returnVal = new ArrayList<List<String>>();
+        Scanner input = new Scanner(System.in);
+        try {
+            int lineCtr = 0; //count lines read
+            input = new Scanner(file);
+
+            while (input.hasNextLine() && lineCtr < 50) { //read first 50 lines only
+                int ctr = 0; //count words stored
+                List<String> lineRead = new ArrayList<String>();
+                String line = input.nextLine();
+                for (String s : line.split(getDelimiterFor(fileFormat))) {
+                    if (ctr == 50) break;
+                    else {
+                        lineRead.add(s);
+                        ctr++;
+                    }
+                }
+                returnVal.add(lineRead);
+                lineCtr++;
+            }
+            input.close();
+        } catch (FileNotFoundException e) {
+            throw new GobiiDaoException("Cannot find file. " + e.getMessage());
+        }
+
+        return returnVal;
+    }
+
+    private String getDelimiterFor(String fileFormat) {
+        String delimiter;
+        switch (fileFormat) {
+            case "csv":
+                delimiter = ",";
+                break;
+            case "txt":
+                delimiter = "\t";
+                break;
+            case "vcf":
+                delimiter = "\t";
+                break;
+            default:
+                throw new GobiiDaoException("File Format not supported: " + fileFormat);
+        }
+        return delimiter;
+    }
+
+} // InstructionFilesDAOImpl

@@ -207,7 +207,7 @@
 
     <!-- **** Extractor File Beans *************************************** -->
     <bean id="extractorFileDAO"
-          class="org.gobiiproject.gobiidao.filesystem.impl.ExtractorInstructionsDAOImpl"/>
+          class="org.gobiiproject.gobiidao.filesystem.impl.InstructionFilesDAOImpl"/>
     <bean id="dtoMapExtractorInstructions"
           class="org.gobiiproject.gobiidtomapping.impl.DtoMapExtractorInstructionsImpl"/>
     <bean id="ExtractorInstructionFilesService"
