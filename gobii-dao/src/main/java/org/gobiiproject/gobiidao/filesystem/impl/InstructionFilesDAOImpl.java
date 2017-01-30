@@ -209,36 +209,6 @@ public class InstructionFilesDAOImpl implements InstructionFilesDAO {
     }
 
     @Override
-    public InstructionFileAcess<T> getGobiiInstructionsFromFile(String instructionFileFqpn) throws GobiiDaoException {
-
-        List<GobiiExtractorInstruction> returnVal = null;
-
-        try {
-
-            GobiiExtractorInstruction[] instructions = null;
-
-            File file = new File(instructionFileFqpn);
-
-            FileInputStream fileInputStream = new FileInputStream(file);
-
-            org.codehaus.jackson.map.ObjectMapper objectMapper = new org.codehaus.jackson.map.ObjectMapper();
-
-            instructions = objectMapper.readValue(fileInputStream, GobiiExtractorInstruction[].class);
-
-            returnVal = Arrays.asList(instructions);
-
-        } catch (Exception e) {
-            String message = e.getMessage() + "; fqpn: " + instructionFileFqpn;
-
-            throw new GobiiDaoException(message);
-        }
-
-        return returnVal;
-
-    }
-
-
-    @Override
     public List<List<String>> getFilePreview(File file, String fileFormat) {
         List<List<String>> returnVal = new ArrayList<List<String>>();
         Scanner input = new Scanner(System.in);

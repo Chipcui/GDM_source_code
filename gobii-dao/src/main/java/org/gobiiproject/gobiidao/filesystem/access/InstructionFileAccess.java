@@ -3,8 +3,13 @@ package org.gobiiproject.gobiidao.filesystem.access;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.gobiiproject.gobiidao.GobiiDaoException;
+import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiExtractorInstruction;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,34 +17,37 @@ import java.util.List;
  */
 public class InstructionFileAccess<T> {
 
-    public PayloadEnvelope<T> fromJson(JsonObject jsonObject,
-                                       Class<T> dtoType) throws Exception {
+    private List<T> instructions = new ArrayList<>();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        PayloadEnvelope<T> returnVal = objectMapper.readValue(jsonObject.toString(), PayloadEnvelope.class);
+    public InstructionFileAccess(Class<T> dtoType) {
 
-        // The Jackson object mapper doesn't seem to have a means for knowing that the embedded list
-        // is supposed to be cast to the DTO type. There's probably a more architectural way of doing
-        // this -- e.g., a custom deserialization mechanism. But this gets the job done. Most importantly,
-        // by properly casting this list of DTO objects, we prevent the Java client from caring too badly
-        // about the envelope request semantics.
-        JsonArray jsonArray = jsonObject.get("payload").getAsJsonObject().get("data").getAsJsonArray();
-        String arrayAsString = jsonArray.toString();
-        List<T> resultItemList = objectMapper.readValue(arrayAsString,
-                objectMapper.getTypeFactory().constructCollectionType(List.class, dtoType));
+    }
 
-        returnVal.getPayload().setData(resultItemList);
+    public List<T> getGobiiInstructionsFromFile(String instructionFileFqpn, Class<T> dtoType) throws GobiiDaoException {
+
+        T returnVal;
+
+        try {
+
+            File file = new File(instructionFileFqpn);
+
+            //FileInputStream fileInputStream = new FileInputStream(file);
+
+            org.codehaus.jackson.map.ObjectMapper objectMapper = new org.codehaus.jackson.map.ObjectMapper();
+z
+            returnVal = objectMapper.readValue(file, dtoType);
+
+            //returnVal = Arrays.asList(instructions);//
+
+        } catch (Exception e) {
+            String message = e.getMessage() + "; fqpn: " + instructionFileFqpn;
+
+            throw new GobiiDaoException(message);
+        }
 
         return returnVal;
 
-    } // fromJson
-
-    public InstructionFileAccess(T requestData) {
-        this.header.setGobiiProcessType(gobiiProcessType);
-        this.payload.getData().add(requestData);
     }
-
-    private List<T> instructions = new ArrayList<>();
 
     public List<T> getInstructions() {
         return instructions;
