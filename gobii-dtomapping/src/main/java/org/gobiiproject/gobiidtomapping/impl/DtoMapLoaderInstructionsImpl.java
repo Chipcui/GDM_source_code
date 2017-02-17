@@ -49,6 +49,9 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
     @Autowired
     DtoMapProtocol dtoMapProtocol;
 
+    @Autowired
+    DtoMapCv dtoMapCv;
+
 
     private void createDirectories(String instructionFileDirectory,
                                    GobiiFile gobiiFile) throws GobiiDaoException {
@@ -169,21 +172,70 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
                 // check if the dataset is referenced by the specified experiment
                 if(currentLoaderInstruction.getDataSet().getId() != null) {
 
+                    String message;
+
                     DataSetDTO dataSetDTO = dtoMapDataSet.getDataSetDetails(currentLoaderInstruction.getDataSet().getId());
 
-                    // check if the experiment is referenced by the specified project
+                    if(null == dataSetDTO.getName()) {
+
+                        message = "The dataset ID "
+                                + currentLoaderInstruction.getDataSet().getId()
+                                + " does not referenced an entity";
+
+                        throw new GobiiDtoMappingException(message);
+
+                    }
+
+
                     if(currentLoaderInstruction.getExperiment().getId() != null) {
-
-                        if(!dataSetDTO.getExperimentId().equals(currentLoaderInstruction.getExperiment().getId())){
-
-                            throw new GobiiDtoMappingException("The specified experiment in the dataset is incorrect");
-                        }
 
                         ExperimentDTO experimentDTO = dtoMapExperiment.getExperimentDetails(currentLoaderInstruction.getExperiment().getId());
 
-                        if(!experimentDTO.getProjectId().equals(currentLoaderInstruction.getProject().getId())){
+                        if (null == experimentDTO.getExperimentName()) {
 
-                            throw new GobiiDtoMappingException("The specified project in the experiment is incorrect");
+                            message = "The experiment ID "
+                                    + currentLoaderInstruction.getExperiment().getId()
+                                    + " does not referenced an entity";
+
+                            throw new GobiiDtoMappingException(message);
+
+                        }
+
+                        if(!dataSetDTO.getExperimentId().equals(currentLoaderInstruction.getExperiment().getId())){
+
+                            message = "The experiment "
+                                    + experimentDTO.getExperimentName()
+                                    + " (id:" + experimentDTO.getId() + ") "
+                                    + " is not referenced by the specified dataset  "
+                                    + dataSetDTO.getName()
+                                    + " (id:" + dataSetDTO.getId() + ") ";
+
+                            throw new GobiiDtoMappingException(message);
+                        }
+
+                        ProjectDTO projectDTO = dtoMapProject.getProjectDetails(currentLoaderInstruction.getProject().getId());
+
+                        if (null == projectDTO.getProjectName()) {
+
+                            message = "The project ID "
+                                    + currentLoaderInstruction.getProject().getId()
+                                    + " does not referenced an entity";
+
+                            throw new GobiiDtoMappingException(message);
+
+                        }
+
+                        // check if the experiment is referenced by the specified project
+                        if(!experimentDTO.getProjectId().equals(projectDTO.getId())){
+
+                            message = "The project "
+                                    + projectDTO.getProjectName()
+                                    + " (id:" + projectDTO.getId() + ") "
+                                    + " is not referenced by the specified experiment  "
+                                    + experimentDTO.getExperimentName()
+                                    + " (id:" + experimentDTO.getId() + ") ";
+
+                            throw new GobiiDtoMappingException(message);
 
                         }
 
@@ -192,9 +244,29 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
                     // check if the datatype is referenced by the dataset
                     if(currentLoaderInstruction.getDatasetType().getId() != null) {
 
+                        CvDTO cvDTO = dtoMapCv.getCvDetails(currentLoaderInstruction.getDatasetType().getId());
+
+                        if (null == cvDTO.getTerm()) {
+
+                            message = "The data type "
+                                    + currentLoaderInstruction.getDatasetType().getId()
+                                    + " does not referenced an entity";
+
+                            throw new GobiiDtoMappingException(message);
+
+                        }
+
+
                         if(!dataSetDTO.getTypeId().equals(currentLoaderInstruction.getDatasetType().getId())){
 
-                            throw new GobiiDtoMappingException("The specified data type in the dataset is incorrect");
+                            message = "The data type "
+                                    + cvDTO.getTerm()
+                                    + " (id:" + cvDTO.getId() + ") "
+                                    + " is not referenced by the specified dataset  "
+                                    + dataSetDTO.getName()
+                                    + " (id:" + dataSetDTO.getId() + ") ";
+
+                            throw new GobiiDtoMappingException(message);
 
                         }
 
@@ -205,23 +277,77 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                 if(currentLoaderInstruction.getPlatform().getId() != null) {
 
+                    String message;
+
                     ExperimentDTO experimentDTO = dtoMapExperiment.getExperimentDetails(currentLoaderInstruction.getExperiment().getId());
+
+                    if (null == experimentDTO.getExperimentName()) {
+
+                        message = "The experiment ID "
+                                + currentLoaderInstruction.getExperiment().getId()
+                                + " does not referenced an entity";
+
+                        throw new GobiiDtoMappingException(message);
+
+                    }
 
                     if(experimentDTO.getVendorProtocolId() != null) {
 
                         VendorProtocolDTO vendorProtocolDTO = dtoMapProtocol.getVendorProtocolByVendorProtocolId(experimentDTO.getVendorProtocolId());
 
+                        if (null == vendorProtocolDTO.getName()) {
+
+                            message = "The vendor protocol ID "
+                                    + experimentDTO.getVendorProtocolId()
+                                    + " does not referenced an entity";
+
+                            throw new GobiiDtoMappingException(message);
+
+                        }
+
                         if(vendorProtocolDTO.getProtocolId() != null) {
 
                             ProtocolDTO protocolDTO = dtoMapProtocol.getProtocolDetails(vendorProtocolDTO.getProtocolId());
 
+                            if (null == protocolDTO.getName()) {
+
+                                message = "The protocol ID "
+                                        + vendorProtocolDTO.getProtocolId()
+                                        + " does not referenced an entity";
+
+                                throw new GobiiDtoMappingException(message);
+
+                            }
+
                             if(protocolDTO.getPlatformId() != null) {
 
-                                 Integer loaderPlatformId = currentLoaderInstruction.getPlatform().getId();
 
-                                 if(!loaderPlatformId.equals(protocolDTO.getPlatformId())){
+                                Integer loaderPlatformId = currentLoaderInstruction.getPlatform().getId();
 
-                                     throw new GobiiDtoMappingException("The specified platform in the experiment is incorrect");
+                                Integer validPlatformId = protocolDTO.getPlatformId();
+
+                                PlatformDTO platformDTO = dtoMapPlatform.getPlatformDetails(loaderPlatformId);
+
+                                if (platformDTO.getPlatformName() == null) {
+
+                                    message = "The platform ID "
+                                            + protocolDTO.getPlatformId()
+                                            + " does not referenced an entity";
+
+                                    throw new GobiiDtoMappingException(message);
+
+                                }
+
+                                 if(!loaderPlatformId.equals(validPlatformId)){
+
+                                     message = "The platform "
+                                             + platformDTO.getPlatformName()
+                                             + " (id:" + platformDTO.getId() + ") "
+                                             + " is not referenced by the specified experiment "
+                                             + experimentDTO.getExperimentName()
+                                             + " (id:" + experimentDTO.getId() + ") ";
+
+                                     throw new GobiiDtoMappingException(message);
 
                                  }
 
@@ -230,7 +356,6 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
                         }
 
                     }
-
 
                 }
 

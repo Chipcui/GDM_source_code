@@ -17,12 +17,9 @@ import org.gobiiproject.gobiiclient.dtorequests.Helpers.GlobalPkColl;
 import org.gobiiproject.gobiiclient.dtorequests.Helpers.TestUtils;
 import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestDataSetTest;
 import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.DtoCrudRequestExperimentTest;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DataSetDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ExperimentDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.LoaderInstructionFilesDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.*;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiFileColumn;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ProtocolDTO;
 import org.gobiiproject.gobiimodel.types.*;
 
 import org.gobiiproject.gobiimodel.utils.DateUtils;
@@ -468,14 +465,43 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         Assert.assertNotEquals(null, loaderInstructionFileDTOResponseEnvelope);
         Assert.assertTrue(TestUtils.checkAndPrintHeaderMessages(loaderInstructionFileDTOResponseEnvelope.getHeader()));
 
-        Assert.assertTrue("The error message should say that the experiment is invalid for the given dataset",
+        // check if the invalid experiment ID actually exist in the database
+        RestUri experimentsUri = ClientContext.getInstance(null, false)
+                .getUriFactory()
+                .resourceByUriIdParam(ServiceRequestId.URL_EXPERIMENTS);
+        experimentsUri.setParamValue("id", invalidExperimentId.toString());
+
+        GobiiEnvelopeRestResource<ExperimentDTO> gobiiEnvelopeRestResourceExperiment = new GobiiEnvelopeRestResource<>(experimentsUri);
+        PayloadEnvelope<ExperimentDTO> resultEnvelopeExperiment = gobiiEnvelopeRestResourceExperiment.get(ExperimentDTO.class);
+
+        Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeExperiment.getHeader()));
+
+        // if the experiment ID exists in the database, the error message should be that the experiment ID is not referenced by the dataset.
+        if(resultEnvelopeExperiment.getPayload().getData().size() > 0) {
+
+            Assert.assertTrue("The error message should contain 'is not referenced by the specified dataset'",
                 loaderInstructionFileDTOResponseEnvelope.getHeader()
-                .getStatus()
-                .getStatusMessages()
-                .stream()
-                .filter(m -> m.getMessage().toLowerCase().contains("the specified experiment in the dataset is incorrect"))
-                .count()
-                > 0);
+                        .getStatus()
+                        .getStatusMessages()
+                        .stream()
+                        .filter(m -> m.getMessage().toLowerCase().contains("is not referenced by the specified dataset"))
+                        .count()
+                        > 0);
+        }
+        // if the experiment ID does not exists in the database, the error message should be that the experiment ID does not referenced an entity
+        else {
+
+            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+                loaderInstructionFileDTOResponseEnvelope.getHeader()
+                        .getStatus()
+                        .getStatusMessages()
+                        .stream()
+                        .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                        .count()
+                        > 0);
+
+        }
+
     }
 
     @Test
@@ -583,14 +609,43 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         Assert.assertTrue(TestUtils.checkAndPrintHeaderMessages(loaderInstructionFileDTOResponseEnvelope.getHeader()));
 
 
-        Assert.assertTrue("The error message should say that the project is invalid for the given experiment",
-            loaderInstructionFileDTOResponseEnvelope.getHeader()
-                    .getStatus()
-                    .getStatusMessages()
-                    .stream()
-                    .filter(m -> m.getMessage().toLowerCase().contains("the specified project in the experiment is incorrect"))
-                    .count()
-                    > 0);
+        // check if the invalid project ID actually exist in the database
+        RestUri projectsUri = ClientContext.getInstance(null, false)
+                .getUriFactory()
+                .resourceByUriIdParam(ServiceRequestId.URL_PROJECTS);
+        projectsUri.setParamValue("id", invalidProjectId.toString());
+
+        GobiiEnvelopeRestResource<ProjectDTO> gobiiEnvelopeRestResourceProject = new GobiiEnvelopeRestResource<>(projectsUri);
+        PayloadEnvelope<ProjectDTO> resultEnvelopeProject = gobiiEnvelopeRestResourceProject.get(ProjectDTO.class);
+
+        Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeProject.getHeader()));
+
+
+        // if the project ID exists in the database, the error message should be that the project ID is not referenced by the experiment.
+        if(resultEnvelopeProject.getPayload().getData().size() > 0) {
+
+            Assert.assertTrue("The error message should contain 'is not referenced by the specified experiment'",
+                    loaderInstructionFileDTOResponseEnvelope.getHeader()
+                            .getStatus()
+                            .getStatusMessages()
+                            .stream()
+                            .filter(m -> m.getMessage().toLowerCase().contains("is not referenced by the specified experiment"))
+                            .count()
+                            > 0);
+        }
+        // if the project ID does not exists in the database, the error message should be that the project ID does not referenced an entity
+        else {
+
+            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+                    loaderInstructionFileDTOResponseEnvelope.getHeader()
+                            .getStatus()
+                            .getStatusMessages()
+                            .stream()
+                            .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                            .count()
+                            > 0);
+
+        }
 
     }
 
@@ -681,14 +736,42 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         Assert.assertNotEquals(null, loaderInstructionFileDTOResponseEnvelope);
         Assert.assertTrue(TestUtils.checkAndPrintHeaderMessages(loaderInstructionFileDTOResponseEnvelope.getHeader()));
 
-        Assert.assertTrue("The error message should say that the data type is invalid for the given dataset",
-            loaderInstructionFileDTOResponseEnvelope.getHeader()
-                    .getStatus()
-                    .getStatusMessages()
-                    .stream()
-                    .filter(m -> m.getMessage().toLowerCase().contains("the specified data type in the dataset is incorrect"))
-                    .count()
-                    > 0);
+        // check if the invalid experiment ID actually exist in the database
+        RestUri dataTypeUri = ClientContext.getInstance(null, false)
+                .getUriFactory()
+                .resourceByUriIdParam(ServiceRequestId.URL_CV);
+        dataTypeUri.setParamValue("id", invalidDataTypeId.toString());
+
+        GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResourceDataType = new GobiiEnvelopeRestResource<>(dataTypeUri);
+        PayloadEnvelope<CvDTO> resultEnvelopeDataType = gobiiEnvelopeRestResourceDataType.get(CvDTO.class);
+
+        Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeDataType.getHeader()));
+
+        // if the experiment ID exists in the database, the error message should be that the data type ID is not referenced by the dataset.
+        if(resultEnvelopeDataType.getPayload().getData().size() > 0) {
+
+            Assert.assertTrue("The error message should contain 'is not referenced by the specified dataset'",
+                    loaderInstructionFileDTOResponseEnvelope.getHeader()
+                            .getStatus()
+                            .getStatusMessages()
+                            .stream()
+                            .filter(m -> m.getMessage().toLowerCase().contains("is not referenced by the specified dataset"))
+                            .count()
+                            > 0);
+        }
+        // if the experiment ID does not exists in the database, the error message should be that the data type ID does not referenced an entity
+        else {
+
+            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+                    loaderInstructionFileDTOResponseEnvelope.getHeader()
+                            .getStatus()
+                            .getStatusMessages()
+                            .stream()
+                            .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                            .count()
+                            > 0);
+
+        }
 
 
     }
@@ -809,15 +892,42 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         Assert.assertNotEquals(null, loaderInstructionFileDTOResponseEnvelope);
         Assert.assertTrue(TestUtils.checkAndPrintHeaderMessages(loaderInstructionFileDTOResponseEnvelope.getHeader()));
 
+        // check if the invalid platform ID actually exist in the database
+        RestUri platformUri = ClientContext.getInstance(null, false)
+                .getUriFactory()
+                .resourceByUriIdParam(ServiceRequestId.URL_PLATFORM);
+        platformUri.setParamValue("id", invalidPlatformId.toString());
 
-        Assert.assertTrue("The error message should say that the platform is invalid for the given experiment",
-            loaderInstructionFileDTOResponseEnvelope.getHeader()
-                    .getStatus()
-                    .getStatusMessages()
-                    .stream()
-                    .filter(m -> m.getMessage().toLowerCase().contains("the specified platform in the experiment is incorrect"))
-                    .count()
-                    > 0);
+        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourcePlatform = new GobiiEnvelopeRestResource<>(platformUri);
+        PayloadEnvelope<PlatformDTO> resultEnvelopePlatform = gobiiEnvelopeRestResourcePlatform.get(PlatformDTO.class);
+
+        Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopePlatform.getHeader()));
+
+        // if the platform ID exists in the database, the error message should be that the platform ID is not referenced by the experiment.
+        if(resultEnvelopePlatform.getPayload().getData().size() > 0) {
+
+            Assert.assertTrue("The error message should contain 'is not referenced by the specified experiment'",
+                loaderInstructionFileDTOResponseEnvelope.getHeader()
+                        .getStatus()
+                        .getStatusMessages()
+                        .stream()
+                        .filter(m -> m.getMessage().toLowerCase().contains("is not referenced by the specified experiment"))
+                        .count()
+                        > 0);
+        }
+        // if the experiment ID does not exists in the database, the error message should be that the experiment ID does not referenced an entity
+        else {
+
+            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+                loaderInstructionFileDTOResponseEnvelope.getHeader()
+                        .getStatus()
+                        .getStatusMessages()
+                        .stream()
+                        .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                        .count()
+                        > 0);
+
+        }
 
     }
 
