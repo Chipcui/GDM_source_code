@@ -491,12 +491,12 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         // if the experiment ID does not exists in the database, the error message should be that the experiment ID does not referenced an entity
         else {
 
-            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+            Assert.assertTrue("The error message should contain 'does not reference an entity'",
                 loaderInstructionFileDTOResponseEnvelope.getHeader()
                         .getStatus()
                         .getStatusMessages()
                         .stream()
-                        .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                        .filter(m -> m.getMessage().toLowerCase().contains("does not reference an entity"))
                         .count()
                         > 0);
 
@@ -636,12 +636,12 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         // if the project ID does not exists in the database, the error message should be that the project ID does not referenced an entity
         else {
 
-            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+            Assert.assertTrue("The error message should contain 'does not reference an entity'",
                     loaderInstructionFileDTOResponseEnvelope.getHeader()
                             .getStatus()
                             .getStatusMessages()
                             .stream()
-                            .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                            .filter(m -> m.getMessage().toLowerCase().contains("does not reference an entity"))
                             .count()
                             > 0);
 
@@ -762,12 +762,12 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         // if the experiment ID does not exists in the database, the error message should be that the data type ID does not referenced an entity
         else {
 
-            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+            Assert.assertTrue("The error message should contain 'does not reference an entity'",
                     loaderInstructionFileDTOResponseEnvelope.getHeader()
                             .getStatus()
                             .getStatusMessages()
                             .stream()
-                            .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                            .filter(m -> m.getMessage().toLowerCase().contains("does not reference an entity"))
                             .count()
                             > 0);
 
@@ -918,12 +918,12 @@ public class DtoRequestGobiiFileLoadInstructionsTest {
         // if the experiment ID does not exists in the database, the error message should be that the experiment ID does not referenced an entity
         else {
 
-            Assert.assertTrue("The error message should contain 'does not referenced an entity'",
+            Assert.assertTrue("The error message should contain 'does not reference an entity'",
                 loaderInstructionFileDTOResponseEnvelope.getHeader()
                         .getStatus()
                         .getStatusMessages()
                         .stream()
-                        .filter(m -> m.getMessage().toLowerCase().contains("does not referenced an entity"))
+                        .filter(m -> m.getMessage().toLowerCase().contains("does not reference an entity"))
                         .count()
                         > 0);
 

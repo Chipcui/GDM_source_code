@@ -180,7 +180,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                         message = "The dataset ID "
                                 + currentLoaderInstruction.getDataSet().getId()
-                                + " does not referenced an entity";
+                                + " does not reference an entity";
 
                         throw new GobiiDtoMappingException(message);
 
@@ -195,7 +195,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                             message = "The experiment ID "
                                     + currentLoaderInstruction.getExperiment().getId()
-                                    + " does not referenced an entity";
+                                    + " does not reference an entity";
 
                             throw new GobiiDtoMappingException(message);
 
@@ -219,7 +219,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                             message = "The project ID "
                                     + currentLoaderInstruction.getProject().getId()
-                                    + " does not referenced an entity";
+                                    + " does not reference an entity";
 
                             throw new GobiiDtoMappingException(message);
 
@@ -250,7 +250,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                             message = "The data type "
                                     + currentLoaderInstruction.getDatasetType().getId()
-                                    + " does not referenced an entity";
+                                    + " does not reference an entity";
 
                             throw new GobiiDtoMappingException(message);
 
@@ -285,7 +285,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                         message = "The experiment ID "
                                 + currentLoaderInstruction.getExperiment().getId()
-                                + " does not referenced an entity";
+                                + " does not reference an entity";
 
                         throw new GobiiDtoMappingException(message);
 
@@ -299,7 +299,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                             message = "The vendor protocol ID "
                                     + experimentDTO.getVendorProtocolId()
-                                    + " does not referenced an entity";
+                                    + " does not reference an entity";
 
                             throw new GobiiDtoMappingException(message);
 
@@ -313,7 +313,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                                 message = "The protocol ID "
                                         + vendorProtocolDTO.getProtocolId()
-                                        + " does not referenced an entity";
+                                        + " does not reference an entity";
 
                                 throw new GobiiDtoMappingException(message);
 
@@ -332,7 +332,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                                     message = "The platform ID "
                                             + protocolDTO.getPlatformId()
-                                            + " does not referenced an entity";
+                                            + " does not reference an entity";
 
                                     throw new GobiiDtoMappingException(message);
 
