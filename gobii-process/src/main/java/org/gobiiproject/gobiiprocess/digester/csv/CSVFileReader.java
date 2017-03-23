@@ -262,7 +262,8 @@ public class CSVFileReader {
     		while(lr.hasNextLine()){
     			line = lr.nextLine();
     			if(counter == column.getrCoord() && line != null){
-    				if(!first) tmpFileWriter.write(NEWLINE);
+    		//		GP1-889 : Fix off-by-one error in multiple chromosome file upload (All data types) Error: Additional new lines in temproary files
+    		//		if(!first) tmpFileWriter.write(NEWLINE);
     				first = false;
     				String[] row = line.split(loaderInstruction.getGobiiFile().getDelimiter());
     				//loop through the columns
