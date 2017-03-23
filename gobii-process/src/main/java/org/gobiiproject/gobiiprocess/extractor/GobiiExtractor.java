@@ -360,18 +360,20 @@ public class GobiiExtractor {
 		if(file==null)return null;
 		return Arrays.asList(file);
 	}
-	
+
+	/**
+	 * Determine crop type by looking at the intruction file's location for the name of a crop.
+	 * @param instructionFile
+	 * @return GobiiCropType
+	 */
 	private static String divineCrop(String instructionFile) {
 		String upper=instructionFile.toUpperCase();
-		String crop = null;
-		for(GobiiCropType c:GobiiCropType.values()){
-				if(upper.contains(c.toString())){
-					crop=c.name();
-					break;
-				}
-		}
+		String from="/CROPS/";
+		int fromIndex=upper.indexOf(from)+from.length();
+		String crop=upper.substring(fromIndex,upper.indexOf('/',fromIndex));
 		return crop;
 	}
+
 	
 	private static String getLogName(GobiiExtractorInstruction gli, CropConfig config, Integer dsid) {
 		return getLogName(gli.getDataSetExtracts().get(0),config,dsid);
