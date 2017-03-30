@@ -30,7 +30,7 @@ public class SpGetMapsetDetailsByMapsetId implements Work {
 
         String sql = "select\n" +
                 "\tmapset_id,\n" +
-                "\tname,\n" +
+                "\tname::text,\n" +
                 "\tcode,\n" +
                 "\tdescription,\n" +
                 "\treference_id,\n" +

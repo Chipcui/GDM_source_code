@@ -28,7 +28,7 @@ public class SpGetPropertiesForPlatform implements Work {
 
     @Override
     public void execute(Connection dbConnection) throws SQLException {
-        String sql = "select * from getallpropertiesofplatform(?)";
+        String sql = "select property_id, property_name::text, property_value from getallpropertiesofplatform(?)";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
         preparedStatement.setInt(1,
                 (Integer) parameters.get(EntityPropertyParamNames.PROPPCOLARAMNAME_ENTITY_ID));

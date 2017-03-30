@@ -27,7 +27,7 @@ public class SpGetMapNamesByTypeId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select ms.mapset_id, ms.name from mapset ms where ms.type_id = ? order by lower(name)";
+        String Sql = "select ms.mapset_id, ms.name::text from mapset ms where ms.type_id = ? order by lower(name)";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(Sql);
         Integer typeId = (Integer) parameters.get("typeId");
         preparedStatement.setInt(1, typeId);

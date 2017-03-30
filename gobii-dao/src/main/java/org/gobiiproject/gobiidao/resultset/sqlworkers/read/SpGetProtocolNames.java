@@ -28,7 +28,7 @@ public class SpGetProtocolNames implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select protocol_id, name from protocol order by lower(name)";
+        String sql = "select protocol_id, name::text from protocol order by lower(name)";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
 

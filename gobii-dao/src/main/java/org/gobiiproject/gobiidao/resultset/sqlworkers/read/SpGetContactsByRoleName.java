@@ -25,10 +25,10 @@ public class SpGetContactsByRoleName implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
         String sql = "SELECT c.contact_id,\n" +
-                "\t\t\t\t\tc.lastname,\n" +
-                "\t\t\t\t\tc.firstname,\n" +
+                "\t\t\t\t\tc.lastname::text,\n" +
+                "\t\t\t\t\tc.firstname::text,\n" +
                 "\t\t\t\t\tc.code,\n" +
-                "\t\t\t\t\tc.email,\n" +
+                "\t\t\t\t\tc.email::text,\n" +
                 "\t\t\t\t\tc.organization_id,\n" +
                 "\t\t\t\t\tr.role_id,\n" +
                 "\t\t\t\t\tr.role_name,\n" +

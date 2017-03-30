@@ -28,7 +28,8 @@ public class SpGetCvDetailsByCvId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select *, g.type as group_type from cv c, cvgroup g where c.cvgroup_id = g.cvgroup_id and cv_id = ?";
+        String Sql = "select c.cv_id, c.term::text, c.definition, c.rank, c.cvgroup_id, c.abbreviation, c.dbxref_id, c.status, c.props,\n" +
+                "g.cvgroup_id, g.name, g.definition, g.props, g.type as group_type from cv c, cvgroup g where c.cvgroup_id = g.cvgroup_id and cv_id = ?";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(Sql);
         Integer projectId = (Integer) parameters.get("cvId");
         preparedStatement.setInt(1, projectId);

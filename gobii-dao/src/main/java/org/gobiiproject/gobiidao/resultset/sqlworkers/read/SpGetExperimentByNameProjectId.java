@@ -31,7 +31,18 @@ public class SpGetExperimentByNameProjectId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select e.*\n" +
+        String Sql = "select experiment_id,\n" +
+                "name::text,\n" +
+                "code,\n" +
+                "project_id,\n" +
+                "manifest_id,\n" +
+                "data_file,\n" +
+                "created_by,\n" +
+                "created_date,\n" +
+                "modified_by,\n" +
+                "modified_date,\n" +
+                "status,\n" +
+                "vendor_protocol_id\n" +
                 "from experiment e\n" +
                 "\twhere e.name= ?  \n" +
                 "\t\t\tAND e.project_id= ?\n";

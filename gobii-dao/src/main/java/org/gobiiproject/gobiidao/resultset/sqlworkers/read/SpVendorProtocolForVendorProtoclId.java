@@ -31,7 +31,12 @@ public class SpVendorProtocolForVendorProtoclId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select * from vendor_protocol where vendor_protocol_id = ?;";
+        String sql = "select vp.vendor_protocol_id,\n" +
+                "vp.name::text,\n" +
+                "vp.vendor_id,\n" +
+                "vp.protocol_id,\n" +
+                "vp.status\n" +
+                "from vendor_protocol vp where vendor_protocol_id = ?;";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
         Integer organizationId = (Integer) parameters.get("vendorProtocolId");

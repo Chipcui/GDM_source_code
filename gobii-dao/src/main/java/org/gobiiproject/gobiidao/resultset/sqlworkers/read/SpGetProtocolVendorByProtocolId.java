@@ -31,7 +31,7 @@ public class SpGetProtocolVendorByProtocolId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select vendor_protocol_id,name from vendor_protocol where protocol_id = ?";
+        String sql = "select vendor_protocol_id,name::text from vendor_protocol where protocol_id = ?";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
         Integer protocolId = (Integer) parameters.get("protocolId");

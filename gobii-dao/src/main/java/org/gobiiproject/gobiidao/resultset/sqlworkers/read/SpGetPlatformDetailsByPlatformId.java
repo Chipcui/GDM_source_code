@@ -29,7 +29,7 @@ public class SpGetPlatformDetailsByPlatformId implements Work {
     public void execute(Connection dbConnection) throws SQLException {
 
         String sql = "select platform_id,\n" +
-                "name,\n" +
+                "name::text,\n" +
                 "code,\n" +
                 "description,\n" +
                 "created_by,\n" +

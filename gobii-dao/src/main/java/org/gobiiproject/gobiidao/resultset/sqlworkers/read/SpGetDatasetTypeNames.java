@@ -22,7 +22,7 @@ public class SpGetDatasetTypeNames implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select * from getCvtermsByCvgroupname('dataset_type')";
+        String sql = "select term::text from getCvtermsByCvgroupname('dataset_type')";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
 

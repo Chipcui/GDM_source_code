@@ -27,7 +27,7 @@ public class SpGetMapSetNames implements Work {
 
         String sql = "SELECT\n" +
                 "\tmapset_id,\n" +
-                "\tname\n" +
+                "\tname::text\n" +
                 "FROM\n" +
                 "\tmapset\n" +
                 "ORDER BY LOWER(name);";

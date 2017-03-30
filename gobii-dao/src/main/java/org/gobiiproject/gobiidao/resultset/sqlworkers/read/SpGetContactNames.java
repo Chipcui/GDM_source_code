@@ -27,8 +27,8 @@ public class SpGetContactNames implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
         String sql = "SELECT c.contact_id,\n" +
-                "\t\t\t\tc.lastname,\n" +
-                "\t\t\t\tc.firstname\n" +
+                "\t\t\t\tc.lastname::text,\n" +
+                "\t\t\t\tc.firstname::text\n" +
                 "\t\tfrom contact c\n" +
                 "\t\torder by lower(c.lastname), lower(c.firstname)";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);

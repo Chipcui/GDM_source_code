@@ -24,7 +24,7 @@ public class SpGetPropertiesForProject implements Work {
 
     @Override
     public void execute(Connection dbConnection) throws SQLException {
-        String sql = "select * from getallpropertiesofproject(?)";
+        String sql = "select property_id, property_name::text, property_value from getallpropertiesofproject(?)";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
         preparedStatement.setInt(1, (Integer) parameters.get("projectId"));
         resultSet = preparedStatement.executeQuery();

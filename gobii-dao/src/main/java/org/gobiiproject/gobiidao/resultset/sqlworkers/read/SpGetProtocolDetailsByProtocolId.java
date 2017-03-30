@@ -23,8 +23,18 @@ public class SpGetProtocolDetailsByProtocolId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select *" +
-                " from protocol" +
+        String sql = "select p.protocol_id," +
+                "p.name::text,\n" +
+                "p.description,\n" +
+                "p.type_id,\n" +
+                "p.platform_id,\n" +
+                "p.props,\n" +
+                "p.created_by,\n" +
+                "p.created_date,\n" +
+                "p.modified_by,\n" +
+                "p.modified_date,\n" +
+                "p.status\n"+
+                " from protocol p" +
                 " where protocol_id=?";
 
         PreparedStatement preparedStatement = dbConnection.prepareCall(sql);

@@ -28,7 +28,7 @@ public class SpGetVendorProtocolNames implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select vendor_protocol_id,name from vendor_protocol";
+        String sql = "select vendor_protocol_id,name::text from vendor_protocol";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
 

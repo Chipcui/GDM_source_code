@@ -28,7 +28,7 @@ public class SpGetMarkersForMarkerGroup implements Work {
 
     @Override
     public void execute(Connection dbConnection) throws SQLException {
-        String sql = "select * from getallmarkersinmarkergroup(?)";
+        String sql = "select marker_id, marker_name::text, favorable_allele from getallmarkersinmarkergroup(?)";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
         preparedStatement.setInt(1, (Integer) parameters.get("markerGroupId"));
         resultSet = preparedStatement.executeQuery();

@@ -29,7 +29,7 @@ public class SpGetPlatformNamesByTypeId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select platform_id, name from platform where type_id = ? order by lower(name)";
+        String sql = "select platform_id, name::text from platform where type_id = ? order by lower(name)";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
         preparedStatement.setInt(1, (Integer) parameters.get("typeId"));

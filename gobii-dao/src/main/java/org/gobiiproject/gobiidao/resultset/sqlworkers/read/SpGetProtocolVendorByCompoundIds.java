@@ -34,7 +34,11 @@ public class SpGetProtocolVendorByCompoundIds implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select * \n" +
+        String Sql = "select vendor_protocol_id,\n" +
+                " name::text,\n" +
+                " vendor_id,\n" +
+                " protocol_id,\n" +
+                " status\n" +
                 "from vendor_protocol \n" +
                 "where vendor_id= ? and protocol_id=?;";
 

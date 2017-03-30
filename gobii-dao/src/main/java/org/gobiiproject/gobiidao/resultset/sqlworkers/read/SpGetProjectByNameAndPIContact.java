@@ -31,7 +31,17 @@ public class SpGetProjectByNameAndPIContact implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select * \n" +
+        String Sql = "select  project_id,\n" +
+                "name::text,\n" +
+                "code,\n" +
+                "description,\n" +
+                "pi_contact,\n" +
+                "created_by,\n" +
+                "created_date,\n" +
+                "modified_by,\n" +
+                "modified_date,\n" +
+                "status,\n" +
+                "props\n" +
                 "\tfrom project\n" +
                 "\twhere name = ? \n" +
                 "\tand pi_contact= ?";

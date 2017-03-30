@@ -31,7 +31,7 @@ public class SpGetMarkersByMarkerName implements Work {
         String sql = "select m.marker_id,\n" +
                 "p.platform_id,\n" +
                 "m.variant_id, \n" +
-                "m.name \"marker_name\", \n" +
+                "m.name::text \"marker_name\", \n" +
                 "m.code, \n" +
                 "m.ref, \n" +
                 "m.alts, \n" +
@@ -39,7 +39,7 @@ public class SpGetMarkersByMarkerName implements Work {
                 "m.reference_id, \n" +
                 "m.strand_id, \n" +
                 "m.status, \n" +
-                "p.name \"platform_name\"\n" +
+                "p.name::text \"platform_name\"\n" +
                 "from marker m\n" +
                 "join platform p on (m.platform_id=p.platform_id)\n" +
                 "where m.name = ? \n";

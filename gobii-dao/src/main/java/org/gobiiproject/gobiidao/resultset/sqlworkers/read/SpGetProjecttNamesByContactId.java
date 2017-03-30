@@ -26,7 +26,7 @@ public class SpGetProjecttNamesByContactId implements Work {
     public void execute(Connection dbConnection) throws SQLException {
 
         String sql = "select p.project_id, \n" +
-                "\t\t\t\t\tp.name \n" +
+                "\t\t\t\t\tp.name::text \n" +
                 "\t\t\tfrom project p\n" +
                 "\t\t\twhere p.pi_contact= ? order by lower(name)";
         PreparedStatement preparedStatement = dbConnection.prepareCall(sql);

@@ -30,7 +30,7 @@ public class SpGetCvsByGroup implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select cv.*, g.type as group_type from cv join cvgroup g on (cv.cvgroup_id=g.cvgroup_id) where lower(g.name)= ? order by lower(term)";
+        String Sql = "select cv.cv_id, cv.term::text, cv.definition, cv.rank, cv.cvgroup_id, cv.abbreviation, cv.dbxref_id, cv.status, cv.props, g.type as group_type from cv join cvgroup g on (cv.cvgroup_id=g.cvgroup_id) where lower(g.name)= ? order by lower(term)";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(Sql);
         String groupName = (String) parameters.get("groupName");
         preparedStatement.setString(1, groupName.toLowerCase());

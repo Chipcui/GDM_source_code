@@ -33,7 +33,20 @@ public class SpGetProtocolVendorByName implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select * \n" +
+        String Sql = "select org.organization_id,\n" +
+                "org.name::text,\n" +
+                "org.address,\n" +
+                "org.website,\n" +
+                "org.created_by,\n" +
+                "org.created_date,\n" +
+                "org.modified_by,\n" +
+                "org.modified_date,\n" +
+                "org.status,\n" +
+                "vp.vendor_protocol_id,\n" +
+                "vp.name::text,\n" +
+                "vp.vendor_id,\n" +
+                "vp.protocol_id,\n" +
+                "vp.status\n" +
                 "from organization org \n " +
                 "join vendor_protocol vp on (org.organization_id=vp.vendor_id) \n" +
                 "where lower(vp.name) = lower(?) ";

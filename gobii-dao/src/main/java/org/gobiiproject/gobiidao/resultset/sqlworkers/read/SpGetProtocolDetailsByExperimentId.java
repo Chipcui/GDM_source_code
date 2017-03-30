@@ -23,7 +23,17 @@ public class SpGetProtocolDetailsByExperimentId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select p.* from experiment e " +
+        String sql = "select p.protocol_id,\n" +
+                "p.name::text,\n" +
+                "p.description,\n" +
+                "p.type_id,\n" +
+                "p.platform_id,\n" +
+                "p.props,\n" +
+                "p.created_by,\n" +
+                "p.created_date,\n" +
+                "p.modified_by,\n" +
+                "p.modified_date,\n" +
+                "p.status from experiment e " +
                 "join vendor_protocol vp on (e.vendor_protocol_id=vp.vendor_protocol_id) " +
                 "join protocol p on (vp.protocol_id=p.protocol_id) " +
                 " where e.experiment_id=?";

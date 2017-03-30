@@ -29,7 +29,7 @@ public class SpGetDatasetNamesByExperimentId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select dataset_id, name\n" +
+        String sql = "select dataset_id, name::text\n" +
                 "from dataset\n" +
                 "where experiment_id = ?\n" +
                 "order by lower(name)";

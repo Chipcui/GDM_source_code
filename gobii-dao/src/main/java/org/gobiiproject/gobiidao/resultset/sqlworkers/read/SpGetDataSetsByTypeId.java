@@ -24,8 +24,23 @@ public class SpGetDataSetsByTypeId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select *\n" +
-                "from dataset where type_id = ?";
+        String sql = "select dataset_id,\n" +
+            "experiment_id,\n" +
+            "callinganalysis_id,\n" +
+            "analyses,\n" +
+            "data_table,\n" +
+            "data_file,\n" +
+            "quality_table,\n" +
+            "quality_file,\n" +
+            "scores,\n" +
+            "created_by,\n" +
+            "created_date,\n" +
+            "modified_by,\n" +
+            "modified_date,\n" +
+            "status,\n" +
+            "type_id,\n" +
+            "name::text\n" +
+            "from dataset where type_id = ?";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
 
         Integer typeId = (Integer) parameters.get("typeId");

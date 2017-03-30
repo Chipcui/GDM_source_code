@@ -26,7 +26,7 @@ public class SpGetExperimentNamesByProjectId implements Work {
     public void execute(Connection dbConnection) throws SQLException {
 
         String sql = "select e.experiment_id, \n" +
-                "e.name\n" +
+                "e.name::text\n" +
                 "from experiment e\n" +
                 "where e.project_id= ? order by lower(name)";
         PreparedStatement preparedStatement = dbConnection.prepareCall(sql);

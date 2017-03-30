@@ -31,7 +31,7 @@ public class SpGetProtocolNamesByPlatformId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select name,protocol_id from protocol where platform_id= ?;";
+        String sql = "select name::text,protocol_id from protocol where platform_id= ?;";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
         Integer protocolId = (Integer) parameters.get("platformId");

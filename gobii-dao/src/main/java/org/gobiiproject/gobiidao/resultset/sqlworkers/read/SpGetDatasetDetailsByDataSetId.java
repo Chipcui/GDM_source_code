@@ -30,7 +30,7 @@ public class SpGetDatasetDetailsByDataSetId implements Work {
 
         String sql = "select\n" +
                 "\tds.dataset_id,\n" +
-                "\tds.name,\n" +
+                "\tds.name::text,\n" +
                 "\tds.experiment_id,\n" +
                 "\tds.callinganalysis_id,\n" +
                 "\tds.analyses,\n" +

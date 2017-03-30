@@ -28,7 +28,18 @@ public class SpGetProjectDetailsByProjectId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select * from project where project_id = ?";
+        String Sql = "select  project_id,\n" +
+                "name::text,\n" +
+                "code,\n" +
+                "description,\n" +
+                "pi_contact,\n" +
+                "created_by,\n" +
+                "created_date,\n" +
+                "modified_by,\n" +
+                "modified_date,\n" +
+                "status,\n" +
+                "props\n" +
+                " from project where project_id = ?";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(Sql);
         Integer projectId = (Integer) parameters.get("projectId");
         preparedStatement.setInt(1, projectId);

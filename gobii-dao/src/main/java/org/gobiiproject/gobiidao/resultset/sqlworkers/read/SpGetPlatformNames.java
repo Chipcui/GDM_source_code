@@ -29,7 +29,7 @@ public class SpGetPlatformNames implements Work {
 
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select platform_id, name from platform order by lower(name)";
+        String sql = "select platform_id, name::text from platform order by lower(name)";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
 

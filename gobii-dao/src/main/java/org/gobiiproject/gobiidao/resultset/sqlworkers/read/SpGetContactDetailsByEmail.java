@@ -29,10 +29,10 @@ public class SpGetContactDetailsByEmail implements Work {
     public void execute(Connection dbConnection) throws SQLException {
 
         String sql = "select c.contact_id,\n" +
-                "c.lastname,\n" +
-                "c.firstname,\n" +
+                "c.lastname::text,\n" +
+                "c.firstname::text,\n" +
                 "c.code,\n" +
-                "c.email,\n" +
+                "c.email::text,\n" +
                 "c.roles,\n" +
                 "c.organization_id,\n" +
                 "c.created_by,\n" +
