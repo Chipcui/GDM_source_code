@@ -20,7 +20,7 @@ const URL = 'gobii/v1/uploadfile?gobiiExtractFilterType=BY_MARKER';
 @Component({
     selector: 'uploader',
     inputs: ['gobiiExtractFilterType'],
-    outputs: ['onUploaderError'],
+    outputs: ['onUploaderError','onClickBrowse'],
     template: `<style>
     .my-drop-zone { border: dotted 3px lightgray; }
     .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
@@ -59,10 +59,11 @@ const URL = 'gobii/v1/uploadfile?gobiiExtractFilterType=BY_MARKER';
             ================================================================================ -->
 
             
-            <input type="file" ng2FileSelect [uploader]="uploader" />
+            <input type="file" ng2FileSelect [uploader]="uploader" (click)="handleClickBrowse($event)"/>
             <!--  IF YOU REINSTATE THE QUEUES BELOW THIS BUTTON WILL BE SUPERFLUOUS -->
             <button type="button" class="btn btn-success btn-s"
-                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                        (click)="uploader.uploadAll()" 
+                        [disabled]="!uploader.getNotUploadedItems().length">
                     <span class="glyphicon glyphicon-upload"></span> Upload
             </button>
 
@@ -228,6 +229,13 @@ export class UploaderComponent implements OnInit {
         this.hasAnotherDropZoneOver = e;
     }
 
+
+    private onClickBrowse:EventEmitter<any> = new EventEmitter();
+    private handleClickBrowse(event:any){
+
+        this.onClickBrowse.emit(event);
+
+    }
 
     ngOnInit(): any {
         return null;

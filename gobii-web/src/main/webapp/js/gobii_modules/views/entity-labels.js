@@ -31,7 +31,7 @@ System.register(["../model/type-entity", "../model/cv-filter-type", "../model/ty
                     this.extractFormatTypeLabels = new Map();
                     this.entityNodeLabels[type_entity_1.EntityType.DataSets] = "Data Sets";
                     this.entityNodeLabels[type_entity_1.EntityType.Platforms] = "Platforms";
-                    this.entityNodeLabels[type_entity_1.EntityType.Mapsets] = "Mapsets";
+                    this.entityNodeLabels[type_entity_1.EntityType.Mapsets] = "Mapset";
                     this.entityNodeLabels[type_entity_1.EntityType.Projects] = "Projects";
                     this.cvFilterNodeLabels[cv_filter_type_1.CvFilterType.DATASET_TYPE] = "Dataset Type";
                     this.entitySubtypeNodeLabels[type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR] = "Principle Investigator";

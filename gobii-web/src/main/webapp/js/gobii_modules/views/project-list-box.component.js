@@ -61,7 +61,6 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../se
                         if (projects[0]) {
                             scope$.project = projects[0];
                             scope$.primaryInvestigatorId = String(projects[0].piContact);
-                            scope$.setPiName();
                         }
                     }, function (headerStatusMessage) {
                         scope$.handleHeaderStatus(headerStatusMessage);
@@ -69,17 +68,6 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../se
                 };
                 ProjectListBoxComponent.prototype.ngOnInit = function () {
                     var foo = "foo";
-                };
-                ProjectListBoxComponent.prototype.setPiName = function () {
-                    var _this = this;
-                    this.primaryInvestigatorName = undefined;
-                    if (this.primaryInvestigatorId && this.nameIdListPIs) {
-                        this.nameIdListPIs.forEach(function (n) {
-                            if (n.id === _this.primaryInvestigatorId) {
-                                _this.primaryInvestigatorName = n.name;
-                            }
-                        });
-                    }
                 };
                 ProjectListBoxComponent.prototype.ngOnChanges = function (changes) {
                     var foo = "foo";
@@ -92,27 +80,15 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../se
                         this.primaryInvestigatorId = changes['primaryInvestigatorId'].currentValue;
                         this.nameIdRequestParamsProject.setEntityFilterValue(this.primaryInvestigatorId);
                     }
-                    if (changes['nameIdList']) {
-                        if (changes['nameIdList'].currentValue) {
-                            this.nameIdList = changes['nameIdList'].currentValue;
-                            this.setProjectDetails(this.nameIdList[0].id);
-                        }
-                    }
-                    if (changes['nameIdListPIs']) {
-                        if (changes['nameIdListPIs'].currentValue) {
-                            this.nameIdListPIs = changes['nameIdListPIs'].currentValue;
-                        }
-                    }
-                    //
                 };
                 return ProjectListBoxComponent;
             }());
             ProjectListBoxComponent = __decorate([
                 core_1.Component({
                     selector: 'project-list-box',
-                    inputs: ['primaryInvestigatorId', 'nameIdList', 'nameIdListPIs', 'gobiiExtractFilterType'],
+                    inputs: ['primaryInvestigatorId', 'gobiiExtractFilterType'],
                     outputs: ['onProjectSelected', 'onAddHeaderStatus'],
-                    template: "<name-id-list-box\n                    [gobiiExtractFilterType] = \"gobiiExtractFilterType\"\n                    [notifyOnInit]=\"false\"\n                    [nameIdRequestParams] = \"nameIdRequestParamsProject\"\n                    (onNameIdSelected) = \"handleProjectSelected($event)\"\n                    (onError) = \"handleHeaderStatus($event)\">\n                </name-id-list-box>\n\t\t        \n                <div *ngIf=\"project\">\n                    <BR>\n                     <fieldset class=\"form-group\">\n                        <b>Name:</b> {{project.projectName}}<BR>\n                        <b>Description:</b> {{project.projectDescription}}<BR>\n                        <b>Principle Investigator:</b> {{primaryInvestigatorName}}\n                      </fieldset> \n                </div>\t\t        \n" // end template
+                    template: "<name-id-list-box\n                    [gobiiExtractFilterType] = \"gobiiExtractFilterType\"\n                    [notifyOnInit]=\"true\"\n                    [doTreeNotifications] = \"false\"\n                    [nameIdRequestParams] = \"nameIdRequestParamsProject\"\n                    (onNameIdSelected) = \"handleProjectSelected($event)\"\n                    (onError) = \"handleHeaderStatus($event)\">\n                </name-id-list-box>\n\t\t        \n                <div *ngIf=\"project\">\n                    <BR>\n                     <fieldset class=\"form-group\">\n                        <b>Name:</b> {{project.projectName}}<BR>\n                        <b>Description:</b> {{project.projectDescription}}<BR>\n                        <b>Principle Investigator:</b> {{primaryInvestigatorName}}\n                      </fieldset> \n                </div>\t\t        \n" // end template
                 }),
                 __metadata("design:paramtypes", [dto_request_service_1.DtoRequestService])
             ], ProjectListBoxComponent);

@@ -25,7 +25,10 @@ import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
  * of GobiiColumnType in GobiiLoaderInstruction
  * {@link org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction}
  * is CSV_COL.
- * 
+ * Assumptions:
+ * No more than one CSV_BOTH can exist in the instruction.
+ * No other column in CSV_BOTH
+ * Only one of CSV_ROW, CSV_COL, CSV_BOTH can exist in the file.
  * @author CSarma
  * @date 3/23/2017
  */
@@ -114,9 +117,7 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 	 * Reads data from a single input file, and writes to digest file
 	 * (referenced by {@code }tmpFileBufferedsWriter}. This method is primarily called by
 	 * {@link CSVFileReader#listFilesFromFolder(File, BufferedWriter, GobiiLoaderInstruction, boolean)}
-	 * No more than one CSV_BOTH can exist in the instruction.
-	 * No header for CSV_BOTH
-	 * No other column in CSV_BOTH
+	 *
 	 * 
 	 * @param file
 	 *            File to read from
@@ -148,13 +149,15 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 	private void processCSV_ROW(File file, BufferedWriter tempFileBufferedWriter,
 			GobiiLoaderInstruction loaderInstruction) throws FileNotFoundException, IOException {
 		readCSV_ROWS(file, loaderInstruction);
+		// Added for consistency in flow. For CSV_ROW this variable is not used. So empty list is passed
 		List<String> rowList = new ArrayList<String>();
-		writeFirstLine(tempFileBufferedWriter);
-		processedInstruction.setFirstLine(false);
+		if(processedInstruction.isFirstLine()){
+			writeFirstLine(tempFileBufferedWriter);
+			processedInstruction.setFirstLine(false);
+		}
 		for (int rowNo = 0; rowNo < maxLines; rowNo++) {
 			writeOutputLine(tempFileBufferedWriter, rowList);
 		}
-		System.out.println("DONE");
 	}
 
 	private void processCSV_COL(File file, BufferedWriter tempFileBufferedWriter,
@@ -162,20 +165,28 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
 			int rowNo = 0;
 			String fileRow;
-			writeFirstLine(tempFileBufferedWriter);
+			if(processedInstruction.isFirstLine()){
+				writeFirstLine(tempFileBufferedWriter);
+				processedInstruction.setFirstLine(false);
+			}
+			// All the columns should start on the same row. Else there will be mismatch in the length of col's.
+			int rowNoInGobiiColumn = 0;
+			for(GobiiFileColumn gobiiFileColumn : processedInstruction.getColumnList()){
+				if(gobiiFileColumn.getGobiiColumnType().equals(GobiiColumnType.CSV_COLUMN)){
+					rowNoInGobiiColumn = gobiiFileColumn.getrCoord();
+					break;
+				}
+			}
 			List<Integer> reqCols = getRequiredColNo();
 			while ((fileRow = bufferedReader.readLine()) != null) {
 				
 				String[] row = fileRow.split(loaderInstruction.getGobiiFile().getDelimiter());
-				// Can't initialize here as it creates issue when same row is
-				// used multiple gobiiFileColumn's.
-				// Check for which all columns this row is required.
-				List<String> rowList = new ArrayList<>();
-				for(Integer colNo: reqCols){
-					rowList.add(row[colNo.intValue()]);
-				}
-				// All the columns should start on the same row. Else there will be mismatch in the length of col's.
-				if(rowNo >=  processedInstruction.getColumnList().get(0).getcCoord()){
+
+				if(rowNo >= rowNoInGobiiColumn){
+					List<String> rowList = new ArrayList<>();
+					for(Integer colNo: reqCols){
+						rowList.add(row[colNo.intValue()]);
+					}
 					getCol(rowList);
 					writeOutputLine(tempFileBufferedWriter, rowList);
 				}
@@ -186,8 +197,6 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 		} catch (IOException e) {
 			ErrorLogger.logError("CSVReader", "Unexpected IO Error", e);
 		}
-		System.out.println("DONE");
-
 	}
 
 	
@@ -195,7 +204,16 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 	private void processCSV_BOTH(File file, BufferedWriter tempFileBufferedWriter,
 			GobiiLoaderInstruction loaderInstruction) throws IOException {
 
-		GobiiFileColumn csv_BothColumn = processedInstruction.getColumnList().get(0);
+		GobiiFileColumn csv_BothColumn = null;
+		for(GobiiFileColumn gobiiFileColumn : processedInstruction.getColumnList()){
+			if(gobiiFileColumn.getGobiiColumnType().equals(GobiiColumnType.CSV_BOTH)){
+				csv_BothColumn = gobiiFileColumn;
+				break;
+			}
+		}if(processedInstruction.isFirstLine()){
+			writeFirstLine(tempFileBufferedWriter);
+			processedInstruction.setFirstLine(false);
+		}
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
 			int rowNo = 0;
 			String fileRow;
@@ -285,7 +303,7 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 			case CSV_COLUMN:
 				appendTabToOutput(outputLine, column);
 				outputLine.append(rowList.remove(0));
-				
+				break;
 			case CSV_BOTH:
 				while (!rowList.isEmpty()) {
 					appendTabToOutput(outputLine, column);
@@ -350,7 +368,7 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 	}
 
 	/**
-	 * Applying filter.
+	 * Applying filter on the column data.
 	 * @param rowList
 	 */
 	private void getCol(List<String> rowList) {
@@ -359,6 +377,7 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 			if(column.getGobiiColumnType().equals(GobiiColumnType.CSV_COLUMN)){
 				rowList.set(colNo, HelperFunctions.filter(rowList.get(colNo), column.getFilterFrom(), column.getFilterTo(),
 					column.getFindText(), column.getReplaceText()));
+				colNo++;
 			}
 		}	
 	}

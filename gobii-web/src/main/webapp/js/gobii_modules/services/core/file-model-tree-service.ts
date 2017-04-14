@@ -141,7 +141,7 @@ export class FileModelTreeService {
 
 //            submissionItemsForAll.push(FileModelNode.build(ExtractorItemType.CATEGORY, null)
             submissionItemsForAll.push(FileModelNode.build(ExtractorItemType.ENTITY, null)
-                .setCategoryType(ExtractorCategoryType.CONTAINER)
+                .setCategoryType(ExtractorCategoryType.LEAF)
                 .setEntityType(EntityType.Mapsets)
                 .setEntityName(Labels.instance().entityNodeLabels[EntityType.Mapsets])
                 .setCardinality(CardinalityType.ZERO_OR_ONE)
@@ -213,15 +213,15 @@ export class FileModelTreeService {
                             .setEntityName(Labels.instance().entityNodeLabels[EntityType.Projects])
                             .setCardinality(CardinalityType.ONE_OR_MORE)
                         ).addChild(FileModelNode.build(ExtractorItemType.SAMPLE_FILE, currentParent)
-                        .setCategoryType(ExtractorCategoryType.LEAF)
-                        .setEntityName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_FILE])
-                        .setCategoryName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_FILE])
-                        .setCardinality(CardinalityType.ONE_ONLY)
-                    ).addChild(FileModelNode.build(ExtractorItemType.SAMPLE_LIST_ITEM, currentParent)
-                        .setCategoryType(ExtractorCategoryType.CONTAINER)
-                        .setEntityName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM])
-                        .setCategoryName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM])
-                        .setCardinality(CardinalityType.ONE_OR_MORE)
+                            .setCategoryType(ExtractorCategoryType.LEAF)
+                            .setEntityName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_FILE])
+                            .setCategoryName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_FILE])
+                            .setCardinality(CardinalityType.ONE_ONLY)
+                        ).addChild(FileModelNode.build(ExtractorItemType.SAMPLE_LIST_ITEM, currentParent)
+                            .setCategoryType(ExtractorCategoryType.CONTAINER)
+                            .setEntityName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM])
+                            .setCategoryName(Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM])
+                            .setCardinality(CardinalityType.ONE_OR_MORE)
                     ));
 
             this.fileModelNodeTree

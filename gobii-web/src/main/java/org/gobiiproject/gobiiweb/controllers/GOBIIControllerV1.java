@@ -183,7 +183,7 @@ public class GOBIIControllerV1 {
                     AuthDTO.class);
 
             HeaderAuth dtoHeaderAuth = new HeaderAuth();
-            payloadWriter.setAuthHeader(dtoHeaderAuth,response);
+            payloadWriter.setAuthHeader(dtoHeaderAuth, response);
             ObjectMapper objectMapper = new ObjectMapper();
             String dtoHeaderAuthString = objectMapper.writeValueAsString(dtoHeaderAuth);
             returnVal = dtoHeaderAuthString;
@@ -592,25 +592,40 @@ public class GOBIIControllerV1 {
     // Example: http://localhost:8282/gobii-dev/gobii/v1/contact-search?email=foo&lastName=bar&firstName=snot
     // all parameters must be present, but they don't all neeed a value
     @RequestMapping(value = "/contact-search",
-            params = {"email", "lastName", "firstName"},
+            params = {"email", "lastName", "firstName", "userName"},
             method = RequestMethod.GET)
     @ResponseBody
     public PayloadEnvelope<ContactDTO> getContactsBySearch(@RequestParam("email") String email,
                                                            @RequestParam("lastName") String lastName,
                                                            @RequestParam("firstName") String firstName,
+                                                           @RequestParam("userName") String userName,
                                                            HttpServletRequest request,
                                                            HttpServletResponse response) {
 
         PayloadEnvelope<ContactDTO> returnVal = new PayloadEnvelope<>();
         try {
-            ContactDTO contactDTO = contactService.getContactByEmail(email);
+            ContactDTO contactDTO = null;
+
             PayloadWriter<ContactDTO> payloadWriter = new PayloadWriter<>(request, response,
                     ContactDTO.class);
 
-            payloadWriter.writeSingleItemForDefaultId(returnVal,
-                    UriFactory.resourceByUriIdParam(request.getContextPath(),
-                            ServiceRequestId.URL_CONTACTS),
-                    contactDTO);
+            if (!LineUtils.isNullOrEmpty(email)) {
+                contactDTO = contactService.getContactByEmail(email);
+            } else if (!LineUtils.isNullOrEmpty(userName)) {
+                contactDTO = contactService.getContactByUserName(userName);
+            } else {
+                returnVal.getHeader().getStatus().addException(new GobiiException(GobiiStatusLevel.ERROR,
+                        GobiiValidationStatusType.BAD_REQUEST,
+                        "search request must provide email or userName"));
+            }
+
+
+            if (contactDTO != null) {
+                payloadWriter.writeSingleItemForDefaultId(returnVal,
+                        UriFactory.resourceByUriIdParam(request.getContextPath(),
+                                ServiceRequestId.URL_CONTACTS),
+                        contactDTO);
+            }
 
         } catch (GobiiException e) {
             returnVal.getHeader().getStatus().addException(e);
@@ -1885,7 +1900,10 @@ public class GOBIIControllerV1 {
 
                     throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                             GobiiValidationStatusType.NONE,
-                            "Unsupported filter for list request: " + filterType);
+                            "Unsupported filter for list request: "
+                                    + filterType
+                                    + " for entity "
+                                    + gobiiEntityNameType);
                 }
 
                 if (!LineUtils.isNullOrEmpty(filterValue)) {
@@ -1899,7 +1917,9 @@ public class GOBIIControllerV1 {
                                     "Value for "
                                             + filterType
                                             + " value is not a number: "
-                                            + filterValue);
+                                            + filterValue
+                                            + " for entity "
+                                            + gobiiEntityNameType);
                         }
 
                     } else if (GobiiFilterType.BYTYPENAME == gobiiFilterType) {
@@ -1912,13 +1932,18 @@ public class GOBIIControllerV1 {
                                 "Unable to do type checking on filter value for filter type "
                                         + filterType
                                         + " with value "
-                                        + filterValue);
+                                        + filterValue
+                                        + " for entity "
+                                        + gobiiEntityNameType);
                     }
 
                 } else {
                     throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                             GobiiValidationStatusType.NONE,
-                            "A value was not supplied for filter: " + filterType);
+                            "A value was not supplied for filter: "
+                                    + filterType
+                                    + " for entity "
+                                    + gobiiEntityNameType);
                 }
             }
 

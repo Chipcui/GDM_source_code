@@ -17,6 +17,7 @@ export class AuthenticationService {
     private defaultUser:string = 'USER_READER';
     private defaultPassword:string = 'reader';
     private token:string = null;
+    private userName:string =  null;
     private _gobiiCropType:string;
     private authUrl:string = "gobii/v1/auth";
 
@@ -39,7 +40,11 @@ export class AuthenticationService {
     private setGobiiCropType(gobiiCropType:string){
         this._gobiiCropType =  gobiiCropType;
     }
-    
+
+    public getUserName(): string {
+        return this.userName;
+    }
+
     public authenticate(userName:string, password:string):Observable<DtoHeaderAuth> {
 
         let loginUser = userName ? userName : this.defaultUser;
@@ -58,6 +63,7 @@ export class AuthenticationService {
                         let dtoHeaderAuth:DtoHeaderAuth = DtoHeaderAuth
                             .fromJSON(json);
                         if (dtoHeaderAuth.getToken()) {
+                            scope$.userName = userName;
                             scope$.setToken(dtoHeaderAuth.getToken())
                             scope$.setGobiiCropType( dtoHeaderAuth.getGobiiCropType() );
                             observer.next(dtoHeaderAuth);

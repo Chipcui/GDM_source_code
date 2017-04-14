@@ -183,6 +183,8 @@ System.register(["@angular/core", "../model/type-process", "../model/gobii-file-
                                 _this.updateCheckedItemHistory(itemToChange);
                             }
                         }
+                    }, function (responseHeader) {
+                        _this.handleHeaderStatus(responseHeader);
                     });
                     if (this._nameIdService.validateRequest(this.nameIdRequestParams)) {
                         this.initializeNameIds();

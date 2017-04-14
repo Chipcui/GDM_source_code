@@ -12,11 +12,12 @@ import {NameIdRequestParams} from "../model/name-id-request-params";
 
 @Component({
     selector: 'project-list-box',
-    inputs: ['primaryInvestigatorId', 'nameIdList', 'nameIdListPIs', 'gobiiExtractFilterType'],
+    inputs: ['primaryInvestigatorId', 'gobiiExtractFilterType'],
     outputs: ['onProjectSelected', 'onAddHeaderStatus'],
     template: `<name-id-list-box
                     [gobiiExtractFilterType] = "gobiiExtractFilterType"
-                    [notifyOnInit]="false"
+                    [notifyOnInit]="true"
+                    [doTreeNotifications] = "false"
                     [nameIdRequestParams] = "nameIdRequestParamsProject"
                     (onNameIdSelected) = "handleProjectSelected($event)"
                     (onError) = "handleHeaderStatus($event)">
@@ -44,8 +45,6 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
 
     // useg    privatre
     private project: Project;
-    private nameIdList: NameId[];
-    private nameIdListPIs: NameId[];
     private primaryInvestigatorId: string;
     private primaryInvestigatorName: string;
     private onProjectSelected: EventEmitter<string> = new EventEmitter();
@@ -80,7 +79,6 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
                     if (projects[0]) {
                         scope$.project = projects[0];
                         scope$.primaryInvestigatorId = String(projects[0].piContact);
-                        scope$.setPiName();
                     }
                 },
                 headerStatusMessage => {
@@ -92,19 +90,6 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
 
         let foo: string = "foo";
 
-    }
-
-    private setPiName() {
-
-        this.primaryInvestigatorName = undefined;
-        if (this.primaryInvestigatorId && this.nameIdListPIs) {
-            this.nameIdListPIs.forEach(n => {
-                if (n.id === this.primaryInvestigatorId) {
-                    this.primaryInvestigatorName = n.name;
-
-                }
-            })
-        }
     }
 
     ngOnChanges(changes: {[propName: string]: SimpleChange}) {
@@ -123,21 +108,6 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
             this.primaryInvestigatorId = changes['primaryInvestigatorId'].currentValue;
             this.nameIdRequestParamsProject.setEntityFilterValue(this.primaryInvestigatorId);
         }
-
-        if (changes['nameIdList']) {
-            if (changes['nameIdList'].currentValue) {
-                this.nameIdList = changes['nameIdList'].currentValue;
-                this.setProjectDetails(this.nameIdList[0].id);
-            }
-        }
-
-        if (changes['nameIdListPIs']) {
-            if (changes['nameIdListPIs'].currentValue) {
-                this.nameIdListPIs = changes['nameIdListPIs'].currentValue;
-            }
-        }
-
-        //
 
     }
 }

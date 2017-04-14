@@ -31,6 +31,11 @@ import {NameIdRequestParams} from "../model/name-id-request-params";
 import {FileName} from "../model/file_name";
 import {Labels} from "../views/entity-labels";
 import {TreeStatusNotification} from "../model/tree-status-notification";
+import {Contact} from "../model/contact";
+import {DtoRequestItemContact, ContactSearchType} from "../services/app/dto-request-item-contact";
+import {AuthenticationService} from "../services/core/authentication.service";
+import {FileItem} from "ng2-file-upload";
+import {isNullOrUndefined} from "util";
 
 // import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 
@@ -45,20 +50,59 @@ import {TreeStatusNotification} from "../model/tree-status-notification";
            <div class = "panel-heading">
                 <img src="images/gobii_logo.png" alt="GOBii Project"/>
 
-                <fieldset class="well the-fieldset">
-                    <div class="col-md-2">
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Connected to {{currentStatus}}</h3>
+                      </div>
+                      <div class="panel-body">
+                    
+                    <div class="col-md-1">
+                    
                         <crops-list-box
                             [serverConfigList]="serverConfigList"
                             [selectedServerConfig]="selectedServerConfig"
                             (onServerSelected)="handleServerSelected($event)"></crops-list-box>
-                    </div>
-                    
-                    <div class="col-md-3">
+                     </div>
+                                                
+                    <div class="col-md-5">
                        <export-type
                         (onExportTypeSelected)="handleExportTypeSelected($event)"></export-type>
                      </div>
+                    
+
+                        <div class="col-md-4">
+                        <div class = "well">
+                            <table>
+                                <tr>
+                                    <td colspan="2">
+                                        <export-format
+                                         [gobiiExtractFilterType] = "gobiiExtractFilterType"
+                                         (onFormatSelected)="handleFormatSelected($event)">
+                                          </export-format>
+                              </td>
+                              <td style="vertical-align: top;">
+                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                     <name-id-list-box
+                                        [gobiiExtractFilterType] = "gobiiExtractFilterType"
+                                        [nameIdRequestParams]="nameIdRequestParamsMapsets"
+                                        [firstItemIsLabel]="true"
+                                        (onError) = "handleHeaderStatusMessage($event)">
+                                    </name-id-list-box>
+                              </td>
+                              </tr>
+                              </table>
+                              
+                        </div>
+                        </div>
+    
                      
-                </fieldset>
+                    <div class="col-md-2">
+                       <p style="text-align: right; font-weight: bold;">{{loggedInUser}}</p>
+                     </div>
+                     
+                    </div> <!-- panel body -->
+                    </div> <!-- panel primary -->
+
            </div>
            
             <div class="container-fluid">
@@ -67,50 +111,44 @@ import {TreeStatusNotification} from "../model/tree-status-notification";
                 
                     <div class="col-md-4">
                     
-                    <fieldset class="well the-fieldset">
-                    <legend class="the-legend">Submit As</legend>
-                        <name-id-list-box
-                            [gobiiExtractFilterType] = "gobiiExtractFilterType"
-                            [nameIdRequestParams]="nameIdRequestParamsContactsSubmitter"
-                            [notifyOnInit]="true"
-                            (onError) = "handleHeaderStatusMessage($event)">
-                        </name-id-list-box>
-                    </fieldset>
-                        
-                     <fieldset class="well the-fieldset">
-                     
-                        <legend class="the-legend">Filters</legend><BR>
-                        <div *ngIf="displaySelectorPi">
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Filters</h3>
+                      </div>
+                      <div class="panel-body">
+
+                          <div *ngIf="displaySelectorPi">
                             <label class="the-label">Principle Investigator:</label><BR>
                             <name-id-list-box
                                 [gobiiExtractFilterType] = "gobiiExtractFilterType"
                                 [nameIdRequestParams]="nameIdRequestParamsContactsPi"
-                                [notifyOnInit]="false"
+                                [notifyOnInit]="!firstItemIsLabelPrincipleInvestigators"
+                                [firstItemIsLabel]="firstItemIsLabelPrincipleInvestigators"
+                                [doTreeNotifications] = "firstItemIsLabelPrincipleInvestigators"
                                 (onNameIdSelected)="handleContactForPiSelected($event)"
                                 (onError) = "handleHeaderStatusMessage($event)">
                             </name-id-list-box>
                             
                         </div>
                         
-                        <div *ngIf="displaySelectorProject">
+                        <div *ngIf="displaySelectorProject" >
                             <BR>
                             <BR>
                             <label class="the-label">Project:</label><BR>
                             <project-list-box [primaryInvestigatorId] = "selectedContactIdForPi"
                                 [gobiiExtractFilterType] = "gobiiExtractFilterType"
-                                [nameIdList]="projectNameIdList"
-                                [nameIdListPIs]="contactNameIdListForPi"
                                 (onProjectSelected)="handleProjectSelected($event)"
                                 (onAddHeaderStatus)="handleHeaderStatusMessage($event)"></project-list-box>
                         </div>
 
-                        <div *ngIf="displaySelectorDataType">
+                        <div *ngIf="displaySelectorDataType" >
                             <BR>
                             <BR>
                             <label class="the-label">Dataset Types:</label><BR>
                             <name-id-list-box
                                 [gobiiExtractFilterType] = "gobiiExtractFilterType"
-                                [notifyOnInit]="true"
+                                [notifyOnInit]="false"
+                                [firstItemIsLabel] = "true"
                                 [nameIdRequestParams]="nameIdRequestParamsDatasetType"
                                 (onError) = "handleHeaderStatusMessage($event)">
                             </name-id-list-box>
@@ -121,10 +159,16 @@ import {TreeStatusNotification} from "../model/tree-status-notification";
                             <BR>
                             <BR>
                             <label class="the-label">Experiment:</label><BR>
-                            <experiment-list-box [projectId] = "selectedProjectId"
-                                [nameIdList] = "experimentNameIdList"
-                                (onExperimentSelected)="handleExperimentSelected($event)"
-                                (onAddMessage)="handleAddMessage($event)"></experiment-list-box>
+                               <name-id-list-box
+                                [gobiiExtractFilterType] = "gobiiExtractFilterType"
+                                [notifyOnInit]="true"
+                                [doTreeNotifications]= "false"
+                                [firstItemIsLabel] = "false"
+                                [nameIdRequestParams]="nameIdRequestParamsExperiments"
+                                (onNameIdSelected) = "handleExperimentSelected($event)"
+                                (onError) = "handleHeaderStatusMessage($event)">
+                            </name-id-list-box>
+                            
                         </div>
 
                         <div *ngIf="displaySelectorPlatform">
@@ -150,18 +194,16 @@ import {TreeStatusNotification} from "../model/tree-status-notification";
                                 (onAddStatusMessage) = "handleHeaderStatusMessage($event)">
                             </dataset-checklist-box>
                         </div>
-                    </fieldset>
+                    </div> <!-- panel body -->
+                    </div> <!-- panel primary -->
                        
-                       
-                    </div>  <!-- outer grid column 1-->
-                
-                
-                
-                    <div class="col-md-4"> 
 
                         <div *ngIf="displaySampleListTypeSelector">
-                            <fieldset class="well the-fieldset" style="vertical-align: bottom;">
-                                <legend class="the-legend">Included Samples</legend>
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Included Samples</h3>
+                      </div>
+                      <div class="panel-body">
                                 <sample-list-type
                                     [gobiiExtractFilterType] = "gobiiExtractFilterType"
                                     (onHeaderStatusMessage)="handleHeaderStatusMessage($event)">
@@ -172,47 +214,36 @@ import {TreeStatusNotification} from "../model/tree-status-notification";
                                     (onMarkerSamplesCompleted) = "handleSampleMarkerListComplete($event)"
                                     (onSampleMarkerError)="handleHeaderStatusMessage($event)">
                                 </sample-marker-box>
-                            </fieldset>
+                    </div> <!-- panel body -->
+                    </div> <!-- panel primary -->
                         </div>
                         
                         <div *ngIf="displaySampleMarkerBox">
-                            <fieldset class="well the-fieldset" style="vertical-align: bottom;">
-                                <legend class="the-legend">Included Markers</legend>
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Included Markers</h3>
+                      </div>
+                      <div class="panel-body">
                                 <sample-marker-box 
                                     [gobiiExtractFilterType] = "gobiiExtractFilterType"
                                     (onMarkerSamplesCompleted) = "handleSampleMarkerListComplete($event)"
                                     (onSampleMarkerError)="handleHeaderStatusMessage($event)">
                                 </sample-marker-box>
-                            </fieldset>
+                    </div> <!-- panel body -->
+                    </div> <!-- panel primary -->
                         </div>
+                       
+                    </div>  <!-- outer grid column 1-->
+                
+                
+                
+                    <div class="col-md-4"> 
 
-                        
-                        <form>
-                           <fieldset class="well the-fieldset">
-                                <legend class="the-legend">Extract</legend>
-                           
-                                <export-format
-                                    [gobiiExtractFilterType] = "gobiiExtractFilterType"
-                                    (onFormatSelected)="handleFormatSelected($event)"
-                                ></export-format>
-                                <BR>
-                           
-                                <name-id-list-box
-                                    [gobiiExtractFilterType] = "gobiiExtractFilterType"
-                                    [nameIdRequestParams]="nameIdRequestParamsMapsets"
-                                    (onError) = "handleHeaderStatusMessage($event)">
-                                </name-id-list-box>
-                            </fieldset>
-                        </form>
-                        
-                        
-                    </div>  <!-- outer grid column 2-->
-                    
-                    
-                    <div class="col-md-4">
-
-                        <fieldset class="well the-fieldset" style="vertical-align: bottom;">
-                            <legend class="the-legend">Extraction Criteria Summary</legend>
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Extraction Criteria</h3>
+                      </div>
+                      <div class="panel-body">
                             <status-display-tree
                                 [fileItemEventChange] = "treeFileItemEvent"
                                 [gobiiExtractFilterTypeEvent] = "gobiiExtractFilterType"
@@ -228,13 +259,24 @@ import {TreeStatusNotification} from "../model/tree-status-notification";
                             (mouseleave)="handleOnMouseOverSubmit($event,false)"
                             (click)="handleExtractSubmission()">Submit</button>
                                
-                        </fieldset>
+                    </div> <!-- panel body -->
+                    </div> <!-- panel primary -->
+
+                    </div>  <!-- outer grid column 2-->
+                    
+                    
+                    <div class="col-md-4">
+
                             
                         <div>
-                            <fieldset class="well the-fieldset" style="vertical-align: bottom;">
-                                <legend class="the-legend">Status: {{currentStatus}}</legend>
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Status Messages</h3>
+                      </div>
+                      <div class="panel-body">
                                 <status-display [messages] = "messages"></status-display>
-                            </fieldset>
+                    </div> <!-- panel body -->
+                    </div> <!-- panel primary -->
                         </div>
                             
                                    
@@ -258,8 +300,8 @@ export class ExtractorRoot implements OnInit {
 
     // *** You cannot use an Enum directly as a template type parameter, so we need
     //     to assign them to properties
-    private nameIdRequestParamsContactsSubmitter: NameIdRequestParams;
     private nameIdRequestParamsContactsPi: NameIdRequestParams;
+    private nameIdRequestParamsExperiments: NameIdRequestParams;
     private nameIdRequestParamsMapsets: NameIdRequestParams;
     private nameIdRequestParamsDatasetType: NameIdRequestParams;
     private nameIdRequestParamsPlatforms: NameIdRequestParams;
@@ -274,22 +316,18 @@ export class ExtractorRoot implements OnInit {
 
     private criteriaInvalid: boolean = true;
 
+    private loggedInUser: string = null;
+
 
     private messages: string[] = [];
 
 
     constructor(private _dtoRequestServiceExtractorFile: DtoRequestService<ExtractorInstructionFilesDTO>,
                 private _dtoRequestServiceNameIds: DtoRequestService<NameId[]>,
+                private _dtoRequestServiceContact: DtoRequestService<Contact>,
+                private _authenticationService: AuthenticationService,
                 private _dtoRequestServiceServerConfigs: DtoRequestService<ServerConfig[]>,
                 private _fileModelTreeService: FileModelTreeService) {
-
-
-        this.nameIdRequestParamsContactsSubmitter = NameIdRequestParams
-            .build("Contact-Submitted",
-                GobiiExtractFilterType.WHOLE_DATASET,
-                EntityType.Contacts)
-            .setEntitySubType(EntitySubType.CONTACT_SUBMITED_BY);
-
 
         this.nameIdRequestParamsContactsPi = NameIdRequestParams
             .build("Contact-PI",
@@ -297,6 +335,11 @@ export class ExtractorRoot implements OnInit {
                 EntityType.Contacts)
             .setEntitySubType(EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR);
 
+        this.nameIdRequestParamsExperiments = NameIdRequestParams
+            .build("Experiments",
+                GobiiExtractFilterType.WHOLE_DATASET,
+                EntityType.Experiments)
+            .setEntityFilter(EntityFilter.BYTYPEID);
 
         this.nameIdRequestParamsDatasetType = NameIdRequestParams
             .build("Cv-DataType",
@@ -345,10 +388,9 @@ export class ExtractorRoot implements OnInit {
                                 }
                             )[0];
 
+                    scope$.initializeSubmissionContact();
                     scope$.currentStatus = "GOBII Server " + gobiiVersion;
                     scope$.handleAddMessage("Connected to database: " + scope$.selectedServerConfig.crop);
-                    //scope$.initializeContactsForSumission();
-                    scope$.initializeContactsForPi();
 
                 } else {
                     scope$.serverConfigList = [new ServerConfig("<ERROR NO SERVERS>", "<ERROR>", "<ERROR>", 0)];
@@ -361,6 +403,45 @@ export class ExtractorRoot implements OnInit {
         )
         ;
     } // initializeServerConfigs()
+
+    private initializeSubmissionContact() {
+
+
+        this.loggedInUser = this._authenticationService.getUserName();
+        let scope$ = this;
+        scope$._dtoRequestServiceContact.get(new DtoRequestItemContact(
+            ContactSearchType.BY_USERNAME,
+            this.loggedInUser)).subscribe(contact => {
+
+                if (contact && contact.contactId && contact.contactId > 0) {
+
+                    //loggedInUser
+                    scope$._fileModelTreeService.put(
+                        GobiiFileItem.build(scope$.gobiiExtractFilterType, ProcessType.CREATE)
+                            .setEntityType(EntityType.Contacts)
+                            .setEntitySubType(EntitySubType.CONTACT_SUBMITED_BY)
+                            .setCvFilterType(CvFilterType.UNKNOWN)
+                            .setExtractorItemType(ExtractorItemType.ENTITY)
+                            .setItemName(contact.email)
+                            .setItemId(contact.contactId.toLocaleString())).subscribe(
+                        null,
+                        headerStatusMessage => {
+                            this.handleHeaderStatusMessage(headerStatusMessage)
+                        }
+                    );
+
+                } else {
+                    scope$.handleAddMessage("There is no contact associated with user " + this.loggedInUser);
+                }
+
+            },
+            dtoHeaderResponse => {
+                dtoHeaderResponse.statusMessages.forEach(m => scope$.handleAddMessage("Retrieving contacts for submission: "
+                    + m.message))
+            });
+
+        //   _dtoRequestServiceContact
+    }
 
     private handleServerSelected(arg) {
         this.selectedServerConfig = arg;
@@ -385,6 +466,7 @@ export class ExtractorRoot implements OnInit {
 
     private displayAvailableDatasets: boolean = true;
     private displaySelectorPi: boolean = true;
+    private firstItemIsLabelPrincipleInvestigators: boolean = false;
     private displaySelectorProject: boolean = true;
     private displaySelectorExperiment: boolean = true;
     private displaySelectorDataType: boolean = false;
@@ -439,6 +521,7 @@ export class ExtractorRoot implements OnInit {
 
         if (this.gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET) {
 
+            this.firstItemIsLabelPrincipleInvestigators = false;
             this.displaySelectorPi = true;
             this.displaySelectorProject = true;
             this.displaySelectorExperiment = true;
@@ -456,6 +539,7 @@ export class ExtractorRoot implements OnInit {
 //            this.initializePlatforms();
 
             this.displaySelectorPi = true;
+            this.firstItemIsLabelPrincipleInvestigators = true;
             this.displaySelectorProject = true;
             this.displaySelectorDataType = true;
             this.displaySelectorPlatform = true;
@@ -476,6 +560,7 @@ export class ExtractorRoot implements OnInit {
             this.displaySampleMarkerBox = true;
 
             this.displaySelectorPi = false;
+            this.firstItemIsLabelPrincipleInvestigators = false;
             this.displaySelectorProject = false;
             this.displaySelectorExperiment = false;
             this.displayAvailableDatasets = false;
@@ -484,83 +569,21 @@ export class ExtractorRoot implements OnInit {
 
         }
 
+        this.initializeSubmissionContact();
+
+        //changing modes will have nuked the submit as item in the tree, so we need to re-event (sic.) it:
+
+
     }
-
-// ********************************************************************
-// ********************************************** SUBMISSION-USER SELECTION
-//     private contactNameIdListForSubmitter: NameId[];
-//     private selectedContactIdForSubmitter: string;
-//
-//     private handleContactForSubmissionSelected(arg: NameId) {
-//         this.selectedContactIdForSubmitter = arg.id;
-//
-//         let fileItem: GobiiFileItem = GobiiFileItem
-//             .build(this.gobiiExtractFilterType, ProcessType.UPDATE)
-//             .setEntityType(EntityType.Contacts)
-//             .setEntitySubType(EntitySubType.CONTACT_SUBMITED_BY)
-//             .setItemId(arg.id)
-//             .setItemName(arg.name);
-//
-//         this._fileModelTreeService.put(fileItem)
-//             .subscribe(
-//                 null,
-//                 headerResponse => {
-//                     this.handleResponseHeader(headerResponse)
-//                 });
-//
-//     }
-
-    // private initializeContactsForSumission() {
-    //     let scope$ = this;
-    //     this._dtoRequestServiceNameIds.get(new DtoRequestItemNameIds(
-    //         EntityType.Contacts)).subscribe(nameIds => {
-    //             if (nameIds && ( nameIds.length > 0 )) {
-    //                 scope$.contactNameIdListForSubmitter = nameIds
-    //                 scope$.selectedContactIdForSubmitter = nameIds[0].id;
-    //                 this.handleContactForSubmissionSelected(nameIds[0]);
-    //             } else {
-    //                 scope$.contactNameIdListForSubmitter = [new NameId("0", "ERROR NO USERS", EntityType.Contacts)];
-    //             }
-    //         },
-    //         dtoHeaderResponse => {
-    //             dtoHeaderResponse.statusMessages.forEach(m => scope$.messages.push("Rettrieving contacts: "
-    //                 + m.message))
-    //         });
-    //
-    // }
 
 
 // ********************************************************************
 // ********************************************** PI USER SELECTION
-    private contactNameIdListForPi: NameId[];
     private selectedContactIdForPi: string;
 
     private handleContactForPiSelected(arg) {
         this.selectedContactIdForPi = arg.id;
-        this.initializeProjectNameIds();
         //console.log("selected contact itemId:" + arg);
-    }
-
-    private initializeContactsForPi() {
-        let scope$ = this;
-        scope$._dtoRequestServiceNameIds.get(new DtoRequestItemNameIds(
-            EntityType.Contacts,
-            EntityFilter.NONE)).subscribe(nameIds => {
-
-                if (nameIds && ( nameIds.length > 0 )) {
-                    scope$.contactNameIdListForPi = nameIds;
-                    scope$.selectedContactIdForPi = scope$.contactNameIdListForPi[0].id;
-                } else {
-                    scope$.contactNameIdListForPi = [new NameId("0", "ERROR NO USERS", EntityType.Contacts)];
-                }
-
-                scope$.initializeProjectNameIds();
-
-            },
-            dtoHeaderResponse => {
-                dtoHeaderResponse.statusMessages.forEach(m => scope$.handleAddMessage("Retrieving contacts for PIs: "
-                    + m.message))
-            });
     }
 
 // ********************************************************************
@@ -589,38 +612,15 @@ export class ExtractorRoot implements OnInit {
 
 // ********************************************************************
 // ********************************************** PROJECT ID
-    private projectNameIdList: NameId[];
     private selectedProjectId: string;
 
     private handleProjectSelected(arg) {
         this.selectedProjectId = arg;
         this.displayExperimentDetail = false;
         this.displayDataSetDetail = false;
-        this.initializeExperimentNameIds();
+        this.nameIdRequestParamsExperiments.setEntityFilterValue(this.selectedProjectId);
     }
 
-    private initializeProjectNameIds() {
-        let scope$ = this;
-        scope$._dtoRequestServiceNameIds.get(new DtoRequestItemNameIds(
-            EntityType.Projects,
-            EntityFilter.BYTYPEID,
-            this.selectedContactIdForPi)).subscribe(nameIds => {
-
-                if (nameIds && ( nameIds.length > 0 )) {
-                    scope$.projectNameIdList = nameIds;
-                    scope$.selectedProjectId = nameIds[0].id;
-                } else {
-                    scope$.projectNameIdList = [new NameId("0", "<none>", EntityType.Projects)];
-                    scope$.selectedProjectId = undefined;
-                }
-
-                this.initializeExperimentNameIds();
-            },
-            dtoHeaderResponse => {
-                dtoHeaderResponse.statusMessages.forEach(m => scope$.handleAddMessage("Retriving project names: "
-                    + m.message))
-            });
-    }
 
 // ********************************************************************
 // ********************************************** EXPERIMENT ID
@@ -630,39 +630,12 @@ export class ExtractorRoot implements OnInit {
     private selectedExperimentId: string;
     private selectedExperimentDetailId: string;
 
-    private handleExperimentSelected(arg) {
-        this.selectedExperimentId = arg;
-        this.selectedExperimentDetailId = arg;
+    private handleExperimentSelected(arg: NameId) {
+        this.selectedExperimentId = arg.id;
+        this.selectedExperimentDetailId = arg.id;
         this.displayExperimentDetail = true;
 
         //console.log("selected contact itemId:" + arg);
-    }
-
-    private initializeExperimentNameIds() {
-
-        let scope$ = this;
-        if (this.selectedProjectId) {
-            this._dtoRequestServiceNameIds.get(new DtoRequestItemNameIds(
-                EntityType.Experiments,
-                EntityFilter.BYTYPEID,
-                this.selectedProjectId)).subscribe(nameIds => {
-                    if (nameIds && ( nameIds.length > 0 )) {
-                        scope$.experimentNameIdList = nameIds;
-                        scope$.selectedExperimentId = scope$.experimentNameIdList[0].id;
-                    } else {
-                        scope$.experimentNameIdList = [new NameId("0", "<none>", EntityType.Experiments)];
-                        scope$.selectedExperimentId = undefined;
-                    }
-                },
-                dtoHeaderResponse => {
-                    dtoHeaderResponse.statusMessages.forEach(m => scope$.handleAddMessage("Retreving experiment names: "
-                        + m.message))
-                });
-        } else {
-            scope$.experimentNameIdList = [new NameId("0", "<none>", EntityType.Experiments)];
-            scope$.selectedExperimentId = undefined;
-        }
-
     }
 
 
@@ -857,7 +830,7 @@ export class ExtractorRoot implements OnInit {
     private handleExtractSubmission() {
 
 
-        if( this.setSubmitButtonState() ) {
+        if (this.setSubmitButtonState()) {
 
             let scope$ = this;
 

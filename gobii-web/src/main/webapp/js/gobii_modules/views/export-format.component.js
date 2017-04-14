@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extract-format", "../services/core/file-model-tree-service", "../model/gobii-file-item", "../model/type-process", "../model/file-model-node"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/type-extract-format", "../services/core/file-model-tree-service", "../model/gobii-file-item", "../model/type-process", "../model/file-model-node", "../model/type-extractor-filter"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extract_format_1, file_model_tree_service_1, gobii_file_item_1, type_process_1, file_model_node_1, ExportFormatComponent;
+    var core_1, type_extract_format_1, file_model_tree_service_1, gobii_file_item_1, type_process_1, file_model_node_1, type_extractor_filter_1, ExportFormatComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -30,6 +30,9 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
             },
             function (file_model_node_1_1) {
                 file_model_node_1 = file_model_node_1_1;
+            },
+            function (type_extractor_filter_1_1) {
+                type_extractor_filter_1 = type_extractor_filter_1_1;
             }
         ],
         execute: function () {
@@ -123,17 +126,22 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                     //console.log("selected contact itemId:" + arg);
                 };
                 ExportFormatComponent.prototype.ngOnChanges = function (changes) {
-                    // if (changes['gobiiExtractFilterType']
-                    //     && ( changes['gobiiExtractFilterType'].currentValue != null )
-                    //     && ( changes['gobiiExtractFilterType'].currentValue != undefined )) {
-                    //
-                    //     if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
-                    //
-                    //         this.updateTreeService(GobiiExtractFormat.HAPMAP);
-                    //
-                    //     } // if we have a new filter type
-                    //
-                    // } // if filter type changed
+                    if (changes['gobiiExtractFilterType']
+                        && (changes['gobiiExtractFilterType'].currentValue != null)
+                        && (changes['gobiiExtractFilterType'].currentValue != undefined)) {
+                        if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
+                            var labelSuffix = " Metadata Only";
+                            if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET) {
+                                this.metaDataExtractname = "Dataset" + labelSuffix;
+                            }
+                            else if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER) {
+                                this.metaDataExtractname = "Marker" + labelSuffix;
+                            }
+                            else if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE) {
+                                this.metaDataExtractname = "Sample" + labelSuffix;
+                            }
+                        } // if we have a new filter type
+                    } // if filter type changed
                 }; // ngonChanges
                 return ExportFormatComponent;
             }());
@@ -144,7 +152,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                     inputs: ['gobiiExtractFilterType'],
                     //directives: [RADIO_GROUP_DIRECTIVES]
                     //  directives: [Alert]
-                    template: "\n    \t\t  <label class=\"the-label\">Select Format:</label><BR>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"HAPMAP\" checked=\"checked\">Hapmap<br>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"FLAPJACK\">FlapJack<br>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"META_DATA_ONLY\">Dataset Metadata Only<br>\n\t" // end template
+                    template: " \n    \t\t  <label class=\"the-label\">Select Format:</label><BR>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"HAPMAP\" checked=\"checked\">Hapmap<br>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"FLAPJACK\">FlapJack<br>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"META_DATA_ONLY\">{{metaDataExtractname}}<br>\n\t" // end template
                 }),
                 __metadata("design:paramtypes", [file_model_tree_service_1.FileModelTreeService])
             ], ExportFormatComponent);
