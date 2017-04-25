@@ -5,7 +5,9 @@ import org.gobiiproject.gobiimodel.dto.instructions.GobiiFilePropNameId;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/*
+ *  GOBII - Process mail message format.  (Hopefully to replace DigesterMessage.java)
+ */
 public class ProcessMessage extends MailMessage {
     String statusLine;
     String errorLine;
@@ -22,6 +24,14 @@ public class ProcessMessage extends MailMessage {
     List<HTMLTableEntity> paths=new ArrayList<>();
     
     
+    /**
+     * Sets the BODY of the mail message with TABLEs
+     * @param jobName Name of the JOB ([GOBII - Extractor]: crop - extraction of "xxxx") 
+     * @param shortError error message, 100 or less charectors
+     * @param success If the job is success/failed (true/false)
+     * @param longError Long error message
+     * @return
+     */
     public ProcessMessage setBody(String jobName, String shortError,boolean success, String longError){
         this.setStatus(success);
         this.setSubject(jobName+(success?" Success":" Error"));
@@ -42,7 +52,7 @@ public class ProcessMessage extends MailMessage {
 
         String line="<br/>";
         StringBuilder body=new StringBuilder();
-        body.append("<html><head><style>table{font-family:arial,sans-serif;border-collapse:collapse;width:60%;}th{background-color:" + color + ";border:1px solid #dddddd;text-align:left;padding:8px;}td{border:1px solid #dddddd;text-align:left;padding:8px;}tr:nth-child(even){background-color:lightblue;}</style></head><body>");
+        body.append("<html><head><style>table{font-family:arial,sans-serif;border-collapse:collapse;width:40%;}th{background-color:" + color + ";border:1px solid #dddddd;text-align:left;padding:8px;}td{border:1px solid #dddddd;text-align:left;padding:8px;}tr:nth-child(even){background-color:lightblue;}</style></head><body>");
         body.append(statusLine+line);
         if(errorLine!=null)body.append(errorLine+line);
         body.append(line);
@@ -56,11 +66,27 @@ public class ProcessMessage extends MailMessage {
         return this;
     }
     
+    
+    /**
+     * Add an entry to the intermediate File table
+     * @param tableName Name of table
+     * @param fileCount Unique entry count in file
+     * @param loadCount Count of loaded entries
+     * @param existCount Count of duplicate entries
+     * @return this object
+     */
     public ProcessMessage addEntry(String tableName,String fileCount, String loadCount, String existCount, String invalidCount){
         entries.add(new HTMLTableEntity(tableName,fileCount,loadCount,existCount, invalidCount));
         return this;
     }
     
+    /**
+     * Add an entry to the Identifiers table
+     * @param type Type of entry (Platform, Dataset, etc.)
+     * @param name Name of entry
+     * @param id Identifier of entry
+     * @return this object
+     */
     public ProcessMessage addIdentifier(String type,String name, String id){
         if((name==null) && ((id==null || id.equals("null"))))return this;
         identifiers.add(new HTMLTableEntity(type,name,id));
@@ -72,6 +98,12 @@ public class ProcessMessage extends MailMessage {
         return addIdentifier(type,identifier.getName(),identifier.getId()+"");
     }
     
+     /**
+     * Add an entry to the Entity table (just with two strings)
+     * @param type Type of entry (Platform, Dataset, etc.)
+     * @param name Name of entry
+     * @return this object
+     */
     public ProcessMessage addEntity(String type,String name){
         if(name==null)return this;
         entities.add(new HTMLTableEntity(type,name));
@@ -82,11 +114,24 @@ public class ProcessMessage extends MailMessage {
         if(entity==null)return this;//Don't add a null ID to the table
         return addEntity(type,entity.getName()+"");
     }
-      
+    
+    
+    /**
+     * Add item to the filepaths entry
+     * @param type type of file
+     * @param path filepath
+     * @return this object
+     */
     public ProcessMessage addPath(String type,String path){
         paths.add(new HTMLTableEntity(type,path));
         return this;
     }
+    
+    /**
+     * Set status line in HTML format. format includes font size and color
+     * @param status
+     * @return
+     */
     private ProcessMessage setStatus(boolean status) {
         statusLine = "Status: " + (status ?
                 "<font color="+greenColor+" size=4><b>SUCCESS</b></font>" :

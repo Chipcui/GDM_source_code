@@ -347,8 +347,7 @@ public class HelperFunctions {
 	 * @param instructionFile Fully qualified path to the instruction file
 	 */
 	public static void completeInstruction(String instructionFile, String doneFolder){
-		//Move instruction file
-//		FileSystemInterface.mv(instructionFile,doneFolder);
+		FileSystemInterface.mv(instructionFile,doneFolder);
 	}
 
 	/**
