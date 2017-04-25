@@ -21,7 +21,7 @@ public class GobiiExtractorInstruction {
     private String gobiiCropType = null;
     //QC
     private boolean qcCheck = false;
-
+    
     public Integer getContactId() {
         return contactId;
     }

@@ -30,7 +30,7 @@ public class HTMLTableEntity {
             throw new RuntimeException("Invalid Table Construction");
         }
         StringBuilder sb=new StringBuilder();
-        sb.append("<table><tr>");
+        sb.append("<table border=\"1\"><tr>");
         for(String name:fieldNames) {
             sb.append("<th align=\"left\">").append(name).append("</th>");//Left align to better align tables
         }

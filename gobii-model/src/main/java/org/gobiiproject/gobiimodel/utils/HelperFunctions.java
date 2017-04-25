@@ -348,7 +348,7 @@ public class HelperFunctions {
 	 */
 	public static void completeInstruction(String instructionFile, String doneFolder){
 		//Move instruction file
-		FileSystemInterface.mv(instructionFile,doneFolder);
+//		FileSystemInterface.mv(instructionFile,doneFolder);
 	}
 
 	/**

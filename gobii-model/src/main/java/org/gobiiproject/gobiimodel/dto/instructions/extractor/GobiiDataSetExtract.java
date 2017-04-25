@@ -33,6 +33,7 @@ public class GobiiDataSetExtract {
     private GobiiFilePropNameId principleInvestigator = new GobiiFilePropNameId();
     private GobiiFilePropNameId project = new GobiiFilePropNameId();
     private GobiiFilePropNameId dataSet = new GobiiFilePropNameId();
+    private GobiiFilePropNameId platformId = new GobiiFilePropNameId();
     private List<Integer> platformIds = new ArrayList<>();
     private GobiiSampleListType gobiiSampleListType;
 
