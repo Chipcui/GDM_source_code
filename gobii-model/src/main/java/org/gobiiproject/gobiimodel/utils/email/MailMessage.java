@@ -13,7 +13,7 @@ public class MailMessage{
 	
 	MailMessage(){
 		header = "<b><i>"+getHeaderSalutation()+"</i></b></br><br/> Here is a summary of your transaction: <br/><br/>";
-		footer = "<br/><br/>"+getFooterSalutation()+", <br/> <a href=\"www.gobiiproject.org\"><img src=\"cid:image\" width=\"300\"></a>";
+		footer = "<br/><br/>"+getFooterSalutation()+", </br> <a href=\"http://www.gobiiproject.org\"><img src=\"cid:image\" width=\"300\"></a>";
 	}
 	private static String getHeaderSalutation(){
 		int numChoices=10;//Several cases of Good Day

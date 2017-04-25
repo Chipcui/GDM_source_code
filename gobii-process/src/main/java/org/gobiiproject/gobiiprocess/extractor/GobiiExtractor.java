@@ -166,18 +166,11 @@ public class GobiiExtractor {
 			for(GobiiDataSetExtract extract:inst.getDataSetExtracts()){
 			
 				//TODO: if extractor JSON structures is going to be replica of Loader JSON
-//				pm.addIdentifier("PI",extract.getPrincipleInvestigator());
-//				pm.addIdentifier("Project",extract.getProject());
+				pm.addIdentifier("PI",extract.getPrincipleInvestigator());
+				pm.addIdentifier("Project",extract.getProject());
 //				pm.addIdentifier("Experiment",extract.getExperiment());
-//				pm.addIdentifier("Dataset", extract.getDataSet());
+				pm.addIdentifier("Dataset", extract.getDataSet());
 //				pm.addIdentifier("Platform", Integer.toString(extract.getPlatformId()));
-				
-				//TODO: if extractor email notification table should look exactly like confluene idea (http://cbsugobii05.tc.cornell.edu:6084/display/RSD/Extract+Email+Notification)
-				pm.addEntity("PI", extract.getPrincipleInvestigator().getName());
-				pm.addEntity("Project", extract.getProject().getName());
-//				pm.addEntity("Experiment",extract.getExperiment().getName());
-				pm.addEntity("Dataset", extract.getDataSet().getName());
-				pm.addEntity("Platform", Integer.toString(extract.getPlatformIds().get(0)));
 				
 				String jobName = getJobName(crop, extract);
 				String jobUser=inst.getContactEmail();
