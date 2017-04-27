@@ -6,28 +6,28 @@ export class FileName {
         let date: Date = new Date();
         let returnVal: string = date.getFullYear()
             + "_"
-            + (date.getMonth() + 1)
+            + ('0' + (date.getMonth() + 1)).slice(-2)
             + "_"
-            + date.getDay()
+            + ( '0' + date.getDate()).slice(-2)
             + "_"
-            + date.getHours()
+            + ( '0' + date.getHours()).slice(-2)
             + "_"
-            + date.getMinutes()
+            + ('0' + date.getMinutes()).slice(-2)
             + "_"
-            + date.getSeconds();
+            + ('0' + date.getSeconds()).slice(-2);
 
 
         return returnVal;
 
     };
 
-    public static makeFileNameFromJobId(gobiiExtractFilterType:GobiiExtractFilterType, jobId:string): string {
+    public static makeFileNameFromJobId(gobiiExtractFilterType: GobiiExtractFilterType, jobId: string): string {
 
-        let returnVal:string;
+        let returnVal: string;
 
         let suffix = null;
 
-        if( gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ) {
+        if (gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
             suffix = "_markers";
         } else {
             suffix = "_samples";

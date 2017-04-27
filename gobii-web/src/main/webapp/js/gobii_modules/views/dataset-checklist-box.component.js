@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../services/core/dto-request.service", "../model/type-entity", "../services/app/dto-request-item-dataset", "../services/app/dto-request-item-analysis", "../model/type-entity-filter", "../services/core/file-model-tree-service", "../model/type-extractor-filter", "../model/name-id-request-params"], function (exports_1, context_1) {
+System.register(["@angular/core", "../services/core/dto-request.service", "../model/type-entity", "../model/type-entity-filter", "../services/core/file-model-tree-service", "../model/type-extractor-filter", "../model/name-id-request-params"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, dto_request_service_1, type_entity_1, dto_request_item_dataset_1, dto_request_item_analysis_1, type_entity_filter_1, file_model_tree_service_1, type_extractor_filter_1, name_id_request_params_1, DataSetCheckListBoxComponent;
+    var core_1, dto_request_service_1, type_entity_1, type_entity_filter_1, file_model_tree_service_1, type_extractor_filter_1, name_id_request_params_1, DataSetCheckListBoxComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -21,12 +21,6 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
             },
             function (type_entity_1_1) {
                 type_entity_1 = type_entity_1_1;
-            },
-            function (dto_request_item_dataset_1_1) {
-                dto_request_item_dataset_1 = dto_request_item_dataset_1_1;
-            },
-            function (dto_request_item_analysis_1_1) {
-                dto_request_item_analysis_1 = dto_request_item_analysis_1_1;
             },
             function (type_entity_filter_1_1) {
                 type_entity_filter_1 = type_entity_filter_1_1;
@@ -65,7 +59,7 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
                 };
                 DataSetCheckListBoxComponent.prototype.handleItemSelected = function (arg) {
                     var selectedDataSetId = Number(arg.itemId);
-                    this.setDatasetDetails(selectedDataSetId);
+                    //this.setDatasetDetails(selectedDataSetId);
                 };
                 // private setList(): void {
                 //
@@ -113,47 +107,60 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
                 //     }// if we have an experiment id
                 //
                 // } // setList()
-                DataSetCheckListBoxComponent.prototype.setDatasetDetails = function (dataSetId) {
-                    if (dataSetId) {
-                        var scope$_1 = this;
-                        scope$_1._dtoRequestServiceDataSetDetail.get(new dto_request_item_dataset_1.DtoRequestItemDataSet(dataSetId))
-                            .subscribe(function (dataSet) {
-                            if (dataSet) {
-                                scope$_1.dataSet = dataSet;
-                                scope$_1.analysisNames = [];
-                                scope$_1.analysisTypes = [];
-                                scope$_1.dataSet.analysesIds.forEach(function (analysisId) {
-                                    var currentAnalysisId = analysisId;
-                                    if (currentAnalysisId) {
-                                        scope$_1._dtoRequestServiceAnalysisDetail
-                                            .getResult(new dto_request_item_analysis_1.DtoRequestItemAnalysis(currentAnalysisId))
-                                            .subscribe(function (analysis) {
-                                            scope$_1.analysisNames.push(analysis.analysisName);
-                                            if (analysis.anlaysisTypeId && scope$_1.nameIdListAnalysisTypes) {
-                                                scope$_1
-                                                    .nameIdListAnalysisTypes
-                                                    .forEach(function (t) {
-                                                    if (Number(t.id) === analysis.anlaysisTypeId) {
-                                                        scope$_1.analysisTypes.push(t.name);
-                                                    }
-                                                });
-                                            } // if we have an analysis type id
-                                        }, function (headerStatusMessage) {
-                                            scope$_1.handleAddStatusMessage(headerStatusMessage);
-                                        });
-                                    }
-                                });
-                            }
-                        }, function (headerStatusMessage) {
-                            scope$_1.handleAddStatusMessage(headerStatusMessage);
-                        });
-                    }
-                    else {
-                        this.dataSet = undefined;
-                        this.analysisNames = [];
-                        this.analysisTypes = [];
-                    } // if else we got a dataset id
-                }; // setList()
+                // private setDatasetDetails(dataSetId: number): void {
+                //
+                //     if (dataSetId) {
+                //         let scope$ = this;
+                //         scope$._dtoRequestServiceDataSetDetail.get(new DtoRequestItemDataSet(dataSetId))
+                //             .subscribe(dataSet => {
+                //
+                //                     if (dataSet) {
+                //
+                //                         scope$.dataSet = dataSet;
+                //                         scope$.analysisNames = [];
+                //                         scope$.analysisTypes = [];
+                //
+                //                         scope$.dataSet.analysesIds.forEach(
+                //                             analysisId => {
+                //                                 let currentAnalysisId: number = analysisId;
+                //                                 if (currentAnalysisId) {
+                //                                     scope$._dtoRequestServiceAnalysisDetail
+                //                                         .getResult(new DtoRequestItemAnalysis(currentAnalysisId))
+                //                                         .subscribe(analysis => {
+                //                                                 scope$.analysisNames.push(analysis.analysisName);
+                //                                                 if (analysis.anlaysisTypeId && scope$.nameIdListAnalysisTypes) {
+                //
+                //                                                     scope$
+                //                                                         .nameIdListAnalysisTypes
+                //                                                         .forEach(t => {
+                //                                                             if (Number(t.id) === analysis.anlaysisTypeId) {
+                //                                                                 scope$.analysisTypes.push(t.name);
+                //                                                             }
+                //                                                         });
+                //
+                //
+                //                                                 } // if we have an analysis type id
+                //                                             },
+                //                                             headerStatusMessage => {
+                //                                                 scope$.handleAddStatusMessage(headerStatusMessage)
+                //                                             });
+                //                                 }
+                //                             }
+                //                         );
+                //                     }
+                //                 },
+                //                 dtoHeaderResponse => {
+                //                     dtoHeaderResponse.statusMessages.forEach(m => scope$.handleAddStatusMessage(m));
+                //
+                //                 });
+                //     } else {
+                //
+                //         this.dataSet = undefined;
+                //         this.analysisNames = [];
+                //         this.analysisTypes = [];
+                //
+                //     } // if else we got a dataset id
+                // } // setList()
                 DataSetCheckListBoxComponent.prototype.ngOnInit = function () {
                     if (this.experimentId != null) {
                         this.nameIdRequestParamsDataset.setEntityFilterValue(this.experimentId);

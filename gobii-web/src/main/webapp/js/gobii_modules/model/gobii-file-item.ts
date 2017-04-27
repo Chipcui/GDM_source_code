@@ -5,6 +5,7 @@ import {EntityType, EntitySubType} from "./type-entity";
 import {CvFilterType} from "./cv-filter-type";
 import {GobiiExtractFilterType} from "./type-extractor-filter";
 import {ExtractorItemType} from "./file-model-node";
+import {GobiiUIEventOrigin} from "./type-event-origin";
 
 export class GobiiFileItem {
 
@@ -19,7 +20,8 @@ export class GobiiFileItem {
                         private _itemId: string,
                         private _itemName: string,
                         private _checked: boolean,
-                        private _required: boolean) {
+                        private _required: boolean,
+                        private _gobiiEventOrigin:GobiiUIEventOrigin) {
 
         this._gobiiExtractFilterType = _gobiiExtractFilterType;
         this._processType = _processType;
@@ -31,6 +33,7 @@ export class GobiiFileItem {
         this._itemName = _itemName;
         this._checked = _checked;
         this._required = _required;
+        this._gobiiEventOrigin = _gobiiEventOrigin;
 
         this._fileItemUniqueId = Guid.generateUUID();
 
@@ -50,6 +53,10 @@ export class GobiiFileItem {
             this._entitySubType = EntitySubType.UNKNOWN;
         }
 
+        if(this._gobiiEventOrigin == null ) {
+            this._gobiiEventOrigin = GobiiUIEventOrigin.UNKNOWN;
+        }
+
     }
 
     public static build(gobiiExtractFilterType: GobiiExtractFilterType,
@@ -65,33 +72,10 @@ export class GobiiFileItem {
             null,
             null,
             null,
-            null
+            null,
+            GobiiUIEventOrigin.UNKNOWN
         );
 
-
-        return returnVal;
-    }
-
-
-
-    //OnChange does not see the FileItemEvent as being a new event unless it's
-    //a branch new instance, even if any of the property values are different.
-    //I'm sure there's a better way to do this. For example, the tree component should
-    //subscribe to an observer that is fed by the root component?
-    public static fromFileItem(fileItem: GobiiFileItem, gobiiExtractFilterType: GobiiExtractFilterType): GobiiFileItem {
-
-        let existingUniqueId: string = fileItem._fileItemUniqueId;
-
-        let returnVal: GobiiFileItem = GobiiFileItem
-            .build(gobiiExtractFilterType, fileItem._processType)
-            .setEntityType(fileItem._entityType)
-            .setCvFilterType(fileItem._cvFilterType)
-            .setItemId(fileItem._itemId)
-            .setItemName(fileItem._itemName)
-            .setChecked(fileItem._checked)
-            .setRequired(fileItem._required);
-
-        returnVal._fileItemUniqueId = existingUniqueId;
 
         return returnVal;
     }
@@ -224,6 +208,15 @@ export class GobiiFileItem {
 
     setRequired(value: boolean): GobiiFileItem {
         this._required = value;
+        return this;
+    }
+
+    getGobiiEventOrigin(): GobiiUIEventOrigin {
+        return this._gobiiEventOrigin;
+    }
+
+    setGobiiEventOrigin(value: GobiiUIEventOrigin) {
+        this._gobiiEventOrigin = value;
         return this;
     }
 

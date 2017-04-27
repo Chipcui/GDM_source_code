@@ -19,10 +19,10 @@ export class Labels {
     }
 
     private constructor() {
-        this.entityNodeLabels[EntityType.DataSets] = "Data Sets";
-        this.entityNodeLabels[EntityType.Platforms] = "Platforms";
-        this.entityNodeLabels[EntityType.Mapsets] = "Mapsets";
-        this.entityNodeLabels[EntityType.Projects] = "Projects";
+        this.entityNodeLabels[EntityType.DataSets] = "Data Set";
+        this.entityNodeLabels[EntityType.Platforms] = "Platform";
+        this.entityNodeLabels[EntityType.Mapsets] = "Mapset";
+        this.entityNodeLabels[EntityType.Projects] = "Project";
 
         this.cvFilterNodeLabels[CvFilterType.DATASET_TYPE] = "Dataset Type";
 

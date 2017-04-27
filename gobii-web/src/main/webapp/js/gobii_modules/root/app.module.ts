@@ -22,12 +22,17 @@ import {AuthenticationService} from "../services/core/authentication.service";
 import {TextAreaComponent} from "../views/text-area.component";
 import {UploaderComponent} from "../views/uploader.component";
 import {SampleListTypeComponent} from "../views/sample-list-type.component";
-import {TreeModule, SharedModule, TreeNode} from 'primeng/primeng';
+import {TreeModule, SharedModule, TreeNode, Dialog} from 'primeng/primeng';
 import {StatusDisplayTreeComponent} from "../views/status-display-tree.component";
 import {FileModelTreeService} from "../services/core/file-model-tree-service";
 import {NameIdListBoxComponent} from "../views/name-id-list-box.component";
 import {NameIdService} from "../services/core/name-id-service";
-
+import {AppComponent} from "./app.component";
+import {LoginComponent} from "../views/login.component";
+import {routing} from "./app.routing";
+import {APP_BASE_HREF} from "@angular/common";
+import {AuthGuard} from "../services/core/auth.guard";
+import {Button} from "primeng/components/button/button";
 
 @NgModule({
     imports: [BrowserModule,
@@ -35,9 +40,12 @@ import {NameIdService} from "../services/core/name-id-service";
         FormsModule,
         ReactiveFormsModule,
         TreeModule,
-        SharedModule],
+        SharedModule,
+        routing],
     declarations: [
+        AppComponent,
         ExtractorRoot,
+        LoginComponent,
         ExportFormatComponent,
         ContactsListBoxComponent,
         ProjectListBoxComponent,
@@ -56,12 +64,16 @@ import {NameIdService} from "../services/core/name-id-service";
         UploaderComponent,
         SampleListTypeComponent,
         NameIdListBoxComponent,
-        StatusDisplayTreeComponent],
-    providers: [AuthenticationService,
+        StatusDisplayTreeComponent,
+        Dialog,
+        Button],
+    providers: [AuthGuard,
+        AuthenticationService,
         DtoRequestService,
         FileModelTreeService,
-        NameIdService],
-    bootstrap: [ExtractorRoot]
+        NameIdService,
+        {provide: APP_BASE_HREF, useValue: './'}],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule {

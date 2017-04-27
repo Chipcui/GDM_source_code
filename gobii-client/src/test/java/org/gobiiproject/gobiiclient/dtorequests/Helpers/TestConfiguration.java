@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiclient.dtorequests.Helpers;
+package org.gobiiproject.gobiiclient.core.common;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.slf4j.Logger;

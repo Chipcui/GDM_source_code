@@ -16,15 +16,15 @@ System.register(["./type-extractor-filter"], function (exports_1, context_1) {
                     var date = new Date();
                     var returnVal = date.getFullYear()
                         + "_"
-                        + (date.getMonth() + 1)
+                        + ('0' + (date.getMonth() + 1)).slice(-2)
                         + "_"
-                        + date.getDay()
+                        + ('0' + date.getDate()).slice(-2)
                         + "_"
-                        + date.getHours()
+                        + ('0' + date.getHours()).slice(-2)
                         + "_"
-                        + date.getMinutes()
+                        + ('0' + date.getMinutes()).slice(-2)
                         + "_"
-                        + date.getSeconds();
+                        + ('0' + date.getSeconds()).slice(-2);
                     return returnVal;
                 };
                 ;

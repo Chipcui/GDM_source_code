@@ -103,7 +103,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         BrapiResponseEnvelopeList<T_RESPONSE_TYPE_MASTER, T_RESPONSE_TYPE_DETAIL> returnVal;
 
         HttpMethodResult httpMethodResult =
-                this.restResourceUtils.getHttp()
+                this.restResourceUtils.getClientContext().getHttp()
                         .get(this.restUri,
                                 restResourceUtils.getClientContext().getUserToken());
 
@@ -123,7 +123,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         String bodyAsString = objectMapper.writeValueAsString(bodyObj);
 
         HttpMethodResult httpMethodResult =
-                this.restResourceUtils.getHttp()
+                this.restResourceUtils.getClientContext().getHttp()
                         .post(this.restUri,
                                 bodyAsString,
                                 restResourceUtils.getClientContext().getUserToken());
@@ -140,7 +140,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         BrapiResponseEnvelopeMaster<T_RESPONSE_TYPE_MASTER> returnVal;
 
         HttpMethodResult httpMethodResult =
-                this.restResourceUtils.getHttp()
+                this.restResourceUtils.getClientContext().getHttp()
                         .get(this.restUri,
                                 restResourceUtils.getClientContext().getUserToken());
 

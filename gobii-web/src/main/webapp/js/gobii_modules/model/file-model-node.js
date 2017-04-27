@@ -27,6 +27,7 @@ System.register(["./type-entity", "./cv-filter-type", "./guid"], function (expor
                 ExtractorItemType[ExtractorItemType["STATUS_DISPLAY_TREE_READY"] = 8] = "STATUS_DISPLAY_TREE_READY";
                 ExtractorItemType[ExtractorItemType["JOB_ID"] = 9] = "JOB_ID";
                 ExtractorItemType[ExtractorItemType["SAMPLE_LIST_TYPE"] = 10] = "SAMPLE_LIST_TYPE";
+                ExtractorItemType[ExtractorItemType["LABEL"] = 11] = "LABEL";
             })(ExtractorItemType || (ExtractorItemType = {}));
             exports_1("ExtractorItemType", ExtractorItemType);
             (function (ExtractorCategoryType) {

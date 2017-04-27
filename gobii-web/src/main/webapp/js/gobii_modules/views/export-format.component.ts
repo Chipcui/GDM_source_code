@@ -18,11 +18,11 @@ import {EntityType} from "../model/type-entity";
     inputs: ['gobiiExtractFilterType'],
     //directives: [RADIO_GROUP_DIRECTIVES]
 //  directives: [Alert]
-    template: `
+    template: ` 
     		  <label class="the-label">Select Format:</label><BR>
               &nbsp;&nbsp;&nbsp;<input type="radio" (change)="handleFormatSelected($event)" name="format" value="HAPMAP" checked="checked">Hapmap<br>
               &nbsp;&nbsp;&nbsp;<input type="radio" (change)="handleFormatSelected($event)" name="format" value="FLAPJACK">FlapJack<br>
-              &nbsp;&nbsp;&nbsp;<input type="radio" (change)="handleFormatSelected($event)" name="format" value="META_DATA_ONLY">Dataset Metadata Only<br>
+              &nbsp;&nbsp;&nbsp;<input type="radio" (change)="handleFormatSelected($event)" name="format" value="META_DATA_ONLY">{{metaDataExtractname}}<br>
 	` // end template
 })
 
@@ -138,19 +138,28 @@ export class ExportFormatComponent implements OnInit, OnChanges {
         //console.log("selected contact itemId:" + arg);
     }
 
+    private metaDataExtractname:string;
     ngOnChanges(changes: {[propName: string]: SimpleChange}) {
 
-        // if (changes['gobiiExtractFilterType']
-        //     && ( changes['gobiiExtractFilterType'].currentValue != null )
-        //     && ( changes['gobiiExtractFilterType'].currentValue != undefined )) {
-        //
-        //     if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
-        //
-        //         this.updateTreeService(GobiiExtractFormat.HAPMAP);
-        //
-        //     } // if we have a new filter type
-        //
-        // } // if filter type changed
+        if (changes['gobiiExtractFilterType']
+            && ( changes['gobiiExtractFilterType'].currentValue != null )
+            && ( changes['gobiiExtractFilterType'].currentValue != undefined )) {
+
+            if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
+
+
+                let labelSuffix:string = " Metadata";
+                if(this.gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET ) {
+                    this.metaDataExtractname = "Dataset" + labelSuffix;
+                } else if(this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ) {
+                    this.metaDataExtractname = "Marker" + labelSuffix;
+                } else if(this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE ) {
+                    this.metaDataExtractname = "Sample" + labelSuffix;
+                }
+
+            } // if we have a new filter type
+
+        } // if filter type changed
 
     } // ngonChanges
 

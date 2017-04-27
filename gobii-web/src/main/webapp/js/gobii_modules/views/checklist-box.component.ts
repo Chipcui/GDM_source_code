@@ -18,7 +18,7 @@ import {ExtractorItemType} from "../model/file-model-node";
     selector: 'checklist-box',
     inputs: ['gobiiExtractFilterType',
         'nameIdRequestParams',
-    'retainHistory'],
+        'retainHistory'],
     outputs: ['onItemSelected',
         'onItemChecked',
         'onError'],
@@ -50,7 +50,7 @@ export class CheckListBoxComponent implements OnInit,OnChanges,DoCheck {
         this.differ = differs.find({}).create(null);
     } // ctor
 
-    private retainHistory:boolean;
+    private retainHistory: boolean;
     private nameIdRequestParams: NameIdRequestParams;
     private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
     private onError: EventEmitter<HeaderStatusMessage> = new EventEmitter();
@@ -193,7 +193,7 @@ export class CheckListBoxComponent implements OnInit,OnChanges,DoCheck {
         if (scope$.nameIdList && ( scope$.nameIdList.length > 0 )) {
 
             scope$.fileItemEvents = [];
-            if( !scope$.retainHistory ) {
+            if (!scope$.retainHistory) {
                 scope$.checkedFileItemHistory = [];
             }
             scope$.nameIdList.forEach(n => {
@@ -230,24 +230,25 @@ export class CheckListBoxComponent implements OnInit,OnChanges,DoCheck {
             .fileItemNotifications()
             .subscribe(eventedFileItem => {
 
-                if (eventedFileItem) {
-                    let itemToChange: GobiiFileItem =
-                        this.fileItemEvents.find(e => {
-                            return e.getEntityType() == eventedFileItem.getEntityType()
-                                && e.getItemName() == eventedFileItem.getItemName()
-                        });
+                    if (eventedFileItem) {
+                        let itemToChange: GobiiFileItem =
+                            this.fileItemEvents.find(e => {
+                                return e.getEntityType() == eventedFileItem.getEntityType()
+                                    && e.getItemName() == eventedFileItem.getItemName()
+                            });
 
-                    //let indexOfItemToChange:number = this.fileItemEvents.indexOf(arg.currentTarget.name);
-                    if (itemToChange) {
-                        itemToChange.setProcessType(eventedFileItem.getProcessType());
-                        itemToChange.setChecked(eventedFileItem.getChecked());
-                        this.updateCheckedItemHistory(itemToChange);
+                        //let indexOfItemToChange:number = this.fileItemEvents.indexOf(arg.currentTarget.name);
+                        if (itemToChange) {
+                            itemToChange.setProcessType(eventedFileItem.getProcessType());
+                            itemToChange.setChecked(eventedFileItem.getChecked());
+                            this.updateCheckedItemHistory(itemToChange);
+                        }
                     }
-                }
-                
-            });
-        
-        
+                },
+                responseHeader => {
+                    this.handleHeaderStatus(responseHeader);
+                });
+
         if (this._nameIdService.validateRequest(this.nameIdRequestParams)) {
             this.initializeNameIds();
         }

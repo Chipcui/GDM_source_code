@@ -1,5 +1,6 @@
 package org.gobiiproject.gobiimodel.dto.instructions.extractor;
 
+import org.gobiiproject.gobiimodel.dto.instructions.GobiiFilePropNameId;
 import org.gobiiproject.gobiimodel.types.GobiiExtractFilterType;
 import org.gobiiproject.gobiimodel.types.GobiiFileType;
 import org.gobiiproject.gobiimodel.types.GobiiJobStatus;
@@ -19,29 +20,22 @@ public class GobiiDataSetExtract {
     //Combine data sets into a single output file (Unused/unsupported)
     private boolean accolate = false;
     //Descriptive name of the data set. Used in reporting
-    private String dataSetName = null;
     private GobiiJobStatus gobiiJobStatus;
     //Internal ID of the data set. Used for internal lookups.
-    private Integer dataSetId = null;
     String extractDestinationDirectory = null;
-
-    String sampleFileName = null;
-    String markerFileName = null;
 
 
     private GobiiExtractFilterType gobiiExtractFilterType;
-
     private List<String> markerList = new ArrayList<>();
-
     private List<String> sampleList = new ArrayList<>();
-
     private String listFileName;
-
+    private GobiiFilePropNameId gobiiDatasetType = new GobiiFilePropNameId();
+    private GobiiFilePropNameId principleInvestigator = new GobiiFilePropNameId();
+    private GobiiFilePropNameId project = new GobiiFilePropNameId();
+    private GobiiFilePropNameId dataSet = new GobiiFilePropNameId();
+    private List<Integer> platformIds = new ArrayList<>();
     private GobiiSampleListType gobiiSampleListType;
 
-    private String gobiiDatasetType;
-
-    private List<Integer> platformIds = new ArrayList<>();
 
     public GobiiExtractFilterType getGobiiExtractFilterType() {
         return gobiiExtractFilterType;
@@ -83,11 +77,11 @@ public class GobiiDataSetExtract {
         this.gobiiSampleListType = gobiiSampleListType;
     }
 
-    public String getGobiiDatasetType() {
+    public GobiiFilePropNameId getGobiiDatasetType() {
         return gobiiDatasetType;
     }
 
-    public void setGobiiDatasetType(String gobiiDatasetType) {
+    public void setGobiiDatasetType(GobiiFilePropNameId gobiiDatasetType) {
         this.gobiiDatasetType = gobiiDatasetType;
     }
 
@@ -115,22 +109,6 @@ public class GobiiDataSetExtract {
         this.accolate = accolate;
     }
 
-    public String getDataSetName() {
-        return dataSetName;
-    }
-
-    public void setDataSetName(String dataSetName) {
-        this.dataSetName = dataSetName;
-    }
-
-    public Integer getDataSetId() {
-        return dataSetId;
-    }
-
-    public void setDataSetId(Integer dataSetId) {
-        this.dataSetId = dataSetId;
-    }
-
     public String getExtractDestinationDirectory() {
         return extractDestinationDirectory;
     }
@@ -148,19 +126,28 @@ public class GobiiDataSetExtract {
     }
 
 
-    public String getSampleFileName() {
-        return sampleFileName;
+    public GobiiFilePropNameId getPrincipleInvestigator() {
+        return principleInvestigator;
     }
 
-    public void setSampleFileName(String sampleFileName) {
-        this.sampleFileName = sampleFileName;
+    public void setPrincipleInvestigator(GobiiFilePropNameId principleInvestigator) {
+        this.principleInvestigator = principleInvestigator;
     }
 
-    public String getMarkerFileName() {
-        return markerFileName;
+    public GobiiFilePropNameId getProject() {
+        return project;
     }
 
-    public void setMarkerFileName(String markerFileName) {
-        this.markerFileName = markerFileName;
+    public void setProject(GobiiFilePropNameId project) {
+        this.project = project;
     }
+
+    public GobiiFilePropNameId getDataSet() {
+        return dataSet;
+    }
+
+    public void setDataSet(GobiiFilePropNameId dataSet) {
+        this.dataSet = dataSet;
+    }
+
 }

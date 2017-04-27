@@ -10,6 +10,7 @@ import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.RestUri;
 import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
+import org.gobiiproject.gobiiclient.core.common.Authenticator;
 import org.gobiiproject.gobiiclient.core.common.ClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiiclient.dtorequests.Helpers.*;
@@ -141,7 +142,6 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         PayloadEnvelope<CvDTO> cvDTOResponseEnvelope = gobiiEnvelopeRestResource.post(CvDTO.class,
                 payloadEnvelope);
 
-        Assert.assertTrue(TestUtils.checkAndPrintHeaderMessages(cvDTOResponseEnvelope.getHeader()));
 
         Assert.assertTrue("The error message should contain 'belongs to a cvgroup of type system'",
             cvDTOResponseEnvelope.getHeader()
@@ -237,7 +237,6 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         PayloadEnvelope<CvDTO> cvDTOResponseEnvelopeUpdate = restResourceForGetById.put(CvDTO.class,
                 new PayloadEnvelope<>(cvDTOReceived, GobiiProcessType.UPDATE));
 
-        Assert.assertTrue(TestUtils.checkAndPrintHeaderMessages(cvDTOResponseEnvelopeUpdate.getHeader()));
 
         Assert.assertTrue("The error message should contain 'belongs to a cvgroup of type system'",
             cvDTOResponseEnvelopeUpdate.getHeader()
@@ -346,8 +345,6 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         restResourceForGetById.setParamValue("id", cvDTOReceived.getCvId().toString());
 
         PayloadEnvelope<CvDTO> cvDTOResponseEnvelopeDelete = restResourceForGetById.delete(CvDTO.class);
-
-        Assert.assertTrue(TestUtils.checkAndPrintHeaderMessages(cvDTOResponseEnvelopeDelete.getHeader()));
 
 
         Assert.assertTrue("The error message should contain 'belongs to a cvgroup of type system'",

@@ -126,7 +126,7 @@ System.register(["@angular/core", "../../model/file-model-tree-event", "../../mo
                             .setCardinality(file_model_node_1.CardinalityType.ONE_ONLY));
                         //            submissionItemsForAll.push(FileModelNode.build(ExtractorItemType.CATEGORY, null)
                         submissionItemsForAll.push(file_model_node_1.FileModelNode.build(file_model_node_1.ExtractorItemType.ENTITY, null)
-                            .setCategoryType(file_model_node_1.ExtractorCategoryType.CONTAINER)
+                            .setCategoryType(file_model_node_1.ExtractorCategoryType.LEAF)
                             .setEntityType(type_entity_1.EntityType.Mapsets)
                             .setEntityName(entity_labels_1.Labels.instance().entityNodeLabels[type_entity_1.EntityType.Mapsets])
                             .setCardinality(file_model_node_1.CardinalityType.ZERO_OR_ONE));
@@ -180,7 +180,7 @@ System.register(["@angular/core", "../../model/file-model-tree-event", "../../mo
                                 .setEntityName(entity_labels_1.Labels.instance().entitySubtypeNodeLabels[type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR])
                                 .setCardinality(file_model_node_1.CardinalityType.ONE_ONLY))
                                 .addChild(file_model_node_1.FileModelNode.build(file_model_node_1.ExtractorItemType.ENTITY, currentParent)
-                                .setCategoryType(file_model_node_1.ExtractorCategoryType.CONTAINER)
+                                .setCategoryType(file_model_node_1.ExtractorCategoryType.LEAF)
                                 .setEntityType(type_entity_1.EntityType.Projects)
                                 .setEntityName(entity_labels_1.Labels.instance().entityNodeLabels[type_entity_1.EntityType.Projects])
                                 .setCardinality(file_model_node_1.CardinalityType.ONE_OR_MORE)).addChild(file_model_node_1.FileModelNode.build(file_model_node_1.ExtractorItemType.SAMPLE_FILE, currentParent)

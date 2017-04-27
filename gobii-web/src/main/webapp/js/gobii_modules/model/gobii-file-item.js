@@ -1,7 +1,7 @@
-System.register(["./type-process", "./guid", "./type-entity", "./cv-filter-type", "./type-extractor-filter", "./file-model-node"], function (exports_1, context_1) {
+System.register(["./type-process", "./guid", "./type-entity", "./cv-filter-type", "./type-extractor-filter", "./file-model-node", "./type-event-origin"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var type_process_1, guid_1, type_entity_1, cv_filter_type_1, type_extractor_filter_1, file_model_node_1, GobiiFileItem;
+    var type_process_1, guid_1, type_entity_1, cv_filter_type_1, type_extractor_filter_1, file_model_node_1, type_event_origin_1, GobiiFileItem;
     return {
         setters: [
             function (type_process_1_1) {
@@ -21,11 +21,14 @@ System.register(["./type-process", "./guid", "./type-entity", "./cv-filter-type"
             },
             function (file_model_node_1_1) {
                 file_model_node_1 = file_model_node_1_1;
+            },
+            function (type_event_origin_1_1) {
+                type_event_origin_1 = type_event_origin_1_1;
             }
         ],
         execute: function () {
             GobiiFileItem = (function () {
-                function GobiiFileItem(_gobiiExtractFilterType, _processType, _extractorItemType, _entityType, _entitySubType, _cvFilterType, _itemId, _itemName, _checked, _required) {
+                function GobiiFileItem(_gobiiExtractFilterType, _processType, _extractorItemType, _entityType, _entitySubType, _cvFilterType, _itemId, _itemName, _checked, _required, _gobiiEventOrigin) {
                     this._gobiiExtractFilterType = _gobiiExtractFilterType;
                     this._processType = _processType;
                     this._extractorItemType = _extractorItemType;
@@ -36,6 +39,7 @@ System.register(["./type-process", "./guid", "./type-entity", "./cv-filter-type"
                     this._itemName = _itemName;
                     this._checked = _checked;
                     this._required = _required;
+                    this._gobiiEventOrigin = _gobiiEventOrigin;
                     this._gobiiExtractFilterType = _gobiiExtractFilterType;
                     this._processType = _processType;
                     this._entityType = _entityType;
@@ -46,6 +50,7 @@ System.register(["./type-process", "./guid", "./type-entity", "./cv-filter-type"
                     this._itemName = _itemName;
                     this._checked = _checked;
                     this._required = _required;
+                    this._gobiiEventOrigin = _gobiiEventOrigin;
                     this._fileItemUniqueId = guid_1.Guid.generateUUID();
                     if (this._cvFilterType === null) {
                         this._cvFilterType = cv_filter_type_1.CvFilterType.UNKNOWN;
@@ -59,26 +64,12 @@ System.register(["./type-process", "./guid", "./type-entity", "./cv-filter-type"
                     if (this._entitySubType == null) {
                         this._entitySubType = type_entity_1.EntitySubType.UNKNOWN;
                     }
+                    if (this._gobiiEventOrigin == null) {
+                        this._gobiiEventOrigin = type_event_origin_1.GobiiUIEventOrigin.UNKNOWN;
+                    }
                 }
                 GobiiFileItem.build = function (gobiiExtractFilterType, processType) {
-                    var returnVal = new GobiiFileItem(gobiiExtractFilterType, processType, file_model_node_1.ExtractorItemType.UNKNOWN, type_entity_1.EntityType.UNKNOWN, type_entity_1.EntitySubType.UNKNOWN, cv_filter_type_1.CvFilterType.UNKNOWN, null, null, null, null);
-                    return returnVal;
-                };
-                //OnChange does not see the FileItemEvent as being a new event unless it's
-                //a branch new instance, even if any of the property values are different.
-                //I'm sure there's a better way to do this. For example, the tree component should
-                //subscribe to an observer that is fed by the root component?
-                GobiiFileItem.fromFileItem = function (fileItem, gobiiExtractFilterType) {
-                    var existingUniqueId = fileItem._fileItemUniqueId;
-                    var returnVal = GobiiFileItem
-                        .build(gobiiExtractFilterType, fileItem._processType)
-                        .setEntityType(fileItem._entityType)
-                        .setCvFilterType(fileItem._cvFilterType)
-                        .setItemId(fileItem._itemId)
-                        .setItemName(fileItem._itemName)
-                        .setChecked(fileItem._checked)
-                        .setRequired(fileItem._required);
-                    returnVal._fileItemUniqueId = existingUniqueId;
+                    var returnVal = new GobiiFileItem(gobiiExtractFilterType, processType, file_model_node_1.ExtractorItemType.UNKNOWN, type_entity_1.EntityType.UNKNOWN, type_entity_1.EntitySubType.UNKNOWN, cv_filter_type_1.CvFilterType.UNKNOWN, null, null, null, null, type_event_origin_1.GobiiUIEventOrigin.UNKNOWN);
                     return returnVal;
                 };
                 GobiiFileItem.prototype.setFileItemUniqueId = function (fileItemUniqueId) {
@@ -186,6 +177,13 @@ System.register(["./type-process", "./guid", "./type-entity", "./cv-filter-type"
                 };
                 GobiiFileItem.prototype.setRequired = function (value) {
                     this._required = value;
+                    return this;
+                };
+                GobiiFileItem.prototype.getGobiiEventOrigin = function () {
+                    return this._gobiiEventOrigin;
+                };
+                GobiiFileItem.prototype.setGobiiEventOrigin = function (value) {
+                    this._gobiiEventOrigin = value;
                     return this;
                 };
                 return GobiiFileItem;

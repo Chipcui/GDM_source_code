@@ -15,18 +15,22 @@ import {Guid} from "../model/guid";
 import {NameIdService} from "../services/core/name-id-service";
 import {NameIdRequestParams} from "../model/name-id-request-params";
 import {HeaderStatusMessage} from "../model/dto-header-status-message";
+import {Labels} from "./entity-labels";
+import {GobiiUIEventOrigin} from "../model/type-event-origin";
+import {NameIdLabelType} from "../model/name-id-label-type";
 
 
 @Component({
     selector: 'name-id-list-box',
     inputs: ['gobiiExtractFilterType',
         'notifyOnInit',
-        'nameIdRequestParams'],
+        'nameIdRequestParams',
+        'doTreeNotifications'],
     outputs: ['onNameIdSelected', 'onError'],
-    template: `<select name="users" (change)="handleNameIdSelected($event)" >
-			<option *ngFor="let nameId of nameIdList " 
-				value={{nameId.id}}>{{nameId.name}}</option>
-		</select>
+    template: `<select [(ngModel)]="selectedFileItemId" (change)="handleFileItemSelected($event)" >
+			        <option *ngFor="let fileItem of fileItemList" 
+				        [value]="fileItem.getItemId()">{{fileItem.getItemName()}}</option>
+		        </select>
 ` // end template
 
 })
@@ -46,30 +50,135 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
 
     } // ctor
 
-    private notificationSent = false;
+    // private notificationSent = false;
 
     ngOnInit(): any {
 
-        // entityFilterValue and entityFilter must either have values or be null.
-        // if (this._nameIdService.validateRequest(this.nameIdRequestParams) ) {
-        //     this.initializeNameIds();
-        // }
+        let scope$ = this;
+        this._fileModelTreeService
+            .fileItemNotifications()
+            .subscribe(eventedFileItem => {
+                    if (this.doTreeNotifications) {
+                        this.updateSelectedItem(eventedFileItem);
+                    }
+                },
+                responseHeader => {
+                    this.handleHeaderStatus(responseHeader);
+                });
+    }
+
+    private updateSelectedItem(eventedFileItem: GobiiFileItem) {
+
+        let fileItems: GobiiFileItem[] = this.fileItemList;
+        let foo: string = "foo";
+
+        // we need to make sure that the evented item belongs to this control
+        // however, the incoming event may have other properties that changed, so we
+        // have to use the evented item
+        if (this.fileItemList
+                .find(fi => {
+                    return fi.getFileItemUniqueId()
+                        === eventedFileItem.getFileItemUniqueId()
+                })) {
+
+            if ((eventedFileItem.getGobiiEventOrigin() === GobiiUIEventOrigin.CRITERIA_TREE)) {
+                if (this.nameIdRequestParams.getMameIdLabelType() != NameIdLabelType.UNKNOWN &&
+                    (eventedFileItem.getProcessType() === ProcessType.DELETE)) {
+                    this.selectedFileItemId = "0";
+                } else {
+                    this.selectedFileItemId = eventedFileItem.getItemId();
+                }
+                this.currentSelection = this.fileItemList[this.selectedFileItemId];
+            }
+        }
+    }
+
+    private makeFileItemFromNameId(nameId: NameId, extractorItemType: ExtractorItemType): GobiiFileItem {
+
+        return GobiiFileItem.build(this.gobiiExtractFilterType, ProcessType.CREATE)
+            .setEntityType(this.nameIdRequestParams.getEntityType())
+            .setEntitySubType(this.nameIdRequestParams.getEntitySubType())
+            .setCvFilterType(this.nameIdRequestParams.getCvFilterType())
+            .setExtractorItemType(extractorItemType)
+            .setItemName(nameId.name)
+            .setItemId(nameId.id);
     }
 
 
-    private initializeNameIds() {
+    private initializeFileItems() {
 
         let scope$ = this;
         this._nameIdService.get(this.nameIdRequestParams)
             .subscribe(nameIds => {
+
+                    this.fileItemList = [];
                     if (nameIds && ( nameIds.length > 0 )) {
-                        scope$.nameIdList = nameIds;
-                        scope$.selectedNameId = nameIds[0].id;
+
+                        nameIds.forEach(ni => {
+
+                            scope$.fileItemList.push(
+                                this.makeFileItemFromNameId(ni, ExtractorItemType.ENTITY)
+                            );
+
+                        });
+
+
+                        if (this.nameIdRequestParams.getMameIdLabelType() != NameIdLabelType.UNKNOWN) {
+
+                            let entityName:string = "";
+                            if (scope$.nameIdRequestParams.getCvFilterType() !== CvFilterType.UNKNOWN) {
+                                entityName += Labels.instance().cvFilterNodeLabels[scope$.nameIdRequestParams.getCvFilterType()];
+                            } else if (scope$.nameIdRequestParams.getEntitySubType() !== EntitySubType.UNKNOWN) {
+                                entityName += Labels.instance().entitySubtypeNodeLabels[scope$.nameIdRequestParams.getEntitySubType()];
+                            } else {
+                                entityName += Labels.instance().entityNodeLabels[scope$.nameIdRequestParams.getEntityType()];
+                            }
+
+                            let label: string = "";
+                            switch( this.nameIdRequestParams.getMameIdLabelType() ) {
+
+                                case NameIdLabelType.SELECT_A:
+                                    label = "Select a " +  entityName;
+                                    break;
+
+                                // we require that these entity labels all be in the singular
+                                case NameIdLabelType.ALL:
+                                    label = "All " + entityName + "s";
+                                    break;
+
+                                case NameIdLabelType.NO:
+                                    label = "No " +  entityName;
+                                    break;
+
+                                default:
+                                    this.handleHeaderStatus(new HeaderStatusMessage("Unknown label type "
+                                        + NameIdLabelType[this.nameIdRequestParams.getMameIdLabelType()],null,null))
+                            }
+
+
+
+                            let labelFileItem: GobiiFileItem = this.makeFileItemFromNameId(
+                                new NameId("0", label, this.nameIdRequestParams.getEntityType()),
+                                ExtractorItemType.LABEL);
+                            scope$.fileItemList.unshift(labelFileItem);
+                            scope$.selectedFileItemId = "0";
+
+
+                        } else {
+                            scope$.selectedFileItemId = scope$.fileItemList[0].getItemId();
+                            //scope$.selectedFileItemId = "0";
+
+                        }
+
+                        scope$.currentSelection = scope$.fileItemList[0];
+
                         if (this.notifyOnInit
-                            && !this.notificationSent
-                            && scope$.nameIdList [0].name != "<none>") {
-                            this.updateTreeService(scope$.nameIdList [0]);
-                            this.notificationSent = true;
+                            && ( this.nameIdRequestParams.getMameIdLabelType() === NameIdLabelType.UNKNOWN )
+//                            && !this.notificationSent
+//                            && scope$.fileItemList [0].getItemName() != "<none>"
+                        ) {
+                            this.updateTreeService(scope$.fileItemList[0]);
+//                            this.notificationSent = true;
                         }
                     }
                 },
@@ -80,17 +189,17 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
     }
 
     // useg
-    private nameIdList: NameId[];
+    private fileItemList: GobiiFileItem[] = [];
 
     private notifyOnInit: boolean = false;
+    private doTreeNotifications: boolean = true;
     // DtoRequestItemNameIds expects the value to be null if it's not set (not "UNKNOWN")
 
     private nameIdRequestParams: NameIdRequestParams;
 
     private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
 
-    private selectedNameId: string = null;
-
+    private selectedFileItemId: string = null;
     private onNameIdSelected: EventEmitter<NameId> = new EventEmitter();
     private onError: EventEmitter<HeaderStatusMessage> = new EventEmitter();
 
@@ -100,38 +209,53 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
         this.onError.emit(headerStatusMessage);
     }
 
-    private updateTreeService(nameId: NameId) {
 
-        this.onNameIdSelected.emit(nameId);
+    private updateTreeService(eventedfileItem: GobiiFileItem) {
 
-        let fileItem: GobiiFileItem = GobiiFileItem
-            .build(this.gobiiExtractFilterType, ProcessType.UPDATE)
-            .setExtractorItemType(ExtractorItemType.ENTITY)
-            .setEntityType(this.nameIdRequestParams.getEntityType())
-            .setEntitySubType(this.nameIdRequestParams.getEntitySubType())
-            .setCvFilterType(this.nameIdRequestParams.getCvFilterType())
-            .setItemId(nameId.id)
-            .setItemName(nameId.name);
+        this.onNameIdSelected
+            .emit(new NameId(eventedfileItem.getItemId(),
+                eventedfileItem.getItemName(),
+                eventedfileItem.getEntityType()));
 
-        this._fileModelTreeService.put(fileItem)
-            .subscribe(
-                null,
-                headerResponse => {
-                    this.handleHeaderStatus(headerResponse)
-                });
+        if( eventedfileItem.getItemId() != "0") {
+            if (this.doTreeNotifications) {
+                this._fileModelTreeService.put(eventedfileItem)
+                    .subscribe(
+                        null,
+                        headerResponse => {
+                            this.handleHeaderStatus(headerResponse)
+                        });
+            }
+        }
 
     }
 
 
-    private handleNameIdSelected(arg) {
+    private currentSelection: GobiiFileItem = null;
 
-        let nameId: NameId = this.nameIdList[arg.srcElement.selectedIndex]
+    private handleFileItemSelected(arg) {
 
-        // let nameId: NameId = new NameId(this.nameIdList[arg.srcElement.selectedIndex].id,
-        //     this.nameIdList[arg.srcElement.selectedIndex].name,
-        //     this.entityType);
+        let foo: string = "foo";
 
-        this.updateTreeService(nameId);
+
+        if (this.currentSelection.getItemId() !== "0") {
+            this.currentSelection.setProcessType(ProcessType.DELETE);
+            this.updateTreeService(this.currentSelection);
+        }
+
+
+//        let gobiiFileItem: GobiiFileItem = this.fileItemList[arg.srcElement.selectedIndex]
+        let gobiiFileItem: GobiiFileItem = this.fileItemList.find(fi => {
+            return fi.getItemId() === this.selectedFileItemId
+        });
+
+        if (gobiiFileItem.getItemId() != "0") {
+            gobiiFileItem.setProcessType(ProcessType.UPDATE);
+            this.updateTreeService(gobiiFileItem);
+        }
+
+        this.currentSelection = gobiiFileItem;
+
     }
 
 
@@ -143,7 +267,7 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
 
             if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
 
-                this.notificationSent = false;
+                //this.notificationSent = false;
 
                 this.nameIdRequestParams.setGobiiExtractFilterType(this.gobiiExtractFilterType);
 
@@ -154,7 +278,7 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
                         if (fileItem.getProcessType() === ProcessType.NOTIFY
                             && fileItem.getExtractorItemType() === ExtractorItemType.STATUS_DISPLAY_TREE_READY) {
 
-                            scope$.initializeNameIds();
+                            scope$.initializeFileItems();
 
 
                         }
@@ -170,13 +294,6 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
             && ( changes['nameIdRequestParams'].currentValue != undefined )) {
 
         }
-
-
-        // we may have gotten a filterValue now so we init if we do
-        // if (this._nameIdService.validateRequest(this.nameIdRequestParams)) {
-        //     this.initializeNameIds();
-        // }
-
 
     } // ngonChanges
 
@@ -194,7 +311,7 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
 
         if (changes) {
             if (this._nameIdService.validateRequest(this.nameIdRequestParams)) {
-                this.initializeNameIds();
+                this.initializeFileItems();
             }
         }
     }

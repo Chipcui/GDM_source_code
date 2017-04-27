@@ -9,14 +9,19 @@ import {EntityFilter} from "../model/type-entity-filter";
 import {CvFilterType} from "../model/cv-filter-type";
 import {Header} from "../model/payload/header";
 import {NameIdRequestParams} from "../model/name-id-request-params";
+import {NameIdLabelType} from "../model/name-id-label-type";
 
 @Component({
     selector: 'project-list-box',
-    inputs: ['primaryInvestigatorId', 'nameIdList', 'nameIdListPIs', 'gobiiExtractFilterType'],
-    outputs: ['onProjectSelected', 'onAddHeaderStatus'],
+    inputs: ['primaryInvestigatorId',
+        'gobiiExtractFilterType',
+        'reinitProjectList'],
+    outputs: ['onProjectSelected',
+        'onAddHeaderStatus'],
     template: `<name-id-list-box
                     [gobiiExtractFilterType] = "gobiiExtractFilterType"
-                    [notifyOnInit]="false"
+                    [notifyOnInit]="true"
+                    [doTreeNotifications] = "reinitProjectList"
                     [nameIdRequestParams] = "nameIdRequestParamsProject"
                     (onNameIdSelected) = "handleProjectSelected($event)"
                     (onError) = "handleHeaderStatus($event)">
@@ -44,16 +49,15 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
 
     // useg    privatre
     private project: Project;
-    private nameIdList: NameId[];
-    private nameIdListPIs: NameId[];
     private primaryInvestigatorId: string;
     private primaryInvestigatorName: string;
     private onProjectSelected: EventEmitter<string> = new EventEmitter();
     private onAddHeaderStatus: EventEmitter<Header> = new EventEmitter();
+    private reinitProjectList: boolean = false;
 
     private handleProjectSelected(arg) {
         let selectedProjectId = arg.id;
-        this.setProjectDetails(selectedProjectId);
+//        this.setProjectDetails(selectedProjectId);
         this.onProjectSelected.emit(selectedProjectId);
     }
 
@@ -64,11 +68,13 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
 
     constructor(private _dtoRequestServiceProject: DtoRequestService<Project>) {
 
+
         this.nameIdRequestParamsProject = NameIdRequestParams
-            .build( "Projects",
+            .build("Projects",
                 GobiiExtractFilterType.WHOLE_DATASET,
                 EntityType.Projects)
-            .setEntityFilter(EntityFilter.BYTYPEID);
+            .setEntityFilter(EntityFilter.BYTYPEID)
+            .setMameIdLabelType(this.reinitProjectList ? NameIdLabelType.ALL : NameIdLabelType.UNKNOWN);
 
 
     } // ctor
@@ -80,7 +86,6 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
                     if (projects[0]) {
                         scope$.project = projects[0];
                         scope$.primaryInvestigatorId = String(projects[0].piContact);
-                        scope$.setPiName();
                     }
                 },
                 headerStatusMessage => {
@@ -94,22 +99,9 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
 
     }
 
-    private setPiName() {
-
-        this.primaryInvestigatorName = undefined;
-        if (this.primaryInvestigatorId && this.nameIdListPIs) {
-            this.nameIdListPIs.forEach(n => {
-                if (n.id === this.primaryInvestigatorId) {
-                    this.primaryInvestigatorName = n.name;
-
-                }
-            })
-        }
-    }
-
     ngOnChanges(changes: {[propName: string]: SimpleChange}) {
 
-        let foo:string = "foo";
+        let foo: string = "foo";
 
         if (changes['gobiiExtractFilterType'] && changes['gobiiExtractFilterType'].currentValue) {
 
@@ -124,20 +116,7 @@ export class ProjectListBoxComponent implements OnInit,OnChanges {
             this.nameIdRequestParamsProject.setEntityFilterValue(this.primaryInvestigatorId);
         }
 
-        if (changes['nameIdList']) {
-            if (changes['nameIdList'].currentValue) {
-                this.nameIdList = changes['nameIdList'].currentValue;
-                this.setProjectDetails(this.nameIdList[0].id);
-            }
-        }
-
-        if (changes['nameIdListPIs']) {
-            if (changes['nameIdListPIs'].currentValue) {
-                this.nameIdListPIs = changes['nameIdListPIs'].currentValue;
-            }
-        }
-
-        //
+        this.nameIdRequestParamsProject.setMameIdLabelType(this.reinitProjectList ? NameIdLabelType.ALL : NameIdLabelType.UNKNOWN);
 
     }
 }
