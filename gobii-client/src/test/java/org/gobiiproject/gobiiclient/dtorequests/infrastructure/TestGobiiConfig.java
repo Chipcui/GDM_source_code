@@ -43,7 +43,7 @@ public class TestGobiiConfig {
 
         String returnVal;
 
-
+        
         returnVal = testExecConfig.getConfigUtilCommandlineStem() + "/gobiiconfig.jar" + " " + arguments;
 
         return returnVal;
@@ -291,7 +291,7 @@ public class TestGobiiConfig {
         Assert.assertTrue("The plain ldap bind password retrieved does not match the encrypted ldap password that was written: " + ecnryptionWarning,
                 configSettings.getLdapBindPassword().equals(ldapBindPasswordPlain));
 
-        String ldapUserForBackendProcessRetrieved = configSettings.getLdapUserForBackendProcs();
+        String ldapUserForBackendProcessRetrieved = configSettings.getLdapUserForBackendProcs(); 
         Assert.assertTrue("The plain background run as user retrieved does not match the encrypted background run as user that was written: " + ecnryptionWarning,
                 ldapUserForBackendProcessRetrieved.equals(ldapUserForBackgroundProcessPlain));
 

@@ -530,7 +530,7 @@ public class GobiiExtractor {
 	public static List<GobiiExtractorInstruction> parseExtractorInstructionFile(String filename){
 		ObjectMapper objectMapper = new ObjectMapper();
 		GobiiExtractorInstruction[] file = null;
-
+		 
 		try {
 			file = objectMapper.readValue(new FileInputStream(filename), GobiiExtractorInstruction[].class);
 		} catch (Exception e) {
@@ -553,7 +553,7 @@ public class GobiiExtractor {
 		return crop;
 	}
 
-
+	
 	private static String getLogName(GobiiExtractorInstruction gli, CropConfig config, Integer dsid) {
 		return getLogName(gli.getDataSetExtracts().get(0),config,dsid);
 	 }

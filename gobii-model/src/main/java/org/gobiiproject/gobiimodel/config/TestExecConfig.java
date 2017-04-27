@@ -113,7 +113,7 @@ public class TestExecConfig {
     }
 
     public String getLdapUserForUnitTest() {
-
+        
         String returnVal;
 
         if (this.decrypt) {

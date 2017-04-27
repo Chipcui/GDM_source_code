@@ -44,7 +44,7 @@ export class AuthenticationService {
     public getUserName(): string {
         return this.userName;
     }
-
+    
     public authenticate(userName:string, password:string):Observable<DtoHeaderAuth> {
 
         let loginUser = userName ? userName : this.defaultUser;

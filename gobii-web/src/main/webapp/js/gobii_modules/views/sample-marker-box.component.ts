@@ -186,9 +186,9 @@ export class SampleMarkerBoxComponent implements OnInit {
 
                     this.displayChoicePrompt = true;
                     returnVal = true;
-                    // it does not seem that the PrimeNG dialog really blocks in the usual sense;
+                    // it does not seem that the PrimeNG dialog really blocks in the usual sense; 
                     // so we have to chain what we do next off of the click events on the dialog.
-                    // see handleUserChoice()
+                    // see handleUserChoice() 
 
                 } else {
 
