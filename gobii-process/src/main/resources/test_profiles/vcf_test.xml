@@ -4,7 +4,7 @@
         <Organizations DbPKeysurrogate="Name">
             <Organization>
                 <Keys>
-                    <DbPKey>2926</DbPKey>
+                    <DbPKey></DbPKey>
                 </Keys>
                 <Properties>
                     <Name>sim_Cornell</Name>
@@ -16,10 +16,10 @@
         <Contacts DbPKeysurrogate="Email">
             <Contact>
                 <Keys>
-                    <DbPKey>233</DbPKey>
+                    <DbPKey></DbPKey>
                     <Fkey entity="Organization" fkproperty="organizationId">
                         <DbPKeySurrogate>sim_Cornell</DbPKeySurrogate>
-                        <DbPKey>2926</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -37,7 +37,7 @@
         <Platforms DbPKeysurrogate="PlatformName">
             <Platform>
                 <Keys>
-                    <DbPKey>155</DbPKey>
+                    <DbPKey></DbPKey>
                 </Keys>
                 <Properties>
                     <PlatformName>sim_GBS</PlatformName>
@@ -52,10 +52,10 @@
         <Protocols DbPKeysurrogate="Name">
             <Protocol>
                 <Keys>
-                    <DbPKey>346</DbPKey>
+                    <DbPKey></DbPKey>
                     <Fkey entity="Platform" fkproperty="platformId">
                         <DbPKeySurrogate>sim_GBS</DbPKeySurrogate>
-                        <DbPKey>155</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -71,14 +71,14 @@
         <VendorProtocols DbPKeysurrogate="Name">
             <VendorProtocol>
                 <Keys>
-                    <DbPKey>4469</DbPKey>
+                    <DbPKey></DbPKey>
                     <Fkey entity="Organization" fkproperty="organizationId">
                         <DbPKeySurrogate>sim_Cornell</DbPKeySurrogate>
-                        <DbPKey>2926</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="Protocol" fkproperty="protocolId">
                         <DbPKeySurrogate>sim_GBS</DbPKeySurrogate>
-                        <DbPKey>346</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -90,7 +90,7 @@
         <Mapsets DbPKeysurrogate="Name">
             <Mapset>
                 <Keys>
-                    <DbPKey>216</DbPKey>
+                    <DbPKey></DbPKey>
                 </Keys>
                 <Properties>
                     <Name>sim_GBS</Name>
@@ -105,10 +105,10 @@
         <Projects DbPKeysurrogate="ProjectName">
             <Project>
                 <Keys>
-                    <DbPKey>284</DbPKey>
+                    <DbPKey></DbPKey>
                     <Fkey entity="Contact" fkproperty="piContact">
                         <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
-                        <DbPKey>233</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -122,14 +122,14 @@
         <Experiments DbPKeysurrogate="ExperimentName">
             <Experiment>
                 <Keys>
-                    <DbPKey>128</DbPKey>
+                    <DbPKey></DbPKey>
                     <Fkey entity="Project" fkproperty="projectId">
                         <DbPKeySurrogate>sim_VCF</DbPKeySurrogate>
-                        <DbPKey>284</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="VendorProtocol" fkproperty="vendorProtocolId">
                         <DbPKeySurrogate>sim_Cornell_GBS</DbPKeySurrogate>
-                        <DbPKey>4469</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -142,7 +142,7 @@
         <Analyses DbPKeysurrogate="AnalysisName">
             <Analysis>
                 <Keys>
-                    <DbPKey>1212</DbPKey>
+                    <DbPKey></DbPKey>
                 </Keys>
                 <Properties>
                     <AnalysisName>sim_none</AnalysisName>
@@ -162,14 +162,14 @@
         <Datasets DbPKeysurrogate="Name">
             <Dataset>
                 <Keys>
-                    <DbPKey>297</DbPKey>
+                    <DbPKey></DbPKey>
                     <Fkey entity="Experiment" fkproperty="experimentId">
                         <DbPKeySurrogate>sim_VCF</DbPKeySurrogate>
-                        <DbPKey>128</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="Analysis" fkproperty="callingAnalysisId">
                         <DbPKeySurrogate>sim_none</DbPKeySurrogate>
-                        <DbPKey>1212</DbPKey>
+                        <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>

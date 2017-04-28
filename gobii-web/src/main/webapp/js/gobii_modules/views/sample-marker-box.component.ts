@@ -16,18 +16,18 @@ import {Labels} from "./entity-labels";
             
                 <div class="row">
 
-                          <label class="the-legend">File:&nbsp;</label>
                             <input type="radio" 
                                 (click)="handleOnClickBrowse($event)" 
                                 name="listType" 
                                 value="itemFile"
                                 [(ngModel)]="selectedListType">
-                          <label class="the-legend">List:&nbsp;</label>
+                          <label class="the-legend">File:&nbsp;</label>
                             <input type="radio" 
                                 (click)="handleTextBoxChanged($event)" 
                                 name="listType" 
                                 value="itemArray"
                                 [(ngModel)]="selectedListType">
+                          <label class="the-legend">List:&nbsp;</label>
                  </div>
                  
                 <div class="row">
@@ -42,8 +42,12 @@ import {Labels} from "./entity-labels";
                         <text-area
                         (onTextboxDataComplete)="handleTextBoxDataSubmitted($event)"></text-area>
                     </div> 
+                    <div *ngIf="displayListBox" class="col-md-4">
+                          <p class="text-warning">{{maxListItems}} maximum</p>
+                    </div> 
                     
                  </div>
+                
                  <div>
                     <p-dialog header="{{extractTypeLabelExisting}} Already Selelected" [(visible)]="displayChoicePrompt" modal="modal" width="300" height="300" responsive="true">
                         <p>A {{extractTypeLabelExisting}} is already selected. Do you want to remove it and specify a {{extractTypeLabelProposed}} instead?</p>
@@ -55,7 +59,11 @@ import {Labels} from "./entity-labels";
                             </p-footer>
                     </p-dialog>
                   </div>
-`
+                  <div>
+                    <p-dialog header="Maximum {{maxExceededTypeLabel}} Items Exceeded" [(visible)]="displayMaxItemsExceeded" modal="modal" width="300" height="300" responsive="true">
+                        <p>You attempted to paste more than {{maxListItems}} {{maxExceededTypeLabel}} items; Please reduce the size of the list</p>
+                    </p-dialog>
+                  </div>`
 
 })
 
@@ -64,6 +72,10 @@ export class SampleMarkerBoxComponent implements OnInit {
     public constructor(private _fileModelTreeService: FileModelTreeService) {
 
     }
+
+    private maxListItems: number = 200;
+    private displayMaxItemsExceeded: boolean = false;
+    private maxExceededTypeLabel: string;
 
     private displayChoicePrompt: boolean = false;
     private selectedListType: string = "itemFile";
@@ -88,24 +100,41 @@ export class SampleMarkerBoxComponent implements OnInit {
 
     private handleTextBoxDataSubmitted(items: string[]) {
 
-        let listItemType: ExtractorItemType =
-            this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ?
-                ExtractorItemType.MARKER_LIST_ITEM : ExtractorItemType.SAMPLE_LIST_ITEM;
+        if (items.length <= this.maxListItems) {
 
-        items.forEach(listItem => {
+            let listItemType: ExtractorItemType =
+                this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ?
+                    ExtractorItemType.MARKER_LIST_ITEM : ExtractorItemType.SAMPLE_LIST_ITEM;
 
-            if (listItem && listItem !== "") {
+            items.forEach(listItem => {
 
-                this._fileModelTreeService
-                    .put(GobiiFileItem.build(this.gobiiExtractFilterType, ProcessType.CREATE)
-                        .setExtractorItemType(listItemType)
-                        .setItemId(listItem)
-                        .setItemName(listItem))
-                    .subscribe(null, headerStatusMessage => {
-                        this.handleStatusHeaderMessage(headerStatusMessage)
-                    });
+                if (listItem && listItem !== "") {
+
+                    this._fileModelTreeService
+                        .put(GobiiFileItem.build(this.gobiiExtractFilterType, ProcessType.CREATE)
+                            .setExtractorItemType(listItemType)
+                            .setItemId(listItem)
+                            .setItemName(listItem))
+                        .subscribe(null, headerStatusMessage => {
+                            this.handleStatusHeaderMessage(headerStatusMessage)
+                        });
+                }
+            });
+
+        } else {
+
+            if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
+                this.maxExceededTypeLabel = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.MARKER_LIST_ITEM];
+            } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE) {
+                this.maxExceededTypeLabel = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM];
+            } else {
+                this.handleStatusHeaderMessage(new HeaderStatusMessage("This control does not handle the currently selected item type: "
+                    + GobiiExtractFilterType[this.gobiiExtractFilterType]
+                    ,null,null))
             }
-        });
+
+            this.displayMaxItemsExceeded = true;
+        }
     }
 
 

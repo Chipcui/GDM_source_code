@@ -61,10 +61,11 @@ const URL = 'gobii/v1/uploadfile?gobiiExtractFilterType=BY_MARKER';
             
             <input type="file" ng2FileSelect [uploader]="uploader" (click)="handleClickBrowse($event)"/>
             <!--  IF YOU REINSTATE THE QUEUES BELOW THIS BUTTON WILL BE SUPERFLUOUS -->
-            <button type="button" class="btn btn-success btn-s"
+            <BR>
+            <button type="button" class="btn btn-success"
                         (click)="uploader.uploadAll()" 
                         [disabled]="!uploader.getNotUploadedItems().length">
-                    <span class="glyphicon glyphicon-upload"></span> Upload
+                    Upload
             </button>
 
         </div>

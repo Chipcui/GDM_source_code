@@ -4,11 +4,8 @@ import {HttpModule} from "@angular/http";
 import {BrowserModule} from "@angular/platform-browser";
 
 import {ExportFormatComponent} from "../views/export-format.component";
-import {ContactsListBoxComponent} from "../views/contacts-list-box.component";
 import {ProjectListBoxComponent} from "../views/project-list-box.component";
-import {ExperimentListBoxComponent} from "../views/experiment-list-box.component";
 import {DataSetCheckListBoxComponent} from "../views/dataset-checklist-box.component";
-import {CriteriaDisplayComponent} from "../views/criteria-display.component";
 import {StatusDisplayComponent} from "../views/status-display-box.component";
 import {CropsListBoxComponent} from "../views/crops-list-box.component";
 import {ExportTypeComponent} from "../views/export-type.component";
@@ -47,11 +44,8 @@ import {Button} from "primeng/components/button/button";
         ExtractorRoot,
         LoginComponent,
         ExportFormatComponent,
-        ContactsListBoxComponent,
         ProjectListBoxComponent,
-        ExperimentListBoxComponent,
         DataSetCheckListBoxComponent,
-        CriteriaDisplayComponent,
         StatusDisplayComponent,
         CropsListBoxComponent,
         ExportTypeComponent,

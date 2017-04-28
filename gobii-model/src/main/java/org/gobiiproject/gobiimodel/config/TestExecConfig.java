@@ -30,7 +30,7 @@ public class TestExecConfig {
     private String configFileTestDirectory = "/gobii-config-test";
 
     @Element(required = false)
-    private String configUtilCommandlineStem = "java -jar C:\\phil-source\\IntelliJ\\gobiiproject\\gobii-process\\target";
+    private String configUtilCommandlineStem = "java -jar C:\\phil-source\\IntelliJ\\gobiiproject\\gobii-process\\target\\gobiiconfig.jar";
 
     @Element(required = false)
     private String ldapUserForUnitTest;

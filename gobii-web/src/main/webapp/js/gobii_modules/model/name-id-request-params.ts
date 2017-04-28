@@ -2,6 +2,7 @@ import {EntityFilter} from "./type-entity-filter";
 import {EntityType, EntitySubType} from "./type-entity";
 import {CvFilterType} from "./cv-filter-type";
 import {GobiiExtractFilterType} from "./type-extractor-filter";
+import {NameIdLabelType} from "./name-id-label-type";
 /**
  * Created by Phil on 3/9/2017.
  */
@@ -14,11 +15,12 @@ export class NameIdRequestParams {
                         private _entityFilterValue: string = null,
                         private _entitySubType: EntitySubType = EntitySubType.UNKNOWN,
                         private _cvFilterType: CvFilterType = CvFilterType.UNKNOWN,
-                        private _gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN) {
+                        private _gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN,
+                        private _nameIdLabelType: NameIdLabelType) {
 
     }
 
-    public static build(queryName:string,
+    public static build(queryName: string,
                         gobiiExtractFilterType: GobiiExtractFilterType,
                         entityType: EntityType): NameIdRequestParams {
         return ( new NameIdRequestParams(queryName,
@@ -27,7 +29,8 @@ export class NameIdRequestParams {
             null,
             EntitySubType.UNKNOWN,
             CvFilterType.UNKNOWN,
-            gobiiExtractFilterType));
+            gobiiExtractFilterType,
+            NameIdLabelType.UNKNOWN));
     }
 
 
@@ -89,4 +92,15 @@ export class NameIdRequestParams {
     getQueryName(): string {
         return this._queryName;
     }
+
+
+    setMameIdLabelType(nameIdLabelType: NameIdLabelType) {
+        this._nameIdLabelType = nameIdLabelType;
+        return this;
+    }
+
+    getMameIdLabelType():NameIdLabelType {
+        return this._nameIdLabelType;
+    }
+
 }

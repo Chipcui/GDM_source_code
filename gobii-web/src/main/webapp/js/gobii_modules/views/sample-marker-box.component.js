@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extractor-filter", "../services/core/file-model-tree-service", "../model/gobii-file-item", "../model/type-process", "../model/file-model-node", "./entity-labels"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/dto-header-status-message", "../model/type-extractor-filter", "../services/core/file-model-tree-service", "../model/gobii-file-item", "../model/type-process", "../model/file-model-node", "./entity-labels"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,11 +10,14 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../services
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extractor_filter_1, file_model_tree_service_1, gobii_file_item_1, type_process_1, file_model_node_1, entity_labels_1, SampleMarkerBoxComponent;
+    var core_1, dto_header_status_message_1, type_extractor_filter_1, file_model_tree_service_1, gobii_file_item_1, type_process_1, file_model_node_1, entity_labels_1, SampleMarkerBoxComponent;
     return {
         setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (dto_header_status_message_1_1) {
+                dto_header_status_message_1 = dto_header_status_message_1_1;
             },
             function (type_extractor_filter_1_1) {
                 type_extractor_filter_1 = type_extractor_filter_1_1;
@@ -39,6 +42,8 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../services
             SampleMarkerBoxComponent = (function () {
                 function SampleMarkerBoxComponent(_fileModelTreeService) {
                     this._fileModelTreeService = _fileModelTreeService;
+                    this.maxListItems = 200;
+                    this.displayMaxItemsExceeded = false;
                     this.displayChoicePrompt = false;
                     this.selectedListType = "itemFile";
                     this.displayUploader = true;
@@ -57,20 +62,35 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../services
                 // } // ctor
                 SampleMarkerBoxComponent.prototype.handleTextBoxDataSubmitted = function (items) {
                     var _this = this;
-                    var listItemType = this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER ?
-                        file_model_node_1.ExtractorItemType.MARKER_LIST_ITEM : file_model_node_1.ExtractorItemType.SAMPLE_LIST_ITEM;
-                    items.forEach(function (listItem) {
-                        if (listItem && listItem !== "") {
-                            _this._fileModelTreeService
-                                .put(gobii_file_item_1.GobiiFileItem.build(_this.gobiiExtractFilterType, type_process_1.ProcessType.CREATE)
-                                .setExtractorItemType(listItemType)
-                                .setItemId(listItem)
-                                .setItemName(listItem))
-                                .subscribe(null, function (headerStatusMessage) {
-                                _this.handleStatusHeaderMessage(headerStatusMessage);
-                            });
+                    if (items.length <= this.maxListItems) {
+                        var listItemType_1 = this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER ?
+                            file_model_node_1.ExtractorItemType.MARKER_LIST_ITEM : file_model_node_1.ExtractorItemType.SAMPLE_LIST_ITEM;
+                        items.forEach(function (listItem) {
+                            if (listItem && listItem !== "") {
+                                _this._fileModelTreeService
+                                    .put(gobii_file_item_1.GobiiFileItem.build(_this.gobiiExtractFilterType, type_process_1.ProcessType.CREATE)
+                                    .setExtractorItemType(listItemType_1)
+                                    .setItemId(listItem)
+                                    .setItemName(listItem))
+                                    .subscribe(null, function (headerStatusMessage) {
+                                    _this.handleStatusHeaderMessage(headerStatusMessage);
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER) {
+                            this.maxExceededTypeLabel = entity_labels_1.Labels.instance().treeExtractorTypeLabels[file_model_node_1.ExtractorItemType.MARKER_LIST_ITEM];
                         }
-                    });
+                        else if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE) {
+                            this.maxExceededTypeLabel = entity_labels_1.Labels.instance().treeExtractorTypeLabels[file_model_node_1.ExtractorItemType.SAMPLE_LIST_ITEM];
+                        }
+                        else {
+                            this.handleStatusHeaderMessage(new dto_header_status_message_1.HeaderStatusMessage("This control does not handle the currently selected item type: "
+                                + type_extractor_filter_1.GobiiExtractFilterType[this.gobiiExtractFilterType], null, null));
+                        }
+                        this.displayMaxItemsExceeded = true;
+                    }
                 };
                 SampleMarkerBoxComponent.prototype.handleSampleMarkerChoicesExist = function () {
                     var _this = this;
@@ -188,7 +208,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../services
                     selector: 'sample-marker-box',
                     inputs: ['gobiiExtractFilterType'],
                     outputs: ['onSampleMarkerError'],
-                    template: "<div class=\"container-fluid\">\n            \n                <div class=\"row\">\n\n                          <label class=\"the-legend\">File:&nbsp;</label>\n                            <input type=\"radio\" \n                                (click)=\"handleOnClickBrowse($event)\" \n                                name=\"listType\" \n                                value=\"itemFile\"\n                                [(ngModel)]=\"selectedListType\">\n                          <label class=\"the-legend\">List:&nbsp;</label>\n                            <input type=\"radio\" \n                                (click)=\"handleTextBoxChanged($event)\" \n                                name=\"listType\" \n                                value=\"itemArray\"\n                                [(ngModel)]=\"selectedListType\">\n                 </div>\n                 \n                <div class=\"row\">\n                \n                    <div *ngIf=\"displayUploader\" class=\"col-md-8\">\n                        <uploader\n                        [gobiiExtractFilterType] = \"gobiiExtractFilterType\"\n                        (onUploaderError)=\"handleStatusHeaderMessage($event)\"></uploader>\n                    </div> \n                    \n                    <div *ngIf=\"displayListBox\" class=\"col-md-8\">\n                        <text-area\n                        (onTextboxDataComplete)=\"handleTextBoxDataSubmitted($event)\"></text-area>\n                    </div> \n                    \n                 </div>\n                 <div>\n                    <p-dialog header=\"{{extractTypeLabelExisting}} Already Selelected\" [(visible)]=\"displayChoicePrompt\" modal=\"modal\" width=\"300\" height=\"300\" responsive=\"true\">\n                        <p>A {{extractTypeLabelExisting}} is already selected. Do you want to remove it and specify a {{extractTypeLabelProposed}} instead?</p>\n                            <p-footer>\n                                <div class=\"ui-dialog-buttonpane ui-widget-content ui-helper-clearfix\">\n                                    <button type=\"button\" pButton icon=\"fa-close\" (click)=\"handleUserChoice(false)\" label=\"No\"></button>\n                                    <button type=\"button\" pButton icon=\"fa-check\" (click)=\"handleUserChoice(true)\" label=\"Yes\"></button>\n                                </div>\n                            </p-footer>\n                    </p-dialog>\n                  </div>\n"
+                    template: "<div class=\"container-fluid\">\n            \n                <div class=\"row\">\n\n                            <input type=\"radio\" \n                                (click)=\"handleOnClickBrowse($event)\" \n                                name=\"listType\" \n                                value=\"itemFile\"\n                                [(ngModel)]=\"selectedListType\">\n                          <label class=\"the-legend\">File:&nbsp;</label>\n                            <input type=\"radio\" \n                                (click)=\"handleTextBoxChanged($event)\" \n                                name=\"listType\" \n                                value=\"itemArray\"\n                                [(ngModel)]=\"selectedListType\">\n                          <label class=\"the-legend\">List:&nbsp;</label>\n                 </div>\n                 \n                <div class=\"row\">\n                \n                    <div *ngIf=\"displayUploader\" class=\"col-md-8\">\n                        <uploader\n                        [gobiiExtractFilterType] = \"gobiiExtractFilterType\"\n                        (onUploaderError)=\"handleStatusHeaderMessage($event)\"></uploader>\n                    </div> \n                    \n                    <div *ngIf=\"displayListBox\" class=\"col-md-8\">\n                        <text-area\n                        (onTextboxDataComplete)=\"handleTextBoxDataSubmitted($event)\"></text-area>\n                    </div> \n                    <div *ngIf=\"displayListBox\" class=\"col-md-4\">\n                          <p class=\"text-warning\">{{maxListItems}} maximum</p>\n                    </div> \n                    \n                 </div>\n                \n                 <div>\n                    <p-dialog header=\"{{extractTypeLabelExisting}} Already Selelected\" [(visible)]=\"displayChoicePrompt\" modal=\"modal\" width=\"300\" height=\"300\" responsive=\"true\">\n                        <p>A {{extractTypeLabelExisting}} is already selected. Do you want to remove it and specify a {{extractTypeLabelProposed}} instead?</p>\n                            <p-footer>\n                                <div class=\"ui-dialog-buttonpane ui-widget-content ui-helper-clearfix\">\n                                    <button type=\"button\" pButton icon=\"fa-close\" (click)=\"handleUserChoice(false)\" label=\"No\"></button>\n                                    <button type=\"button\" pButton icon=\"fa-check\" (click)=\"handleUserChoice(true)\" label=\"Yes\"></button>\n                                </div>\n                            </p-footer>\n                    </p-dialog>\n                  </div>\n                  <div>\n                    <p-dialog header=\"Maximum {{maxExceededTypeLabel}} Items Exceeded\" [(visible)]=\"displayMaxItemsExceeded\" modal=\"modal\" width=\"300\" height=\"300\" responsive=\"true\">\n                        <p>You attempted to paste more than {{maxListItems}} {{maxExceededTypeLabel}} items; Please reduce the size of the list</p>\n                    </p-dialog>\n                  </div>"
                 }),
                 __metadata("design:paramtypes", [file_model_tree_service_1.FileModelTreeService])
             ], SampleMarkerBoxComponent);

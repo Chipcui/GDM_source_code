@@ -17,6 +17,7 @@ import {NameIdRequestParams} from "../model/name-id-request-params";
 import {HeaderStatusMessage} from "../model/dto-header-status-message";
 import {Labels} from "./entity-labels";
 import {GobiiUIEventOrigin} from "../model/type-event-origin";
+import {NameIdLabelType} from "../model/name-id-label-type";
 
 
 @Component({
@@ -24,7 +25,6 @@ import {GobiiUIEventOrigin} from "../model/type-event-origin";
     inputs: ['gobiiExtractFilterType',
         'notifyOnInit',
         'nameIdRequestParams',
-        'firstItemIsLabel',
         'doTreeNotifications'],
     outputs: ['onNameIdSelected', 'onError'],
     template: `<select [(ngModel)]="selectedFileItemId" (change)="handleFileItemSelected($event)" >
@@ -82,7 +82,7 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
                 })) {
 
             if ((eventedFileItem.getGobiiEventOrigin() === GobiiUIEventOrigin.CRITERIA_TREE)) {
-                if (this.firstItemIsLabel &&
+                if (this.nameIdRequestParams.getMameIdLabelType() != NameIdLabelType.UNKNOWN &&
                     (eventedFileItem.getProcessType() === ProcessType.DELETE)) {
                     this.selectedFileItemId = "0";
                 } else {
@@ -122,16 +122,40 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
 
                         });
 
-                        if (this.firstItemIsLabel) {
-                            let label: string = "Select ";
 
+                        if (this.nameIdRequestParams.getMameIdLabelType() != NameIdLabelType.UNKNOWN) {
+
+                            let entityName:string = "";
                             if (scope$.nameIdRequestParams.getCvFilterType() !== CvFilterType.UNKNOWN) {
-                                label += Labels.instance().cvFilterNodeLabels[scope$.nameIdRequestParams.getCvFilterType()];
+                                entityName += Labels.instance().cvFilterNodeLabels[scope$.nameIdRequestParams.getCvFilterType()];
                             } else if (scope$.nameIdRequestParams.getEntitySubType() !== EntitySubType.UNKNOWN) {
-                                label += Labels.instance().entitySubtypeNodeLabels[scope$.nameIdRequestParams.getEntitySubType()];
+                                entityName += Labels.instance().entitySubtypeNodeLabels[scope$.nameIdRequestParams.getEntitySubType()];
                             } else {
-                                label += Labels.instance().entityNodeLabels[scope$.nameIdRequestParams.getEntityType()];
+                                entityName += Labels.instance().entityNodeLabels[scope$.nameIdRequestParams.getEntityType()];
                             }
+
+                            let label: string = "";
+                            switch( this.nameIdRequestParams.getMameIdLabelType() ) {
+
+                                case NameIdLabelType.SELECT_A:
+                                    label = "Select a " +  entityName;
+                                    break;
+
+                                // we require that these entity labels all be in the singular
+                                case NameIdLabelType.ALL:
+                                    label = "All " + entityName + "s";
+                                    break;
+
+                                case NameIdLabelType.NO:
+                                    label = "No " +  entityName;
+                                    break;
+
+                                default:
+                                    this.handleHeaderStatus(new HeaderStatusMessage("Unknown label type "
+                                        + NameIdLabelType[this.nameIdRequestParams.getMameIdLabelType()],null,null))
+                            }
+
+
 
                             let labelFileItem: GobiiFileItem = this.makeFileItemFromNameId(
                                 new NameId("0", label, this.nameIdRequestParams.getEntityType()),
@@ -149,7 +173,7 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
                         scope$.currentSelection = scope$.fileItemList[0];
 
                         if (this.notifyOnInit
-                            && !this.firstItemIsLabel
+                            && ( this.nameIdRequestParams.getMameIdLabelType() === NameIdLabelType.UNKNOWN )
 //                            && !this.notificationSent
 //                            && scope$.fileItemList [0].getItemName() != "<none>"
                         ) {
@@ -168,7 +192,6 @@ export class NameIdListBoxComponent implements OnInit, OnChanges, DoCheck {
     private fileItemList: GobiiFileItem[] = [];
 
     private notifyOnInit: boolean = false;
-    private firstItemIsLabel: boolean = false;
     private doTreeNotifications: boolean = true;
     // DtoRequestItemNameIds expects the value to be null if it's not set (not "UNKNOWN")
 

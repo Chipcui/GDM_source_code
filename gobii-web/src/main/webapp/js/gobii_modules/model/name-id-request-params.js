@@ -1,7 +1,7 @@
-System.register(["./type-entity-filter", "./type-entity", "./cv-filter-type", "./type-extractor-filter"], function (exports_1, context_1) {
+System.register(["./type-entity-filter", "./type-entity", "./cv-filter-type", "./type-extractor-filter", "./name-id-label-type"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var type_entity_filter_1, type_entity_1, cv_filter_type_1, type_extractor_filter_1, NameIdRequestParams;
+    var type_entity_filter_1, type_entity_1, cv_filter_type_1, type_extractor_filter_1, name_id_label_type_1, NameIdRequestParams;
     return {
         setters: [
             function (type_entity_filter_1_1) {
@@ -15,6 +15,9 @@ System.register(["./type-entity-filter", "./type-entity", "./cv-filter-type", ".
             },
             function (type_extractor_filter_1_1) {
                 type_extractor_filter_1 = type_extractor_filter_1_1;
+            },
+            function (name_id_label_type_1_1) {
+                name_id_label_type_1 = name_id_label_type_1_1;
             }
         ],
         execute: function () {
@@ -22,7 +25,7 @@ System.register(["./type-entity-filter", "./type-entity", "./cv-filter-type", ".
              * Created by Phil on 3/9/2017.
              */
             NameIdRequestParams = (function () {
-                function NameIdRequestParams(_queryName, _entityType, _entityFilter, _entityFilterValue, _entitySubType, _cvFilterType, _gobiiExtractFilterType) {
+                function NameIdRequestParams(_queryName, _entityType, _entityFilter, _entityFilterValue, _entitySubType, _cvFilterType, _gobiiExtractFilterType, _nameIdLabelType) {
                     if (_queryName === void 0) { _queryName = null; }
                     if (_entityType === void 0) { _entityType = type_entity_1.EntityType.UNKNOWN; }
                     if (_entityFilter === void 0) { _entityFilter = type_entity_filter_1.EntityFilter.NONE; }
@@ -37,9 +40,10 @@ System.register(["./type-entity-filter", "./type-entity", "./cv-filter-type", ".
                     this._entitySubType = _entitySubType;
                     this._cvFilterType = _cvFilterType;
                     this._gobiiExtractFilterType = _gobiiExtractFilterType;
+                    this._nameIdLabelType = _nameIdLabelType;
                 }
                 NameIdRequestParams.build = function (queryName, gobiiExtractFilterType, entityType) {
-                    return (new NameIdRequestParams(queryName, entityType, type_entity_filter_1.EntityFilter.NONE, null, type_entity_1.EntitySubType.UNKNOWN, cv_filter_type_1.CvFilterType.UNKNOWN, gobiiExtractFilterType));
+                    return (new NameIdRequestParams(queryName, entityType, type_entity_filter_1.EntityFilter.NONE, null, type_entity_1.EntitySubType.UNKNOWN, cv_filter_type_1.CvFilterType.UNKNOWN, gobiiExtractFilterType, name_id_label_type_1.NameIdLabelType.UNKNOWN));
                 };
                 NameIdRequestParams.prototype.getEntityType = function () {
                     return this._entityType;
@@ -85,6 +89,13 @@ System.register(["./type-entity-filter", "./type-entity", "./cv-filter-type", ".
                 };
                 NameIdRequestParams.prototype.getQueryName = function () {
                     return this._queryName;
+                };
+                NameIdRequestParams.prototype.setMameIdLabelType = function (nameIdLabelType) {
+                    this._nameIdLabelType = nameIdLabelType;
+                    return this;
+                };
+                NameIdRequestParams.prototype.getMameIdLabelType = function () {
+                    return this._nameIdLabelType;
                 };
                 return NameIdRequestParams;
             }());

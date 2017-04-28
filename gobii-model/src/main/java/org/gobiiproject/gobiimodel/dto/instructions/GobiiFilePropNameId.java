@@ -10,6 +10,13 @@ import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 public class GobiiFilePropNameId {
     //Property ID - Internal unique identifier for this label
 
+    public GobiiFilePropNameId() {};
+
+    public GobiiFilePropNameId(Integer id, String name ) {
+        this.id = id;
+        this.name = name;
+    }
+
     Integer id;
     //Property Name (User readable)
     String name;

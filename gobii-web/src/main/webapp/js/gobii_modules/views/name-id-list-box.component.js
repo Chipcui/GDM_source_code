@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/name-id", "../model/type-entity", "../model/cv-filter-type", "../model/gobii-file-item", "../model/type-process", "../services/core/file-model-tree-service", "../model/type-extractor-filter", "../model/file-model-node", "../services/core/name-id-service", "./entity-labels", "../model/type-event-origin"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/name-id", "../model/type-entity", "../model/cv-filter-type", "../model/gobii-file-item", "../model/type-process", "../services/core/file-model-tree-service", "../model/type-extractor-filter", "../model/file-model-node", "../services/core/name-id-service", "../model/dto-header-status-message", "./entity-labels", "../model/type-event-origin", "../model/name-id-label-type"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/name-id", "../model/type-entity", ".
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, name_id_1, type_entity_1, cv_filter_type_1, gobii_file_item_1, type_process_1, file_model_tree_service_1, type_extractor_filter_1, file_model_node_1, name_id_service_1, entity_labels_1, type_event_origin_1, NameIdListBoxComponent;
+    var core_1, name_id_1, type_entity_1, cv_filter_type_1, gobii_file_item_1, type_process_1, file_model_tree_service_1, type_extractor_filter_1, file_model_node_1, name_id_service_1, dto_header_status_message_1, entity_labels_1, type_event_origin_1, name_id_label_type_1, NameIdListBoxComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -43,11 +43,17 @@ System.register(["@angular/core", "../model/name-id", "../model/type-entity", ".
             function (name_id_service_1_1) {
                 name_id_service_1 = name_id_service_1_1;
             },
+            function (dto_header_status_message_1_1) {
+                dto_header_status_message_1 = dto_header_status_message_1_1;
+            },
             function (entity_labels_1_1) {
                 entity_labels_1 = entity_labels_1_1;
             },
             function (type_event_origin_1_1) {
                 type_event_origin_1 = type_event_origin_1_1;
+            },
+            function (name_id_label_type_1_1) {
+                name_id_label_type_1 = name_id_label_type_1_1;
             }
         ],
         execute: function () {
@@ -59,7 +65,6 @@ System.register(["@angular/core", "../model/name-id", "../model/type-entity", ".
                     // useg
                     this.fileItemList = [];
                     this.notifyOnInit = false;
-                    this.firstItemIsLabel = false;
                     this.doTreeNotifications = true;
                     this.gobiiExtractFilterType = type_extractor_filter_1.GobiiExtractFilterType.UNKNOWN;
                     this.selectedFileItemId = null;
@@ -94,7 +99,7 @@ System.register(["@angular/core", "../model/name-id", "../model/type-entity", ".
                             === eventedFileItem.getFileItemUniqueId();
                     })) {
                         if ((eventedFileItem.getGobiiEventOrigin() === type_event_origin_1.GobiiUIEventOrigin.CRITERIA_TREE)) {
-                            if (this.firstItemIsLabel &&
+                            if (this.nameIdRequestParams.getMameIdLabelType() != name_id_label_type_1.NameIdLabelType.UNKNOWN &&
                                 (eventedFileItem.getProcessType() === type_process_1.ProcessType.DELETE)) {
                                 this.selectedFileItemId = "0";
                             }
@@ -124,16 +129,32 @@ System.register(["@angular/core", "../model/name-id", "../model/type-entity", ".
                             nameIds.forEach(function (ni) {
                                 scope$.fileItemList.push(_this.makeFileItemFromNameId(ni, file_model_node_1.ExtractorItemType.ENTITY));
                             });
-                            if (_this.firstItemIsLabel) {
-                                var label = "Select ";
+                            if (_this.nameIdRequestParams.getMameIdLabelType() != name_id_label_type_1.NameIdLabelType.UNKNOWN) {
+                                var entityName = "";
                                 if (scope$.nameIdRequestParams.getCvFilterType() !== cv_filter_type_1.CvFilterType.UNKNOWN) {
-                                    label += entity_labels_1.Labels.instance().cvFilterNodeLabels[scope$.nameIdRequestParams.getCvFilterType()];
+                                    entityName += entity_labels_1.Labels.instance().cvFilterNodeLabels[scope$.nameIdRequestParams.getCvFilterType()];
                                 }
                                 else if (scope$.nameIdRequestParams.getEntitySubType() !== type_entity_1.EntitySubType.UNKNOWN) {
-                                    label += entity_labels_1.Labels.instance().entitySubtypeNodeLabels[scope$.nameIdRequestParams.getEntitySubType()];
+                                    entityName += entity_labels_1.Labels.instance().entitySubtypeNodeLabels[scope$.nameIdRequestParams.getEntitySubType()];
                                 }
                                 else {
-                                    label += entity_labels_1.Labels.instance().entityNodeLabels[scope$.nameIdRequestParams.getEntityType()];
+                                    entityName += entity_labels_1.Labels.instance().entityNodeLabels[scope$.nameIdRequestParams.getEntityType()];
+                                }
+                                var label = "";
+                                switch (_this.nameIdRequestParams.getMameIdLabelType()) {
+                                    case name_id_label_type_1.NameIdLabelType.SELECT_A:
+                                        label = "Select a " + entityName;
+                                        break;
+                                    // we require that these entity labels all be in the singular
+                                    case name_id_label_type_1.NameIdLabelType.ALL:
+                                        label = "All " + entityName + "s";
+                                        break;
+                                    case name_id_label_type_1.NameIdLabelType.NO:
+                                        label = "No " + entityName;
+                                        break;
+                                    default:
+                                        _this.handleHeaderStatus(new dto_header_status_message_1.HeaderStatusMessage("Unknown label type "
+                                            + name_id_label_type_1.NameIdLabelType[_this.nameIdRequestParams.getMameIdLabelType()], null, null));
                                 }
                                 var labelFileItem = _this.makeFileItemFromNameId(new name_id_1.NameId("0", label, _this.nameIdRequestParams.getEntityType()), file_model_node_1.ExtractorItemType.LABEL);
                                 scope$.fileItemList.unshift(labelFileItem);
@@ -144,7 +165,7 @@ System.register(["@angular/core", "../model/name-id", "../model/type-entity", ".
                             }
                             scope$.currentSelection = scope$.fileItemList[0];
                             if (_this.notifyOnInit
-                                && !_this.firstItemIsLabel) {
+                                && (_this.nameIdRequestParams.getMameIdLabelType() === name_id_label_type_1.NameIdLabelType.UNKNOWN)) {
                                 _this.updateTreeService(scope$.fileItemList[0]);
                             }
                         }
@@ -231,7 +252,6 @@ System.register(["@angular/core", "../model/name-id", "../model/type-entity", ".
                     inputs: ['gobiiExtractFilterType',
                         'notifyOnInit',
                         'nameIdRequestParams',
-                        'firstItemIsLabel',
                         'doTreeNotifications'],
                     outputs: ['onNameIdSelected', 'onError'],
                     template: "<select [(ngModel)]=\"selectedFileItemId\" (change)=\"handleFileItemSelected($event)\" >\n\t\t\t        <option *ngFor=\"let fileItem of fileItemList\" \n\t\t\t\t        [value]=\"fileItem.getItemId()\">{{fileItem.getItemName()}}</option>\n\t\t        </select>\n" // end template

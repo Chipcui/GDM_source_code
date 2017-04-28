@@ -57,9 +57,14 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+
+        HttpServletRequest httpRequest = null;
+        HttpServletResponse httpResponse = null;
+
         try {
-            HttpServletRequest httpRequest = (HttpServletRequest) request;
-            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            httpRequest = (HttpServletRequest) request;
+            httpResponse = (HttpServletResponse) response;
 
 
             String gobiiCropType = CropRequestAnalyzer.getGobiiCropType(httpRequest);
@@ -111,7 +116,12 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
             } // if-else crop type could not be found
 
         } catch (Exception e) {
+
             LOGGER.error("Error in authentication filter", e);
+
+            if( httpResponse != null ) {
+                httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
 
     } // doFilter()

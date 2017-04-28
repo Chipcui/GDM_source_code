@@ -130,7 +130,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                         && (changes['gobiiExtractFilterType'].currentValue != null)
                         && (changes['gobiiExtractFilterType'].currentValue != undefined)) {
                         if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
-                            var labelSuffix = " Metadata Only";
+                            var labelSuffix = " Metadata";
                             if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET) {
                                 this.metaDataExtractname = "Dataset" + labelSuffix;
                             }

@@ -356,7 +356,7 @@ public class HelperFunctions {
 	 * @param fileLocation String representation of the file's location (absolute or relative).
 	 * @return true if non-empty file exists
 	 */
-	private static boolean checkFileExistance(String fileLocation) {
+	public static boolean checkFileExistance(String fileLocation) {
 	if(fileLocation==null)return false;
 	File f = new File(fileLocation);
 	return f.exists() && f.getTotalSpace()!=0;

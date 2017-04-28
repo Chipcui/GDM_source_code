@@ -17,9 +17,6 @@ import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
 
 import org.gobiiproject.gobiimodel.tobemovedtoapimodel.HeaderAuth;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
-import org.gobiiproject.gobiimodel.types.SystemUserDetail;
-import org.gobiiproject.gobiimodel.types.SystemUserNames;
-import org.gobiiproject.gobiimodel.types.SystemUsers;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -141,11 +138,11 @@ public class DtoRequestAuthorizationTest {
         HttpPost postRequestForToken = makePostRequest(ServiceRequestId.URL_AUTH, gobiiCropTypeSent);
 
         // add good credentials
-        SystemUsers systemUsers = new SystemUsers();
-        SystemUserDetail userDetail = systemUsers.getDetail(SystemUserNames.USER_READER.toString());
+        String testUser = Authenticator.getTestExecConfig().getLdapUserForUnitTest();
+        String testPassword = Authenticator.getTestExecConfig().getLdapPasswordForUnitTest();
 
-        postRequestForToken.addHeader(GobiiHttpHeaderNames.HEADER_USERNAME, userDetail.getUserName());
-        postRequestForToken.addHeader(GobiiHttpHeaderNames.HEADER_PASSWORD, userDetail.getPassword());
+        postRequestForToken.addHeader(GobiiHttpHeaderNames.HEADER_USERNAME, testUser);
+        postRequestForToken.addHeader(GobiiHttpHeaderNames.HEADER_PASSWORD, testPassword);
 
 
         postRequestForToken.addHeader(GobiiHttpHeaderNames.HEADER_GOBII_CROP,

@@ -13,15 +13,9 @@ import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.CropConfig;
 import org.gobiiproject.gobiimodel.config.CropDbConfig;
-import org.gobiiproject.gobiimodel.headerlesscontainer.PingDTO;
-import org.gobiiproject.gobiimodel.tobemovedtoapimodel.HeaderStatusMessage;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiDbType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiProcessType;
-import org.gobiiproject.gobiimodel.types.SystemUserDetail;
-import org.gobiiproject.gobiimodel.types.SystemUserNames;
-import org.gobiiproject.gobiimodel.types.SystemUsers;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -1149,6 +1143,14 @@ public class GobiiConfig {
                 for (CropConfig currentCropConfig : configSettings.getActiveCropConfigs()) {
 
 
+                    if (!currentCropConfig.getServiceAppRoot().toLowerCase().contains(currentCropConfig.getGobiiCropType())) {
+                        System.err.println("The context root "
+                                + currentCropConfig.getServiceAppRoot()
+                                + " does not contain the crop ID "
+                                + currentCropConfig.getGobiiCropType());
+                        returnVal = false;
+                    }
+
                     if (LineUtils.isNullOrEmpty(currentCropConfig.getGobiiCropType())) {
                         System.err.println("The crop type for the active crop  is not defined");
                         returnVal = false;
@@ -1284,40 +1286,41 @@ public class GobiiConfig {
 
             //if(!LineUtils.isNullOrEmpty())
 
-            SystemUsers systemUsers = new SystemUsers();
-            SystemUserDetail userDetail = systemUsers.getDetail(SystemUserNames.USER_READER.toString());
-
-            if (ClientContext.getInstance(null, false).login(userDetail.getUserName(), userDetail.getPassword())) {
-
-                PingDTO pingDTORequest = new PingDTO();
-
-
-                //DtoRequestPing dtoRequestPing = new DtoRequestPing();
-                GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(ClientContext.getInstance(null, false)
-                        .getUriFactory()
-                        .resourceColl(ServiceRequestId.URL_PING));
-
-                PayloadEnvelope<PingDTO> resultEnvelopePing = gobiiEnvelopeRestResourcePingDTO.post(PingDTO.class,
-                        new PayloadEnvelope<>(pingDTORequest, GobiiProcessType.CREATE));
-                //PayloadEnvelope<ContactDTO> resultEnvelopeNewContact = dtoRequestContact.process(new PayloadEnvelope<>(newContactDto, GobiiProcessType.CREATE));
-
-
-                Integer responseNum = 1;
-                if (resultEnvelopePing.getHeader().getStatus().isSucceeded()) {
-                    PingDTO pingDTOResponse = resultEnvelopePing.getPayload().getData().get(0);
-                    for (String currentResponse : pingDTOResponse.getPingResponses()) {
-                        GobiiConfig.printField("Ping response " + (responseNum++).toString(), currentResponse);
-                    }
-                } else {
-                    for (HeaderStatusMessage currentHeader : resultEnvelopePing.getHeader().getStatus().getStatusMessages()) {
-                        GobiiConfig.printField("Service error " + (responseNum++).toString(), currentHeader.getMessage());
-                        returnVal = false;
-                    }
-                }
-            } else {
-                System.err.println("Authentication to server for crop failed: " + currentCropType.toString());
-                returnVal = false;
-            }
+            // This ping thing gives out too much internal details about the server. Removing this for now.
+//            SystemUsers systemUsers = new SystemUsers();
+//            SystemUserDetail userDetail = systemUsers.getDetail(SystemUserNames.USER_READER.toString());
+//
+//            if (ClientContext.getInstance(null, false).login(userDetail.getUserName(), userDetail.getPassword())) {
+//
+//                PingDTO pingDTORequest = new PingDTO();
+//
+//
+//                //DtoRequestPing dtoRequestPing = new DtoRequestPing();
+//                GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(ClientContext.getInstance(null, false)
+//                        .getUriFactory()
+//                        .resourceColl(ServiceRequestId.URL_PING));
+//
+//                PayloadEnvelope<PingDTO> resultEnvelopePing = gobiiEnvelopeRestResourcePingDTO.post(PingDTO.class,
+//                        new PayloadEnvelope<>(pingDTORequest, GobiiProcessType.CREATE));
+//                //PayloadEnvelope<ContactDTO> resultEnvelopeNewContact = dtoRequestContact.process(new PayloadEnvelope<>(newContactDto, GobiiProcessType.CREATE));
+//
+//
+//                Integer responseNum = 1;
+//                if (resultEnvelopePing.getHeader().getStatus().isSucceeded()) {
+//                    PingDTO pingDTOResponse = resultEnvelopePing.getPayload().getData().get(0);
+//                    for (String currentResponse : pingDTOResponse.getPingResponses()) {
+//                        GobiiConfig.printField("Ping response " + (responseNum++).toString(), currentResponse);
+//                    }
+//                } else {
+//                    for (HeaderStatusMessage currentHeader : resultEnvelopePing.getHeader().getStatus().getStatusMessages()) {
+//                        GobiiConfig.printField("Service error " + (responseNum++).toString(), currentHeader.getMessage());
+//                        returnVal = false;
+//                    }
+//                }
+//            } else {
+//                System.err.println("Authentication to server for crop failed: " + currentCropType.toString());
+//                returnVal = false;
+//            }
         }
 
         return returnVal;

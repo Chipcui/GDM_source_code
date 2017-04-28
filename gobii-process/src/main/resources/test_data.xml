@@ -68,25 +68,6 @@
                 </Properties>
             </Protocol>
         </Protocols>
-        <VendorProtocols DbPKeysurrogate="Name">
-            <VendorProtocol>
-                <Keys>
-                    <DbPKey></DbPKey>
-                    <Fkey entity="Organization" fkproperty="organizationId">
-                        <DbPKeySurrogate></DbPKeySurrogate>
-                        <DbPKey></DbPKey>
-                    </Fkey>
-                    <Fkey entity="Protocol" fkproperty="protocolId">
-                        <DbPKeySurrogate></DbPKeySurrogate>
-                        <DbPKey></DbPKey>
-                    </Fkey>
-                </Keys>
-                <Properties>
-                    <Name></Name>
-                    <Status></Status>
-                </Properties>
-            </VendorProtocol>
-        </VendorProtocols>
         <References DbPKeysurrogate="Name">
             <Reference>
                 <Keys>

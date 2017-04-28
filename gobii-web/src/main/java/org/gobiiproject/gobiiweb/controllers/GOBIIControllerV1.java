@@ -58,7 +58,7 @@ import java.util.List;
  */
 @Scope(value = "request")
 @Controller
-@RequestMapping("/gobii/v1")
+@RequestMapping(ServiceRequestId.SERVICE_PATH_GOBII)
 public class GOBIIControllerV1 {
 
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(GOBIIControllerV1.class);

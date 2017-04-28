@@ -189,32 +189,122 @@
 
 	<Scenarios>
 		<Scenario>
-			<Name>Codominant</Name>
+			<Name>codominant_dataset</Name>
 			<Files>
-				<Instruction/>
-				<Data/>
+				<Instruction>D:\GOBII\test profiles from yaw\instructions\test_codominant_dataset.json</Instruction>
+				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_dataset</Data>
 			</Files>
 
 			<DbFkey entity="Contact">
-				<DbPKeySurrogate/>
-				<DbPKey/>
+				<DbPKeySurrogate>sim_Cornell</DbPKeySurrogate>
+				<DbPKey></DbPKey>
 			</DbFkey>
 
 			<DbFkey entity="Project">
-				<DbPKeySurrogate/>
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
 				<DbPKey/>
 			</DbFkey>
 
 			<DbFkey entity="Experiment">
-				<DbPKeySurrogate/>
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
 				<DbPKey/>
 			</DbFkey>
 
 			<DbFkey entity="Dataset">
-				<DbPKeySurrogate/>
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
 				<DbPKey/>
 			</DbFkey>
+
+			<DbFkey entity="Mapset">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
+			<DbFkey entity="Platform">
+				<DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
 		</Scenario>
+
+		<Scenario>
+			<Name>codominant_marker</Name>
+			<Files>
+				<Instruction>D:\GOBII\test profiles from yaw\instructions\test_codominant_marker.json</Instruction>
+				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_marker</Data>
+			</Files>
+
+			<DbFkey entity="Contact">
+				<DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
+			<DbFkey entity="Project">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey/>
+			</DbFkey>
+
+			<DbFkey entity="Experiment">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey/>
+			</DbFkey>
+
+			<DbFkey entity="Dataset">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey/>
+			</DbFkey>
+
+			<DbFkey entity="Mapset">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
+			<DbFkey entity="Platform">
+				<DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
+		</Scenario>
+
+		<Scenario>
+			<Name>codominant_sample</Name>
+			<Files>
+				<Instruction>D:\GOBII\test profiles from yaw\instructions\test_codominant_sample.json</Instruction>
+				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_sample</Data>
+			</Files>
+
+			<DbFkey entity="Contact">
+				<DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
+			<DbFkey entity="Project">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey/>
+			</DbFkey>
+
+			<DbFkey entity="Experiment">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey/>
+			</DbFkey>
+
+			<DbFkey entity="Dataset">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey/>
+			</DbFkey>
+
+			<DbFkey entity="Mapset">
+				<DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
+			<DbFkey entity="Platform">
+				<DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
+				<DbPKey></DbPKey>
+			</DbFkey>
+
+		</Scenario>
+
 	</Scenarios>
 
 </GobiiTestData>

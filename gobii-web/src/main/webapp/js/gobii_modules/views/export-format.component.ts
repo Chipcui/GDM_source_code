@@ -148,7 +148,7 @@ export class ExportFormatComponent implements OnInit, OnChanges {
             if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
 
 
-                let labelSuffix:string = " Metadata Only";
+                let labelSuffix:string = " Metadata";
                 if(this.gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET ) {
                     this.metaDataExtractname = "Dataset" + labelSuffix;
                 } else if(this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ) {

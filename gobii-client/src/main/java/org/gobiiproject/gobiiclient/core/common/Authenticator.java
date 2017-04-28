@@ -1,9 +1,7 @@
 package org.gobiiproject.gobiiclient.core.common;
 
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
-import org.gobiiproject.gobiimodel.types.SystemUserDetail;
-import org.gobiiproject.gobiimodel.types.SystemUserNames;
-import org.gobiiproject.gobiimodel.types.SystemUsers;
+import org.gobiiproject.gobiimodel.utils.LineUtils;
 
 
 /**
@@ -13,7 +11,7 @@ public class Authenticator {
 
     private static TestExecConfig testExecConfig = null;
 
-    private static TestExecConfig getTestExecConfig() throws Exception{
+    public static TestExecConfig getTestExecConfig() throws Exception{
         if (testExecConfig == null) {
             testExecConfig = (new TestConfiguration()).getConfigSettings().getTestExecConfig();
         }
@@ -22,19 +20,33 @@ public class Authenticator {
     }
 
 
-    public static boolean authenticate(String gobiiCropType) throws Exception {
+    private static boolean authenticate(TestExecConfig testExecConfig, String cropId ) throws Exception {
 
         getTestExecConfig();
 
         // this method assumes we've already initialized the context with the server URL
-        ClientContext.getInstance(null, false).setCurrentClientCrop(gobiiCropType);
-        SystemUsers systemUsers = new SystemUsers();
-        SystemUserDetail userDetail = systemUsers.getDetail(SystemUserNames.USER_READER.toString());
+        String clientCrop = null;
+        if(LineUtils.isNullOrEmpty( cropId )) {
 
-        return ClientContext.getInstance(null, false).login(userDetail.getUserName(), userDetail.getPassword());
+            clientCrop = testExecConfig.getTestCrop();
+        } else {
+            clientCrop = cropId;
+
+        }
+
+        ClientContext.getInstance(null, false).setCurrentClientCrop(clientCrop);
+
+        String testUserName = testExecConfig.getLdapUserForUnitTest();
+        String testPassword = testExecConfig.getLdapPasswordForUnitTest();
+
+        return ClientContext.getInstance(null, false).login(testUserName, testPassword);
     }
 
     public static boolean authenticate() throws Exception {
+        return  authenticate(null);
+    }
+
+    public static boolean authenticate(String cropId ) throws Exception {
 
         ClientContext.resetConfiguration();
 
@@ -65,8 +77,8 @@ public class Authenticator {
 
         //String gobiiCropTypeDefault = ClientContext.getInstance(initialConfigUrl, true).getDefaultCropType();
         ClientContext.getInstance(initialConfigUrl, true);
-        String gobiiTestCrop = getTestExecConfig().getTestCrop();
-        return Authenticator.authenticate(gobiiTestCrop);
+
+        return Authenticator.authenticate(getTestExecConfig(),cropId);
     }
 
     // not implemented yet

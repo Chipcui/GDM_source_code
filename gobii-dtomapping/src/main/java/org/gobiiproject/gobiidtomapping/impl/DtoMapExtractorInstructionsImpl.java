@@ -147,7 +147,6 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                 }
 
 
-
                 if (LineUtils.isNullOrEmpty(currentExtractorInstruction.getGobiiCropType())) {
 
                     currentExtractorInstruction.setGobiiCropType(cropType);
@@ -179,17 +178,20 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
 
                 String extractorFileDestinationLocation = null;
 
-                for (GobiiDataSetExtract currentGobiiDataSetExtract :
-                        currentExtractorInstruction.getDataSetExtracts()) {
 
-                    if( currentGobiiDataSetExtract.getListFileName() != null )
-                    {
+                for (Integer idx = 0;
+                     idx < currentExtractorInstruction.getDataSetExtracts().size();
+                     idx++) {
+
+                    GobiiDataSetExtract currentGobiiDataSetExtract = currentExtractorInstruction.getDataSetExtracts().get(idx);
+
+                    if (currentGobiiDataSetExtract.getListFileName() != null) {
 
                         String presumptiveListFileFqpn = instructionFileDirectory + currentGobiiDataSetExtract.getListFileName() + DATA_FILE_EXT;
 
-                        if(this.extractorInstructionsDAO.doesPathExist(presumptiveListFileFqpn))  {
+                        if (this.extractorInstructionsDAO.doesPathExist(presumptiveListFileFqpn)) {
                             currentGobiiDataSetExtract.setListFileName(presumptiveListFileFqpn);
-                        }  else {
+                        } else {
 
                             throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                                     GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
@@ -200,35 +202,30 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                     if (currentGobiiDataSetExtract.getGobiiExtractFilterType()
                             .equals(GobiiExtractFilterType.WHOLE_DATASET)) {
                         // check that we have all required values
-                        if (LineUtils.isNullOrEmpty(currentGobiiDataSetExtract.getDataSetName())) {
+                        if (currentGobiiDataSetExtract.getDataSet() == null) {
                             throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                                     GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
-                                    "DataSet name is missing");
+                                    "DataSet is missing");
                         }
-
-                        if (LineUtils.isNullOrEmpty(Integer.toString(currentGobiiDataSetExtract.getDataSetId()))) {
-                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
-                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
-                                    "Dataset ID is missing");
-
-                        }
-
 
                     } else if (currentGobiiDataSetExtract.getGobiiExtractFilterType()
                             .equals(GobiiExtractFilterType.BY_SAMPLE)) {
 
-
-                        if ((currentGobiiDataSetExtract.getListFileName() == null)
+                        if((currentGobiiDataSetExtract.getProject() == null)
+                                && (currentGobiiDataSetExtract.getPrincipleInvestigator() == null)
+                                && (currentGobiiDataSetExtract.getListFileName() == null)
                                 && ((currentGobiiDataSetExtract.getSampleList() == null) ||
-                                (currentGobiiDataSetExtract.getSampleList().size() <= 0))) {
+                                    (currentGobiiDataSetExtract.getSampleList().size() <= 0 ))){
 
                             throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                                     GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
                                     "The specified extract type is "
-                                            + currentGobiiDataSetExtract.getGobiiExtractFilterType()
-                                            + " but no sample list is specified");
-                        }
+                                        + currentGobiiDataSetExtract.getGobiiExtractFilterType()
+                                        + ". Please provide at least one of the following: " +
+                                            "Principle Investigator, Project, Sample list, or sample file.");
 
+
+                        }
 
                     } else if (currentGobiiDataSetExtract.getGobiiExtractFilterType()
                             .equals(GobiiExtractFilterType.BY_MARKER)) {
@@ -257,6 +254,10 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                             currentGobiiDataSetExtract.getGobiiFileType(),
                             extractionFileDestinationPath,
                             extractorInstructionFilesDTO.getInstructionFileName());
+
+                    if (currentExtractorInstruction.getDataSetExtracts().size() > 1) {
+                        extractorFileDestinationLocation += "/" + idx.toString();
+                    }
 
                     if (!extractorInstructionsDAO.doesPathExist(extractorFileDestinationLocation)) {
 

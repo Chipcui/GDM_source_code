@@ -180,7 +180,7 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 			List<Integer> reqCols = getRequiredColNo();
 			while ((fileRow = bufferedReader.readLine()) != null) {
 				
-				String[] row = fileRow.split(loaderInstruction.getGobiiFile().getDelimiter());
+				String[] row = fileRow.split(loaderInstruction.getGobiiFile().getDelimiter(),-1);//Need to capture blank trailing values
 
 				if(rowNo >= rowNoInGobiiColumn){
 					List<String> rowList = new ArrayList<>();
@@ -293,7 +293,8 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
 			case AUTOINCREMENT:
 				appendTabToOutput(outputLine, column);
 				outputLine.append(entry.getValue());
-				entry.setValue(entry.getValue() + 1);
+				String increment=(Integer.parseInt(entry.getValue())+1)+"";
+				entry.setValue(increment);
 				break;
 			case CSV_ROW:
 				appendTabToOutput(outputLine, column);

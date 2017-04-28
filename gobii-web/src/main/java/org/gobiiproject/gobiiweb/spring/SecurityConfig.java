@@ -5,6 +5,8 @@ import org.gobiiproject.gobidomain.security.impl.TokenManagerSingle;
 import org.gobiiproject.gobidomain.services.AuthenticationService;
 import org.gobiiproject.gobidomain.services.impl.AuthenticationServiceDefault;
 import org.gobiiproject.gobidomain.services.impl.UserDetailsServiceImpl;
+import org.gobiiproject.gobiiapimodel.types.ControllerType;
+import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiiweb.security.TokenAuthenticationFilter;
@@ -47,7 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // see http://stackoverflow.com/questions/30366405/how-to-disable-spring-security-for-particular-url
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/login",
+        String configSettingsUrl = ServiceRequestId.URL_CONFIGSETTINGS.getRequestUrl(null, ControllerType.GOBII);
+        web.ignoring().antMatchers( configSettingsUrl,
+                "/login",
                 "/index.html",
                 "/css/**",
                 "/images/**",
@@ -60,13 +64,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // intellij complains about the derivation of BasicAuthenticationFilter.class,
         // but it is WRONG; this works fine
+        String allGobiimethods = ServiceRequestId.SERVICE_PATH_GOBII + "/**";
         http.addFilterAfter(this.filterBean(), BasicAuthenticationFilter.class);
         http.
                 csrf().disable().
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().
                 authorizeRequests().
-                antMatchers("/gobii/v1/**").permitAll().
+                antMatchers(allGobiimethods).permitAll().
                 anyRequest().authenticated().
                 and().
                 anonymous().disable();

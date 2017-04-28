@@ -10,7 +10,7 @@ import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 
 public class GobiiProcessedInstruction {
 
-	final int AUTO_INCREMENT_START_VALUE = 0; // TODO: Need to finalize
+	final String AUTO_INCREMENT_START_VALUE = "0"; // TODO: Need to finalize
 	private GobiiLoaderInstruction loaderInstruction;
 	private List<GobiiFileColumn> columnList;
 	private List<FileLineEntry> fileLine;
@@ -69,8 +69,7 @@ public class GobiiProcessedInstruction {
 	 * Line of data to be written into temp file, is represented by fileLine.
 	 * Each column is represented by three consecutive elements in fileLine
 	 * gobiiFileColumnType, Value, Index in column list.
-	 *  
-	 * @param loaderInstruction
+	 *
 	 */
 	public void parseInstruction() {
 		int columnNo = 0;
@@ -80,22 +79,22 @@ public class GobiiProcessedInstruction {
 		for (GobiiFileColumn gobiiFileColumn : columnList) {
 			switch (gobiiFileColumn.getGobiiColumnType()) {
 			case CONSTANT:
-				fileLine.add(new FileLineEntry(GobiiColumnType.CONSTANT, Integer.parseInt(gobiiFileColumn.getConstantValue()), columnNo));
+				fileLine.add(new FileLineEntry(GobiiColumnType.CONSTANT, gobiiFileColumn.getConstantValue(), columnNo));
 				break;
 			case AUTOINCREMENT:
 				fileLine.add(new FileLineEntry(GobiiColumnType.AUTOINCREMENT, AUTO_INCREMENT_START_VALUE, columnNo));
 				break;
 			case CSV_ROW:
-				fileLine.add(new FileLineEntry(GobiiColumnType.CSV_ROW, columnNo, columnNo));
+				fileLine.add(new FileLineEntry(GobiiColumnType.CSV_ROW, "", columnNo));
 				requiredRows.add(new ArrayList<String>());
 				hasCSV_ROW = true;
 				break;
 			case CSV_COLUMN:
-				fileLine.add(new FileLineEntry(GobiiColumnType.CSV_COLUMN, columnNo, columnNo));
+				fileLine.add(new FileLineEntry(GobiiColumnType.CSV_COLUMN, "", columnNo));
 				hasCSV_COL = true;
 				break;
 			case CSV_BOTH:
-				fileLine.add(new FileLineEntry(GobiiColumnType.CSV_BOTH, columnNo, columnNo));
+				fileLine.add(new FileLineEntry(GobiiColumnType.CSV_BOTH, "", columnNo));
 				hasCSV_BOTH = true;
 				break;
 			default:
@@ -110,10 +109,10 @@ public class GobiiProcessedInstruction {
 class FileLineEntry{
 	
 	private GobiiColumnType columnType;
-	private int value;
+	private String value;
 	private int columnNo;
 	
-	public FileLineEntry(GobiiColumnType constantEntry, int constantValue, int columnNo) {
+	public FileLineEntry(GobiiColumnType constantEntry, String constantValue, int columnNo) {
 		this.columnType = constantEntry;
 		this.value = constantValue;
 		this.columnNo = columnNo;
@@ -123,11 +122,11 @@ class FileLineEntry{
 		return columnType;
 	}
 
-	public int getValue() {
+	public String getValue() {
 		return value;
 	}
 	
-	public void setValue(int value){
+	public void setValue(String value){
 		this.value = value;
 	}
 

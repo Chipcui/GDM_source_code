@@ -34,7 +34,7 @@ import java.lang.reflect.Field;
  */
 public class TestGobiiTestData {
 
-    private static String FILE_PATH = "C:/Users/VCalaminos/Documents/gobii/gobiiproject/gobii-process/src/main/resources/test_profiles/vcf_test.xml";
+    public static String FILE_PATH = "";
     private static TestExecConfig testExecConfig = null;
     private static String CONFIG_FILE_LOCATION_PROP = "cfgFqpn";
 
@@ -393,18 +393,22 @@ public class TestGobiiTestData {
 
         returnVal = returnVal.replaceFirst("java", "java -DcfgFqpn="+configFileLocation+" ");
 
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        File xmlFile = new File(classLoader.getResource("unit_test_data.xml").getFile());
+
+        FILE_PATH = xmlFile.getAbsolutePath();
+
         returnVal = returnVal + "\\gobiitestdata.jar " + FILE_PATH;
 
         return returnVal;
     }
 
-    @Ignore
+    @Test
     public void testGobiiTestData() throws Exception {
-
         String commandline = makeCommandLine();
 
         boolean succeeded = HelperFunctions.tryExec(commandline, "output.txt", "error.txt");
-
 
         /******************** CHECK IF ENTITIES ARE CREATED ****************/
 

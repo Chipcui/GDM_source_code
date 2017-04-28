@@ -3,6 +3,8 @@ package org.gobiiproject.gobiiapimodel.types;
 /**
  * Created by Phil on 5/13/2016.
  */
+
+
 public enum ServiceRequestId {
 
     URL_AUTH("auth"),
@@ -48,6 +50,9 @@ public enum ServiceRequestId {
     URL_QC_STATUS("qcStatus"),
     URL_QC_DOWNLOAD("qcDownload");
 
+    public static final String SERVICE_PATH_GOBII = "/gobii/v1";
+    public static final String SERVICE_PATH_BRAPI = "/brapi/v1";
+
 
     private String requestPath;
 
@@ -59,14 +64,39 @@ public enum ServiceRequestId {
         return this.requestPath;
     }
 
-    public String getRequestUrl(String contextRoot,ControllerType controllerType) throws Exception {
+    public String getRequestUrl(String contextRoot, ControllerType controllerType) throws Exception {
 
-        String controllerPath = controllerType.getControllerPath();
+        String controllerPath = getControllerPath(controllerType);
 
-        String returnVal = contextRoot + controllerPath;
+        String returnVal = null;
+
+        if( contextRoot != null ) {
+            returnVal = contextRoot + controllerPath;
+        } else {
+            returnVal = controllerPath;
+        }
 
         returnVal += this.getRequestPath();
 
         return returnVal;
     }
+
+    public static String getControllerPath(ControllerType controllerType) throws Exception {
+
+        String returnVal = null;
+
+        if (controllerType == ControllerType.GOBII) {
+
+            returnVal = ServiceRequestId.SERVICE_PATH_GOBII + "/";
+
+        } else if (controllerType == ControllerType.BRAPI) {
+
+            returnVal = ServiceRequestId.SERVICE_PATH_BRAPI + "/";
+        } else {
+            throw new Exception("Unknown controller type: " + controllerType.toString());
+        }
+
+        return returnVal;
+
+    } // getControllerPath()
 }
