@@ -232,24 +232,24 @@ System.register(["@angular/core", "../model/gobii-file-item", "../model/GobiiTre
                     });
                     /*
                      let unselectedTreeNode: GobiiTreeNode = event.node;
-
+            
                      if (( !unselectedTreeNode.required )) {
-
-
+            
+            
                      let itemsToRemove: GobiiFileItem[] = this.getFileItemsToDeselect(unselectedTreeNode);
-
+            
                      this.unsetPartialSelect(unselectedTreeNode);
-
+            
                      itemsToRemove.forEach(itr => {
                      this._fileModelTreeService.put(itr).subscribe(
                      fmte => {
-
+            
                      },
                      headerResponse => {
                      this.handleAddStatusMessage(headerResponse)
                      });
                      })
-
+            
                      } else {
                      // essentially disallow the selection
                      this.selectedGobiiNodes.push(unselectedTreeNode);
