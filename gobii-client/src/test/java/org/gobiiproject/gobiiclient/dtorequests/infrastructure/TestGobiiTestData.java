@@ -406,7 +406,6 @@ public class TestGobiiTestData {
 
     @Test
     public void testGobiiTestData() throws Exception {
-
         String commandline = makeCommandLine();
 
         boolean succeeded = HelperFunctions.tryExec(commandline, "output.txt", "error.txt");
