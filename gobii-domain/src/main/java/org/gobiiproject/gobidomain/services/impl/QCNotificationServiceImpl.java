@@ -16,9 +16,11 @@ import org.gobiiproject.gobiidtomapping.DtoMapQCData;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.headerlesscontainer.QCDataDTO;
+import org.gobiiproject.gobiimodel.types.GobiiAutoLoginType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 import org.gobiiproject.gobiimodel.utils.DateUtils;
+import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,13 +43,17 @@ public class QCNotificationServiceImpl implements QCNotificationService {
             // First we need to know their QC status
             // Then we copy the QC output files from their original directories to the user directories
             Long qcJobID = qcDataDTOsList.get(0).getContactId();
-            ClientContext clientContext = ClientContext.getInstance(configSettings, cropType);
+            ClientContext clientContext = ClientContext.getInstance(configSettings, cropType, GobiiAutoLoginType.USER_RUN_AS);
+            if (LineUtils.isNullOrEmpty(clientContext.getUserToken())) {
+                ErrorLogger.logError("QC Notification Service","Unable to log in with user: " + GobiiAutoLoginType.USER_RUN_AS.toString());
+                return;
+            }
             String currentQCContextRoot = clientContext.getInstance(null, false).getCurrentQCContextRoot();
             UriFactory uriFactory = new UriFactory(currentQCContextRoot);
             RestUri restUri = uriFactory.qcStatus();
             restUri.setParamValue("jobid", String.valueOf(qcJobID));
             RestResourceUtils restResourceUtils = new RestResourceUtils();
-            HttpMethodResult httpMethodResult = restResourceUtils.getHttp().get(restUri, clientContext.getUserToken());
+            HttpMethodResult httpMethodResult = restResourceUtils.getClientContext().getHttp().get(restUri, clientContext.getUserToken());
             JsonObject jsonObject = httpMethodResult.getPayLoad();
             if (jsonObject == null) {
                 throw new GobiiDomainException("No JSON object");

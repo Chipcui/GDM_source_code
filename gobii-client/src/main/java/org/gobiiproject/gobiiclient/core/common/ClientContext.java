@@ -292,6 +292,10 @@ public final class ClientContext {
         return this.getServerConfig().getContextRoot();
     }
 
+    public String getCurrentQCContextRoot() throws Exception {
+        return this.getServerConfig().getQCContextRoot();
+    }
+
     public String getCropContextRoot(String cropType) throws Exception {
 
         String returnVal;
