@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiclient.dtorequests.infrastructure;
 
-import org.gobiiproject.gobiiclient.dtorequests.Helpers.TestConfiguration;
+import org.gobiiproject.gobiiclient.core.common.TestConfiguration;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.CropConfig;
 import org.gobiiproject.gobiimodel.config.CropDbConfig;

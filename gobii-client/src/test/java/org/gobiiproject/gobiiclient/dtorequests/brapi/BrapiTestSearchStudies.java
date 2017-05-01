@@ -9,7 +9,7 @@ import org.gobiiproject.gobiibrapi.calls.studies.search.BrapiResponseStudiesSear
 import org.gobiiproject.gobiibrapi.core.derived.BrapiResponseEnvelopeList;
 import org.gobiiproject.gobiiclient.core.common.ClientContext;
 import org.gobiiproject.gobiiclient.core.brapi.BrapiEnvelopeRestResource;
-import org.gobiiproject.gobiiclient.dtorequests.Helpers.Authenticator;
+import org.gobiiproject.gobiiclient.core.common.Authenticator;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;

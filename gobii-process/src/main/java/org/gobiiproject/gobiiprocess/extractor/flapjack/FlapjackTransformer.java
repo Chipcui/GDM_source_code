@@ -25,7 +25,7 @@ public class FlapjackTransformer {
 	 * @param extended if the marker file is extended
 	 * @return if successful (always true, ignore)
 	 */
-	public static boolean generateMapFile(String markerFile, String sampleFile, String chrLengthFile, int datasetId, String tempDir, String outFile, String errorFile, boolean extended) {
+	public static boolean generateMapFile(String markerFile, String sampleFile, String chrLengthFile, String tempDir, String outFile, String errorFile, boolean extended) {
    /*
    		1) create the output header
    		2) remove the headers from chrLengthFile
@@ -70,9 +70,9 @@ public class FlapjackTransformer {
 	 * @param errorFile Temporary file to write error logs to
 	 * @return true on success
 	 */
-	public static boolean generateGenotypeFile(String markerFile, String sampleFile, String genotypeFile, int datasetId, String tempDir, String outFile,String errorFile){
+	public static boolean generateGenotypeFile(String markerFile, String sampleFile, String genotypeFile, String tempDir, String outFile,String errorFile){
 		/**
-		 * Genotype file - 
+		 * Genotype file -
 1) create response file
   # fjFile = GENOTYPE
 2)

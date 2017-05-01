@@ -396,9 +396,9 @@ public class GobiiFileReader {
 					String inputFile=" -i "+loaderInstructionMap.get(key);
 					String outputFile=" -o "+dstDir.getAbsolutePath()+ "/"; //Output here is temporary files, needs terminal /
 
-					ErrorLogger.logInfo("Digester","Running IFL: "+pathToIFL+connectionString+inputFile+outputFile);
+					ErrorLogger.logInfo("Digester","Running IFL: "+pathToIFL+" <conntection string> "+inputFile+outputFile);
 					//Lines affected returned by method call - THIS IS NOW IGNORED
-					HelperFunctions.tryExec(pathToIFL+connectionString+inputFile+outputFile+" -l",null,errorPath);
+					HelperFunctions.tryExec(pathToIFL+connectionString+inputFile+outputFile+" -l",verbose?dstDir.getAbsolutePath()+"/iflOut":null,errorPath);
 
 					IFLLineCounts counts=calculateTableStats(dm, loaderInstructionMap, dstDir, key);
 

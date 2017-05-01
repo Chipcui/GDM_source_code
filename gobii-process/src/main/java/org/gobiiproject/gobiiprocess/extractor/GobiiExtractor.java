@@ -199,15 +199,18 @@ public class GobiiExtractor {
 				String gobiiMDE;//Output of switch
 
 				//Common terms
-				String platformTerm,mapIdTerm,markerListLocation,sampleListLocation;
+				String platformTerm,mapIdTerm,markerListLocation,sampleListLocation,verboseTerm;
 				String samplePosFile="";//Location of sample position indices (see markerList for an example
-				platformTerm=mapIdTerm=markerListLocation=sampleListLocation="";
+				platformTerm=mapIdTerm=markerListLocation=sampleListLocation=verboseTerm="";
 				List<Integer> platforms=extract.getPlatformIds();
 				if(platforms!=null && !platforms.isEmpty()){
 					platformTerm=" --platformList " + commaFormat(platforms);
 				}
 				if(mapId!=null) {
 					mapIdTerm=" -D "+mapId;
+				}
+				if(verbose){
+					verboseTerm=" -v";
 				}
 				switch(filterType){
 					case WHOLE_DATASET:
@@ -225,7 +228,8 @@ public class GobiiExtractor {
 								" -p " + projectFile +
 								(mapId==null?"":(" -D "+mapId))+
 								" -d " + extract.getDataSet().getId() +
-								" -l -v ";
+								" -l"+
+								verboseTerm+" ";
 						break;
 					case BY_MARKER:
 						
@@ -258,7 +262,8 @@ public class GobiiExtractor {
 								" --datasetType " + extract.getGobiiDatasetType().getId() +
 								mapIdTerm +
 								platformTerm +
-								" -l -v ";
+								" -l"+
+								verboseTerm+" ";
 						break;
 					case BY_SAMPLE:
 						//TODO:Only one file?? To be confirmed with confluence extractor mail notification page 
@@ -302,7 +307,8 @@ public class GobiiExtractor {
 								" --datasetType " + extract.getGobiiDatasetType() +
 								mapIdTerm +
 								platformTerm +
-								" -l -v ";
+								" -l"+
+								verboseTerm+" ";
 						break;
 					default:
 						gobiiMDE="";
@@ -310,10 +316,17 @@ public class GobiiExtractor {
 						break;
 				}
 				samplePosFile=sampleFile+".pos";
+				//Dataset can be null
+				Integer datasetId=null;
+				String datasetName="null";
+				GobiiFilePropNameId datasetPropNameId=extract.getDataSet();
+				if(datasetPropNameId!=null){
+					datasetId=datasetPropNameId.getId();
+					datasetName=datasetPropNameId.getName();
+				}
 				String errorFile=getLogName(extract,cropConfig,extract.getDataSet().getId());
 				ErrorLogger.logInfo("Extractor","Executing MDEs");
 				tryExec(gobiiMDE, extractDir+"mdeOut", errorFile);
-				Integer dataSetId=extract.getDataSet().getId();
 
 
 
@@ -325,7 +338,7 @@ public class GobiiExtractor {
 				String genoFile;
 				switch(filterType) {
 					case WHOLE_DATASET:
-						genoFile = getHDF5Genotype(markerFast, errorFile, dataSetId, tempFolder);
+						genoFile = getHDF5Genotype(markerFast, errorFile, datasetId, tempFolder);
 						break;
 					case BY_MARKER:
 						genoFile = getHDF5GenoFromMarkerList(markerFast, errorFile, tempFolder, markerPosFile);
@@ -400,7 +413,7 @@ public class GobiiExtractor {
 				rmIfExist(chrLengthFile);
 				rmIfExist(markerPosFile);
 				rmIfExist(extendedMarkerFile);
-				ErrorLogger.logDebug("Extractor","DataSet "+dataSetId+" Created");
+				ErrorLogger.logDebug("Extractor","DataSet "+datasetName+" Created");
 
 				//QC - Subsection #1 of 1
 				if (inst.isQcCheck()) {
@@ -410,7 +423,7 @@ public class GobiiExtractor {
 					qcInstructionsDTOToSend.setContactId(inst.getContactId());
 					qcInstructionsDTOToSend.setDataFileDirectory(configuration.getProcessingPath(crop, GobiiFileProcessDir.QC_NOTIFICATIONS));
 					qcInstructionsDTOToSend.setDataFileName(new StringBuilder("qc_").append(DateUtils.makeDateIdString()).toString());
-					qcInstructionsDTOToSend.setDatasetId(dataSetId);
+					qcInstructionsDTOToSend.setDatasetId(datasetId);
 					qcInstructionsDTOToSend.setGobiiJobStatus(GobiiJobStatus.COMPLETED);
 					qcInstructionsDTOToSend.setQualityFileName("Report.xls");
 					PayloadEnvelope<QCInstructionsDTO> payloadEnvelope = new PayloadEnvelope<>(qcInstructionsDTOToSend, GobiiProcessType.CREATE);

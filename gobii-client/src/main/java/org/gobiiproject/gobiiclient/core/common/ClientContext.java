@@ -120,7 +120,7 @@ public final class ClientContext {
                 }
 
                 if (!LineUtils.isNullOrEmpty(userName) && !LineUtils.isNullOrEmpty(password)) {
-                    clientContext.login(userName,password);
+                    clientContext.login(userName, password);
                 }
             }
         }
@@ -193,6 +193,7 @@ public final class ClientContext {
         }
 
         // The /configsettings resource does not require authentication
+        // this should be the only case in which we don't provide a crop ID
         HttpCore httpCore = new HttpCore(host, port, null);
         String settingsPath = ServiceRequestId.URL_CONFIGSETTINGS.getRequestUrl(context, ControllerType.GOBII);
 
@@ -233,7 +234,6 @@ public final class ClientContext {
     private Map<String, ServerConfig> serverConfigs = new HashMap<>();
 
 
-    private ProcessMode processMode = ProcessMode.Asynch;
     private String userToken = null;
 
     String currentGobiiCropType;
@@ -253,7 +253,11 @@ public final class ClientContext {
             cropType = this.defaultGobiiCropType;
         }
 
-        returnVal = this.getServerConfigByCropType(cropType);
+        if (!this.serverConfigs.containsKey(cropType)) {
+            throw new Exception("No server configuration is defined for crop: " + cropType);
+        }
+
+        returnVal = this.serverConfigs.get(cropType);
 
         return returnVal;
     }
@@ -285,14 +289,14 @@ public final class ClientContext {
     }
 
     public String getCurrentCropContextRoot() throws Exception {
-        return this.getServerConfigByCropType(this.currentGobiiCropType).getContextRoot();
+        return this.getServerConfig().getContextRoot();
     }
 
     public String getCropContextRoot(String cropType) throws Exception {
 
         String returnVal;
 
-        returnVal = this.getServerConfigByCropType(cropType).getContextRoot();
+        returnVal = this.getServerConfig().getContextRoot();
 
         return returnVal;
     }
@@ -304,7 +308,7 @@ public final class ClientContext {
 
         if (null == sshOverridePort) {
 
-            returnVal = this.getServerConfigByCropType(this.currentGobiiCropType).getPort();
+            returnVal = this.getServerConfig().getPort();
         } else {
             returnVal = sshOverridePort;
         }
@@ -331,9 +335,19 @@ public final class ClientContext {
     }
 
     public String getFileLocationOfCurrenCrop(GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
-        return this.getServerConfigByCropType(this.currentGobiiCropType)
+        return this.getServerConfig()
                 .getFileLocations()
                 .get(gobiiFileProcessDir);
+    }
+
+
+    public HttpCore getHttp() throws Exception {
+
+        HttpCore returnVal = new HttpCore(this.getCurrentCropDomain(),
+                this.getCurrentCropPort(),
+                this.getCurrentClientCropType());
+
+        return returnVal;
     }
 
     public boolean login(String userName, String password) throws Exception {
@@ -344,11 +358,9 @@ public final class ClientContext {
                     .getRequestUrl(this.getCurrentCropContextRoot(),
                             ControllerType.GOBII);
 
-            HttpCore httpCore = new HttpCore(this.getCurrentCropDomain(),
-                    this.getCurrentCropPort(),
-                    this.getCurrentCropContextRoot());
+            RestUri authUri = this.getUriFactory().RestUriFromUri(authUrl);
+            userToken = this.getHttp().getTokenForUser(authUri, userName, password);
 
-            userToken = httpCore.getTokenForUser(authUrl, userName, password);
         } catch (Exception e) {
             LOGGER.error("Authenticating", e);
             throw new Exception(e);
@@ -365,16 +377,5 @@ public final class ClientContext {
         return fileSystemRoot;
     }
 
-    private ServerConfig getServerConfigByCropType(String cropType) throws Exception {
 
-        ServerConfig returnVal;
-
-        if (!this.serverConfigs.containsKey(cropType)) {
-            throw new Exception("No server configuration is defined for crop: " + cropType);
-        }
-
-        returnVal = this.serverConfigs.get(cropType);
-
-        return returnVal;
-    }
 }
