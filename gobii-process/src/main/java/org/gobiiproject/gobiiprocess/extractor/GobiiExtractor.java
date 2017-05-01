@@ -46,7 +46,8 @@ public class GobiiExtractor {
 	private static String lastErrorFile=null;
 	private static String errorLogOverride;
 	private static boolean verbose;
-	private static String rootDir="../";
+//	private static String rootDir="../";
+	private static String rootDir = "D:/GOBII_Dev/gobii/";
 	private static String markerListOverrideLocation=null;
 
 	public static void main(String[] args) throws Exception {
@@ -60,7 +61,7 @@ public class GobiiExtractor {
 				.addOption("m", "markerList", true, "Fully qualified path to marker list files - (Debugging, forces marker list extract)");
         
 		CommandLineParser parser = new DefaultParser();
-		ProcessMessage pm = new ProcessMessage();
+	ProcessMessage pm = new ProcessMessage();
 		
         try{
             CommandLine cli = parser.parse( o, args );
