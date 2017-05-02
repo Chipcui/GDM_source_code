@@ -300,8 +300,8 @@ public class GobiiExtractor {
 					datasetName=datasetPropNameId.getName();
 				}
 				String errorFile=getLogName(extract,cropConfig,extract.getDataSet().getId());
-				ErrorLogger.logInfo("Extractor (Angel)","Executing MDEs");
-				//tryExec(gobiiMDE, extractDir+"mdeOut", errorFile);
+				ErrorLogger.logInfo("Extractor","Executing MDEs");
+				tryExec(gobiiMDE, extractDir+"mdeOut", errorFile);
 
 
 
@@ -313,7 +313,7 @@ public class GobiiExtractor {
 				String genoFile;
 				switch(filterType) {
 					case WHOLE_DATASET:
-						//genoFile = getHDF5Genotype(markerFast, errorFile, datasetId, tempFolder);
+						genoFile = getHDF5Genotype(markerFast, errorFile, datasetId, tempFolder);
 						genoFile = "";
 						break;
 					case BY_MARKER:
