@@ -1,4 +1,4 @@
-import {Component, OnInit, SimpleChange} from "@angular/core";
+import {Component, OnInit, SimpleChange, OnChanges} from "@angular/core";
 import {GobiiDataSetExtract} from "../model/extractor-instructions/data-set-extract";
 
 
@@ -10,12 +10,11 @@ import {GobiiDataSetExtract} from "../model/extractor-instructions/data-set-extr
                     <div *ngFor="let message of messages">{{message}}
                     <hr style="height:1px;border:none;color:#333;background-color:#333;">
                     </div>
-                </div>
-` // end template
+                </div>` // end template
 
 })
 
-export class StatusDisplayComponent implements OnInit {
+export class StatusDisplayComponent implements OnInit, OnChanges {
 
 
     // useg
@@ -23,13 +22,16 @@ export class StatusDisplayComponent implements OnInit {
     constructor() {
     } // ctor
 
+    private handleClearMessages() {
+        this.messages = [];
+    }
 
     ngOnInit():any {
         return null;
     }
 
     ngOnChanges(changes:{[propName:string]:SimpleChange}) {
-        this.messages= changes['messages'].currentValue;
+        this.messages =changes['messages'].currentValue;
     }
 
 }

@@ -250,10 +250,14 @@ import {NameIdLabelType} from "../model/name-id-label-type";
                             <BR>
                             
                             <button type="submit"
-                            [ngStyle]="submitButtonStyle"
+                            [class]="submitButtonStyle"
                             (mouseenter)="handleOnMouseOverSubmit($event,true)"
                             (mouseleave)="handleOnMouseOverSubmit($event,false)"
                             (click)="handleExtractSubmission()">Submit</button>
+                               
+                            <button type="clear"
+                            [class]="clearButtonStyle"
+                            (click)="handleClearTree()">Clear</button>
                                
                     </div> <!-- panel body -->
                     </div> <!-- panel primary -->
@@ -271,7 +275,12 @@ import {NameIdLabelType} from "../model/name-id-label-type";
                       </div>
                       <div class="panel-body">
                                 <status-display [messages] = "messages"></status-display>
+                            <BR>
+                            <button type="clear"
+                            class="btn btn-primary"
+                            (click)="handleClearMessages()">Clear</button>
                     </div> <!-- panel body -->
+
                     </div> <!-- panel primary -->
                         </div>
                             
@@ -694,6 +703,9 @@ export class ExtractorRoot implements OnInit {
         this.messages.unshift(arg);
     }
 
+    private handleClearMessages() {
+        this.messages = [];
+    }
 
     private handleHeaderStatusMessage(statusMessage: HeaderStatusMessage) {
 
@@ -717,16 +729,16 @@ export class ExtractorRoot implements OnInit {
     }
 
 
-
 // ********************************************************************
 // ********************************************** MARKER/SAMPLE selection
     // ********************************************************************
     // ********************************************** Extract file submission
     private treeStatusNotification: TreeStatusNotification = null;
-    private submitButtonStyleDefault = {'background-color': '#eee'};
-    private buttonStyleSubmitReady = {'background-color': '#99e699'};
-    private buttonStyleSubmitNotReady = {'background-color': '#ffad99'};
+    private submitButtonStyleDefault = "btn btn-primary";
+    private buttonStyleSubmitReady = "btn btn-success";
+    private buttonStyleSubmitNotReady = "btn btn-warning";
     private submitButtonStyle = this.buttonStyleSubmitNotReady;
+    private clearButtonStyle = this.submitButtonStyleDefault;
 
     private handleTreeStatusChanged(treeStatusNotification: TreeStatusNotification) {
 
@@ -788,6 +800,18 @@ export class ExtractorRoot implements OnInit {
 
 
         let foo: string = "foo";
+    }
+
+    private handleClearTree() {
+
+        this._fileModelTreeService.put(GobiiFileItem
+            .build(this.gobiiExtractFilterType, ProcessType.NOTIFY)
+            .setExtractorItemType(ExtractorItemType.CLEAR_TREE)).subscribe(
+            null,
+            headerResponse => {
+                this.handleResponseHeader(headerResponse)
+            }
+        );
     }
 
     private handleExtractSubmission() {
@@ -930,7 +954,7 @@ export class ExtractorRoot implements OnInit {
                             .forEach(datsetFileItem => {
 
                                 let dataSet: NameId = new NameId(datsetFileItem.getItemId(),
-                                        datsetFileItem.getItemName(), EntityType.CvTerms) ;
+                                    datsetFileItem.getItemName(), EntityType.CvTerms);
 
 
                                 gobiiDataSetExtracts.push(new GobiiDataSetExtract(gobiiFileType,
@@ -1013,7 +1037,10 @@ export class ExtractorRoot implements OnInit {
                                 .setItemId(newJobId)
                                 .setItemName(newJobId))
                             .subscribe(
-                                null,
+                                e => {
+
+                                    this.handleClearTree();
+                                },
                                 headerStatusMessage => {
                                     this.handleHeaderStatusMessage(headerStatusMessage)
                                 }

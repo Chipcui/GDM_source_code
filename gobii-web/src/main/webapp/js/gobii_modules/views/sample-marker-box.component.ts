@@ -16,18 +16,18 @@ import {Labels} from "./entity-labels";
             
                 <div class="row">
 
-                          <label class="the-legend">File:&nbsp;</label>
                             <input type="radio" 
                                 (click)="handleOnClickBrowse($event)" 
                                 name="listType" 
                                 value="itemFile"
                                 [(ngModel)]="selectedListType">
-                          <label class="the-legend">List:&nbsp;</label>
+                          <label class="the-legend">File:&nbsp;</label>
                             <input type="radio" 
                                 (click)="handleTextBoxChanged($event)" 
                                 name="listType" 
                                 value="itemArray"
                                 [(ngModel)]="selectedListType">
+                          <label class="the-legend">List:&nbsp;</label>
                  </div>
                  
                 <div class="row">

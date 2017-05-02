@@ -28,10 +28,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.*;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -1811,13 +1810,49 @@ public class GobiiTestData {
 
             System.out.println("Parsing scenario: " + scenarioName);
 
+            String dataExpr = "//Scenario[Name='"+scenarioName+"']/Files/Data";
+
+            XPathExpression xPathExpressionData = xPath.compile(dataExpr);
+
+            String sourcePath = (String) xPathExpressionData.evaluate(document, XPathConstants.STRING);
+
+            boolean writeSourcePath = true;
+
             String fileExpr = "//Scenario[Name='"+scenarioName+"']/Files/Instruction";
 
             XPathExpression xPathExpressionFiles = xPath.compile(fileExpr);
 
             String instructionFilePath = (String) xPathExpressionFiles.evaluate(document, XPathConstants.STRING);
 
-            Object obj = parser.parse(new FileReader(instructionFilePath));
+            Object obj;
+
+            if (!new File(instructionFilePath).exists()){
+
+                ClassLoader classLoader = GobiiTestData.class.getClassLoader();
+
+                if(classLoader.getResourceAsStream(instructionFilePath) == null){
+
+                    throw new Exception(" Instruction file template " + instructionFilePath + " not found.");
+                }
+
+                InputStream inputStream = classLoader.getResourceAsStream(instructionFilePath);
+                StringBuilder sb = new StringBuilder();
+
+                String line;
+                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                System.out.println(sb.toString());
+                obj = parser.parse(sb.toString());
+                System.out.println(obj);
+
+            } else {
+
+                 obj = parser.parse(new FileReader(instructionFilePath));
+
+            }
 
             JsonArray jsonArray = (JsonArray) obj;
 
@@ -1910,6 +1945,15 @@ public class GobiiTestData {
 
                     object.add(entityName, tempObject);
 
+                    if(writeSourcePath) {
+
+                        JsonObject gobiiFileObject = (JsonObject) object.get("gobiiFile");
+                        gobiiFileObject.addProperty("source", sourcePath);
+
+                        object.add("gobiiFile", gobiiFileObject);
+
+                    }
+
                     jsonArray.set(k, object);
                 }
             }
@@ -1919,9 +1963,21 @@ public class GobiiTestData {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String prettyJsonString = gson.toJson(jsonArray);
 
-            FileWriter instructionFileWriter = new FileWriter(instructionFilePath);
-            instructionFileWriter.write(prettyJsonString);
-            instructionFileWriter.close();
+            if (new File(instructionFilePath).exists()) {
+
+                FileWriter instructionFileWriter = new FileWriter(instructionFilePath);
+                instructionFileWriter.write(prettyJsonString);
+                instructionFileWriter.close();
+
+            } else {
+
+                File file = new File(scenarioName + ".json");
+                file.createNewFile();
+                FileWriter instructionFileWriter = new FileWriter(file);
+                instructionFileWriter.write(prettyJsonString);
+                instructionFileWriter.close();
+
+            }
         }
     }
 

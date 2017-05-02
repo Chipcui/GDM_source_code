@@ -57,13 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/index.html",
                 "/css/**",
                 "/images/**",
-                "/js/**");
-
-
-        if(! CONFIG_SETTINGS.isAuthenticateBrapi() ) {
-            String allBrapiUrls = ServiceRequestId.getControllerPath(ControllerType.BRAPI) + "**";
-            web.ignoring().antMatchers(allBrapiUrls );
-        }
+                "/js/**",
+                "/brapi/v1/**");
     }
 
 

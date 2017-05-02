@@ -28,8 +28,8 @@
                     <Code>gobii_sim</Code>
                     <Email>gobii.jira@gmail.com</Email>
                     <Roles>
-                        <Role>Curator</Role>
                         <Role>PI</Role>
+                        <Role>Curator</Role>
                     </Roles>
                 </Properties>
             </Contact>
@@ -37,14 +37,14 @@
         <Platforms DbPKeysurrogate="PlatformName">
             <Platform>
                 <Keys>
-                    <DbPKey>155</DbPKey>
+                    <DbPKey></DbPKey>
                 </Keys>
                 <Properties>
-                    <PlatformName>sim_GBS</PlatformName>
-                    <PlatformCode>sim_GBS</PlatformCode>
-                    <PlatformDescription>sim_GBS</PlatformDescription>
+                    <PlatformName>sim_SSR</PlatformName>
+                    <PlatformCode>sim_SSR</PlatformCode>
+                    <PlatformDescription>sim_SSR</PlatformDescription>
                     <StatusId>1</StatusId>
-                    <TypeId>GBS</TypeId>
+                    <TypeId>SSR</TypeId>
                     <Properties/>
                 </Properties>
             </Platform>
@@ -54,13 +54,13 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Platform" fkproperty="platformId">
-                        <DbPKeySurrogate>sim_GBS</DbPKeySurrogate>
+                        <DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <Name>sim_GBS</Name>
-                    <Description>sim_GBS</Description>
+                    <Name>sim_SSR</Name>
+                    <Description>sim_SSR</Description>
                     <TypeId>1</TypeId>
                     <Status>1</Status>
                     <Props/>
@@ -77,12 +77,12 @@
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="Protocol" fkproperty="protocolId">
-                        <DbPKeySurrogate>sim_GBS</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
+                        <DbPKey>1</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <Name>sim_Cornell_GBS</Name>
+                    <Name>sim_Cornell_SSR</Name>
                     <Status>1</Status>
                 </Properties>
             </VendorProtocol>
@@ -93,9 +93,9 @@
                     <DbPKey></DbPKey>
                 </Keys>
                 <Properties>
-                    <Name>sim_GBS</Name>
-                    <Code>sim_GBS_code</Code>
-                    <Description>sim_GBS</Description>
+                    <Name>sim_codominant</Name>
+                    <Code>sim_codominant_code</Code>
+                    <Description>sim_codominant</Description>
                     <MapType>Physical</MapType>
                     <StatusId>1</StatusId>
                     <Properties/>
@@ -112,9 +112,9 @@
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <ProjectName>sim_VCF</ProjectName>
-                    <ProjectCode>sim_VCF_code</ProjectCode>
-                    <ProjectDescription>sim_VCF</ProjectDescription>
+                    <ProjectName>sim_codominant</ProjectName>
+                    <ProjectCode>sim_codominant_code</ProjectCode>
+                    <ProjectDescription>sim_codominant</ProjectDescription>
                     <ProjectStatus>1</ProjectStatus>
                 </Properties>
             </Project>
@@ -124,17 +124,17 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Project" fkproperty="projectId">
-                        <DbPKeySurrogate>sim_VCF</DbPKeySurrogate>
+                        <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="VendorProtocol" fkproperty="vendorProtocolId">
-                        <DbPKeySurrogate>sim_Cornell_GBS</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKeySurrogate>sim_Cornell_SSR</DbPKeySurrogate>
+                        <DbPKey>1</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <ExperimentName>sim_VCF</ExperimentName>
-                    <ExperimentCode>sim_VCF_code</ExperimentCode>
+                    <ExperimentName>sim_codominant</ExperimentName>
+                    <ExperimentCode>sim_codominant_code</ExperimentCode>
                     <StatusId>1</StatusId>
                 </Properties>
             </Experiment>
@@ -164,22 +164,22 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Experiment" fkproperty="experimentId">
-                        <DbPKeySurrogate>sim_VCF</DbPKeySurrogate>
+                        <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="Analysis" fkproperty="callingAnalysisId">
                         <DbPKeySurrogate>sim_none</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>1</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <Name>sim_VCF_chr1</Name>
-                    <DataTable>sim_VCF_chr1_datatable</DataTable>
-                    <DataFile>sim_VCF_chr1_datafile</DataFile>
-                    <QualityTable>sim_VCF_chr1_qualitytable</QualityTable>
-                    <QualityFile>sim_VCF_chr1_qualityfile</QualityFile>
+                    <Name>sim_codominant</Name>
+                    <DataTable>sim_codominant_datatable</DataTable>
+                    <DataFile>sim_codominant_datafile</DataFile>
+                    <QualityTable>sim_codominant_qualitytable</QualityTable>
+                    <QualityFile>sim_codominant_qualityfile</QualityFile>
                     <StatusId>1</StatusId>
-                    <TypeId>Nucleotide_2_letter</TypeId>
+                    <TypeId>Co_dominant_non_nucleotide</TypeId>
                     <AnalysesIds/>
                     <Scores/>
                 </Properties>
@@ -189,30 +189,120 @@
 
     <Scenarios>
         <Scenario>
-            <Name>2 Letter Nucleotide</Name>
+            <Name>codominant_dataset</Name>
             <Files>
-                <Instruction/>
-                <Data/>
+                <Instruction>codominant_test/instruction_templates/test_codominant_dataset.json</Instruction>
+                <Data>codominant_test/data_files/test_codominant_dataset</Data>
             </Files>
 
             <DbFkey entity="Contact">
-                <DbPKeySurrogate/>
-                <DbPKey/>
+                <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
             </DbFkey>
+
             <DbFkey entity="Project">
-                <DbPKeySurrogate/>
-                <DbPKey/>
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Experiment">
-                <DbPKeySurrogate/>
-                <DbPKey/>
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Dataset">
-                <DbPKeySurrogate/>
-                <DbPKey/>
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
             </DbFkey>
+
+            <DbFkey entity="Mapset">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Platform">
+                <DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+        </Scenario>
+
+        <Scenario>
+            <Name>codominant_marker</Name>
+            <Files>
+                <Instruction>codominant_test/instruction_templates/test_codominant_marker.json</Instruction>
+                <Data>codominant_test/data_files/test_codominant_marker</Data>
+            </Files>
+
+            <DbFkey entity="Contact">
+                <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Project">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Experiment">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Dataset">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Mapset">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Platform">
+                <DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+        </Scenario>
+
+        <Scenario>
+            <Name>codominant_sample</Name>
+            <Files>
+                <Instruction>codominant_test/instruction_templates/test_codominant_sample.json</Instruction>
+                <Data>codominant_test/data_files/test_codominant_sample</Data>
+            </Files>
+
+            <DbFkey entity="Contact">
+                <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Project">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Experiment">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Dataset">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Mapset">
+                <DbPKeySurrogate>sim_codominant</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Platform">
+                <DbPKeySurrogate>sim_SSR</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
         </Scenario>
 
     </Scenarios>
