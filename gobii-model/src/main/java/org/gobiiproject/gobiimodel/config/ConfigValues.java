@@ -109,6 +109,9 @@ class ConfigValues {
     @Element(required = false)
     private String ldapPasswordForBackendProcs;
 
+    @Element(required = false)
+    private boolean isAuthenticateBrapi = true;
+
     public TestExecConfig getTestExecConfig() {
         return testExecConfig;
     }
@@ -470,5 +473,13 @@ class ConfigValues {
 
     public void setLdapPasswordForBackendProcs(String ldapPasswordForBackendProcs) {
         this.ldapPasswordForBackendProcs = ldapPasswordForBackendProcs;
+    }
+
+    public boolean isAuthenticateBrapi() {
+        return isAuthenticateBrapi;
+    }
+
+    public void setAuthenticateBrapi(boolean authenticateBrapi) {
+        isAuthenticateBrapi = authenticateBrapi;
     }
 }

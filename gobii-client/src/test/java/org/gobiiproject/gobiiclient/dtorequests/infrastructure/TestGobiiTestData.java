@@ -450,6 +450,18 @@ public class TestGobiiTestData {
         }
 
 
+        /*** delete error.txt and output.txt ***/
+
+        File errorFile = new File("error.txt");
+        if (errorFile.exists()) {
+            errorFile.delete();
+        }
+
+        File outputFile = new File("output.txt");
+        if(outputFile.exists()) {
+            outputFile.delete();
+        }
+        
     }
 
     public void checkEntities(String entityName, String currentElementId, String dbPkeySurrogateName, String dbPkeySurrogateValue, NodeList fkeys) throws Exception{

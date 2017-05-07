@@ -39,6 +39,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
             ExportFormatComponent = (function () {
                 function ExportFormatComponent(_fileModelTreeService) {
                     this._fileModelTreeService = _fileModelTreeService;
+                    this.fileFormat = "HAPMAP";
                     this.onFormatSelected = new core_1.EventEmitter();
                     this.onError = new core_1.EventEmitter();
                     this.selectedExtractFormat = type_extract_format_1.GobiiExtractFormat.HAPMAP;
@@ -90,14 +91,20 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                     // are bound, we would check whether that flag is set, and if it was, then we would send
                     // the tree notification. I _think_ that would cover all the contingencies, but it's ugly.
                     // I am not sure whether reactive forms would address this issue.
+                    this.setDefault();
                     this._fileModelTreeService
                         .fileItemNotifications()
                         .subscribe(function (fileItem) {
-                        if (fileItem.getProcessType() === type_process_1.ProcessType.NOTIFY
-                            && fileItem.getExtractorItemType() === file_model_node_1.ExtractorItemType.STATUS_DISPLAY_TREE_READY) {
-                            _this.updateTreeService(type_extract_format_1.GobiiExtractFormat.HAPMAP);
+                        if (fileItem.getProcessType() === type_process_1.ProcessType.NOTIFY &&
+                            ((fileItem.getExtractorItemType() === file_model_node_1.ExtractorItemType.STATUS_DISPLAY_TREE_READY)
+                                || (fileItem.getExtractorItemType() === file_model_node_1.ExtractorItemType.CLEAR_TREE))) {
+                            _this.setDefault();
                         }
                     });
+                };
+                ExportFormatComponent.prototype.setDefault = function () {
+                    this.updateTreeService(type_extract_format_1.GobiiExtractFormat.HAPMAP);
+                    this.fileFormat = "HAPMAP";
                 };
                 ExportFormatComponent.prototype.handleResponseHeader = function (header) {
                     this.onError.emit(header);
@@ -140,6 +147,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                             else if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE) {
                                 this.metaDataExtractname = "Sample" + labelSuffix;
                             }
+                            this.fileFormat = "HAPMAP";
                         } // if we have a new filter type
                     } // if filter type changed
                 }; // ngonChanges
@@ -152,7 +160,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                     inputs: ['gobiiExtractFilterType'],
                     //directives: [RADIO_GROUP_DIRECTIVES]
                     //  directives: [Alert]
-                    template: " \n    \t\t  <label class=\"the-label\">Select Format:</label><BR>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"HAPMAP\" checked=\"checked\">Hapmap<br>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"FLAPJACK\">FlapJack<br>\n              &nbsp;&nbsp;&nbsp;<input type=\"radio\" (change)=\"handleFormatSelected($event)\" name=\"format\" value=\"META_DATA_ONLY\">{{metaDataExtractname}}<br>\n\t" // end template
+                    template: "<form>\n                            <label class=\"the-legend\">Select Format:&nbsp;</label>\n                            <BR><input type=\"radio\" (change)=\"handleFormatSelected($event)\" [(ngModel)]=\"fileFormat\" name=\"fileFormat\" value=\"HAPMAP\" checked=\"checked\">\n                            <label  for=\"HAPMAP\" class=\"the-legend\">Hapmap</label>\n                            <BR><input type=\"radio\" (change)=\"handleFormatSelected($event)\" [(ngModel)]=\"fileFormat\" name=\"fileFormat\" value=\"FLAPJACK\">\n                            <label for=\"FLAPJACK\" class=\"the-legend\">Flapjack</label>\n                            <BR><input type=\"radio\" (change)=\"handleFormatSelected($event)\" [(ngModel)]=\"fileFormat\" name=\"fileFormat\" value=\"META_DATA_ONLY\">\n                            <label  for=\"META_DATA_ONLY\" class=\"the-legend\">{{metaDataExtractname}}</label>\n                </form>" // end template
                 }),
                 __metadata("design:paramtypes", [file_model_tree_service_1.FileModelTreeService])
             ], ExportFormatComponent);

@@ -234,11 +234,15 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                 && ((currentGobiiDataSetExtract.getMarkerList() == null) ||
                                 (currentGobiiDataSetExtract.getMarkerList().size() <= 0))) {
 
-                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
-                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
-                                    "The specified extract type is "
-                                            + currentGobiiDataSetExtract.getGobiiExtractFilterType()
-                                            + " but no marker list is specified");
+                            if( currentGobiiDataSetExtract.getPlatformIds() == null ||
+                                    currentGobiiDataSetExtract.getPlatformIds().size() <= 0 ) {
+
+                                throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
+                                        GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
+                                        "The specified extract type is "
+                                                + currentGobiiDataSetExtract.getGobiiExtractFilterType()
+                                                + " but no marker list is specified and no platforms are specified");
+                            }
                         }
 
                     } else {

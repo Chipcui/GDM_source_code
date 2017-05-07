@@ -239,24 +239,13 @@ public class GobiiFileReader {
 		//Section - Processing
 		ErrorLogger.logTrace("Digester", "Beginning List Processing");
 		success = true;
-		switch (zero.getGobiiFile().getGobiiFileType()) { //All instructions should have the same file type
+		switch (zero.getGobiiFile().getGobiiFileType()) { //All instructions should have the same file type, all file types go through CSVFileReader(V2)
+			case HAPMAP:
+				//INTENTIONAL FALLTHROUGH
 			case VCF:
 				//INTENTIONAL FALLTHROUGH
 			case GENERIC:
 				CSVFileReader.parseInstructionFile(list, dstDir.getAbsolutePath(), "/");
-				break;
-			case HAPMAP: //This is currently not used by the loaderUI
-				for (GobiiLoaderInstruction instruction : list) {
-					String tmpFile = new File(dstDir, instruction.getTable() + ".tmp").getAbsolutePath();//DestinationDirectory plus table name
-					ArrayList<GobiiLoaderInstruction> justTheOne = new ArrayList<>();
-					justTheOne.add(instruction);
-					try {
-						new LoaderInstructionsDAOImpl().writeInstructions(tmpFile, justTheOne);
-					} catch (GobiiDaoException e) {
-						logError("GobiiDAO", "Instruction Writing Error", e);
-					}
-					HelperFunctions.tryExec(loaderScriptPath + "etc/parse_hmp.pl" + " " + tmpFile, null, errorPath);
-				}
 				break;
 			default:
 				System.err.println("Unable to deal with file type " + zero.getGobiiFile().getGobiiFileType());
@@ -280,6 +269,7 @@ public class GobiiFileReader {
 				errorPath = getLogName(inst, cropConfig, crop, "Matrix_Processing"); //Temporary Error File Name
 				String function = null;
 				boolean functionStripsHeader = false;
+				boolean isSNPSepRemoval=false;
 				String fromFile = HelperFunctions.getDestinationFile(inst);
 				String toFile = HelperFunctions.getDestinationFile(inst) + ".2";
 				boolean hasFunction = false;
@@ -287,6 +277,7 @@ public class GobiiFileReader {
 					case "NUCLEOTIDE_2_LETTER":
 						function = "python " + loaderScriptPath + "etc/SNPSepRemoval.py";
 						functionStripsHeader = true;
+						isSNPSepRemoval=true;
 						break;
 					case "IUPAC":
 						function = loaderScriptPath + "etc/IUPACmatrix_to_bi.pl tab";
@@ -319,9 +310,14 @@ public class GobiiFileReader {
 				if (function != null) {
 					hasFunction = true;
 					//Try running script (from -> to), then replace original file with new one.
-					success &= HelperFunctions.tryExec(function + " " + fromFile + " " + toFile, null, errorPath);
+					if(isSNPSepRemoval){
+						String missingFile=loaderScriptPath + "etc/missingIndicators.txt";
+						HelperFunctions.tryExec(function + " " + fromFile + " " +missingFile+ " " + toFile, null, errorPath);
+					}
+					else {
+						HelperFunctions.tryExec(function + " " + fromFile + " " + toFile, null, errorPath);
+					}
 					rm(fromFile);
-
 				}
 				if (!hasFunction) {
 					mv(fromFile, toFile);

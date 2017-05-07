@@ -18,12 +18,15 @@ import {EntityType} from "../model/type-entity";
     inputs: ['gobiiExtractFilterType'],
     //directives: [RADIO_GROUP_DIRECTIVES]
 //  directives: [Alert]
-    template: ` 
-    		  <label class="the-label">Select Format:</label><BR>
-              &nbsp;&nbsp;&nbsp;<input type="radio" (change)="handleFormatSelected($event)" name="format" value="HAPMAP" checked="checked">Hapmap<br>
-              &nbsp;&nbsp;&nbsp;<input type="radio" (change)="handleFormatSelected($event)" name="format" value="FLAPJACK">FlapJack<br>
-              &nbsp;&nbsp;&nbsp;<input type="radio" (change)="handleFormatSelected($event)" name="format" value="META_DATA_ONLY">{{metaDataExtractname}}<br>
-	` // end template
+    template: `<form>
+                            <label class="the-legend">Select Format:&nbsp;</label>
+                            <BR><input type="radio" (change)="handleFormatSelected($event)" [(ngModel)]="fileFormat" name="fileFormat" value="HAPMAP" checked="checked">
+                            <label  for="HAPMAP" class="the-legend">Hapmap</label>
+                            <BR><input type="radio" (change)="handleFormatSelected($event)" [(ngModel)]="fileFormat" name="fileFormat" value="FLAPJACK">
+                            <label for="FLAPJACK" class="the-legend">Flapjack</label>
+                            <BR><input type="radio" (change)="handleFormatSelected($event)" [(ngModel)]="fileFormat" name="fileFormat" value="META_DATA_ONLY">
+                            <label  for="META_DATA_ONLY" class="the-legend">{{metaDataExtractname}}</label>
+                </form>` // end template
 })
 
 export class ExportFormatComponent implements OnInit, OnChanges {
@@ -50,7 +53,6 @@ export class ExportFormatComponent implements OnInit, OnChanges {
         // to the model service _after_ the tree calls oncomplete. If we want to encapsulate all the
         // service communication in the child components, the tree service will have to accommodate
         // notification events to which these components will subscribe.
-
 
 
         // let scope$ = this;
@@ -83,14 +85,24 @@ export class ExportFormatComponent implements OnInit, OnChanges {
         // are bound, we would check whether that flag is set, and if it was, then we would send
         // the tree notification. I _think_ that would cover all the contingencies, but it's ugly.
         // I am not sure whether reactive forms would address this issue.
+
+        this.setDefault();  
         this._fileModelTreeService
             .fileItemNotifications()
             .subscribe(fileItem => {
-                if (fileItem.getProcessType() === ProcessType.NOTIFY
-                    && fileItem.getExtractorItemType() === ExtractorItemType.STATUS_DISPLAY_TREE_READY) {
-                    this.updateTreeService(GobiiExtractFormat.HAPMAP);
+
+                if (fileItem.getProcessType() === ProcessType.NOTIFY &&
+                    ((fileItem.getExtractorItemType() === ExtractorItemType.STATUS_DISPLAY_TREE_READY)
+                    || (fileItem.getExtractorItemType() === ExtractorItemType.CLEAR_TREE) ) ) {
+                    this.setDefault();
                 }
             });
+    }
+
+    private setDefault() {
+        this.updateTreeService(GobiiExtractFormat.HAPMAP);
+        this.fileFormat = "HAPMAP";
+
     }
 
     private handleResponseHeader(header: Header) {
@@ -99,6 +111,7 @@ export class ExportFormatComponent implements OnInit, OnChanges {
     }
 
 
+    private fileFormat: string = "HAPMAP";
     private gobiiExtractFilterType: GobiiExtractFilterType;
     private onFormatSelected: EventEmitter<GobiiExtractFormat> = new EventEmitter();
     private onError: EventEmitter<Header> = new EventEmitter();
@@ -138,7 +151,8 @@ export class ExportFormatComponent implements OnInit, OnChanges {
         //console.log("selected contact itemId:" + arg);
     }
 
-    private metaDataExtractname:string;
+    private metaDataExtractname: string;
+
     ngOnChanges(changes: {[propName: string]: SimpleChange}) {
 
         if (changes['gobiiExtractFilterType']
@@ -148,14 +162,16 @@ export class ExportFormatComponent implements OnInit, OnChanges {
             if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
 
 
-                let labelSuffix:string = " Metadata";
-                if(this.gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET ) {
+                let labelSuffix: string = " Metadata";
+                if (this.gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET) {
                     this.metaDataExtractname = "Dataset" + labelSuffix;
-                } else if(this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ) {
+                } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
                     this.metaDataExtractname = "Marker" + labelSuffix;
-                } else if(this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE ) {
+                } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE) {
                     this.metaDataExtractname = "Sample" + labelSuffix;
                 }
+
+                this.fileFormat = "HAPMAP";
 
             } // if we have a new filter type
 

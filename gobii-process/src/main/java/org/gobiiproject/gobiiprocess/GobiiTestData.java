@@ -1844,9 +1844,7 @@ public class GobiiTestData {
                     sb.append(line);
                 }
 
-                System.out.println(sb.toString());
                 obj = parser.parse(sb.toString());
-                System.out.println(obj);
 
             } else {
 
@@ -1966,14 +1964,6 @@ public class GobiiTestData {
             if (new File(instructionFilePath).exists()) {
 
                 FileWriter instructionFileWriter = new FileWriter(instructionFilePath);
-                instructionFileWriter.write(prettyJsonString);
-                instructionFileWriter.close();
-
-            } else {
-
-                File file = new File(scenarioName + ".json");
-                file.createNewFile();
-                FileWriter instructionFileWriter = new FileWriter(file);
                 instructionFileWriter.write(prettyJsonString);
                 instructionFileWriter.close();
 

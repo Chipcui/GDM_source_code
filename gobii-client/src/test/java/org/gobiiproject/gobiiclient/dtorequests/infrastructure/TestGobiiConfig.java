@@ -174,6 +174,8 @@ public class TestGobiiConfig {
         String ldapBindPassword = "bind_password_" + UUID.randomUUID().toString();
         String ldapUserForBackgroundProcess = "run_asUser" + UUID.randomUUID().toString();
         String ldapPasswordForBackgroundProcess = "run_asPassword" + UUID.randomUUID().toString();
+        boolean ldapAuthenticateBrapi = false;
+
 
 
         String commandLine = makeCommandline("-a -wfqpn "
@@ -192,6 +194,8 @@ public class TestGobiiConfig {
                 + ldapUserForBackgroundProcess
                 + " -ldraPAS "
                 + ldapPasswordForBackgroundProcess
+                + " -ldBR "
+                + ldapAuthenticateBrapi
         );
 
         boolean succeeded = HelperFunctions.tryExec(commandLine, testFileFqpn + ".out", testFileFqpn + ".err");
@@ -220,6 +224,9 @@ public class TestGobiiConfig {
 
         Assert.assertTrue("The ldap background process password does not match",
                 configSettings.getLdapPasswordForBackendProcs().equals(ldapPasswordForBackgroundProcess));
+
+        Assert.assertTrue("BRAPI Authentication value does not match",
+                configSettings.isAuthenticateBrapi() == ldapAuthenticateBrapi);
 
     }
 

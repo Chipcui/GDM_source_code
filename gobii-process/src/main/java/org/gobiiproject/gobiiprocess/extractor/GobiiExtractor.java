@@ -54,6 +54,7 @@ public class GobiiExtractor {
          		.addOption("c","config",true,"Fully qualified path to gobii configuration file")
          		.addOption("h", "hdfFiles", true, "Fully qualified path to hdf files")
 				.addOption("m", "markerList", true, "Fully qualified path to marker list files - (Debugging, forces marker list extract)");
+		o.addOption("kaf","keepAllFiles", false, "keep all temporary files");
         
         CommandLineParser parser = new DefaultParser();
         try{
@@ -66,6 +67,7 @@ public class GobiiExtractor {
             }
             if(cli.hasOption("hdfFiles")) pathToHDF5Files = cli.getOptionValue("hdfFiles");
             if(cli.hasOption("markerList")) markerListOverrideLocation=cli.getOptionValue("markerList");
+			if(cli.hasOption("keepAllFiles")) FileSystemInterface.keepAllFiles(true);
             args=cli.getArgs();//Remaining args passed through
 
         }catch(org.apache.commons.cli.ParseException exp ) {
@@ -249,7 +251,7 @@ public class GobiiExtractor {
 							//Create a file out of the List if non-null, else use the <File>
 							List<String> sampleList = extract.getSampleList();
 							if (sampleList != null && !sampleList.isEmpty()) {
-								sampleListLocation = " -Y " + createTempFileForMarkerList(extractDir, sampleList);
+								sampleListLocation = " -Y " + createTempFileForMarkerList(extractDir, sampleList,"sampleList");
 							} else if (extract.getListFileName() != null) {
 								sampleListLocation = " -Y " + extractDir + extract.getListFileName();
 							}
@@ -315,7 +317,7 @@ public class GobiiExtractor {
 								genoFile = getHDF5GenoFromSampleList(markerFast, errorFile, tempFolder, markerPosFile, samplePosFile);
 								break;
 							default:
-								genoFile = "";
+								genoFile = null;
 								ErrorLogger.logError("GobiiExtractor", "UnknownFilterType " + filterType);
 								break;
 						}
@@ -332,32 +334,38 @@ public class GobiiExtractor {
 							}
 						}
 					}
-
-					switch (extract.getGobiiFileType()) {
-						case FLAPJACK:
-							String genoOutFile = extractDir + "Dataset.genotype";
-							String mapOutFile = extractDir + "Dataset.map";
-							lastErrorFile = errorFile;
-							//Always regenerate requests - may have different parameters
-							boolean extended = HelperFunctions.checkFileExistance(extendedMarkerFile);
-							FlapjackTransformer.generateMapFile(extended ? extendedMarkerFile : markerFile, sampleFile, chrLengthFile, tempFolder, mapOutFile, errorFile, extended);
-							HelperFunctions.sendEmail("Map Extract", mapOutFile, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
-							FlapjackTransformer.generateGenotypeFile(markerFile, sampleFile, genoFile, tempFolder, genoOutFile, errorFile);
-							HelperFunctions.sendEmail("Genotype Extract", genoOutFile, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
-							break;
-						case HAPMAP:
-							String hapmapOutFile = extractDir + "Dataset.hmp.txt";
-							HapmapTransformer hapmapTransformer = new HapmapTransformer();
-							ErrorLogger.logDebug("GobiiExtractor", "Executing Hapmap Generation");
-							success &= hapmapTransformer.generateFile(markerFile, sampleFile, extendedMarkerFile, genoFile, hapmapOutFile, errorFile);
-							HelperFunctions.sendEmail("Hapmap Extract", hapmapOutFile, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
-							break;
-						case META_DATA:
-							HelperFunctions.sendEmail("Metadata Extract", extractDir, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
-							break;
-						default:
-							ErrorLogger.logError("Extractor", "Unknown Extract Type " + extract.getGobiiFileType());
-							HelperFunctions.sendEmail(datasetName + " " + extract.getGobiiFileType() + " Extract", null, false, errorFile, configuration, inst.getContactEmail());
+					GobiiFileType fileType=extract.getGobiiFileType();
+					if(checkFileExistance(genoFile) || (fileType == GobiiFileType.META_DATA)) {
+						switch (fileType) {
+							case FLAPJACK:
+								String genoOutFile = extractDir + "Dataset.genotype";
+								String mapOutFile = extractDir + "Dataset.map";
+								lastErrorFile = errorFile;
+								//Always regenerate requests - may have different parameters
+								boolean extended = HelperFunctions.checkFileExistance(extendedMarkerFile);
+								FlapjackTransformer.generateMapFile(extended ? extendedMarkerFile : markerFile, sampleFile, chrLengthFile, tempFolder, mapOutFile, errorFile, extended);
+								HelperFunctions.sendEmail("Map Extract", mapOutFile, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
+								FlapjackTransformer.generateGenotypeFile(markerFile, sampleFile, genoFile, tempFolder, genoOutFile, errorFile);
+								HelperFunctions.sendEmail("Genotype Extract", genoOutFile, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
+								break;
+							case HAPMAP:
+								String hapmapOutFile = extractDir + "Dataset.hmp.txt";
+								HapmapTransformer hapmapTransformer = new HapmapTransformer();
+								ErrorLogger.logDebug("GobiiExtractor", "Executing Hapmap Generation");
+								success &= hapmapTransformer.generateFile(markerFile, sampleFile, extendedMarkerFile, genoFile, hapmapOutFile, errorFile);
+								HelperFunctions.sendEmail("Hapmap Extract", hapmapOutFile, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
+								break;
+							case META_DATA:
+								HelperFunctions.sendEmail("Metadata Extract", extractDir, success && ErrorLogger.success(), errorFile, configuration, inst.getContactEmail());
+								break;
+							default:
+								ErrorLogger.logError("Extractor", "Unknown Extract Type " + extract.getGobiiFileType());
+								HelperFunctions.sendEmail(datasetName + " " + extract.getGobiiFileType() + " Extract", null, false, errorFile, configuration, inst.getContactEmail());
+						}
+					}
+					else{ //We had no genotype file, so we aborted
+						ErrorLogger.logError("GobiiExtractor","No genetic data extracted. Extract failed.");
+						HelperFunctions.sendEmail("Extract", "", false, errorFile, configuration, inst.getContactEmail());
 					}
 					rmIfExist(genoFile);
 					rmIfExist(chrLengthFile);
@@ -402,7 +410,7 @@ public class GobiiExtractor {
 				HelperFunctions.completeInstruction(instructionFile, configuration.getProcessingPath(crop, GobiiFileProcessDir.EXTRACTOR_DONE));
 			}catch(Exception e){
 					ErrorLogger.logError("GobiiExtractor","Uncaught fatal error found in program. Contact a programmer.",e);
-					HelperFunctions.sendEmail("Hi.\n\n+"+
+					HelperFunctions.sendEmail("Hi.\n\n"+
 
 							"I'm sorry, but your extract failed for reasons beyond your control.\n"+
 							"I'm going to dump a message of the error here so a programmer can determine why.\n\n\n"+
@@ -416,6 +424,10 @@ public class GobiiExtractor {
 		return getHDF5GenoFromSampleList(markerFast,errorFile,tempFolder,posFile,null);
 	}
 	private static String getHDF5GenoFromSampleList(boolean markerFast, String errorFile, String tempFolder,String posFile, String samplePosFile) throws FileNotFoundException{
+		if(!new File(posFile).exists()){
+			ErrorLogger.logError("Genotype Matrix","No positions generated - Likely no data");
+			return null;
+		}
 		BufferedReader posR=new BufferedReader(new FileReader(posFile));
 		BufferedReader sampR=null;
 		if(samplePosFile!=null)sampR=new BufferedReader(new FileReader(samplePosFile));
@@ -491,9 +503,8 @@ public class GobiiExtractor {
 
 		if(markerList!=null) {
 			String hdf5Extractor=pathToHDF5+"fetchmarkerlist";
-			ErrorLogger.logInfo("Extractor","Executing: " + hdf5Extractor+" "+HDF5File+" "+markerList+" "+genoFile);
-			HelperFunctions.tryExec(hdf5Extractor + " " +HDF5File+" "+markerList+" "+genoFile, null, errorFile);
-			//TODO: Orientation is not respected here
+			ErrorLogger.logInfo("Extractor","Executing: " + hdf5Extractor+" "+ ordering +" "+HDF5File+" "+markerList+" "+genoFile);
+			HelperFunctions.tryExec(hdf5Extractor + " " + ordering+" " + HDF5File+" "+markerList+" "+genoFile, null, errorFile);
 		}
 		else {
 			String hdf5Extractor=pathToHDF5+"dumpdataset";
@@ -523,6 +534,7 @@ public class GobiiExtractor {
 		else{
 			tryExec("cut -f"+getCutString(sampleList),filename,errorFile,tmpFile);
 		}
+		rmIfExist(tmpFile);
 	}
 
 	/**
@@ -542,8 +554,15 @@ public class GobiiExtractor {
 		StringBuilder cutString=new StringBuilder();//Cutstring -> 1,2,4,5,6
 		int i=1;
 		for(String entry:entries){
-			entry.trim();
-			if( Integer.parseInt(entry) != -1){
+			int val=-1;
+			try {
+				//For some reason, spaces are everywhere, and Integer.parseInt is not very lenient
+				String entryWithoutSpaces=entry.trim().replaceAll(" ","");
+				val=Integer.parseInt(entryWithoutSpaces);
+			}catch(Exception e){
+				ErrorLogger.logDebug("GobiiExtractor NFE",e.toString());
+			}
+			if( val != -1){
 				cutString.append(i+",");
 			}
 			i++;
@@ -613,8 +632,8 @@ public class GobiiExtractor {
 	 * @param markerList List to go into file, newline delimited
 	 * @return location of new file.
 	 */
-	private static String createTempFileForMarkerList(String tmpDir,List<String> markerList){
-		String tempFileLocation=tmpDir+"markerList.tmp";
+	private static String createTempFileForMarkerList(String tmpDir,List<String> markerList,String tmpFilename){
+		String tempFileLocation=tmpDir+tmpFilename+".tmp";
 		try {
 			FileWriter f = new FileWriter(tempFileLocation);
 			for(String marker:markerList){
@@ -628,8 +647,12 @@ public class GobiiExtractor {
 		}
 		return tempFileLocation;
 	}
+	private static String createTempFileForMarkerList(String tmpDir,List<String> markerList){
+		return createTempFileForMarkerList(tmpDir,markerList,"markerList");
+	}
 
-	private static boolean addSlashesToBiAllelicData(String genoFile, String extractDir, GobiiDataSetExtract extract) throws Exception {
+
+		private static boolean addSlashesToBiAllelicData(String genoFile, String extractDir, GobiiDataSetExtract extract) throws Exception {
 		Path SSRFilePath = Paths.get(genoFile);
 		File SSRFile = new File(SSRFilePath.toString());
 		if (SSRFile.exists()) {

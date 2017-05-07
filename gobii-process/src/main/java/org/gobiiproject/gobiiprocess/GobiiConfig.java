@@ -73,6 +73,7 @@ public class GobiiConfig {
     private static String CONFIG_SVR_GLOBAL_LDAP_BPAS = "ldBPAS";
     private static String CONFIG_SVR_GLOBAL_LDAP_RUN_AS_USER = "ldraUSR";
     private static String CONFIG_SVR_GLOBAL_LDAP_RUN_AS_PASSWORD = "ldraPAS";
+    private static String CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI = "ldBR";
 
     private static String CONFIG_SVR_GLOBAL_LDAP_DECRYPT = "e";
 
@@ -226,6 +227,7 @@ public class GobiiConfig {
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_BPAS, true, "Password for authenticated LDAP search", "LDAP password");
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_RUN_AS_USER, true, "LDAP user as which background processes will run", "Background LDAP user");
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_RUN_AS_PASSWORD, true, "LDAP password with which background processes authenticate", "Background LDAP password");
+            setOption(options, CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI , true, "Whether or not BRAPI calls require authentication", "BRAPI Authentication");
 
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_DECRYPT, true, "Whether or not to decrypt ALL userids and passwords (true | false)", "decryption flag");
 
@@ -755,6 +757,7 @@ public class GobiiConfig {
                 String ldapBindPassword = null;
                 String ldapRunAsUser = null;
                 String ldapRunAsPassword = null;
+                boolean ldapAuthenticateBrapi = true;
 
                 if (commandLine.hasOption(CONFIG_SVR_GLOBAL_LDAP_UDN)) {
                     ldapUserDnPattern = commandLine.getOptionValue(CONFIG_SVR_GLOBAL_LDAP_UDN);
@@ -793,6 +796,13 @@ public class GobiiConfig {
                 }
 
 
+                if (commandLine.hasOption(CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI)) {
+                    ldapAuthenticateBrapi = commandLine.getOptionValue(CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI)
+                    .toLowerCase()
+                    .equals("true");
+                    argsSet.add(CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI);
+                    valsSet.add(ldapAuthenticateBrapi ? "true" : "false");
+                }
 
                 configSettings.setLdapUrl(ldapUrl);
                 configSettings.setLdapUserDnPattern(ldapUserDnPattern);
@@ -800,6 +810,7 @@ public class GobiiConfig {
                 configSettings.setLdapBindPassword(ldapBindPassword);
                 configSettings.setLdapUserForBackendProcs(ldapRunAsUser);
                 configSettings.setLdapPasswordForBackendProcs(ldapRunAsPassword);
+                configSettings.setAuthenticateBrapi(ldapAuthenticateBrapi);
                 configSettings.commit();
 
                 writeConfigSettingsMessage(options,

@@ -36,6 +36,8 @@ import sun.net.www.content.text.Generic;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    private static ConfigSettings CONFIG_SETTINGS = new ConfigSettings();
+
     @Override
     @Bean(name = "restAuthenticationManager")
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -55,8 +57,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/index.html",
                 "/css/**",
                 "/images/**",
-                "/js/**",
-                "/brapi/v1/**");
+                "/js/**");
+
+        if(! CONFIG_SETTINGS.isAuthenticateBrapi() ) {
+            String allBrapiUrls = ServiceRequestId.getControllerPath(ControllerType.BRAPI) + "**";
+            web.ignoring().antMatchers(allBrapiUrls );
+        }
     }
 
 

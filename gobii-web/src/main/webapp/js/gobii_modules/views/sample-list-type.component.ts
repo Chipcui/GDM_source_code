@@ -13,10 +13,15 @@ import {ExtractorItemType} from "../model/file-model-node";
     selector: 'sample-list-type',
     inputs: ['gobiiExtractFilterType'],
     outputs: ['onHeaderStatusMessage'],
-    template: `<label class="the-label">Export By:</label><BR>
-                  <input type="radio" (change)="handleExportTypeSelected($event)" name="format" value="GERMPLASM_NAME" checked="checked">Germplasm Name<BR>
-                  <input type="radio" (change)="handleExportTypeSelected($event)" name="format" value="EXTERNAL_CODE">External Code<BR>
-                  <input type="radio" (change)="handleExportTypeSelected($event)" name="format" value="DNA_SAMPLE">DNA Sample<BR>` // end template
+    template: `<form>
+                            <label class="the-legend">List Item Type:&nbsp;</label>
+                            <BR><input type="radio" (change)="handleExportTypeSelected($event)" [(ngModel)]="listType" name="listType" value="GERMPLASM_NAME" checked="checked">
+                            <label  for="GERMPLASM_NAME" class="the-legend">Germplasm Name</label>
+                            <BR><input type="radio" (change)="handleExportTypeSelected($event)" [(ngModel)]="listType" name="listType" value="EXTERNAL_CODE">
+                            <label for="EXTERNAL_CODE" class="the-legend">External Code</label>
+                            <BR><input type="radio" (change)="handleExportTypeSelected($event)" [(ngModel)]="listType" name="listType" value="DNA_SAMPLE">
+                            <label  for="DNA_SAMPLE" class="the-legend">DNA Sample</label>
+                </form>` // end template
 })
 
 export class SampleListTypeComponent implements OnInit, OnChanges {
@@ -26,6 +31,7 @@ export class SampleListTypeComponent implements OnInit, OnChanges {
 
     private onHeaderStatusMessage: EventEmitter<HeaderStatusMessage> = new EventEmitter();
     private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
+    private listType: string = "GERMPLASM_NAME";
 
     private handleExportTypeSelected(arg) {
         if (arg.srcElement.checked) {
@@ -53,8 +59,29 @@ export class SampleListTypeComponent implements OnInit, OnChanges {
     }
 
 
-    ngOnInit(): any {
+    private setDefault() {
+        this.listType = "GERMPLASM_NAME";
         this.submitSampleListTypeToService(GobiiSampleListType.GERMPLASM_NAME);
+    }
+
+
+    ngOnInit(): any {
+
+        this.setDefault();
+
+        this._fileModelTreeService
+            .fileItemNotifications()
+            .subscribe(fileItem => {
+
+                if (fileItem.getProcessType() === ProcessType.NOTIFY
+                    && (( fileItem.getExtractorItemType() === ExtractorItemType.STATUS_DISPLAY_TREE_READY )
+                    || (fileItem.getExtractorItemType() === ExtractorItemType.CLEAR_TREE))) {
+
+                    this.setDefault();
+                }
+            });
+
+
         return null;
     }
 

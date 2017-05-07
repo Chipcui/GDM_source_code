@@ -313,5 +313,13 @@ public class ConfigSettings {
     public void setLdapPasswordForBackendProcs(String ldapPassworedForBackendProcs) {
         this.configValues.setLdapPasswordForBackendProcs(ldapPassworedForBackendProcs);
     }
-    
+
+
+    public boolean isAuthenticateBrapi() {
+        return this.configValues.isAuthenticateBrapi();
+    }
+
+    public void setAuthenticateBrapi(boolean authenticateBrapi) {
+        this.configValues.setAuthenticateBrapi(authenticateBrapi);
+    }
 }

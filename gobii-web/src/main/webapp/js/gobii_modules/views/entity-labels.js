@@ -46,7 +46,7 @@ System.register(["../model/type-entity", "../model/cv-filter-type", "../model/ty
                     this.treeExtractorTypeLabels[file_model_node_1.ExtractorItemType.CROP_TYPE] = "Crop Type";
                     this.treeExtractorTypeLabels[file_model_node_1.ExtractorItemType.EXPORT_FORMAT] = "Format";
                     this.treeExtractorTypeLabels[file_model_node_1.ExtractorItemType.JOB_ID] = "Job ID";
-                    this.treeExtractorTypeLabels[file_model_node_1.ExtractorItemType.SAMPLE_LIST_TYPE] = "Extract By";
+                    this.treeExtractorTypeLabels[file_model_node_1.ExtractorItemType.SAMPLE_LIST_TYPE] = "List Type";
                     this.extractFormatTypeLabels[type_extract_format_1.GobiiExtractFormat.HAPMAP] = "Hapmap";
                     this.extractFormatTypeLabels[type_extract_format_1.GobiiExtractFormat.FLAPJACK] = "Flapjack";
                     this.extractFormatTypeLabels[type_extract_format_1.GobiiExtractFormat.META_DATA_ONLY] = "Meta Data";
