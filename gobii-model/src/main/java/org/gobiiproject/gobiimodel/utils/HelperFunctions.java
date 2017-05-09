@@ -83,7 +83,6 @@ public class HelperFunctions {
 				if(inst==null)break;
 				if(!first)writer.write("\r\n");
 				first=false;
-				GobiiFile fileParams = inst.getGobiiFile(); 
 				writer.write(inst.getTable());
 				writer.write("\t");
 				writer.write(getDestinationFile(inst));
@@ -189,6 +188,7 @@ public class HelperFunctions {
 					while(br.ready()){
 						textToReturn+=br.readLine()+"\n";
 					}
+					br.close();
 				}catch(Exception e){
 					//meh
 				}
