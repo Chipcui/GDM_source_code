@@ -37,6 +37,7 @@ import {AuthenticationService} from "../services/core/authentication.service";
 import {FileItem} from "ng2-file-upload";
 import {isNullOrUndefined} from "util";
 import {NameIdLabelType} from "../model/name-id-label-type";
+import {StatusLevel} from "../model/type-status-level";
 
 // import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 
@@ -709,7 +710,11 @@ export class ExtractorRoot implements OnInit {
 
     private handleHeaderStatusMessage(statusMessage: HeaderStatusMessage) {
 
-        this.handleAddMessage(statusMessage.message);
+        if (!statusMessage.statusLevel || statusMessage.statusLevel != StatusLevel.WARNING) {
+            this.handleAddMessage(statusMessage.message);
+        } else {
+            console.log(statusMessage.message);
+        }
     }
 
     private handleResponseHeader(header: Header) {
@@ -814,6 +819,71 @@ export class ExtractorRoot implements OnInit {
         );
     }
 
+    // In theory this method should be unnecessary because there should not be any duplicates;
+    // however, in testing, it was discovered that there can be duplicate datasets and
+    // duplicate platforms. I suspect that the root cause of this issue is the checkbox component:
+    // because it keeps a history of selected items, it may be reposting existing items in a way that
+    // is not detected by the file item service. In particular, it strikes me that if an item is added
+    // in one extract type (e.g., by data set), and then selected again in another (by samples), there
+    // could be duplicate items in the tree service, because it is specific to extract filter type.
+    // TreeService::getFileItems() should be filtering correctly, but perhaps it's not. In any case,
+    // at this point in the release cycle, it is too late to to do the trouble shooting to figure this out,
+    // because I am unable to reproduce the issue in my local testing. This method at leaset reports
+    // warnings to the effect that the problem exists, but results in an extract that is free of duplicates.
+    // Technically, sample and marker list item duplicates should be eliminated in the list item control,
+    // but it is also too late for that.
+    private eliminateDuplicateEntities(extractorItemType: ExtractorItemType,
+                                       entityType: EntityType,
+                                       fileItems: GobiiFileItem[]): GobiiFileItem[] {
+
+        let returnVal: GobiiFileItem[] = [];
+
+        if (fileItems
+                .filter(fi => {
+                    return fi.getExtractorItemType() === extractorItemType
+                    && fi.getEntityType() === entityType
+                })
+                .length == fileItems.length) {
+
+            fileItems.forEach(ifi => {
+
+                if (returnVal.filter(rfi => {
+                        return rfi.getItemId() === ifi.getItemId()
+                    }).length === 0) {
+
+                    returnVal.push(ifi);
+                } else {
+                    let message: string = "A duplicate ";
+                    message += ExtractorItemType[extractorItemType];
+                    message += " (" + EntityType[entityType] +") ";
+                    message += "item was found; ";
+                    if (ifi.getItemName()) {
+                        message += "name: " + ifi.getItemName() + "; "
+                    }
+
+                    if (ifi.getItemId()) {
+                        message += "id: " + ifi.getItemId();
+                    }
+
+                    this.handleHeaderStatusMessage(new HeaderStatusMessage(message,
+                        StatusLevel.WARNING,
+                        null));
+                }
+            });
+
+        } else {
+
+            this.handleHeaderStatusMessage(new HeaderStatusMessage(
+                "The elimination array contains mixed entities",
+                StatusLevel.WARNING,
+                null));
+
+        }
+
+
+        return returnVal;
+    }
+
     private handleExtractSubmission() {
 
 
@@ -832,6 +902,7 @@ export class ExtractorRoot implements OnInit {
             scope$._fileModelTreeService.getFileItems(scope$.gobiiExtractFilterType).subscribe(
                 fileItems => {
 
+                    // ******** JOB ID
                     let fileItemJobId: GobiiFileItem = fileItems.find(item => {
                         return item.getExtractorItemType() === ExtractorItemType.JOB_ID
                     });
@@ -840,6 +911,7 @@ export class ExtractorRoot implements OnInit {
                         jobId = fileItemJobId.getItemId();
                     }
 
+                    // ******** MARKER FILE
                     let fileItemMarkerFile: GobiiFileItem = fileItems.find(item => {
                         return item.getExtractorItemType() === ExtractorItemType.MARKER_FILE
                     });
@@ -848,6 +920,7 @@ export class ExtractorRoot implements OnInit {
                         markerFileName = fileItemMarkerFile.getItemId();
                     }
 
+                    // ******** SAMPLE FILE
                     let fileItemSampleFile: GobiiFileItem = fileItems.find(item => {
                         return item.getExtractorItemType() === ExtractorItemType.SAMPLE_FILE
                     });
@@ -856,6 +929,7 @@ export class ExtractorRoot implements OnInit {
                         sampleFileName = fileItemSampleFile.getItemId();
                     }
 
+                    // ******** SUBMITTER CONTACT
                     let submitterFileItem: GobiiFileItem = fileItems.find(item => {
                         return (item.getEntityType() === EntityType.Contacts)
                             && (item.getEntitySubType() === EntitySubType.CONTACT_SUBMITED_BY)
@@ -864,14 +938,20 @@ export class ExtractorRoot implements OnInit {
                     submitterContactid = Number(submitterFileItem.getItemId());
 
 
-                    mapsetIds = fileItems
+                    // ******** MAPSET IDs
+                    let mapsetFileItems: GobiiFileItem[] = fileItems
                         .filter(item => {
                             return item.getEntityType() === EntityType.Mapsets
-                        })
+                        });
+                    mapsetFileItems = this.eliminateDuplicateEntities( ExtractorItemType.ENTITY,
+                        EntityType.Mapsets,
+                        mapsetFileItems);
+                    mapsetIds = mapsetFileItems
                         .map(item => {
                             return Number(item.getItemId())
                         });
 
+                    // ******** EXPORT FORMAT
                     let exportFileItem: GobiiFileItem = fileItems.find(item => {
                         return item.getExtractorItemType() === ExtractorItemType.EXPORT_FORMAT
                     });
@@ -888,6 +968,7 @@ export class ExtractorRoot implements OnInit {
                     }
 
 
+                    // ******** DATA SET TYPE
                     let dataTypeFileItem: GobiiFileItem = fileItems.find(item => {
                         return item.getEntityType() === EntityType.CvTerms
                             && item.getCvFilterType() === CvFilterType.DATASET_TYPE
@@ -896,6 +977,7 @@ export class ExtractorRoot implements OnInit {
                             dataTypeFileItem.getItemName(), EntityType.CvTerms) : null;
 
 
+                    // ******** PRINCIPLE INVESTIGATOR CONCEPT
                     let principleInvestigatorFileItem: GobiiFileItem = fileItems.find(item => {
                         return item.getEntityType() === EntityType.Contacts
                             && item.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR
@@ -904,6 +986,7 @@ export class ExtractorRoot implements OnInit {
                             principleInvestigatorFileItem.getItemName(), EntityType.Contacts) : null;
 
 
+                    // ******** PROJECT
                     let projectFileItem: GobiiFileItem = fileItems.find(item => {
                         return item.getEntityType() === EntityType.Projects
                     });
@@ -911,31 +994,50 @@ export class ExtractorRoot implements OnInit {
                             projectFileItem.getItemName(), EntityType.Projects) : null;
 
 
+                    // ******** PLATFORMS
                     let platformFileItems: GobiiFileItem[] = fileItems.filter(item => {
                         return item.getEntityType() === EntityType.Platforms
                     });
+
+                    platformFileItems = this.eliminateDuplicateEntities(ExtractorItemType.ENTITY,
+                        EntityType.Platforms,
+                        platformFileItems);
 
                     let platformIds: number[] = platformFileItems.map(item => {
                         return Number(item.getItemId())
                     });
 
-                    let markerList: string[] =
+                    // ******** MARKERS
+                    let markerListItems: GobiiFileItem[] =
                         fileItems
                             .filter(fi => {
                                 return fi.getExtractorItemType() === ExtractorItemType.MARKER_LIST_ITEM
-                            })
-                            .map(mi => {
-                                return mi.getItemId()
                             });
 
-                    let sampleList: string[] =
+                    markerListItems = this.eliminateDuplicateEntities( ExtractorItemType.MARKER_LIST_ITEM,
+                        EntityType.UNKNOWN,
+                        markerListItems);
+                    let markerList: string[] = markerListItems
+                        .map(mi => {
+                            return mi.getItemId()
+                        });
+
+
+                    // ******** SAMPLES
+                    let sampleListItems: GobiiFileItem[] =
                         fileItems
                             .filter(fi => {
                                 return fi.getExtractorItemType() === ExtractorItemType.SAMPLE_LIST_ITEM
-                            })
-                            .map(mi => {
-                                return mi.getItemId()
                             });
+
+                    sampleListItems = this.eliminateDuplicateEntities(ExtractorItemType.SAMPLE_LIST_ITEM,
+                        EntityType.UNKNOWN,
+                        sampleListItems);
+                    let sampleList: string[] = sampleListItems
+                        .map(mi => {
+                            return mi.getItemId()
+                        });
+
 
                     let sampleListTypeFileItem: GobiiFileItem = fileItems.find(item => {
                         return item.getExtractorItemType() === ExtractorItemType.SAMPLE_LIST_TYPE;
@@ -947,30 +1049,35 @@ export class ExtractorRoot implements OnInit {
 
                     if (this.gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET) {
 
-                        fileItems
+                        let dataSetItems: GobiiFileItem[] = fileItems
                             .filter(item => {
                                 return item.getEntityType() === EntityType.DataSets
-                            })
-                            .forEach(datsetFileItem => {
-
-                                let dataSet: NameId = new NameId(datsetFileItem.getItemId(),
-                                    datsetFileItem.getItemName(), EntityType.CvTerms);
-
-
-                                gobiiDataSetExtracts.push(new GobiiDataSetExtract(gobiiFileType,
-                                    false,
-                                    null,
-                                    this.gobiiExtractFilterType,
-                                    null,
-                                    null,
-                                    markerFileName,
-                                    null,
-                                    datasetType,
-                                    platformIds,
-                                    null,
-                                    null,
-                                    dataSet));
                             });
+
+                        dataSetItems = this.eliminateDuplicateEntities( ExtractorItemType.ENTITY,
+                            EntityType.DataSets,
+                            dataSetItems);
+
+                        dataSetItems.forEach(datsetFileItem => {
+
+                            let dataSet: NameId = new NameId(datsetFileItem.getItemId(),
+                                datsetFileItem.getItemName(), EntityType.CvTerms);
+
+
+                            gobiiDataSetExtracts.push(new GobiiDataSetExtract(gobiiFileType,
+                                false,
+                                null,
+                                this.gobiiExtractFilterType,
+                                null,
+                                null,
+                                markerFileName,
+                                null,
+                                datasetType,
+                                platformIds,
+                                null,
+                                null,
+                                dataSet));
+                        });
                     } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
                         gobiiDataSetExtracts.push(new GobiiDataSetExtract(gobiiFileType,
                             false,

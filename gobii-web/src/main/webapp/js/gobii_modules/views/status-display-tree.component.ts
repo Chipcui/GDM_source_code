@@ -17,6 +17,7 @@ import {HeaderStatusMessage} from "../model/dto-header-status-message";
 import {Labels} from "./entity-labels";
 import {Header} from "../model/payload/header";
 import {GobiiUIEventOrigin} from "../model/type-event-origin";
+import {StatusLevel} from "../model/type-status-level";
 
 
 //Documentation of p-tree: http://www.primefaces.org/primeng/#/tree
@@ -62,28 +63,44 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
             .subscribe(fileModelTreeEvent => {
 
 
-                if (fileModelTreeEvent.fileModelState != FileModelState.MISMATCHED_EXTRACTOR_FILTER_TYPE) {
+                if (this.treeIsInitialized) {
+
+                    if (fileModelTreeEvent.fileModelState != FileModelState.MISMATCHED_EXTRACTOR_FILTER_TYPE) {
 
 
-                    if (fileModelTreeEvent.fileItem.getProcessType() === ProcessType.CREATE
-                        || fileModelTreeEvent.fileItem.getProcessType() === ProcessType.UPDATE) {
-                        this.placeNodeInTree(fileModelTreeEvent);
-                    } else if (fileModelTreeEvent.fileItem.getProcessType() === ProcessType.DELETE) {
-                        this.removeNodeFromTree(fileModelTreeEvent);
-                    } else if (fileModelTreeEvent.fileItem.getProcessType() === ProcessType.NOTIFY) {
-                        if (fileModelTreeEvent.fileItem.getExtractorItemType() === ExtractorItemType.CLEAR_TREE) {
-                            this.clearTree();
+                        if (fileModelTreeEvent.fileItem.getProcessType() === ProcessType.CREATE
+                            || fileModelTreeEvent.fileItem.getProcessType() === ProcessType.UPDATE) {
+                            this.placeNodeInTree(fileModelTreeEvent);
+                        } else if (fileModelTreeEvent.fileItem.getProcessType() === ProcessType.DELETE) {
+                            this.removeNodeFromTree(fileModelTreeEvent);
+                        } else if (fileModelTreeEvent.fileItem.getProcessType() === ProcessType.NOTIFY) {
+                            if (fileModelTreeEvent.fileItem.getExtractorItemType() === ExtractorItemType.CLEAR_TREE) {
+                                this.clearTree();
+                            }
+                        } else {
+
+                            let headerStatusMessage: HeaderStatusMessage =
+                                new HeaderStatusMessage("Error in status display tree processing file item type "
+                                    + ExtractorItemType[fileModelTreeEvent.fileItem.getExtractorItemType()]
+                                    + ": Unknown porcess type: "
+                                    + ProcessType[fileModelTreeEvent.fileItem.getProcessType()], null, null);
+
+                            this.handleAddStatusMessage(headerStatusMessage);
                         }
-                    } else {
-
-                        let headerStatusMessage: HeaderStatusMessage =
-                            new HeaderStatusMessage("Error in status display tree processing file item type "
-                                + ExtractorItemType[fileModelTreeEvent.fileItem.getExtractorItemType()]
-                                + ": Unknown porcess type: "
-                                + ProcessType[fileModelTreeEvent.fileItem.getProcessType()], null, null);
-
-                        this.handleAddStatusMessage(headerStatusMessage);
                     }
+
+                } else {
+
+                    let message: string = "Warning: a fileItem was posted ot the tree before the tree was initialized:  "
+                        + Labels.instance().treeExtractorTypeLabels[fileModelTreeEvent.fileModelNode.getItemType()];
+
+                    if (fileModelTreeEvent.fileItem && fileModelTreeEvent.fileItem.getItemName()) {
+                        message += " for fileItem of name " + fileModelTreeEvent.fileItem.getItemName();
+                    }
+
+                    this.handleAddStatusMessage(new HeaderStatusMessage(message,
+                        StatusLevel.WARNING,
+                        null));
                 }
             });
     }
@@ -322,7 +339,7 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
             .getFileItems()
             .find(fi => fi.getFileItemUniqueId() === gobiiTreeNode.fileItemId);
 
-        let itemId:string = null;
+        let itemId: string = null;
         if (fileItemFromModel) {
             itemId = fileItemFromModel.getItemId();
 
@@ -770,7 +787,11 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
     } // place node in tree
 
 
+    private treeIsInitialized: boolean = false;
+
     setUpRequredItems(gobiiExtractorFilterType: GobiiExtractFilterType) {
+
+        this.treeIsInitialized = false;
 
         this.gobiiTreeNodes = [];
 
@@ -790,6 +811,19 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
                 }
             }
         );
+
+
+        this.treeIsInitialized = true;
+
+        this._fileModelTreeService.put(GobiiFileItem
+            .build(this.gobiiExtractFilterType, ProcessType.NOTIFY)
+            .setExtractorItemType(ExtractorItemType.STATUS_DISPLAY_TREE_READY)).subscribe(
+            null,
+            headerResponse => {
+                this.handleAddStatusMessage(headerResponse)
+            }
+        );
+
     }
 
     makeTreeNodeFromTemplate(parentNode: GobiiTreeNode,
@@ -907,16 +941,7 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
             if (changes['gobiiExtractFilterTypeEvent'].currentValue !== changes['gobiiExtractFilterTypeEvent'].previousValue) {
                 this.gobiiExtractFilterType = changes['gobiiExtractFilterTypeEvent'].currentValue;
                 this.setUpRequredItems(this.gobiiExtractFilterType);
-                //this.onTreeReady.emit( new HeaderStatusMessage("","","") );
 
-                this._fileModelTreeService.put(GobiiFileItem
-                    .build(this.gobiiExtractFilterType, ProcessType.NOTIFY)
-                    .setExtractorItemType(ExtractorItemType.STATUS_DISPLAY_TREE_READY)).subscribe(
-                    null,
-                    headerResponse => {
-                        this.handleAddStatusMessage(headerResponse)
-                    }
-                );
             }
 
             // this.setList(changes['nameIdList'].currentValue);

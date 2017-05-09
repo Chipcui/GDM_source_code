@@ -62,7 +62,6 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                     // to the model service _after_ the tree calls oncomplete. If we want to encapsulate all the
                     // service communication in the child components, the tree service will have to accommodate
                     // notification events to which these components will subscribe.
-                    var _this = this;
                     // let scope$ = this;
                     // this._dtoRequestService.get(new DtoRequestItemNameIds(
                     //     EntityType.Contacts,
@@ -91,16 +90,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                     // are bound, we would check whether that flag is set, and if it was, then we would send
                     // the tree notification. I _think_ that would cover all the contingencies, but it's ugly.
                     // I am not sure whether reactive forms would address this issue.
-                    this.setDefault();
-                    this._fileModelTreeService
-                        .fileItemNotifications()
-                        .subscribe(function (fileItem) {
-                        if (fileItem.getProcessType() === type_process_1.ProcessType.NOTIFY &&
-                            ((fileItem.getExtractorItemType() === file_model_node_1.ExtractorItemType.STATUS_DISPLAY_TREE_READY)
-                                || (fileItem.getExtractorItemType() === file_model_node_1.ExtractorItemType.CLEAR_TREE))) {
-                            _this.setDefault();
-                        }
-                    });
+                    //this.setDefault();
                 };
                 ExportFormatComponent.prototype.setDefault = function () {
                     this.updateTreeService(type_extract_format_1.GobiiExtractFormat.HAPMAP);
@@ -133,6 +123,16 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                     //console.log("selected contact itemId:" + arg);
                 };
                 ExportFormatComponent.prototype.ngOnChanges = function (changes) {
+                    var _this = this;
+                    this._fileModelTreeService
+                        .fileItemNotifications()
+                        .subscribe(function (fileItem) {
+                        if (fileItem.getProcessType() === type_process_1.ProcessType.NOTIFY &&
+                            ((fileItem.getExtractorItemType() === file_model_node_1.ExtractorItemType.STATUS_DISPLAY_TREE_READY)
+                                || (fileItem.getExtractorItemType() === file_model_node_1.ExtractorItemType.CLEAR_TREE))) {
+                            _this.setDefault();
+                        }
+                    });
                     if (changes['gobiiExtractFilterType']
                         && (changes['gobiiExtractFilterType'].currentValue != null)
                         && (changes['gobiiExtractFilterType'].currentValue != undefined)) {
@@ -147,7 +147,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../services/c
                             else if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE) {
                                 this.metaDataExtractname = "Sample" + labelSuffix;
                             }
-                            this.fileFormat = "HAPMAP";
+                            this.setDefault();
                         } // if we have a new filter type
                     } // if filter type changed
                 }; // ngonChanges

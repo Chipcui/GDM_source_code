@@ -112,7 +112,6 @@ transpose marker names
 		HelperFunctions.tryExec("cat "+tempDir+"map.response "+ inverseMarkerList+" " + tempDir+"blank.file "+ tempDir+"sample.matrix",outFile,errorFile);
 
 		rm(tempDir+"map.response");
-		rm(genotypeFile);
 		rm(markerList);
 		rm(inverseMarkerList);
 		rm(tempDir+"genotype.sampleList");

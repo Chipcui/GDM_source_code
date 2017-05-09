@@ -527,7 +527,7 @@ public class GobiiExtractor {
 		String tmpFile=filename+".tmp";
 		FileSystemInterface.mv(filename,tmpFile);
 		String cutString=getCutString(sampleList);
-		if(markerFast) {
+		if(!markerFast) {
 			String sedString=cutString.replaceAll(",","p;");//1,2,3 => 1p;2p;3   (p added later)
 			tryExec("sed -n "+sedString+"p",filename,errorFile,tmpFile);
 		}

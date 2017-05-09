@@ -86,17 +86,7 @@ export class ExportFormatComponent implements OnInit, OnChanges {
         // the tree notification. I _think_ that would cover all the contingencies, but it's ugly.
         // I am not sure whether reactive forms would address this issue.
 
-        this.setDefault();  
-        this._fileModelTreeService
-            .fileItemNotifications()
-            .subscribe(fileItem => {
-
-                if (fileItem.getProcessType() === ProcessType.NOTIFY &&
-                    ((fileItem.getExtractorItemType() === ExtractorItemType.STATUS_DISPLAY_TREE_READY)
-                    || (fileItem.getExtractorItemType() === ExtractorItemType.CLEAR_TREE) ) ) {
-                    this.setDefault();
-                }
-            });
+        //this.setDefault();
     }
 
     private setDefault() {
@@ -135,6 +125,7 @@ export class ExportFormatComponent implements OnInit, OnChanges {
 
         this.selectedExtractFormat = arg;
 
+
         let extractFilterTypeFileItem: GobiiFileItem = GobiiFileItem
             .build(this.gobiiExtractFilterType, ProcessType.UPDATE)
             .setExtractorItemType(ExtractorItemType.EXPORT_FORMAT)
@@ -155,6 +146,17 @@ export class ExportFormatComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: {[propName: string]: SimpleChange}) {
 
+        this._fileModelTreeService
+            .fileItemNotifications()
+            .subscribe(fileItem => {
+
+                if (fileItem.getProcessType() === ProcessType.NOTIFY &&
+                    ((fileItem.getExtractorItemType() === ExtractorItemType.STATUS_DISPLAY_TREE_READY)
+                    || (fileItem.getExtractorItemType() === ExtractorItemType.CLEAR_TREE) )) {
+                    this.setDefault();
+                }
+            });
+
         if (changes['gobiiExtractFilterType']
             && ( changes['gobiiExtractFilterType'].currentValue != null )
             && ( changes['gobiiExtractFilterType'].currentValue != undefined )) {
@@ -171,7 +173,7 @@ export class ExportFormatComponent implements OnInit, OnChanges {
                     this.metaDataExtractname = "Sample" + labelSuffix;
                 }
 
-                this.fileFormat = "HAPMAP";
+                this.setDefault();
 
             } // if we have a new filter type
 

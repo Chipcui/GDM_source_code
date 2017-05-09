@@ -6,6 +6,7 @@
 package org.gobiiproject.gobiiweb.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.gobiiproject.gobidomain.services.AnalysisService;
 import org.gobiiproject.gobidomain.services.ConfigSettingsService;
 import org.gobiiproject.gobidomain.services.ContactService;
@@ -185,6 +186,8 @@ public class BRAPIIControllerV1 {
     @Autowired
     private ConfigSettingsService configSettingsService;
 
+    private ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+
 
     // *********************************************
     // *************************** CALLS
@@ -221,8 +224,7 @@ public class BRAPIIControllerV1 {
             brapiResponseEnvelopeMasterDetail.getBrapiMetaData().addStatusMessage("exception", message);
         }
 
-        returnVal = (new ObjectMapper()).writeValueAsString(brapiResponseEnvelopeMasterDetail);
-
+        returnVal = objectMapper.writeValueAsString(brapiResponseEnvelopeMasterDetail);
 
         return returnVal;
     }
@@ -266,7 +268,8 @@ public class BRAPIIControllerV1 {
             BrapiResponseEnvelopeMasterDetail.getBrapiMetaData().addStatusMessage("exception", message);
         }
 
-        returnVal = (new ObjectMapper()).writeValueAsString(BrapiResponseEnvelopeMasterDetail);
+        returnVal = objectMapper.writeValueAsString(BrapiResponseEnvelopeMasterDetail);
+
         return returnVal;
     }
 
@@ -317,8 +320,10 @@ public class BRAPIIControllerV1 {
 
         }
 
-        returnVal = (new ObjectMapper()).writeValueAsString(responseEnvelope);
+        returnVal = objectMapper.writeValueAsString(responseEnvelope);
+
         return returnVal;
+
     }
 
     // *********************************************
@@ -361,7 +366,7 @@ public class BRAPIIControllerV1 {
 
         }
 
-        returnVal = (new ObjectMapper()).writeValueAsString(responseEnvelope);
+        returnVal = objectMapper.writeValueAsString(responseEnvelope);
 
         return returnVal;
     }
