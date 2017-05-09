@@ -64,6 +64,11 @@
         <!-- Javax Mail -->
         <javax-mail-version>1.4</javax-mail-version>
 
+		<!-- Mockito & PowerMock -->
+		<mockito-all>1.10.19</mockito-all>
+		<hamcrest-library>1.3</hamcrest-library>
+		<powermock-api-mockito>1.6.4</powermock-api-mockito>
+		<powermock-module-junit4>1.6.4</powermock-module-junit4>
     </properties>
 
     <modules>
