@@ -1920,7 +1920,7 @@ public class GobiiTestData {
                     if(entityName.equals("contact")){
 
                         if(object.has("contactId")){
-                            object.addProperty("contactId", currentEntityId);
+                            object.addProperty("contactId", Integer.parseInt(currentEntityId.toString()));
                         }
 
                         if(object.has("contactEmail")){
@@ -1932,14 +1932,14 @@ public class GobiiTestData {
 
                     if(entityName.equals("dataSet")) {
                         if (object.has("dataSetId")) {
-                            object.addProperty("dataSetId", currentEntityId);
+                            object.addProperty("dataSetId", Integer.parseInt(currentEntityId.toString()));
                         }
                     }
 
                     JsonObject tempObject = (JsonObject) object.get(entityName);
 
                     tempObject.addProperty("name", dbPkeySurrogateValue);
-                    tempObject.addProperty("id", currentEntityId);
+                    tempObject.addProperty("id", Integer.parseInt(currentEntityId.toString()));
 
                     object.add(entityName, tempObject);
 

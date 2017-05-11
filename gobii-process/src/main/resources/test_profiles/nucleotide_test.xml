@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GobiiTestData>
+    <Entities>
+        <Organizations DbPKeysurrogate="Name">
+            <Organization>
+                <Keys>
+                    <DbPKey></DbPKey>
+                </Keys>
+                <Properties>
+                    <Name>sim_Cornell</Name>
+                    <Address>Ithaca</Address>
+                    <Website>cornell.edu</Website>
+                </Properties>
+            </Organization>
+        </Organizations>
+        <Contacts DbPKeysurrogate="Email">
+            <Contact>
+                <Keys>
+                    <DbPKey></DbPKey>
+                    <Fkey entity="Organization" fkproperty="organizationId">
+                        <DbPKeySurrogate>sim_Cornell</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <LastName>Gobii</LastName>
+                    <FirstName>Sim</FirstName>
+                    <Code>gobii_sim</Code>
+                    <Email>gobii.jira@gmail.com</Email>
+                    <Roles>
+                        <Role>PI</Role>
+                        <Role>Curator</Role>
+                    </Roles>
+                </Properties>
+            </Contact>
+        </Contacts>
+        <Platforms DbPKeysurrogate="PlatformName">
+            <Platform>
+                <Keys>
+                    <DbPKey></DbPKey>
+                </Keys>
+                <Properties>
+                    <PlatformName>sim_Infinium</PlatformName>
+                    <PlatformCode>sim_Infinium</PlatformCode>
+                    <PlatformDescription>sim_Infinium</PlatformDescription>
+                    <StatusId>1</StatusId>
+                    <TypeId>Illumina_Infinium</TypeId>
+                    <Properties></Properties>
+                </Properties>
+            </Platform>
+        </Platforms>
+        <Protocols DbPKeysurrogate="Name">
+            <Protocol>
+                <Keys>
+                    <DbPKey></DbPKey>
+                    <Fkey entity="Platform" fkproperty="platformId">
+                        <DbPKeySurrogate>sim_Infinium</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <Name>sim_Infinium</Name>
+                    <Description>sim_Infinium</Description>
+                    <TypeId>1</TypeId>
+                    <Status>1</Status>
+                    <Props></Props>
+                    <VendorProtocols></VendorProtocols>
+                </Properties>
+            </Protocol>
+        </Protocols>
+        <VendorProtocols DbPKeysurrogate="Name">
+            <VendorProtocol>
+                <Keys>
+                    <DbPKey></DbPKey>
+                    <Fkey entity="Organization" fkproperty="organizationId">
+                        <DbPKeySurrogate>sim_Cornell</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                    <Fkey entity="Protocol" fkproperty="protocolId">
+                        <DbPKeySurrogate>sim_Infinium</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <Name>sim_Cornell_Infinium</Name>
+                    <Status>1</Status>
+                </Properties>
+            </VendorProtocol>
+        </VendorProtocols>
+        <Mapsets DbPKeysurrogate="Name">
+            <Mapset>
+                <Keys>
+                    <DbPKey></DbPKey>
+                </Keys>
+                <Properties>
+                    <Name>sim_Illumina</Name>
+                    <Code>sim_Illumina</Code>
+                    <Description>sim_Illumina</Description>
+                    <MapType>Physical</MapType>
+                    <StatusId>1</StatusId>
+                    <Properties></Properties>
+                </Properties>
+            </Mapset>
+        </Mapsets>
+        <Projects DbPKeysurrogate="ProjectName">
+            <Project>
+                <Keys>
+                    <DbPKey></DbPKey>
+                    <Fkey entity="Contact" fkproperty="piContact">
+                        <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <ProjectName>sim_nucleotide</ProjectName>
+                    <ProjectCode>sim_nucleotide</ProjectCode>
+                    <ProjectDescription>sim_nucleotide</ProjectDescription>
+                    <ProjectStatus>1</ProjectStatus>
+                </Properties>
+            </Project>
+        </Projects>
+        <Experiments DbPKeysurrogate="ExperimentName">
+            <Experiment>
+                <Keys>
+                    <DbPKey></DbPKey>
+                    <Fkey entity="Project" fkproperty="projectId">
+                        <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                    <Fkey entity="VendorProtocol" fkproperty="vendorProtocolId">
+                        <DbPKeySurrogate>sim_Cornell_Infinium</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <ExperimentName>sim_nucleotide</ExperimentName>
+                    <ExperimentCode>sim_nucleotide</ExperimentCode>
+                    <StatusId>1</StatusId>
+                </Properties>
+            </Experiment>
+        </Experiments>
+        <Analyses DbPKeysurrogate="AnalysisName">
+            <Analysis>
+                <Keys>
+                    <DbPKey></DbPKey>
+                </Keys>
+                <Properties>
+                    <AnalysisName>sim_none</AnalysisName>
+                    <AnalysisDescription>sim_none</AnalysisDescription>
+                    <AnlaysisTypeId>Calling</AnlaysisTypeId>
+                    <Program>sim_none_program</Program>
+                    <ProgramVersion>sim_none_program_version</ProgramVersion>
+                    <Algorithm>sim_none_algorithm</Algorithm>
+                    <SourceName>sim_none_sourcename</SourceName>
+                    <SourceVersion>sim_none_sourceversion</SourceVersion>
+                    <SourceUri>sim_none_sourceuri</SourceUri>
+                    <StatusId>1</StatusId>
+                    <Parameters></Parameters>
+                </Properties>
+            </Analysis>
+        </Analyses>
+        <Datasets DbPKeysurrogate="Name">
+            <Dataset>
+                <Keys>
+                    <DbPKey></DbPKey>
+                    <Fkey entity="Experiment" fkproperty="experimentId">
+                        <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                    <Fkey entity="Analysis" fkproperty="callingAnalysisId">
+                        <DbPKeySurrogate>sim_none</DbPKeySurrogate>
+                        <DbPKey></DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <Name>sim_nucleotide</Name>
+                    <DataTable>sim_nucleotide_datatable</DataTable>
+                    <DataFile>sim_nucleotide_datafile</DataFile>
+                    <QualityTable>sim_nucleotide_qualitytable</QualityTable>
+                    <QualityFile>sim_nucleotide_qualityfile</QualityFile>
+                    <StatusId>1</StatusId>
+                    <TypeId>Nucleotide_2_letter</TypeId>
+                    <AnalysesIds></AnalysesIds>
+                    <Scores></Scores>
+                </Properties>
+            </Dataset>
+        </Datasets>
+    </Entities>
+
+    <Scenarios>
+        <Scenario>
+            <Name>nucleotide_dataset</Name>
+            <Files>
+                <Instruction>D:\GOBII\test profiles from yaw\instructions\test_nucleotide_dataset.json</Instruction>
+                <Data>D:\GOBII\test profiles from yaw\files\files\test_nucleotide_dataset</Data>
+            </Files>
+
+            <DbFkey entity="Contact">
+                <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Project">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Experiment">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Dataset">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Mapset">
+                <DbPKeySurrogate>sim_Illumina</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Platform">
+                <DbPKeySurrogate>sim_Infinium</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+        </Scenario>
+        <Scenario>
+            <Name>nucleotide_marker</Name>
+            <Files>
+                <Instruction>D:\GOBII\test profiles from yaw\instructions\test_nucleotide_marker.json</Instruction>
+                <Data>D:\GOBII\test profiles from yaw\files\files\test_nucleotide_marker</Data>
+            </Files>
+
+            <DbFkey entity="Contact">
+                <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Project">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Experiment">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Dataset">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Mapset">
+                <DbPKeySurrogate>sim_Illumina</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Platform">
+                <DbPKeySurrogate>sim_Infinium</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+        </Scenario>
+        <Scenario>
+            <Name>nucleotide_sample</Name>
+            <Files>
+                <Instruction>D:\GOBII\test profiles from yaw\instructions\test_nucleotide_sample.json</Instruction>
+                <Data>D:\GOBII\test profiles from yaw\files\files\test_nucleotide_sample</Data>
+            </Files>
+
+            <DbFkey entity="Contact">
+                <DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Project">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Experiment">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Dataset">
+                <DbPKeySurrogate>sim_nucleotide</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Mapset">
+                <DbPKeySurrogate>sim_Illumina</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+
+            <DbFkey entity="Platform">
+                <DbPKeySurrogate>sim_Infinium</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
+        </Scenario>
+
+    </Scenarios>
+
+</GobiiTestData>
