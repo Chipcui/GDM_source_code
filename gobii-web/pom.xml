@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.gobiiproject</groupId>
         <artifactId>parent</artifactId>
-        <version>0.3.3-SNAPSHOT</version>
+        <version>0.3.4-SNAPSHOT</version>
     </parent>
 
     <groupId>org.gobiiproject</groupId>
@@ -50,26 +50,26 @@
         <dependency>
             <groupId>org.gobiiproject</groupId>
             <artifactId>gobii-api-model</artifactId>
-            <version>0.3.3-SNAPSHOT</version>
+            <version>0.3.4-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>org.gobiiproject</groupId>
             <artifactId>gobii-brapi</artifactId>
-            <version>0.3.3-SNAPSHOT</version>
+            <version>0.3.4-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>org.gobiiproject</groupId>
             <artifactId>gobii-model</artifactId>
-            <version>0.3.3-SNAPSHOT</version>
+            <version>0.3.4-SNAPSHOT</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.gobiiproject</groupId>
             <artifactId>gobii-domain</artifactId>
-            <version>0.3.3-SNAPSHOT</version>
+            <version>0.3.4-SNAPSHOT</version>
 
             <!--
             **** Ideally we would want to prevent the transitive dependency of gobii-domain on gobii-dao from bringing

@@ -20,6 +20,7 @@ import org.gobiiproject.gobiimodel.tobemovedtoapimodel.HeaderAuth;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiExtractFilterType;
 import org.gobiiproject.gobiimodel.types.GobiiFilterType;
+import org.gobiiproject.gobiimodel.types.GobiiCvGroupType;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
@@ -904,6 +905,54 @@ public class GOBIIControllerV1 {
         return (returnVal);
     }
 
+    @RequestMapping(value = "/cvgroups/{cvGroupTypeId}", method = RequestMethod.GET)
+    @ResponseBody
+    public PayloadEnvelope<CvGroupDTO> getCvGroupsByType(@PathVariable Integer cvGroupTypeId,
+                                                   HttpServletRequest request,
+                                                   HttpServletResponse response) {
+
+        PayloadEnvelope<CvGroupDTO> returnVal = new PayloadEnvelope<>();
+
+        try {
+
+            GobiiCvGroupType gobiiCvGroupType = GobiiCvGroupType.fromInt(cvGroupTypeId);
+
+            if( gobiiCvGroupType != GobiiCvGroupType.GROUP_TYPE_UNKNOWN ) {
+
+                List<CvGroupDTO> cvGroupDTOS = cvGroupService.getCvsForType(gobiiCvGroupType);
+
+                PayloadWriter<CvGroupDTO> payloadWriter = new PayloadWriter<>(request, response,
+                        CvGroupDTO.class);
+
+                // we don't have a GET for a single cvGrouop, and probably don't need one
+                // so  our links will just be the same URL as we got
+                payloadWriter.writeList(returnVal,
+                        UriFactory.resourceColl(request.getContextPath(),
+                                ServiceRequestId.URL_CVGROUP)
+                                .addUriParam("id"),
+                        cvGroupDTOS);
+            } else {
+                returnVal.getHeader().getStatus().addException(new Exception("Unknown group type: "
+                        + cvGroupTypeId.toString()));
+            }
+
+        } catch (GobiiException e) {
+
+            returnVal.getHeader().getStatus().addException(e);
+
+        } catch (Exception e) {
+
+            returnVal.getHeader().getStatus().addException(e);
+
+        }
+
+        ControllerUtils.setHeaderResponse(returnVal.getHeader(),
+                response,
+                HttpStatus.OK,
+                HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return (returnVal);
+    }
 
     // *********************************************
     // *************************** DATASET METHODS
