@@ -1,14 +1,13 @@
 package org.gobiiproject.gobiidtomapping.impl;
 
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiidao.filesystem.QCInstructionsDAO;
+import org.gobiiproject.gobiidao.filesystem.InstructionFilesDAO;
+import org.gobiiproject.gobiidao.filesystem.access.InstructionFileAccess;
 import org.gobiiproject.gobiidtomapping.DtoMapContact;
 import org.gobiiproject.gobiidtomapping.DtoMapQCInstructions;
 import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiException;
-import org.gobiiproject.gobiimodel.dto.instructions.GobiiQCComplete;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ContactDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.QCInstructionsDTO;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiJobStatus;
@@ -30,7 +29,7 @@ public class DtoMapQCInstructionsImpl implements DtoMapQCInstructions {
     private final String INSTRUCTION_FILE_EXT = ".json";
 
     @Autowired
-    private QCInstructionsDAO qcInstructionsDAO;
+    private InstructionFilesDAO instructionFilesDao;
 
     @Autowired
     DtoMapContact dtoMapContact;
@@ -39,10 +38,10 @@ public class DtoMapQCInstructionsImpl implements DtoMapQCInstructions {
 
 
         if (null != instructionFileDirectory) {
-            if (!qcInstructionsDAO.doesPathExist(instructionFileDirectory)) {
-                qcInstructionsDAO.makeDirectory(instructionFileDirectory);
+            if (!instructionFilesDao.doesPathExist(instructionFileDirectory)) {
+                instructionFilesDao.makeDirectory(instructionFileDirectory);
             } else {
-                qcInstructionsDAO.verifyDirectoryPermissions(instructionFileDirectory);
+                instructionFilesDao.verifyDirectoryPermissions(instructionFileDirectory);
             }
         }
 
@@ -68,7 +67,7 @@ public class DtoMapQCInstructionsImpl implements DtoMapQCInstructions {
                     + INSTRUCTION_FILE_EXT;
 
 
-            if (!qcInstructionsDAO.doesPathExist(instructionFileFqpn)) {
+            if (!instructionFilesDao.doesPathExist(instructionFileFqpn)) {
 
                 if(qcInstructionsDTO.getGobiiJobStatus().equals(GobiiJobStatus.STARTED)) {
 
@@ -94,7 +93,8 @@ public class DtoMapQCInstructionsImpl implements DtoMapQCInstructions {
 
                 } else if(qcInstructionsDTO.getGobiiJobStatus().equals(GobiiJobStatus.COMPLETED)) {
 
-                    qcInstructionsDAO.writeInstructions(instructionFileFqpn,
+                    InstructionFileAccess<QCInstructionsDTO> instructionFileAccess = new InstructionFileAccess<>(QCInstructionsDTO.class);
+                    instructionFileAccess.writeInstructions(instructionFileFqpn,
                             qcInstructionsDTO);
 
                     QCMessage qcMessage = new QCMessage();
@@ -142,13 +142,13 @@ public class DtoMapQCInstructionsImpl implements DtoMapQCInstructions {
                     + instructionFileName
                     + INSTRUCTION_FILE_EXT;
 
-            if (qcInstructionsDAO.doesPathExist(instructionFileFqpn)) {
+            if (instructionFilesDao.doesPathExist(instructionFileFqpn)) {
+                InstructionFileAccess<QCInstructionsDTO> instructionFileAccess = new InstructionFileAccess<>(QCInstructionsDTO.class);
 
-                returnVal = qcInstructionsDAO.getInstructions(instructionFileFqpn);
+                returnVal = instructionFileAccess.getInstruction(instructionFileFqpn);
 
                 if (null != returnVal) {
 
-//                    returnVal.getGobiiQCComplete().setDataFileName(instructionFileName);
 
                 } else {
 

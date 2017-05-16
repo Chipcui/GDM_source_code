@@ -5,7 +5,7 @@ import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiFileColumn;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
 import org.gobiiproject.gobiimodel.types.GobiiColumnType;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
-import org.gobiiproject.gobiiprocess.digester.LoaderGlobalConfigurations;
+import org.gobiiproject.gobiiprocess.digester.LoaderGlobalConfigs;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -59,10 +59,10 @@ public class CSVFileReader implements CSVFileReaderInterface {
 	 */
 	public static void parseInstructionFile(List<GobiiLoaderInstruction> instructions,String tmpFileLocation, String tmpFileSeparator) throws FileNotFoundException, IOException, ParseException{
 		CSVFileReaderInterface reader;
-		if(LoaderGlobalConfigurations.getSingleThreadFileRead()){
+		if(LoaderGlobalConfigs.getSingleThreadFileRead()){
 			for(GobiiLoaderInstruction i:instructions){
 				try {
-					reader=getInterface(tmpFileLocation,tmpFileSeparator,LoaderGlobalConfigurations.getVersionOneRead());
+					reader=getInterface(tmpFileLocation,tmpFileSeparator,LoaderGlobalConfigs.getVersionOneRead());
 					reader.processCSV(i);
 				} catch (InterruptedException e) {
 					ErrorLogger.logError("CSVFileReader","Interrupted reading instruction", e);
@@ -79,7 +79,7 @@ public class CSVFileReader implements CSVFileReaderInterface {
 		}
 		//Create threads
 		for(GobiiLoaderInstruction loaderInstruction:instructions){
-			reader=getInterface(tmpFileLocation,tmpFileSeparator,LoaderGlobalConfigurations.getVersionOneRead());
+			reader=getInterface(tmpFileLocation,tmpFileSeparator,LoaderGlobalConfigs.getVersionOneRead());
 			Thread processingThread=new Thread(new ReaderThread(reader,loaderInstruction));
 			threads.add(processingThread);
 			processingThread.start();

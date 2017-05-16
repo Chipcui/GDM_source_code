@@ -7,10 +7,7 @@ import org.gobiiproject.gobiimodel.utils.LineUtils;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -161,8 +158,8 @@ public class ConfigFileReaderProps {
         returnVal.setFileSystemLog(this.getPropValue(PROP_NAME_FILE_SYSTEM_LOG));
 
 
-        //List<CropConfig> cropConfigsToSerialize = new ArrayList<>();
-        Map<String, CropConfig> cropConfigs = new HashMap<>();
+        //List<GobiiCropConfig> cropConfigsToSerialize = new ArrayList<>();
+        Map<String, GobiiCropConfig> cropConfigs = new HashMap<>();
         for (int idx = 0; idx < cropPrefixes.length; idx++) {
 
             currentPrefix = cropPrefixes[idx];
@@ -182,7 +179,7 @@ public class ConfigFileReaderProps {
             String isActiveString = this.getPropValue(currentPrefix + CROP_SUFFIX_INTERMEDIATE_FILE_ACTIVE);
             boolean isActive = isActiveString.toLowerCase().equals("true");
 
-            CropConfig currentCropConfig = new CropConfig(currentGobiiCropType,
+            GobiiCropConfig currentGobiiCropConfig = new GobiiCropConfig(currentGobiiCropType,
                     serviceDomain,
                     serviceAppRoot,
                     servicePort,
@@ -201,7 +198,7 @@ public class ConfigFileReaderProps {
                     String currentUserName = this.getPropValue(currentDbPrefix + DB_SUFFIX_USER);
                     String currentPassword = this.getPropValue(currentDbPrefix + DB_SUFFIX_PASSWORD);
 
-                    CropDbConfig currentCropDbConfig = new CropDbConfig(
+                    GobiiCropDbConfig currentGobiiCropDbConfig = new GobiiCropDbConfig(
                             currentDbType,
                             currentHost,
                             currentDbName,
@@ -211,10 +208,10 @@ public class ConfigFileReaderProps {
                             false
                     );
 
-                    currentCropConfig.addCropDbConfig(currentDbType, currentCropDbConfig);
+                    currentGobiiCropConfig.addCropDbConfig(currentDbType, currentGobiiCropDbConfig);
                 }
 
-                cropConfigs.put(currentGobiiCropType, currentCropConfig);
+                cropConfigs.put(currentGobiiCropType, currentGobiiCropConfig);
             }
 
         } // iterate crop configs

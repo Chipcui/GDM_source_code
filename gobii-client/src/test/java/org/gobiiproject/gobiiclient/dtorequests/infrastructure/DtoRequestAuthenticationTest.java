@@ -14,7 +14,7 @@ import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiiclient.core.common.Authenticator;
 import org.gobiiproject.gobiiclient.core.common.TestConfiguration;
 import org.gobiiproject.gobiiclient.dtorequests.Helpers.TestUtils;
-import org.gobiiproject.gobiimodel.config.CropConfig;
+import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.headerlesscontainer.AnalysisDTO;
 import org.gobiiproject.gobiiapimodel.types.ControllerType;
 import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
@@ -71,21 +71,21 @@ public class DtoRequestAuthenticationTest {
 
     }
 
-    private String makeUrl(CropConfig cropConfig) throws Exception {
+    private String makeUrl(GobiiCropConfig gobiiCropConfig) throws Exception {
 
 //        String returnVal = "http://"
-//                + cropConfig.getServiceDomain()
+//                + gobiiCropConfig.getHost()
 //                + ":"
-//                + cropConfig.getServicePort().toString()
+//                + gobiiCropConfig.getPort().toString()
 //                + "/"
 //
 
         String returnVal;
 
         URL url = new URL("http",
-                cropConfig.getServiceDomain(),
-                cropConfig.getServicePort(),
-                cropConfig.getServiceAppRoot());
+                gobiiCropConfig.getHost(),
+                gobiiCropConfig.getPort(),
+                gobiiCropConfig.getContextPath());
 
         returnVal = url.toString();
         return returnVal;
@@ -95,14 +95,14 @@ public class DtoRequestAuthenticationTest {
     public void testSwitchToSecondServer() throws Exception {
 
         TestConfiguration testConfiguration = new TestConfiguration();
-        List<CropConfig> activeCropConfigs = testConfiguration.getConfigSettings().getActiveCropConfigs();
-        if (activeCropConfigs.size() > 1) {
+        List<GobiiCropConfig> activeGobiiCropConfigs = testConfiguration.getConfigSettings().getActiveCropConfigs();
+        if (activeGobiiCropConfigs.size() > 1) {
             // http://localhost:8282/gobii-dev/
 
 
             // ****************** FIRST LOGIN
-            CropConfig cropConfigOne = activeCropConfigs.get(0);
-            String serviceUrlOne = makeUrl(cropConfigOne);
+            GobiiCropConfig gobiiCropConfigOne = activeGobiiCropConfigs.get(0);
+            String serviceUrlOne = makeUrl(gobiiCropConfigOne);
             String cropIdOne = ClientContext.getInstance(serviceUrlOne, true).getDefaultCropType();
 
             ClientContext.getInstance(null, false)
@@ -117,14 +117,14 @@ public class DtoRequestAuthenticationTest {
             ClientContext.getInstance(null, false).login(testUser, testPassword);
 
             // ****************** SECOND LOGIN
-            CropConfig cropConfigTwo = activeCropConfigs.get(1);
-            String serviceUrlTwo = makeUrl(cropConfigTwo);
+            GobiiCropConfig gobiiCropConfigTwo = activeGobiiCropConfigs.get(1);
+            String serviceUrlTwo = makeUrl(gobiiCropConfigTwo);
 
 
             ClientContext.resetConfiguration();
 //            String cropIdTwo = ClientContext.getInstance(serviceUrlTwo,true).getDefaultCropType();
             ClientContext.getInstance(serviceUrlTwo, true);
-            String cropIdTwo = cropConfigTwo.getGobiiCropType();
+            String cropIdTwo = gobiiCropConfigTwo.getGobiiCropType();
 
             ClientContext.getInstance(null, false)
                     .setCurrentClientCrop(cropIdTwo);

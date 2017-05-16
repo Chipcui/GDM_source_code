@@ -1,23 +1,17 @@
 package org.gobiiproject.gobiidtomapping.impl.DtoMapNameIds;
 
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiidao.filesystem.LoaderFilesDAO;
+import org.gobiiproject.gobiidao.filesystem.InstructionFilesDAO;
 import org.gobiiproject.gobiidtomapping.DtoMapLoaderFiles;
-import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
-import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.headerlesscontainer.LoaderFilePreviewDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.LoaderInstructionFilesDTO;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
-import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * Created by Angel on 11/2016.
@@ -29,7 +23,7 @@ public class DtoMapLoaderFilesImpl implements DtoMapLoaderFiles {
     private final String INSTRUCTION_FILE_EXT = ".json";
 
     @Autowired
-    private LoaderFilesDAO loaderFilesDAO;
+    private InstructionFilesDAO instructionFilesDAO;
 
     public LoaderFilePreviewDTO makeDirectory(String cropType, String directoryName) throws GobiiDaoException {
 
@@ -55,19 +49,19 @@ public class DtoMapLoaderFilesImpl implements DtoMapLoaderFiles {
                     + GobiiFileProcessDir.RAW_USER_FILES.toString());
         }
 
-        if (!loaderFilesDAO.doesPathExist(fileCropDirectory)) {
-            loaderFilesDAO.makeDirectory(fileCropDirectory);
+        if (!instructionFilesDAO.doesPathExist(fileCropDirectory)) {
+            instructionFilesDAO.makeDirectory(fileCropDirectory);
         } else {
-            loaderFilesDAO.verifyDirectoryPermissions(fileCropDirectory);
+            instructionFilesDAO.verifyDirectoryPermissions(fileCropDirectory);
         }
 
 
         String directoryPath = fileCropDirectory + directoryName;
-        if (!loaderFilesDAO.doesPathExist(directoryPath)) {
-            loaderFilesDAO.makeDirectory(directoryPath);
+        if (!instructionFilesDAO.doesPathExist(directoryPath)) {
+            instructionFilesDAO.makeDirectory(directoryPath);
 
         } else {
-            loaderFilesDAO.verifyDirectoryPermissions(directoryPath);
+            instructionFilesDAO.verifyDirectoryPermissions(directoryPath);
         }
 
         returnVal.setDirectoryName(directoryPath);
@@ -109,11 +103,11 @@ public class DtoMapLoaderFilesImpl implements DtoMapLoaderFiles {
 
         String directoryPath = fileCropDirectory + directoryName;
 
-        if (!loaderFilesDAO.doesPathExist(directoryPath)) {
+        if (!instructionFilesDAO.doesPathExist(directoryPath)) {
             throw new GobiiDaoException("The specified directory does not exist: " + directoryPath);
         } else {
 
-//            returnVal = loaderFilesDAO.getPreview(directoryPath, fileFormat);
+//            returnVal = instructionFilesDAO.getPreview(directoryPath, fileFormat);
 
             String extension ="."+fileFormat;
             File directory = new File(directoryPath);
@@ -126,7 +120,7 @@ public class DtoMapLoaderFilesImpl implements DtoMapLoaderFiles {
                 for (File file : files) {
                     if (file.getName().endsWith(extension)) {
                         if (returnVal.getFileList().isEmpty()) {//if first file in directory, get preview
-                            returnVal.setFilePreview(loaderFilesDAO.getFilePreview(file, fileFormat));
+                            returnVal.setFilePreview(instructionFilesDAO.getFilePreview(file, fileFormat));
                         }
                         returnVal.getFileList().add(file.getName());
                     }

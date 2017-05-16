@@ -1,9 +1,9 @@
 package org.gobiiproject.gobiidtomapping.impl;
 
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiidao.filesystem.LoaderInstructionsDAO;
+import org.gobiiproject.gobiidao.filesystem.InstructionFilesDAO;
+import org.gobiiproject.gobiidao.filesystem.access.InstructionFileAccess;
 import org.gobiiproject.gobiidtomapping.*;
-import org.gobiiproject.gobiidtomapping.impl.DtoMapNameIds.DtoMapNameIdFetchVendorProtocols;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.headerlesscontainer.*;
@@ -18,9 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Phil on 4/12/2016.
@@ -32,7 +30,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
     private final String INSTRUCTION_FILE_EXT = ".json";
 
     @Autowired
-    private LoaderInstructionsDAO loaderInstructionsDAO;
+    private InstructionFilesDAO instructionsFilesDAO;
 
     @Autowired
     DtoMapExperiment dtoMapExperiment;
@@ -55,25 +53,25 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
 
         if (null != instructionFileDirectory) {
-            if (!loaderInstructionsDAO.doesPathExist(instructionFileDirectory)) {
-                loaderInstructionsDAO.makeDirectory(instructionFileDirectory);
+            if (!instructionsFilesDAO.doesPathExist(instructionFileDirectory)) {
+                instructionsFilesDAO.makeDirectory(instructionFileDirectory);
             } else {
-                loaderInstructionsDAO.verifyDirectoryPermissions(instructionFileDirectory);
+                instructionsFilesDAO.verifyDirectoryPermissions(instructionFileDirectory);
             }
         }
 
         if (gobiiFile.isCreateSource()) {
-            if (!loaderInstructionsDAO.doesPathExist(gobiiFile.getSource())) {
-                loaderInstructionsDAO.makeDirectory(gobiiFile.getSource());
+            if (!instructionsFilesDAO.doesPathExist(gobiiFile.getSource())) {
+                instructionsFilesDAO.makeDirectory(gobiiFile.getSource());
             } else {
-                loaderInstructionsDAO.verifyDirectoryPermissions(gobiiFile.getSource());
+                instructionsFilesDAO.verifyDirectoryPermissions(gobiiFile.getSource());
             }
         }
 
-        if (!loaderInstructionsDAO.doesPathExist(gobiiFile.getDestination())) {
-            loaderInstructionsDAO.makeDirectory(gobiiFile.getDestination());
+        if (!instructionsFilesDAO.doesPathExist(gobiiFile.getDestination())) {
+            instructionsFilesDAO.makeDirectory(gobiiFile.getDestination());
         } else {
-            loaderInstructionsDAO.verifyDirectoryPermissions(gobiiFile.getDestination());
+            instructionsFilesDAO.verifyDirectoryPermissions(gobiiFile.getDestination());
         }
 
     } // createDirectories()
@@ -144,7 +142,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                 if (currentGobiiFile.isRequireDirectoriesToExist()) {
 
-                    if (!loaderInstructionsDAO.doesPathExist(currentGobiiFile.getSource())) {
+                    if (!instructionsFilesDAO.doesPathExist(currentGobiiFile.getSource())) {
                         throw new GobiiDtoMappingException(GobiiStatusLevel.VALIDATION,
                                 GobiiValidationStatusType.ENTITY_DOES_NOT_EXIST,
                                 "require-to-exist was set to true, but the source file path does not exist: "
@@ -152,7 +150,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
                     }
 
-                    if (!loaderInstructionsDAO.doesPathExist(currentGobiiFile.getDestination())) {
+                    if (!instructionsFilesDAO.doesPathExist(currentGobiiFile.getDestination())) {
                         throw new GobiiDtoMappingException(GobiiStatusLevel.VALIDATION,
                                 GobiiValidationStatusType.ENTITY_DOES_NOT_EXIST,
                                 "require-to-exist was set to true, but the source file path does not exist: "
@@ -245,7 +243,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
                 } else {
 
                     // it's supposed to exist, so we check
-                    if (loaderInstructionsDAO.doesPathExist(currentGobiiFile.getSource())) {
+                    if (instructionsFilesDAO.doesPathExist(currentGobiiFile.getSource())) {
 
                         createDirectories(instructionFileDirectory,
                                 currentGobiiFile);
@@ -262,9 +260,10 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
 
             } // iterate instructions/files
 
-
-            loaderInstructionsDAO.writeInstructions(instructionFileFqpn,
+            InstructionFileAccess<List<GobiiLoaderInstruction>> instructionFileAccess = new InstructionFileAccess<>(GobiiLoaderInstruction.class);
+            instructionFileAccess.writeInstructions(instructionFileFqpn,
                     returnVal.getGobiiLoaderInstructions());
+
 
         } catch (GobiiException e) {
             throw e;
@@ -288,12 +287,12 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
                     + INSTRUCTION_FILE_EXT;
 
 
-            if (loaderInstructionsDAO.doesPathExist(instructionFile)) {
+            if (instructionsFilesDAO.doesPathExist(instructionFile)) {
 
-
+                InstructionFileAccess<GobiiLoaderInstruction> instructionFileAccessGobiiLoaderInstruction = new InstructionFileAccess<>(GobiiLoaderInstruction.class);
                 List<GobiiLoaderInstruction> instructions =
-                        loaderInstructionsDAO
-                                .getInstructions(instructionFile);
+                        instructionFileAccessGobiiLoaderInstruction.getInstructions(instructionFile,
+                                GobiiLoaderInstruction[].class);
 
                 if (null != instructions) {
                     returnVal.setInstructionFileName(instructionFileName);

@@ -14,7 +14,7 @@ import org.gobiiproject.gobiiclient.core.common.TestConfiguration;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiiclient.dtorequests.Helpers.*;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
-import org.gobiiproject.gobiimodel.config.CropConfig;
+import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.headerlesscontainer.CvDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.PingDTO;
@@ -53,7 +53,7 @@ public class DtoRequestMultiDbTest {
 //        List<String> activeCropTypes = configSettings
 //                .getActiveCropConfigs()
 //                .stream()
-//                .map(CropConfig::getGobiiCropType)
+//                .map(GobiiCropConfig::getGobiiCropType)
 //                .collect(Collectors.toList());
 
 
@@ -118,7 +118,7 @@ public class DtoRequestMultiDbTest {
         List<String> activeCropTypes = configSettings
                 .getActiveCropConfigs()
                 .stream()
-                .map(CropConfig::getGobiiCropType)
+                .map(GobiiCropConfig::getGobiiCropType)
                 .collect(Collectors.toList());
 
 

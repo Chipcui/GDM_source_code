@@ -6,13 +6,11 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.lang.math.NumberUtils;
-import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
-import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
 import org.gobiiproject.gobiiclient.core.common.ClientContext;
-import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
-import org.gobiiproject.gobiimodel.config.CropConfig;
-import org.gobiiproject.gobiimodel.config.CropDbConfig;
+import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
+import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
+import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiDbType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
@@ -94,9 +92,18 @@ public class GobiiConfig {
 
     private static String CONFIG_SVR_OPTIONS_HOST = "soH";
     private static String CONFIG_SVR_OPTIONS_PORT = "soN";
-    private static String CONFIG_SVR_OPTIONS_CONTEXT_ROOT = "soR";
+    private static String CONFIG_SVR_OPTIONS_CONTEXT_PATH = "soR";
     private static String CONFIG_SVR_OPTIONS_USER_NAME = "soU";
     private static String CONFIG_SVR_OPTIONS_PASSWORD = "soP";
+
+
+    private static String SVR_KDC = "ksvr";
+    private static String SVR_KDC_RESOURCE_START = "krscSTA";
+    private static String SVR_KDC_RESOURCE_STATUS = "krscSTT";
+    private static String SVR_KDC_RESOURCE_DOWNLOAD = "krscDLD";
+    private static String SVR_KDC_STATUS_CHECK_INTERVAL_SECS = "kstTRS";
+    private static String SVR_KDC_STATUS_CHECK_MAX_TIME_MINS = "kstTRM";
+    private static String SVR_KDC_STATUS_ACTIVE = "kA";
 
 
     private static String WAR_FILES_DIR = "wars/";
@@ -227,13 +234,13 @@ public class GobiiConfig {
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_BPAS, true, "Password for authenticated LDAP search", "LDAP password");
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_RUN_AS_USER, true, "LDAP user as which background processes will run", "Background LDAP user");
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_RUN_AS_PASSWORD, true, "LDAP password with which background processes authenticate", "Background LDAP password");
-            setOption(options, CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI , true, "Whether or not BRAPI calls require authentication", "BRAPI Authentication");
+            setOption(options, CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI, true, "Whether or not BRAPI calls require authentication", "BRAPI Authentication");
 
             setOption(options, CONFIG_SVR_GLOBAL_LDAP_DECRYPT, true, "Whether or not to decrypt ALL userids and passwords (true | false)", "decryption flag");
 
             setOption(options, CONFIG_SVR_OPTIONS_HOST, true, "Server option: hostname", "hostname");
             setOption(options, CONFIG_SVR_OPTIONS_PORT, true, "Server option: port number", "port number");
-            setOption(options, CONFIG_SVR_OPTIONS_CONTEXT_ROOT, true, "Server option: context root ("
+            setOption(options, CONFIG_SVR_OPTIONS_CONTEXT_PATH, true, "Server option: context root ("
                     + CONFIG_SVR_CROP_WEB
                     + ") or database name ("
                     + CONFIG_SVR_CROP_POSTGRES + " and " + "("
@@ -257,6 +264,13 @@ public class GobiiConfig {
 
             setOption(options, VALIDATE_CONFIGURATION, false, "Verify that the specified configuration has all the values necessary for the system to function (does not test that the servers exist); requires " + PROP_FILE_FQPN, "validate");
 
+            setOption(options, SVR_KDC, false, "KDC server to add or modify; must be accompanied by a server options and KDC options", "KDC Server options");
+            setOption(options, SVR_KDC_RESOURCE_START, true, "KDC qcStart resource path", "qcStart resource");
+            setOption(options, SVR_KDC_RESOURCE_STATUS, true, "KDC qcStatus resource path", "qcStatus resource");
+            setOption(options, SVR_KDC_RESOURCE_DOWNLOAD, true, "KDC qcDownload resource path", "qcDownload resource");
+            setOption(options, SVR_KDC_STATUS_CHECK_INTERVAL_SECS, true, "Status check interval for KDC jobs in seconds", "KDC status check interval");
+            setOption(options, SVR_KDC_STATUS_CHECK_MAX_TIME_MINS, true, "Total time to wait for KDC job completion in minutes", "KDC job wait threshold");
+            setOption(options, SVR_KDC_STATUS_ACTIVE, true, "Mark KDC server inactive 'false'", "KDC active");
 
             // parse our commandline
             CommandLineParser parser = new DefaultParser();
@@ -308,11 +322,11 @@ public class GobiiConfig {
                                 configSettings.setCurrentGobiiCropType(defaultCropType);
 
                                 String configServerUrl = "http://"
-                                        + configSettings.getCurrentCropConfig().getServiceDomain()
+                                        + configSettings.getCurrentCropConfig().getHost()
                                         + ":"
-                                        + configSettings.getCurrentCropConfig().getServicePort().toString()
+                                        + configSettings.getCurrentCropConfig().getPort().toString()
                                         + "/"
-                                        + configSettings.getCurrentCropConfig().getServiceAppRoot();
+                                        + configSettings.getCurrentCropConfig().getContextPath();
 
                                 String configFileContextFqpn = tomcatBaseDirectory + "/conf/context.xml";
                                 File configFileContext = new File(configFileContextFqpn);
@@ -457,6 +471,13 @@ public class GobiiConfig {
                     System.err.println("Value is required: " + options.getOption(PROP_FILE_FQPN).getDescription());
                 }
 
+            } else if (commandLine.hasOption(SVR_KDC)
+                    && commandLine.hasOption(PROP_FILE_FQPN)) {
+
+                if (setKdcOptions(options, commandLine)) {
+                    exitCode = 0;
+                }
+
             } else {
                 helpFormatter.printHelp(NAME_COMMAND, options);
             }
@@ -553,6 +574,122 @@ public class GobiiConfig {
         return returnVal;
     }
 
+    private static boolean setKdcOptions(Options options, CommandLine commandLine) {
+
+        boolean returnVal = false;
+
+        try {
+
+            String propFileFqpn = commandLine.getOptionValue(PROP_FILE_FQPN);
+
+            ConfigSettings configSettings = getConfigSettings(propFileFqpn);
+
+
+            List<String> argsSet = new ArrayList<>();
+            List<String> valsSet = new ArrayList<>();
+
+
+            String svrHost;
+            Integer port;
+            String contextPath;
+            String resourceQCStart;
+            String resourceQCStatus;
+            String resourceQCDownload;
+            Integer statusCheckIntervalSecs;
+            Integer statusWaitThresholdMinutes;
+            boolean active;
+
+
+            if (commandLine.hasOption(CONFIG_SVR_OPTIONS_HOST)) {
+                svrHost = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_HOST);
+                argsSet.add(CONFIG_SVR_OPTIONS_HOST);
+                valsSet.add(svrHost);
+                configSettings.getKDCConfig().setHost(svrHost);
+            }
+
+            if (commandLine.hasOption(CONFIG_SVR_OPTIONS_PORT)) {
+                port = Integer.parseInt(commandLine.getOptionValue(CONFIG_SVR_OPTIONS_PORT));
+                argsSet.add(CONFIG_SVR_OPTIONS_PORT);
+                valsSet.add(port.toString());
+                configSettings.getKDCConfig().setPort(port);
+            }
+
+            if (commandLine.hasOption(CONFIG_SVR_OPTIONS_CONTEXT_PATH)) {
+                contextPath = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_CONTEXT_PATH);
+                argsSet.add(CONFIG_SVR_OPTIONS_CONTEXT_PATH);
+                valsSet.add(contextPath);
+                configSettings.getKDCConfig().setContextPath(contextPath);
+            }
+
+            if (commandLine.hasOption(SVR_KDC_RESOURCE_START)) {
+                resourceQCStart = commandLine.getOptionValue(SVR_KDC_RESOURCE_START);
+                argsSet.add(SVR_KDC_RESOURCE_START);
+                valsSet.add(resourceQCStart);
+                configSettings.getKDCConfig().addPath(ServerConfigKDC.KDCResource.QC_START, resourceQCStart);
+            }
+
+            if (commandLine.hasOption(SVR_KDC_RESOURCE_STATUS)) {
+                resourceQCStatus = commandLine.getOptionValue(SVR_KDC_RESOURCE_STATUS);
+                argsSet.add(SVR_KDC_RESOURCE_STATUS);
+                valsSet.add(resourceQCStatus);
+                configSettings.getKDCConfig().addPath(ServerConfigKDC.KDCResource.QC_STATUS_, resourceQCStatus);
+            }
+
+            if (commandLine.hasOption(SVR_KDC_RESOURCE_DOWNLOAD)) {
+                resourceQCDownload = commandLine.getOptionValue(SVR_KDC_RESOURCE_DOWNLOAD);
+                argsSet.add(SVR_KDC_RESOURCE_DOWNLOAD);
+                valsSet.add(resourceQCDownload);
+                configSettings.getKDCConfig().addPath(ServerConfigKDC.KDCResource.QC_DOWNLOAD, resourceQCDownload);
+            }
+
+            if (commandLine.hasOption(SVR_KDC_STATUS_CHECK_INTERVAL_SECS)) {
+                statusCheckIntervalSecs = Integer.parseInt(commandLine.getOptionValue(SVR_KDC_STATUS_CHECK_INTERVAL_SECS));
+                argsSet.add(SVR_KDC_STATUS_CHECK_INTERVAL_SECS);
+                valsSet.add(statusCheckIntervalSecs.toString());
+                configSettings.getKDCConfig().setStatusCheckIntervalSecs(statusCheckIntervalSecs);
+            }
+
+            if (commandLine.hasOption(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS)) {
+                statusWaitThresholdMinutes = Integer.parseInt(commandLine.getOptionValue(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS));
+                argsSet.add(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS);
+                valsSet.add(statusWaitThresholdMinutes.toString());
+                configSettings.getKDCConfig().setMaxStatusCheckMins(statusWaitThresholdMinutes);
+            }
+
+            if (commandLine.hasOption(SVR_KDC_STATUS_ACTIVE)) {
+                String activeStr = commandLine.getOptionValue(SVR_KDC_STATUS_ACTIVE);
+                if(activeStr.toLowerCase().equals("false")) {
+                    active = false;
+                } else {
+                    active = true;
+                }
+            } else {
+                active = true;
+            }
+
+            argsSet.add(SVR_KDC_STATUS_ACTIVE);
+            valsSet.add(active ? "true" : "false");
+            configSettings.getKDCConfig().setActive(active);
+
+
+            writeConfigSettingsMessage(options,
+                    propFileFqpn,
+                    argsSet,
+                    valsSet,
+                    null);
+
+            configSettings.commit();
+            returnVal = true;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnVal = false;
+        }
+
+        return returnVal;
+    }
+
     private static boolean setGobiiConfiguration(String propFileFqpn, Options options, CommandLine commandLine) {
 
         boolean returnVal = true;
@@ -611,8 +748,8 @@ public class GobiiConfig {
 
                 String cropId = commandLine.getOptionValue(CONFIG_CROP_ID);
                 if (configSettings.isCropDefined(cropId)) {
-                    CropConfig cropConfig = configSettings.getCropConfig(cropId);
-                    cropConfig.setActive(true);
+                    GobiiCropConfig gobiiCropConfig = configSettings.getCropConfig(cropId);
+                    gobiiCropConfig.setActive(true);
                 } else {
                     returnVal = false;
                     System.err.println("The specified crop does not exist: " + cropId);
@@ -625,8 +762,8 @@ public class GobiiConfig {
 
                 String cropId = commandLine.getOptionValue(CONFIG_CROP_ID);
                 if (configSettings.isCropDefined(cropId)) {
-                    CropConfig cropConfig = configSettings.getCropConfig(cropId);
-                    cropConfig.setActive(false);
+                    GobiiCropConfig gobiiCropConfig = configSettings.getCropConfig(cropId);
+                    gobiiCropConfig.setActive(false);
                 } else {
                     returnVal = false;
                     System.err.println("The specified crop does not exist: " + cropId);
@@ -798,8 +935,8 @@ public class GobiiConfig {
 
                 if (commandLine.hasOption(CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI)) {
                     ldapAuthenticateBrapi = commandLine.getOptionValue(CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI)
-                    .toLowerCase()
-                    .equals("true");
+                            .toLowerCase()
+                            .equals("true");
                     argsSet.add(CONFIG_SVR_GLOBAL_LDAP_AUTHENTICATE_BRAPI);
                     valsSet.add(ldapAuthenticateBrapi ? "true" : "false");
                 }
@@ -896,12 +1033,12 @@ public class GobiiConfig {
                         configSettings.setCrop(cropId, true, null, null, null);
                     }
 
-                    CropConfig cropConfig = configSettings.getCropConfig(cropId);
+                    GobiiCropConfig gobiiCropConfig = configSettings.getCropConfig(cropId);
 
                     String contextRoot = null;
-                    if (commandLine.hasOption(CONFIG_SVR_OPTIONS_CONTEXT_ROOT)) {
-                        contextRoot = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_CONTEXT_ROOT);
-                        argsSet.add(CONFIG_SVR_OPTIONS_CONTEXT_ROOT);
+                    if (commandLine.hasOption(CONFIG_SVR_OPTIONS_CONTEXT_PATH)) {
+                        contextRoot = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_CONTEXT_PATH);
+                        argsSet.add(CONFIG_SVR_OPTIONS_CONTEXT_PATH);
                         valsSet.add(contextRoot);
                     }
 
@@ -910,9 +1047,9 @@ public class GobiiConfig {
                         argsSet.add(CONFIG_SVR_CROP_WEB);
                         valsSet.add("");
 
-                        cropConfig.setServiceDomain(svrHost);
-                        cropConfig.setServicePort(svrPort);
-                        cropConfig.setServiceAppRoot(contextRoot);
+                        gobiiCropConfig.setHost(svrHost);
+                        gobiiCropConfig.setPort(svrPort);
+                        gobiiCropConfig.setContextPath(contextRoot);
 
                     } else if (commandLine.hasOption(CONFIG_SVR_CROP_POSTGRES) ||
                             (commandLine.hasOption(CONFIG_SVR_CROP_MONET))) {
@@ -929,7 +1066,7 @@ public class GobiiConfig {
                         }
 
 
-                        cropConfig.setCropDbConfig(gobiiDbType,
+                        gobiiCropConfig.setCropDbConfig(gobiiDbType,
                                 svrHost,
                                 contextRoot,
                                 svrPort,
@@ -1151,57 +1288,57 @@ public class GobiiConfig {
                     returnVal = false;
                 }
 
-                for (CropConfig currentCropConfig : configSettings.getActiveCropConfigs()) {
+                for (GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs()) {
 
 
-                    if (!currentCropConfig.getServiceAppRoot().toLowerCase().contains(currentCropConfig.getGobiiCropType())) {
+                    if (!currentGobiiCropConfig.getContextPath().toLowerCase().contains(currentGobiiCropConfig.getGobiiCropType())) {
                         System.err.println("The context root "
-                                + currentCropConfig.getServiceAppRoot()
+                                + currentGobiiCropConfig.getContextPath()
                                 + " does not contain the crop ID "
-                                + currentCropConfig.getGobiiCropType());
+                                + currentGobiiCropConfig.getGobiiCropType());
                         returnVal = false;
                     }
 
-                    if (LineUtils.isNullOrEmpty(currentCropConfig.getGobiiCropType())) {
+                    if (LineUtils.isNullOrEmpty(currentGobiiCropConfig.getGobiiCropType())) {
                         System.err.println("The crop type for the active crop  is not defined");
                         returnVal = false;
                     }
 
 
-                    if (LineUtils.isNullOrEmpty(currentCropConfig.getServiceDomain())) {
-                        System.err.println("The web server host for the active crop (" + currentCropConfig.getGobiiCropType() + ") is not defined");
+                    if (LineUtils.isNullOrEmpty(currentGobiiCropConfig.getHost())) {
+                        System.err.println("The web server host for the active crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
 
                     }
 
 
-                    if (LineUtils.isNullOrEmpty(currentCropConfig.getServiceAppRoot())) {
-                        System.err.println("The web server context path for the active crop (" + currentCropConfig.getGobiiCropType() + ") is not defined");
+                    if (LineUtils.isNullOrEmpty(currentGobiiCropConfig.getContextPath())) {
+                        System.err.println("The web server context path for the active crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
 
                     }
 
 
-                    if (currentCropConfig.getServicePort() == null) {
-                        System.err.println("The web server port for the active crop (" + currentCropConfig.getGobiiCropType() + ") is not defined");
+                    if (currentGobiiCropConfig.getPort() == null) {
+                        System.err.println("The web server port for the active crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
 
                     }
 
-                    CropDbConfig cropDbConfigPostGres = currentCropConfig.getCropDbConfig(GobiiDbType.POSTGRESQL);
-                    if (cropDbConfigPostGres == null) {
-                        System.err.println("The postgresdb for the active crop (" + currentCropConfig.getGobiiCropType() + ") is not defined");
+                    GobiiCropDbConfig gobiiCropDbConfigPostGres = currentGobiiCropConfig.getCropDbConfig(GobiiDbType.POSTGRESQL);
+                    if (gobiiCropDbConfigPostGres == null) {
+                        System.err.println("The postgresdb for the active crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
                     } else {
-                        returnVal = returnVal && verifyDbConfig(cropDbConfigPostGres);
+                        returnVal = returnVal && verifyDbConfig(gobiiCropDbConfigPostGres);
                     }
 
-                    CropDbConfig cropDbConfigMonetDB = currentCropConfig.getCropDbConfig(GobiiDbType.MONETDB);
-                    if (cropDbConfigMonetDB == null) {
-                        System.err.println("The monetdb for the active crop (" + currentCropConfig.getGobiiCropType() + ") is not defined");
+                    GobiiCropDbConfig gobiiCropDbConfigMonetDB = currentGobiiCropConfig.getCropDbConfig(GobiiDbType.MONETDB);
+                    if (gobiiCropDbConfigMonetDB == null) {
+                        System.err.println("The monetdb for the active crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
                     } else {
-                        returnVal = returnVal && verifyDbConfig(cropDbConfigMonetDB);
+                        returnVal = returnVal && verifyDbConfig(gobiiCropDbConfigMonetDB);
                     }
                 }
             }
@@ -1216,35 +1353,35 @@ public class GobiiConfig {
     } //
 
 
-    private static boolean verifyDbConfig(CropDbConfig cropDbConfig) {
+    private static boolean verifyDbConfig(GobiiCropDbConfig gobiiCropDbConfig) {
 
         boolean returnVal = true;
 
-        if (LineUtils.isNullOrEmpty(cropDbConfig.getHost())) {
-            System.err.println("The db config for " + cropDbConfig.getGobiiDbType().toString() + " does not define a host");
+        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getHost())) {
+            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a host");
             returnVal = false;
         }
 
 
-        if (cropDbConfig.getPort() == null) {
-            System.err.println("The db config for " + cropDbConfig.getGobiiDbType().toString() + " does not define a port");
+        if (gobiiCropDbConfig.getPort() == null) {
+            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a port");
             returnVal = false;
         }
 
 
-        if (LineUtils.isNullOrEmpty(cropDbConfig.getUserName())) {
-            System.err.println("The db config for " + cropDbConfig.getGobiiDbType().toString() + " does not define a user name");
+        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getUserName())) {
+            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a user name");
             returnVal = false;
         }
 
 
-        if (LineUtils.isNullOrEmpty(cropDbConfig.getPassword())) {
-            System.err.println("The db config for " + cropDbConfig.getGobiiDbType().toString() + " does not define a password");
+        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getPassword())) {
+            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a password");
             returnVal = false;
         }
 
-        if (LineUtils.isNullOrEmpty(cropDbConfig.getDbName())) {
-            System.err.println("The db config for " + cropDbConfig.getGobiiDbType().toString() + " does not define a database name");
+        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getContextPath())) {
+            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a database name");
             returnVal = false;
         }
 
@@ -1435,7 +1572,7 @@ public class GobiiConfig {
                 }
 
                 if (returnVal) {
-                    for (CropConfig currentCrop : configSettings.getActiveCropConfigs()) {
+                    for (GobiiCropConfig currentCrop : configSettings.getActiveCropConfigs()) {
 
                         String warDestinationFqpn = warDestinationRoot + "gobii-" + currentCrop
                                 .getGobiiCropType()

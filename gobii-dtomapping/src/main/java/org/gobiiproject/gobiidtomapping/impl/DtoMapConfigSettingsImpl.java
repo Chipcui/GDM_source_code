@@ -3,7 +3,7 @@ package org.gobiiproject.gobiidtomapping.impl;
 import org.gobiiproject.gobiidtomapping.DtoMapConfigSettings;
 import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
-import org.gobiiproject.gobiimodel.config.CropConfig;
+import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.headerlesscontainer.ConfigSettingsDTO;
@@ -27,20 +27,20 @@ public class DtoMapConfigSettingsImpl implements DtoMapConfigSettings {
         try {
             ConfigSettings configSettings = new ConfigSettings();
             returnVal.setDefaultCrop(configSettings.getDefaultGobiiCropType());
-            for (CropConfig currentCropConfig : configSettings.getActiveCropConfigs()) {
+            for (GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs()) {
 
-                ServerConfig currentServerConfig = new ServerConfig(currentCropConfig,
-                        configSettings.getProcessingPath(currentCropConfig.getGobiiCropType(),
+                ServerConfig currentServerConfig = new ServerConfig(currentGobiiCropConfig,
+                        configSettings.getProcessingPath(currentGobiiCropConfig.getGobiiCropType(),
                                 GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS),
-                        configSettings.getProcessingPath(currentCropConfig.getGobiiCropType(),
+                        configSettings.getProcessingPath(currentGobiiCropConfig.getGobiiCropType(),
                                 GobiiFileProcessDir.LOADER_INSTRUCTIONS),
-                        configSettings.getProcessingPath(currentCropConfig.getGobiiCropType(),
+                        configSettings.getProcessingPath(currentGobiiCropConfig.getGobiiCropType(),
                                 GobiiFileProcessDir.LOADER_INTERMEDIATE_FILES),
-                        configSettings.getProcessingPath(currentCropConfig.getGobiiCropType(),
+                        configSettings.getProcessingPath(currentGobiiCropConfig.getGobiiCropType(),
                                 GobiiFileProcessDir.RAW_USER_FILES)
                         );
 
-                returnVal.getServerConfigs().put(currentCropConfig.getGobiiCropType(),
+                returnVal.getServerConfigs().put(currentGobiiCropConfig.getGobiiCropType(),
                         currentServerConfig);
             }
 

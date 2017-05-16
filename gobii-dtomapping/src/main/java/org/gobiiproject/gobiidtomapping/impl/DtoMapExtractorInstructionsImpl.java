@@ -1,7 +1,8 @@
 package org.gobiiproject.gobiidtomapping.impl;
 
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiidao.filesystem.ExtractorInstructionsDAO;
+import org.gobiiproject.gobiidao.filesystem.InstructionFilesDAO;
+import org.gobiiproject.gobiidao.filesystem.access.InstructionFileAccess;
 import org.gobiiproject.gobiidtomapping.DtoMapContact;
 import org.gobiiproject.gobiidtomapping.DtoMapExtractorInstructions;
 import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
@@ -16,7 +17,6 @@ import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiFileType;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
-import org.gobiiproject.gobiimodel.utils.DateUtils;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,11 +36,11 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
     private final String DATA_FILE_EXT = ".txt";
 
     @Autowired
-    private ExtractorInstructionsDAO extractorInstructionsDAO;
+    private InstructionFilesDAO extractorInstructionsDAO;
 
     @Autowired
     DtoMapContact dtoMapContact;
-
+    private  InstructionFileAccess<GobiiExtractorInstruction> instructionFileAccessGobiiExtractorInstruction = new InstructionFileAccess<>(GobiiExtractorInstruction.class);
 
     @Override
     public void writeDataFile(String cropType, GobiiExtractFilterType gobiiExtractFilterType, String jobId, byte[] byteArray) throws GobiiException {
@@ -278,8 +278,9 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
             } // iterate instructions/files
 
             if (!extractorInstructionsDAO.doesPathExist(instructionFileFqpn)) {
+                InstructionFileAccess<List<GobiiExtractorInstruction>> instructionFileAccess = new InstructionFileAccess<>(GobiiExtractorInstruction.class);
 
-                if (extractorInstructionsDAO.writeInstructions(instructionFileFqpn,
+                if (instructionFileAccess.writeInstructions(instructionFileFqpn,
                         returnVal.getGobiiExtractorInstructions())) {
 
                     returnVal.setJobId(extractorInstructionFilesDTO.getInstructionFileName());
@@ -328,12 +329,13 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
 
             returnVal.setInstructionFileName(instructionFileName);
 
+
             List<GobiiExtractorInstruction> gobiiExtractorInstructionsWithStatus;
             if (extractorInstructionsDAO.doesPathExist(fileDirExtractorInProgressFqpn)) {
                 //check if file  is in InProgress
 
-                List<GobiiExtractorInstruction> gobiiExtractorInstructionsFromFile = extractorInstructionsDAO
-                        .getGobiiExtractorInstructionsFromFile(fileDirExtractorInProgressFqpn);
+                List<GobiiExtractorInstruction> gobiiExtractorInstructionsFromFile = instructionFileAccessGobiiExtractorInstruction.
+                        getInstructions(fileDirExtractorInProgressFqpn,GobiiExtractorInstruction[].class);
 
                 gobiiExtractorInstructionsWithStatus = setGobiiExtractorInstructionsStatus(gobiiExtractorInstructionsFromFile,
                         GobiiFileProcessDir.EXTRACTOR_INPROGRESS);
@@ -344,8 +346,8 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
             } else if (extractorInstructionsDAO.doesPathExist(fileDirExtractorInstructionsFqpn)) {
                 //check if file just started
 
-                List<GobiiExtractorInstruction> gobiiExtractorInstructionsFromFile = extractorInstructionsDAO
-                        .getGobiiExtractorInstructionsFromFile(fileDirExtractorInstructionsFqpn);
+                List<GobiiExtractorInstruction> gobiiExtractorInstructionsFromFile = instructionFileAccessGobiiExtractorInstruction.
+                        getInstructions(fileDirExtractorInstructionsFqpn,GobiiExtractorInstruction[].class);
 
                 gobiiExtractorInstructionsWithStatus = setGobiiExtractorInstructionsStatus(gobiiExtractorInstructionsFromFile,
                         GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS);
@@ -355,8 +357,8 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
             } else if (extractorInstructionsDAO.doesPathExist(fileDirExtractorDoneFqpn)) {
                 //check if file  is already done
 
-                List<GobiiExtractorInstruction> gobiiExtractorInstructionsFromFile = extractorInstructionsDAO
-                        .getGobiiExtractorInstructionsFromFile(fileDirExtractorDoneFqpn);
+                List<GobiiExtractorInstruction> gobiiExtractorInstructionsFromFile = instructionFileAccessGobiiExtractorInstruction.
+                        getInstructions(fileDirExtractorDoneFqpn,GobiiExtractorInstruction[].class);
 
                 gobiiExtractorInstructionsWithStatus = setGobiiExtractorInstructionsStatus(gobiiExtractorInstructionsFromFile,
                         GobiiFileProcessDir.EXTRACTOR_DONE);
