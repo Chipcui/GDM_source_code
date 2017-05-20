@@ -2,7 +2,7 @@ package org.gobiiproject.gobiiclient.core.gobii;
 
 import org.apache.http.HttpStatus;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
-import org.gobiiproject.gobiiapimodel.restresources.RestUri;
+import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiimodel.types.RestMethodTypes;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;

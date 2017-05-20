@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import org.gobiiproject.gobiibrapi.core.common.BrapiMetaData;
-import org.gobiiproject.gobiimodel.tobemovedtoapimodel.Pagination;
+import org.gobiiproject.gobiiapimodel.payload.Pagination;
 
 import java.util.List;
 import java.util.Map;

@@ -26,7 +26,6 @@ public class DtoMapConfigSettingsImpl implements DtoMapConfigSettings {
 
         try {
             ConfigSettings configSettings = new ConfigSettings();
-            returnVal.setDefaultCrop(configSettings.getDefaultGobiiCropType());
             for (GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs()) {
 
                 ServerConfig currentServerConfig = new ServerConfig(currentGobiiCropConfig,

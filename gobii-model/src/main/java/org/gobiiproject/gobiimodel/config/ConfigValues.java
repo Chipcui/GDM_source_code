@@ -57,9 +57,6 @@ class ConfigValues {
     private String currentGobiiCropType;
 
     @Element(required = false)
-    private String defaultGobiiCropType;
-
-    @Element(required = false)
     private String emailSvrType;
 
     @Element(required = false)
@@ -189,30 +186,6 @@ class ConfigValues {
         return currentGobiiCropType;
     }
 
-    public String getDefaultGobiiCropType() {
-        return defaultGobiiCropType;
-    }
-
-
-    public void setDefaultGobiiCropType(String defaultGobiiCropType) throws Exception {
-
-
-        if (!cropConfigs.containsKey(defaultGobiiCropType)) {
-            throw new Exception("The specified crop cannot be the default crop because it does not exist: " + defaultGobiiCropType);
-        }
-
-
-        if (this.getActiveCropConfigs()
-                .stream()
-                .filter(c -> c.getGobiiCropType().equals(defaultGobiiCropType))
-                .count() != 1) {
-            throw new Exception("The specified crop cannot be the default crop because it is not marked active: " + defaultGobiiCropType);
-
-        }
-
-
-        this.defaultGobiiCropType = defaultGobiiCropType;
-    }
 
     public Map<String, GobiiCropConfig> getCropConfigs() {
 
@@ -259,11 +232,6 @@ class ConfigValues {
             throw new Exception("The specified crop cannot be removed because it does not exist: " + cropId);
         }
 
-        if ((!LineUtils.isNullOrEmpty(getDefaultGobiiCropType()))
-                && getDefaultGobiiCropType().equals(cropId)) {
-
-            throw new Exception("Unable to remove crop " + cropId + " because it is the default crop in this configuration");
-        }
 
         if ((!LineUtils.isNullOrEmpty(getTestExecConfig().getTestCrop())) &&
                 getTestExecConfig().getTestCrop().equals(cropId)) {

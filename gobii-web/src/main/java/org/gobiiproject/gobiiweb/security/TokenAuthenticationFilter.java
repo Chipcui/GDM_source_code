@@ -5,12 +5,10 @@
 // ************************************************************************
 package org.gobiiproject.gobiiweb.security;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gobiiproject.gobidomain.security.TokenInfo;
 import org.gobiiproject.gobidomain.services.AuthenticationService;
 
 
-import org.gobiiproject.gobiimodel.tobemovedtoapimodel.HeaderAuth;
 import org.gobiiproject.gobiiweb.CropRequestAnalyzer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,7 +109,7 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
             } else {
 
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                LOGGER.error("Unable to proceed with authentication: no crop type could be derived from the request");
+                LOGGER.error("Unable to proceed with authentication: no crop type could be derived from the request url");
 
             } // if-else crop type could not be found
 

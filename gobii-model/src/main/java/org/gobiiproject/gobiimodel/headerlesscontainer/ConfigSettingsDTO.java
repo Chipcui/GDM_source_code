@@ -1,7 +1,6 @@
 package org.gobiiproject.gobiimodel.headerlesscontainer;
 
 import org.gobiiproject.gobiimodel.config.ServerConfig;
-import org.gobiiproject.gobiimodel.tobemovedtoapimodel.Header;
 
 
 import java.util.LinkedHashMap;
@@ -35,11 +34,4 @@ public class ConfigSettingsDTO extends DTOBase {
 
     String defaultCrop;
 
-    public String getDefaultCrop() {
-        return defaultCrop;
-    }
-
-    public void setDefaultCrop(String defaultCrop) {
-        this.defaultCrop = defaultCrop;
-    }
 }

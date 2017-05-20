@@ -1,7 +1,6 @@
 package org.gobiiproject.gobiiweb.automation;
 
-import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
-import org.gobiiproject.gobiimodel.tobemovedtoapimodel.Header;
+import org.gobiiproject.gobiiapimodel.payload.Header;
 import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletResponse;

@@ -27,7 +27,8 @@ import org.gobiiproject.gobidomain.services.PingService;
 import org.gobiiproject.gobidomain.services.PlatformService;
 import org.gobiiproject.gobidomain.services.ProjectService;
 import org.gobiiproject.gobidomain.services.ReferenceService;
-import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
+import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
 import org.gobiiproject.gobiibrapi.calls.calls.BrapiResponseCalls;
 import org.gobiiproject.gobiibrapi.calls.calls.BrapiResponseMapCalls;
 import org.gobiiproject.gobiibrapi.calls.germplasm.BrapiResponseGermplasmByDbId;
@@ -121,7 +122,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Scope(value = "request")
 @Controller
-@RequestMapping(ServiceRequestId.SERVICE_PATH_BRAPI)
+@RequestMapping(GobiiControllerType.SERVICE_PATH_BRAPI)
 public class BRAPIIControllerV1 {
 
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(BRAPIIControllerV1.class);

@@ -5,14 +5,13 @@ import org.gobiiproject.gobidomain.security.impl.TokenManagerSingle;
 import org.gobiiproject.gobidomain.services.AuthenticationService;
 import org.gobiiproject.gobidomain.services.impl.AuthenticationServiceDefault;
 import org.gobiiproject.gobidomain.services.impl.UserDetailsServiceImpl;
-import org.gobiiproject.gobiiapimodel.types.ControllerType;
-import org.gobiiproject.gobiiapimodel.types.ServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
+import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiiweb.security.TokenAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,10 +20,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.filter.GenericFilterBean;
-import sun.net.www.content.text.Generic;
 
 
 /**
@@ -51,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // see http://stackoverflow.com/questions/30366405/how-to-disable-spring-security-for-particular-url
     @Override
     public void configure(WebSecurity web) throws Exception {
-        String configSettingsUrl = ServiceRequestId.URL_CONFIGSETTINGS.getRequestUrl(null, ControllerType.GOBII);
+        String configSettingsUrl = GobiiServiceRequestId.URL_CONFIGSETTINGS.getRequestUrl(null, GobiiControllerType.GOBII.getControllerPath());
         web.ignoring().antMatchers( configSettingsUrl,
                 "/login",
                 "/index.html",
@@ -60,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/js/**");
 
         if(! CONFIG_SETTINGS.isAuthenticateBrapi() ) {
-            String allBrapiUrls = ServiceRequestId.getControllerPath(ControllerType.BRAPI) + "**";
+            String allBrapiUrls = GobiiControllerType.BRAPI.getControllerPath() + "**";
             web.ignoring().antMatchers(allBrapiUrls );
         }
     }
@@ -71,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // intellij complains about the derivation of BasicAuthenticationFilter.class,
         // but it is WRONG; this works fine
-        String allGobiimethods = ServiceRequestId.SERVICE_PATH_GOBII + "/**";
+        String allGobiimethods = GobiiControllerType.GOBII.getControllerPath() + "/**";
         http.addFilterAfter(this.filterBean(), BasicAuthenticationFilter.class);
         http.
                 csrf().disable().

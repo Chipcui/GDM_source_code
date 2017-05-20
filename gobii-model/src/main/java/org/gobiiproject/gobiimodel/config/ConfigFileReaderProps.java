@@ -133,15 +133,6 @@ public class ConfigFileReaderProps {
 
         String currentPrefix = null;
 
-        String candidateCropName =
-                this.getPropValue(PROP_NAME_WEB_SVR_DEFAULT_CROP).toLowerCase();
-        if (!LineUtils.isNullOrEmpty(candidateCropName)) {
-            returnVal.setDefaultGobiiCropType(candidateCropName);
-            returnVal.setCurrentGobiiCropType(returnVal.getDefaultGobiiCropType());
-        } else {
-            throw new Exception("The configuration does not specify a default crop");
-        }
-
         returnVal.setEmailSvrType(this.getPropValue(PROP_NAME_MAIL_SVR_TYPE));
         returnVal.setEmailSvrDomain(this.getPropValue(PROP_NAME_MAIL_SVR_DOMAIN));
 
@@ -217,14 +208,6 @@ public class ConfigFileReaderProps {
         } // iterate crop configs
 
         returnVal.setCropConfigs(cropConfigs);
-
-        if (0 == returnVal.getActiveCropConfigs()
-                .stream()
-                .filter(c -> c.getGobiiCropType().equals(returnVal.getDefaultGobiiCropType()))
-                .collect(Collectors.toList())
-                .size()) {
-            throw (new Exception("The server for the default crop type " + returnVal.getDefaultGobiiCropType().toString() + " is not marked active!"));
-        }
 
         return returnVal;
 

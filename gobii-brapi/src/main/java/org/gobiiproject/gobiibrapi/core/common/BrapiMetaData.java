@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiibrapi.core.common;
 
-import org.gobiiproject.gobiimodel.tobemovedtoapimodel.Pagination;
+import org.gobiiproject.gobiiapimodel.payload.Pagination;
 
 import java.util.ArrayList;
 import java.util.HashMap;
