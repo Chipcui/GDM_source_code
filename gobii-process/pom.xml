@@ -144,8 +144,8 @@
 			<version>${powermock-module-junit4}</version>
 			<scope>test</scope>
 		</dependency>
-
-
+		
+		
     </dependencies>
 
     <build>

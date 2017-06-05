@@ -1,10 +1,7 @@
 package org.gobiiproject.gobiiprocess.digester;
 
 import java.io.*;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.text.ParseException;
 import java.util.*;
 
@@ -15,10 +12,8 @@ import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
-import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
-import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiDataSetExtract;
-import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiExtractorInstruction;
+import org.gobiiproject.gobiimodel.config.*;
+import org.gobiiproject.gobiimodel.dto.instructions.extractor.*;
 import org.gobiiproject.gobiimodel.headerlesscontainer.DataSetDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.ExtractorInstructionFilesDTO;
 import org.gobiiproject.gobiimodel.utils.DateUtils;
@@ -26,34 +21,27 @@ import org.gobiiproject.gobiimodel.utils.FileSystemInterface;
 import org.gobiiproject.gobiiapimodel.payload.HeaderStatusMessage;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
-import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiFile;
-import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiFileColumn;
-import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
+import org.gobiiproject.gobiimodel.dto.instructions.loader.*;
 import org.gobiiproject.gobiimodel.types.*;
-import org.gobiiproject.gobiimodel.utils.LineUtils;
-import org.gobiiproject.gobiimodel.utils.email.ProcessMessage;
-import org.gobiiproject.gobiimodel.utils.email.MailInterface;
+import org.gobiiproject.gobiimodel.utils.*;
+import org.gobiiproject.gobiimodel.utils.email.*;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 import org.gobiiproject.gobiiprocess.HDF5Interface;
-import org.gobiiproject.gobiiprocess.digester.HelperFunctions.PGArray;
-import org.gobiiproject.gobiiprocess.digester.csv.CSVFileReader;
-import static org.gobiiproject.gobiimodel.utils.HelperFunctions.getDestinationFile;
-import static org.gobiiproject.gobiiprocess.digester.utils.IUPACmatrixToBi.convertIUPACtoBi;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.*;
+import org.gobiiproject.gobiiprocess.digester.csv.CSVFileReaderV2;
 import org.gobiiproject.gobiiprocess.digester.vcf.VCFFileReader;
-import org.gobiiproject.gobiiprocess.digester.vcf.VCFTransformer;
 
-import static org.gobiiproject.gobiimodel.utils.FileSystemInterface.mv;
 import static org.gobiiproject.gobiimodel.utils.FileSystemInterface.rm;
 import static org.gobiiproject.gobiimodel.utils.FileSystemInterface.rmIfExist;
+import static org.gobiiproject.gobiimodel.utils.HelperFunctions.getDestinationFile;
 import static org.gobiiproject.gobiimodel.utils.HelperFunctions.parseInstructionFile;
 import static org.gobiiproject.gobiimodel.utils.HelperFunctions.tryExec;
 import static org.gobiiproject.gobiimodel.utils.error.ErrorLogger.logError;
-import static org.gobiiproject.gobiiprocess.digester.utils.TransposeMatrix.transposeMatrix;
 
 /**
  * Base class for processing instruction files. Start of chain of control for Digester. Takes first argument as instruction file, or promts user.
  * The File Reader runs off the Instruction Files, which tell it where the input files are, and how to process them.
- * {@link CSVFileReader} and {@link VCFFileReader} deal with specific file formats. Overall logic and program flow come from this class.
+ * {@link CSVFileReaderV2} and {@link VCFFileReader} deal with specific file formats. Overall logic and program flow come from this class.
  *
  * This class deals with external commands and scripts, and coordinates uploads to the IFL and directly talks to HDF5 and MonetDB.
  * @author jdl232 Josh L.S.
@@ -166,7 +154,7 @@ public class GobiiFileReader {
 		pm.addIdentifier("Dataset Type",zero.getDatasetType());
 
 
-		String dstFilePath=HelperFunctions.getDestinationFile(zero);//Intermediate 'file'
+		String dstFilePath= getDestinationFile(zero);//Intermediate 'file'
 		File dstDir=new File(dstFilePath);
 		if(!dstDir.isDirectory()){ //Note: if dstDir is a non-existant
 			dstDir=new File(dstFilePath.substring(0, dstFilePath.lastIndexOf("/")));
@@ -250,7 +238,7 @@ public class GobiiFileReader {
 			case VCF:
 				//INTENTIONAL FALLTHROUGH
 			case GENERIC:
-				CSVFileReader.parseInstructionFile(list, dstDir.getAbsolutePath(), "/");
+				CSVFileReaderV2.parseInstructionFile(list);
 				break;
 			default:
 				System.err.println("Unable to deal with file type " + zero.getGobiiFile().getGobiiFileType());
@@ -271,100 +259,61 @@ public class GobiiFileReader {
 					break;
 				}
 			}
+			String fromFile = getDestinationFile(inst);
+			SequenceInPlaceTransform intermediateFile=new SequenceInPlaceTransform(fromFile,errorPath);
 			if (dst != null && inst.getTable().equals(VARIANT_CALL_TABNAME)) {
 				errorPath = getLogName(inst, gobiiCropConfig, crop, "Matrix_Processing"); //Temporary Error File Name
-				String function = null;
-				boolean functionStripsHeader = false;
-				boolean isSNPSepRemoval=false;
-				String fromFile = HelperFunctions.getDestinationFile(inst);
-				String toFile = HelperFunctions.getDestinationFile(inst) + ".2";
-				boolean hasFunction = false;
+				boolean transformStripsHeader = false;
+				MobileTransform mainTransform=null;
 				switch (dst.toUpperCase()) {
 					case "NUCLEOTIDE_2_LETTER":
-						function = "python " + loaderScriptPath + "etc/SNPSepRemoval.py";
-						functionStripsHeader = true;
-						isSNPSepRemoval=true;
+						mainTransform=MobileTransform.getSNPTransform("python " + loaderScriptPath + "etc/SNPSepRemoval.py",loaderScriptPath + "etc/missingIndicators.txt");
+						transformStripsHeader = true;
 						break;
 					case "IUPAC":
-						convertIUPACtoBi("tab", fromFile, toFile);
-						hasFunction=true;//jdls - need to set flag to know fromfile is now in tofile
+						mainTransform=MobileTransform.IUPACToBI;
 						break;
-					case "SSR_ALLELE_SIZE":
-						//No Translation Needed. Done before GOBII
-						break;
-					case "DOMINANT_NON_NUCLEOTIDE":
-						//No Translation Needed. Done before GOBII
-						break;
-					case "CO_DOMINANT_NON_NUCLEOTIDE":
-						//No Translation Needed. Done before GOBII
+					case "SSR_ALLELE_SIZE": case "DOMINANT_NON_NUCLEOTIDE":case "CO_DOMINANT_NON_NUCLEOTIDE":
+						//No Translation Needed in these cases. Done before GOBII
 						break;
 					case "VCF":
-						hasFunction = true;
 						File markerFile = loaderInstructionMap.get(MARKER_TABNAME);
-						String markerFilename = markerFile.getAbsolutePath();
-						String markerTmp = new File(markerFile.getParentFile(), "marker.mref").getAbsolutePath();
-						generateMarkerReference(markerFilename, markerTmp, errorPath);
-						try {
-							new VCFTransformer(markerTmp, fromFile, toFile);
-						} catch (Exception e) {
-							ErrorLogger.logError("VCFTransformer", "Failure loading dataset", e);
-						}
+						mainTransform=MobileTransform.getVCFTransform(markerFile);
 						break;
 					default:
 						ErrorLogger.logError("GobiiFileReader", "Unknown Data type " + dst);
 						break;
 				}
-				if (function != null) {
-					hasFunction = true;
-					//Try running script (from -> to), then replace original file with new one.
-					if(isSNPSepRemoval){
-						String missingFile=loaderScriptPath + "etc/missingIndicators.txt";
-						HelperFunctions.tryExec(function + " " + fromFile + " " +missingFile+ " " + toFile, null, errorPath);
-					}
-					else {
-						HelperFunctions.tryExec(function + " " + fromFile + " " + toFile, null, errorPath);
-					}
-					rm(fromFile);
+				if (mainTransform != null) {
+					intermediateFile.transform(mainTransform);
 				}
-				if (!hasFunction) {
-					mv(fromFile, toFile);
+				if (!transformStripsHeader) {
+					intermediateFile.transform(MobileTransform.stripHeader);
 				}
-
-				//toFile now contains data, we move it back to original position with second transformation (swap)
-
-				if (!functionStripsHeader) {
-					success &= HelperFunctions.tryExec("tail -n +2 ", fromFile, errorPath, toFile);
-					rm(toFile);
-				} else {
-					success &= HelperFunctions.tryExec("mv " + toFile + " " + fromFile);
-				}
-
 				boolean isSampleFast = false;
 				if (DataSetOrientationType.SAMPLE_FAST.equals(dso)) isSampleFast = true;
 				if (isSampleFast) {
 					//Rotate to marker fast before loading it - all data is marker fast in the system
-					transposeMatrix("tab", fromFile, toFile, getDestinationFile(inst));
-					mv(toFile, fromFile);
-//					HelperFunctions.tryExec("python " + loaderScriptPath + "TransposeMatrix.py -i " + fromFile);
+					intermediateFile.transform(MobileTransform.getTransposeMatrix(getDestinationFile(inst)));
 				}
 			}
 
 			String instructionName = inst.getTable();
-			loaderInstructionMap.put(instructionName, new File(HelperFunctions.getDestinationFile(inst)));
+			loaderInstructionMap.put(instructionName, new File(getDestinationFile(inst)));
 			loaderInstructionList.add(instructionName);//TODO Hack - for ordering
 			if (LINKAGE_GROUP_TABNAME.equals(instructionName) || GERMPLASM_TABNAME.equals(instructionName) || GERMPLASM_PROP_TABNAME.equals(instructionName)) {
-				success &= HelperFunctions.tryExec(loaderScriptPath + "LGduplicates.py -i " + HelperFunctions.getDestinationFile(inst));
+				success &= HelperFunctions.tryExec(loaderScriptPath + "LGduplicates.py -i " + getDestinationFile(inst));
 			}
 			if (MARKER_TABNAME.equals(instructionName)) {//Convert 'alts' into a jsonb array
-				String dest = HelperFunctions.getDestinationFile(inst);
-				String tmp = dest + ".tmp";
-				success &= HelperFunctions.tryExec("mv " + dest + " " + tmp);
-				new PGArray(tmp, dest, "alts").process();
+				intermediateFile.transform(MobileTransform.PGArray);
 			}
 
+
 			if (qcCheck) {//QC - Subsection #2 of 3
-				setQCExtractPaths(dstDir, inst);
+				setQCExtractPaths(inst, configuration, crop);
 			}
+
+			intermediateFile.returnFile(); // replace intermediateFile where it came from
 		}
 
 		if(success){
@@ -459,7 +408,6 @@ public class GobiiFileReader {
 		rm(sampleFileLoc);
 	}
 
-
 	private static GobiiExtractorInstruction createQCExtractInstruction(GobiiLoaderInstruction zero, String crop) {
 		GobiiExtractorInstruction gobiiExtractorInstruction;
 		ErrorLogger.logInfo("Digester", "qcCheck detected");
@@ -473,36 +421,34 @@ public class GobiiFileReader {
 		ErrorLogger.logInfo("Digester","Done with the QC Subsection #1 of 3!");
 		return gobiiExtractorInstruction;
 	}
-	private static void setQCExtractPaths(File dstDir, GobiiLoaderInstruction inst) {
+
+	private static void setQCExtractPaths(GobiiLoaderInstruction inst, ConfigSettings configuration, String crop) throws Exception {
 		ErrorLogger.logInfo("Digester", "Entering into the QC Subsection #2 of 3...");
 		GobiiDataSetExtract gobiiDataSetExtract = new GobiiDataSetExtract();
 		gobiiDataSetExtract.setAccolate(false);  // It is unused/unsupported at the moment
 		gobiiDataSetExtract.setDataSet(inst.getDataSet());
 		gobiiDataSetExtract.setGobiiDatasetType(inst.getDatasetType());
-		Path loaderDestinationDirectoryPath = FileSystems.getDefault().getPath(dstDir.getAbsolutePath());
-		int pathDepth = loaderDestinationDirectoryPath.getNameCount();
-		Path cropDirectory = loaderDestinationDirectoryPath.subpath(0, (pathDepth - 3));
-		Path extractDestinationDirectoryPath = Paths.get(cropDirectory.toString(),
-                "extractor",
-                "output",
-                inst.getGobiiFile().getGobiiFileType().toString().toLowerCase(),
-                "ds_"+inst.getDataSetId());
+		Path extractDestinationDirectoryPath = Paths.get(configuration.getProcessingPath(crop, GobiiFileProcessDir.EXTRACTOR_OUTPUT),
+				inst.getContactEmail().split("@")[0],
+				inst.getGobiiFile().getGobiiFileType().toString().toLowerCase(),
+				"whole_dataset",
+				new StringBuilder("ds_").append(inst.getDataSetId()).toString());
 		gobiiDataSetExtract.setExtractDestinationDirectory(extractDestinationDirectoryPath.toString());
-		// As the extract filter type is set, a posteriori, by the GobiiExtractor class, it is set as UNKOWN
-		gobiiDataSetExtract.setGobiiExtractFilterType(GobiiExtractFilterType.UNKNOWN);
+		// According to Liz, the Gobii extract filter type is always "WHOLE_DATASET" for any QC job
+		gobiiDataSetExtract.setGobiiExtractFilterType(GobiiExtractFilterType.WHOLE_DATASET);
 		gobiiDataSetExtract.setGobiiFileType(inst.getGobiiFile().getGobiiFileType());
 		// It is going to be set by the GobiiExtractor class
 		gobiiDataSetExtract.setGobiiJobStatus(null);
 		qcExtractInstruction.getDataSetExtracts().add(gobiiDataSetExtract);
 		ErrorLogger.logInfo("Digester", "Done with the QC Subsection #2 of 3!");
 	}
+
 	private static void sendQCExtract(ConfigSettings configuration, String crop) throws Exception {
 		ErrorLogger.logInfo("Digester","Entering into the QC Subsection #3 of 3...");
 		ExtractorInstructionFilesDTO extractorInstructionFilesDTOToSend = new ExtractorInstructionFilesDTO();
 		extractorInstructionFilesDTOToSend.getGobiiExtractorInstructions().add(qcExtractInstruction);
 		extractorInstructionFilesDTOToSend.setInstructionFileName("extractor_"+DateUtils.makeDateIdString());
 		PayloadEnvelope<ExtractorInstructionFilesDTO> payloadEnvelope = new PayloadEnvelope<>(extractorInstructionFilesDTOToSend, GobiiProcessType.CREATE);
-
 		GobiiClientContext gobiiClientContext = GobiiClientContext.getInstance(configuration, crop, GobiiAutoLoginType.USER_RUN_AS);
 		if(LineUtils.isNullOrEmpty(gobiiClientContext.getUserToken())) {
 			ErrorLogger.logError("Digester","Unable to log in with user " + GobiiAutoLoginType.USER_RUN_AS.toString());
@@ -522,7 +468,6 @@ public class GobiiFileReader {
 		ErrorLogger.logInfo("Digester","Done with the QC Subsection #3 of 3!");
 	}
 
-
 	/**
 	 * Read ppd and nodups files to determine their length, and add the row corresponding to the key to the digester message status.
 	 * Assumes IFL was run with output of dstDir on key in instructionMap.
@@ -533,8 +478,21 @@ public class GobiiFileReader {
 	 * @return
 	 */
 	private static IFLLineCounts calculateTableStats(ProcessMessage pm, Map<String, File> loaderInstructionMap, File dstDir, String key) {
+
 		String ppdFile=new File(dstDir,"ppd_digest."+key).getAbsolutePath();
+		//If there is a deduplicated PPD file, use it instead of the ppd file
+		String ddpPpdFile=new File(dstDir,"ddp_ppd_digest."+key).getAbsolutePath();
+		if(new File(ddpPpdFile).exists()){
+			ppdFile=ddpPpdFile;
+		}
+
 		String noDupsFile=new File(dstDir,"nodups_ppd_digest."+key).getAbsolutePath();
+		//If there is a deduplicated nodups file, use it instead of the nodups file
+		String ddpNoDupsFile=new File(dstDir,"nodups_ddp_ppd_digest."+key).getAbsolutePath();
+		if(new File(ddpNoDupsFile).exists()){
+			noDupsFile=ddpNoDupsFile;
+		}
+
 
 		//Default to 'we had an error'
 		String totalLinesVal,linesLoadedVal,existingLinesVal,invalidLinesVal;
@@ -748,41 +706,9 @@ public class GobiiFileReader {
 			}
 		}
 		catch(Exception e){
-			logError("Digester","Exception while processing data sets",e);
+			logError("Digester","Exception while referencing data sets in Postgresql",e);
 			return;
 		}
-	}
-
-	/**
-	 * Generates a marker reference file from a marker file
-	 * If input is name ref alt blah blah
-	 * output is ref alt
-	 * @param markerFile marker file
-	 * @param outFile
-	 */
-	private static void generateMarkerReference(String markerFile,String outFile,String errorPath) throws IOException {
-		BufferedReader br=new BufferedReader(new FileReader(markerFile));
-		String[] headers = br.readLine().split("\\s+");
-		br.close();
-		String ref="ref",alt="alt";
-		int refPos=-1;
-		int altPos=-1;
-		for(int i=0;i<headers.length;i++){
-			if(headers[i].contains(ref)){
-				refPos=i+1;break;//cut is 1 based
-			}
-		}
-		for(int i=0;i<headers.length;i++){
-			if(headers[i].contains(alt)){
-				altPos=i+1;break;//cut is 1 based
-			}
-
-		}
-		if((refPos==-1)||(altPos==-1)){
-			ErrorLogger.logError("GobiiFileReader","Could not find one of Ref or Alt in file: "+markerFile);
-		}
-
-		HelperFunctions.tryExec("cut -f"+refPos+","+altPos+ " "+markerFile,outFile,errorPath);
 	}
 
 	/**

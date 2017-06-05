@@ -31,26 +31,26 @@ class HapmapScanners{
         // marker file (mandatory)
         ////////////////////////////
         File markerFile = new File(markerFileIn);
-        if (!validateFile(markerFile, errorFile, "Marker")) return false;
+        if (!validateFile(markerFile, "Marker")) return false;
 
         ////////////////////////////
         // sample file (mandatory)
         ////////////////////////////
         File sampleFile = new File(sampleFileIn);
-        if (!validateFile(sampleFile, errorFile, "Sample")) return false;
+        if (!validateFile(sampleFile, "Sample")) return false;
 
 
         ////////////////////////////////////////////////////////
         // extended marker file (optional, so existent or not)
         ////////////////////////////////////////////////////////
         File extendedMarkerFile = new File(extendedMarkerFileIn);
-        if (!validateFile(extendedMarkerFile, errorFile, "Extended Marker")) extendedMarkerFile = null;
+        if (!validateFile(extendedMarkerFile, "Extended Marker")) extendedMarkerFile = null;
 
         //////////////////////////////
         // genotype file (mandatory)
         //////////////////////////////
         File genotypeFile = new File(genotypeFileIn);
-        if (!validateFile(genotypeFile, errorFile, "Genotype")) return false;
+        if (!validateFile(genotypeFile, "Genotype")) return false;
 
 
         markerScanner = new Scanner(markerFile);
@@ -68,17 +68,16 @@ class HapmapScanners{
      * Returns true only when the file exits and is a file. Else returns false.
      *
      * @param file      File to be validated.
-     * @param errorFile Error logger file.
      * @param fileName  Used for logging.
      * @return status.
      */
-    boolean validateFile(File file, String errorFile, String fileName) {
+    boolean validateFile(File file, String fileName) {
         if (!(file.exists())) {
-            ErrorLogger.logError("Extractor", fileName + " file not found", errorFile);
+            ErrorLogger.logInfo("Extractor", fileName + " file not found");
             return false;
         } else {
             if (!(file.isFile())) {
-                ErrorLogger.logError("Extractor", fileName + "file not correct", errorFile);
+                ErrorLogger.logInfo("Extractor", fileName + "file not correct");
                 return false;
             } else
                 return true;

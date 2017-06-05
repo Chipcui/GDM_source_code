@@ -64,14 +64,14 @@ public class CSVFileReaderV2Test {
 		GobiiLoaderInstruction instruction = new GobiiLoaderInstruction();
 		Util.createAndSetGobiiFile(instruction, tempFolderLocation);
 		instruction.setTable(table);
-		List<GobiiFileColumn> gobiiColumns = new ArrayList<GobiiFileColumn>();
+		List<GobiiFileColumn> gobiiColumns = new ArrayList<>();
 		gobiiColumns.add(Util.createGobiiConstantColumn(Integer.toString(0)));
-		gobiiColumns.add(Util.createGobiiAutoIncreamentColumn());
+		gobiiColumns.add(Util.createGobiiAutoIncrementColumn());
 		gobiiColumns.add(Util.createGobiiCSV_ROW(0, 0));
 		gobiiColumns.add(Util.createGobiiCSV_ROW(1, 0));
 		instruction.setGobiiFileColumns(gobiiColumns);
 
-		CSVFileReaderV2 csvReader = new CSVFileReaderV2("", "");
+		CSVFileReaderV2 csvReader = new CSVFileReaderV2();
 		csvReader.processCSV(instruction);
 
 		Util.validateResult(tempFolderLocation, table, resourceDestFolderLocation);
@@ -83,14 +83,14 @@ public class CSVFileReaderV2Test {
 		GobiiLoaderInstruction instruction = new GobiiLoaderInstruction();
 		Util.createAndSetGobiiFile(instruction, tempFolderLocation);
 		instruction.setTable(table);
-		List<GobiiFileColumn> gobiiColumns = new ArrayList<GobiiFileColumn>();
+		List<GobiiFileColumn> gobiiColumns = new ArrayList<>();
 		gobiiColumns.add(Util.createGobiiConstantColumn(Integer.toString(0)));
-		gobiiColumns.add(Util.createGobiiAutoIncreamentColumn());
+		gobiiColumns.add(Util.createGobiiAutoIncrementColumn());
 		gobiiColumns.add(Util.createGobiiCSV_COL(0, 0));
 		gobiiColumns.add(Util.createGobiiCSV_COL(0, 1));
 		instruction.setGobiiFileColumns(gobiiColumns);
 
-		CSVFileReaderV2 csvReader = new CSVFileReaderV2("", "");
+		CSVFileReaderV2 csvReader = new CSVFileReaderV2();
 		csvReader.processCSV(instruction);
 
 		Util.validateResult(tempFolderLocation, table, resourceDestFolderLocation);
@@ -102,11 +102,11 @@ public class CSVFileReaderV2Test {
 		GobiiLoaderInstruction instruction = new GobiiLoaderInstruction();
 		Util.createAndSetGobiiFile(instruction, tempFolderLocation);
 		instruction.setTable(table);
-		List<GobiiFileColumn> gobiiColumns = new ArrayList<GobiiFileColumn>();
+		List<GobiiFileColumn> gobiiColumns = new ArrayList<>();
 		gobiiColumns.add(Util.createGobiiCSV_BOTH(0, 0));
 		instruction.setGobiiFileColumns(gobiiColumns);
 
-		CSVFileReaderV2 csvReader = new CSVFileReaderV2("", "");
+		CSVFileReaderV2 csvReader = new CSVFileReaderV2();
 		csvReader.processCSV(instruction);
 
 		Util.validateResult(tempFolderLocation, table, resourceDestFolderLocation);
@@ -118,13 +118,13 @@ public class CSVFileReaderV2Test {
 		GobiiLoaderInstruction instruction = new GobiiLoaderInstruction();
 		Util.createAndSetGobiiFile(instruction, tempFolderLocation);
 		instruction.setTable(table);
-		List<GobiiFileColumn> gobiiColumns = new ArrayList<GobiiFileColumn>();
+		List<GobiiFileColumn> gobiiColumns = new ArrayList<>();
 		gobiiColumns.add(Util.createGobiiConstantColumn(Integer.toString(0)));
-		gobiiColumns.add(Util.createGobiiAutoIncreamentColumn());
+		gobiiColumns.add(Util.createGobiiAutoIncrementColumn());
 		gobiiColumns.add(Util.createGobiiCSV_SUB(0, 0));
 		instruction.setGobiiFileColumns(gobiiColumns);
 
-		CSVFileReaderV2 csvReader = new CSVFileReaderV2("", "");
+		CSVFileReaderV2 csvReader = new CSVFileReaderV2();
 		csvReader.processCSV(instruction);
 
 		Util.validateResult(tempFolderLocation, table, resourceDestFolderLocation);
@@ -144,13 +144,13 @@ public class CSVFileReaderV2Test {
 		GobiiLoaderInstruction instruction = new GobiiLoaderInstruction();
 		Util.createAndSetGobiiFile(instruction, tempFolderLocation);
 		instruction.setTable(table);
-		List<GobiiFileColumn> gobiiColumns = new ArrayList<GobiiFileColumn>();
+		List<GobiiFileColumn> gobiiColumns = new ArrayList<>();
 		gobiiColumns.add(Util.createGobiiConstantColumn(Integer.toString(0)));
-		gobiiColumns.add(Util.createGobiiAutoIncreamentColumn());
+		gobiiColumns.add(Util.createGobiiAutoIncrementColumn());
 		gobiiColumns.add(Util.createGobiiCSV_ROW(0, 0));
 		instruction.setGobiiFileColumns(gobiiColumns);
 
-		CSVFileReaderV2 csvReader = new CSVFileReaderV2("", "");
+		CSVFileReaderV2 csvReader = new CSVFileReaderV2();
 		csvReader.processCSV(instruction);
 
 		Util.validateResult(tempFolderLocation, table, resourceDestFolderLocation);

@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -18,15 +17,15 @@ import org.gobiiproject.gobiimodel.types.GobiiFileType;
 
 import com.google.common.annotations.VisibleForTesting;
 
-public class Util {
+class Util {
 
 	/**
 	 * 
-	 * @param tempFolderLocation
-	 * @param tableName
-	 * @param expectedOutputFolderLocation
+	 * @param tempFolderLocation Temporary Folder.
+	 * @param tableName table name used to identify the file.
+	 * @param expectedOutputFolderLocation Expected output file.
 	 */
-	static void validateResult(String tempFolderLocation, String tableName, String expectedOutputFolderLocation) throws IOException, FileNotFoundException {
+	static void validateResult(String tempFolderLocation, String tableName, String expectedOutputFolderLocation) throws IOException {
 		BufferedReader actualOutputReader = new BufferedReader(new FileReader(tempFolderLocation + "\\dest" + "\\digest." + tableName));
 		BufferedReader expectedOutputReader = new BufferedReader(new FileReader(expectedOutputFolderLocation + "\\" + tableName + ".txt"));
 		String actualFileRow, expectedFileRow;
@@ -38,10 +37,10 @@ public class Util {
 	}
 	
 	/**
-	 * Creates gobiiFIleColumn for CSV_ROW with subcolumn
+	 * Creates gobiiFIleColumn for CSV_ROW with sub-column
 	 * @param rCoord
 	 * @param cCoord
-	 * @return
+	 * @return GobiiFileColumn
 	 */
 	 
 	static GobiiFileColumn createGobiiCSV_SUB(Integer rCoord, Integer cCoord) {
@@ -62,7 +61,7 @@ public class Util {
 	 * Creates gobiiFIleColumn for CSV_BOTH
 	 * @param rCoord
 	 * @param cCoord
-	 * @return
+	 * @return GobiiFileColumn
 	 */
 	@VisibleForTesting
 	static GobiiFileColumn createGobiiCSV_BOTH(Integer rCoord, Integer cCoord) {
@@ -81,10 +80,10 @@ public class Util {
 
 	/**
 	 * Creates gobiiFileColumn for autoIncrement
-	 * @return
+	 * @return GobiiFileColumn
 	 */
 	@VisibleForTesting
-	static GobiiFileColumn createGobiiAutoIncreamentColumn() {
+	static GobiiFileColumn createGobiiAutoIncrementColumn() {
 		GobiiFileColumn fileColumn = new GobiiFileColumn();
 		fileColumn.setGobiiColumnType(GobiiColumnType.AUTOINCREMENT);
 		fileColumn.setName("AutoIncrement");
@@ -99,7 +98,7 @@ public class Util {
 	 * Creates gobiiFileColumn for csv_row type.
 	 * @param rCoord
 	 * @param cCoord
-	 * @return
+	 * @return GobiiFileColumn
 	 */
 	@VisibleForTesting
 	static GobiiFileColumn createGobiiCSV_ROW(Integer rCoord, Integer cCoord) {
@@ -119,7 +118,7 @@ public class Util {
 	 * Creates gobiiFileColumn for csv_col type.
 	 * @param rCoord
 	 * @param cCoord
-	 * @return
+	 * @return GobiiFileColumn
 	 */
 	@VisibleForTesting
 	static GobiiFileColumn createGobiiCSV_COL(Integer rCoord, Integer cCoord) {
@@ -137,8 +136,8 @@ public class Util {
 
 	/**
 	 * Creates a gobiiFileColumn for constant type.
-	 * @param constantValue
-	 * @return
+	 * @param constantValue Used for creating Constant.
+	 * @return GobiiFileColumn
 	 */
 	@VisibleForTesting
 	static GobiiFileColumn createGobiiConstantColumn(String constantValue) {
@@ -173,8 +172,8 @@ public class Util {
 	
 	/**
 	 * Deletes the directory pointed by path.
-	 * @param path
-	 * @return
+	 * @param path Path to deletion directory.
+	 * @return Status.
 	 */
 	@VisibleForTesting
 	static boolean deleteDirectory(File path) {
