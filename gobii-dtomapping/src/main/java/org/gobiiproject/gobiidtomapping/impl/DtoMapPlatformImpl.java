@@ -78,6 +78,37 @@ public class DtoMapPlatformImpl implements DtoMapPlatform {
 
     } // getPlatformDetails()
 
+
+    @Override
+    public PlatformDTO getPlatformDetailsByVendorProtocolId(Integer vendorProtocolId) throws GobiiDtoMappingException {
+
+        PlatformDTO returnVal = new PlatformDTO();
+
+        ResultSet resultSet = rsPlatformDao.getPlatformDetailsByVendorProtocolId(vendorProtocolId);
+
+        try {
+
+            if (resultSet.next()) {
+
+                // apply platform values
+                ResultColumnApplicator.applyColumnValues(resultSet, returnVal);
+
+                ResultSet propertyResultSet = rsPlatformDao.getProperties(returnVal.getPlatformId());
+                List<EntityPropertyDTO> entityPropertyDTOs =
+                        EntityProperties.resultSetToProperties(returnVal.getPlatformId(), propertyResultSet);
+
+                returnVal.setProperties(entityPropertyDTOs);
+
+            } // if result set has a row
+        } catch (SQLException e) {
+            LOGGER.error("Error retreving platform details", e);
+            throw new GobiiDtoMappingException(e);
+        }
+
+        return returnVal;
+
+    } // getPlatformDetails()
+
     @Override
     public PlatformDTO createPlatform(PlatformDTO platformDTO) throws GobiiDtoMappingException {
         PlatformDTO returnVal = platformDTO;

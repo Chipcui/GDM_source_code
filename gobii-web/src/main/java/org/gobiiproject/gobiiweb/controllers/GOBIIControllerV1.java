@@ -2333,7 +2333,7 @@ public class GOBIIControllerV1 {
             params = {"vendorProtocolId"},
             method = RequestMethod.GET)
     @ResponseBody
-    public PayloadEnvelope<PlatformDTO> getPlatformsById(@RequestParam("vendorProtocolId") Integer vendorProtocolId,
+    public PayloadEnvelope<PlatformDTO> getPlatformByVendorProtocolId(@RequestParam("vendorProtocolId") Integer vendorProtocolId,
                                                          HttpServletRequest request,
                                                          HttpServletResponse response) {
 
@@ -2341,7 +2341,7 @@ public class GOBIIControllerV1 {
         try {
 
             //PayloadReader<PlatformDTO> payloadReader = new PayloadReader<>(PlatformDTO.class);
-            PlatformDTO platformDTO = platformService.getByVendorProtocolId(vendorProtocolId);
+            PlatformDTO platformDTO = platformService.getPlatformByVendorProtocolId(vendorProtocolId);
 
             PayloadWriter<PlatformDTO> payloadWriter = new PayloadWriter<>(request, response,
                     PlatformDTO.class);

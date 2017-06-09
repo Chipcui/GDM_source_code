@@ -9,7 +9,8 @@ import java.util.List;
  */
 public interface DtoMapPlatform {
 
-    List<PlatformDTO> getPlatforms() throws GobiiDtoMappingException;
+    List<PlatformDTO> getPlatforms() throws GobiiDtoMappingException; //getPlatformDetailsByVendorProtocolId
+    PlatformDTO getPlatformDetailsByVendorProtocolId(Integer platformId) throws GobiiDtoMappingException;
     PlatformDTO getPlatformDetails(Integer platformId) throws GobiiDtoMappingException;
     PlatformDTO createPlatform(PlatformDTO platformDTO) throws GobiiDtoMappingException;
     PlatformDTO replacePlatform(Integer platformId, PlatformDTO platformDTO) throws GobiiDtoMappingException;

@@ -67,6 +67,27 @@ public class PlatformServiceImpl implements PlatformService {
     }
 
     @Override
+    public PlatformDTO getPlatformByVendorProtocolId(Integer vendorProtocolId) throws GobiiDomainException{
+
+        PlatformDTO returnVal;
+
+        returnVal = dtoMapPlatform.getPlatformDetailsByVendorProtocolId(vendorProtocolId);
+        returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
+        returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
+
+
+        if (null == returnVal) {
+            throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
+                    GobiiValidationStatusType.ENTITY_DOES_NOT_EXIST,
+                    "The specified platformId ("
+                            + vendorProtocolId
+                            + ") does not match an existing platform ");
+        }
+
+        return returnVal;
+    }
+
+    @Override
     public PlatformDTO createPlatform(PlatformDTO platformDTO) throws GobiiDomainException {
         PlatformDTO returnVal;
 
