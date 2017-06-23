@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiprocess.digester.utils.validation;
+package org.gobiiproject.gobiimodel.utils;
 
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiFileColumn;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;

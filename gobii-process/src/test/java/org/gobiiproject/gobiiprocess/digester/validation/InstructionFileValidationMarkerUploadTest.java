@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
 import org.gobiiproject.gobiimodel.types.GobiiTableType;
-import org.gobiiproject.gobiiprocess.digester.utils.validation.InstructionFileValidator;
+import org.gobiiproject.gobiimodel.utils.*;
 import org.junit.Test;
 
 import com.google.common.annotations.VisibleForTesting;

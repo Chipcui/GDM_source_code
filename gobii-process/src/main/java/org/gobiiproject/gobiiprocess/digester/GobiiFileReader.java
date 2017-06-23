@@ -31,7 +31,6 @@ import org.gobiiproject.gobiiprocess.GobiiConfig;
 import org.gobiiproject.gobiiprocess.HDF5Interface;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.*;
 import org.gobiiproject.gobiiprocess.digester.csv.CSVFileReaderV2;
-import org.gobiiproject.gobiiprocess.digester.utils.validation.InstructionFileValidator;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.DigestMatrix;
 import org.gobiiproject.gobiiprocess.digester.vcf.VCFFileReader;
 
