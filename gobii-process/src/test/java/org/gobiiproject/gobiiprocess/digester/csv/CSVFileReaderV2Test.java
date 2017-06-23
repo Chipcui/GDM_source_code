@@ -38,7 +38,7 @@ public class CSVFileReaderV2Test {
 		File resourceDest = new File("src/test/resources");
 		resourceDestFolderLocation = resourceDest.getAbsolutePath();
 		File resourceSource = new File("src/test/resources/input.txt");
-		File dest= new File(srcFolder.getAbsolutePath()+"\\input.txt"); 
+		File dest= new File(srcFolder.getAbsolutePath()+"\\input.txt");
 		Files.copy(resourceSource.toPath(), dest.toPath());
 	}
 
