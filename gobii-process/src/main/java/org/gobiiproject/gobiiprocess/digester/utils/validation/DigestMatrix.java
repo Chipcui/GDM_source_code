@@ -29,7 +29,7 @@ public class DigestMatrix {
                 if(iLine.equals("matrix")) continue;
                 String[] iNucl = iLine.split(fSep);
                 errorBase = validateDatasetList(iNucl,dataSetType);
-                if(!errorBase.equals(null)){
+                if(errorBase != null){
                     ErrorLogger.logError("Validate Dataset Matrix", "Invalid data found in the matrix - '" + errorBase + "'");
                     return false;
                 }
