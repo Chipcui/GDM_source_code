@@ -19,9 +19,10 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
         </encoder>
     </appender>
-
-    <!-- By default, the level of the root level is set to DEBUG -->
-    <root level="DEBUG">
+    
+    <!-- In investigating GSD-269, it is believed gobii-model is overwriting gobii-processes logback.xml.
+       Temporarily reducing log level to ERROR as a stopgap measure. -->
+    <root level="ERROR">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
     </root>
