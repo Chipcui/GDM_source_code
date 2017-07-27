@@ -578,7 +578,9 @@ public class GobiiExtractor {
 					.addQueryParam("datasetId")
 					.setParamValue("datasetId", String.valueOf(datasetId))
 					.addQueryParam("directory")
-					.setParamValue("directory", extractDir);
+					.setParamValue("directory", extractDir)
+					.addQueryParam("forcerestart")
+					.setParamValue("forcerestart", "true");
 			HttpMethodResult httpMethodResult = genericClientContext
 					.get(restUriGetQCJobID);
 			if (httpMethodResult.getResponseCode() != HttpStatus.SC_OK) {
