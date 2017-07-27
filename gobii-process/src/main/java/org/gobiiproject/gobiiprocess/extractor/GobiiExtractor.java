@@ -691,18 +691,12 @@ public class GobiiExtractor {
                                                 if (httpMethodResult.getFileName() != null) {
                                                     qcStatusPm.addPath(key, httpMethodResult.getFileName());
 
-                                                } else if ((key.equals("stdout.txt") || key.equals("stderr.txt")) && httpMethodResult.getPlainPayload() != null) {
+                                                    if(key.equals("stdout.txt") || key.equals("stderr.txt")){
 
-                                                	try {
-														BufferedWriter out = new BufferedWriter(new FileWriter(destinationFqpn));
-														out.write(httpMethodResult.getPlainPayload());
-														out.close();
-														qcStatusPm.addPath(key, destinationFqpn);
-														qcStatusPm.getFileAttachments().add(destinationFqpn);
-													} catch (Exception e) {
-                                                		ErrorLogger.logInfo("QC", "Error copying " + key + " to " + destinationFqpn);
+                                                    	qcStatusPm.getFileAttachments().add(httpMethodResult.getFileName());
 													}
-												}
+
+                                                }
                                             }
                                         }
 									}
