@@ -3,6 +3,7 @@ package org.gobiiproject.gobiimodel.config.datatypes;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,5 +35,11 @@ public class MatrixTransformElement {
 
     public Class getMatrixClass() throws ClassNotFoundException {
         return Class.forName(class_);
+    }
+    public String toString(){
+        if(argument==null){
+            return "["+class_+"]";
+        }
+        return "["+class_+" : " + Arrays.toString(argument.toArray())+"]";
     }
 }
