@@ -23,10 +23,10 @@
 					</Fkey>
 				</Keys>
 				<Properties>
-					<LastName>Gobii</LastName>
-					<FirstName>Sim</FirstName>
-					<Code>gobii_sim</Code>
-					<Email>gobii.jira@gmail.com</Email>
+					<LastName>Calaminos</LastName>
+					<FirstName>Yanii</FirstName>
+					<Code>calaminos_yanii</Code>
+					<Email>dummy@email.address</Email>
 					<Roles>
 						<Role>PI</Role>
 						<Role>Curator</Role>
@@ -107,7 +107,7 @@
 				<Keys>
 					<DbPKey></DbPKey>
 					<Fkey entity="Contact" fkproperty="piContact">
-						<DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+						<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
 						<DbPKey></DbPKey>
 					</Fkey>
 				</Keys>
@@ -192,11 +192,11 @@
 			<Name>codominant_dataset</Name>
 			<Files>
 				<Instruction>D:\GOBII\test profiles from yaw\instructions\test_codominant_dataset.json</Instruction>
-				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_dataset</Data>
+				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_dataset\codominant_allele_data.txt</Data>
 			</Files>
 
 			<DbFkey entity="Contact">
-				<DbPKeySurrogate>sim_Cornell</DbPKeySurrogate>
+				<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
 				<DbPKey></DbPKey>
 			</DbFkey>
 
@@ -231,11 +231,11 @@
 			<Name>codominant_marker</Name>
 			<Files>
 				<Instruction>D:\GOBII\test profiles from yaw\instructions\test_codominant_marker.json</Instruction>
-				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_marker</Data>
+				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_marker\codominant_markermap.txt</Data>
 			</Files>
 
 			<DbFkey entity="Contact">
-				<DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+				<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
 				<DbPKey></DbPKey>
 			</DbFkey>
 
@@ -270,11 +270,11 @@
 			<Name>codominant_sample</Name>
 			<Files>
 				<Instruction>D:\GOBII\test profiles from yaw\instructions\test_codominant_sample.json</Instruction>
-				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_sample</Data>
+				<Data>D:\GOBII\test profiles from yaw\files\files\test_codominant_sample\codominant_samples_csv.csv</Data>
 			</Files>
 
 			<DbFkey entity="Contact">
-				<DbPKeySurrogate>gobii.jira@gmail.com</DbPKeySurrogate>
+				<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
 				<DbPKey></DbPKey>
 			</DbFkey>
 

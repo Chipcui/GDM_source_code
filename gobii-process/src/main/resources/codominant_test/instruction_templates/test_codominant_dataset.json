@@ -84,6 +84,7 @@
   "gobiiCropType" : "test",
   "contactId" : 32,
   "contactEmail" : "yn259@cornell.edu",
+  "qcCheck" : false,
   "project" : {
     "name" : "sim_codominant",
     "id" : 2
@@ -194,6 +195,7 @@
   "gobiiCropType" : "test",
   "contactId" : 32,
   "contactEmail" : "yn259@cornell.edu",
+  "qcCheck" : false,
   "project" : {
     "name" : "sim_codominant",
     "id" : 2
@@ -256,6 +258,7 @@
   "gobiiCropType" : "test",
   "contactId" : 32,
   "contactEmail" : "yn259@cornell.edu",
+  "qcCheck" : true,
   "project" : {
     "name" : "sim_codominant",
     "id" : 2
