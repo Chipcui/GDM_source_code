@@ -39,26 +39,6 @@ public class TypeReaderXml<T> {
         return (T)marshaller.unmarshal(file);
     }
 
-    /**
-     * returns a map of all input types found in an XML file given a base directory
-     * @param baseDir starting directory for datatypes, does not traverse filders
-     * @return map containing all valud types, sorted by their InputType parameter.
-     */
-    public static List<File> getAllFiles(File baseDir,String extension) {
-        File[] list = baseDir.listFiles();
-        List<File> ret = new ArrayList<File>();
-        if (list == null) return null;
-        for (File f : list)
-            if (f.isFile()) { //Improvised off Java's FileExtensionFilter.
-                String name = f.getName();
-                int i = name.lastIndexOf('.');
-                if (i < 0) continue;
-                if (i > name.length() - 1) continue;
-                if (!name.substring(i + 1).equals("xml")) continue;
-                ret.add(f);
-            }
-        return ret;
-    }
 
     //TestFunction
     public static void main(String [] args){
