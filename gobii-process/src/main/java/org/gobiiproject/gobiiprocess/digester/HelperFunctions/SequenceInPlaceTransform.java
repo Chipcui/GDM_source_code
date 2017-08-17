@@ -1,6 +1,7 @@
 package org.gobiiproject.gobiiprocess.digester.HelperFunctions;
 
 import org.gobiiproject.gobiimodel.utils.FileSystemInterface;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform;
 
 /**
  * Allows transformations to be called on a file which may move the file's location. Provides a from and to destination.
