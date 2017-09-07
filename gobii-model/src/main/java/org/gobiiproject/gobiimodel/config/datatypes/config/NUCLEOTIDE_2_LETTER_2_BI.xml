@@ -4,8 +4,11 @@
     <outTypeName>BI</outTypeName>
     <size>2</size>
     <transform>
-        <class>org.gobiiproject.gobiiprocess.digest.Matrix.PythonCall</class>
-        <argument>etc/SNPSepRemoval.py</argument>
+        <class>org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform.getSNPTransform</class>
+        <argument>pythong etc/SNPSepRemoval.py</argument>
         <argument>etc/missingIndicators.txt</argument>
+    </transform>
+    <transform>
+        <class>org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform.stripHeader</class>
     </transform>
 </DigestDataType>
