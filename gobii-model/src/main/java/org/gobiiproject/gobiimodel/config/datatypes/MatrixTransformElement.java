@@ -11,9 +11,9 @@ import java.util.List;
  * @author jdl232
  */
 @XmlRootElement(name = "Transform")
-@XmlType(propOrder={"class_","argument"})
+@XmlType(propOrder = {"class_", "argument"})
 public class MatrixTransformElement {
-    @XmlElement(name="class")
+    @XmlElement(name = "class")
     public String getClass_() {
         return class_;
     }
@@ -36,10 +36,10 @@ public class MatrixTransformElement {
     public Class getMatrixClass() throws ClassNotFoundException {
         return Class.forName(class_);
     }
-    public String toString(){
-        if(argument==null){
-            return "["+class_+"]";
+    public String toString() {
+        if (argument == null) {
+            return "[" + class_ + "]";
         }
-        return "["+class_+" : " + Arrays.toString(argument.toArray())+"]";
+        return "[" + class_ + " : " + Arrays.toString(argument.toArray()) + "]";
     }
 }

@@ -14,10 +14,10 @@ public class MakeTransformElements {
     public static void makeXML() throws Exception {
         DigestDataType type = new DigestDataType();
         ReadDataType<DigestDataType> DigestDataType = new ReadDataType<>(DigestDataType.class);
-        type.typeName="NUCLEOTIDE_2_LETTER";
-        type.outTypeName="BI";
-        type.size=2;
-        type.transformList=new ArrayList<>();
+        type.typeName = "NUCLEOTIDE_2_LETTER";
+        type.outTypeName = "BI";
+        type.size = 2;
+        type.transformList = new ArrayList<>();
         MatrixTransformElement a = new MatrixTransformElement();
         a.setClass_("org.gobiiproject.gobiiprocess.digest.Matrix.PythonCall");
         List<String> arguments = new ArrayList();
@@ -25,8 +25,8 @@ public class MakeTransformElements {
         arguments.add("etc/missingIndicators.txt");
         a.setArgument(arguments);
         type.transformList.add(a);
-        String fName = "/home/sivasubramani/NUCLEOTIDE_2_LETTER_2_BI.xml";
-        DigestDataType.write(type,fName);
+        String fName = "/home/sivasubramani/NUCLEOTIDE_2_LETTER.xml";
+        DigestDataType.write(type, fName);
     }
 
 }

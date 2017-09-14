@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DigestDataType>
     <typeName>NUCLEOTIDE_2_LETTER</typeName>
-    <outTypeName>BI</outTypeName>
     <size>2</size>
     <transform>
-        <class>org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform.getSNPTransform</class>
-        <argument>pythong etc/SNPSepRemoval.py</argument>
-        <argument>etc/missingIndicators.txt</argument>
+        <class>org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform.SNPTransform</class>
+        <argument>python ../etc/SNPSepRemoval.py</argument>
+        <argument>../etc/missingIndicators.txt</argument>
     </transform>
     <transform>
         <class>org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform.stripHeader</class>

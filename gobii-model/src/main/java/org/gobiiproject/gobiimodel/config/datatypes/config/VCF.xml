@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DigestDataType>
+    <typeName>VCF</typeName>
+    <size>2</size>
+    <transform>
+        <class>org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.getVCFTransform</class>
+        <argument>marker</argument>
+    </transform>
+</DigestDataType>

@@ -1,16 +1,15 @@
 package org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms;
 
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
+import org.gobiiproject.gobiiprocess.digester.utils.IUPACmatrixToBi;
 
 import java.io.IOException;
 
-import static org.gobiiproject.gobiiprocess.digester.utils.IUPACmatrixToBi.convertIUPACtoBi;
-
-class IUPacToBITransform extends MobileTransform {
+class IUPACToBITransform extends MobileTransform {
 
     public void transform(String fromFile, String toFile, String errorPath) {
         try {
-            convertIUPACtoBi("tab", fromFile, toFile);
+            IUPACmatrixToBi.convertIUPACtoBi("tab", fromFile, toFile);
         } catch (IOException e) {
             ErrorLogger.logError("IUPACToBI", "Exception opening files for IUPAC to BI conversion", e);
         }

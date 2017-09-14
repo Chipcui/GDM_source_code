@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DigestDataType>
     <typeName>IUPAC</typeName>
-    <outTypeName>BI</outTypeName>
     <size>2</size>
     <transform>
-        <class>org.gobiiproject.gobiiprocess.digest.Matrix.IUPACToBI</class>
+        <class>org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.IUPACToBITransform</class>
     </transform>
 </DigestDataType>

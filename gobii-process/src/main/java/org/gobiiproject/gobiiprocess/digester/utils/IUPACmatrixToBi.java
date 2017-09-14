@@ -16,10 +16,12 @@ import java.util.Map;
  */
 public class IUPACmatrixToBi {
 
-    private static long startTime, endTime, duration;
-    private static String fSep;
 
     public static boolean convertIUPACtoBi(String sep, String iFile, String oFile) throws FileNotFoundException {
+
+        long startTime, endTime, duration;
+        String fSep;
+
 
         if (!checkFileExistence(iFile)) {
             ErrorLogger.logError("IUPAC to Bi","Input file provided does not exists.\n");
@@ -38,6 +40,7 @@ public class IUPACmatrixToBi {
                 break;
             default:
                 ErrorLogger.logError("IUPAC to Bi","Given file format can not be processed.");
+                fSep = "";
                 break;
         }
         startTime = System.currentTimeMillis();

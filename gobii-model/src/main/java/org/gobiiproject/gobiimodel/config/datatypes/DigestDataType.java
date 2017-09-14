@@ -11,16 +11,16 @@ import java.util.List;
  * XML elements type objects for Digester.
  */
 @XmlRootElement(name = "DigestDataType")
-@XmlType(propOrder={"typeName","outTypeName","size","transformList"})
+@XmlType(propOrder = {"typeName", "outTypeName", "size", "transformList"})
 public class DigestDataType {
 
     String typeName;
     int size;
-    List<MatrixTransformElement> transformList=new ArrayList<MatrixTransformElement>();
+    List<MatrixTransformElement> transformList = new ArrayList<MatrixTransformElement>();
     MatrixTransformElement transform;
     String outTypeName;
 
-    @XmlElement(name="typeName")
+    @XmlElement(name = "typeName")
     public String getTypeName() {
         return typeName;
     }
@@ -29,7 +29,7 @@ public class DigestDataType {
         this.typeName = typeName;
     }
 
-    @XmlElement(name="size")
+    @XmlElement(name = "size")
     public int getSize() {
         return size;
     }
@@ -38,7 +38,7 @@ public class DigestDataType {
         this.size = size;
     }
 
-    @XmlElement(name="transform")
+    @XmlElement(name = "transform")
     public List<MatrixTransformElement> getTransformList() {
         return transformList;
     }
@@ -47,7 +47,7 @@ public class DigestDataType {
         this.transformList = transformList;
     }
 
-    @XmlElement(name="outTypeName")
+    @XmlElement(name = "outTypeName")
     public String getOutTypeName() {
         return outTypeName;
     }
