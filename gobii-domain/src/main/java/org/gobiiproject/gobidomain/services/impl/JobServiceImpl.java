@@ -1,6 +1,8 @@
 package org.gobiiproject.gobidomain.services.impl;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.gobiiproject.gobidomain.GobiiDomainException;
+import org.gobiiproject.gobidomain.services.DataSetService;
 import org.gobiiproject.gobidomain.services.JobService;
 import org.gobiiproject.gobiidtomapping.DtoMapDataSet;
 import org.gobiiproject.gobiidtomapping.DtoMapJob;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,13 +30,55 @@ public class JobServiceImpl implements JobService {
     @Autowired
     private DtoMapJob dtoMapJob = null;
 
+    @Autowired
+    private DataSetService dataSetService = null;
+
     @Override
-    public JobDTO createJob(JobDTO jobDTO) throws GobiiDomainException, ParseException{
+    public JobDTO createJob(JobDTO jobDTO) throws GobiiDomainException {
 
         JobDTO returnVal;
 
+        // check if the payload type of the job being submitted is a matrix
+        // if it is a matrix, the datasetId of the JobDTO should not be empty
+
+        if (jobDTO.getPayloadType().equals(JobDTO.CV_PAYLOADTYPE_MATRIX) && (null == jobDTO.getDatasetId())) {
+
+            throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
+                    GobiiValidationStatusType.BAD_REQUEST,
+                    "Missing dataset ID for job: " +
+                            jobDTO.getJobName() + " with payload type matrix.");
+
+        }
+
 
         returnVal = dtoMapJob.createJob(jobDTO);
+
+        if (returnVal.getPayloadType().equals(JobDTO.CV_PAYLOADTYPE_MATRIX)) {
+
+            // get DatasetDTO
+
+            DataSetDTO dataSetDTO = dataSetService.getDataSetById(jobDTO.getDatasetId());
+
+            String[] datePattern = {"yyyy-MM-dd"};
+
+            Date parsedDate;
+
+            try {
+
+                parsedDate = DateUtils.parseDateStrictly(dataSetDTO.getCreatedDate().toString(), datePattern);
+
+            } catch (Exception e) {
+
+                throw new GobiiDomainException(GobiiStatusLevel.ERROR,
+                        GobiiValidationStatusType.NONE,
+                        "Something went wrong with setting the createDate of the datasetDTO");
+            }
+
+            dataSetDTO.setCreatedDate(parsedDate);
+            dataSetDTO.setJobId(jobDTO.getJobId());
+            dataSetService.replaceDataSet(returnVal.getDatasetId(), dataSetDTO);
+
+        }
 
         returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
         returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);

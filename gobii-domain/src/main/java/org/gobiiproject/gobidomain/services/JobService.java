@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface JobService {
 
-    JobDTO createJob(JobDTO jobDTO) throws GobiiDomainException, ParseException;
+    JobDTO createJob(JobDTO jobDTO) throws GobiiDomainException;
     JobDTO replaceJob(String jobName, JobDTO jobDTO) throws GobiiDomainException;
     List<JobDTO> getJobs() throws GobiiDomainException;
     JobDTO getJobByJobName(String jobName) throws GobiiDomainException;

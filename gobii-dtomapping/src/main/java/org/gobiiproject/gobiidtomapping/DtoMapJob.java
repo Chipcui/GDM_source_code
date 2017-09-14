@@ -12,7 +12,7 @@ public interface DtoMapJob {
 
     List<JobDTO> getJobs() throws GobiiDtoMappingException;
     JobDTO getJobDetailsByJobName(String jobName) throws GobiiDtoMappingException;
-    JobDTO createJob(JobDTO jobDTO) throws GobiiDtoMappingException, ParseException;
+    JobDTO createJob(JobDTO jobDTO) throws GobiiDtoMappingException;
     JobDTO replaceJob(String jobName, JobDTO jobDTO) throws GobiiDtoMappingException;
     JobDTO getJobDetailsByDatasetId(Integer datasetId);
 

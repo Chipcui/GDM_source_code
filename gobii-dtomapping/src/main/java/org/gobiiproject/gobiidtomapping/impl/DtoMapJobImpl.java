@@ -100,42 +100,14 @@ public class DtoMapJobImpl implements DtoMapJob {
     }
 
     @Override
-    public JobDTO createJob(JobDTO jobDTO) throws GobiiDtoMappingException, ParseException {
+    public JobDTO createJob(JobDTO jobDTO) throws GobiiDtoMappingException {
 
         JobDTO returnVal = jobDTO;
 
-        // check if the payload type of the job being submitted is a matrix
-        // if it is a matrix, the datasetId of the JobDTO should not be empty
-
-        if (jobDTO.getPayloadType().equals(JobDTO.CV_PAYLOADTYPE_MATRIX) && (null == jobDTO.getDatasetId())) {
-
-            throw new GobiiDtoMappingException(GobiiStatusLevel.VALIDATION,
-                    GobiiValidationStatusType.BAD_REQUEST,
-                    "Missing dataset ID for job: " +
-                            jobDTO.getJobName() + " with payload type matrix.");
-
-        }
 
         Map<String, Object> parameters = ParamExtractor.makeParamVals(returnVal);
         Integer jobId = rsJobDao.createJobWithCvTerms(parameters);
         returnVal.setJobId(jobId);
-
-        if (jobDTO.getPayloadType().equals(JobDTO.CV_PAYLOADTYPE_MATRIX)) {
-
-            // get DatasetDTO
-
-            DataSetDTO dataSetDTO = dtoMapDataSet.getDataSetDetails(jobDTO.getDatasetId());
-
-            String createdDate = dataSetDTO.getCreatedDate().toString();
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date newCreatedDate = formatter.parse(createdDate);
-
-            dataSetDTO.setCreatedDate(newCreatedDate);
-            dataSetDTO.setJobId(jobDTO.getJobId());
-            dataSetDTO.setModifiedDate(new Date());
-            dtoMapDataSet.replaceDataSet(jobDTO.getDatasetId(), dataSetDTO);
-
-        }
 
 
         return returnVal;
