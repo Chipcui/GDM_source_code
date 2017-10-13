@@ -22,37 +22,20 @@ public abstract class MobileTransform {
      * @param toFileLocation String representation of the to location on the filesystem
      * @param errorPath place to use for temporary error files
      */
-    public abstract void transform(String fromFileLocation, String toFileLocation, String errorPath);
+    public abstract void transform(TransformArguments args, String fromFileLocation, String toFileLocation, String errorPath);
 
 
     public static final MobileTransform stripHeader= new StripHeaderTransform();
     public static final MobileTransform IUPACToBI= new IUPacToBITransform();
     public static final MobileTransform PGArray= new PGArrayTransform();
+    public static final MobileTransform VCFTransform= new VCFTransform();
+    public static final MobileTransform TransposeMatrixTransform = new TransposeTransform();
 
     public static MobileTransform getTransformFromExecString(String exec){
         return new ExecStringTransform(exec);
     }
     public static MobileTransform getSNPTransform(String exec, String missingFile){
         return new SNPTransform(exec, missingFile);
-    }
-
-    public static MobileTransform getVCFTransform(File markerFile){
-        return new MobileTransform(){
-            public void transform(String fromFile, String toFile, String errorPath){
-                String markerFilename = markerFile.getAbsolutePath();
-                String markerTmp = new File(markerFile.getParentFile(), "marker.mref").getAbsolutePath();
-                try {
-                    VCFTransformer.generateMarkerReference(markerFilename, markerTmp, errorPath);
-                    new VCFTransformer(markerTmp, fromFile, toFile);
-                } catch (Exception e) {
-                    ErrorLogger.logError("VCFTransformer", "Failure loading dataset", e);
-                }
-            }
-        };
-    }
-
-    public static MobileTransform getTransposeMatrix(String dest){
-        return new TransposeTransform(dest);
     }
 
     /**

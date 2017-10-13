@@ -14,7 +14,7 @@ class SNPTransform extends MobileTransform {
         this.missingFile = missingFile;
     }
 
-    public void transform(String fromFile, String toFile, String errorPath) {
+    public void transform(TransformArguments args, String fromFile, String toFile, String errorPath) {
         HelperFunctions.tryExec(exec + " " + fromFile + " " + missingFile + " " + toFile, errorPath + ".tfmlog", errorPath);
         rmIfExist(errorPath + ".tfmlog");
     }

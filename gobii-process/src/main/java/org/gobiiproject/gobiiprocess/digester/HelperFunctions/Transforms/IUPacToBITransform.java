@@ -8,7 +8,7 @@ import static org.gobiiproject.gobiiprocess.digester.utils.IUPACmatrixToBi.conve
 
 class IUPacToBITransform extends MobileTransform {
 
-    public void transform(String fromFile, String toFile, String errorPath) {
+    public void transform(TransformArguments args,String fromFile, String toFile, String errorPath) {
         try {
             convertIUPACtoBi("tab", fromFile, toFile);
         } catch (IOException e) {

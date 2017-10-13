@@ -2,6 +2,7 @@ package org.gobiiproject.gobiiprocess.digester.HelperFunctions;
 
 import org.gobiiproject.gobiimodel.utils.FileSystemInterface;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.TransformArguments;
 
 /**
  * Allows transformations to be called on a file which may move the file's location. Provides a from and to destination.
@@ -39,25 +40,25 @@ public class SequenceInPlaceTransform {
      * file.3
      * @param transformation Transformation to occur
      */
-    public void transform(MobileTransform transformation){
+    public void transform(MobileTransform transformation,TransformArguments args){
         String lastLocation= currentFilePosition();
         incrementNumber++;
         String nextLocation= currentFilePosition();
-        transform(transformation,lastLocation,nextLocation, errorPath);
+        transform(transformation,args,lastLocation,nextLocation, errorPath);
     }
 
     /**
      * Combination of transform() and returnFile(), saves on a move.
      * @param transformation see transform
      */
-    public void finalTransform(MobileTransform transformation){
+    public void finalTransform(MobileTransform transformation, TransformArguments args){
         if(incrementNumber==0)throw new RuntimeException("Invalid call to SeqnenceInPlaceTransform.finalTransform");
-        transform(transformation, currentFilePosition(),baseFileLocation, errorPath);
+        transform(transformation, args, currentFilePosition(),baseFileLocation, errorPath);
         incrementNumber=0;
     }
 
-    private static void transform(MobileTransform transformation, String fromFile, String toFile, String errorPath){
-        transformation.transform(fromFile,toFile,errorPath);
+    private static void transform(MobileTransform transformation, TransformArguments args, String fromFile, String toFile, String errorPath){
+        transformation.transform(args,fromFile,toFile,errorPath);
         FileSystemInterface.rmIfExist(fromFile);
     }
 

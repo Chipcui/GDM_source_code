@@ -7,15 +7,13 @@ import java.io.FileNotFoundException;
 import static org.gobiiproject.gobiiprocess.digester.utils.TransposeMatrix.transposeMatrix;
 
 class TransposeTransform extends MobileTransform {
-    private final String dest;
 
-    public TransposeTransform(String dest) {
-        this.dest = dest;
+    public TransposeTransform() {
     }
 
-    public void transform(String fromFile, String toFile, String errorPath) {
+    public void transform(TransformArguments args, String fromFile, String toFile, String errorPath) {
         try {
-            transposeMatrix("tab", fromFile, toFile, dest);
+            transposeMatrix("tab", fromFile, toFile, args.destinationFile);
         } catch (FileNotFoundException e) {
             ErrorLogger.logError("Matrix Transpose", "Missing File", e);
         }

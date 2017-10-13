@@ -30,6 +30,7 @@ import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 import org.gobiiproject.gobiiprocess.HDF5Interface;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.*;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.TransformArguments;
 import org.gobiiproject.gobiiprocess.digester.csv.CSVFileReaderV2;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.DigestMatrix;
 import org.gobiiproject.gobiiprocess.digester.vcf.VCFFileReader;
@@ -304,6 +305,8 @@ public class GobiiFileReader {
 		}
 		querier.close();
 
+		TransformArguments transformArguments=new TransformArguments();
+		transformArguments.destinationFile=getDestinationFile(zero);
 		boolean sendQc= false;
 		for (GobiiLoaderInstruction inst:list) {
 			qcCheck = inst.isQcCheck();
@@ -341,24 +344,24 @@ public class GobiiFileReader {
                         //No Translation Needed in these cases. Done before GOBII
                         break;
                     case "VCF":
-                        File markerFile = loaderInstructionMap.get(MARKER_TABNAME);
-						mainTransform=MobileTransform.getVCFTransform(markerFile);
+						transformArguments.markerFile = loaderInstructionMap.get(MARKER_TABNAME);
+						mainTransform=MobileTransform.VCFTransform;
 						break;
 					default:
 						ErrorLogger.logError("GobiiFileReader", "Unknown Data type " + dst);
 						break;
 				}
 				if (mainTransform != null) {
-					intermediateFile.transform(mainTransform);
+					intermediateFile.transform(mainTransform,transformArguments);
 				}
 				if (!transformStripsHeader) {
-					intermediateFile.transform(MobileTransform.stripHeader);
+					intermediateFile.transform(MobileTransform.stripHeader,transformArguments);
 				}
 				boolean isSampleFast = false;
 				if (DataSetOrientationType.SAMPLE_FAST.equals(dso)) isSampleFast = true;
 				if (isSampleFast) {
 					//Rotate to marker fast before loading it - all data is marker fast in the system
-					intermediateFile.transform(MobileTransform.getTransposeMatrix(getDestinationFile(inst)));
+					intermediateFile.transform(MobileTransform.TransposeMatrixTransform,transformArguments);
 				}
 			}
 
@@ -369,7 +372,7 @@ public class GobiiFileReader {
 				success &= HelperFunctions.tryExec(loaderScriptPath + "LGduplicates.py -i " + getDestinationFile(inst));
 			}
 			if (MARKER_TABNAME.equals(instructionName)) {//Convert 'alts' into a jsonb array
-				intermediateFile.transform(MobileTransform.PGArray);
+				intermediateFile.transform(MobileTransform.PGArray,transformArguments);
 			}
 
 			if(loaderInstructionMap.containsKey(VARIANT_CALL_TABNAME)) {
