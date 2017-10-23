@@ -14,6 +14,8 @@ import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiimodel.config.*;
+import org.gobiiproject.gobiimodel.config.datatypes.InputType;
+import org.gobiiproject.gobiimodel.config.datatypes.MatrixTransformElement;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.*;
 import org.gobiiproject.gobiimodel.headerlesscontainer.DataSetDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.ExtractorInstructionFilesDTO;
@@ -31,6 +33,7 @@ import org.gobiiproject.gobiiprocess.HDF5Interface;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.*;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.TransformArguments;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.ScriptTransform;
 import org.gobiiproject.gobiiprocess.digester.csv.CSVFileReaderV2;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.DigestMatrix;
 import org.gobiiproject.gobiiprocess.digester.vcf.VCFFileReader;
@@ -308,6 +311,7 @@ public class GobiiFileReader {
 		TransformArguments transformArguments=new TransformArguments();
 		transformArguments.destinationFile=getDestinationFile(zero);
 		boolean sendQc= false;
+		InputType datasetInputType=null;
 		for (GobiiLoaderInstruction inst:list) {
 			qcCheck = inst.isQcCheck();
 			//Section - Matrix Post-processing
@@ -328,34 +332,43 @@ public class GobiiFileReader {
 			SequenceInPlaceTransform intermediateFile=new SequenceInPlaceTransform(fromFile,errorPath);
 			if (dst != null && inst.getTable().equals(VARIANT_CALL_TABNAME)) {
 				errorPath = getLogName(inst, gobiiCropConfig, crop, "Matrix_Processing"); //Temporary Error File Name
-				boolean transformStripsHeader = false;
-				MobileTransform mainTransform=null;
-				switch (dst.toUpperCase()) {
-					case "NUCLEOTIDE_2_LETTER":
-						mainTransform=MobileTransform.getSNPTransform("python " + loaderScriptPath + "etc/SNPSepRemoval.py",loaderScriptPath + "etc/missingIndicators.txt");
-						transformStripsHeader = true;
-                        break;
-                    case "IUPAC":
-                        mainTransform = MobileTransform.IUPACToBI;
-                        break;
-                    case "SSR_ALLELE_SIZE":
-                    case "DOMINANT_NON_NUCLEOTIDE":
-                    case "CO_DOMINANT_NON_NUCLEOTIDE":
-                        //No Translation Needed in these cases. Done before GOBII
-                        break;
-                    case "VCF":
-						transformArguments.markerFile = loaderInstructionMap.get(MARKER_TABNAME);
-						mainTransform=MobileTransform.VCFTransform;
-						break;
-					default:
-						ErrorLogger.logError("GobiiFileReader", "Unknown Data type " + dst);
-						break;
+				List<MobileTransform> transforms=new ArrayList<MobileTransform>();
+				transformArguments.markerFile = loaderInstructionMap.get(MARKER_TABNAME);
+				InputType iType=InputType.getAllInputTypes(new File(loaderScriptPath+"InputTypes/")).get(dst);//Transform directory
+				if(iType==null) {
+					switch (dst.toUpperCase()) {
+						case "NUCLEOTIDE_2_LETTER":
+							transforms.add(new ScriptTransform("python etc/SNPSepRemoval.py","etc/missingIndicators.txt"));
+							//transformStripsHeader = true;
+							break;
+						case "IUPAC":
+							transforms.add(MobileTransform.IUPACToBI);
+							transforms.add(MobileTransform.stripHeader);
+							break;
+						case "SSR_ALLELE_SIZE":
+						case "DOMINANT_NON_NUCLEOTIDE":
+						case "CO_DOMINANT_NON_NUCLEOTIDE":
+							//No data transformation, just strip headers
+							transforms.add(MobileTransform.stripHeader);
+							break;
+						case "VCF":
+							transforms.add(MobileTransform.VCFTransform);
+							transforms.add(MobileTransform.stripHeader);
+							break;
+						default:
+							ErrorLogger.logError("GobiiFileReader", "Unknown Data type " + dst);
+							break;
+					}
 				}
-				if (mainTransform != null) {
-					intermediateFile.transform(mainTransform,transformArguments);
+				else{
+					datasetInputType=iType;
+					List<MatrixTransformElement> elements=iType.getTransformList();
+					for(MatrixTransformElement element:elements){
+						transforms.add(MobileTransform.getFromMatrixElement(element));
+					}
 				}
-				if (!transformStripsHeader) {
-					intermediateFile.transform(MobileTransform.stripHeader,transformArguments);
+				for (MobileTransform transform:transforms) {
+					intermediateFile.transform(transform,transformArguments);
 				}
 				boolean isSampleFast = false;
 				if (DataSetOrientationType.SAMPLE_FAST.equals(dso)) isSampleFast = true;
@@ -442,7 +455,7 @@ public class GobiiFileReader {
 					uploadToMonet(dataSetId, gobiiCropConfig, errorPath, variantFile, markerFileLoc, sampleFileLoc);
 				}
 
-                HDF5Interface.createHDF5FromDataset(pm, dst, configuration, dataSetId, crop, errorPath, variantFilename, variantFile);
+                HDF5Interface.createHDF5FromDataset(pm, dst, configuration, dataSetId, crop, errorPath, variantFilename, variantFile,datasetInputType);
                 rmIfExist(variantFile.getPath());
 
                 if (sendQc) {//QC - Subsection #3 of 3

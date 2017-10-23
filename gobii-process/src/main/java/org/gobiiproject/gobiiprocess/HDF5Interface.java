@@ -1,6 +1,7 @@
 package org.gobiiproject.gobiiprocess;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
+import org.gobiiproject.gobiimodel.config.datatypes.InputType;
 import org.gobiiproject.gobiimodel.utils.FileSystemInterface;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.utils.email.DigesterMessage;
@@ -28,21 +29,34 @@ public class HDF5Interface {
     private static String pathToHDF5Files;
     //Paths
 
-    public static void createHDF5FromDataset(ProcessMessage dm, String dst, ConfigSettings configuration, Integer dataSetId, String crop, String errorPath, String variantFilename, File variantFile) {
+    public static void createHDF5FromDataset(ProcessMessage dm, String dst, ConfigSettings configuration, Integer dataSetId, String crop, String errorPath, String variantFilename, File variantFile, InputType iType) {
         //HDF-5
         //Usage: %s <datasize> <input file> <output HDF5 file
         String loadHDF5= getPathToHDF5() +"loadHDF5";
         dm.addPath("matrix directory", pathToHDF5Files);
         String HDF5File= getFileLoc(dataSetId);
         int size=8;
-        switch(dst.toUpperCase()){
-            case "NUCLEOTIDE_2_LETTER": case "IUPAC":case "VCF":
-                size=2;break;
-            case "SSR_ALLELE_SIZE":size=8;break;
-            case "CO_DOMINANT_NON_NUCLEOTIDE":
-            case "DOMINANT_NON_NUCLEOTIDE":size=1;break;
-            default:
-                logError("Digester","Unknown type "+dst.toString());break;
+        if(iType!=null){
+            size=iType.getSize();
+        }
+        else {
+            switch (dst.toUpperCase()) {
+                case "NUCLEOTIDE_2_LETTER":
+                case "IUPAC":
+                case "VCF":
+                    size = 2;
+                    break;
+                case "SSR_ALLELE_SIZE":
+                    size = 8;
+                    break;
+                case "CO_DOMINANT_NON_NUCLEOTIDE":
+                case "DOMINANT_NON_NUCLEOTIDE":
+                    size = 1;
+                    break;
+                default:
+                    logError("Digester", "Unknown type " + dst.toString());
+                    break;
+            }
         }
         ErrorLogger.logInfo("Digester","Running HDF5 Loader. HDF5 Generating at "+HDF5File);
         HelperFunctions.tryExec(loadHDF5+" "+size+" "+variantFile.getPath()+" "+HDF5File,null,errorPath);

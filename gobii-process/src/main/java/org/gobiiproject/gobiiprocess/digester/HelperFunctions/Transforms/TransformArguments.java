@@ -10,4 +10,6 @@ public class TransformArguments {
 	public File markerFile;
 	/*Destination file location. Used in matrix transposition*/
 	public String destinationFile;
+	/*Base script directory - loader for loader, extractor for extract*/
+	public String scriptDir;
 }
