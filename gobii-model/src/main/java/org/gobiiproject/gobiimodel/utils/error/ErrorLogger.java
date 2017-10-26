@@ -9,12 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import static ch.qos.logback.classic.Level.ERROR;
-import static ch.qos.logback.classic.Level.WARN;
 
 /**
  * Horribly simplistic error logger.
@@ -26,7 +21,7 @@ import static ch.qos.logback.classic.Level.WARN;
 
 
 public class ErrorLogger {
-	private static final Logger log = LoggerFactory.getLogger("Error Log");
+	private static final Logger log = LoggerFactory.getLogger("org.gobiiproject.gobiimodel");
 	public static List<Error> errors = new ArrayList();
 
 	/**

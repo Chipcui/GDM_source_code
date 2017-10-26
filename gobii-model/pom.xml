@@ -62,20 +62,11 @@
             <artifactId>mail</artifactId>
         </dependency>
 
-        <!-- Logging with SLF4J & LogBack -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
+        <!-- Logging -->
+        <!-- SLF4J & logback-core are included as transitive for classic -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
         </dependency>
 
         <dependency>
@@ -87,6 +78,13 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
+
+        <!-- Dependency for conditional processing of logback -->
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework</groupId>
