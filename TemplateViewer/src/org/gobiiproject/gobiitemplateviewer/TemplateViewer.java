@@ -1,17 +1,17 @@
 package org.gobiiproject.gobiitemplateviewer;
 
-import javafx.scene.layout.Pane;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiFileColumn;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
+import org.gobiiproject.gobiimodel.dto.instructions.loader.LoaderInstructionFilesDTO;
 import org.gobiiproject.gobiimodel.types.GobiiColumnType;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.JTextComponent;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,25 +32,29 @@ public class TemplateViewer implements ActionListener, ComponentListener {
 	public static void main(String[] args) throws InterruptedException {
 		new TemplateViewer();
 		Thread.sleep(100000);
-	}
-	public TemplateViewer(){
+}
+
+	public TemplateViewer() {
 		FlowLayout layout = new FlowLayout();
 		mainPane = new JPanel();
 		mainPane.setLayout(layout);
 		scrollPane = new JScrollPane();
 		mainWindow = new JFrame("Template Viewer");
 		mainWindow.addComponentListener(this);
-		mainWindow.setSize(800,600);
+		mainWindow.setSize(800, 600);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setViewportView(mainPane);
 		JMenuBar mainMenu = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		JMenuItem loadMenu = new JMenuItem("Load");
+		JMenuItem loadIMenu = new JMenuItem("Load Instruction");
 		fileMenu.add(loadMenu);
+		fileMenu.add(loadIMenu);
 		mainMenu.add(fileMenu);
 		mainWindow.setJMenuBar(mainMenu);
 		loadMenu.addActionListener(this);
+		loadIMenu.addActionListener(this);
 		mainWindow.add(mainPane);
 		mainWindow.repaint();
 		mainWindow.setVisible(true);
@@ -58,18 +62,24 @@ public class TemplateViewer implements ActionListener, ComponentListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Load")){
+		if (e.getActionCommand().equals("Load") || e.getActionCommand().equals("Load Instruction")) {
 			JFileChooser chooser = new JFileChooser();
-			FileNameExtensionFilter f = new FileNameExtensionFilter(".json","json");
+			FileNameExtensionFilter f = new FileNameExtensionFilter(".json", "json");
 			chooser.addChoosableFileFilter(f);
 			chooser.setFileFilter(f);
 			chooser.showOpenDialog(mainWindow);
 			this.templateFile = chooser.getSelectedFile();
 			System.out.println(templateFile.toString());
-			List<GobiiLoaderInstruction> instructions = HelperFunctions.parseInstructionFile(templateFile.toString());
-			mainPane.setLayout(new GridLayout((instructions.size()+1)/2,2));
+			boolean loadInstruction = e.getActionCommand().equals("Load Instruction");
+			List<GobiiLoaderInstruction> instructions;
+			if (loadInstruction) {
+				instructions = HelperFunctions.parseInstructionFile(templateFile.toString());
+			} else {
+				instructions = getFromJobFile(templateFile.toString());
+			}
+			mainPane.setLayout(new GridLayout((instructions.size() + 1) / 2, 2));
 			mainWindow.setName(templateFile.getName());
-			for(GobiiLoaderInstruction instruction:instructions){
+			for (GobiiLoaderInstruction instruction : instructions) {
 				System.out.println(instruction.getTable());
 				//mainPane.add(new JTextField(instruction.getTable()));
 				mainPane.add(new Table(instruction).panel);
@@ -100,22 +110,32 @@ public class TemplateViewer implements ActionListener, ComponentListener {
 	public void componentHidden(ComponentEvent e) {
 
 	}
-	/*public static List<GobiiLoaderInstruction> parseFile(File f){
-		//ObjectMapper objectMapper = new ObjectMapper();
-		GobiiLoaderInstruction[] instructions = null;
+
+	public List<GobiiLoaderInstruction> getFromJobFile(String jobFileName) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		LoaderInstructionFilesDTO file = null;
 
 		try {
-			instructions = read(f);
+			file = objectMapper.readValue(new FileInputStream(jobFileName), LoaderInstructionFilesDTO.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(instructions==null)return null;
-		return Arrays.asList(instructions);
+		if (file == null) return null;
+		return file.getGobiiLoaderInstructions();
 	}
-	public static GobiiLoaderInstruction[] read(File file) throws Exception {
-		Unmarshaller marshaller = JAXBContext.newInstance(GobiiLoaderInstruction[].class).createUnmarshaller();
-		return (GobiiLoaderInstruction[]) marshaller.unmarshal(file);
-	}*/
+
+
+	public static List<GobiiLoaderInstruction> read(File file) {
+		Unmarshaller marshaller = null;
+		try {
+			marshaller = JAXBContext.newInstance(LoaderInstructionFilesDTO.class).createUnmarshaller();
+			return ((LoaderInstructionFilesDTO) marshaller.unmarshal(file)).getGobiiLoaderInstructions();
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	class Table {
 		public JPanel panel;
 
