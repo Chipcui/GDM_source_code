@@ -1,8 +1,8 @@
 package org.gobiiproject.gobiimodel.utils.email;
 
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.gobiiproject.gobiimodel.dto.entity.children.PropNameId;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +79,7 @@ public class ProcessMessage extends MailMessage {
         if(tableLine!=null)body.append(tableLine+line);
         if(pathsLine!=null)body.append(pathsLine+line);
         if(longError!=null)body.append(longError);
-        if(confidentialyMessage!=null)body.append("<br/><b>"+confidentialyMessage+"</b>");
+        if(confidentialyMessage!=null)body.append("<br/><b>"+ escapeHTML(confidentialyMessage)+"</b>");
         body.append("</html>");
         this.setBody(body.toString());
         return this;
@@ -119,7 +119,7 @@ public class ProcessMessage extends MailMessage {
     
     public ProcessMessage addIdentifier(String type, PropNameId identifier){
         if(identifier==null)return this;//Don't add a null ID to the table
-        return addIdentifier(type,identifier.getName(),identifier.getId()+"");
+        return addIdentifier(type,escapeHTML(identifier.getName()),identifier.getId()+"");
     }
     
      /**
@@ -130,7 +130,7 @@ public class ProcessMessage extends MailMessage {
      */
     public ProcessMessage addEntity(String type,String name){
         if(name==null)return this;
-        entities.add(new HTMLTableEntity(type,name));
+        entities.add(new HTMLTableEntity(type,escapeHTML(name)));
         return this;
     }
 
@@ -148,7 +148,7 @@ public class ProcessMessage extends MailMessage {
      */
     public ProcessMessage addPath(String type,String path){
     	if(new File(path).length() > 1){
-    		paths.add(new HTMLTableEntity(type,path,sizeToReadable(new File(path).length())));
+    		paths.add(new HTMLTableEntity(type,escapeHTML(path),sizeToReadable(new File(path).length())));
     	}
         return this;
     }
@@ -163,7 +163,7 @@ public class ProcessMessage extends MailMessage {
     public ProcessMessage addPath(String type, String path, String donePath){
         String pathFinal = donePath + new File(path).getName();
         if(new File(path).length() > 1){
-            paths.add(new HTMLTableEntity(type,pathFinal,sizeToReadable(new File(path).length())));
+            paths.add(new HTMLTableEntity(type,escapeHTML(pathFinal),sizeToReadable(new File(path).length())));
         }
         return this;
     }
@@ -183,6 +183,10 @@ public class ProcessMessage extends MailMessage {
     public ProcessMessage addConfidentialityMessage(String confidentialyMessage){
         this.confidentialyMessage=confidentialyMessage;
         return this;
+    }
+
+    public String escapeHTML(String strToHTML){
+        return StringEscapeUtils.escapeHtml(strToHTML);
     }
 
 }
