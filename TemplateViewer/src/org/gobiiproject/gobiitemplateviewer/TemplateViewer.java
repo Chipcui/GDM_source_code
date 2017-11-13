@@ -254,7 +254,7 @@ public class TemplateViewer implements ActionListener, ComponentListener, Window
 				switch(c.getGobiiColumnType()) {
 					case CSV_ROW:
 						if (referenceFile != null) {
-							valueLabel=readCSV_ROW(referenceFile,inst,c.getrCoord(),c.getcCoord());
+							valueLabel=readCSV_ROW(referenceFile,inst,c.getrCoord()-1,c.getcCoord());
 						} else {
 							valueLabel = "Column " + c.getcCoord();
 						}
