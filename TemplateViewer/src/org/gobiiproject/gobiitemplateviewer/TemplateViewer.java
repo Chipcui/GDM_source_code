@@ -267,7 +267,7 @@ public class TemplateViewer implements ActionListener, ComponentListener, Window
 						}
 						break;
 					case CSV_BOTH:
-						valueLabel="" + c.getrCoord() + " : " + c.getcCoord();
+						valueLabel="Matrix from " + c.getrCoord() + " : " + c.getcCoord();
 						break;
 					case CONSTANT:
 						valueLabel="Always " + c.getConstantValue();
@@ -280,16 +280,20 @@ public class TemplateViewer implements ActionListener, ComponentListener, Window
 						break;
 					}
 				content.add(new JLabel(valueLabel));
+				String filterLabel=null;
 				if (c.getFilterFrom() != null || c.getFilterTo()!=null) {
 					if(c.getFilterFrom() == null){
-						content.add(new JLabel("Filter to " + c.getFilterTo()));
+						filterLabel="Filter to " + c.getFilterTo();
 					}
 					else if(c.getFilterTo()==null){
-						content.add(new JLabel("Filter from "+ c.getFilterFrom() ));
+						filterLabel="Filter from "+ c.getFilterFrom();
 					}
 					else {
-						content.add(new JLabel("Filter from " + c.getFilterFrom() + " to " + c.getFilterTo()));
+						filterLabel="Filter from " + c.getFilterFrom() + " to " + c.getFilterTo();
 					}
+				}
+				if(filterLabel!=null){
+					content.add(new JLabel(filterLabel));
 				}
 			}
 			content.setBackground(backgroundColor);
