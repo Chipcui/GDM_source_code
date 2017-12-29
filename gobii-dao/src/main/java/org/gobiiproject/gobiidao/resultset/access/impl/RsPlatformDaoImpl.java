@@ -8,6 +8,7 @@ import org.gobiiproject.gobiidao.resultset.core.StoredProcExec;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsPlatformProperties;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsPlatform;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdPlatform;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetPlatformDetailsByVendorProtocolId;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetPlatformDetailsByPlatformId;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetPlatformNames;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetPlatformNamesByTypeId;
