@@ -166,7 +166,12 @@ StringBuilder genoFileString=new StringBuilder();
         //Coallate genotype files
         String genoFile=tempFolder+"markerList.genotype";
         logDebug("MarkerList", "Accumulating markers into final genotype file");
+        if(genoFileString.length() == 0){
+            ErrorLogger.logError("HDF5Interface","No genotype data to extract");
+            return null;
+        }
         String genotypePartFileIdentifier=genoFileString.toString();
+
         if(markerFast) {
             tryExec("paste" + genotypePartFileIdentifier, genoFile, errorFile);
         }

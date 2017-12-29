@@ -2472,6 +2472,42 @@ public class GOBIIControllerV1 {
 
     }
 
+    @RequestMapping(value = "/platforms/protocols/{vendorProtocolId:[\\d]+}", method = RequestMethod.GET)
+    @ResponseBody
+    public PayloadEnvelope<PlatformDTO> getPlatformDetailsByVendorProtocolId(@PathVariable Integer vendorProtocolId,
+                                                         HttpServletRequest request,
+                                                         HttpServletResponse response) {
+
+        PayloadEnvelope<PlatformDTO> returnVal = new PayloadEnvelope<>();
+        try {
+
+            //PayloadReader<PlatformDTO> payloadReader = new PayloadReader<>(PlatformDTO.class);
+            PlatformDTO platformDTO = platformService.getPlatformDetailsByVendorProtocolId(vendorProtocolId);
+
+            PayloadWriter<PlatformDTO> payloadWriter = new PayloadWriter<>(request, response,
+                    PlatformDTO.class);
+
+            payloadWriter.writeSingleItemForDefaultId(returnVal,
+                    GobiiUriFactory.resourceByUriIdParam(request.getContextPath(),
+                            GobiiServiceRequestId.URL_PLATFORM),
+                    platformDTO);
+
+        } catch (GobiiException e) {
+            returnVal.getHeader().getStatus().addException(e);
+        } catch (Exception e) {
+            returnVal.getHeader().getStatus().addException(e);
+        }
+
+
+        ControllerUtils.setHeaderResponse(returnVal.getHeader(),
+                response,
+                HttpStatus.CREATED,
+                HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return (returnVal);
+
+    }
+
 
     // *********************************************
     // *************************** PROJECT METHODS

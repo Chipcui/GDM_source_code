@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiidtomapping.entity.auditable.impl;
+package org.gobiiproject.gobiidtomapping.impl;
 
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiidao.resultset.access.RsPlatformDao;
@@ -6,11 +6,11 @@ import org.gobiiproject.gobiidao.resultset.core.ParamExtractor;
 import org.gobiiproject.gobiidao.resultset.core.ResultColumnApplicator;
 import org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQueryColl;
 import org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId;
-import org.gobiiproject.gobiidtomapping.entity.auditable.DtoMapPlatform;
-import org.gobiiproject.gobiidtomapping.core.GobiiDtoMappingException;
+import org.gobiiproject.gobiidtomapping.DtoMapPlatform;
+import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 import org.gobiiproject.gobiidtomapping.core.EntityProperties;
-import org.gobiiproject.gobiimodel.dto.entity.children.EntityPropertyDTO;
-import org.gobiiproject.gobiimodel.dto.entity.auditable.PlatformDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.EntityPropertyDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.PlatformDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,19 +37,19 @@ public class DtoMapPlatformImpl implements DtoMapPlatform {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<PlatformDTO> getList() throws GobiiDtoMappingException {
+    public List<PlatformDTO> getPlatforms() throws GobiiDtoMappingException {
 
         List<PlatformDTO> returnVal = new ArrayList<PlatformDTO>();
 
 
-        returnVal = (List<PlatformDTO>) dtoListQueryColl.getList(ListSqlId.QUERY_ID_PLATFORM_ALL);
+        returnVal = (List<PlatformDTO>) dtoListQueryColl.getList(ListSqlId.QUERY_ID_PLATFORM_ALL, null);
 
 
         return returnVal;
     }
 
     @Override
-    public PlatformDTO get(Integer platformId) throws GobiiDtoMappingException {
+    public PlatformDTO getPlatformDetails(Integer platformId) throws GobiiDtoMappingException {
 
         PlatformDTO returnVal = new PlatformDTO();
 
@@ -76,10 +76,40 @@ public class DtoMapPlatformImpl implements DtoMapPlatform {
 
         return returnVal;
 
-    } // get()
+    } // getPlatformDetails()
 
     @Override
-    public PlatformDTO create(PlatformDTO platformDTO) throws GobiiDtoMappingException {
+    public PlatformDTO getPlatformDetailsByVendorProtocolId(Integer vendorProtocolId) throws GobiiDtoMappingException {
+
+        PlatformDTO returnVal = new PlatformDTO();
+
+        ResultSet resultSet = rsPlatformDao.getPlatformDetailsByVendorProtocolId(vendorProtocolId);
+
+        try {
+
+            if (resultSet.next()) {
+
+                // apply platform values
+                ResultColumnApplicator.applyColumnValues(resultSet, returnVal);
+
+                ResultSet propertyResultSet = rsPlatformDao.getProperties(returnVal.getPlatformId());
+                List<EntityPropertyDTO> entityPropertyDTOs =
+                        EntityProperties.resultSetToProperties(returnVal.getPlatformId(), propertyResultSet);
+
+                returnVal.setProperties(entityPropertyDTOs);
+
+            } // if result set has a row
+        } catch (SQLException e) {
+            LOGGER.error("Error retreving platform details", e);
+            throw new GobiiDtoMappingException(e);
+        }
+
+        return returnVal;
+
+    } // getPlatformDetails()
+
+    @Override
+    public PlatformDTO createPlatform(PlatformDTO platformDTO) throws GobiiDtoMappingException {
         PlatformDTO returnVal = platformDTO;
 
 
@@ -116,7 +146,7 @@ public class DtoMapPlatformImpl implements DtoMapPlatform {
     }
 
     @Override
-    public PlatformDTO replace(Integer platformId, PlatformDTO platformDTO) throws GobiiDtoMappingException {
+    public PlatformDTO replacePlatform(Integer platformId, PlatformDTO platformDTO) throws GobiiDtoMappingException {
 
         PlatformDTO returnVal = platformDTO;
 

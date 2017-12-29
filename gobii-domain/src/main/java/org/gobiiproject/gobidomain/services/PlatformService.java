@@ -14,6 +14,5 @@ public interface PlatformService {
     PlatformDTO replacePlatform(Integer platformId, PlatformDTO platformDTO) throws GobiiDomainException;
     List<PlatformDTO> getPlatforms() throws GobiiDomainException;
     PlatformDTO getPlatformById(Integer platformId) throws GobiiDomainException;
-
-
+    PlatformDTO getPlatformDetailsByVendorProtocolId(Integer vendorProtocolId) throws GobiiDomainException;
 }

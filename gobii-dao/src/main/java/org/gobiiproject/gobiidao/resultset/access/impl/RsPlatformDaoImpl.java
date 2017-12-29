@@ -114,6 +114,32 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
+    public ResultSet getPlatformDetailsByVendorProtocolId(Integer vendorProtocolId) throws GobiiDaoException {
+
+        ResultSet returnVal = null;
+
+        try {
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("vendorProtocolId", vendorProtocolId);
+            SpGetPlatformDetailsByVendorProtocolId spGetPlatformDetailsByVendorProtocolId = new SpGetPlatformDetailsByVendorProtocolId(parameters);
+
+            storedProcExec.doWithConnection(spGetPlatformDetailsByVendorProtocolId);
+
+            returnVal = spGetPlatformDetailsByVendorProtocolId.getResultSet();
+
+        } catch (SQLGrammarException e) {
+            LOGGER.error("Error getting platform details by vendorProtocl id with SQL " + e.getSQL(), e.getSQLException());
+            throw (new GobiiDaoException(e.getSQLException()));
+
+        }
+
+        return returnVal;
+
+    } // getPlatformDetailsByPlatformId()
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
     public Integer createPlatform(Map<String, Object> parameters) throws GobiiDaoException {
 
         Integer returnVal = null;
