@@ -5,10 +5,13 @@
 // ************************************************************************
 package org.gobiiproject.gobidomain.services.impl;
 
+import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.security.TokenInfo;
 import org.gobiiproject.gobidomain.security.TokenManager;
 import org.gobiiproject.gobidomain.services.AuthenticationService;
 import org.gobiiproject.gobidomain.services.ContactService;
+import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
+import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +50,7 @@ public class AuthenticationServiceDefault implements AuthenticationService {
     }
 
     @Override
-    public TokenInfo authenticate(String login, String password) {
+    public TokenInfo authenticate(String login, String password) throws GobiiDomainException {
 
         TokenInfo returnVal = null;
 
@@ -67,7 +70,10 @@ public class AuthenticationServiceDefault implements AuthenticationService {
             }
 
         } catch (AuthenticationException e) {
-            LOGGER.error("Error authenticating for user " + login, e);
+            String message = "Error authenticating for user " + login;
+
+            LOGGER.error(message + login, e);
+            throw new GobiiDomainException(e);
         }
 
         return returnVal;

@@ -73,6 +73,8 @@ public class BrapiResponseMapCalls {
         List<BrapiResponseCallsItem> brapiResponseCallsItems = this.getBrapiResponseCallsItems();
         returnVal.setData(brapiResponseCallsItems);
 
+
+
         return returnVal;
 
     }

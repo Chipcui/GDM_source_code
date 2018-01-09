@@ -135,10 +135,12 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
 
         } catch (Exception e) {
 
-            LOGGER.error("Error in authentication filter", e);
+
+            String messageStem = "Error in authentication filter";
+            LOGGER.error(messageStem, e);
 
             if (httpResponse != null) {
-                httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, messageStem + e.getMessage());
             }
         }
 
