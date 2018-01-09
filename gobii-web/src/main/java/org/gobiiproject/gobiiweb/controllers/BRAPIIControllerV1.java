@@ -161,7 +161,7 @@ public class BRAPIIControllerV1 {
                     brapiResponseCalls.getData().size(),
                     brapiResponseCalls.getData().size(),
                     1,
-                    1
+                    0
             ));
 
         } catch (GobiiException e) {
