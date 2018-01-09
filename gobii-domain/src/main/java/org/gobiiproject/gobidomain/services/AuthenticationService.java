@@ -5,7 +5,9 @@
 // ************************************************************************
 package org.gobiiproject.gobidomain.services;
 
+import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.security.TokenInfo;
+import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +29,7 @@ public interface AuthenticationService {
 	 * Authenticates the user and returns valid token. If anything fails, {@code null} is returned instead.
 	 * Prepares {@link org.springframework.security.core.context.SecurityContext} if authentication succeeded.
 	 */
-	TokenInfo authenticate(String login, String password);
+	TokenInfo authenticate(String login, String password) throws GobiiDomainException;
 
 	/**
 	 * Checks the authentication token and if it is valid prepares

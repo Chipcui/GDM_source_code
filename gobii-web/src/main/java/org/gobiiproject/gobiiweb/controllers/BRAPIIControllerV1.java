@@ -8,6 +8,7 @@ package org.gobiiproject.gobiiweb.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.gobiiproject.gobidomain.services.PingService;
+import org.gobiiproject.gobiiapimodel.payload.Pagination;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
 import org.gobiiproject.gobiibrapi.calls.calls.BrapiResponseCalls;
 import org.gobiiproject.gobiibrapi.calls.calls.BrapiResponseMapCalls;
@@ -156,6 +157,12 @@ public class BRAPIIControllerV1 {
 
             BrapiResponseCalls brapiResponseCalls = brapiResponseMapCalls.getBrapiResponseCalls();
             brapiResponseEnvelopeMasterDetail.setResult(brapiResponseCalls);
+            brapiResponseEnvelopeMasterDetail.getBrapiMetaData().setPagination(new Pagination(
+                    brapiResponseCalls.getData().size(),
+                    brapiResponseCalls.getData().size(),
+                    1,
+                    1
+            ));
 
         } catch (GobiiException e) {
 
