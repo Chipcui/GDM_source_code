@@ -206,8 +206,15 @@ public class BRAPIIControllerV1 {
 
             BrapiResponseStudiesSearch brapiResponseStudySearch = brapiResponseMapStudiesSearch.getBrapiResponseStudySearch(brapiRequestStudiesSearch);
 
+
             BrapiResponseEnvelopeMasterDetail.setResult(brapiResponseStudySearch);
 
+            BrapiResponseEnvelopeMasterDetail.getBrapiMetaData().setPagination(new Pagination(
+                    brapiResponseStudySearch.getData().size(),
+                    1,
+                    brapiResponseStudySearch.getData().size(),
+                    0
+            ));
         } catch (GobiiException e) {
 
             String message = e.getMessage() + ": " + e.getCause() + ": " + e.getStackTrace().toString();

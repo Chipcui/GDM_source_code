@@ -17,6 +17,8 @@ public class BrapiRequestStudiesSearch {
     private boolean active;
     private String sortBy;
     private String sortOrder;
+    private Integer pageSize;
+    private Integer page;
 
     public String getStudyType() {
         return studyType;
@@ -88,5 +90,21 @@ public class BrapiRequestStudiesSearch {
 
     public void setSortOrder(String sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
     }
 }
