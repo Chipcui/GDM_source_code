@@ -1,16 +1,21 @@
 package org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrixsearch;
 
 import org.apache.commons.io.FilenameUtils;
+import org.gobiiproject.gobidomain.services.CvService;
 import org.gobiiproject.gobidomain.services.ExtractorInstructionFilesService;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
 import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
 import org.gobiiproject.gobiibrapi.core.common.BrapiMetaData;
+import org.gobiiproject.gobiimodel.config.GobiiException;
+import org.gobiiproject.gobiimodel.cvnames.CvGroup;
+import org.gobiiproject.gobiimodel.cvnames.DatasetType;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiDataSetExtract;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiExtractorInstruction;
 import org.gobiiproject.gobiimodel.entity.PropNameId;
+import org.gobiiproject.gobiimodel.headerlesscontainer.CvDTO;
 import org.gobiiproject.gobiimodel.headerlesscontainer.ExtractorInstructionFilesDTO;
 import org.gobiiproject.gobiimodel.types.GobiiExtractFilterType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
@@ -23,6 +28,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * Created by Phil on 12/15/2016.
@@ -31,6 +38,28 @@ public class BrapiResponseMapAlleleMatrixSearch {
 
     @Autowired
     private ExtractorInstructionFilesService extractorInstructionFilesService;
+
+    @Autowired
+    private CvService cvService;
+
+    private PropNameId getDatatypeIdForName(DatasetType datasetType) {
+
+
+        List<CvDTO> datasetCvs = cvService.getCvsByGroupName(CvGroup.CVGROUP_DATASETTYPES.getCvGroupName());
+
+        AtomicInteger datasetTypeId = new AtomicInteger(0);
+        datasetCvs
+                .stream()
+                .filter(cv -> cv.getTerm().equals(datasetType.getDatasetTypeName()))
+                .forEach(cv -> datasetTypeId.set(cv.getCvId()));
+
+        if (datasetTypeId.get() == 0) {
+            throw new GobiiException("Unknown datatype: " + datasetType.getDatasetTypeName());
+        }
+
+
+        return new PropNameId(datasetTypeId.get(), datasetType.getDatasetTypeName());
+    }
 
     private BrapiMetaData createExtractorInstruction(String crop, GobiiDataSetExtract gobiiDataSetExtract) {
 
@@ -72,6 +101,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
         gobiiDataSetExtract.setGobiiSampleListType(GobiiSampleListType.EXTERNAL_CODE);
         gobiiDataSetExtract.setSampleList(externalCodes);
         gobiiDataSetExtract.setDataSet(null);
+        gobiiDataSetExtract.setGobiiDatasetType(this.getDatatypeIdForName(DatasetType.CV_DATASETTYPE_CO_DOMINANT_NON_NUCLEOTIDE));
 
         return createExtractorInstruction(crop, gobiiDataSetExtract);
     }

@@ -9,7 +9,8 @@ public enum CvGroup {
 
     CVGROUP_JOBTYPE("job_type"),
     CVGROUP_PAYLOADTYPE("payload_type"),
-    CVGROUP_JOBSTATUS("job_status");
+    CVGROUP_JOBSTATUS("job_status"),
+    CVGROUP_DATASETTYPES("dataset_type");
 
     private String cvGroupName;
 
