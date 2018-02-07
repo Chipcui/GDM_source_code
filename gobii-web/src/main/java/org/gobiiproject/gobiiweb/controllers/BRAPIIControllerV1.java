@@ -403,7 +403,9 @@ public class BRAPIIControllerV1 {
                                   HttpServletResponse response) throws Exception {
 
         String returnVal = null;
-
+        LOGGER.info("Logging input request for allele-matrix-search." +
+                matrixDbId.map(s1 -> "MatrixDbId provided is " + s1).orElse("") + ". " +
+                markerprofileDbId.map(s1 -> "MarkerprofileDbId provided is " + s1).orElse("") + ". ");
         BrapiResponseEnvelope brapiResponseEnvelope = new BrapiResponseEnvelope();
         try {
 
