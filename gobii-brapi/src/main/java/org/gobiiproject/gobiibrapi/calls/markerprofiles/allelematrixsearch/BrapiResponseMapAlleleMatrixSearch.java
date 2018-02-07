@@ -101,6 +101,8 @@ public class BrapiResponseMapAlleleMatrixSearch {
         gobiiDataSetExtract.setGobiiSampleListType(GobiiSampleListType.EXTERNAL_CODE);
         gobiiDataSetExtract.setSampleList(externalCodes);
         gobiiDataSetExtract.setDataSet(null);
+        gobiiDataSetExtract.setProject(null);
+        gobiiDataSetExtract.setPrincipleInvestigator(null);
         gobiiDataSetExtract.setGobiiDatasetType(this.getDatatypeIdForName(DatasetType.CV_DATASETTYPE_CO_DOMINANT_NON_NUCLEOTIDE));
 
         return createExtractorInstruction(crop, gobiiDataSetExtract);
