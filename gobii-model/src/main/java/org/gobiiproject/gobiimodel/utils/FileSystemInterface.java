@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.nio.file.StandardCopyOption;
 
 import static org.gobiiproject.gobiimodel.utils.HelperFunctions.tryExec;
@@ -120,5 +122,26 @@ public class FileSystemInterface {
 	 */
 	public static void keepTempFiles(boolean keep){
 		keepInTemp=keep;
+	}
+
+	/**
+	 *Returns a filtered list of files under a directory where the files match an extension
+	 * @param baseDir starting directory for datatypes, does not traverse filders
+	 * @return List of files
+	 */
+	public static List<File> getAllFiles(File baseDir, String extension) {
+		File[] list = baseDir.listFiles();
+		List<File> ret = new ArrayList<File>();
+		if (list == null) return null;
+		for (File f : list)
+			if (f.isFile()) { //Improvised off Java's FileExtensionFilter.
+				String name = f.getName();
+				int i = name.lastIndexOf('.');
+				if (i < 0) continue;
+				if (i > name.length() - 1) continue;
+				if (!name.substring(i + 1).equals(extension)) continue;
+				ret.add(f);
+			}
+		return ret;
 	}
 }

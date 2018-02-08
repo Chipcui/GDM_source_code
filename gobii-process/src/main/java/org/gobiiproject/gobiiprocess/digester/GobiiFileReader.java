@@ -15,6 +15,8 @@ import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
 import org.gobiiproject.gobiimodel.config.*;
+import org.gobiiproject.gobiimodel.config.datatypes.InputType;
+import org.gobiiproject.gobiimodel.config.datatypes.MatrixTransformElement;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.*;
 import org.gobiiproject.gobiimodel.dto.entity.auditable.DataSetDTO;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.ExtractorInstructionFilesDTO;
@@ -31,6 +33,9 @@ import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 import org.gobiiproject.gobiiprocess.HDF5Interface;
 import org.gobiiproject.gobiiprocess.JobStatus;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.*;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.TransformArguments;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.ScriptTransform;
 import org.gobiiproject.gobiiprocess.digester.csv.CSVFileReaderV2;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.DigestMatrix;
 import org.gobiiproject.gobiiprocess.digester.vcf.VCFFileReader;
@@ -326,7 +331,10 @@ public class GobiiFileReader {
 		}
 		querier.close();
 
+		TransformArguments transformArguments=new TransformArguments();
+		transformArguments.destinationFile=getDestinationFile(zero);
 		boolean sendQc= false;
+		InputType datasetInputType=null;
 		for (GobiiLoaderInstruction inst:list) {
 			qcCheck = inst.isQcCheck();
 			//Section - Matrix Post-processing
@@ -348,41 +356,51 @@ public class GobiiFileReader {
 			if (dst != null && inst.getTable().equals(VARIANT_CALL_TABNAME)) {
 				jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_TRANSFORMATION.getCvName(),"Data Matrix Transformation");
 				errorPath = getLogName(inst, gobiiCropConfig, crop, "Matrix_Processing"); //Temporary Error File Name
-				boolean transformStripsHeader = false;
-				MobileTransform mainTransform=null;
+				List<MobileTransform> transforms=new ArrayList<MobileTransform>();
+				transformArguments.markerFile = loaderInstructionMap.get(MARKER_TABNAME);
+				InputType iType=InputType.getAllInputTypes(new File(loaderScriptPath+"InputTypes/")).get(dst);//Transform directory
+				if(iType==null) {
 				switch (dst.toUpperCase()) {
 					case "NUCLEOTIDE_2_LETTER":
-						mainTransform=MobileTransform.getSNPTransform("python " + loaderScriptPath + "etc/SNPSepRemoval.py",loaderScriptPath + "etc/missingIndicators.txt");
-						transformStripsHeader = true;
+							transforms.add(new ScriptTransform("python etc/SNPSepRemoval.py","etc/missingIndicators.txt"));
+							//transformStripsHeader = true;
                         break;
                     case "IUPAC":
-                        mainTransform = MobileTransform.IUPACToBI;
+							transforms.add(MobileTransform.IUPACToBI);
+							transforms.add(MobileTransform.stripHeader);
                         break;
                     case "SSR_ALLELE_SIZE":
                     case "DOMINANT_NON_NUCLEOTIDE":
                     case "CO_DOMINANT_NON_NUCLEOTIDE":
-                        //No Translation Needed in these cases. Done before GOBII
+							//No data transformation, just strip headers
+							transforms.add(MobileTransform.stripHeader);
                         break;
                     case "VCF":
-                        File markerFile = loaderInstructionMap.get(MARKER_TABNAME);
-						mainTransform=MobileTransform.getVCFTransform(markerFile);
+							transforms.add(MobileTransform.VCFTransform);
+							transforms.add(MobileTransform.stripHeader);
 						break;
 					default:
 						ErrorLogger.logError("GobiiFileReader", "Unknown Data type " + dst);
 						break;
 				}
-				if (mainTransform != null) {
-					intermediateFile.transform(mainTransform);
 				}
-				if (!transformStripsHeader) {
-					intermediateFile.transform(MobileTransform.stripHeader);
+				else{
+					datasetInputType=iType;
+					List<MatrixTransformElement> elements=iType.getTransformList();
+					for(MatrixTransformElement element:elements){
+						transforms.add(MobileTransform.getFromMatrixElement(element));
+				}
+				}
+				for (MobileTransform transform:transforms) {
+					intermediateFile.transform(transform,transformArguments);
 				}
 				boolean isSampleFast = false;
 				if (DataSetOrientationType.SAMPLE_FAST.equals(dso)) isSampleFast = true;
 				if (isSampleFast) {
 					//Rotate to marker fast before loading it - all data is marker fast in the system
-					File transposeDir=new File(new File(fromFile).getParentFile(),"transpose");
-					intermediateFile.transform(MobileTransform.getTransposeMatrix(transposeDir.getPath()));
+					intermediateFile.transform(MobileTransform.TransposeMatrixTransform,transformArguments);
+					//TODO: Was File transposeDir=new File(new File(fromFile).getParentFile(),"transpose");
+					//intermediateFile.transform(MobileTransform.getTransposeMatrix(transposeDir.getPath()));
 				}
 			}
 			jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_TRANSFORMATION.getCvName(),"Metadata Transformation");
@@ -393,7 +411,7 @@ public class GobiiFileReader {
 				success &= HelperFunctions.tryExec(loaderScriptPath + "LGduplicates.py -i " + getDestinationFile(inst));
 			}
 			if (MARKER_TABNAME.equals(instructionName)) {//Convert 'alts' into a jsonb array
-				intermediateFile.transform(MobileTransform.PGArray);
+				intermediateFile.transform(MobileTransform.PGArray,transformArguments);
 			}
 
 			intermediateFile.returnFile(); // replace intermediateFile where it came from
@@ -473,7 +491,7 @@ public class GobiiFileReader {
 					uploadToMonet(dataSetId, gobiiCropConfig, errorPath, variantFile, markerFileLoc, sampleFileLoc);
 				}
 
-                HDF5Interface.createHDF5FromDataset(pm, dst, configuration, dataSetId, crop, errorPath, variantFilename, variantFile);
+                HDF5Interface.createHDF5FromDataset(pm, dst, configuration, dataSetId, crop, errorPath, variantFilename, variantFile,datasetInputType);
                 rmIfExist(variantFile.getPath());
             }
             if (success && ErrorLogger.success()) {
