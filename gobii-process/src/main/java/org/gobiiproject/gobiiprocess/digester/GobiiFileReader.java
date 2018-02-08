@@ -399,8 +399,6 @@ public class GobiiFileReader {
 				if (isSampleFast) {
 					//Rotate to marker fast before loading it - all data is marker fast in the system
 					intermediateFile.transform(MobileTransform.TransposeMatrixTransform,transformArguments);
-					//TODO: Was File transposeDir=new File(new File(fromFile).getParentFile(),"transpose");
-					//intermediateFile.transform(MobileTransform.getTransposeMatrix(transposeDir.getPath()));
 				}
 			}
 			jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_TRANSFORMATION.getCvName(),"Metadata Transformation");
