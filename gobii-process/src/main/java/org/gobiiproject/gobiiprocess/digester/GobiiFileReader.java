@@ -879,10 +879,6 @@ public class GobiiFileReader {
         }
     }
 
-    private static String getJDBCConnectionString(GobiiCropConfig config) {
-        return config.getCropDbConfig(GobiiDbType.POSTGRESQL).getConnectionString();
-    }
-
     /**
      * Given a string key, determine if the table is one-to-one with relation to the input file size.
      * If not, several metrics become meaningless.
