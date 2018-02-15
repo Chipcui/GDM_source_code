@@ -2,12 +2,17 @@ package org.gobiiproject.gobiiprocess;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.datatypes.InputType;
+import org.gobiiproject.gobiimodel.config.datatypes.MatrixTransformElement;
+import org.gobiiproject.gobiimodel.config.datatypes.OutputType;
 import org.gobiiproject.gobiimodel.utils.FileSystemInterface;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.utils.email.DigesterMessage;
 import org.gobiiproject.gobiimodel.utils.email.ProcessMessage;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 import org.gobiiproject.gobiiprocess.digester.GobiiFileReader;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.SequenceInPlaceTransform;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.MobileTransform;
+import org.gobiiproject.gobiiprocess.digester.HelperFunctions.Transforms.TransformArguments;
 
 import java.io.*;
 import java.util.Arrays;
@@ -27,6 +32,7 @@ public class HDF5Interface {
 
     private static String pathToHDF5;
     private static String pathToHDF5Files;
+    private static String extractorScriptPath;
     //Paths
 
     public static void createHDF5FromDataset(ProcessMessage dm, String dst, ConfigSettings configuration, Integer dataSetId, String crop, String errorPath, String variantFilename, File variantFile, InputType iType) {
@@ -78,6 +84,8 @@ public class HDF5Interface {
     public static void setPathToHDF5Files(String pathToHDF5Files) {
         HDF5Interface.pathToHDF5Files = pathToHDF5Files;
     }
+
+    public static void setExtractorScriptPath(String extractorScriptPath){ HDF5Interface.extractorScriptPath=extractorScriptPath; }
 
     /**
      * Given a marker list extracts genotyping data from it. See getHDF5GenoFromSampleList for more information.
@@ -139,7 +147,7 @@ public class HDF5Interface {
             sampR=new BufferedReader(new FileReader(samplePosFile));
             samplePos=getSamplePosFromFile(samplePosFile);
         }
-StringBuilder genoFileString=new StringBuilder();
+        StringBuilder genoFileString=new StringBuilder();
         try{
             posR.readLine();//header
             if(sampR!=null)sampR.readLine();
@@ -223,6 +231,11 @@ StringBuilder genoFileString=new StringBuilder();
         String genoFile=tempFolder+"DS-"+dataSetId+".genotype";
 
         String HDF5File= getFileLoc(dataSetId);
+
+        OutputType oType=null;
+        String type = "RAW";//Todo - find type of data set based off ID
+        oType=OutputType.getAllOutputTypes(new File(extractorScriptPath+"OutputTypes/")).get(type);
+
         // %s <orientation> <HDF5 file> <output file>
         String ordering="samples-fast";
         if(markerFast)ordering="markers-fast";
@@ -243,6 +256,14 @@ StringBuilder genoFileString=new StringBuilder();
             filterBySampleList(genoFile,sampleList,markerFast, errorFile);
         }
         ErrorLogger.logDebug("Extractor",(ErrorLogger.success()?"Success ":"Failure " +"Extracting with "+ordering+" "+HDF5File+" "+genoFile));
+        if(oType!=null){
+            TransformArguments args=new TransformArguments();
+            SequenceInPlaceTransform genotypeTransform=new SequenceInPlaceTransform(genoFile,errorFile);
+            for(MatrixTransformElement transform : oType.getTransformList()){
+                genotypeTransform.transform(MobileTransform.getFromMatrixElement(transform),args);
+            }
+            genotypeTransform.returnFile();
+        }
         return genoFile;
     }
 
