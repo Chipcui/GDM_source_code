@@ -62,6 +62,9 @@ public class VCFTransformer {
 				String[] matrixLineData = matrixLine.trim().split("\\s+");
 				int columnsNumber = matrixLineData.length;
 				for (int i = 0; i < columnsNumber; i++) {
+					if(i>0){
+						bimatrixFileBufferedWriter.write("\t");
+					}
 					matrixLineData[i] = matrixLineData[i].split(":")[0];
 					String[] terms = matrixLineData[i].split("/");
 					if (terms.length != 2) {
@@ -96,7 +99,6 @@ public class VCFTransformer {
 						}
 					}
 					bimatrixFileBufferedWriter.write(bimatrixCell);
-					bimatrixFileBufferedWriter.write("\t");
 				}
 				bimatrixFileBufferedWriter.newLine();
 			}
