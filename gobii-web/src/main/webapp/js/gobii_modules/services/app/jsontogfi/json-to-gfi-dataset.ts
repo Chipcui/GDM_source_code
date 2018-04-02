@@ -50,6 +50,8 @@ export class JsonToGfiDataset implements JsonToGfi {
             jsonItem.platformName,
             jsonItem.callingAnalysisName,
             jsonItem.piEmail,
+            jsonItem.piFirstName,
+            jsonItem.piLastName,
             jsonItem.datatypeName,
             jsonItem.totalSamples,
             jsonItem.totalMarkers);

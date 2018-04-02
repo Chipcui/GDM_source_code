@@ -27,6 +27,8 @@ export class DataSet {
                 public platformName: string,
                 public callingAnalysisName: string,
                 public piEmail: string,
+                public piFirstName: string,
+                public piLastName: string,
                 public datatypeName: string,
                 public totalSamples: number,
                 public totalMarkers: number

@@ -107,7 +107,7 @@ import 'rxjs/add/operator/withLatestFrom'
                           header="PI"
                           [style]="{'width': '18%'}">
                     <ng-template pTemplate="body" let-col let-fi="rowData">
-                        <span pTooltip="{{fi._entity.piEmail}}" tooltipPosition="left" tooltipStyleClass="tableTooltip"> {{fi._entity.piEmail}} </span>
+                        <span pTooltip="{{fi._entity.piLastName}}, {{fi._entity.piFirstName}}" tooltipPosition="left" tooltipStyleClass="tableTooltip"> {{fi._entity.piLastName}}, {{fi._entity.piFirstName}} </span>
                     </ng-template>
                 </p-column>
                 <!--<p-column field="_entity.jobStatusName" header="Status"></p-column>-->

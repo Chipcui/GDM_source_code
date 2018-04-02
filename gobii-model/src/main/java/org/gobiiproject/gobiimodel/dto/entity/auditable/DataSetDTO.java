@@ -46,6 +46,8 @@ public class DataSetDTO extends DTOBaseAuditable {
     private String callingAnalysisName;
     private Integer piContactId;
     private String piEmail;
+    private String piFirstName;
+    private String piLastName;
     private String dataTable;
     private String dataFile;
     private String qualityTable;
@@ -326,6 +328,26 @@ public class DataSetDTO extends DTOBaseAuditable {
     @GobiiEntityColumn(columnName = "piemail")
     public void setPiEmail(String piEmail) {
         this.piEmail = piEmail;
+    }
+
+    @GobiiEntityParam(paramName = "piFirstName")
+    public String getPiFirstName() {
+        return piFirstName;
+    }
+
+    @GobiiEntityColumn(columnName = "pifirstname")
+    public void setPiFirstName(String piFirstName) {
+        this.piFirstName = piFirstName;
+    }
+
+    @GobiiEntityParam(paramName = "piLastName")
+    public String getPiLastName() {
+        return piLastName;
+    }
+
+    @GobiiEntityColumn(columnName = "pilastname")
+    public void setPiLastName(String piLastName) {
+        this.piLastName = piLastName;
     }
 
     @GobiiEntityParam(paramName = "piContactId")

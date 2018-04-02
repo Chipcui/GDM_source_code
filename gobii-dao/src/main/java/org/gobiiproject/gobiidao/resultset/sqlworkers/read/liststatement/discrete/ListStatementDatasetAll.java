@@ -42,6 +42,8 @@ public class ListStatementDatasetAll implements ListStatement {
                 "	null as \"callinganalysisname\", " +
                 "	c.contact_id as picontactid, " +
                 "	c.email as piemail, " +
+                "   c.firstname as pifirstname,"+
+                "   c.lastname as pilastname,"+
                 "	ds.data_table, " +
                 "	ds.data_file, " +
                 "	ds.quality_table, " +
