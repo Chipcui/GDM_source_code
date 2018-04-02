@@ -6,7 +6,7 @@
 
     <groupId>org.gobiiproject</groupId>
     <artifactId>parent</artifactId>
-    <version>1.4.0_2018-03-28_01</version>
+    <version>1.4.0_2018-03-28_01-GP1-1498-02</version>
     <packaging>pom</packaging>
 
     <description>Parent for GOBii project genotype application</description>
@@ -14,7 +14,7 @@
     <properties>
 
         <!-- Gobii Version -->
-        <gobii.version>1.4.0_2018-03-28_01</gobii.version>
+        <gobii.version>1.4.0_2018-03-28_01-GP1-1498-02</gobii.version>
 
         <!-- Spring Version -->
         <spring.version>4.2.2.RELEASE</spring.version>

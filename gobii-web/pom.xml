@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.gobiiproject</groupId>
         <artifactId>parent</artifactId>
-        <version>1.4.0_2018-03-28_01</version>
+        <version>1.4.0_2018-03-28_01-GP1-1498-02</version>
     </parent>
 
     <groupId>org.gobiiproject</groupId>
