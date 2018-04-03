@@ -390,7 +390,7 @@ public class GobiiExtractor {
 					pm.addCriteria("Mapset", (mapId!=null?mapId.toString():"No Mapset info available"));
 					pm.addCriteria("Format", uppercaseFirstLetter(extract.getGobiiFileType().toString().toLowerCase()));
 					pm.addCriteria("Platforms", getPlatformNames(extract.getPlatforms()));
-					pm.addCriteria("Sample ListType", uppercaseFirstLetter(extract.getGobiiSampleListType().toString().toLowerCase()));
+//					pm.addCriteria("Sample ListType", uppercaseFirstLetter(extract.getGobiiSampleListType().toString().toLowerCase()));
 					pm.addCriteria("Sample List", (sampleListFile==null?"No Sample list provided":sampleListFile));
 					if(extract.getMarkerList() != null) {
 						pm.addCriteria("Marker List", String.join("<BR>", extract.getMarkerList()));
@@ -486,8 +486,6 @@ public class GobiiExtractor {
 								ErrorLogger.logDebug("GobiiExtractor","Executing FlapJack Genotype file Generation");
 								success &= FlapjackTransformer.generateGenotypeFile(markerFile, sampleFile, genoFile, tempFolder, genoOutFile,errorFile);
 								getCounts(success, pm, markerFile, sampleFile);
-								pm.setBody(jobReadableIdentifier,extractType,SimpleTimer.stop("Extract"),ErrorLogger.getFirstErrorReason(),ErrorLogger.success(),ErrorLogger.getAllErrorStringsHTML());
-								if(!inst.isQcCheck())mailInterface.send(pm);
 								jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_COMPLETED.getCvName(),"Extract Completed 8uccessfully");
 								break;
 							case HAPMAP:
@@ -497,13 +495,9 @@ public class GobiiExtractor {
 								ErrorLogger.logDebug("GobiiExtractor", "Executing Hapmap Generation");
 								success &= hapmapTransformer.generateFile(markerFile, sampleFile, extendedMarkerFile, genoFile, hapmapOutFile, errorFile);
 								getCounts(success, pm, markerFile, sampleFile);
-								pm.setBody(jobReadableIdentifier,extractType,SimpleTimer.stop("Extract"),ErrorLogger.getFirstErrorReason(),ErrorLogger.success(),ErrorLogger.getAllErrorStringsHTML());
-								if(!inst.isQcCheck())mailInterface.send(pm);
 								jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_COMPLETED.getCvName(),"Extract Completed 8uccessfully");
 								break;
 							case META_DATA:
-								pm.setBody(jobReadableIdentifier,extractType,SimpleTimer.stop("Extract"),ErrorLogger.getFirstErrorReason(),ErrorLogger.success(),ErrorLogger.getAllErrorStringsHTML());
-								if(!inst.isQcCheck())mailInterface.send(pm);
 								jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_COMPLETED.getCvName(),"Successful Data Extract");
 								break;
 							default:
