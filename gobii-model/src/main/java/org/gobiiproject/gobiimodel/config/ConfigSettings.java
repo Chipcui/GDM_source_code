@@ -367,4 +367,12 @@ public class ConfigSettings {
     public void setMaxUploadSizeMbytes(Integer maxUploadSizeMbytes) {
         this.configValues.setMaxUploadSizeMbytes(maxUploadSizeMbytes);
     }
+
+    public String getElfinderUrl() {
+        return this.configValues.getElFinderUrl();
+    }
+
+    public void setElfinderURL(String elfinderSvrDomain) {
+        this.configValues.setElFinderUrl(elfinderSvrDomain);
+    }
 }

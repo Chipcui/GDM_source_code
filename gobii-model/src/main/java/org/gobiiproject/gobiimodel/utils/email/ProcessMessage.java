@@ -60,7 +60,7 @@ public class ProcessMessage extends MailMessage {
             entities.clear();
         }
         if(!paths.isEmpty()) {
-            pathsLine = HTMLTableEntity.getHTMLTable(paths, pathsLineWidth,"File Type","Path","Size");
+            pathsLine = HTMLTableEntity.getLiveLinkTable(paths, pathsLineWidth,"File Type","Path","Size");
             paths.clear();
         }
 

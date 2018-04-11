@@ -125,6 +125,8 @@ class ConfigValues {
     @Element(required = false)
     private Integer maxUploadSizeMbytes = 1000;
 
+    @Element(required = false)
+    private String elFinderUrl;
 
 
     public TestExecConfig getTestExecConfig() {
@@ -517,4 +519,10 @@ class ConfigValues {
         this.maxUploadSizeMbytes = maxUploadSizeMbytes;
     }
 
+    public String getElFinderUrl() {
+        return elFinderUrl;
+    }
+    public void setElFinderUrl(String elFinderUrll) {
+        this.elFinderUrl = elFinderUrl;
+    }
 }
