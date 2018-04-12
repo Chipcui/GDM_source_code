@@ -1,5 +1,6 @@
 package org.gobiiproject.gobiimodel.utils.email;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
@@ -87,6 +88,7 @@ public class HTMLTableEntity {
         for(HTMLTableEntity content:contents){
             sb.append(content.getHTMLLinkTableRow());
         }
+        sb.append(getHTMLTableEnd());
         return sb.toString();
    }
 
@@ -101,7 +103,12 @@ public class HTMLTableEntity {
         for(String value:fields) {
             i++;
             if(i==2) {
-                sb.append("<td><a href=\"").append(getLiveLink(value)).append("\">").append(value).append("</a>").append("</td>");
+                if(getLiveLink(value).length() > 0 && !value.endsWith("/")){
+                    sb.append("<td><a href=\"").append(getLiveLink(value)).append("\">").append(value).append("</a>").append("</td>");
+                }
+                else{
+                    sb.append("<td>").append(value).append("</td>");
+                }
             }
             else{
                 sb.append("<td>").append(value).append("</td>");
@@ -116,21 +123,28 @@ public class HTMLTableEntity {
      * @return
      */
     private String getLiveLink(String path) {
-//        String configFilePath = "/home/sivasubramani/Projects/GOBII/Bitbucket/VM_Config/gobii_bundle/config/gobii-web.xml";
+
         String configFilePath;
-        configFilePath = "/data/gobii_bundle/config/gobii-web.xml";
         String elFindURL;
+        String domain;
+        configFilePath = "/data/gobii_bundle/config/gobii-web.xml";
+//        configFilePath = "/home/sivasubramani/Projects/GOBII/Bitbucket/VM_Config/gobii_bundle/config/gobii-web.xml";
         ConfigSettings config = new ConfigSettings(configFilePath);
-        String domain = config.getElfinderUrl();
+        if(!config.getElfinderUrl().equals(null)){
+            domain = config.getElfinderUrl();
+        }
+        else{
+            return "";
+        }
         if(path.endsWith("/")){
             elFindURL = domain + "elfinder.html#elf_";
         }
         else{
-            elFindURL = domain + "php/connector.minimal.php?cmd=file&target=";
+            elFindURL = domain + "php/connector.minimal.php?cmd=file&download=true&target=";
         }
         String rootPath = config.getFileSystemRoot();
         String encodedPath;
-        encodedPath = Base64.getEncoder().encodeToString(path.replaceAll(rootPath,"gobii_bundle").getBytes());
+        encodedPath = Base64.getEncoder().encodeToString(path.replaceAll(rootPath,"gobii_bundle").replaceAll("inprogres","done").getBytes());
 
         Pattern pattern = Pattern.compile("\\+");
         Matcher match = pattern.matcher(encodedPath);

@@ -217,7 +217,7 @@ public class ProcessMessage extends MailMessage {
             entityLine = HTMLTableEntity.getHTMLTable(entities, entityLineWidth,"Type","Count");
         }
         if(!paths.isEmpty()) {
-            pathsLine = HTMLTableEntity.getHTMLTable(paths, pathsLineWidth,"File Type","Path","Size");
+            pathsLine = HTMLTableEntity.getLiveLinkTable(paths, pathsLineWidth,"File Type","Path","Size");
         }
 
         String line="<br>";

@@ -397,7 +397,7 @@ public class GobiiExtractor {
 						}
 							pm.addIdentifier("Marker List", markerListLocation, null); //TODO - marker list has an 'on empty,
 						}
-						pm.addPath("Instruction File",new File(instructionFile).getAbsolutePath(),true);
+						pm.addPath("Instruction File",new File(instructionFile).getAbsolutePath(), configuration.getProcessingPath(crop, GobiiFileProcessDir.EXTRACTOR_DONE));
 						pm.addFolderPath("Output Directory", extractDir);
 						pm.addPath("Error Log", logFile,true);
 						pm.addPath("Summary File", new File(projectFile).getAbsolutePath());
@@ -451,8 +451,8 @@ public class GobiiExtractor {
 							case FLAPJACK:
 								String genoOutFile = extractDir + "Dataset.genotype";
 								String mapOutFile = extractDir + "Dataset.map";
-								pm.addPath("FlapJack Genotype file", new File(genoOutFile).getAbsolutePath());
-								pm.addPath("FlapJack Map file", new File(mapOutFile).getAbsolutePath());
+								pm.addPath("FlapJack Genotype file", new File(genoOutFile).getAbsolutePath(), true);
+								pm.addPath("FlapJack Map file", new File(mapOutFile).getAbsolutePath(), true);
 								//Always regenerate requests - may have different parameters
 								boolean extended = HelperFunctions.checkFileExistence(extendedMarkerFile);
 								success &= FlapjackTransformer.generateMapFile(extended?extendedMarkerFile:markerFile, sampleFile, chrLengthFile, tempFolder, mapOutFile, errorFile,extended);
@@ -466,7 +466,7 @@ public class GobiiExtractor {
 								break;
 							case HAPMAP:
 								String hapmapOutFile = extractDir + "Dataset.hmp.txt";
-								pm.addPath("Hapmap file", new File(hapmapOutFile).getAbsolutePath());
+								pm.addPath("Hapmap file", new File(hapmapOutFile).getAbsolutePath(),true);
 								HapmapTransformer hapmapTransformer = new HapmapTransformer();
 								ErrorLogger.logDebug("GobiiExtractor", "Executing Hapmap Generation");
 								success &= hapmapTransformer.generateFile(markerFile, sampleFile, extendedMarkerFile, genoFile, hapmapOutFile, errorFile);
