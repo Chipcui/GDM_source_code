@@ -209,15 +209,19 @@ public class ProcessMessage extends MailMessage {
         this.color = (success ? greenColor:redColor);
         if(!entries.isEmpty()) {
             tableLine = HTMLTableEntity.getHTMLTable(entries, tableLineWidth,"Table","Total in File", "Total Loaded","Total Existing","Total Invalid");
+            entries.clear();
         }
         if(!identifiers.isEmpty()) {
             identifierLine = HTMLTableEntity.getHTMLTable(identifiers, identifierLineWidth,"Identifier Type","Name","ID");
+            identifiers.clear();
         }
         if(!entities.isEmpty()) {
             entityLine = HTMLTableEntity.getHTMLTable(entities, entityLineWidth,"Type","Count");
+            entities.clear();
         }
         if(!paths.isEmpty()) {
             pathsLine = HTMLTableEntity.getLiveLinkTable(paths, pathsLineWidth,"File Type","Path","Size");
+            paths.clear();
         }
 
         String line="<br>";
