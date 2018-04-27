@@ -430,18 +430,6 @@ public class GobiiExtractor {
 								ErrorLogger.logError("GobiiExtractor", "UnknownFilterType " + filterType);
 								break;
 						}
-
-						// Adding "/" back to the bi-allelic data made from HDF5
-						if (datasetName != null) {
-							if (datasetName.toLowerCase().equals("ssr_allele_size")) {
-								ErrorLogger.logInfo("Extractor", "Adding slashes to bi allelic data in " + genoFile);
-								if (addSlashesToBiAllelicData(genoFile, extractDir, extract)) {
-									ErrorLogger.logInfo("Extractor", "Added slashes to all the bi-allelic data in " + genoFile);
-								} else {
-									ErrorLogger.logError("Extractor", "Not added slashes to all the bi-allelic data in " + genoFile);
-								}
-							}
-						}
 					}
 
 

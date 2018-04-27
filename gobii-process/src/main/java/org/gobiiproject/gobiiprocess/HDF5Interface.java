@@ -207,7 +207,7 @@ StringBuilder genoFileString=new StringBuilder();
      */
     private static String getHDF5Genotype( boolean markerFast, String errorFile, Integer dataSetId, String tempFolder, String markerList, String sampleList) {
         String genoFile=tempFolder+"DS-"+dataSetId+".genotype";
-
+        String tmpGenoFile=genoFile+".tmp";
         String HDF5File= getFileLoc(dataSetId);
         // %s <orientation> <HDF5 file> <output file>
         String ordering="samples-fast";
@@ -229,7 +229,25 @@ StringBuilder genoFileString=new StringBuilder();
             filterBySampleList(genoFile,sampleList,markerFast, errorFile);
         }
         ErrorLogger.logDebug("Extractor",(ErrorLogger.success()?"Success ":"Failure " +"Extracting with "+ordering+" "+HDF5File+" "+genoFile));
+        tryExec("mv "+genoFile + " " + tmpGenoFile);
+        decodeGenoFile(dataSetId,tempFolder,tmpGenoFile,genoFile);
         return genoFile;
+    }
+
+    /**
+     *
+     * @param dataSetId
+     * @param genoFileIn
+     * @param genoFileOut
+     */
+    private static void decodeGenoFile(Integer dataSetId,String tempFolder, String genoFileIn, String genoFileOut) {
+        boolean datasetIsVCF=true;
+        if(!datasetIsVCF){
+            FileSystemInterface.mv(genoFileIn,genoFileOut);
+            return;
+        }
+        String decodeFile= tempFolder+"markerindel.tmp";
+        tryExec(pathToHDF5 + "/hdf5fancyfunction" + " " + dataSetId + " " + decodeFile);
     }
 
     private static String getFileLoc(Integer dataSetId) {
