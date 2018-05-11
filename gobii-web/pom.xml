@@ -325,38 +325,38 @@
                                         <!-- ***** GROUP 1: supporting libraries -->
 
 
-                                        <!--<include>es6-shim/es6-shim.min.js</include>-->
-                                        <!--<include>systemjs/dist/system-polyfills.js</include>-->
-                                        <!--<include>systemjs/dist/system.src.js</include>-->
-                                        <!--<include>rxjs/bundles/Rx.js</include>-->
-                                        <!--<include>bootstrap/dist/css/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/cerulean/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/cosmo/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/cyborg/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/darkly/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/flatly/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/fonts/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/journal/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/lumen/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/paper/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/readable/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/sandstone/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/simplex/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/slate/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/spacelab/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/superhero/bootstrap.min.css</include>-->
-                                        <!--<include>bootswatch/united/bootstrap.min.css</include>-->
+                                        <include>es6-shim/es6-shim.min.js</include>
+                                        <include>systemjs/dist/system-polyfills.js</include>
+                                        <include>systemjs/dist/system.src.js</include>
+                                        <include>rxjs/bundles/Rx.js</include>
+                                        <include>bootstrap/dist/css/bootstrap.min.css</include>
+                                        <include>bootswatch/cerulean/bootstrap.min.css</include>
+                                        <include>bootswatch/cosmo/bootstrap.min.css</include>
+                                        <include>bootswatch/cyborg/bootstrap.min.css</include>
+                                        <include>bootswatch/darkly/bootstrap.min.css</include>
+                                        <include>bootswatch/flatly/bootstrap.min.css</include>
+                                        <include>bootswatch/fonts/bootstrap.min.css</include>
+                                        <include>bootswatch/journal/bootstrap.min.css</include>
+                                        <include>bootswatch/lumen/bootstrap.min.css</include>
+                                        <include>bootswatch/paper/bootstrap.min.css</include>
+                                        <include>bootswatch/readable/bootstrap.min.css</include>
+                                        <include>bootswatch/sandstone/bootstrap.min.css</include>
+                                        <include>bootswatch/simplex/bootstrap.min.css</include>
+                                        <include>bootswatch/slate/bootstrap.min.css</include>
+                                        <include>bootswatch/spacelab/bootstrap.min.css</include>
+                                        <include>bootswatch/superhero/bootstrap.min.css</include>
+                                        <include>bootswatch/united/bootstrap.min.css</include>
                                         <include>bootswatch/yeti/bootstrap.min.css</include>
-                                        <!--<include>zone.js/dist/zone.js</include>-->
-                                        <!--<include>core-js/client/shim.min.js</include>-->
-                                        <!--<include>reflect-metadata/Reflect.js</include>-->
-                                        <!--<include>rxjs/bundles/Rx.js</include>-->
-                                        <!--<include>rxjs/**</include>-->
-                                        <!--<include>ng2-uploader/**</include>-->
-                                        <!--<include>ng2-file-upload/**</include>-->
-                                        <!--<include>primeng/**</include>-->
-                                        <!--<include>font-awesome/css/font-awesome.min.css</include>-->
-                                        <!--<include>font-awesome/fonts/**</include>-->
+                                        <include>zone.js/dist/zone.js</include>
+                                        <include>core-js/client/shim.min.js</include>
+                                        <include>reflect-metadata/Reflect.js</include>
+                                        <include>rxjs/bundles/Rx.js</include>
+                                        <include>rxjs/**</include>
+                                        <include>ng2-uploader/**</include>
+                                        <include>ng2-file-upload/**</include>
+                                        <include>primeng/**</include>
+                                        <include>font-awesome/css/font-awesome.min.css</include>
+                                        <include>font-awesome/fonts/**</include>
 
 
 
@@ -375,14 +375,14 @@
                                         <include>@angular/animations/bundles/animations-browser.umd.js</include>
 
                                         <!-- ***** GROUP 3: angular bundle files-->
-                                        <!--<include>deep-freeze-strict/index.js</include>-->
-                                        <!--<include>ngrx-store-freeze/dist/index.js</include>-->
-                                        <!--<include>reselect/dist/reselect.js</include>-->
-                                        <!--<include>@ngrx/db/bundles/db.umd.js</include>-->
-                                        <!--<include>@ngrx/effects/bundles/effects.umd.js</include>-->
-                                        <!--<include>@ngrx/router-store/bundles/router-store.umd.js</include>-->
-                                        <!--<include>@ngrx/store/bundles/store.umd.js</include>-->
-                                        <!--<include>@ngrx/store-devtools/bundles/store-devtools.umd.js</include>-->
+                                        <include>deep-freeze-strict/index.js</include>
+                                        <include>ngrx-store-freeze/dist/index.js</include>
+                                        <include>reselect/dist/reselect.js</include>
+                                        <include>@ngrx/db/bundles/db.umd.js</include>
+                                        <include>@ngrx/effects/bundles/effects.umd.js</include>
+                                        <include>@ngrx/router-store/bundles/router-store.umd.js</include>
+                                        <include>@ngrx/store/bundles/store.umd.js</include>
+                                        <include>@ngrx/store-devtools/bundles/store-devtools.umd.js</include>
                                     </includes>
                                     <filtering>false</filtering>
                                 </resource>
