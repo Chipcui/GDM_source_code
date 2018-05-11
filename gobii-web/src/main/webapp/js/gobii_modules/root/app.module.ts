@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ExportFormatComponent} from "../views/export-format.component";
@@ -46,11 +45,12 @@ import {FlexQueryFilterComponent} from "../views/flex-query-filter.component";
 import {MarkerSampleCountComponent} from "../views/marker-sample-count.component";
 import {EntityFileItemService} from "../services/core/entity-file-item-service";
 import {FilterService} from "../services/core/filter-service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
     imports: [BrowserModule,
-        HttpModule,
+        HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
         TreeModule,

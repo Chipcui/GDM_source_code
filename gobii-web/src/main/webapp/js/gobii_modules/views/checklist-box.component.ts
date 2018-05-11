@@ -44,7 +44,7 @@ export class CheckListBoxComponent  {
                 private filterService:FilterService,
                 private differs: KeyValueDiffers) {
 
-        this.differ = differs.find({}).create(null);
+        this.differ = differs.find({}).create();
 
 
     } // ctor
