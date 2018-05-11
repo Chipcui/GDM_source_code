@@ -374,7 +374,7 @@
                                         <include>@angular/animations/bundles/animations-browser.umd.js</include>
                                         <include>@angular/animations/bundles/animations-browser.umd.js</include>
 
-                                        <!-- ***** GROUP 3: angular bundle files-->
+                                         ***** GROUP 3: angular bundle files
                                         <include>deep-freeze-strict/index.js</include>
                                         <include>ngrx-store-freeze/dist/index.js</include>
                                         <include>reselect/dist/reselect.js</include>
@@ -384,7 +384,7 @@
                                         <include>@ngrx/store/bundles/store.umd.js</include>
                                         <include>@ngrx/store-devtools/bundles/store-devtools.umd.js</include>
                                     </includes>
-                                    <filtering>false</filtering>
+                                    <filtering>true</filtering>
                                 </resource>
                             </resources>
                         </configuration>
