@@ -1,21 +1,21 @@
 import {Injectable} from "@angular/core";
 import {HttpValues} from "../../model/http-values";
-import {Http} from "@angular/http";
 import {AuthenticationService} from "./authentication.service";
 import {DtoRequestItem} from "./dto-request-item";
-import {DtoHeaderResponse} from "../../model/dto-header-response";
 import {PayloadEnvelope} from "../../model/payload/payload-envelope";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import {Header} from "../../model/payload/header";
 import {Status} from "../../model/payload/status";
 import {HeaderStatusMessage} from "../../model/dto-header-status-message";
+import {HttpClient} from "@angular/common/http";
+
 
 @Injectable()
 export class DtoRequestService<T> {
 
 
-    constructor(private _http: Http,
+    constructor(private httpClient: HttpClient,
                 private _authenticationService: AuthenticationService) {
     }
 
@@ -48,11 +48,11 @@ export class DtoRequestService<T> {
 
                 let headers = HttpValues.makeTokenHeaders(token, scope$._authenticationService.getGobiiCropType());
 
-                this._http
+                this.httpClient
                     .post(dtoRequestItem.getUrl(),
                         dtoRequestItem.getRequestBody(),
                         {headers: headers})
-                    .map(response => response.json())
+//                    .map(response => response.json())
                     .subscribe(json => {
 
                             let payloadResponse: PayloadEnvelope = PayloadEnvelope.fromJSON(json);
@@ -93,10 +93,10 @@ export class DtoRequestService<T> {
 
                 let headers = HttpValues.makeTokenHeaders(token, scope$._authenticationService.getGobiiCropType());
 
-                this._http
+                this.httpClient
                     .get(dtoRequestItem.getUrl(),
                         {headers: headers})
-                    .map(response => response.json())
+//                    .map(response => response.json())
                     .subscribe(json => {
 
                             let payloadResponse: PayloadEnvelope = PayloadEnvelope.fromJSON(json);

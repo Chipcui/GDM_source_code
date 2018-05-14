@@ -44,6 +44,7 @@
             packages: {
                 '@angular/core': {defaultExtension: 'js', main: 'bundles/core.umd.js'},
                 '@angular/common': {defaultExtension: 'js', main: 'bundles/common.umd.js'},
+                '@angular/common/http': {defaultExtension: 'js', main: '../bundles/common-http.umd.js'},
                 '@angular/compiler': {defaultExtension: 'js', main: 'bundles/compiler.umd.js'},
                 '@angular/router': {defaultExtension: 'js', main: 'bundles/router.umd.js'},
                 '@angular/http': {defaultExtension: 'js', main: 'bundles/http.umd.js'},
@@ -136,6 +137,10 @@
                 'deep-freeze-strict': {
                     defaultExtension: 'js',
                     main:'index.js'
+                },
+                'tslib': {
+                    defaultExtension: 'js',
+                    main:'tslib.js'
                 }
             },
             map: {
@@ -161,6 +166,7 @@
                 'deep-freeze-strict': 'js/node_modules/deep-freeze-strict',
                 'ngrx-store-freeze': 'js/node_modules/ngrx-store-freeze',
                 'reselect': 'js/node_modules/reselect',
+                'tslib': 'js/node_modules/tslib'
             }
         });
         System.import('js/gobii_modules/root/main').then(null, console.error.bind(console));

@@ -320,11 +320,10 @@
                                     <!-- Take the node-module code from where npm puts it -->
                                     <directory>${project.basedir}/node_modules/</directory>
                                     <includes>
+
                                         <!-- *************************************************-->
                                         <!-- deployed javascript libraries to support angular2-->
                                         <!-- ***** GROUP 1: supporting libraries -->
-
-
                                         <include>es6-shim/es6-shim.min.js</include>
                                         <include>systemjs/dist/system-polyfills.js</include>
                                         <include>systemjs/dist/system.src.js</include>
@@ -357,24 +356,28 @@
                                         <include>primeng/**</include>
                                         <include>font-awesome/css/font-awesome.min.css</include>
                                         <include>font-awesome/fonts/**</include>
+                                        <include>tslib/tslib.js</include>
 
 
 
                                         <!-- ***** GROUP 2: angular bundle files-->
                                         <include>@angular/core/bundles/core.umd.js</include>
                                         <include>@angular/common/bundles/common.umd.js</include>
+                                        <include>@angular/common/bundles/common-http.umd.js</include>
+                                        <include>@angular/common/http.d.ts</include>
+                                        <include>@angular/http/bundles/http.umd.js</include>
                                         <include>@angular/compiler/bundles/compiler.umd.js</include>
                                         <include>@angular/router/bundles/router.umd.js</include>
-                                        <include>@angular/http/bundles/http.umd.js</include>
                                         <include>@angular/platform-browser/bundles/platform-browser.umd.js</include>
                                         <include>@angular/platform-browser/bundles/platform-browser-animations.umd.js</include>
                                         <include>@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js</include>
                                         <include>@angular/forms/bundles/forms.umd.js</include>
                                         <include>@angular/animations/bundles/animations.umd.js</include>
                                         <include>@angular/animations/bundles/animations-browser.umd.js</include>
-                                        <include>@angular/animations/bundles/animations-browser.umd.js</include>
 
-                                         ***** GROUP 3: angular bundle files
+                                        <include>@angular/animations/bundles/animations-browser.umd.js</include>@ngrx
+
+                                         ***** GROUP 3: @ngrx bundle files
                                         <include>deep-freeze-strict/index.js</include>
                                         <include>ngrx-store-freeze/dist/index.js</include>
                                         <include>reselect/dist/reselect.js</include>

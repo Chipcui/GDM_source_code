@@ -1,11 +1,11 @@
-import {Http, Response, Headers} from "@angular/http";
 import {HeaderNames} from "./header-names";
+import {HttpHeaders} from "@angular/common/http";
 
 export class HttpValues {
 
     public static S_FORBIDDEN = 403;
 
-    public static makeTokenHeaders(token:string,gobiiCropType:string): Headers {
+    public static makeTokenHeaders(token:string,gobiiCropType:string): HttpHeaders {
 
         let returnVal = this.makeContentHeaders();
         returnVal.append(HeaderNames.headerToken, token);
@@ -13,15 +13,15 @@ export class HttpValues {
         return returnVal;
     }
     
-    public static makeContentHeaders(): Headers {
-        let returnVal = new Headers();
+    public static makeContentHeaders(): HttpHeaders {
+        let returnVal = new HttpHeaders();
         returnVal.append('Content-Type', 'application/json');
         returnVal.append('Accept', 'application/json');
         return returnVal;
     }
     
-    public static makeLoginHeaders(userName:string,password): Headers {
-        let returnVal: Headers = this.makeContentHeaders();
+    public static makeLoginHeaders(userName:string,password): HttpHeaders {
+        let returnVal: HttpHeaders = this.makeContentHeaders();
         returnVal.append(HeaderNames.headerUserName, userName);
         returnVal.append(HeaderNames.headerPassword, password);
         return returnVal;

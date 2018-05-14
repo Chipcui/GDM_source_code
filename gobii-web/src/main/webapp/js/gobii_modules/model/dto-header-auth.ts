@@ -22,7 +22,7 @@ export class DtoHeaderAuth {
     }
 
 
-    public static fromJSON(json:JSON):DtoHeaderAuth {
+    public static fromJSON(json:any):DtoHeaderAuth {
 
         return new DtoHeaderAuth(
             json['userName'],

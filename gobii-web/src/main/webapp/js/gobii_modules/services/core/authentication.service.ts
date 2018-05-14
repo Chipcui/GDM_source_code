@@ -1,17 +1,17 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, Headers} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
 
 import {DtoHeaderAuth} from "../../model/dto-header-auth";
 import {HttpValues} from "../../model/http-values";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class AuthenticationService {
 
 
-    constructor(private _http: Http) {
+    constructor(private _http: HttpClient) {
     }
 
     private defaultUser: string = 'USER_READER';
@@ -58,7 +58,7 @@ export class AuthenticationService {
                 this
                     ._http
                     .post(scope$.authUrl, requestBody, {headers: headers})
-                    .map(response => response.json())
+//                    .map(response => response.json())
                     .subscribe(json => {
                             let dtoHeaderAuth: DtoHeaderAuth = DtoHeaderAuth
                                 .fromJSON(json);
