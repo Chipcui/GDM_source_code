@@ -22,7 +22,7 @@ import {EntityType} from "../model/type-entity";
     encapsulation: ViewEncapsulation.Native,
     styleUrls: ["js/node_modules/primeng/resources/themes/omega/theme.css",
         "js/node_modules/primeng/resources/primeng.css",
-        "js/node_modules/bootswatch/cerulean/bootstrap.min.css"],
+        "js/node_modules/bootswatch/dist/cerulean/bootstrap.css"],
     template: `
         <div class="container-fluid">
 

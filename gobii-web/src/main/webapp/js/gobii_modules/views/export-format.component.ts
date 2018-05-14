@@ -18,7 +18,7 @@ import {Observable} from "rxjs/Observable";
     encapsulation: ViewEncapsulation.Native,
     styleUrls: ["js/node_modules/primeng/resources/themes/omega/theme.css",
         "js/node_modules/primeng/resources/primeng.css",
-        "js/node_modules/bootswatch/cerulean/bootstrap.min.css"],
+        "js/node_modules/bootswatch/dist/cerulean/bootstrap.css"],
     template: `
         <form>
             <label class="the-legend">Select Format:&nbsp;</label>

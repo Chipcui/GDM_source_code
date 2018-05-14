@@ -328,24 +328,24 @@
                                         <include>systemjs/dist/system-polyfills.js</include>
                                         <include>systemjs/dist/system.src.js</include>
                                         <include>rxjs/bundles/Rx.js</include>
-                                        <include>bootstrap/dist/css/bootstrap.min.css</include>
-                                        <include>bootswatch/cerulean/bootstrap.min.css</include>
-                                        <include>bootswatch/cosmo/bootstrap.min.css</include>
-                                        <include>bootswatch/cyborg/bootstrap.min.css</include>
-                                        <include>bootswatch/darkly/bootstrap.min.css</include>
-                                        <include>bootswatch/flatly/bootstrap.min.css</include>
-                                        <include>bootswatch/fonts/bootstrap.min.css</include>
-                                        <include>bootswatch/journal/bootstrap.min.css</include>
-                                        <include>bootswatch/lumen/bootstrap.min.css</include>
-                                        <include>bootswatch/paper/bootstrap.min.css</include>
-                                        <include>bootswatch/readable/bootstrap.min.css</include>
-                                        <include>bootswatch/sandstone/bootstrap.min.css</include>
-                                        <include>bootswatch/simplex/bootstrap.min.css</include>
-                                        <include>bootswatch/slate/bootstrap.min.css</include>
-                                        <include>bootswatch/spacelab/bootstrap.min.css</include>
-                                        <include>bootswatch/superhero/bootstrap.min.css</include>
-                                        <include>bootswatch/united/bootstrap.min.css</include>
-                                        <include>bootswatch/yeti/bootstrap.min.css</include>
+                                        <include>bootstrap/dist/css/bootstrap.css</include>
+                                        <include>bootswatch/dist/cerulean/bootstrap.css</include>
+                                        <include>bootswatch/dist/cosmo/bootstrap.css</include>
+                                        <include>bootswatch/dist/cyborg/bootstrap.css</include>
+                                        <include>bootswatch/dist/darkly/bootstrap.css</include>
+                                        <include>bootswatch/dist/flatly/bootstrap.css</include>
+                                        <include>bootswatch/dist/fonts/bootstrap.css</include>
+                                        <include>bootswatch/dist/journal/bootstrap.css</include>
+                                        <include>bootswatch/dist/lumen/bootstrap.css</include>
+                                        <include>bootswatch/dist/paper/bootstrap.css</include>
+                                        <include>bootswatch/dist/readable/bootstrap.css</include>
+                                        <include>bootswatch/dist/sandstone/bootstrap.css</include>
+                                        <include>bootswatch/dist/simplex/bootstrap.css</include>
+                                        <include>bootswatch/dist/slate/bootstrap.css</include>
+                                        <include>bootswatch/dist/spacelab/bootstrap.css</include>
+                                        <include>bootswatch/dist/superhero/bootstrap.css</include>
+                                        <include>bootswatch/dist/united/bootstrap.css</include>
+                                        <include>bootswatch/dist/yeti/bootstrap.css</include>
                                         <include>zone.js/dist/zone.js</include>
                                         <include>core-js/client/shim.min.js</include>
                                         <include>reflect-metadata/Reflect.js</include>
@@ -354,6 +354,8 @@
                                         <include>ng2-uploader/**</include>
                                         <include>ng2-file-upload/**</include>
                                         <include>primeng/**</include>
+                                        <!--<include>primeng/resources/primeng.min.css</include>-->
+                                        <!--<include>primeng/resources/themes/omega/theme.css</include>-->
                                         <include>font-awesome/css/font-awesome.min.css</include>
                                         <include>font-awesome/fonts/**</include>
                                         <include>tslib/tslib.js</include>

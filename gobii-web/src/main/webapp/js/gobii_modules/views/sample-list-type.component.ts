@@ -25,7 +25,7 @@ import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
     encapsulation: ViewEncapsulation.Native,
     styleUrls: ["js/node_modules/primeng/resources/themes/omega/theme.css",
         "js/node_modules/primeng/resources/primeng.css",
-        "js/node_modules/bootswatch/cerulean/bootstrap.min.css"],
+        "js/node_modules/bootswatch/dist/cerulean/bootstrap.css"],
     template: `
         <form>
             <label class="the-legend">List Item Type:&nbsp;</label>
