@@ -14,16 +14,16 @@ export class HttpValues {
     }
     
     public static makeContentHeaders(): HttpHeaders {
-        let returnVal = new HttpHeaders();
-        returnVal.append('Content-Type', 'application/json');
-        returnVal.append('Accept', 'application/json');
+        let returnVal = new HttpHeaders()
+            .append('Content-Type', 'application/json')
+            .append('Accept', 'application/json');
         return returnVal;
     }
     
     public static makeLoginHeaders(userName:string,password): HttpHeaders {
-        let returnVal: HttpHeaders = this.makeContentHeaders();
-        returnVal.append(HeaderNames.headerUserName, userName);
-        returnVal.append(HeaderNames.headerPassword, password);
+        let returnVal: HttpHeaders = this.makeContentHeaders()
+        .append(HeaderNames.headerUserName, userName)
+        .append(HeaderNames.headerPassword, password);
         return returnVal;
     }
 }
