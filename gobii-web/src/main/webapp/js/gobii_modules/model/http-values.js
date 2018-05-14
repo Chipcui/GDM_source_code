@@ -17,8 +17,10 @@ System.register(["./header-names", "@angular/common/http"], function (exports_1,
                 }
                 HttpValues.makeTokenHeaders = function (token, gobiiCropType) {
                     var returnVal = this.makeContentHeaders();
-                    returnVal.append(header_names_1.HeaderNames.headerToken, token);
-                    returnVal.append(header_names_1.HeaderNames.headerGobiiCrop, gobiiCropType);
+                    if (token) {
+                        returnVal = returnVal.append(header_names_1.HeaderNames.headerToken, token)
+                            .append(header_names_1.HeaderNames.headerGobiiCrop, gobiiCropType);
+                    }
                     return returnVal;
                 };
                 HttpValues.makeContentHeaders = function () {
