@@ -85,7 +85,7 @@ public class DtoMapDataSetImpl implements DtoMapDataSet {
 
             ResultSet resultSet = rsDataSetDao.getDataSetsByTypeId(typeId);
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
 
                 DataSetDTO currentDataSetDTO = new DataSetDTO();
 
@@ -123,7 +123,7 @@ public class DtoMapDataSetImpl implements DtoMapDataSet {
 
                 ResultColumnApplicator.applyColumnValues(resultSet, returnVal);
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new GobiiDtoMappingException(e);
         }
 
@@ -171,8 +171,10 @@ public class DtoMapDataSetImpl implements DtoMapDataSet {
 
         // since this method is not defined at the base class auditable level, the date column will not be
         // overwritten by the aspect
-        if( jobDTO.getType().equals(JobType.CV_JOBTYPE_LOAD.getCvName())
-                && jobDTO.getStatus().equals(JobProgressStatusType.CV_PROGRESSSTATUS_COMPLETED.getCvName())
+        if (jobDTO.getType().equals(JobType.CV_JOBTYPE_LOAD.getCvName())
+                && (
+                jobDTO.getStatus().equals(JobProgressStatusType.CV_PROGRESSSTATUS_COMPLETED.getCvName())
+                        || jobDTO.getStatus().equals(JobProgressStatusType.CV_PROGRESSSTATUS_QCPROCESSING.getCvName()))
                 ) {
 
             dataSetDTO.setModifiedBy(jobDTO.getSubmittedBy());
