@@ -479,8 +479,9 @@ public class GobiiFileReader {
             if (success && ErrorLogger.success()) {
                 ErrorLogger.logInfo("Digester", "Successful Data Upload");
                 if(sendQc){
-					sendQCExtract(configuration, crop);
 					jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_QCPROCESSING.getCvName(),"Processing QC Job");
+					//Note, these two actions both have an effect on the job status table. it's assumed they are web-service atomic (CV_QCProessing is set before the extract).
+                	sendQCExtract(configuration, crop);
 				}
                 else{
                 	jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_COMPLETED.getCvName(),"Successful Data Load");
