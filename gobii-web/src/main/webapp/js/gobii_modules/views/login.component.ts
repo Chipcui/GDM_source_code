@@ -7,7 +7,6 @@ import {DtoRequestItemServerConfigs} from "../services/app/dto-request-item-serv
 import {LocationStrategy} from "@angular/common";
 
 @Component({
-//    moduleId: module.id,
     template: `
         <BR>
         <BR>
