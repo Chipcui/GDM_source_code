@@ -1,6 +1,9 @@
 package org.gobiiproject.gobiidao.gql;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
+import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiException;
@@ -13,24 +16,37 @@ import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static jdk.nashorn.internal.objects.NativeArray.sort;
 
 public class GqlText {
 
 
     private final String connectionString;
     private String mdePathFqpn;
+    private String cropType;
+    private String jobId;
 
-    public GqlText(String cropType) throws GobiiException {
+    public GqlText(String cropType, String jobId) throws GobiiException {
         try {
 
+            this.jobId = jobId;
+            this.cropType = cropType;
             ConfigSettings configSettings = new ConfigSettings();
-            this.connectionString = HelperFunctions.getPostgresConnectionString(configSettings.getCropConfig(cropType));
+            this.connectionString = HelperFunctions.getPostgresConnectionString(configSettings.getCropConfig(this.cropType));
 
             this.mdePathFqpn = configSettings
                     .getFullyQualifiedFilePath(null, GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE)
@@ -71,14 +87,14 @@ public class GqlText {
     private final String GQL_PARM_COUNT_LIMIT = "-l";
     private final String GQL_PARM_UNIQUE = "-u";
 
-    public String makeGqlJobPath(String cropType, String jobId) throws GobiiDaoException {
+    public String makeGqlJobPath() throws GobiiDaoException {
 
-        String returnVal = null;
+        String returnVal;
 
         try {
 
-            returnVal = (new ConfigSettings()).getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.GQL_PROCESS);
-            returnVal += "/" + jobId + "/";
+            returnVal = (new ConfigSettings()).getFullyQualifiedFilePath(this.cropType, GobiiFileProcessDir.GQL_PROCESS);
+            returnVal += "/" + this.jobId + "/";
         } catch (Exception e) {
             throw new GobiiDaoException(e);
         }
@@ -87,9 +103,9 @@ public class GqlText {
     }
 
 
-    public String makeGqlJobFileFqpn(String cropType, String jobId, GqlOFileType gqlOFileType, GqlDestinationFileType gqlDestinationFileType) {
+    public String makeGqlJobFileFqpn(GqlOFileType gqlOFileType, GqlDestinationFileType gqlDestinationFileType) {
 
-        String returnVal = this.makeGqlJobPath(cropType, jobId);
+        String returnVal = this.makeGqlJobPath();
 
         returnVal += gqlDestinationFileType.getDestination();
         if (gqlOFileType.getIoName().equals(GqlOFileType.NONE.getIoName())) {
@@ -114,6 +130,7 @@ public class GqlText {
                                   VertexDTO destinationVertex,
                                   Integer maxResult) throws Exception {
 
+        String returnVal;
 
         StringBuilder commandLineBuilder = new StringBuilder();
 
@@ -137,7 +154,7 @@ public class GqlText {
                 false));
 
         // filter path
-        if( subGraphVertices.size() > 0 ) {
+        if (subGraphVertices.size() > 0) {
             StringBuilder subGraphPath = new StringBuilder();
             subGraphPath.append("{");
             Iterator<VertexDTO> filterPathIterator = subGraphVertices.iterator();
@@ -180,14 +197,71 @@ public class GqlText {
                 maxResult.toString(),
                 false));
 
-        if( destinationVertex.getGobiiVertexType().equals(GobiiVertexType.CVTERM)) {
+        if (destinationVertex.getGobiiVertexType().equals(GobiiVertexType.CVTERM)) {
             commandLineBuilder.append(this.makeArg(GQL_PARM_UNIQUE,
                     "",
                     false));
         }
 
-        return commandLineBuilder.toString();
+        returnVal = commandLineBuilder.toString();
+
+        this.writeCommandlineFile(returnVal, outputFileFqpn);
+
+        return returnVal;
     }
+
+    private void writeCommandlineFile(String commandline, String outputFileFqpn) throws GobiiDaoException {
+
+        try {
+            String currentDirectory = this.makeGqlJobPath();
+            String fileNameStem =
+                    FilenameUtils.removeExtension(new File(outputFileFqpn).getName())
+                    + "_cmd_";
+            String extension = ".txt";
+            String filter = fileNameStem + "*" + extension;
+            Integer incrementLength = 3;
+            Collection<File> currentFiles = FileUtils.listFiles(new File(currentDirectory),
+                    FileFilterUtils.nameFileFilter(filter),
+                    null);
+            File[] fileArray = new File(currentDirectory).listFiles();
+            Arrays.sort(fileArray, new Comparator<File>() {
+                public int compare(File f1, File f2) {
+                    return Long.compare(f2.lastModified(), f1.lastModified());
+                }
+            });
+            List<File> fileList = Arrays.asList(fileArray);
+            List<File> matchingFile = fileList
+                    .stream()
+                    .filter(file -> file.getName().contains(fileNameStem))
+                    .collect(Collectors.toList());
+
+            Integer currentIncrement;
+            if (matchingFile.size() > 0) {
+
+                File mostRecentFile = matchingFile.get(0);
+                String mostRecentFileName = mostRecentFile.getName();
+                Integer segmentBeginIdx = mostRecentFileName.length() - extension.length() - incrementLength;
+                String mostRecentIncrementSegment = mostRecentFileName.substring(
+                        segmentBeginIdx,
+                        segmentBeginIdx + incrementLength
+                );
+
+                currentIncrement = Integer.parseInt(mostRecentIncrementSegment);
+
+            } else {
+                currentIncrement = 0;
+            }
+
+            String formatString = "%0" + incrementLength + "d";
+            String incrementSegment = String.format(formatString, currentIncrement + 1);
+            String cmdFileName = currentDirectory + fileNameStem + incrementSegment + extension;
+            FileUtils.writeStringToFile(new File(cmdFileName), commandline);
+
+        } catch (IOException e) {
+            throw new GobiiDaoException(e);
+        }
+
+    } // writeCommandlineFile()
 
 
     public List<NameIdDTO> makeValues(String fqpn, VertexDTO destinationVertex) throws Exception {
