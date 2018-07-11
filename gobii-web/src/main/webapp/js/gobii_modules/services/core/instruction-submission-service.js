@@ -449,7 +449,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                             if (selectedFileItems && selectedFileItems.length > 0) {
                                                 var itemIds = selectedFileItems
                                                     .map(function (gfi) { return Number(gfi.getItemId()); });
-                                                verticesMatchFileItems = itemIds.length === currentVertex.filterVals.length && itemIds.every(function (v, i) { return v === currentVertex.filterVals[i]; });
+                                                verticesMatchFileItems = itemIds.length === currentVertex.filterVals.length && itemIds.every(function (v, i) { return v === currentVertex.filterVals[i].id; });
                                             }
                                         };
                                         for (var idx = 0; (idx < vertices.length) && verticesMatchFileItems; idx++) {

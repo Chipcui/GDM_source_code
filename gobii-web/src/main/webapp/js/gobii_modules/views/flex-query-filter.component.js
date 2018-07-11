@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store", "../store/reducers", "../services/core/nameid-file-item-service", "../services/core/filter-service", "../services/core/flex-query-service", "../model/type-entity", "../model/name-id-label-type", "../services/core/filter-params-coll", "../model/cv-group", "../model/vertex"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store", "../store/reducers", "../services/core/nameid-file-item-service", "../services/core/filter-service", "../services/core/flex-query-service", "../model/type-entity", "../model/name-id-label-type", "../services/core/filter-params-coll", "../model/cv-group", "../model/vertex", "../model/name-id"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extractor_filter_1, store_1, fromRoot, nameid_file_item_service_1, filter_service_1, flex_query_service_1, type_entity_1, name_id_label_type_1, filter_params_coll_1, cv_group_1, vertex_1, FlexQueryFilterComponent;
+    var core_1, type_extractor_filter_1, store_1, fromRoot, nameid_file_item_service_1, filter_service_1, flex_query_service_1, type_entity_1, name_id_label_type_1, filter_params_coll_1, cv_group_1, vertex_1, name_id_1, FlexQueryFilterComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -48,6 +48,9 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
             },
             function (vertex_1_1) {
                 vertex_1 = vertex_1_1;
+            },
+            function (name_id_1_1) {
+                name_id_1 = name_id_1_1;
             }
         ],
         execute: function () {
@@ -154,7 +157,9 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
                     if (targetValueVertex) {
                         filterVertex = vertex_1.Vertex.fromVertex(targetValueVertex);
                         filterVertex.filterVals = this.selectedVertexValues
-                            .map(function (vv) { return Number(vv.getItemId()); });
+                            .map(function (vv) {
+                            return new name_id_1.NameId(vv.getItemId(), null, vv.getItemName(), filterVertex.entityType, null, null);
+                        });
                     }
                     var newItems = this.selectedVertexValues
                         .filter(function (gfi) { return !_this.previousSelectedVertices.find(function (igfi) { return igfi.getFileItemUniqueId() === gfi.getFileItemUniqueId(); }); });

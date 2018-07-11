@@ -4,6 +4,7 @@ import {CvGroup} from "./cv-group";
 import {VertexNameType} from "./type-vertex-name";
 import {ExtractorItemType} from "./type-extractor-item";
 import {GobiiFileItemCompoundId} from "./gobii-file-item-compound-id";
+import {NameId} from "./name-id";
 
 export class Vertex extends GobiiFileItemCompoundId {
 
@@ -15,7 +16,7 @@ export class Vertex extends GobiiFileItemCompoundId {
                 public entitySubType: EntitySubType,
                 public cvGroup: CvGroup,
                 public cvTerm: string,
-                public filterVals: number[]) {
+                public filterVals: NameId[]) {
 
         super(ExtractorItemType.VERTEX, entityType, entitySubType, cvGroup, cvTerm);
     }

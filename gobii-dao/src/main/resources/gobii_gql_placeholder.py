@@ -15,8 +15,10 @@ def main(argv):
     connection_str = ""
     sub_graph_path  = ""
     column_names = ""
+    unique = False
 
-    opts, args = getopt.getopt(argv, "hc:o:g:t:f:l:vd", ["connectionString=", "outputFilePath=", "subGraphPath=", "targetVertexName=", "vertexColumnsToFetch=", "verbose", "debug"])
+    #colon indicates argument required
+    opts, args = getopt.getopt(argv, "hc:o:g:t:f:l:uvd", ["connectionString=", "outputFilePath=", "subGraphPath=", "targetVertexName=", "vertexColumnsToFetch=", "verbose", "debug", "unique"])
     for opt, arg in opts:
         if opt in ("-c", "--connectionString"):
             connection_str = arg
@@ -30,6 +32,8 @@ def main(argv):
             column_names = arg
         elif opt in ("-l", "--limit"):
             max_result = int(arg)
+        elif opt in ("-u", "--unique"):
+            unique = True
 
 
     print("Initiated gql placeholder test script with arguments ", sys.argv)
@@ -39,21 +43,7 @@ def main(argv):
     print("max result is: ", max_result)
 
     file_lines = []
-    if str(target_vertex_name) != str("principal_investigator"):
-        total_lines = 20
-        if target_vertex_name == "marker":
-            total_lines = random.randint(1, max_result)
-        elif target_vertex_name == "dnasample":
-            total_lines = random.randint(1, max_result)
-        file_lines.append("id\tname")
-        # the_file.write("id\tname\n")
-        idx = 0
-        while idx < total_lines:
-            idx = idx + 1
-            value = target_vertex_name + " # " + '{:02d}'.format(idx)
-            #the_file.write("%i\t%s\n" % (idx, value))
-            file_lines.append(str(idx) + "\t" + value)
-    else:
+    if str(target_vertex_name) == str("principal_investigator"):
         random_names = [("Ldap", "User1"),
                         ("Shrestha", "User2"),
                         ("Rosyara", "Rosemary"),
@@ -108,6 +98,30 @@ def main(argv):
             # the_file.write("%i\t%s\t%s\n" % (idx, last_name, first_name))
             file_lines.append(str(idx) + "\t" + last_name + "\t" + first_name)
             idx = idx + 1
+    else:
+        total_lines = 20
+        leading_trailing_chars = ""
+        if target_vertex_name == "marker":
+            total_lines = random.randint(1, max_result)
+        elif target_vertex_name == "dnasample":
+            total_lines = random.randint(1, max_result)
+        elif (str(target_vertex_name) == str("sampling_date") or
+            str(target_vertex_name) == str("genotyping_purpose") or
+            str(target_vertex_name) == str("division") or
+            str(target_vertex_name) == str("trial_name") or
+            str(target_vertex_name) == str("reference_sample") or
+            str(target_vertex_name) == str("germplasm_subspecies") or
+            str(target_vertex_name) == str("germplasm_species") or
+            str(target_vertex_name) == str("genotyping_purpose")):
+            leading_trailing_chars = '"""'
+        file_lines.append("id\tname")
+        # the_file.write("id\tname\n")
+        idx = 0
+        while idx < total_lines:
+            idx = idx + 1
+            value = leading_trailing_chars + target_vertex_name + " # " + '{:02d}'.format(idx) + leading_trailing_chars
+            #the_file.write("%i\t%s\n" % (idx, value))
+            file_lines.append(str(idx) + "\t" + value)
 
     with open(output_file_name, 'w') as the_file:
         the_file.write("\n".join(file_lines))

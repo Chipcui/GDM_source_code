@@ -645,9 +645,9 @@ export class InstructionSubmissionService {
 
                                                 let selectedFileItems = fileItems.filter(gfi => gfi.compoundIdeEquals(valueCompoundId));
                                                 if (selectedFileItems && selectedFileItems.length > 0) {
-                                                    let itemIds: number[] = selectedFileItems
+                                                    let itemIds: any[] = selectedFileItems
                                                         .map(gfi => Number(gfi.getItemId()));
-                                                    verticesMatchFileItems = itemIds.length === currentVertex.filterVals.length && itemIds.every((v, i) => v === currentVertex.filterVals[i]);
+                                                    verticesMatchFileItems = itemIds.length === currentVertex.filterVals.length && itemIds.every((v, i) => v === currentVertex.filterVals[i].id);
                                                 }
                                             }
 

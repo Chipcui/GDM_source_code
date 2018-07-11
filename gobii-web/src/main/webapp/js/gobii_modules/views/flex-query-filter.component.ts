@@ -15,6 +15,7 @@ import {FilterParams} from "../model/filter-params";
 import {FilterParamsColl} from "../services/core/filter-params-coll";
 import {CvGroup} from "../model/cv-group";
 import {Vertex} from "../model/vertex";
+import {NameId} from "../model/name-id";
 
 
 @Component({
@@ -210,8 +211,16 @@ export class FlexQueryFilterComponent implements OnInit, OnChanges {
         let filterVertex: Vertex;
         if (targetValueVertex) {
             filterVertex = Vertex.fromVertex(targetValueVertex);
+
             filterVertex.filterVals = this.selectedVertexValues
-                .map(vv => Number(vv.getItemId()));
+                .map(vv =>
+                    new NameId(vv.getItemId(),
+                        null,
+                        vv.getItemName(),
+                        filterVertex.entityType,
+                        null,
+                        null)
+                );
         }
 
         let newItems: GobiiFileItem[] = this.selectedVertexValues
