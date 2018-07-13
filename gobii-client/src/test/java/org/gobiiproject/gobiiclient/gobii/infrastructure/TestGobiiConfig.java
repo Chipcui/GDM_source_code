@@ -1217,8 +1217,8 @@ public class TestGobiiConfig {
         Assert.assertTrue("Command failed: " + commandLine, succeeded);
 
         // SET EMAIL OPTIONS **********************************
-        String user = "gobii.jira@gmail.com";
-        String password = "***REMOVED***";
+        String user = "dummy-user";
+        String password = "dummy-password";
         String host = "smtp.gmail.com";
         String type = "SMTP";
         String hash = "na";
@@ -1266,8 +1266,8 @@ public class TestGobiiConfig {
                 "localhost",
                 "gobii_dev",
                 5432,
-                "appuser",
-                "***REMOVED***");
+                "dummy-user",
+                "dummy-password");
 
         configureDataBase(testFileFqpn,
                 cropIdDev,
@@ -1275,8 +1275,8 @@ public class TestGobiiConfig {
                 "localhost",
                 "gobii_dev",
                 5000,
-                "appuser",
-                "appuser");
+                "dummy-user",
+                "dummy-user");
 
         configureDataBase(testFileFqpn,
                 cropidTest,
@@ -1284,8 +1284,8 @@ public class TestGobiiConfig {
                 "localhost",
                 "gobii_test",
                 5432,
-                "appuser",
-                "appuser");
+                "dummy-user",
+                "dummy-password");
 
         configureDataBase(testFileFqpn,
                 cropidTest,
@@ -1293,8 +1293,8 @@ public class TestGobiiConfig {
                 "localhost",
                 "gobii_test",
                 5000,
-                "appuser",
-                "appuser");
+                "dummy-user",
+                "dummy-passwrd");
 
 
         // CONFIGURE TEST SETTINGS **********************************

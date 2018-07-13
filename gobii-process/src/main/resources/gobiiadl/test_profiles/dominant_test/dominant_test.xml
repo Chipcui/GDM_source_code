@@ -22,11 +22,11 @@
 					</Fkey>
 				</Keys>
 				<Properties>
-					<LastName>Calaminos</LastName>
-					<FirstName>Yanii</FirstName>
-					<Code>calaminos_yanii</Code>
-					<Email>dummy@email.address</Email>
-					<UserName>vcalaminos</UserName>
+					<LastName>Load User</LastName>
+					<FirstName>GOBii</FirstName>
+					<Code>gobii_load_user</Code>
+					<Email>gobii.dev@gmail.com</Email>
+					<UserName>load_user</UserName>
 					<Roles>
 						<Role>PI</Role>
 						<Role>Curator</Role>
@@ -107,7 +107,7 @@
 				<Keys>
 					<DbPKey>2</DbPKey>
 					<Fkey entity="Contact" fkproperty="piContact">
-						<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+						<DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
 						<DbPKey>4</DbPKey>
 					</Fkey>
 				</Keys>
@@ -198,7 +198,7 @@
 			<PayloadType>markers</PayloadType>
 
 			<DbFkey entity="Contact">
-				<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+				<DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
 				<DbPKey>4</DbPKey>
 			</DbFkey>
 
@@ -238,7 +238,7 @@
 			<PayloadType>samples</PayloadType>
 
 			<DbFkey entity="Contact">
-				<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+				<DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
 				<DbPKey>4</DbPKey>
 			</DbFkey>
 
@@ -278,7 +278,7 @@
 			<PayloadType>matrix</PayloadType>
 
 			<DbFkey entity="Contact">
-				<DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+				<DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
 				<DbPKey>4</DbPKey>
 			</DbFkey>
 

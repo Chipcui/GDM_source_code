@@ -23,11 +23,11 @@
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <LastName>Calaminos</LastName>
-                    <FirstName>Yanii</FirstName>
-                    <Code>calaminos_yanii</Code>
-                    <Email>dummy@email.address</Email>
-                    <UserName>vcalaminos</UserName>
+                    <LastName>Load User</LastName>
+                    <FirstName>GOBii</FirstName>
+                    <Code>gobii_load_user</Code>
+                    <Email>gobii.dev@gmail.com</Email>
+                    <UserName>load_user</UserName>
                     <Roles>
                         <Role>PI</Role>
                         <Role>Curator</Role>
@@ -108,15 +108,33 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Contact" fkproperty="piContact">
-                        <DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+                        <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <ProjectName>Deb_Proj1_FlexQuery</ProjectName>
-                    <ProjectCode>Deb_Proj1_FlexQuery</ProjectCode>
-                    <ProjectDescription>Deb_Proj1_FlexQuery</ProjectDescription>
+                    <ProjectName>sim_codominant_proj_01</ProjectName>
+                    <ProjectCode>sim_codominant_proj_01</ProjectCode>
+                    <ProjectDescription>sim_codominant_proj_01</ProjectDescription>
                     <ProjectStatus>1</ProjectStatus>
+                    <CvProps>
+                        <CvProp>
+                            <CvTerm>date_sampled</CvTerm>
+                            <CvPropValue>06/01/2018</CvPropValue>
+                        </CvProp>
+                        <CvProp>
+                            <CvTerm>division</CvTerm>
+                            <CvPropValue>FQ_division</CvPropValue>
+                        </CvProp>
+                        <CvProp>
+                            <CvTerm>genotyping_purpose</CvTerm>
+                            <CvPropValue>FQ_genotyp_purp</CvPropValue>
+                        </CvProp>
+                        <CvProp>
+                            <CvTerm>study_name</CvTerm>
+                            <CvPropValue>FQ_study_name</CvPropValue>
+                        </CvProp>
+                    </CvProps>
                 </Properties>
             </Project>
         </Projects>
@@ -125,7 +143,7 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Project" fkproperty="projectId">
-                        <DbPKeySurrogate>Deb_Proj1_FlexQuery</DbPKeySurrogate>
+                        <DbPKeySurrogate>sim_codominant_proj_01</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="VendorProtocol" fkproperty="vendorProtocolId">
@@ -134,8 +152,8 @@
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <ExperimentName>Deb_Proj1_Exp1_SSR_FQ</ExperimentName>
-                    <ExperimentCode>Deb_Proj1_Exp1_SSR_FQ</ExperimentCode>
+                    <ExperimentName>sim_codominant_exp_01</ExperimentName>
+                    <ExperimentCode>sim_codominant_exp_01</ExperimentCode>
                     <StatusId>1</StatusId>
                 </Properties>
             </Experiment>
@@ -165,7 +183,7 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Experiment" fkproperty="experimentId">
-                        <DbPKeySurrogate>Deb_Proj1_Exp1_SSR_FQ</DbPKeySurrogate>
+                        <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="Analysis" fkproperty="callingAnalysisId">
@@ -174,11 +192,11 @@
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <DatasetName>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1</DatasetName>
-                    <DataTable>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1_datatable</DataTable>
-                    <DataFile>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1_datafile</DataFile>
-                    <QualityTable>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1_qualitytable</QualityTable>
-                    <QualityFile>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1_qualityfile</QualityFile>
+                    <DatasetName>sim_codominant_ds_01</DatasetName>
+                    <DataTable>sim_codominant_ds_01_datatable</DataTable>
+                    <DataFile>sim_codominant_ds_01_datafile</DataFile>
+                    <QualityTable>sim_codominant_ds_01_qualitytable</QualityTable>
+                    <QualityFile>sim_codominant_ds_01_qualityfile</QualityFile>
                     <StatusId>1</StatusId>
                     <TypeId>CO_DOMINANT_NON_NUCLEOTIDE</TypeId>
                     <AnalysesIds/>
@@ -190,7 +208,7 @@
 
     <Scenarios>
         <Scenario>
-            <Name>Deb_Proj1_FlexQuery_marker</Name>
+            <Name>sim_codominant_proj_01_marker</Name>
             <Files>
                 <Instruction>data_20180606_143418_daw279.json</Instruction>
                 <Data>Deb_FQ_codom_markermap1-10.txt</Data>
@@ -198,22 +216,22 @@
             <PayloadType>markers</PayloadType>
 
             <DbFkey entity="Contact">
-                <DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Project">
-                <DbPKeySurrogate>Deb_Proj1_FlexQuery</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_proj_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Experiment">
-                <DbPKeySurrogate>Deb_Proj1_Exp1_SSR_FQ</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Dataset">
-                <DbPKeySurrogate>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_ds_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
@@ -230,7 +248,7 @@
         </Scenario>
 
         <Scenario>
-            <Name>Deb_Proj1_FlexQuery_sample</Name>
+            <Name>sim_codominant_proj_01_sample</Name>
             <Files>
                 <Instruction>data_20180606_144253_daw279.json</Instruction>
                 <Data>Deb_FQ_codom_samples_1-10.txt</Data>
@@ -238,22 +256,22 @@
             <PayloadType>samples</PayloadType>
 
             <DbFkey entity="Contact">
-                <DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Project">
-                <DbPKeySurrogate>Deb_Proj1_FlexQuery</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_proj_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Experiment">
-                <DbPKeySurrogate>Deb_Proj1_Exp1_SSR_FQ</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Dataset">
-                <DbPKeySurrogate>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_ds_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
@@ -270,7 +288,7 @@
         </Scenario>
 
         <Scenario>
-            <Name>Deb_Proj1_FlexQuery_dataset</Name>
+            <Name>sim_codominant_proj_01_dataset</Name>
             <Files>
                 <Instruction>data_20180606_145659_daw279.json</Instruction>
                 <Data>Deb_FQ_codom_alleledata_m1-m10.txt</Data>
@@ -278,22 +296,22 @@
             <PayloadType>matrix</PayloadType>
 
             <DbFkey entity="Contact">
-                <DbPKeySurrogate>dummy@email.address</DbPKeySurrogate>
+                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Project">
-                <DbPKeySurrogate>Deb_Proj1_FlexQuery</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_proj_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Experiment">
-                <DbPKeySurrogate>Deb_Proj1_Exp1_SSR_FQ</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 
             <DbFkey entity="Dataset">
-                <DbPKeySurrogate>Deb_Proj1_Exp1_SSR_FQ_codom_1-10_DS1</DbPKeySurrogate>
+                <DbPKeySurrogate>sim_codominant_ds_01</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
 

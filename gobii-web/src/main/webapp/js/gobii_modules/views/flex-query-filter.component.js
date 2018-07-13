@@ -55,12 +55,13 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
         ],
         execute: function () {
             FlexQueryFilterComponent = (function () {
-                function FlexQueryFilterComponent(store, fileItemService, filterService, filterParamsColl, flexQueryService) {
+                function FlexQueryFilterComponent(store, fileItemService, filterService, filterParamsColl, flexQueryService, cd) {
                     this.store = store;
                     this.fileItemService = fileItemService;
                     this.filterService = filterService;
                     this.filterParamsColl = filterParamsColl;
                     this.flexQueryService = flexQueryService;
+                    this.cd = cd;
                     //these are dummy place holders for now
                     this.totalValues = "0";
                     this.enabledStyle = null;
@@ -71,6 +72,9 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
                     // rely purely on the store
                     this.previousSelectedVertices = [];
                 } // ctor
+                FlexQueryFilterComponent.prototype.ngAfterViewInit = function () {
+                    // this.cd.detectChanges();
+                };
                 FlexQueryFilterComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this.fileItemsVertexNames$ = this.filterService.getForFilter(this.filterParamNameVertices);
@@ -81,13 +85,25 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
                         .subscribe(function (items) {
                         _this.totalValues = items.length.toString();
                     });
-                    this.setControlState(false);
-                    this.store.select(fromRoot.getFileItemsFilters)
-                        .subscribe(function (filters) {
-                        // you have to reset from state because this control won't see the sibling control's
-                        // change event
+                    this.store.select(fromRoot.getFilterCountState)
+                        .subscribe(function (filterCountState) {
+                        // calling detectChanges() here is necessary to deal with the
+                        // ExpressionChangedAfterItHasBeenCheckedError. This error only
+                        // occurs when handleVertexSelected() is called and when there is
+                        // a previous sibling filter. In other words, it happens when
+                        // the code path goes through the else if below. The problem is that
+                        // the eventing change to the filter collection is within a change
+                        // detection cycle, and within that same cycle the count changes.
+                        // This results in the value being reset within the change cycle.
+                        // This is probably a design issue that needs to be solved more
+                        // elegantly. It might be that the solution is, per the comment on
+                        // on FlexQueryService::loadSelectedVertexFilter(), to issue the
+                        // recount properly, as an effect of the filter value changes. Per
+                        // the notes there and in the file item effects code, this will
+                        // require wrapping the http subscribe with a switchMap() (I _think_)
+                        _this.cd.detectChanges();
                         var thisControlVertexfilterParams = _this.filterParamsColl.getFilter(_this.filterParamNameVertices, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY);
-                        var currentVertexFilter = filters[thisControlVertexfilterParams.getQueryName()];
+                        var currentVertexFilter = filterCountState.flexQueryFilters.get(thisControlVertexfilterParams.getQueryName());
                         if (currentVertexFilter) {
                             if (!currentVertexFilter.targetEntityFilterValue) {
                                 _this.selectedVertex = null;
@@ -95,21 +111,30 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
                             }
                         }
                         if (!thisControlVertexfilterParams.getPreviousSiblingFileItemParams()) {
-                            _this.setControlState(true);
+                            if (filterCountState.sampleCount >= 0
+                                && filterCountState.markerCount >= 0) {
+                                _this.setControlState(true);
+                            }
+                            else {
+                                _this.setControlState(false);
+                            }
                         }
                         else if (thisControlVertexfilterParams.getPreviousSiblingFileItemParams().getChildFileItemParams().length > 0) {
                             var vertexValuePreviousVertexSelectorParamName = thisControlVertexfilterParams
                                 .getPreviousSiblingFileItemParams()
                                 .getChildFileItemParams()[0].getQueryName();
-                            var previousVertexValuesFilter = filters[vertexValuePreviousVertexSelectorParamName];
-                            if (previousVertexValuesFilter && previousVertexValuesFilter.targetEntityFilterValue) {
+                            var previousVertexValuesFilter = filterCountState.flexQueryFilters.get(vertexValuePreviousVertexSelectorParamName);
+                            if (previousVertexValuesFilter
+                                && previousVertexValuesFilter.targetEntityFilterValue
+                                && filterCountState.sampleCount >= 0
+                                && filterCountState.markerCount >= 0) {
                                 _this.setControlState(true);
                             }
                             else {
                                 _this.setControlState(false);
                             }
                         } // if-else there are previous sibling params
-                    }); // subscribe to select filters()
+                    }); //subscribe to filter count state
                 }; // ngInit()
                 FlexQueryFilterComponent.prototype.setControlState = function (enabled) {
                     if (enabled) {
@@ -118,7 +143,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
                     else {
                         this.currentStyle = this.disabledStyle;
                     }
-                };
+                }; // setControlState()
                 FlexQueryFilterComponent.prototype.handleVertexSelected = function (arg) {
                     var _this = this;
                     if (arg.value && arg.value._entity) {
@@ -192,7 +217,8 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
                         nameid_file_item_service_1.NameIdFileItemService,
                         filter_service_1.FilterService,
                         filter_params_coll_1.FilterParamsColl,
-                        flex_query_service_1.FlexQueryService])
+                        flex_query_service_1.FlexQueryService,
+                        core_1.ChangeDetectorRef])
                 ], FlexQueryFilterComponent);
                 return FlexQueryFilterComponent;
             }());

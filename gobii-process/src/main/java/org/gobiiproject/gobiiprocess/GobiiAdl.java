@@ -81,6 +81,22 @@ public class GobiiAdl {
     private static String INPUT_DIRECTORY = "d";
     private static String NAME_COMMAND = "GobiiAdl";
 
+
+    private static List<AnalysisDTO> getAnalyses() throws Exception {
+
+        RestUri restUriAnalysis = GobiiClientContext.getInstance(null, false)
+                .getUriFactory()
+                .resourceColl(GobiiServiceRequestId.URL_ANALYSIS);
+
+        GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriAnalysis);
+        PayloadEnvelope<AnalysisDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(AnalysisDTO.class);
+
+        checkStatus(resultEnvelope);
+
+        return resultEnvelope.getPayload().getData();
+
+    }
+
     private static void validateKeys(NodeList nodeList, XPath xPath, Document document) throws Exception {
         for (int i = 0; i < nodeList.getLength(); i++) {
             String parentName = nodeList.item(i).getLocalName();
@@ -834,24 +850,36 @@ public class GobiiAdl {
             Element propKey = (Element) propKeyList.item(j);
             String propKeyLocalName = propKey.getLocalName();
             propKeyLocalName = processPropName(propKeyLocalName);
-            if (propKeyLocalName.equals("properties")) {
-                propertiesElement = propKey;
+            if (propKeyLocalName.equals("cvProps") || propKeyLocalName.equals("cvTerm") || propKeyLocalName.equals("cvPropValue")) {
                 continue;
             }
-            if (!propKey.getParentNode().equals(propertiesElement)) {
-                Field field = ProjectDTO.class.getDeclaredField(propKeyLocalName);
-                field.setAccessible(true);
-                field.set(newProjectDTO, processTypes(propKey.getTextContent(), field.getType()));
+
+            if (propKeyLocalName.equals("cvProp")) {
+
+                NodeList cvTermElement = propKey.getElementsByTagName("CvTerm");
+                NodeList cvValueElement = propKey.getElementsByTagName("CvPropValue");
+
+                if (cvTermElement.getLength() != 0 && cvValueElement.getLength() != 0) {
+
+                    String cvTerm = cvTermElement.item(0).getTextContent();
+                    String cvValue = cvValueElement.item(0).getTextContent();
+
+                    newProjectDTO.getProperties().add(new EntityPropertyDTO(null, null, cvTerm, cvValue));
+
+                }
+
+                continue;
             }
+
+            Field field = ProjectDTO.class.getDeclaredField(propKeyLocalName);
+            field.setAccessible(true);
+            field.set(newProjectDTO, processTypes(propKey.getTextContent(), field.getType()));
+
         }
         newProjectDTO.setCreatedBy(1);
         newProjectDTO.setModifiedBy(1);
         setFKeyDbPKeyForNewEntity(fkeys, ProjectDTO.class, newProjectDTO, parentElement, dbPkeysurrogateValue, document, xPath);
         System.out.println("Calling the web service...\n");
-
-        newProjectDTO.getProperties().add(new EntityPropertyDTO(null, null, "division", "foo division"));
-        newProjectDTO.getProperties().add(new EntityPropertyDTO(null, null, "study_name", "foo study name"));
-        newProjectDTO.getProperties().add(new EntityPropertyDTO(null, null, "genotyping_purpose", "foo purpose"));
 
         /* create project */
         RestUri projectsUri = GobiiClientContext.getInstance(null, false).getUriFactory().resourceColl(GobiiServiceRequestId.URL_PROJECTS);
@@ -1030,14 +1058,7 @@ public class GobiiAdl {
 
         System.out.println("\nChecking if " + entityName + " (" + dbPkeysurrogateValue + ") already exists in the database...\n");
 
-        /* check if entity already exist in the database */
-        RestUri restUriAnalysis = GobiiClientContext.getInstance(null, false)
-                .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_ANALYSIS);
-        GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriAnalysis);
-        PayloadEnvelope<AnalysisDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(AnalysisDTO.class);
-        checkStatus(resultEnvelope);
-        List<AnalysisDTO> analysisDTOSList = resultEnvelope.getPayload().getData();
+        List<AnalysisDTO> analysisDTOSList = getAnalyses();
         for (AnalysisDTO currentAnalysisDTO : analysisDTOSList) {
             if (currentAnalysisDTO.getAnalysisName().equals(dbPkeysurrogateValue)) {
                 System.out.println("\n" + entityName + "(" + dbPkeysurrogateValue + ") already exists in the database. Return current entity ID.\n");
@@ -1181,6 +1202,8 @@ public class GobiiAdl {
 
         /* get cv's from dataset_type group */
         Map<String, Integer> datasetTypeMap = getCvTermsWithId("dataset_type");
+        List<AnalysisDTO> analysisDTOList = getAnalyses();
+
         for (int j = 0; j < propKeyList.getLength(); j++) {
             Element propKey = (Element) propKeyList.item(j);
             String propKeyLocalName = propKey.getLocalName();
@@ -1189,7 +1212,26 @@ public class GobiiAdl {
                 continue;
             }
             if (propKeyLocalName.equals("analysisId")) {
-                newDataSetDTO.getAnalysesIds().add(Integer.parseInt(propKey.getTextContent()));
+
+                // get analysis by name
+
+                String analysisName = propKey.getTextContent();
+                Integer currentAnalysisId = null;
+
+                for (AnalysisDTO currentAnalysisDTO : analysisDTOList) {
+
+                    if (currentAnalysisDTO.getAnalysisName().equals(analysisName)) {
+                        currentAnalysisId = currentAnalysisDTO.getId();
+                        break;
+                    }
+                }
+
+                if (currentAnalysisId != null) {
+                    newDataSetDTO.getAnalysesIds().add(currentAnalysisId);
+                } else {
+                    processError("Failed to add analysis: " + analysisName + " to dataset: " +dbPkeysurrogateValue+ ". Analysis not found.", GobiiStatusLevel.WARNING);
+                }
+
                 continue;
             }
             if (propKeyLocalName.equals("typeId")) {

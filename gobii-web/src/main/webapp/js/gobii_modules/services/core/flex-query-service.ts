@@ -76,6 +76,8 @@ export class FlexQueryService {
         // is something I should be doing with the observable around which the http call is wrapped. I commented
         // more about this where I have the code commented out and there's an article I found that might point int he
         // direction of a solution.
+        // See FlexQueryFilterComponent::ngOnInit() for a note about another issue that
+        // might be resolved by calling the recount from an effect.
         if (previousSelectionExisted) {
             let currentVertexFilterParams: FilterParams = this.filterParamsColl.getFilter(eventedFilterParamsName, GobiiExtractFilterType.FLEX_QUERY);
             if (currentVertexFilterParams.getPreviousSiblingFileItemParams()

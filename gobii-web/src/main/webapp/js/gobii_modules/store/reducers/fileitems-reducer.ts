@@ -13,6 +13,7 @@ import {GobiiSampleListType} from "../../model/type-extractor-sample-list";
 import {GobiiFileItemCompoundId} from "../../model/gobii-file-item-compound-id";
 import {PayloadFilter} from "../actions/action-payload-filter";
 import {NameIdLabelType} from "../../model/name-id-label-type";
+import {FilterCountState} from "../actions/action-filter-count-state";
 
 
 /***
@@ -1245,3 +1246,46 @@ export const getCurrentSampleCount = createSelector(getFileItems, getFilters, ge
     return returnVal;
 });
 
+export const getFilterCountState = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: FilterCountState = new FilterCountState(new Map<string, PayloadFilter>(), -1, -1);
+
+    Object.keys(filters).forEach( key =>  {
+
+        if (key === FilterParamNames.FQ_F1_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F2_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F3_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F4_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F1_VERTICES ||
+            key === FilterParamNames.FQ_F2_VERTICES ||
+            key === FilterParamNames.FQ_F3_VERTICES ||
+            key === FilterParamNames.FQ_F4_VERTICES) {
+
+            returnVal.flexQueryFilters.set(key, filters[key]);
+        }
+    }); //forEach filter
+
+    let dnaSampleCountFileItems: GobiiFileItem[] = fileItems.filter(
+        e =>
+            (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                && e.getExtractorItemType() === ExtractorItemType.ITEM_COUNT
+                && e.getEntityType() === EntityType.DNA_SAMPLE)
+    )
+
+    if (dnaSampleCountFileItems.length > 0) {
+        returnVal.sampleCount = dnaSampleCountFileItems[0].getEntity();
+    }
+
+    let markerCountFileItems: GobiiFileItem[] = fileItems.filter(
+        e =>
+            (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                && e.getExtractorItemType() === ExtractorItemType.ITEM_COUNT
+                && e.getEntityType() === EntityType.MARKER)
+    )
+
+    if (markerCountFileItems.length > 0) {
+        returnVal.markerCount = markerCountFileItems[0].getEntity();
+    }
+
+    return returnVal;
+});

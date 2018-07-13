@@ -165,7 +165,7 @@
     "dataSetId": "3",
     "gobiiCropType": "arbitrary-id-0",
     "contactId": "4",
-    "contactEmail": "dummy@email.address",
+    "contactEmail": "gobii.dev@gmail.com",
     "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
     "qcCheck": false,
     "project": {
@@ -256,7 +256,7 @@
     "dataSetId": "3",
     "gobiiCropType": "arbitrary-id-0",
     "contactId": "4",
-    "contactEmail": "dummy@email.address",
+    "contactEmail": "gobii.dev@gmail.com",
     "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
     "qcCheck": false,
     "project": {
@@ -347,7 +347,7 @@
     "dataSetId": "3",
     "gobiiCropType": "arbitrary-id-0",
     "contactId": "4",
-    "contactEmail": "dummy@email.address",
+    "contactEmail": "gobii.dev@gmail.com",
     "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
     "qcCheck": false,
     "project": {

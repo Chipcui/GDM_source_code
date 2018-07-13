@@ -100,46 +100,34 @@ public class IUPACmatrixToBi {
      * @param loaderScriptPath Base script directory. Used to calculate where the missing indicators .txt file is to use that for extra
      *                         null values.
      */
-    private static void initNuclHash(Map<String,NucIupacCodes> hash, String loaderScriptPath){
-        hash.put("A",AA);
-        hash.put("T",TT);
-        hash.put("G",GG);
-        hash.put("C",CC);
+    private static void initNuclHash(Map<String,NucIupacCodes> hash, String loaderScriptPath) {
+        hash.put("A", AA);
+        hash.put("T", TT);
+        hash.put("G", GG);
+        hash.put("C", CC);
 
         //Two potential alleles are specified as one of each
-        hash.put("W",AT);
-        hash.put("R",AG);
-        hash.put("M",AC);
-        hash.put("K",TG);
-        hash.put("Y",TC);
-        hash.put("S",GC);
+        hash.put("W", AT);
+        hash.put("R", AG);
+        hash.put("M", AC);
+        hash.put("K", TG);
+        hash.put("Y", TC);
+        hash.put("S", GC);
         // deal with 0 by making it +-
-        hash.put("0",plusminus);
+        hash.put("0", plusminus);
 
         //Plus and minus are duplicated
-        hash.put("+",plus);
-        hash.put("-",minus);
+        hash.put("+", plus);
+        hash.put("-", minus);
 
         //Three potential alleles become unknown, and are set to NN
-        hash.put("B",NN);
-        hash.put("D",NN);
-        hash.put("H",NN);
-        hash.put("V",NN);
-        hash.put(".",minus);//As Per GSD-456
+        hash.put("B", NN);
+        hash.put("D", NN);
+        hash.put("H", NN);
+        hash.put("V", NN);
+        hash.put(".", minus);//As Per GSD-456
 
         //N (IUPAC for 'any base' is set to NN - unknown
-        hash.put("N",NN);
-
-        //NN for anything in 'missing indicators' text file.
-        try {
-            File unknownsFile = new File(loaderScriptPath, "etc/missingIndicators.txt");
-            BufferedReader br = new BufferedReader(new FileReader(unknownsFile));
-            String next;
-            while((next=br.readLine())!=null){
-                hash.put(next,NN);
-            }
-        }catch (Throwable e){
-            ErrorLogger.logWarning("IUPACMatrixToBI",e.getMessage());
-        }
+        hash.put("N", NN);
     }
 }
