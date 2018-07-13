@@ -8,6 +8,8 @@ import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,7 +26,27 @@ import java.util.stream.Collectors;
  * are global to the configuration. There will be one GobiiCropConfig instance for every crop supported
  * by a given deployment.
  */
-class ConfigValues {
+class
+ConfigValues {
+
+
+//    public ConfigValues() {
+    //Declaritively add new specs here
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.RAW_USER_FILES,"files/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.HDF5_FILES, "hdf5/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.LOADER_INSTRUCTIONS, "loader/instructions/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.LOADER_INTERMEDIATE_FILES, "loader/digest/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.LOADER_INPROGRESS_FILES, "loader/inprogress/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.LOADER_DONE, "loader/done/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS, "extractor/instructions/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_INPROGRESS, "extractor/inprogress/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_DONE, "extractor/done/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_OUTPUT, "extractor/output/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.QC_OUTPUT, "loader/qc/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.NOTICES, "notices/",true));
+//        directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.GQL_PROCESS,"gql",true));
+//          directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE, "extractors/postgres/gobii_mde/", false) );
+//    }
 
     @Element(required = false)
     private TestExecConfig testExecConfig = new TestExecConfig();
@@ -34,32 +56,38 @@ class ConfigValues {
 
 
     @ElementMap(required = false)
-    private Map<String, GobiiCropConfig> cropConfigs = new LinkedHashMap<>();
+    private Map<GobiiFileNoticeType, String> noticeFileNames = new EnumMap<GobiiFileNoticeType, String>(GobiiFileNoticeType.class) {{
 
-    @ElementMap(required = false)
-    private Map<GobiiFileProcessDir, String> relativePaths = new EnumMap<GobiiFileProcessDir, String>(GobiiFileProcessDir.class) {{
-
-        // these defaults should generally not be changed
-        // note that they will be appended to the crops root directory
-        put(GobiiFileProcessDir.RAW_USER_FILES, "files/");
-        put(GobiiFileProcessDir.HDF5_FILES, "hdf5/");
-        put(GobiiFileProcessDir.LOADER_INSTRUCTIONS, "loader/instructions/");
-        put(GobiiFileProcessDir.LOADER_INTERMEDIATE_FILES, "loader/digest/");
-        put(GobiiFileProcessDir.LOADER_INPROGRESS_FILES, "loader/inprogress/");
-        put(GobiiFileProcessDir.LOADER_DONE, "loader/done/");
-        put(GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS, "extractor/instructions/");
-        put(GobiiFileProcessDir.EXTRACTOR_INPROGRESS, "extractor/inprogress/");
-        put(GobiiFileProcessDir.EXTRACTOR_DONE, "extractor/done/");
-        put(GobiiFileProcessDir.EXTRACTOR_OUTPUT, "extractor/output/");
-        put(GobiiFileProcessDir.QC_OUTPUT, "loader/qc/");
-        put(GobiiFileProcessDir.NOTICES, "notices/");
+        put(GobiiFileNoticeType.CONFIDENTIALITY, "confidentiality.txt");
 
     }};
 
     @ElementMap(required = false)
-    private Map<GobiiFileNoticeType, String> noticeFileNames = new EnumMap<GobiiFileNoticeType, String>(GobiiFileNoticeType.class) {{
+    private Map<String, GobiiCropConfig> cropConfigs = new LinkedHashMap<>();
 
-        put(GobiiFileNoticeType.CONFIDENTIALITY, "confidentiality.txt");
+    @ElementMap(required = false)
+    private Map<GobiiFileProcessDir, DirectorySpec> relativePaths = new EnumMap<GobiiFileProcessDir, DirectorySpec>(GobiiFileProcessDir.class) {{
+
+        List<DirectorySpec> listOfSpecs = new ArrayList<>(Arrays.asList(
+                new DirectorySpec(GobiiFileProcessDir.RAW_USER_FILES, "files/", true),
+                new DirectorySpec(GobiiFileProcessDir.HDF5_FILES, "hdf5/", true),
+                new DirectorySpec(GobiiFileProcessDir.LOADER_INSTRUCTIONS, "loader/instructions/", true),
+                new DirectorySpec(GobiiFileProcessDir.LOADER_INTERMEDIATE_FILES, "loader/digest/", true),
+                new DirectorySpec(GobiiFileProcessDir.LOADER_INPROGRESS_FILES, "loader/inprogress/", true),
+                new DirectorySpec(GobiiFileProcessDir.LOADER_DONE, "loader/done/", true),
+                new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS, "extractor/instructions/", true),
+                new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_INPROGRESS, "extractor/inprogress/", true),
+                new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_DONE, "extractor/done/", true),
+                new DirectorySpec(GobiiFileProcessDir.EXTRACTOR_OUTPUT, "extractor/output/", true),
+                new DirectorySpec(GobiiFileProcessDir.QC_OUTPUT, "loader/qc/", true),
+                new DirectorySpec(GobiiFileProcessDir.NOTICES, "notices/", true),
+                new DirectorySpec(GobiiFileProcessDir.GQL_PROCESS, "gql", true),
+                new DirectorySpec(GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE, "extractors/postgres/gobii_mde/", false)
+        ));
+
+        for(DirectorySpec currentSpec : listOfSpecs) {
+            put(currentSpec.getGobiiFileProcessDir(),currentSpec);
+        }
 
     }};
 
@@ -158,19 +186,83 @@ class ConfigValues {
     }
 
 
-    public String getProcessingPath(String cropType, GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
+    private DirectorySpec getDirectorySpec(GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
+
+        DirectorySpec returnVal = null;
+
+
+        List<DirectorySpec> directorySpecList = relativePaths.values()
+                .stream()
+                .filter(directorySpec -> directorySpec.getGobiiFileProcessDir().equals(gobiiFileProcessDir))
+                .collect(Collectors.toList());
+
+        if (directorySpecList.size() > 0) {
+            returnVal = directorySpecList.get(0);
+        }
+
+        return returnVal;
+    }
+
+    public List<String> getLegalUpdloadDIrectories(String cropType) throws Exception {
+
+        List<String> returnVal = new ArrayList<>();
+
+        for(DirectorySpec currentDirectorySpec : relativePaths.values()) {
+
+            if( currentDirectorySpec.isCropRelative) {
+                String currentDirectory = this.getFullyQualifiedFilePath(cropType,currentDirectorySpec.getGobiiFileProcessDir());
+                returnVal.add(currentDirectory);
+            }
+
+        }
+
+        return returnVal;
+    }
+
+    /***
+     * Retrieves the fully qualified path as identified by the GobiiFileProcessDir value. If the directory
+     * is intended to be relative to a crop directory, the path will be so constructed, as long as a valid
+     * cropType is supplied.
+     * @param cropType
+     * @param gobiiFileProcessDir
+     * @return
+     * @throws Exception
+     */
+    public String getFullyQualifiedFilePath(String cropType, GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
 
         String returnVal;
 
-        if (!cropConfigs.containsKey(cropType)) {
-            throw new Exception("Unknown crop type: " + cropType);
+
+        DirectorySpec directorySpec = this.getDirectorySpec(gobiiFileProcessDir);
+        if (directorySpec == null) {
+            throw new GobiiException("There is no directory entry for directory " + gobiiFileProcessDir.toString());
         }
 
-        String cropRoot = this.getFileSysCropsParent();
-        String crop = LineUtils.terminateDirectoryPath(cropType);
-        String relativePath = LineUtils.terminateDirectoryPath(relativePaths.get(gobiiFileProcessDir));
+        if( directorySpec.isCropRelative() ) {
 
-        returnVal = cropRoot + crop + relativePath;
+            if( cropType == null ) {
+                throw new Exception("The crop type specified for for crop-relative directory " + directorySpec.getGobiiFileProcessDir().toString() + " is null");
+            }
+
+            if (!cropConfigs.containsKey(cropType)) {
+                throw new Exception("Unknown crop type: " + cropType);
+            }
+
+            String cropRoot = LineUtils.terminateDirectoryPath(this.getFileSysCropsParent());
+            String crop = LineUtils.terminateDirectoryPath(cropType);
+            String relativePatFromList = directorySpec.getRelativePath();
+            String relativePath = LineUtils.terminateDirectoryPath(relativePatFromList);
+
+            returnVal = cropRoot + crop + relativePath;
+
+        } else {
+
+            String rootPath = LineUtils.terminateDirectoryPath(this.getFileSystemRoot());
+            String relativePatFromList = directorySpec.getRelativePath();
+            String relativePath = LineUtils.terminateDirectoryPath(relativePatFromList);
+            returnVal = rootPath + relativePath;
+        } // if-else directory is relative to crop
+
 
         returnVal = returnVal.toLowerCase();
 
@@ -179,7 +271,7 @@ class ConfigValues {
 
     public String getFileNoticePath(String cropType, GobiiFileNoticeType gobiiFileNoticeType) throws Exception {
 
-        String returnVal = this.getProcessingPath(cropType, GobiiFileProcessDir.NOTICES)
+        String returnVal = this.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.NOTICES)
                 + this.noticeFileNames.get(gobiiFileNoticeType);
 
         return returnVal;

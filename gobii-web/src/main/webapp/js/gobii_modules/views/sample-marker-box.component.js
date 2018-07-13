@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/dto-header-status-message", "../model/type-extractor-filter", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "./entity-labels", "../model/file-item-param-names", "../store/reducers", "../services/core/file-item-service", "@ngrx/store", "../model/type-status-level", "../store/actions/history-action", "../model/type-entity"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/dto-header-status-message", "../model/type-extractor-filter", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "./entity-labels", "../model/file-item-param-names", "../store/reducers", "../services/core/nameid-file-item-service", "@ngrx/store", "../model/type-status-level", "../store/actions/history-action", "../model/type-entity"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, dto_header_status_message_1, type_extractor_filter_1, gobii_file_item_1, type_process_1, type_extractor_item_1, entity_labels_1, file_item_param_names_1, fromRoot, file_item_service_1, store_1, type_status_level_1, historyAction, type_entity_1, SampleMarkerBoxComponent;
+    var core_1, dto_header_status_message_1, type_extractor_filter_1, gobii_file_item_1, type_process_1, type_extractor_item_1, entity_labels_1, file_item_param_names_1, fromRoot, nameid_file_item_service_1, store_1, type_status_level_1, historyAction, type_entity_1, SampleMarkerBoxComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -40,8 +40,8 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
             function (fromRoot_1) {
                 fromRoot = fromRoot_1;
             },
-            function (file_item_service_1_1) {
-                file_item_service_1 = file_item_service_1_1;
+            function (nameid_file_item_service_1_1) {
+                nameid_file_item_service_1 = nameid_file_item_service_1_1;
             },
             function (store_1_1) {
                 store_1 = store_1_1;
@@ -309,7 +309,7 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
                         template: "\n        <div class=\"container-fluid\">\n\n            <div class=\"row\">\n\n                <p-radioButton\n                        (click)=\"handleOnClickBrowse($event)\"\n                        name=\"listType\"\n                        value=\"ITEM_FILE_TYPE\"\n                        [(ngModel)]=\"selectedListType\">\n                </p-radioButton>\n                <label class=\"the-legend\">File&nbsp;</label>\n                <p-radioButton\n                        (click)=\"handleTextBoxChanged($event)\"\n                        name=\"listType\"\n                        value=\"ITEM_LIST_TYPE\"\n                        [(ngModel)]=\"selectedListType\">\n                </p-radioButton>\n                <label class=\"the-legend\">List&nbsp;</label>\n                <p-radioButton *ngIf=\"displayMarkerGroupRadio\"\n                               (click)=\"handleMarkerGroupChanged($event)\"\n                               name=\"listType\"\n                               value=\"MARKER_GROUP_TYPE\"\n                               [(ngModel)]=\"selectedListType\">\n                </p-radioButton>\n                <label *ngIf=\"displayMarkerGroupRadio\"\n                       class=\"the-legend\">Marker Groups&nbsp;</label>\n\n            </div>\n\n            <div class=\"row\">\n\n                <div *ngIf=\"displayUploader\" class=\"col-md-8\">\n                    <uploader\n                            [gobiiExtractFilterType]=\"gobiiExtractFilterType\"\n                            (onUploaderError)=\"handleStatusHeaderMessage($event)\"></uploader>\n                </div>\n\n                <div *ngIf=\"displayListBox\" class=\"col-md-8\">\n                    <text-area\n                            (onTextboxDataComplete)=\"handleTextBoxDataSubmitted($event)\"></text-area>\n                </div>\n                <div *ngIf=\"displayListBox\" class=\"col-md-4\">\n                    <p class=\"text-warning\">{{maxListItems}} maximum</p>\n                </div>\n\n                <div *ngIf=\"selectedListType == MARKER_GROUP_TYPE\" class=\"col-md-8\">\n                    <checklist-box\n                            [filterParamName]=\"nameIdFilterParamTypesMarkerGroup\"\n                            [gobiiExtractFilterType]=\"gobiiExtractFilterType\">\n                    </checklist-box>\n                </div>\n\n            </div>\n\n            <div>\n                <p-dialog header=\"{{extractTypeLabelExisting}} Already Selelected\" [(visible)]=\"displayChoicePrompt\"\n                          modal=\"modal\" width=\"300\" height=\"300\" responsive=\"true\">\n                    <p>{{extractTypeLabelExisting}} already selected. Specify {{extractTypeLabelProposed}}\n                        instead?</p>\n                    <p-footer>\n                        <div class=\"ui-dialog-buttonpane ui-widget-content ui-helper-clearfix\">\n                            <button type=\"button\" pButton icon=\"fa-close\" (click)=\"handleUserChoice(false)\"\n                                    label=\"No\"></button>\n                            <button type=\"button\" pButton icon=\"fa-check\" (click)=\"handleUserChoice(true)\"\n                                    label=\"Yes\"></button>\n                        </div>\n                    </p-footer>\n                </p-dialog>\n            </div>\n            <div>\n                <p-dialog header=\"Maximum {{maxExceededTypeLabel}} Items Exceeded\" [(visible)]=\"displayMaxItemsExceeded\"\n                          modal=\"modal\" width=\"300\" height=\"300\" responsive=\"true\">\n                    <p>You attempted to paste more than {{maxListItems}} {{maxExceededTypeLabel}} items; Please reduce\n                        the size of the list</p>\n                </p-dialog>\n            </div>"
                     }),
                     __metadata("design:paramtypes", [store_1.Store,
-                        file_item_service_1.FileItemService])
+                        nameid_file_item_service_1.NameIdFileItemService])
                 ], SampleMarkerBoxComponent);
                 return SampleMarkerBoxComponent;
             }());

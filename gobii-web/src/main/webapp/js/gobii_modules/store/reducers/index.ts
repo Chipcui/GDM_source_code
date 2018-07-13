@@ -165,6 +165,17 @@ export const getLasetStatusMessage = createSelector(gobiiHistoryState, fromHisto
 export const getFiltersRetrieved = createSelector(gobiiHistoryState, fromHistory.getFiltersRetrieved);
 
 
+export const getFqF1Vertices = createSelector(getFileItemsState, fromFileItems.getFqF1Vertices);
+export const getFqF2Vertices = createSelector(getFileItemsState, fromFileItems.getFqF2Vertices);
+export const getFqF3Vertices = createSelector(getFileItemsState, fromFileItems.getFqF3Vertices);
+export const getFqF4Vertices = createSelector(getFileItemsState, fromFileItems.getFqF4Vertices);
+
+export const getFqF1VerticesValues = createSelector(getFileItemsState, fromFileItems.getFqF1VerticesValues);
+export const getFqF2VerticesValues = createSelector(getFileItemsState, fromFileItems.getFqF2VerticesValues);
+export const getFqF3VerticesValues = createSelector(getFileItemsState, fromFileItems.getFqF3VerticesValues);
+export const getFqF4VerticesValues = createSelector(getFileItemsState, fromFileItems.getFqF4VerticesValues);
+export const getCurrentMarkerCount = createSelector(getFileItemsState, fromFileItems.getCurrentMarkerCount);
+export const getCurrentSampleCount = createSelector(getFileItemsState, fromFileItems.getCurrentSampleCount);
 /**
  * Just like with the books selectors, we also have to compose the search
  * fileItemsReducer's and collection fileItemsReducer's selectors.

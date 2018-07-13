@@ -41,7 +41,7 @@ public class DtoMapLoaderFilesImpl implements DtoMapLoaderFiles {
         String fileCropDirectory = null;
         ConfigSettings configSettings = new ConfigSettings();
         try {
-            fileCropDirectory = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.RAW_USER_FILES);
+            fileCropDirectory = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.RAW_USER_FILES);
         } catch (Exception e) {
             throw new GobiiDaoException("could not get processing path because of: " + e.getMessage());
         }
@@ -86,7 +86,7 @@ public class DtoMapLoaderFilesImpl implements DtoMapLoaderFiles {
         ConfigSettings configSettings = new ConfigSettings();
         String fileCropDirectory = null;
         try {
-            fileCropDirectory = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.RAW_USER_FILES);
+            fileCropDirectory = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.RAW_USER_FILES);
         } catch (Exception e) {
             throw new GobiiDaoException("could not get processing path because of: " + e.getMessage());
         }

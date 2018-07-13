@@ -1,10 +1,10 @@
 import {Injectable} from "@angular/core";
-import {ContainerType, GobiiTreeNode} from "../../model/GobiiTreeNode";
+import {ContainerType, GobiiTreeNode} from "../../model/gobii-tree-node";
 import {EntitySubType, EntityType} from "../../model/type-entity";
 import {Labels} from "../../views/entity-labels";
 import {ExtractorItemType} from "../../model/type-extractor-item";
 import {GobiiExtractFilterType} from "../../model/type-extractor-filter";
-import {CvFilterType} from "../../model/cv-filter-type";
+import {CvGroup} from "../../model/cv-group";
 import {GobiiFileItem} from "../../model/gobii-file-item";
 import {GobiiExtractFormat} from "../../model/type-extract-format";
 import {ProcessType} from "../../model/type-process";
@@ -13,6 +13,7 @@ import {TypeTreeNodeStatus} from "../../model/type-tree-node-status";
 import * as treeNodeActions from '../../store/actions/treenode-action'
 import {Store} from "@ngrx/store";
 import * as fromRoot from '../../store/reducers';
+import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
@@ -64,7 +65,7 @@ export class TreeStructureService {
             ...this.makeCommonNodes(GobiiExtractFilterType.BY_SAMPLE),
             GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.ENTITY)
                 .setEntityType(EntityType.CV)
-                .setCvFilterType(CvFilterType.DATASET_TYPE),
+                .setCvGroup(CvGroup.DATASET_TYPE),
             GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.SAMPLE_LIST_TYPE),
             GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.ENTITY)
                 .setEntityType(EntityType.PLATFORM)
@@ -91,7 +92,7 @@ export class TreeStructureService {
             ...this.makeCommonNodes(GobiiExtractFilterType.BY_MARKER),
             GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.ENTITY)
                 .setEntityType(EntityType.CV)
-                .setCvFilterType(CvFilterType.DATASET_TYPE),
+                .setCvGroup(CvGroup.DATASET_TYPE),
             GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.TREE_STRUCTURE)
                 .setContainerType(ContainerType.STRUCTURE)
                 .setLabel("Markers Criteria")
@@ -106,8 +107,46 @@ export class TreeStructureService {
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.ENTITY)
                         .setEntityType(EntityType.MARKER_GROUP)
                         .setContainerType(ContainerType.DATA)
-                ])
-        ];
+                ]),
+            // BY FLEX QUERY
+            ...this.makeCommonNodes(GobiiExtractFilterType.FLEX_QUERY),
+            GobiiTreeNode.build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.VERTEX)
+                .setSequenceNum(1)
+                .setEntityType(EntityType.UNKNOWN)
+                .setContainerType(ContainerType.DATA)
+                .setChildCompoundUniqueId(new GobiiFileItemCompoundId()
+                    .setExtractorItemType(ExtractorItemType.VERTEX_VALUE)
+                    .setEntityType(EntityType.ANY)
+                    .setEntitySubType(EntitySubType.ANY)
+                    .setCvGroup(CvGroup.ANY)),
+            GobiiTreeNode.build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.VERTEX)
+                .setSequenceNum(2)
+                .setEntityType(EntityType.UNKNOWN)
+                .setContainerType(ContainerType.DATA)
+                .setChildCompoundUniqueId(new GobiiFileItemCompoundId()
+                    .setExtractorItemType(ExtractorItemType.VERTEX_VALUE)
+                    .setEntityType(EntityType.ANY)
+                    .setEntitySubType(EntitySubType.ANY)
+                    .setCvGroup(CvGroup.ANY)),
+            GobiiTreeNode.build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.VERTEX)
+                .setSequenceNum(3)
+                .setEntityType(EntityType.UNKNOWN)
+                .setContainerType(ContainerType.DATA)
+                .setChildCompoundUniqueId(new GobiiFileItemCompoundId()
+                    .setExtractorItemType(ExtractorItemType.VERTEX_VALUE)
+                    .setEntityType(EntityType.ANY)
+                    .setEntitySubType(EntitySubType.ANY)
+                    .setCvGroup(CvGroup.ANY)),
+            GobiiTreeNode.build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.VERTEX)
+                .setSequenceNum(4)
+                .setEntityType(EntityType.UNKNOWN)
+                .setContainerType(ContainerType.DATA)
+                .setChildCompoundUniqueId(new GobiiFileItemCompoundId()
+                    .setExtractorItemType(ExtractorItemType.VERTEX_VALUE)
+                    .setEntityType(EntityType.ANY)
+                    .setEntitySubType(EntitySubType.ANY)
+                    .setCvGroup(CvGroup.ANY)),
+        ]; // array of gobii tree nodes
 
         // we know we only have to go one level deep in this case -- no need to recurse
         returnVal.forEach(function (currentNode, idx, nodes) {
@@ -120,92 +159,106 @@ export class TreeStructureService {
         this.setTreeNodeProperties(returnVal);
         return returnVal;
 
-    }
-
-    private applyLabel(gobiiTreeNode: GobiiTreeNode) {
-
-        let labelValue: string = null;
-
-        if (gobiiTreeNode.getItemType() === ExtractorItemType.ENTITY) {
-
-            if (gobiiTreeNode.getEntitySubType() === EntitySubType.UNKNOWN) {
-
-                if (gobiiTreeNode.getEntityType() !== EntityType.CV) {
-                    labelValue = Labels.instance().entityNodeLabels[gobiiTreeNode.getEntityType()];
-                } else {
-                    labelValue = Labels.instance().cvFilterNodeLabels[gobiiTreeNode.getCvFilterType()];
-                }
-            } else {
-                labelValue = Labels.instance().entitySubtypeNodeLabels[gobiiTreeNode.getEntitySubType()];
-            }
-
-        } else {
-            labelValue = Labels.instance().treeExtractorTypeLabels[gobiiTreeNode.getItemType()];
-        }
-
-        gobiiTreeNode.setGenericLabel(labelValue);
-        gobiiTreeNode.setLabel(labelValue);
-
-    }
+    } // getInitialTree()
 
     private setTreeNodeProperties(treeNodes: GobiiTreeNode[]) {
 
         treeNodes.forEach(tn => {
-            if (( tn.children === null ) || ( tn.children.length <= 0  )) {
+            if ((tn.children === null) || (tn.children.length <= 0)) {
                 this.addIconsToNode(tn, false);
-                this.applyLabel(tn);
+                let label: string = this.getLabel(tn.getItemType(), tn.getEntityType(), tn.getEntitySubType(), tn.getCvGroup(), tn.getCvTerm(), tn.getSequenceNum());
+                tn.setLabel(label);
+                tn.setGenericLabel(label);
             } else {
                 this.setTreeNodeProperties(tn.children);
             }
         })
+    }
+
+
+    private getLabel(itemType: ExtractorItemType,
+                     entityType: EntityType,
+                     entitySubType: EntitySubType,
+                     cvGroup: CvGroup,
+                     cvTerm: String,
+                     sequenceNum: number): string {
+
+        let labelValue: string = null;
+
+        if (itemType === ExtractorItemType.ENTITY) {
+
+            labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
+
+        } else if (itemType === ExtractorItemType.VERTEX) {
+
+            labelValue = "Filter " + sequenceNum.toString();
+
+            if (cvTerm) {
+
+                let entityLabel: string = this.getEntityLabel(entityType, entitySubType, cvGroup);
+
+                labelValue += ": " + entityLabel + " " + cvTerm;
+
+            } else if (entityType !== EntityType.UNKNOWN
+                || entitySubType !== EntitySubType.UNKNOWN
+                || cvGroup !== CvGroup.UNKNOWN) {
+
+                labelValue += ": " + this.getEntityLabel(entityType, entitySubType, cvGroup);
+            }
+
+        } else {
+            labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
+        }
+
+        return labelValue;
 
     }
-    
-    private getEntityIcon(gobiiFileItemCompoundId:GobiiFileItemCompoundId):{ icon: string, expandedIcon: string, collapsedIcon: string } {
+
+    private getEntityIcon(entityType: EntityType, cvFilterType: CvGroup): { icon: string, expandedIcon: string, collapsedIcon: string } {
 
         let icon: string;
         let expandedIcon: string;
         let collapsedIcon: string;
-        
-        if (gobiiFileItemCompoundId.getEntityType() === EntityType.DATASET) {
+
+        if (entityType === EntityType.DATASET) {
 
             icon = "fa-database";
             expandedIcon = "fa-folder-expanded";
             collapsedIcon = "fa-database";
 
-        } else if (gobiiFileItemCompoundId.getEntityType() === EntityType.CONTACT) {
+        } else if (entityType === EntityType.CONTACT) {
 
             icon = "fa-user-o";
             expandedIcon = "fa-user-o";
             collapsedIcon = "fa-user-o";
 
-        } else if (gobiiFileItemCompoundId.getEntityType() === EntityType.MAPSET) {
+        } else if (entityType === EntityType.MAPSET) {
 
             icon = "fa-map-o";
             expandedIcon = "fa-map-o";
             collapsedIcon = "fa-map-o";
 
-        } else if (gobiiFileItemCompoundId.getEntityType() === EntityType.PLATFORM) {
+        } else if (entityType === EntityType.PLATFORM) {
 
             icon = "fa-calculator";
             expandedIcon = "fa-calculator";
             collapsedIcon = "fa-calculator";
 
-        } else if (gobiiFileItemCompoundId.getEntityType() === EntityType.PROJECT) {
+        } else if (entityType === EntityType.PROJECT) {
 
             icon = "fa-clipboard";
             expandedIcon = "fa-clipboard";
             collapsedIcon = "fa-clipboard";
 
-        } else if (gobiiFileItemCompoundId.getEntityType() === EntityType.CV) {
+        } else if (entityType === EntityType.CV && cvFilterType !== null) {
 
-            if (gobiiFileItemCompoundId.getCvFilterType() === CvFilterType.DATASET_TYPE) {
+            if (cvFilterType === CvGroup.DATASET_TYPE) {
                 icon = "fa-file-excel-o";
                 expandedIcon = "fa-file-excel-o";
                 collapsedIcon = "fa-file-excel-o";
             }
 
-        } else if (gobiiFileItemCompoundId.getEntityType() === EntityType.MARKER_GROUP) {
+        } else if (entityType === EntityType.MARKER_GROUP) {
 
             // if (isParent) {
             icon = "fa-pencil";
@@ -218,57 +271,25 @@ export class TreeStructureService {
     }
 
 
-    private addEntityIconToNode(entityType: EntityType, cvFilterType: CvFilterType, treeNode: GobiiTreeNode) {
+    private getEntityLabel(entityType: EntityType, entitySubType: EntitySubType, cvFilterType: CvGroup) {
 
-        if (entityType === EntityType.DATASET) {
+        let returnVal: string;
 
-            treeNode.icon = "fa-database";
-            treeNode.expandedIcon = "fa-folder-expanded";
-            treeNode.collapsedIcon = "fa-database";
+        if (entitySubType === EntitySubType.UNKNOWN) {
 
-        } else if (entityType === EntityType.CONTACT) {
-
-            treeNode.icon = "fa-user-o";
-            treeNode.expandedIcon = "fa-user-o";
-            treeNode.collapsedIcon = "fa-user-o";
-
-        } else if (entityType === EntityType.MAPSET) {
-
-            treeNode.icon = "fa-map-o";
-            treeNode.expandedIcon = "fa-map-o";
-            treeNode.collapsedIcon = "fa-map-o";
-
-        } else if (entityType === EntityType.PLATFORM) {
-
-            treeNode.icon = "fa-calculator";
-            treeNode.expandedIcon = "fa-calculator";
-            treeNode.collapsedIcon = "fa-calculator";
-
-        } else if (entityType === EntityType.PROJECT) {
-
-            treeNode.icon = "fa-clipboard";
-            treeNode.expandedIcon = "fa-clipboard";
-            treeNode.collapsedIcon = "fa-clipboard";
-
-        } else if (entityType === EntityType.CV) {
-
-            if (cvFilterType === CvFilterType.DATASET_TYPE) {
-                treeNode.icon = "fa-file-excel-o";
-                treeNode.expandedIcon = "fa-file-excel-o";
-                treeNode.collapsedIcon = "fa-file-excel-o";
+            if (entityType !== EntityType.CV) {
+                returnVal = Labels.instance().entityNodeLabels[entityType];
+            } else {
+                returnVal = Labels.instance().cvGroupLabels[cvFilterType];
             }
-
-        } else if (entityType === EntityType.MARKER_GROUP) {
-
-            // if (isParent) {
-            treeNode.icon = "fa-pencil";
-            treeNode.expandedIcon = "fa-pencil";
-            treeNode.collapsedIcon = "fa-pencil";
-          
+        } else {
+            returnVal = Labels.instance().entitySubtypeNodeLabels[entitySubType];
         }
+
+        return returnVal;
     }
 
-    private getIcons(gobiiFileItemCompoundId: GobiiFileItemCompoundId, isParent:boolean): { icon: string, expandedIcon: string, collapsedIcon: string } {
+    private getIcons(gobiiFileItemCompoundId: GobiiFileItemCompoundId, isParent: boolean): { icon: string, expandedIcon: string, collapsedIcon: string } {
 
 
         let icon: string;
@@ -278,7 +299,7 @@ export class TreeStructureService {
         if (gobiiFileItemCompoundId.getEntityType() != null
             && gobiiFileItemCompoundId.getEntityType() != EntityType.UNKNOWN) {
 
-            let entityIcons = this.getEntityIcon(gobiiFileItemCompoundId);
+            let entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getCvGroup());
             icon = entityIcons.icon;
             expandedIcon = entityIcons.expandedIcon;
             collapsedIcon = entityIcons.collapsedIcon;
@@ -340,64 +361,11 @@ export class TreeStructureService {
 
     private addIconsToNode(treeNode: GobiiTreeNode, isParent: boolean) {
 
-        let icons = this.getIcons(treeNode,isParent);
+        let icons = this.getIcons(treeNode, isParent);
         treeNode.icon = icons.icon;
         treeNode.expandedIcon = icons.expandedIcon;
         treeNode.collapsedIcon = icons.collapsedIcon;
 
-        // if (treeNode.getEntityType() != null
-        //     && treeNode.getEntityType() != EntityType.UNKNOWN) {
-        //
-        //     this.addEntityIconToNode(treeNode.getEntityType(), treeNode.getCvFilterType(), treeNode);
-        //
-        // } else if (treeNode.getItemType() === ExtractorItemType.EXPORT_FORMAT) {
-        //     treeNode.icon = "fa-columns";
-        //     treeNode.expandedIcon = "fa-columns";
-        //     treeNode.collapsedIcon = "fa-columns";
-        // } else if (treeNode.getItemType() === ExtractorItemType.SAMPLE_FILE) {
-        //     treeNode.icon = "fa-file-text-o";
-        //     treeNode.expandedIcon = "fa-file-text-o";
-        //     treeNode.collapsedIcon = "fa-file-text-o";
-        // } else if (treeNode.getItemType() === ExtractorItemType.SAMPLE_LIST_ITEM) {
-        //     if (isParent) {
-        //         treeNode.icon = "fa-list-ul";
-        //         treeNode.expandedIcon = "fa-list-ul";
-        //         treeNode.collapsedIcon = "fa-list-ul";
-        //     } else {
-        //         treeNode.icon = "fa-eyedropper";
-        //         treeNode.expandedIcon = "fa-eyedropper";
-        //         treeNode.collapsedIcon = "fa-eyedropper";
-        //     }
-        // } else if (treeNode.getItemType() === ExtractorItemType.MARKER_FILE) {
-        //     treeNode.icon = "fa-file-text-o";
-        //     treeNode.expandedIcon = "fa-file-text-o";
-        //     treeNode.collapsedIcon = "fa-file-text-o";
-        // } else if (treeNode.getItemType() === ExtractorItemType.MARKER_LIST_ITEM) {
-        //
-        //     if (isParent) {
-        //         treeNode.icon = "fa-list-ul";
-        //         treeNode.expandedIcon = "fa-list-ul";
-        //         treeNode.collapsedIcon = "fa-list-ul";
-        //     } else {
-        //         treeNode.icon = "fa-map-marker";
-        //         treeNode.expandedIcon = "fa-map-marker";
-        //         treeNode.collapsedIcon = "fa-map-marker";
-        //     }
-        // } else if (treeNode.getItemType() === ExtractorItemType.JOB_ID) {
-        //     treeNode.icon = "fa-info-circle";
-        //     treeNode.expandedIcon = "fa-info-circle";
-        //     treeNode.collapsedIcon = "fa-info-circle";
-        // } else if (treeNode.getItemType() === ExtractorItemType.SAMPLE_LIST_TYPE) {
-        //     treeNode.icon = "fa-info-circle";
-        //     treeNode.expandedIcon = "fa-info-circle";
-        //     treeNode.collapsedIcon = "fa-info-circle";
-        // } else {
-        //     //     }
-        //     // } else if (fileModelNode.getItemType() == ExtractorItemType.CATEGORY ) {
-        //     treeNode.icon = "fa-folder";
-        //     treeNode.expandedIcon = "fa-folder-expanded";
-        //     treeNode.collapsedIcon = "fa-folder";
-        // }
     }
 
     public makeTreeNodeFromFileItem(gobiiFileItem: GobiiFileItem): GobiiTreeNode {
@@ -408,16 +376,23 @@ export class TreeStructureService {
             .setFileItemId(gobiiFileItem.getFileItemUniqueId())
             .setEntityType(gobiiFileItem.getEntityType())
             .setEntitySubType(gobiiFileItem.getEntitySubType())
-            .setCvFilterType(gobiiFileItem.getCvFilterType());
+            .setCvGroup(gobiiFileItem.getCvGroup())
+            .setSequenceNum(gobiiFileItem.getSequenceNum());
 
         this.addIconsToNode(returnVal, false);
-        this.applyLabel(returnVal);
+
+
+        let label:string = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());
+
+        returnVal.setLabel(label);
+        returnVal.setGenericLabel(label)
+
         this.addFileItemNameToNode(returnVal, gobiiFileItem);
 
         return returnVal;
     }
 
-    addFileItemNameToNode(gobiiTreeNode: GobiiTreeNode, gobiiFileItem: GobiiFileItem) {
+    private addFileItemNameToNode(gobiiTreeNode: GobiiTreeNode, gobiiFileItem: GobiiFileItem) {
 
         if (gobiiTreeNode.getContainerType() === ContainerType.DATA) {
             gobiiTreeNode.label = gobiiFileItem.getItemName();
@@ -438,18 +413,49 @@ export class TreeStructureService {
         }
     }
 
+    /***
+     *
+     * @param {GobiiExtractFilterType} gobiiExtractFilterType
+     * @param {GobiiFileItemCompoundId} targetGobiiFileItemCompoundId Determines the node that will be updated
+     * @param {GobiiFileItemCompoundId} childGobiiFileItemCompoundId Determines what types of nodes can be added to the updated node
+     */
+    public updateTreeNode(gobiiExtractFilterType: GobiiExtractFilterType,
+                          targetGobiiFileItemCompoundId: GobiiFileItemCompoundId,
+                          childGobiiFileItemCompoundId: GobiiFileItemCompoundId) {
+
+
+        let label: string = this.getLabel(targetGobiiFileItemCompoundId.getExtractorItemType(),
+            targetGobiiFileItemCompoundId.getEntityType(),
+            targetGobiiFileItemCompoundId.getEntitySubType(),
+            targetGobiiFileItemCompoundId.getCvGroup(),
+            targetGobiiFileItemCompoundId.getCvTerm(),
+            targetGobiiFileItemCompoundId.getSequenceNum());
+
+        let icons: any = this.getIcons(targetGobiiFileItemCompoundId, false);
+
+        this.store.dispatch(new treeNodeActions.SetTreeNodeLook({
+            gobiiExtractFilterType: gobiiExtractFilterType,
+            targetCompoundId: targetGobiiFileItemCompoundId,
+            childCompoundId: childGobiiFileItemCompoundId,
+            icons: icons,
+            label: label,
+            entityType: targetGobiiFileItemCompoundId.getEntityType()
+        }));
+    }
+
     public markTreeItemMissing(gobiiExtractFilterType: GobiiExtractFilterType, gobiiFileItemCompoundId: GobiiFileItemCompoundId) {
 
 
-        //let icon: string = "fa-chevron-circle-right";
         let icon: string = "fa-share";
-        //let icon: string = "fa-chevron-right";
 
         this.store.dispatch(new treeNodeActions.SetTreeNodeLook(
             {
                 gobiiExtractFilterType: gobiiExtractFilterType,
-                gobiiFileItemCompoundId: gobiiFileItemCompoundId,
-                icon: icon
+                targetCompoundId: gobiiFileItemCompoundId,
+                childCompoundId: null,
+                icons: {icon: icon},
+                label: null,
+                entityType: null
             }
         ))
     }
@@ -461,8 +467,11 @@ export class TreeStructureService {
         this.store.dispatch(new treeNodeActions.SetTreeNodeLook(
             {
                 gobiiExtractFilterType: gobiiExtractFilterType,
-                gobiiFileItemCompoundId: gobiiFileItemCompoundId,
-                icon: icons.icon
+                targetCompoundId: gobiiFileItemCompoundId,
+                childCompoundId: null,
+                icons: icons,
+                label: null,
+                entityType: null
             }
         ))
     }

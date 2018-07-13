@@ -7,7 +7,7 @@ import {GobiiExtractFilterType} from "../model/type-extractor-filter";
 import {Header} from "../model/payload/header";
 import * as fromRoot from '../store/reducers';
 import {Store} from "@ngrx/store";
-import {FileItemService} from "../services/core/file-item-service";
+import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
 import {Observable} from "rxjs/Observable";
 
 
@@ -71,7 +71,7 @@ import {Observable} from "rxjs/Observable";
 export class ExportFormatComponent implements OnInit, OnChanges {
 
     constructor(private store: Store<fromRoot.State>,
-                private fileItemService: FileItemService) {
+                private fileItemService: NameIdFileItemService) {
 
 
     } // ctor
