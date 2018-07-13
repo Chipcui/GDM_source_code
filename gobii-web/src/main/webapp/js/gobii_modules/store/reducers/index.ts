@@ -176,6 +176,7 @@ export const getFqF3VerticesValues = createSelector(getFileItemsState, fromFileI
 export const getFqF4VerticesValues = createSelector(getFileItemsState, fromFileItems.getFqF4VerticesValues);
 export const getCurrentMarkerCount = createSelector(getFileItemsState, fromFileItems.getCurrentMarkerCount);
 export const getCurrentSampleCount = createSelector(getFileItemsState, fromFileItems.getCurrentSampleCount);
+export const getFilterCountState = createSelector(getFileItemsState, fromFileItems.getFilterCountState);
 /**
  * Just like with the books selectors, we also have to compose the search
  * fileItemsReducer's and collection fileItemsReducer's selectors.

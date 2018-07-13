@@ -1,4 +1,4 @@
-System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem-action", "../../model/type-extractor-item", "../../model/type-entity", "../../model/file-item-param-names", "../../model/type-process", "../../views/entity-labels", "../../model/type-extractor-filter", "../../model/type-extract-format", "../../model/cv-group", "../../model/type-extractor-sample-list", "../../model/name-id-label-type"], function (exports_1, context_1) {
+System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem-action", "../../model/type-extractor-item", "../../model/type-entity", "../../model/file-item-param-names", "../../model/type-process", "../../views/entity-labels", "../../model/type-extractor-filter", "../../model/type-extract-format", "../../model/cv-group", "../../model/type-extractor-sample-list", "../../model/name-id-label-type", "../actions/action-filter-count-state"], function (exports_1, context_1) {
     "use strict";
     _this = this;
     var __moduleName = context_1 && context_1.id;
@@ -286,7 +286,7 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
         return returnVal;
     }
     exports_1("fileItemsReducer", fileItemsReducer);
-    var _this, reselect_1, gobii_file_item_1, gobiiFileItemAction, type_extractor_item_1, type_entity_1, file_item_param_names_1, type_process_1, entity_labels_1, type_extractor_filter_1, type_extract_format_1, cv_group_1, type_extractor_sample_list_1, name_id_label_type_1, initialState, getGobiiExtractFilterType, getFileItems, getUniqueIds, getSelectedUniqueIds, getFilters, getSelected, getAll, getSelectedFileFormat, getSelectedSampleType, getJobId, getUploadFiles, getPiContacts, getProjects, getExperiments, getDatasets, getCvTermsDataType, getCvTermsJobStatus, getMapsets, getPlatforms, getMarkerGroups, getSelectedPiContacts, getProjectsForSelectedPi, getExperimentsForSelectedProject, getDatasetsForSelectedExperiment, getDatasetEntities, getDatasetEntitiesPaged, getPiContactsFilterOptional, getProjectsFilterOptional, getExperimentsFilterOptional, getFqF1Vertices, getFqF2Vertices, getFqF3Vertices, getFqF4Vertices, getFqF1VerticesValues, getFqF2VerticesValues, getFqF3VerticesValues, getFqF4VerticesValues, getCurrentMarkerCount, getCurrentSampleCount;
+    var _this, reselect_1, gobii_file_item_1, gobiiFileItemAction, type_extractor_item_1, type_entity_1, file_item_param_names_1, type_process_1, entity_labels_1, type_extractor_filter_1, type_extract_format_1, cv_group_1, type_extractor_sample_list_1, name_id_label_type_1, action_filter_count_state_1, initialState, getGobiiExtractFilterType, getFileItems, getUniqueIds, getSelectedUniqueIds, getFilters, getSelected, getAll, getSelectedFileFormat, getSelectedSampleType, getJobId, getUploadFiles, getPiContacts, getProjects, getExperiments, getDatasets, getCvTermsDataType, getCvTermsJobStatus, getMapsets, getPlatforms, getMarkerGroups, getSelectedPiContacts, getProjectsForSelectedPi, getExperimentsForSelectedProject, getDatasetsForSelectedExperiment, getDatasetEntities, getDatasetEntitiesPaged, getPiContactsFilterOptional, getProjectsFilterOptional, getExperimentsFilterOptional, getFqF1Vertices, getFqF2Vertices, getFqF3Vertices, getFqF4Vertices, getFqF1VerticesValues, getFqF2VerticesValues, getFqF3VerticesValues, getFqF4VerticesValues, getCurrentMarkerCount, getCurrentSampleCount, getFilterCountState;
     return {
         setters: [
             function (reselect_1_1) {
@@ -327,6 +327,9 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
             },
             function (name_id_label_type_1_1) {
                 name_id_label_type_1 = name_id_label_type_1_1;
+            },
+            function (action_filter_count_state_1_1) {
+                action_filter_count_state_1 = action_filter_count_state_1_1;
             }
         ],
         execute: function () {
@@ -941,6 +944,38 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                 });
                 if (countFileItems.length > 0) {
                     returnVal = countFileItems[0].getEntity();
+                }
+                return returnVal;
+            }));
+            exports_1("getFilterCountState", getFilterCountState = reselect_1.createSelector(getFileItems, getFilters, getGobiiExtractFilterType, function (fileItems, filters, gobiiExtractFilterType) {
+                var returnVal = new action_filter_count_state_1.FilterCountState(new Map(), -1, -1);
+                Object.keys(filters).forEach(function (key) {
+                    if (key === file_item_param_names_1.FilterParamNames.FQ_F1_VERTEX_VALUES ||
+                        key === file_item_param_names_1.FilterParamNames.FQ_F2_VERTEX_VALUES ||
+                        key === file_item_param_names_1.FilterParamNames.FQ_F3_VERTEX_VALUES ||
+                        key === file_item_param_names_1.FilterParamNames.FQ_F4_VERTEX_VALUES ||
+                        key === file_item_param_names_1.FilterParamNames.FQ_F1_VERTICES ||
+                        key === file_item_param_names_1.FilterParamNames.FQ_F2_VERTICES ||
+                        key === file_item_param_names_1.FilterParamNames.FQ_F3_VERTICES ||
+                        key === file_item_param_names_1.FilterParamNames.FQ_F4_VERTICES) {
+                        returnVal.flexQueryFilters.set(key, filters[key]);
+                    }
+                }); //forEach filter
+                var dnaSampleCountFileItems = fileItems.filter(function (e) {
+                    return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
+                        && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ITEM_COUNT
+                        && e.getEntityType() === type_entity_1.EntityType.DNA_SAMPLE);
+                });
+                if (dnaSampleCountFileItems.length > 0) {
+                    returnVal.sampleCount = dnaSampleCountFileItems[0].getEntity();
+                }
+                var markerCountFileItems = fileItems.filter(function (e) {
+                    return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
+                        && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ITEM_COUNT
+                        && e.getEntityType() === type_entity_1.EntityType.MARKER);
+                });
+                if (markerCountFileItems.length > 0) {
+                    returnVal.markerCount = markerCountFileItems[0].getEntity();
                 }
                 return returnVal;
             }));
