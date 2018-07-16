@@ -395,11 +395,15 @@ export function fileItemsReducer(state: State = initialState, action: gobiiFileI
             newFIleItemState = newFIleItemState
                 .filter(fi => !fi.getIsEphemeral());
 
+            // remove filters
+            let newFilterState = Object.assign({}, state.filters);
+            newFilterState = new Map<string, PayloadFilter>();
+
             returnVal = {
                 gobiiExtractFilterType: state.gobiiExtractFilterType,
                 allFileItems: newFIleItemState,
                 uniqueIdsOfExtractFileItems: newSelectedItems,
-                filters: state.filters
+                filters: newFilterState
             };
 
             break;
