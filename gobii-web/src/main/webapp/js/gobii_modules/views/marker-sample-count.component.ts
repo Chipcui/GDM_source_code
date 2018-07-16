@@ -142,7 +142,10 @@ export class MarkerSampleCountComponent implements OnChanges, OnInit {
                 );
                 this.store.dispatch(loadActionSampleCount);
 
-            } // if we have a new filter type
+            } else {
+                this.displayPanel = false;
+                this.displaySpinner = false;
+            }// if we have a new filter type
 
         } else {
             this.displayPanel = false;
