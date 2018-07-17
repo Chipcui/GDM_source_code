@@ -231,6 +231,21 @@ export class FileItemEffects {
         // have to remap the reseult of the http query. I've just run out of time to experiment with this:
         // http://blog.danieleghidoli.it/2016/10/22/http-rxjs-observables-angular/
         //
+        // THIS JUST IN: In the course of working on branch feature/GSD-1820-01, I created a wrapper observable method
+        // for the post() call to to DatRequestService::post(). My initial attempts broke the change of observables
+        // so that the subscribe() in ExtractorRoot::handleExtractSubmission() was not getting the completion of the
+        // submission, and handleClearTree() was not getting called. I did a useful refactoring of the service's post()
+        // method so as to encapsulate the interpretation of the service call result in anticipation of needing to
+        // use switchMap() as is suggested in the various articles on this topic. That was a good refactoring in
+        // itself. But I think that I did not change anything meaningful with respect to how the observables are
+        // chained together. What did make a big difference is that when calling the post() encapsulation method in
+        // the submission services, I had been calling unsubscribe(). When there is a chain of observables from
+        // and http services, this is _not_ the thing to do: when I removed the unsubscribe(), the observable.next()
+        // was passed through and it worked. I think that I've been using unsubscribe() incorrectly in this way, by
+        // incorrect with analogy from unsubscribing to store selectors. In any case, in the below code, I am calling
+        // unsubscribe after the post(), which is definitely wrong. I suspect that an unsubscribe() anywhere in the
+        // observable chain is going to interrupt the flow of the observables. Cave Canem!
+        //
         // @Effect()
         // loadFileItems$ = this.actions$
         //     .ofType(fileItemActions.LOAD_FILTER)
