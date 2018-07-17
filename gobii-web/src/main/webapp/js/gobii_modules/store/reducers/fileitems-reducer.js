@@ -264,11 +264,14 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                 // remove emphemeral items from state
                 newFIleItemState = newFIleItemState
                     .filter(function (fi) { return !fi.getIsEphemeral(); });
+                // remove filters
+                var newFilterState = Object.assign({}, state.filters);
+                newFilterState = new Map();
                 returnVal = {
                     gobiiExtractFilterType: state.gobiiExtractFilterType,
                     allFileItems: newFIleItemState,
                     uniqueIdsOfExtractFileItems: newSelectedItems,
-                    filters: state.filters
+                    filters: newFilterState
                 };
                 break;
             }

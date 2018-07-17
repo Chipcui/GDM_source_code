@@ -288,7 +288,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         vertexFiltersForCount, [], null, null);
                         var vertexFilterDtoResponse = null;
                         _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, true)).subscribe(function (vertexFilterDto) {
-                            vertexFilterDtoResponse = vertexFilterDto;
+                            vertexFilterDtoResponse = vertexFilterDto.getData();
                             var markerCountItem = gobii_file_item_1.GobiiFileItem
                                 .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
                                 .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ITEM_COUNT)
@@ -365,14 +365,14 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                             var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null);
                             var vertexFilterDtoResponse = null;
                             _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, false)).subscribe(function (vertexFilterDto) {
-                                vertexFilterDtoResponse = vertexFilterDto;
+                                vertexFilterDtoResponse = vertexFilterDto.getData();
                                 // note that we are setting the entity type, sub type, cvgroup, and cvterm
                                 // based on our request -- on the target vertex. In theory, the server could
                                 // be responding with NameId items that do not fit this. But this is the
                                 // way we handle other types of requests, basing our entity types and so forth
                                 // largely on the content of the request request.
                                 var vertexFileItems = [];
-                                vertexFilterDto.vertexValues.forEach(function (item) {
+                                vertexFilterDto.getData().vertexValues.forEach(function (item) {
                                     var currentFileItem = gobii_file_item_1.GobiiFileItem.build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
                                         .setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE)
                                         .setEntityType(targetVertex.entityType)
@@ -400,11 +400,6 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                 });
                                 _this.store.dispatch(loadAction);
                                 //observer.next(vertexFileItems);
-                                //observer.complete();
-                            }, function (headerResponse) {
-                                headerResponse.status.statusMessages.forEach(function (statusMessage) {
-                                    _this.store.dispatch(new historyAction.AddStatusAction(statusMessage));
-                                });
                                 //observer.complete();
                             });
                         }); // subscribe to get vertex filters

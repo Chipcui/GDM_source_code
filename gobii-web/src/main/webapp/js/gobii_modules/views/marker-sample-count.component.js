@@ -123,6 +123,10 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/ac
                                 selectForExtract: true
                             });
                             this.store.dispatch(loadActionSampleCount);
+                        }
+                        else {
+                            this.displayPanel = false;
+                            this.displaySpinner = false;
                         } // if we have a new filter type
                     }
                     else {
