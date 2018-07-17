@@ -352,7 +352,7 @@ export class FlexQueryService {
                     jobId,
                     true
                 )).subscribe(vertexFilterDto => {
-                    vertexFilterDtoResponse = vertexFilterDto;
+                    vertexFilterDtoResponse = vertexFilterDto.getData();
 
 
                     let markerCountItem: GobiiFileItem = GobiiFileItem
@@ -468,7 +468,8 @@ export class FlexQueryService {
                         jobId,
                         false
                     )).subscribe(vertexFilterDto => {
-                            vertexFilterDtoResponse = vertexFilterDto;
+
+                            vertexFilterDtoResponse = vertexFilterDto.getData();
 
                             // note that we are setting the entity type, sub type, cvgroup, and cvterm
                             // based on our request -- on the target vertex. In theory, the server could
@@ -476,7 +477,7 @@ export class FlexQueryService {
                             // way we handle other types of requests, basing our entity types and so forth
                             // largely on the content of the request request.
                             let vertexFileItems: GobiiFileItem[] = [];
-                            vertexFilterDto.vertexValues.forEach(item => {
+                            vertexFilterDto.getData().vertexValues.forEach(item => {
 
                                     let currentFileItem: GobiiFileItem =
                                         GobiiFileItem.build(
@@ -524,12 +525,6 @@ export class FlexQueryService {
                             this.store.dispatch(loadAction);
 
                             //observer.next(vertexFileItems);
-                            //observer.complete();
-                        },
-                        headerResponse => {
-                            headerResponse.status.statusMessages.forEach(statusMessage => {
-                                this.store.dispatch(new historyAction.AddStatusAction(statusMessage));
-                            });
                             //observer.complete();
                         });
 

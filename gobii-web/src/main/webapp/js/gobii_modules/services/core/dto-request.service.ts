@@ -10,6 +10,7 @@ import "rxjs/add/operator/map";
 import {Header} from "../../model/payload/header";
 import {Status} from "../../model/payload/status";
 import {HeaderStatusMessage} from "../../model/dto-header-status-message";
+import {PayloadReader} from "../../model/payload/payload-reader";
 
 @Injectable()
 export class DtoRequestService<T> {
@@ -34,7 +35,7 @@ export class DtoRequestService<T> {
         return this._gobbiiVersion;
     }
 
-    public post(dtoRequestItem: DtoRequestItem<T>): Observable<T> {
+    public post(dtoRequestItem: DtoRequestItem<T>): Observable<PayloadReader<T>> {
 
         let scope$ = this;
 
@@ -54,22 +55,16 @@ export class DtoRequestService<T> {
                         {headers: headers})
                     .map(response => response.json())
                     .subscribe(json => {
-
-                            let payloadResponse: PayloadEnvelope = PayloadEnvelope.fromJSON(json);
-
-                            if (payloadResponse.header.status.succeeded) {
-                                let result = dtoRequestItem.resultFromJson(json);
-                                observer.next(result);
-                                observer.complete();
-                            } else {
-                                observer.error(payloadResponse.header);
-                            }
+                            let payloadReader:PayloadReader<T> =  new PayloadReader(json, dtoRequestItem);
+                            observer.next(payloadReader);
+                            observer.complete();
 
                         },
-                        json => {
-                            let obj = JSON.parse(json._body)
-                            let payloadResponse: PayloadEnvelope = PayloadEnvelope.fromJSON(obj);
-                            observer.error(payloadResponse.header);
+                        raw => {
+                        let jsonFromBody:any = JSON.parse(raw._body);
+                            let payloadReader:PayloadReader<T> =  new PayloadReader(jsonFromBody, dtoRequestItem);
+                            observer.next(payloadReader);
+                            observer.complete();
                         }); // subscribe http
 
             } else {

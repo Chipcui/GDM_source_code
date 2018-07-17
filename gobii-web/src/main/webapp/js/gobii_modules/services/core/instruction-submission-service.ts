@@ -25,6 +25,7 @@ import {FlexQueryService} from "./flex-query-service";
 import {FilterParamNames} from "../../model/file-item-param-names";
 import {Vertex} from "../../model/vertex";
 import {Observer} from "rxjs/Observer";
+import {AddStatusMessageAction} from "../../store/actions/history-action";
 
 @Injectable()
 export class InstructionSubmissionService {
@@ -706,42 +707,40 @@ export class InstructionSubmissionService {
                  submitterContactId: number,
                  mapsetIds: number[]): Observable<GobiiExtractorInstruction> {
 
-        let gobiiExtractorInstructions: GobiiExtractorInstruction[] = [];
-        gobiiExtractorInstructions.push(
-            new GobiiExtractorInstruction(
-                gobiiDataSetExtracts,
-                submitterContactId,
-                null,
-                mapsetIds)
-        );
+        // let extractorInstructionFilesDTORequest: ExtractorInstructionFilesDTO =
+        //     new ExtractorInstructionFilesDTO(gobiiExtractorInstructions,
+        //         jobId);
 
+        //let extractorInstructionFilesDTOResponse: ExtractorInstructionFilesDTO = null;
         return Observable.create(observer => {
 
-            let extractorInstructionFilesDTORequest: ExtractorInstructionFilesDTO =
-                new ExtractorInstructionFilesDTO(gobiiExtractorInstructions,
-                    jobId);
+            this.dtoRequestServiceExtractorFile.post(new DtoRequestItemExtractorSubmission(
+                new ExtractorInstructionFilesDTO([
+                        new GobiiExtractorInstruction(
+                            gobiiDataSetExtracts,
+                            submitterContactId,
+                            null,
+                            mapsetIds)
+                    ],
+                    jobId)
+            )).subscribe(extractorInstructionFilesDTOResponse => {
 
-            let extractorInstructionFilesDTOResponse: ExtractorInstructionFilesDTO = null;
 
-            this.dtoRequestServiceExtractorFile.post(new DtoRequestItemExtractorSubmission(extractorInstructionFilesDTORequest))
-                .subscribe(extractorInstructionFilesDTO => {
-                        extractorInstructionFilesDTOResponse = extractorInstructionFilesDTO;
-                        this.store.dispatch(new historyAction
-                            .AddStatusMessageAction("Extractor instruction file created on server: "
-                                + extractorInstructionFilesDTOResponse.getjobId()));
+                if (extractorInstructionFilesDTOResponse.succeeded()) {
+                    this.store.dispatch(new historyAction
+                        .AddStatusMessageAction("Extractor instruction file created on server: "
+                            + jobId));
 
-                        observer.next(extractorInstructionFilesDTORequest.getGobiiExtractorInstructions());
-                        observer.complete();
-                    },
-                    headerResponse => {
-                        headerResponse.status.statusMessages.forEach(statusMessage => {
-                            this.store.dispatch(new historyAction.AddStatusAction(statusMessage));
-                        });
-                        observer.complete();
-                    });
+                    observer.next(extractorInstructionFilesDTOResponse.getData().getGobiiExtractorInstructions());
+                    observer.complete();
+                } else {
+                    this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
+                        extractorInstructionFilesDTOResponse.getError()));
+                }
 
-        }); // observer
 
-    } // post()
+            }); //
+        }); // Observable.create()
+    } // function()
 
 }
