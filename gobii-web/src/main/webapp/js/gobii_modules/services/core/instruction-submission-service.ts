@@ -568,8 +568,7 @@ export class InstructionSubmissionService {
                                     .subscribe(extractorInstructions => {
                                         observer.next(extractorInstructions);
                                         observer.complete();
-                                    })
-                                    .unsubscribe();
+                                    });
 
                             } else if (gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
 
@@ -593,8 +592,7 @@ export class InstructionSubmissionService {
                                     .subscribe(extractorInstructions => {
                                         observer.next(extractorInstructions);
                                         observer.complete();
-                                    })
-                                    .unsubscribe();
+                                    });
 
                             } else if (gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE) {
 
@@ -618,8 +616,7 @@ export class InstructionSubmissionService {
                                     .subscribe(extractorInstructions => {
                                         observer.next(extractorInstructions);
                                         observer.complete();
-                                    })
-                                    .unsubscribe();
+                                    });
 
                             } else if (gobiiExtractFilterType === GobiiExtractFilterType.FLEX_QUERY) {
 
@@ -673,8 +670,7 @@ export class InstructionSubmissionService {
                                                     .subscribe(extractorInstructions => {
                                                         observer.next(extractorInstructions);
                                                         observer.complete();
-                                                    })
-                                                    .unsubscribe();
+                                                    });
                                             } else {
                                                 this.store.dispatch(new historyAction.AddStatusMessageAction("The vertex filter values do not align with the selected vertex file items"));
                                                 observer.complete();
@@ -684,7 +680,7 @@ export class InstructionSubmissionService {
                                             observer.complete();
                                         }
                                     })
-                                    .unsubscribe();
+                                    .unsubscribe(); // from get vertex filters
 
                             }
                             else {
@@ -693,12 +689,12 @@ export class InstructionSubmissionService {
                             }
 
                         }
-                    ).unsubscribe();
+                    ).unsubscribe(); // from select file items
 
 
             }
         )
-            ;//return observer create
+
     } // submit()
 
 
