@@ -1,4 +1,4 @@
-System.register(["@angular/core", "./dto-request.service", "../../model/filter-type", "../../model/cv-filter-type", "../../model/type-entity", "rxjs/Observable", "../app/dto-request-item-nameids"], function (exports_1, context_1) {
+System.register(["@angular/core", "./dto-request.service", "../../model/filter-type", "../../model/cv-group", "../../model/type-entity", "rxjs/Observable", "../app/dto-request-item-nameids"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "./dto-request.service", "../../model/filter-t
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, dto_request_service_1, filter_type_1, cv_filter_type_1, type_entity_1, Observable_1, dto_request_item_nameids_1, NameIdService;
+    var core_1, dto_request_service_1, filter_type_1, cv_group_1, type_entity_1, Observable_1, dto_request_item_nameids_1, NameIdService;
     return {
         setters: [
             function (core_1_1) {
@@ -22,8 +22,8 @@ System.register(["@angular/core", "./dto-request.service", "../../model/filter-t
             function (filter_type_1_1) {
                 filter_type_1 = filter_type_1_1;
             },
-            function (cv_filter_type_1_1) {
-                cv_filter_type_1 = cv_filter_type_1_1;
+            function (cv_group_1_1) {
+                cv_group_1 = cv_group_1_1;
             },
             function (type_entity_1_1) {
                 type_entity_1 = type_entity_1_1;
@@ -48,8 +48,8 @@ System.register(["@angular/core", "./dto-request.service", "../../model/filter-t
                         }
                     }
                     else if (nameIdRequestParams.getEntityType() === type_entity_1.EntityType.CV) {
-                        if (nameIdRequestParams.getCvFilterType() != null && nameIdRequestParams.getCvFilterType() != cv_filter_type_1.CvFilterType.UNKNOWN) {
-                            returnVal = cv_filter_type_1.CvFilters.get(cv_filter_type_1.CvFilterType.DATASET_TYPE);
+                        if (nameIdRequestParams.getCvGroup() != null && nameIdRequestParams.getCvGroup() != cv_group_1.CvGroup.UNKNOWN) {
+                            returnVal = cv_group_1.getCvGroupName(cv_group_1.CvGroup.DATASET_TYPE);
                         }
                     }
                     return returnVal;

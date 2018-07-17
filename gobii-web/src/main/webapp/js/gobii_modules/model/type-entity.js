@@ -8,24 +8,29 @@ System.register([], function (exports_1, context_1) {
             // these have to match what's on the server
             (function (EntityType) {
                 EntityType[EntityType["UNKNOWN"] = 0] = "UNKNOWN";
-                EntityType[EntityType["ANALYSIS"] = 1] = "ANALYSIS";
-                EntityType[EntityType["CONTACT"] = 2] = "CONTACT";
-                EntityType[EntityType["DATASET"] = 3] = "DATASET";
-                EntityType[EntityType["CV"] = 4] = "CV";
-                EntityType[EntityType["CVGROUP"] = 5] = "CVGROUP";
-                EntityType[EntityType["PROJECT"] = 6] = "PROJECT";
-                EntityType[EntityType["ORGANIZATION"] = 7] = "ORGANIZATION";
-                EntityType[EntityType["PLATFORM"] = 8] = "PLATFORM";
-                EntityType[EntityType["MANIFEST"] = 9] = "MANIFEST";
-                EntityType[EntityType["MAPSET"] = 10] = "MAPSET";
-                EntityType[EntityType["MARKER_GROUP"] = 11] = "MARKER_GROUP";
-                EntityType[EntityType["EXPERIMENT"] = 12] = "EXPERIMENT";
-                EntityType[EntityType["REFERENCE"] = 13] = "REFERENCE";
-                EntityType[EntityType["ROLE"] = 14] = "ROLE";
-                EntityType[EntityType["DISPLAY"] = 15] = "DISPLAY";
-                EntityType[EntityType["MARKER"] = 16] = "MARKER";
-                EntityType[EntityType["PROTOCOL"] = 17] = "PROTOCOL";
-                EntityType[EntityType["VENDORS_PROTOCOL"] = 18] = "VENDORS_PROTOCOL";
+                EntityType[EntityType["ANY"] = 1] = "ANY";
+                EntityType[EntityType["ANALYSIS"] = 2] = "ANALYSIS";
+                EntityType[EntityType["CONTACT"] = 3] = "CONTACT";
+                EntityType[EntityType["DATASET"] = 4] = "DATASET";
+                EntityType[EntityType["CV"] = 5] = "CV";
+                EntityType[EntityType["CVGROUP"] = 6] = "CVGROUP";
+                EntityType[EntityType["PROJECT"] = 7] = "PROJECT";
+                EntityType[EntityType["ORGANIZATION"] = 8] = "ORGANIZATION";
+                EntityType[EntityType["PLATFORM"] = 9] = "PLATFORM";
+                EntityType[EntityType["MANIFEST"] = 10] = "MANIFEST";
+                EntityType[EntityType["MAPSET"] = 11] = "MAPSET";
+                EntityType[EntityType["MARKER_GROUP"] = 12] = "MARKER_GROUP";
+                EntityType[EntityType["EXPERIMENT"] = 13] = "EXPERIMENT";
+                EntityType[EntityType["REFERENCE"] = 14] = "REFERENCE";
+                EntityType[EntityType["ROLE"] = 15] = "ROLE";
+                EntityType[EntityType["DISPLAY"] = 16] = "DISPLAY";
+                EntityType[EntityType["MARKER"] = 17] = "MARKER";
+                EntityType[EntityType["PROTOCOL"] = 18] = "PROTOCOL";
+                EntityType[EntityType["VENDOR_PROTOCOL"] = 19] = "VENDOR_PROTOCOL";
+                EntityType[EntityType["GERMPLASM"] = 20] = "GERMPLASM";
+                EntityType[EntityType["LINKAGE_GROUP"] = 21] = "LINKAGE_GROUP";
+                EntityType[EntityType["DNA_SAMPLE"] = 22] = "DNA_SAMPLE";
+                EntityType[EntityType["VENDOR"] = 23] = "VENDOR";
             })(EntityType || (EntityType = {}));
             exports_1("EntityType", EntityType);
             exports_1("entityTypefromString", entityTypefromString = function (entityTypeName) {
@@ -83,15 +88,19 @@ System.register([], function (exports_1, context_1) {
                         returnVal = EntityType.PROTOCOL;
                         break;
                     case "VENDOR_PROTOCOL":
-                        returnVal = EntityType.VENDORS_PROTOCOL;
+                        returnVal = EntityType.VENDOR_PROTOCOL;
+                        break;
+                    case "GERMPLASM":
+                        returnVal = EntityType.GERMPLASM;
                         break;
                 }
                 return returnVal;
             });
             (function (EntitySubType) {
                 EntitySubType[EntitySubType["UNKNOWN"] = 0] = "UNKNOWN";
-                EntitySubType[EntitySubType["CONTACT_PRINCIPLE_INVESTIGATOR"] = 1] = "CONTACT_PRINCIPLE_INVESTIGATOR";
-                EntitySubType[EntitySubType["CONTACT_SUBMITED_BY"] = 2] = "CONTACT_SUBMITED_BY";
+                EntitySubType[EntitySubType["ANY"] = 1] = "ANY";
+                EntitySubType[EntitySubType["CONTACT_PRINCIPLE_INVESTIGATOR"] = 2] = "CONTACT_PRINCIPLE_INVESTIGATOR";
+                EntitySubType[EntitySubType["CONTACT_SUBMITED_BY"] = 3] = "CONTACT_SUBMITED_BY";
             })(EntitySubType || (EntitySubType = {}));
             exports_1("EntitySubType", EntitySubType);
         }

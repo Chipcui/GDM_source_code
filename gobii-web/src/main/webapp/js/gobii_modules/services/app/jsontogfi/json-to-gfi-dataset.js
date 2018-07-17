@@ -41,16 +41,16 @@ System.register(["../../../model/gobii-file-item", "../../../model/type-entity",
                     var returnVal;
                     var dataset = new dataset_1.DataSet(jsonItem.id, jsonItem.piContactId, jsonItem.projectId, jsonItem.experimentId, jsonItem.datasetName, jsonItem.callingAnalysisId, jsonItem.dataTable, jsonItem.dataFile, jsonItem.qualityTable, jsonItem.qualityFile, jsonItem.status, jsonItem.datatypeId, jsonItem.analysesIds, new Date(jsonItem.createdDate), jsonItem.jobStatusId, jsonItem.jobStatusName, jsonItem.jobTypeId, jsonItem.jobTypeName, jsonItem.jobSubmittedDate ? new Date(jsonItem.jobSubmittedDate) : null, jsonItem.experimentName, jsonItem.projectName, jsonItem.protocolId, jsonItem.protocolName, jsonItem.platformId, jsonItem.platformName, jsonItem.callingAnalysisName, jsonItem.piEmail, jsonItem.piFirstName, jsonItem.piLastName, jsonItem.datatypeName, jsonItem.totalSamples, jsonItem.totalMarkers, jsonItem.modifiedDate ? new Date(jsonItem.modifiedDate) : null, jsonItem.loaderLastName, jsonItem.loaderFirstName);
                     var piContactRelation = gobii_file_item_entity_relation_1.GobiiFileItemEntityRelation
-                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.CONTACT_PI_FILTER_OPTIONAL, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.CONTACT_PI_FILTER_OPTIONAL, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
                         .setRelatedEntityId(dataset.piContactId != null ? dataset.piContactId.toString() : null);
                     var projectRelation = gobii_file_item_entity_relation_1.GobiiFileItemEntityRelation
-                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.PROJECT_FILTER_OPTIONAL, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.PROJECT_FILTER_OPTIONAL, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
                         .setRelatedEntityId(dataset.projectId != null ? dataset.projectId.toString() : null);
                     var experimentRelation = gobii_file_item_entity_relation_1.GobiiFileItemEntityRelation
-                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.EXPERIMENT_FILTER_OPTIONAL, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.EXPERIMENT_FILTER_OPTIONAL, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
                         .setRelatedEntityId(dataset.experimentId != null ? dataset.experimentId.toString() : null);
                     var statusRelation = gobii_file_item_entity_relation_1.GobiiFileItemEntityRelation
-                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.CV_JOB_STATUS, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                        .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(file_item_param_names_1.FilterParamNames.CV_JOB_STATUS, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
                         .setRelatedEntityId(dataset.jobStatusId != null ? dataset.jobStatusId.toString() : null);
                     // note that we are the parent id to the job status ID. This is because
                     // the primary filtering use case is by job status.

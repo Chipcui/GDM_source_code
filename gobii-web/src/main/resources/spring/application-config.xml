@@ -375,6 +375,11 @@
     <bean id="dtoMapSample" class="org.gobiiproject.gobiidtomapping.impl.DtoMapSampleImpl"/>
     <bean id="rsSampleDao" class="org.gobiiproject.gobiidao.resultset.access.impl.RsSampleDaoImpl"/>
 
+    <!-- **** FlexQuery Beans *************************************** -->
+    <bean id="FlexQueryService" class="org.gobiiproject.gobidomain.services.impl.FlexQueryServiceImpl"/>
+    <bean id="dtoMapFlexQuery" class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapFlexQueryImpl"/>
+    <!--<bean id="rsFlexQueryDao" class="org.gobiiproject.gobiidao.resultset.access.impl.RsFlexQueryDaoImpl"/>-->
+
 
     <!-- **** ListStatement queries *************************************** -->
     <bean id="listStatementContactAll"

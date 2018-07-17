@@ -10,6 +10,6 @@ import org.gobiiproject.gobiimodel.dto.instructions.extractor.ExtractorInstructi
 public interface ExtractorInstructionFilesService {
 
     ExtractorInstructionFilesDTO createInstruction(String cropType, ExtractorInstructionFilesDTO extractorInstructionFilesDTO) throws GobiiDomainException;
-    ExtractorInstructionFilesDTO getStatus(String cropType, String instructionFileName) throws GobiiDomainException;
+    ExtractorInstructionFilesDTO getStatus(String cropType, String jobId) throws GobiiDomainException;
 
 }

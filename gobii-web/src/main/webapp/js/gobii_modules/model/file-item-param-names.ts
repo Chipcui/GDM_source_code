@@ -26,5 +26,15 @@ export class FilterParamNames {
     public static PROJECT_FILTER_OPTIONAL = "Project-Filter-Optional";
     public static EXPERIMENT_FILTER_OPTIONAL = "Experiment-Filter-Optional";
     public static DATASET_FILTER_OPTIONAL = "Dataset-Filter-Optional";
+    public static FQ_F1_VERTICES = "Flex-Query_F1_Vertices";
+    public static FQ_F1_VERTEX_VALUES = "Flex-Query_F1_VertexValues";
+    public static FQ_F2_VERTICES = "Flex-Query_F2_Vertices";
+    public static FQ_F2_VERTEX_VALUES = "Flex-Query_F2_VertexValues";
+    public static FQ_F3_VERTICES = "Flex-Query_F3_Vertices";
+    public static FQ_F3_VERTEX_VALUES = "Flex-Query_F3_VertexValues";
+    public static FQ_F4_VERTICES = "Flex-Query_F4_Vertices";
+    public static FQ_F4_VERTEX_VALUES = "Flex-Query_F4_VertexValues";
+
+
 }
 

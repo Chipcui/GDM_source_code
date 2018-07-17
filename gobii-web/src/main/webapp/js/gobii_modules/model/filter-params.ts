@@ -1,14 +1,12 @@
 import {FilterType} from "./filter-type";
-import {EntityType, EntitySubType} from "./type-entity";
-import {CvFilterType} from "./cv-filter-type";
+import {EntitySubType, EntityType} from "./type-entity";
+import {CvGroup} from "./cv-group";
 import {GobiiExtractFilterType} from "./type-extractor-filter";
 import {NameIdLabelType} from "./name-id-label-type";
 import {ExtractorItemType} from "./type-extractor-item";
 import {GobiiFileItemCompoundId} from "./gobii-file-item-compound-id";
 import {GobiiFileItem} from "./gobii-file-item";
-import * as fileAction from '../store/actions/fileitem-action';
 import {DtoRequestService} from "../services/core/dto-request.service";
-import {JsonToGfi} from "../services/app/jsontogfi/json-to-gfi";
 import {DtoRequestItem} from "../services/core/dto-request-item";
 import {PayloadFilter} from "../store/actions/action-payload-filter";
 
@@ -104,19 +102,19 @@ export class FilterParams {
 
     private constructor(_entityType: EntityType = EntityType.UNKNOWN, //first four args are passed to base class ctor
                         _entitySubType: EntitySubType = EntitySubType.UNKNOWN,
-                        _cvFilterType: CvFilterType = CvFilterType.UNKNOWN,
+                        _cvCvGroup: CvGroup = CvGroup.UNKNOWN,
                         _cvFilterValue: string = null,
                         _extractorItemType: ExtractorItemType,
                         private targetEntityUniqueId: GobiiFileItemCompoundId,
                         private relatedEntityUniqueId: GobiiFileItemCompoundId,
                         private _queryName: string = null,
                         private _filterType: FilterType = FilterType.NONE,
-                       // private _targetEntityFilterValue: string = null,
-                       // private _relatedEntityFilterValue: string = null,
                         private _gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN,
                         private _nameIdLabelType: NameIdLabelType,
                         private _parentFileItemParams: FilterParams,
                         private _childFileItemParams: FilterParams[],
+                        private _previousSiblingFileItemParams: FilterParams,
+                        private _nextSiblingFileItemParams: FilterParams,
                         private _isDynamicFilterValue: boolean,
                         private _isDynamicDataLoad: boolean,
                         private _isPaged: boolean,
@@ -127,7 +125,7 @@ export class FilterParams {
                         private dtoRequestItem: DtoRequestItem<any>,
                         private dtoRequestService: DtoRequestService<any>) {
 
-        this.targetEntityUniqueId = new GobiiFileItemCompoundId(_extractorItemType, _entityType, _entitySubType, _cvFilterType, _cvFilterValue);
+        this.targetEntityUniqueId = new GobiiFileItemCompoundId(_extractorItemType, _entityType, _entitySubType, _cvCvGroup, _cvFilterValue);
 
 
     }
@@ -138,7 +136,7 @@ export class FilterParams {
         return (new FilterParams(
             entityType,
             EntitySubType.UNKNOWN,
-            CvFilterType.UNKNOWN,
+            CvGroup.UNKNOWN,
             null,
             ExtractorItemType.ENTITY,
             null,
@@ -151,6 +149,8 @@ export class FilterParams {
             NameIdLabelType.UNKNOWN,
             null,
             [],
+            null,
+            null,
             true,
             true,
             false,
@@ -197,12 +197,21 @@ export class FilterParams {
         return this;
     }
 
-    getCvFilterType(): CvFilterType {
-        return this.targetEntityUniqueId.getCvFilterType();
+    getCvGroup(): CvGroup {
+        return this.targetEntityUniqueId.getCvGroup();
     }
 
-    setCvFilterType(value: CvFilterType): FilterParams {
-        this.targetEntityUniqueId.setCvFilterType(value);
+    setCvGroup(value: CvGroup): FilterParams {
+        this.targetEntityUniqueId.setCvGroup(value);
+        return this;
+    }
+
+    getcvTerm(): string {
+        return this.targetEntityUniqueId.getCvTerm();
+    }
+
+    setcvTerm(value: string): FilterParams {
+        this.targetEntityUniqueId.setCvTerm(value);
         return this;
     }
 
@@ -216,6 +225,16 @@ export class FilterParams {
         return this;
     }
 
+    getSequenceNum():number{
+        return this.targetEntityUniqueId.getSequenceNum();
+    }
+
+    setSequenceNum(value:number): FilterParams {
+        this.targetEntityUniqueId.setSequenceNum(value);
+        return this;
+    }
+
+
     getIsExtractCriterion(): boolean {
         return this.targetEntityUniqueId.getIsExtractCriterion();
     }
@@ -225,8 +244,13 @@ export class FilterParams {
         return this;
     }
 
-    getTargetEtityUniqueId(): GobiiFileItemCompoundId {
+    getTargetEntityUniqueId(): GobiiFileItemCompoundId {
         return this.targetEntityUniqueId;
+    }
+
+    setTargetEntityUniqueId(value:GobiiFileItemCompoundId): FilterParams {
+        this.targetEntityUniqueId = value;
+        return this;
     }
 
 
@@ -248,23 +272,7 @@ export class FilterParams {
         return this;
     }
 
-    // getRelatedEntityFilterValue(): string {
-    //     return this._relatedEntityFilterValue;
-    // }
-    //
-    // setRelatedEntityFilterValue(value: string): FilterParams {
-    //     this._relatedEntityFilterValue = value;
-    //     return this;
-    // }
 
-    // getTargetEntityFilterValue(): string {
-    //     return this._targetEntityFilterValue;
-    // }
-    //
-    // setTargetEntityFilterValue(value: string): FilterParams {
-    //     this._targetEntityFilterValue = value;
-    //     return this;
-    // }
 
     getGobiiExtractFilterType(): GobiiExtractFilterType {
         return this._gobiiExtractFilterType;
@@ -301,6 +309,24 @@ export class FilterParams {
 
     setChildNameIdRequestParams(childNameIdRequestParams: FilterParams[]): FilterParams {
         this._childFileItemParams = childNameIdRequestParams;
+        return this;
+    }
+
+    getPreviousSiblingFileItemParams(): FilterParams {
+        return this._previousSiblingFileItemParams;
+    }
+
+    setPreviousSiblingNameIdRequestParams(previousSiblingNameIdRequestParams: FilterParams): FilterParams {
+        this._previousSiblingFileItemParams= previousSiblingNameIdRequestParams;
+        return this;
+    }
+
+    getNextSiblingFileItemParams(): FilterParams {
+        return this._nextSiblingFileItemParams;
+    }
+
+    setNextSiblingNameIdRequestParams(NextSiblingNameIdRequestParams: FilterParams): FilterParams {
+        this._nextSiblingFileItemParams= NextSiblingNameIdRequestParams;
         return this;
     }
 

@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extract-format", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "../model/type-extractor-filter", "@ngrx/store", "../services/core/file-item-service", "rxjs/Observable"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/type-extract-format", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "../model/type-extractor-filter", "@ngrx/store", "../services/core/nameid-file-item-service", "rxjs/Observable"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../model/gobi
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extract_format_1, gobii_file_item_1, type_process_1, type_extractor_item_1, type_extractor_filter_1, store_1, file_item_service_1, Observable_1, ExportFormatComponent;
+    var core_1, type_extract_format_1, gobii_file_item_1, type_process_1, type_extractor_item_1, type_extractor_filter_1, store_1, nameid_file_item_service_1, Observable_1, ExportFormatComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -34,8 +34,8 @@ System.register(["@angular/core", "../model/type-extract-format", "../model/gobi
             function (store_1_1) {
                 store_1 = store_1_1;
             },
-            function (file_item_service_1_1) {
-                file_item_service_1 = file_item_service_1_1;
+            function (nameid_file_item_service_1_1) {
+                nameid_file_item_service_1 = nameid_file_item_service_1_1;
             },
             function (Observable_1_1) {
                 Observable_1 = Observable_1_1;
@@ -112,7 +112,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../model/gobi
                      */
                     ,
                     __metadata("design:paramtypes", [store_1.Store,
-                        file_item_service_1.FileItemService])
+                        nameid_file_item_service_1.NameIdFileItemService])
                 ], ExportFormatComponent);
                 return ExportFormatComponent;
             }());

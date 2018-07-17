@@ -1,4 +1,4 @@
-System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item", "./gobii-file-item-compound-id"], function (exports_1, context_1) {
+System.register(["./type-entity", "./cv-group", "./type-extractor-item", "./gobii-file-item-compound-id"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
@@ -11,14 +11,14 @@ System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item", "
         };
     })();
     var __moduleName = context_1 && context_1.id;
-    var type_entity_1, cv_filter_type_1, type_extractor_item_1, gobii_file_item_compound_id_1, GobiiFileItemEntityRelation;
+    var type_entity_1, cv_group_1, type_extractor_item_1, gobii_file_item_compound_id_1, GobiiFileItemEntityRelation;
     return {
         setters: [
             function (type_entity_1_1) {
                 type_entity_1 = type_entity_1_1;
             },
-            function (cv_filter_type_1_1) {
-                cv_filter_type_1 = cv_filter_type_1_1;
+            function (cv_group_1_1) {
+                cv_group_1 = cv_group_1_1;
             },
             function (type_extractor_item_1_1) {
                 type_extractor_item_1 = type_extractor_item_1_1;
@@ -34,7 +34,7 @@ System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item", "
                     if (extractorItemType === void 0) { extractorItemType = type_extractor_item_1.ExtractorItemType.UNKNOWN; }
                     if (entityType === void 0) { entityType = type_entity_1.EntityType.UNKNOWN; }
                     if (entitySubType === void 0) { entitySubType = type_entity_1.EntitySubType.UNKNOWN; }
-                    if (cvFilterType === void 0) { cvFilterType = cv_filter_type_1.CvFilterType.UNKNOWN; }
+                    if (cvFilterType === void 0) { cvFilterType = cv_group_1.CvGroup.UNKNOWN; }
                     if (cvFilterValue === void 0) { cvFilterValue = null; }
                     if (relatedEntityId === void 0) { relatedEntityId = null; }
                     var _this = _super.call(this, extractorItemType, entityType, entitySubType, cvFilterType, cvFilterValue) || this;
@@ -42,7 +42,7 @@ System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item", "
                     return _this;
                 }
                 GobiiFileItemEntityRelation.fromGobiiFileItemCompoundId = function (gobiiFileItemCompoundId) {
-                    return new GobiiFileItemEntityRelation(gobiiFileItemCompoundId.getExtractorItemType(), gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getEntitySubType(), gobiiFileItemCompoundId.getCvFilterType(), gobiiFileItemCompoundId.getCvFilterValue());
+                    return new GobiiFileItemEntityRelation(gobiiFileItemCompoundId.getExtractorItemType(), gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getEntitySubType(), gobiiFileItemCompoundId.getCvGroup(), gobiiFileItemCompoundId.getCvFilterValue());
                 };
                 GobiiFileItemEntityRelation.prototype.getRelatedEntityId = function () {
                     return this.relatedEntityId;

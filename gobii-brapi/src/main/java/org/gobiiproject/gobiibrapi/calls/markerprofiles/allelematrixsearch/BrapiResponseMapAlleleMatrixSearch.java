@@ -1,6 +1,5 @@
 package org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrixsearch;
 
-import org.apache.commons.io.FilenameUtils;
 import org.gobiiproject.gobidomain.services.CvService;
 import org.gobiiproject.gobidomain.services.ExtractorInstructionFilesService;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
@@ -27,11 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-
-import org.gobiiproject.gobiimodel.types.GobiiJobStatus;
 
 /**
  * Created by Phil on 12/15/2016.
@@ -47,7 +42,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
     private PropNameId getDatatypeIdForName(DatasetType datasetType) {
 
 
-        List<CvDTO> datasetCvs = cvService.getCvsByGroupName(CvGroup.CVGROUP_DATASET_TYPE.getCvGroupName());
+        List<CvDTO> datasetCvs = cvService.getCvsByGroupName(CvGroup.DATASET_TYPE.getCvGroupName());
 
         AtomicInteger datasetTypeId = new AtomicInteger(0);
         datasetCvs
@@ -75,7 +70,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
         extractorInstructionFilesDTO.getGobiiExtractorInstructions().add(gobiiExtractorInstruction);
 
         String jobId = DateUtils.makeDateIdString();
-        extractorInstructionFilesDTO.setInstructionFileName(jobId);
+        extractorInstructionFilesDTO.setJobId(jobId);
 
         ExtractorInstructionFilesDTO extractorInstructionFilesDTONew = extractorInstructionFilesService
                 .createInstruction(crop, extractorInstructionFilesDTO);

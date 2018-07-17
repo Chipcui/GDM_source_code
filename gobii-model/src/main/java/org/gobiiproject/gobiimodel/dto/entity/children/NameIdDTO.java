@@ -11,6 +11,13 @@ import java.util.Date;
  */
 public class NameIdDTO extends DTOBase {
 
+    public NameIdDTO() { }
+
+    public NameIdDTO(GobiiEntityNameType gobiiEntityNameType, Integer id, String name) {
+        this.gobiiEntityNameType = gobiiEntityNameType;
+        this.id = id;
+        this.name = name;
+    }
 
     // entityLastModified is necessary because this class doe snot correspond to a
     // specific entity, and so it should not derive from DTOBaseAuditable

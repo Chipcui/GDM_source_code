@@ -2,8 +2,6 @@ package org.gobiiproject.gobiidtomapping.instructions.impl;
 
 import org.apache.commons.lang.StringUtils;
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiDataSetExtract;
-import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiExtractorInstruction;
 import org.gobiiproject.gobiimodel.utils.InstructionFileAccess;
 import org.gobiiproject.gobiidtomapping.core.GobiiDtoMappingException;
 import org.gobiiproject.gobiidtomapping.entity.auditable.DtoMapDataSet;
@@ -109,7 +107,7 @@ public class DtoMapLoaderInstructionsImpl implements DtoMapLoaderInstructions {
                 throw new GobiiDtoMappingException("Loader instruction request does not specify a crop");
             }
 
-            String instructionFileDirectory = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.LOADER_INSTRUCTIONS);
+            String instructionFileDirectory = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.LOADER_INSTRUCTIONS);
 
             String instructionFileFqpn = instructionFileDirectory
                     + loaderInstructionFilesDTO.getInstructionFileName()

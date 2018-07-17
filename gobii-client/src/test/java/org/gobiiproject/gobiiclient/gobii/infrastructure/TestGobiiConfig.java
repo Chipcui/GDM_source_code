@@ -1009,7 +1009,7 @@ public class TestGobiiConfig {
 
             for (GobiiFileProcessDir currentRelativeDirectory : EnumSet.allOf(GobiiFileProcessDir.class)) {
 
-                String currentCropDir = configSettings.getProcessingPath(currentGobiiCropConfig.getGobiiCropType(), currentRelativeDirectory);
+                String currentCropDir = configSettings.getFullyQualifiedFilePath(currentGobiiCropConfig.getGobiiCropType(), currentRelativeDirectory);
                 File file = new File(currentCropDir);
                 Assert.assertTrue("Crop directory was not created: " + currentCropDir, file.exists());
                 Assert.assertTrue("Crop fqpn was not created as a directory: " + currentCropDir, file.isDirectory());
