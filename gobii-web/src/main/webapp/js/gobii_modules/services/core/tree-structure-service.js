@@ -212,7 +212,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     }
                     return labelValue;
                 };
-                TreeStructureService.prototype.getEntityIcon = function (entityType, cvFilterType) {
+                TreeStructureService.prototype.getEntityIcon = function (entityType, cvGroup, cvTerm) {
                     var icon;
                     var expandedIcon;
                     var collapsedIcon;
@@ -271,18 +271,44 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                         expandedIcon = "fa-copyright";
                         collapsedIcon = "fa-copyright";
                     }
-                    else if (entityType === type_entity_1.EntityType.CV && cvFilterType !== null) {
-                        if (cvFilterType === cv_group_1.CvGroup.DATASET_TYPE) {
-                            icon = "fa-file-excel-o";
-                            expandedIcon = "fa-file-excel-o";
-                            collapsedIcon = "fa-file-excel-o";
-                        }
-                    }
                     else if (entityType === type_entity_1.EntityType.MARKER_GROUP) {
                         // if (isParent) {
                         icon = "fa-pencil";
                         expandedIcon = "fa-pencil";
                         collapsedIcon = "fa-pencil";
+                    }
+                    else if (entityType === type_entity_1.EntityType.CV && cvGroup !== null) {
+                        if (cvGroup === cv_group_1.CvGroup.DATASET_TYPE) {
+                            icon = "fa-file-excel-o";
+                            expandedIcon = "fa-file-excel-o";
+                            collapsedIcon = "fa-file-excel-o";
+                        }
+                        else if (cvGroup === cv_group_1.CvGroup.ANALYSIS_TYPE) {
+                            icon = "fa-area-chart";
+                            expandedIcon = "fa-area-chart";
+                            collapsedIcon = "fa-area-chart";
+                        }
+                        else if (cvGroup === cv_group_1.CvGroup.GERMPLASM_TYPE) {
+                            icon = "fa-tree";
+                            expandedIcon = "fa-tree";
+                            collapsedIcon = "fa-tree";
+                        }
+                        else if (cvGroup === cv_group_1.CvGroup.MAPSET_TYPE) {
+                            icon = "fa-map-pin";
+                            expandedIcon = "fa-map-pin";
+                            collapsedIcon = "fa-map-pin";
+                        }
+                    }
+                    else if (cvTerm) {
+                        // this condition captures all properties
+                        // all props within a group will get the same icon
+                        // technically, cvterm should be an enum; but, to paraphrase
+                        // Fermat -- I don't have the time for that solution now
+                        if (cvGroup === cv_group_1.CvGroup.GERMPLASM_PROP) {
+                            icon = "fa-tree";
+                            expandedIcon = "fa-tree";
+                            collapsedIcon = "fa-tree";
+                        }
                     }
                     return { icon: icon, expandedIcon: expandedIcon, collapsedIcon: collapsedIcon };
                 };
@@ -307,7 +333,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     var collapsedIcon;
                     if (gobiiFileItemCompoundId.getEntityType() != null
                         && gobiiFileItemCompoundId.getEntityType() != type_entity_1.EntityType.UNKNOWN) {
-                        var entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getCvGroup());
+                        var entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getCvGroup(), gobiiFileItemCompoundId.getCvTerm());
                         icon = entityIcons.icon;
                         expandedIcon = entityIcons.expandedIcon;
                         collapsedIcon = entityIcons.collapsedIcon;
@@ -384,6 +410,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                         .setEntityType(gobiiFileItem.getEntityType())
                         .setEntitySubType(gobiiFileItem.getEntitySubType())
                         .setCvGroup(gobiiFileItem.getCvGroup())
+                        .setCvTerm(gobiiFileItem.getCvTerm())
                         .setSequenceNum(gobiiFileItem.getSequenceNum());
                     this.addIconsToNode(returnVal, false);
                     var label = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());

@@ -980,7 +980,10 @@ export const getFqF1Vertices = createSelector(getFileItems, getFilters, getGobii
             (e.getGobiiExtractFilterType() == gobiiExtractFilterType
                 && e.getExtractorItemType() === ExtractorItemType.VERTEX)
             && e.getProcessType() !== ProcessType.DUMMY
-    ).map(fi => fi);
+    ).map(fi => fi)
+        .sort((gfi_a, gfi_b) => {
+        return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+    });;
 
     return returnVal;
 });
@@ -1014,7 +1017,10 @@ export const getFqF2Vertices = createSelector(getFileItems, getFilters, getGobii
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX
                     && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
-        ).map(fi => fi);
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+            });;
     }
 
     return returnVal;
@@ -1054,7 +1060,10 @@ export const getFqF3Vertices = createSelector(getFileItems, getFilters, getGobii
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX
                     && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
-        ).map(fi => fi);
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+            });;
     }
 
     return returnVal;
@@ -1100,7 +1109,10 @@ export const getFqF4Vertices = createSelector(getFileItems, getFilters, getGobii
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX
                     && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
-        ).map(fi => fi);
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+            return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+        });
     }
 
     return returnVal;

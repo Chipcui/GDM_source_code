@@ -4,7 +4,7 @@ import {EntitySubType, EntityType} from "../../model/type-entity";
 import {Labels} from "../../views/entity-labels";
 import {ExtractorItemType} from "../../model/type-extractor-item";
 import {GobiiExtractFilterType} from "../../model/type-extractor-filter";
-import {CvGroup} from "../../model/cv-group";
+import {CvGroup, getCvGroupName} from "../../model/cv-group";
 import {GobiiFileItem} from "../../model/gobii-file-item";
 import {GobiiExtractFormat} from "../../model/type-extract-format";
 import {ProcessType} from "../../model/type-process";
@@ -218,7 +218,9 @@ export class TreeStructureService {
 
     }
 
-    private getEntityIcon(entityType: EntityType, cvFilterType: CvGroup): { icon: string, expandedIcon: string, collapsedIcon: string } {
+    private getEntityIcon(entityType: EntityType,
+                          cvGroup: CvGroup,
+                          cvTerm: string): { icon: string, expandedIcon: string, collapsedIcon: string } {
 
         let icon: string;
         let expandedIcon: string;
@@ -290,20 +292,43 @@ export class TreeStructureService {
             expandedIcon = "fa-copyright";
             collapsedIcon = "fa-copyright";
 
-        } else if (entityType === EntityType.CV && cvFilterType !== null) {
-
-            if (cvFilterType === CvGroup.DATASET_TYPE) {
-                icon = "fa-file-excel-o";
-                expandedIcon = "fa-file-excel-o";
-                collapsedIcon = "fa-file-excel-o";
-            }
-
         } else if (entityType === EntityType.MARKER_GROUP) {
 
             // if (isParent) {
             icon = "fa-pencil";
             expandedIcon = "fa-pencil";
             collapsedIcon = "fa-pencil";
+        } else if (entityType === EntityType.CV && cvGroup !== null) {
+
+            if (cvGroup === CvGroup.DATASET_TYPE) {
+                icon = "fa-file-excel-o";
+                expandedIcon = "fa-file-excel-o";
+                collapsedIcon = "fa-file-excel-o";
+            } else if (cvGroup === CvGroup.ANALYSIS_TYPE) {
+                icon = "fa-area-chart";
+                expandedIcon = "fa-area-chart";
+                collapsedIcon = "fa-area-chart";
+            } else if (cvGroup === CvGroup.GERMPLASM_TYPE) {
+                icon = "fa-tree";
+                expandedIcon = "fa-tree";
+                collapsedIcon = "fa-tree";
+            } else if (cvGroup === CvGroup.MAPSET_TYPE) {
+                icon = "fa-map-pin";
+                expandedIcon = "fa-map-pin";
+                collapsedIcon = "fa-map-pin";
+            }
+
+        } else if (cvTerm) {
+            // this condition captures all properties
+            // all props within a group will get the same icon
+            // technically, cvterm should be an enum; but, to paraphrase
+            // Fermat -- I don't have the time for that solution now
+
+            if (cvGroup === CvGroup.GERMPLASM_PROP) {
+                icon = "fa-tree";
+                expandedIcon = "fa-tree";
+                collapsedIcon = "fa-tree";
+            }
 
         }
 
@@ -338,7 +363,9 @@ export class TreeStructureService {
         if (gobiiFileItemCompoundId.getEntityType() != null
             && gobiiFileItemCompoundId.getEntityType() != EntityType.UNKNOWN) {
 
-            let entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getCvGroup());
+            let entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(),
+                gobiiFileItemCompoundId.getCvGroup(),
+                gobiiFileItemCompoundId.getCvTerm());
             icon = entityIcons.icon;
             expandedIcon = entityIcons.expandedIcon;
             collapsedIcon = entityIcons.collapsedIcon;
@@ -416,6 +443,7 @@ export class TreeStructureService {
             .setEntityType(gobiiFileItem.getEntityType())
             .setEntitySubType(gobiiFileItem.getEntitySubType())
             .setCvGroup(gobiiFileItem.getCvGroup())
+            .setCvTerm(gobiiFileItem.getCvTerm())
             .setSequenceNum(gobiiFileItem.getSequenceNum());
 
         this.addIconsToNode(returnVal, false);

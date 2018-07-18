@@ -758,7 +758,11 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     return (e.getGobiiExtractFilterType() == gobiiExtractFilterType
                         && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX)
                         && e.getProcessType() !== type_process_1.ProcessType.DUMMY;
-                }).map(function (fi) { return fi; });
+                }).map(function (fi) { return fi; })
+                    .sort(function (gfi_a, gfi_b) {
+                    return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+                });
+                ;
                 return returnVal;
             }));
             exports_1("getFqF2Vertices", getFqF2Vertices = reselect_1.createSelector(getFileItems, getFilters, getGobiiExtractFilterType, function (fileItems, filters, gobiiExtractFilterType) {
@@ -782,7 +786,11 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                             && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX
                             && e.getNameIdLabelType() !== name_id_label_type_1.NameIdLabelType.UNKNOWN)
                             && e.getProcessType() !== type_process_1.ProcessType.DUMMY;
-                    }).map(function (fi) { return fi; });
+                    }).map(function (fi) { return fi; })
+                        .sort(function (gfi_a, gfi_b) {
+                        return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+                    });
+                    ;
                 }
                 return returnVal;
             }));
@@ -812,7 +820,11 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                             && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX
                             && e.getNameIdLabelType() !== name_id_label_type_1.NameIdLabelType.UNKNOWN)
                             && e.getProcessType() !== type_process_1.ProcessType.DUMMY;
-                    }).map(function (fi) { return fi; });
+                    }).map(function (fi) { return fi; })
+                        .sort(function (gfi_a, gfi_b) {
+                        return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+                    });
+                    ;
                 }
                 return returnVal;
             }));
@@ -847,7 +859,10 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                             && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX
                             && e.getNameIdLabelType() !== name_id_label_type_1.NameIdLabelType.UNKNOWN)
                             && e.getProcessType() !== type_process_1.ProcessType.DUMMY;
-                    }).map(function (fi) { return fi; });
+                    }).map(function (fi) { return fi; })
+                        .sort(function (gfi_a, gfi_b) {
+                        return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+                    });
                 }
                 return returnVal;
             }));
