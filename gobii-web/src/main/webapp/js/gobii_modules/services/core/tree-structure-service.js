@@ -404,14 +404,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     treeNode.collapsedIcon = icons.collapsedIcon;
                 };
                 TreeStructureService.prototype.makeTreeNodeFromFileItem = function (gobiiFileItem) {
-                    var returnVal = gobii_tree_node_1.GobiiTreeNode
-                        .build(gobiiFileItem.getGobiiExtractFilterType(), gobiiFileItem.getExtractorItemType())
-                        .setFileItemId(gobiiFileItem.getFileItemUniqueId())
-                        .setEntityType(gobiiFileItem.getEntityType())
-                        .setEntitySubType(gobiiFileItem.getEntitySubType())
-                        .setCvGroup(gobiiFileItem.getCvGroup())
-                        .setCvTerm(gobiiFileItem.getCvTerm())
-                        .setSequenceNum(gobiiFileItem.getSequenceNum());
+                    var returnVal = gobii_tree_node_1.GobiiTreeNode.fromFileItem(gobiiFileItem);
                     this.addIconsToNode(returnVal, false);
                     var label = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());
                     returnVal.setLabel(label);

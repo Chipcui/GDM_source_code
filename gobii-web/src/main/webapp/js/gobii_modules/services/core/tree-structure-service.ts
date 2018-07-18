@@ -437,14 +437,7 @@ export class TreeStructureService {
     public makeTreeNodeFromFileItem(gobiiFileItem: GobiiFileItem): GobiiTreeNode {
 
 
-        let returnVal: GobiiTreeNode = GobiiTreeNode
-            .build(gobiiFileItem.getGobiiExtractFilterType(), gobiiFileItem.getExtractorItemType())
-            .setFileItemId(gobiiFileItem.getFileItemUniqueId())
-            .setEntityType(gobiiFileItem.getEntityType())
-            .setEntitySubType(gobiiFileItem.getEntitySubType())
-            .setCvGroup(gobiiFileItem.getCvGroup())
-            .setCvTerm(gobiiFileItem.getCvTerm())
-            .setSequenceNum(gobiiFileItem.getSequenceNum());
+        let returnVal: GobiiTreeNode = GobiiTreeNode.fromFileItem(gobiiFileItem);
 
         this.addIconsToNode(returnVal, false);
 
