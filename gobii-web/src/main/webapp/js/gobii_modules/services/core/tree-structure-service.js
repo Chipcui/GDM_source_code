@@ -204,7 +204,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                         }
                     }
                     else {
-                        labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
+                        labelValue = entity_labels_1.Labels.instance().treeExtractorTypeLabels[itemType];
                     }
                     return labelValue;
                 };

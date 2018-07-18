@@ -207,7 +207,7 @@ export class TreeStructureService {
             }
 
         } else {
-            labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
+            labelValue = Labels.instance().treeExtractorTypeLabels[itemType];
         }
 
         return labelValue;
@@ -269,7 +269,6 @@ export class TreeStructureService {
 
         return {icon: icon, expandedIcon: expandedIcon, collapsedIcon: collapsedIcon};
     }
-
 
     private getEntityLabel(entityType: EntityType, entitySubType: EntitySubType, cvFilterType: CvGroup) {
 
