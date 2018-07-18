@@ -187,22 +187,41 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     });
                 };
                 TreeStructureService.prototype.getLabel = function (itemType, entityType, entitySubType, cvGroup, cvTerm, sequenceNum) {
-                    var labelValue = null;
+                    var labelValue = "";
                     if (itemType === type_extractor_item_1.ExtractorItemType.ENTITY) {
                         labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
                     }
-                    else if (itemType === type_extractor_item_1.ExtractorItemType.VERTEX) {
-                        labelValue = "Filter " + sequenceNum.toString();
+                    else if (itemType === type_extractor_item_1.ExtractorItemType.VERTEX || type_extractor_item_1.ExtractorItemType.VERTEX_VALUE) {
+                        var separator = "";
+                        if (itemType === type_extractor_item_1.ExtractorItemType.VERTEX) {
+                            labelValue = "Filter " + sequenceNum.toString();
+                            separator = ": ";
+                        }
                         if (cvTerm) {
                             var entityLabel = this.getEntityLabel(entityType, entitySubType, cvGroup);
-                            labelValue += ": " + entityLabel + " " + cvTerm;
+                            labelValue += separator + entityLabel + " " + cvTerm;
                         }
                         else if (entityType !== type_entity_1.EntityType.UNKNOWN
                             || entitySubType !== type_entity_1.EntitySubType.UNKNOWN
                             || cvGroup !== cv_group_1.CvGroup.UNKNOWN) {
-                            labelValue += ": " + this.getEntityLabel(entityType, entitySubType, cvGroup);
+                            labelValue += separator + this.getEntityLabel(entityType, entitySubType, cvGroup);
                         }
-                    }
+                    } /* else if(itemType === ExtractorItemType.VERTEX_VALUE) {
+            
+                        if (cvTerm) {
+            
+                            let entityLabel: string = this.getEntityLabel(entityType, entitySubType, cvGroup);
+            
+                            labelValue +  entityLabel + " " + cvTerm;
+            
+                        } else if (entityType !== EntityType.UNKNOWN
+                            || entitySubType !== EntitySubType.UNKNOWN
+                            || cvGroup !== CvGroup.UNKNOWN) {
+            
+                            labelValue +=   this.getEntityLabel(entityType, entitySubType, cvGroup);
+                        }
+            
+                    } */
                     else {
                         labelValue = entity_labels_1.Labels.instance().treeExtractorTypeLabels[itemType];
                     }

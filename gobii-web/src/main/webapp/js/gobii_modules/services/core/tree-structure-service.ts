@@ -183,30 +183,49 @@ export class TreeStructureService {
                      cvTerm: String,
                      sequenceNum: number): string {
 
-        let labelValue: string = null;
+        let labelValue: string = "";
 
         if (itemType === ExtractorItemType.ENTITY) {
 
             labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
 
-        } else if (itemType === ExtractorItemType.VERTEX) {
+        } else if (itemType === ExtractorItemType.VERTEX || ExtractorItemType.VERTEX_VALUE) {
 
-            labelValue = "Filter " + sequenceNum.toString();
+            let separator = "";
+            if( itemType === ExtractorItemType.VERTEX ) {
+                labelValue = "Filter " + sequenceNum.toString();
+                separator = ": ";
+            }
 
             if (cvTerm) {
 
                 let entityLabel: string = this.getEntityLabel(entityType, entitySubType, cvGroup);
 
-                labelValue += ": " + entityLabel + " " + cvTerm;
+                labelValue += separator + entityLabel + " " + cvTerm;
 
             } else if (entityType !== EntityType.UNKNOWN
                 || entitySubType !== EntitySubType.UNKNOWN
                 || cvGroup !== CvGroup.UNKNOWN) {
 
-                labelValue += ": " + this.getEntityLabel(entityType, entitySubType, cvGroup);
+                labelValue += separator + this.getEntityLabel(entityType, entitySubType, cvGroup);
             }
 
-        } else {
+        } /* else if(itemType === ExtractorItemType.VERTEX_VALUE) {
+
+            if (cvTerm) {
+
+                let entityLabel: string = this.getEntityLabel(entityType, entitySubType, cvGroup);
+
+                labelValue +  entityLabel + " " + cvTerm;
+
+            } else if (entityType !== EntityType.UNKNOWN
+                || entitySubType !== EntitySubType.UNKNOWN
+                || cvGroup !== CvGroup.UNKNOWN) {
+
+                labelValue +=   this.getEntityLabel(entityType, entitySubType, cvGroup);
+            }
+
+        } */ else {
             labelValue = Labels.instance().treeExtractorTypeLabels[itemType];
         }
 
