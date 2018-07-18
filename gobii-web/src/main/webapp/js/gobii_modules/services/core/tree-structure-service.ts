@@ -192,7 +192,7 @@ export class TreeStructureService {
         } else if (itemType === ExtractorItemType.VERTEX || ExtractorItemType.VERTEX_VALUE) {
 
             let separator = "";
-            if( itemType === ExtractorItemType.VERTEX ) {
+            if (itemType === ExtractorItemType.VERTEX) {
                 labelValue = "Filter " + sequenceNum.toString();
                 separator = ": ";
             }
@@ -210,22 +210,7 @@ export class TreeStructureService {
                 labelValue += separator + this.getEntityLabel(entityType, entitySubType, cvGroup);
             }
 
-        } /* else if(itemType === ExtractorItemType.VERTEX_VALUE) {
-
-            if (cvTerm) {
-
-                let entityLabel: string = this.getEntityLabel(entityType, entitySubType, cvGroup);
-
-                labelValue +  entityLabel + " " + cvTerm;
-
-            } else if (entityType !== EntityType.UNKNOWN
-                || entitySubType !== EntitySubType.UNKNOWN
-                || cvGroup !== CvGroup.UNKNOWN) {
-
-                labelValue +=   this.getEntityLabel(entityType, entitySubType, cvGroup);
-            }
-
-        } */ else {
+        } else {
             labelValue = Labels.instance().treeExtractorTypeLabels[itemType];
         }
 
@@ -268,6 +253,42 @@ export class TreeStructureService {
             icon = "fa-clipboard";
             expandedIcon = "fa-clipboard";
             collapsedIcon = "fa-clipboard";
+
+        } else if (entityType === EntityType.EXPERIMENT) {
+
+            icon = "fa-flask";
+            expandedIcon = "fa-flask";
+            collapsedIcon = "fa-flask";
+
+        } else if (entityType === EntityType.ANALYSIS) {
+
+            icon = "fa-line-chart";
+            expandedIcon = "fa-line-chart";
+            collapsedIcon = "fa-line-chart";
+
+        } else if (entityType === EntityType.LINKAGE_GROUP) {
+
+            icon = "fa-link";
+            expandedIcon = "fa-link";
+            collapsedIcon = "fa-link";
+
+        } else if (entityType === EntityType.PROTOCOL) {
+
+            icon = "fa-bars";
+            expandedIcon = "fa-bars";
+            collapsedIcon = "fa-bars";
+
+        } else if (entityType === EntityType.VENDOR) {
+
+            icon = "fa-building";
+            expandedIcon = "fa-building";
+            collapsedIcon = "fa-building";
+
+        } else if (entityType === EntityType.VENDOR_PROTOCOL) {
+
+            icon = "fa-copyright";
+            expandedIcon = "fa-copyright";
+            collapsedIcon = "fa-copyright";
 
         } else if (entityType === EntityType.CV && cvFilterType !== null) {
 
@@ -400,7 +421,7 @@ export class TreeStructureService {
         this.addIconsToNode(returnVal, false);
 
 
-        let label:string = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());
+        let label: string = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());
 
         returnVal.setLabel(label);
         returnVal.setGenericLabel(label)

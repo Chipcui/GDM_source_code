@@ -206,22 +206,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                             || cvGroup !== cv_group_1.CvGroup.UNKNOWN) {
                             labelValue += separator + this.getEntityLabel(entityType, entitySubType, cvGroup);
                         }
-                    } /* else if(itemType === ExtractorItemType.VERTEX_VALUE) {
-            
-                        if (cvTerm) {
-            
-                            let entityLabel: string = this.getEntityLabel(entityType, entitySubType, cvGroup);
-            
-                            labelValue +  entityLabel + " " + cvTerm;
-            
-                        } else if (entityType !== EntityType.UNKNOWN
-                            || entitySubType !== EntitySubType.UNKNOWN
-                            || cvGroup !== CvGroup.UNKNOWN) {
-            
-                            labelValue +=   this.getEntityLabel(entityType, entitySubType, cvGroup);
-                        }
-            
-                    } */
+                    }
                     else {
                         labelValue = entity_labels_1.Labels.instance().treeExtractorTypeLabels[itemType];
                     }
@@ -255,6 +240,36 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                         icon = "fa-clipboard";
                         expandedIcon = "fa-clipboard";
                         collapsedIcon = "fa-clipboard";
+                    }
+                    else if (entityType === type_entity_1.EntityType.EXPERIMENT) {
+                        icon = "fa-flask";
+                        expandedIcon = "fa-flask";
+                        collapsedIcon = "fa-flask";
+                    }
+                    else if (entityType === type_entity_1.EntityType.ANALYSIS) {
+                        icon = "fa-line-chart";
+                        expandedIcon = "fa-line-chart";
+                        collapsedIcon = "fa-line-chart";
+                    }
+                    else if (entityType === type_entity_1.EntityType.LINKAGE_GROUP) {
+                        icon = "fa-link";
+                        expandedIcon = "fa-link";
+                        collapsedIcon = "fa-link";
+                    }
+                    else if (entityType === type_entity_1.EntityType.PROTOCOL) {
+                        icon = "fa-bars";
+                        expandedIcon = "fa-bars";
+                        collapsedIcon = "fa-bars";
+                    }
+                    else if (entityType === type_entity_1.EntityType.VENDOR) {
+                        icon = "fa-building";
+                        expandedIcon = "fa-building";
+                        collapsedIcon = "fa-building";
+                    }
+                    else if (entityType === type_entity_1.EntityType.VENDOR_PROTOCOL) {
+                        icon = "fa-copyright";
+                        expandedIcon = "fa-copyright";
+                        collapsedIcon = "fa-copyright";
                     }
                     else if (entityType === type_entity_1.EntityType.CV && cvFilterType !== null) {
                         if (cvFilterType === cv_group_1.CvGroup.DATASET_TYPE) {
