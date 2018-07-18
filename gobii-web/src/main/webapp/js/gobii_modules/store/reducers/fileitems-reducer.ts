@@ -1228,7 +1228,7 @@ export const getFqF4VerticesValues = createSelector(getFileItems, getFilters, ge
 
 export const getCurrentMarkerCount = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
 
-    let returnVal: number = -1;
+    let returnVal: number = 0;
 
     let countFileItems: GobiiFileItem[] = fileItems.filter(
         e =>
@@ -1246,7 +1246,7 @@ export const getCurrentMarkerCount = createSelector(getFileItems, getFilters, ge
 
 export const getCurrentSampleCount = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
 
-    let returnVal: number = -1;
+    let returnVal: number = 0;
 
     let countFileItems: GobiiFileItem[] = fileItems.filter(
         e =>

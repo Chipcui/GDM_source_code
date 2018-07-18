@@ -942,7 +942,7 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                 return returnVal;
             }));
             exports_1("getCurrentMarkerCount", getCurrentMarkerCount = reselect_1.createSelector(getFileItems, getFilters, getGobiiExtractFilterType, function (fileItems, filters, gobiiExtractFilterType) {
-                var returnVal = -1;
+                var returnVal = 0;
                 var countFileItems = fileItems.filter(function (e) {
                     return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
                         && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ITEM_COUNT
@@ -954,7 +954,7 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                 return returnVal;
             }));
             exports_1("getCurrentSampleCount", getCurrentSampleCount = reselect_1.createSelector(getFileItems, getFilters, getGobiiExtractFilterType, function (fileItems, filters, gobiiExtractFilterType) {
-                var returnVal = -1;
+                var returnVal = 0;
                 var countFileItems = fileItems.filter(function (e) {
                     return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
                         && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ITEM_COUNT
