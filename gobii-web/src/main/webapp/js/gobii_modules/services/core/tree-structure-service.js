@@ -191,7 +191,8 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     if (itemType === type_extractor_item_1.ExtractorItemType.ENTITY) {
                         labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
                     }
-                    else if (itemType === type_extractor_item_1.ExtractorItemType.VERTEX || type_extractor_item_1.ExtractorItemType.VERTEX_VALUE) {
+                    else if ((itemType === type_extractor_item_1.ExtractorItemType.VERTEX)
+                        || (itemType == type_extractor_item_1.ExtractorItemType.VERTEX_VALUE)) {
                         var separator = "";
                         if (itemType === type_extractor_item_1.ExtractorItemType.VERTEX) {
                             labelValue = "Filter " + sequenceNum.toString();

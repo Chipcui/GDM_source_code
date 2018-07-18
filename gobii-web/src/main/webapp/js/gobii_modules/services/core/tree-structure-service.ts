@@ -189,7 +189,8 @@ export class TreeStructureService {
 
             labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
 
-        } else if (itemType === ExtractorItemType.VERTEX || ExtractorItemType.VERTEX_VALUE) {
+        } else if ((itemType === ExtractorItemType.VERTEX)
+            || (itemType == ExtractorItemType.VERTEX_VALUE)) {
 
             let separator = "";
             if (itemType === ExtractorItemType.VERTEX) {
