@@ -38,7 +38,7 @@ export class MarkerSampleCountComponent implements OnChanges, OnInit {
     public panelCollapsed: boolean = false;
     public markerCount$: Observable<number> = this.store.select(fromRoot.getCurrentMarkerCount);
     public sampleCount$: Observable<number> = this.store.select(fromRoot.getCurrentSampleCount);
-    public displaySpinner: boolean = true;
+    public displaySpinner: boolean = false;
 
     constructor(private store: Store<fromRoot.State>) {
 
@@ -82,11 +82,6 @@ export class MarkerSampleCountComponent implements OnChanges, OnInit {
     public onBeforeToggle($event) {
     }
 
-    private initCount() {
-        this.displayCounts = false;
-        this.displaySpinner = true;
-    }
-
     public onAfterToggle($event) {
 
         // if ($event.collapsed) {
@@ -111,7 +106,7 @@ export class MarkerSampleCountComponent implements OnChanges, OnInit {
                 (changes['gobiiExtractFilterType'].currentValue === GobiiExtractFilterType.FLEX_QUERY)) {
 
                 this.displayPanel = true;
-                this.displaySpinner = true;
+                this.displaySpinner = false;
 
                 let markerCountItem:GobiiFileItem = GobiiFileItem
                     .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
