@@ -55,14 +55,22 @@ export class DtoRequestService<T> {
                         {headers: headers})
                     .map(response => response.json())
                     .subscribe(json => {
-                            let payloadReader:PayloadReader<T> =  new PayloadReader(json, dtoRequestItem);
+                            let payloadReader: PayloadReader<T> = new PayloadReader(json, dtoRequestItem, null);
                             observer.next(payloadReader);
                             observer.complete();
 
                         },
                         raw => {
-                        let jsonFromBody:any = JSON.parse(raw._body);
-                            let payloadReader:PayloadReader<T> =  new PayloadReader(jsonFromBody, dtoRequestItem);
+                            let contentType: string = raw.headers.get("content-type");
+                            let payloadReader: PayloadReader<T>;
+                            if (contentType.toLowerCase().indexOf("json") > -1) {
+                                let jsonFromBody: any = JSON.parse(raw._body);
+                                payloadReader = new PayloadReader(jsonFromBody, dtoRequestItem, null);
+
+                            } else {
+                                payloadReader = new PayloadReader(null, dtoRequestItem, raw._body);
+                            }
+
                             observer.next(payloadReader);
                             observer.complete();
                         }); // subscribe http

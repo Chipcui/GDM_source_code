@@ -287,32 +287,38 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(dummyVertex, // the server should ignore this because it's a count query
                         vertexFiltersForCount, [], null, null);
                         var vertexFilterDtoResponse = null;
-                        _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, true)).subscribe(function (vertexFilterDto) {
-                            vertexFilterDtoResponse = vertexFilterDto.getData();
-                            var markerCountItem = gobii_file_item_1.GobiiFileItem
-                                .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
-                                .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ITEM_COUNT)
-                                .setEntityType(type_entity_1.EntityType.MARKER)
-                                .setItemName("Marker Count")
-                                .setEntity(vertexFilterDtoResponse.markerCount)
-                                .setIsEphemeral(false);
-                            // default count items on load
-                            var loadActionMarkerCount = new fileItemActions.LoadFileItemtAction({
-                                gobiiFileItem: markerCountItem,
-                                selectForExtract: true
-                            });
-                            _this.store.dispatch(loadActionMarkerCount);
-                            var loadActionSampleCount = new fileItemActions.LoadFileItemtAction({
-                                gobiiFileItem: gobii_file_item_1.GobiiFileItem
+                        _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, true)).subscribe(function (payloadReader) {
+                            if (payloadReader.succeeded()) {
+                                vertexFilterDtoResponse = payloadReader.getData();
+                                var markerCountItem = gobii_file_item_1.GobiiFileItem
                                     .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
                                     .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ITEM_COUNT)
-                                    .setEntityType(type_entity_1.EntityType.DNA_SAMPLE)
-                                    .setItemName("Sample Count")
-                                    .setEntity(vertexFilterDtoResponse.sampleCount)
-                                    .setIsEphemeral(false),
-                                selectForExtract: true
-                            });
-                            _this.store.dispatch(loadActionSampleCount);
+                                    .setEntityType(type_entity_1.EntityType.MARKER)
+                                    .setItemName("Marker Count")
+                                    .setEntity(vertexFilterDtoResponse.markerCount)
+                                    .setIsEphemeral(false);
+                                // default count items on load
+                                var loadActionMarkerCount = new fileItemActions.LoadFileItemtAction({
+                                    gobiiFileItem: markerCountItem,
+                                    selectForExtract: true
+                                });
+                                _this.store.dispatch(loadActionMarkerCount);
+                                var loadActionSampleCount = new fileItemActions.LoadFileItemtAction({
+                                    gobiiFileItem: gobii_file_item_1.GobiiFileItem
+                                        .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
+                                        .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ITEM_COUNT)
+                                        .setEntityType(type_entity_1.EntityType.DNA_SAMPLE)
+                                        .setItemName("Sample Count")
+                                        .setEntity(vertexFilterDtoResponse.sampleCount)
+                                        .setIsEphemeral(false),
+                                    selectForExtract: true
+                                });
+                                _this.store.dispatch(loadActionSampleCount);
+                            }
+                            else {
+                                _this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
+                                    payloadReader.getError()));
+                            }
                         });
                     }).unsubscribe();
                 };
@@ -366,43 +372,49 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                             var targetVertex = vertexFileItem.getEntity();
                             var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null);
                             var vertexFilterDtoResponse = null;
-                            _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, false)).subscribe(function (vertexFilterDto) {
-                                vertexFilterDtoResponse = vertexFilterDto.getData();
-                                // note that we are setting the entity type, sub type, cvgroup, and cvterm
-                                // based on our request -- on the target vertex. In theory, the server could
-                                // be responding with NameId items that do not fit this. But this is the
-                                // way we handle other types of requests, basing our entity types and so forth
-                                // largely on the content of the request request.
-                                var vertexFileItems = [];
-                                vertexFilterDto.getData().vertexValues.forEach(function (item) {
-                                    var currentFileItem = gobii_file_item_1.GobiiFileItem.build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
-                                        .setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE)
-                                        .setEntityType(targetVertex.entityType)
-                                        .setEntitySubType(targetVertex.entitySubType)
-                                        .setCvGroup(targetVertex.cvGroup)
-                                        .setCvTerm(targetVertex.cvTerm)
-                                        .setItemId(item.id)
-                                        .setItemName(item.name)
-                                        .setRequired(false)
-                                        .setSequenceNum(targetChildFilterParams.getSequenceNum());
-                                    //.setParentItemId(filterValue)
-                                    //.setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
-                                    //.withRelatedEntity(entityRelation);
-                                    vertexFileItems.push(currentFileItem);
-                                });
-                                // for flex query the "filter value" is not an actual id but a new entity type
-                                // our selectors "just know" to look for the filter's target entity type as the thing to filter on
-                                var targetCompoundUniqueId = targetChildFilterParams.getTargetEntityUniqueId();
-                                targetCompoundUniqueId.setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE);
-                                targetCompoundUniqueId.setEntityType(targetVertex.entityType);
-                                var loadAction = new fileItemActions.LoadFileItemListWithFilterAction({
-                                    gobiiFileItems: vertexFileItems,
-                                    filterId: targetChildFilterParams.getQueryName(),
-                                    filter: new action_payload_filter_1.PayloadFilter(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, targetCompoundUniqueId, targetChildFilterParams.getRelatedEntityUniqueId(), null, null, null, null)
-                                });
-                                _this.store.dispatch(loadAction);
-                                //observer.next(vertexFileItems);
-                                //observer.complete();
+                            _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, false)).subscribe(function (payloadReader) {
+                                if (payloadReader.succeeded()) {
+                                    vertexFilterDtoResponse = payloadReader.getData();
+                                    // note that we are setting the entity type, sub type, cvgroup, and cvterm
+                                    // based on our request -- on the target vertex. In theory, the server could
+                                    // be responding with NameId items that do not fit this. But this is the
+                                    // way we handle other types of requests, basing our entity types and so forth
+                                    // largely on the content of the request request.
+                                    var vertexFileItems_1 = [];
+                                    payloadReader.getData().vertexValues.forEach(function (item) {
+                                        var currentFileItem = gobii_file_item_1.GobiiFileItem.build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
+                                            .setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE)
+                                            .setEntityType(targetVertex.entityType)
+                                            .setEntitySubType(targetVertex.entitySubType)
+                                            .setCvGroup(targetVertex.cvGroup)
+                                            .setCvTerm(targetVertex.cvTerm)
+                                            .setItemId(item.id)
+                                            .setItemName(item.name)
+                                            .setRequired(false)
+                                            .setSequenceNum(targetChildFilterParams.getSequenceNum());
+                                        //.setParentItemId(filterValue)
+                                        //.setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
+                                        //.withRelatedEntity(entityRelation);
+                                        vertexFileItems_1.push(currentFileItem);
+                                    });
+                                    // for flex query the "filter value" is not an actual id but a new entity type
+                                    // our selectors "just know" to look for the filter's target entity type as the thing to filter on
+                                    var targetCompoundUniqueId = targetChildFilterParams.getTargetEntityUniqueId();
+                                    targetCompoundUniqueId.setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE);
+                                    targetCompoundUniqueId.setEntityType(targetVertex.entityType);
+                                    var loadAction = new fileItemActions.LoadFileItemListWithFilterAction({
+                                        gobiiFileItems: vertexFileItems_1,
+                                        filterId: targetChildFilterParams.getQueryName(),
+                                        filter: new action_payload_filter_1.PayloadFilter(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, targetCompoundUniqueId, targetChildFilterParams.getRelatedEntityUniqueId(), null, null, null, null)
+                                    });
+                                    _this.store.dispatch(loadAction);
+                                    //observer.next(vertexFileItems);
+                                    //observer.complete();
+                                }
+                                else {
+                                    _this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
+                                        payloadReader.getError()));
+                                }
                             });
                         }); // subscribe to get vertex filters
                     }

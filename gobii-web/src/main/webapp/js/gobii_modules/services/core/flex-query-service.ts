@@ -351,41 +351,47 @@ export class FlexQueryService {
                     vertexFilterDTO,
                     jobId,
                     true
-                )).subscribe(vertexFilterDto => {
-                    vertexFilterDtoResponse = vertexFilterDto.getData();
+                )).subscribe(payloadReader => {
+
+                    if (payloadReader.succeeded()) {
+
+                        vertexFilterDtoResponse = payloadReader.getData();
+
+                        let markerCountItem: GobiiFileItem = GobiiFileItem
+                            .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                            .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
+                            .setEntityType(EntityType.MARKER)
+                            .setItemName("Marker Count")
+                            .setEntity(vertexFilterDtoResponse.markerCount)
+                            .setIsEphemeral(false);
+                        // default count items on load
+                        let loadActionMarkerCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
+                            {
+                                gobiiFileItem: markerCountItem,
+                                selectForExtract: true
+                            }
+                        );
+                        this.store.dispatch(loadActionMarkerCount);
 
 
-                    let markerCountItem: GobiiFileItem = GobiiFileItem
-                        .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
-                        .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
-                        .setEntityType(EntityType.MARKER)
-                        .setItemName("Marker Count")
-                        .setEntity(vertexFilterDtoResponse.markerCount)
-                        .setIsEphemeral(false);
-                    // default count items on load
-                    let loadActionMarkerCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
-                        {
-                            gobiiFileItem: markerCountItem,
-                            selectForExtract: true
-                        }
-                    );
-                    this.store.dispatch(loadActionMarkerCount);
+                        let loadActionSampleCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
+                            {
+                                gobiiFileItem: GobiiFileItem
+                                    .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                                    .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
+                                    .setEntityType(EntityType.DNA_SAMPLE)
+                                    .setItemName("Sample Count")
+                                    .setEntity(vertexFilterDtoResponse.sampleCount)
+                                    .setIsEphemeral(false),
+                                selectForExtract: true
+                            }
+                        );
+                        this.store.dispatch(loadActionSampleCount);
 
-
-                    let loadActionSampleCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
-                        {
-                            gobiiFileItem: GobiiFileItem
-                                .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
-                                .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
-                                .setEntityType(EntityType.DNA_SAMPLE)
-                                .setItemName("Sample Count")
-                                .setEntity(vertexFilterDtoResponse.sampleCount)
-                                .setIsEphemeral(false),
-                            selectForExtract: true
-                        }
-                    );
-                    this.store.dispatch(loadActionSampleCount);
-
+                    } else {
+                        this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
+                            payloadReader.getError()));
+                    }
 
                 });
             }).unsubscribe();
@@ -469,9 +475,11 @@ export class FlexQueryService {
                         vertexFilterDTO,
                         jobId,
                         false
-                    )).subscribe(vertexFilterDto => {
+                    )).subscribe(payloadReader => {
 
-                            vertexFilterDtoResponse = vertexFilterDto.getData();
+                        if (payloadReader.succeeded()) {
+
+                            vertexFilterDtoResponse = payloadReader.getData();
 
                             // note that we are setting the entity type, sub type, cvgroup, and cvterm
                             // based on our request -- on the target vertex. In theory, the server could
@@ -479,7 +487,7 @@ export class FlexQueryService {
                             // way we handle other types of requests, basing our entity types and so forth
                             // largely on the content of the request request.
                             let vertexFileItems: GobiiFileItem[] = [];
-                            vertexFilterDto.getData().vertexValues.forEach(item => {
+                            payloadReader.getData().vertexValues.forEach(item => {
 
                                     let currentFileItem: GobiiFileItem =
                                         GobiiFileItem.build(
@@ -528,7 +536,11 @@ export class FlexQueryService {
 
                             //observer.next(vertexFileItems);
                             //observer.complete();
-                        });
+                        } else {
+                            this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
+                                payloadReader.getError()));
+                        }
+                    });
 
                 }); // subscribe to get vertex filters
 

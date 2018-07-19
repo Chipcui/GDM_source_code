@@ -7,17 +7,18 @@ export class PayloadReader<T> {
     private data: T;
 
     public constructor(private json: any,
-                       private dtoRequestItem: DtoRequestItem<T>) {
-
-        this.payloadEnvelope = PayloadEnvelope.fromJSON(json);
-
-        if (this.payloadEnvelope.header.status.succeeded) {
-            this.data = this.dtoRequestItem.resultFromJson(this.json);
+                       private dtoRequestItem: DtoRequestItem<T>,
+                       private rawBody: string) {
+        if (json) {
+            this.payloadEnvelope = PayloadEnvelope.fromJSON(json);
+            if (this.payloadEnvelope.header.status.succeeded) {
+                this.data = this.dtoRequestItem.resultFromJson(this.json);
+            }
         }
     }
 
     public succeeded(): boolean {
-        return this.payloadEnvelope.header.status.succeeded;
+        return this.payloadEnvelope && this.payloadEnvelope.header.status.succeeded;
     }
 
     public getData(): T {
@@ -28,12 +29,15 @@ export class PayloadReader<T> {
 
         let returnVal: string = "";
 
-        this.payloadEnvelope.header.status.statusMessages.forEach(statusMessage => {
-                returnVal += statusMessage.message;
-            }
-        )
+        if( this.payloadEnvelope ) {
+            this.payloadEnvelope.header.status.statusMessages.forEach(statusMessage => {
+                    returnVal += statusMessage.message;
+                }
+            )
+        } else {
+            returnVal = this.rawBody;
+        }
 
         return returnVal;
     }
-
 }

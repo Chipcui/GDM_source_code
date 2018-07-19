@@ -719,22 +719,19 @@ export class InstructionSubmissionService {
                             mapsetIds)
                     ],
                     jobId)
-            )).subscribe(extractorInstructionFilesDTOResponse => {
+            )).subscribe(payloadReader => {
 
-
-                if (extractorInstructionFilesDTOResponse.succeeded()) {
+                if (payloadReader.succeeded()) {
                     this.store.dispatch(new historyAction
                         .AddStatusMessageAction("Extractor instruction file created on server: "
                             + jobId));
 
-                    observer.next(extractorInstructionFilesDTOResponse.getData().getGobiiExtractorInstructions());
+                    observer.next(payloadReader.getData().getGobiiExtractorInstructions());
                     observer.complete();
                 } else {
                     this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
-                        extractorInstructionFilesDTOResponse.getError()));
+                        payloadReader.getError()));
                 }
-
-
             }); //
         }); // Observable.create()
     } // function()
