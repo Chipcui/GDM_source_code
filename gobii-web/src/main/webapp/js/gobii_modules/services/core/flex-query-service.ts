@@ -570,7 +570,7 @@ export class FlexQueryService {
     }
 
 
-    private invalidateMarkerSampleCount(setToZero: boolean) {
+    public invalidateMarkerSampleCount(setToZero: boolean) {
         let markerCountItem: GobiiFileItem = GobiiFileItem
             .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
             .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
