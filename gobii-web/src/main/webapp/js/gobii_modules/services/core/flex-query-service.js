@@ -391,6 +391,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                             .setItemId(item.id)
                                             .setItemName(item.name)
                                             .setRequired(false)
+                                            .setIsEphemeral(true)
                                             .setSequenceNum(targetChildFilterParams.getSequenceNum());
                                         //.setParentItemId(filterValue)
                                         //.setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())

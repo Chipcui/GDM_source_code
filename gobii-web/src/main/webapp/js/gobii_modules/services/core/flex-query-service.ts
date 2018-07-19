@@ -501,6 +501,7 @@ export class FlexQueryService {
                                             .setItemId(item.id)
                                             .setItemName(item.name)
                                             .setRequired(false)
+                                            .setIsEphemeral(true)
                                             .setSequenceNum(targetChildFilterParams.getSequenceNum());
                                     //.setParentItemId(filterValue)
                                     //.setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
