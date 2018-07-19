@@ -1,9 +1,7 @@
 import {Injectable} from "@angular/core";
 import {DtoRequestItem} from "./../core/dto-request-item";
 import {ProcessType} from "../../model/type-process";
-import {GobiiDataSetExtract} from  "../../model/extractor-instructions/data-set-extract"
-import {GobiiExtractorInstruction} from  "../../model/extractor-instructions/gobii-extractor-instruction"
-import {ExtractorInstructionFilesDTO} from  "../../model/extractor-instructions/dto-extractor-instruction-files"
+import {ExtractorInstructionFilesDTO} from "../../model/extractor-instructions/dto-extractor-instruction-files"
 import {PayloadEnvelope} from "../../model/payload/payload-envelope";
 
 

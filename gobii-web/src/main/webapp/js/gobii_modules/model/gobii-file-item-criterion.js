@@ -23,7 +23,7 @@ System.register(["./gobii-file-item-compound-id"], function (exports_1, context_
                 __extends(GobiiFileItemCriterion, _super);
                 function GobiiFileItemCriterion(gobiiFileItemCompoundId, _isPresent) {
                     if (_isPresent === void 0) { _isPresent = false; }
-                    var _this = _super.call(this, gobiiFileItemCompoundId.getExtractorItemType(), gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getEntitySubType(), gobiiFileItemCompoundId.getCvFilterType(), gobiiFileItemCompoundId.getCvFilterValue()) || this;
+                    var _this = _super.call(this, gobiiFileItemCompoundId.getExtractorItemType(), gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getEntitySubType(), gobiiFileItemCompoundId.getCvGroup(), gobiiFileItemCompoundId.getCvFilterValue()) || this;
                     _this._isPresent = _isPresent;
                     return _this;
                 }

@@ -591,7 +591,7 @@ public class GobiiExtractor {
 					}
 				}
 				if(!inst.isQcCheck())mailInterface.send(pm);
-				HelperFunctions.completeInstruction(instructionFile, configuration.getProcessingPath(crop, GobiiFileProcessDir.EXTRACTOR_DONE));
+				HelperFunctions.completeInstruction(instructionFile, configuration.getFullyQualifiedFilePath(crop, GobiiFileProcessDir.EXTRACTOR_DONE));
 			}catch(Exception e){
 				//TODO - make better email here
 					ErrorLogger.logError("GobiiExtractor","Uncaught fatal error found in program.",e);

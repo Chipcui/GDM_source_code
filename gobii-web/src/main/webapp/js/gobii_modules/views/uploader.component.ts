@@ -11,7 +11,7 @@ import {ExtractorItemType} from "../model//type-extractor-item";
 import {Store} from "@ngrx/store";
 import * as fromRoot from '../store/reducers';
 import {Observable} from "rxjs/Observable";
-import {FileItemService} from "../services/core/file-item-service";
+import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
 import * as historyAction from '../store/actions/history-action';
 
 const URL = 'gobii/v1/files/{gobiiJobId}/EXTRACTOR_INSTRUCTIONS?fileName=';
@@ -173,7 +173,7 @@ export class UploaderComponent implements OnInit {
 
     constructor(private _authenticationService: AuthenticationService,
                 private store: Store<fromRoot.State>,
-                private fileItemService: FileItemService,) {
+                private fileItemService: NameIdFileItemService,) {
 
 
     } // ctor

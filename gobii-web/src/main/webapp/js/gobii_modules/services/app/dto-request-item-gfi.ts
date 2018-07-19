@@ -40,9 +40,12 @@ export class DtoRequestItemGfi implements DtoRequestItem<GobiiFileItem[]> {
             }
         } else if (this.fileItemParams.getQueryName() === FilterParamNames.ANALYSES_BY_DATASET_ID) {
             returnVal += "/datasets/" + this.id + "/analyses";
+        } else if (this.fileItemParams.getQueryName() === FilterParamNames.FQ_F1_VERTICES) {
+            returnVal += "/vertices";
         }
 
         return returnVal;
+
     } // getUrl()
 
     private processType: ProcessType = ProcessType.READ;

@@ -41,6 +41,7 @@ System.register(["./guid", "./type-extractor-filter", "./gobii-file-item-compoun
                     _this.required = false;
                     _this.active = false;
                     _this.containerType = ContainerType.NONE;
+                    _this.childCompoundUniqueId = null;
                     _this.id = guid_1.Guid.generateUUID();
                     _this.parent = parent;
                     _this.fileItemId = fileItemId;
@@ -55,6 +56,15 @@ System.register(["./guid", "./type-extractor-filter", "./gobii-file-item-compoun
                     returnVal.setItemType(extractoItemType);
                     return returnVal;
                 }; //build
+                GobiiTreeNode.fromFileItem = function (gobiiFileItem) {
+                    return GobiiTreeNode.build(gobiiFileItem.getGobiiExtractFilterType(), gobiiFileItem.getExtractorItemType())
+                        .setFileItemId(gobiiFileItem.getFileItemUniqueId())
+                        .setEntityType(gobiiFileItem.getEntityType())
+                        .setEntitySubType(gobiiFileItem.getEntitySubType())
+                        .setCvGroup(gobiiFileItem.getCvGroup())
+                        .setCvTerm(gobiiFileItem.getCvTerm())
+                        .setSequenceNum(gobiiFileItem.getSequenceNum());
+                };
                 GobiiTreeNode.prototype.getId = function () {
                     return this.id;
                 };
@@ -80,11 +90,18 @@ System.register(["./guid", "./type-extractor-filter", "./gobii-file-item-compoun
                     _super.prototype.setEntitySubType.call(this, value);
                     return this;
                 };
-                GobiiTreeNode.prototype.getCvFilterType = function () {
-                    return _super.prototype.getCvFilterType.call(this);
+                GobiiTreeNode.prototype.getCvGroup = function () {
+                    return _super.prototype.getCvGroup.call(this);
                 };
-                GobiiTreeNode.prototype.setCvFilterType = function (value) {
-                    _super.prototype.setCvFilterType.call(this, value);
+                GobiiTreeNode.prototype.setCvGroup = function (value) {
+                    _super.prototype.setCvGroup.call(this, value);
+                    return this;
+                };
+                GobiiTreeNode.prototype.getCvTerm = function () {
+                    return _super.prototype.getCvTerm.call(this);
+                };
+                GobiiTreeNode.prototype.setCvTerm = function (value) {
+                    _super.prototype.setCvTerm.call(this, value);
                     return this;
                 };
                 GobiiTreeNode.prototype.getCvFilterValue = function () {
@@ -92,6 +109,13 @@ System.register(["./guid", "./type-extractor-filter", "./gobii-file-item-compoun
                 };
                 GobiiTreeNode.prototype.setCvFilterValue = function (value) {
                     _super.prototype.setCvFilterValue.call(this, value);
+                    return this;
+                };
+                GobiiTreeNode.prototype.getSequenceNum = function () {
+                    return _super.prototype.getSequenceNum.call(this);
+                };
+                GobiiTreeNode.prototype.setSequenceNum = function (value) {
+                    _super.prototype.setSequenceNum.call(this, value);
                     return this;
                 };
                 GobiiTreeNode.prototype.getIsExtractCriterion = function () {
@@ -216,10 +240,20 @@ System.register(["./guid", "./type-extractor-filter", "./gobii-file-item-compoun
                     this.containerType = value;
                     return this;
                 };
+                GobiiTreeNode.prototype.getChildCompoundUniqueId = function () {
+                    if (!this.childCompoundUniqueId) {
+                        this.childCompoundUniqueId = gobii_file_item_compound_id_1.GobiiFileItemCompoundId.fromGobiiFileItemCompoundId(this);
+                    }
+                    return this.childCompoundUniqueId;
+                };
+                GobiiTreeNode.prototype.setChildCompoundUniqueId = function (value) {
+                    this.childCompoundUniqueId = value;
+                    return this;
+                };
                 return GobiiTreeNode;
             }(gobii_file_item_compound_id_1.GobiiFileItemCompoundId));
             exports_1("GobiiTreeNode", GobiiTreeNode);
         }
     };
 });
-//# sourceMappingURL=GobiiTreeNode.js.map
+//# sourceMappingURL=gobii-tree-node.js.map

@@ -7,7 +7,7 @@ import {ServerConfig} from "../model/server-config";
 import {EntitySubType, EntityType} from "../model/type-entity";
 import {DtoRequestItemServerConfigs} from "../services/app/dto-request-item-serverconfigs";
 import {GobiiExtractFilterType} from "../model/type-extractor-filter";
-import {CvFilterType} from "../model/cv-filter-type";
+import {CvGroup} from "../model/cv-group";
 import {ExtractorItemType} from "../model/type-extractor-item";
 import {GobiiExtractFormat} from "../model/type-extract-format";
 import {HeaderStatusMessage} from "../model/dto-header-status-message";
@@ -22,10 +22,13 @@ import * as fromRoot from '../store/reducers';
 import * as fileItemAction from '../store/actions/fileitem-action';
 import * as historyAction from '../store/actions/history-action';
 import {FilterParamNames} from "../model/file-item-param-names";
-import {FileItemService} from "../services/core/file-item-service";
+import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
 import {Observable} from "rxjs/Observable";
 import {InstructionSubmissionService} from "../services/core/instruction-submission-service";
 import {GobiiSampleListType} from "../model/type-extractor-sample-list";
+import {EntityFileItemService} from "../services/core/entity-file-item-service";
+import {FilterService} from "../services/core/filter-service";
+import {FlexQueryService} from "../services/core/flex-query-service";
 
 // import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 
@@ -239,6 +242,78 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
                                             </div> <!-- container  -->
                                         </ng-template> <!-- lazy-load controls -->
                                     </p-tabPanel> <!-- tab panel -- markers -->
+                                    <p-tabPanel header="Flex Query">
+                                        <ng-template pTemplate="content"> <!-- lazy-load controls -->
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
+                                                        <flex-query-filter
+                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F1_VERTICES"
+                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F1_VERTEX_VALUES"
+                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                        </flex-query-filter>
+                                                    </div> <!-- inner column 1 of row 1: fitler 1 -->
+                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
+                                                        <flex-query-filter
+                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F2_VERTICES"
+                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F2_VERTEX_VALUES"
+                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                        </flex-query-filter>
+                                                    </div> <!-- inner column 2 of row 1: fitler 2 -->
+                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
+                                                        <flex-query-filter
+                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F3_VERTICES"
+                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F3_VERTEX_VALUES"
+                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                        </flex-query-filter>
+                                                    </div> <!-- inner column 3 of row 1: fitler 3 -->
+                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
+                                                        <flex-query-filter
+                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F4_VERTICES"
+                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F4_VERTEX_VALUES"
+                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                        </flex-query-filter>
+                                                    </div> <!-- inner column 4 of row 1: fitler 4 -->
+
+                                                </div> <!-- ROW filters -->
+
+                                                <div clas="row"><!-- ROW marker/sample lists-->
+                                                    <!-- intersect controls -->
+                                                    <div class="col-md-6"> <!-- intersect markers -->
+                                                        <div class="panel panel-primary"> <!-- intersect pamel -->
+                                                            <div class="panel-heading">
+                                                                <h3 class="panel-title">Intersect Markers</h3>
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <sample-marker-box
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.BY_MARKER"
+                                                                        (onSampleMarkerError)="handleHeaderStatusMessage($event)">
+                                                                </sample-marker-box>
+                                                            </div> <!-- panel body dataset datatable -->
+                                                        </div> <!-- intersect pamel -->
+                                                    </div><!-- intersect markers -->
+                                                    <div class="col-md-6"> <!-- intersect samples -->
+                                                        <div class="panel panel-primary"> <!-- intersect pamel -->
+                                                            <div class="panel-heading">
+                                                                <h3 class="panel-title">Intersect Samples</h3>
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <sample-list-type
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.BY_SAMPLE"
+                                                                        (onHeaderStatusMessage)="handleHeaderStatusMessage($event)">
+                                                                </sample-list-type>
+                                                                <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
+                                                                <sample-marker-box
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.BY_SAMPLE"
+                                                                        (onSampleMarkerError)="handleHeaderStatusMessage($event)">
+                                                                </sample-marker-box>
+                                                            </div> <!-- panel body dataset datatable -->
+                                                        </div> <!-- intersect pamel -->
+                                                    </div><!-- intersect samples -->
+                                                </div><!-- ROW marker/sample lists-->
+                                            </div> <!-- container  -->
+                                        </ng-template> <!-- lazy-load controls -->
+                                    </p-tabPanel> <!-- tab panel -- flex query -->
                                 </p-tabView> <!-- tabview -->
                             </p-panel> <!-- panel -->
 
@@ -287,6 +362,8 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
                                 </div>
                                 <div class="panel-body">
                                     <status-display-tree
+                                            (mouseenter)="handleOnMouseOverSubmit($event,true)"
+                                            (mouseleave)="handleOnMouseOverSubmit($event,false)"
                                             [fileItemEventChange]="treeFileItemEvent"
                                             [gobiiExtractFilterTypeEvent]="gobiiExtractFilterType"
                                             (onAddMessage)="handleHeaderStatusMessage($event)">
@@ -297,8 +374,6 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
                                     <button type="submit"
                                             [class]="submitButtonStyle"
                                             [disabled]="submitButtonStyle === buttonStyleSubmitNotReady"
-                                            (mouseenter)="handleOnMouseOverSubmit($event,true)"
-                                            (mouseleave)="handleOnMouseOverSubmit($event,false)"
                                             (click)="handleExtractSubmission()">Submit
                                     </button>
 
@@ -306,7 +381,11 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
                                             [class]="clearButtonStyle"
                                             (click)="handleClearTree()">Clear
                                     </button>
-
+                                    <BR>
+                                    <BR>
+                                    <marker-sample-count
+                                            [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                    </marker-sample-count>
                                 </div> <!-- panel body -->
                             </div> <!-- panel primary -->
 
@@ -331,6 +410,7 @@ export class ExtractorRoot implements OnInit {
     //
 
     nameIdFilterParamTypes: any = Object.assign({}, FilterParamNames);
+    gobiiExtractFilterTypes: any = Object.assign({}, GobiiExtractFilterType);
 
     selectedExtractFormat$: Observable<GobiiFileItem> = this.store.select(fromRoot.getSelectedFileFormat);
 
@@ -349,9 +429,12 @@ export class ExtractorRoot implements OnInit {
                 private _authenticationService: AuthenticationService,
                 private _dtoRequestServiceServerConfigs: DtoRequestService<ServerConfig[]>,
                 private store: Store<fromRoot.State>,
-                private fileItemService: FileItemService,
+                private nameIdFileItemService: NameIdFileItemService,
+                private entityFileItemService: EntityFileItemService,
                 private instructionSubmissionService: InstructionSubmissionService,
-                private changeDetectorRef: ChangeDetectorRef) {
+                private changeDetectorRef: ChangeDetectorRef,
+                private filterService: FilterService,
+                private flexQueryService: FlexQueryService) {
 
         this.messages$.subscribe(
             messages => {
@@ -406,7 +489,13 @@ export class ExtractorRoot implements OnInit {
                             )[0];
                     this.handleExportTypeSelected(GobiiExtractFilterType.WHOLE_DATASET);
 //                    scope$.initializeSubmissionContact();
-                    scope$.currentStatus = "GOBII Server " + gobiiVersion;
+
+                    this.store.select(fromRoot.getAllFileItems).subscribe(
+                        all => {
+                            scope$.currentStatus = "GOBII Server " + gobiiVersion + " ( "+ all.length +" )";
+                        }
+                    );
+
                     //scope$.handleAddMessage("Connected to crop config: " + scope$.selectedServerConfig.crop);
 
                 } else {
@@ -436,10 +525,10 @@ export class ExtractorRoot implements OnInit {
                 if (contact && contact.contactId && contact.contactId > 0) {
 
                     //loggedInUser
-                    this.fileItemService.loadFileItem(GobiiFileItem.build(scope$.gobiiExtractFilterType, ProcessType.CREATE)
+                    this.nameIdFileItemService.loadFileItem(GobiiFileItem.build(scope$.gobiiExtractFilterType, ProcessType.CREATE)
                             .setEntityType(EntityType.CONTACT)
                             .setEntitySubType(EntitySubType.CONTACT_SUBMITED_BY)
-                            .setCvFilterType(CvFilterType.UNKNOWN)
+                            .setCvGroup(CvGroup.UNKNOWN)
                             .setExtractorItemType(ExtractorItemType.ENTITY)
                             .setItemName(contact.email)
                             .setItemId(contact.contactId.toLocaleString()),
@@ -458,21 +547,6 @@ export class ExtractorRoot implements OnInit {
         //   _dtoRequestServiceContact
     }
 
-    public handleServerSelected(arg) {
-        this.selectedServerConfig = arg;
-        let currentPath = window.location.pathname;
-        let currentPage: string = currentPath.substr(currentPath.lastIndexOf('/') + 1, currentPath.length);
-        let newDestination = "http://"
-            + this.selectedServerConfig.domain
-            + ":"
-            + this.selectedServerConfig.port
-            + this.selectedServerConfig.contextRoot
-            + currentPage;
-
-        window.location.href = newDestination;
-    } // handleServerSelected()
-
-
 // ********************************************************************
 // ********************************************** EXPORT TYPE SELECTION AND FLAGS
 
@@ -482,7 +556,7 @@ export class ExtractorRoot implements OnInit {
     private refreshJobId() {
 
         let jobId: string = FileName.makeUniqueFileId();
-        this.fileItemService.replaceFileItemByCompoundId(
+        this.nameIdFileItemService.replaceFileItemByCompoundId(
             GobiiFileItem.build(this.gobiiExtractFilterType, ProcessType.CREATE)
                 .setExtractorItemType(ExtractorItemType.JOB_ID)
                 .setItemId(jobId)
@@ -504,6 +578,14 @@ export class ExtractorRoot implements OnInit {
 
             this.gobiiExtractFilterType = GobiiExtractFilterType.BY_MARKER;
 
+        } else if (tabIndex == 3) {
+
+            this.gobiiExtractFilterType = GobiiExtractFilterType.FLEX_QUERY;
+
+        } else {
+            this.store.dispatch(new historyAction.AddStatusMessageAction(
+                "Unknown tab index for extract filter type " + tabIndex));
+
         }
 
         this.handleExportTypeSelected(this.gobiiExtractFilterType);
@@ -516,6 +598,7 @@ export class ExtractorRoot implements OnInit {
         //
         this.store.dispatch(new fileItemAction.RemoveAllFromExtractAction(arg));
         this.store.dispatch(new fileItemAction.SetExtractType({gobiiExtractFilterType: arg}));
+        this.flexQueryService.invalidateMarkerSampleCount(true);
 
         // this will trigger onchange events in child components
         this.gobiiExtractFilterType = arg;
@@ -530,53 +613,60 @@ export class ExtractorRoot implements OnInit {
 
         if (this.gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET) {
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.CONTACT_PI_FILTER_OPTIONAL,
                 null);
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.PROJECT_FILTER_OPTIONAL,
                 null);
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.EXPERIMENT_FILTER_OPTIONAL,
                 null);
 
-            this.fileItemService.loadFilter(this.gobiiExtractFilterType, FilterParamNames.DATASET_FILTER_OPTIONAL, null);
+            this.filterService.loadFilter(this.gobiiExtractFilterType, FilterParamNames.DATASET_FILTER_OPTIONAL, null);
 
-            // this.fileItemService.setItemLabelType(this.gobiiExtractFilterType,
+            // this.nameIdFileItemService.setItemLabelType(this.gobiiExtractFilterType,
             //     FilterParamNames.CONTACT_PI_HIERARCHY_ROOT,
             //     NameIdLabelType.UNKNOWN);
 
         } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE) {
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.CONTACT_PI_HIERARCHY_ROOT,
                 null);
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.PROJECTS_BY_CONTACT,
                 null);
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.CV_DATATYPE,
                 null);
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.PLATFORMS,
                 null);
-
 
 
         } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.CV_DATATYPE,
                 null);
 
-            this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+            this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.PLATFORMS,
                 null);
+
+        } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.FLEX_QUERY) {
+
+            this.flexQueryService.loadVertices(FilterParamNames.FQ_F1_VERTICES);
+
+        } else {
+            this.store.dispatch(new historyAction.AddStatusMessageAction(
+                "Unhandled export filter type: " + GobiiExtractFilterType[this.gobiiExtractFilterType]));
 
         }
 
@@ -584,10 +674,10 @@ export class ExtractorRoot implements OnInit {
         this.initializeSubmissionContact();
 
 
-        // this.fileItemService.loadWithFilterParams(this.gobiiExtractFilterType,
+        // this.nameIdFileItemService.loadWithFilterParams(this.gobiiExtractFilterType,
         //     this.nameIdRequestParamsExperiments);
 
-        this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
+        this.nameIdFileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
             FilterParamNames.MAPSETS,
             null);
 
@@ -598,14 +688,14 @@ export class ExtractorRoot implements OnInit {
             .setExtractorItemType(ExtractorItemType.EXPORT_FORMAT)
             .setItemId(GobiiExtractFormat[GobiiExtractFormat.HAPMAP])
             .setItemName(GobiiExtractFormat[GobiiExtractFormat[GobiiExtractFormat.HAPMAP]]);
-        this.fileItemService.replaceFileItemByCompoundId(formatItem);
+        this.nameIdFileItemService.replaceFileItemByCompoundId(formatItem);
 
 
-        this.fileItemService
+        this.nameIdFileItemService
             .replaceFileItemByCompoundId(GobiiFileItem.build(this.gobiiExtractFilterType, ProcessType.CREATE)
-                    .setExtractorItemType(ExtractorItemType.SAMPLE_LIST_TYPE)
-                    .setItemName(GobiiSampleListType[GobiiSampleListType.GERMPLASM_NAME])
-                    .setItemId(GobiiSampleListType[GobiiSampleListType.GERMPLASM_NAME]));
+                .setExtractorItemType(ExtractorItemType.SAMPLE_LIST_TYPE)
+                .setItemName(GobiiSampleListType[GobiiSampleListType.GERMPLASM_NAME])
+                .setItemId(GobiiSampleListType[GobiiSampleListType.GERMPLASM_NAME]));
 
 
     }
@@ -668,6 +758,7 @@ export class ExtractorRoot implements OnInit {
             .submit(this.gobiiExtractFilterType)
             .subscribe(instructions => {
                 this.refreshJobId();
+
                 this.handleClearTree()
             });
     }

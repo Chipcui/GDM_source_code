@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {NameId} from "../../model/name-id";
 import {DtoRequestService} from "./dto-request.service";
 import {FilterType} from "../../model/filter-type";
-import {CvFilterType, CvFilters} from "../../model/cv-filter-type";
+import {CvGroup, getCvGroupName} from "../../model/cv-group";
 import {EntityType, EntitySubType} from "../../model/type-entity";
 import {FilterParams} from "../../model/filter-params";
 import {Observable} from 'rxjs/Observable';
@@ -28,8 +28,8 @@ export class NameIdService {
                 returnVal = "PI";
             }
         } else if (nameIdRequestParams.getEntityType() === EntityType.CV) {
-            if (nameIdRequestParams.getCvFilterType() != null && nameIdRequestParams.getCvFilterType() != CvFilterType.UNKNOWN) {
-                returnVal = CvFilters.get(CvFilterType.DATASET_TYPE);
+            if (nameIdRequestParams.getCvGroup() != null && nameIdRequestParams.getCvGroup() != CvGroup.UNKNOWN) {
+                returnVal = getCvGroupName(CvGroup.DATASET_TYPE);
             }
         }
 

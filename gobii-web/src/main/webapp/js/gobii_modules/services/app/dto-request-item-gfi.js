@@ -60,6 +60,9 @@ System.register(["@angular/core", "../../model/type-process", "../../model/filte
                     else if (this.fileItemParams.getQueryName() === file_item_param_names_1.FilterParamNames.ANALYSES_BY_DATASET_ID) {
                         returnVal += "/datasets/" + this.id + "/analyses";
                     }
+                    else if (this.fileItemParams.getQueryName() === file_item_param_names_1.FilterParamNames.FQ_F1_VERTICES) {
+                        returnVal += "/vertices";
+                    }
                     return returnVal;
                 }; // getUrl()
                 // this is probably not being used anymore

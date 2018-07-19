@@ -66,9 +66,7 @@ public class TestUploadDownload {
 
     }
 
-    @Test
-    public void uploadFile() throws Exception {
-
+    private File makeTestUploadFile() throws Exception {
         String jobId = DateUtils.makeDateIdString();
         String fileName = "test-" + jobId + ".txt";
         FileWriter fileWriter = new FileWriter(fileName);
@@ -78,7 +76,16 @@ public class TestUploadDownload {
         }
         bufferedWriter.close();
         fileWriter.close();
-        File file = new File(fileName);
+        return new File(fileName);
+
+    }
+
+    @Test
+    public void uploadFile() throws Exception {
+
+        String jobId = DateUtils.makeDateIdString();
+        String fileName = "test-" + jobId + ".txt";
+        File file = this.makeTestUploadFile();
 
         RestUri restUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
@@ -100,6 +107,36 @@ public class TestUploadDownload {
         uploadedFiles.put(jobId, file);
 
     }
+
+
+    @Test
+    public void uploadFileIllegal() throws Exception {
+
+        String jobId = DateUtils.makeDateIdString();
+        String fileName = "test-" + jobId + ".txt";
+        File file = this.makeTestUploadFile();
+
+        RestUri restUri = GobiiClientContext.getInstance(null, false)
+                .getUriFactory()
+                .fileForJob(jobId, GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE, fileName);
+
+
+        HttpMethodResult httpMethodResult = GobiiClientContext.getInstance(null, false)
+                .getHttp()
+                .upload(restUri, file);
+
+        Assert.assertTrue("Expected "
+                        + HttpStatus.SC_NOT_ACCEPTABLE
+                        + " got: "
+                        + httpMethodResult.getResponseCode()
+                        + ": "
+                        + httpMethodResult.getReasonPhrase(),
+                httpMethodResult.getResponseCode() == HttpStatus.SC_NOT_ACCEPTABLE);
+
+//        uploadedFiles.put(jobId, file);
+
+    }
+
 
     @Test
     public void downloadFiles() throws Exception {

@@ -7,7 +7,7 @@ import {ExtractorItemType} from "../model//type-extractor-item";
 import {Labels} from "./entity-labels";
 import {FilterParamNames} from "../model/file-item-param-names";
 import * as fromRoot from '../store/reducers';
-import {FileItemService} from "../services/core/file-item-service";
+import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs/Observable";
 import {StatusLevel} from "../model/type-status-level";
@@ -106,7 +106,7 @@ import {EntityType} from "../model/type-entity";
 export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
     public constructor(private store: Store<fromRoot.State>,
-                       private fileItemService: FileItemService) {
+                       private fileItemService: NameIdFileItemService) {
 
     }
 

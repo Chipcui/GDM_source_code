@@ -2,6 +2,7 @@ package org.gobiiproject.gobiimodel.dto.instructions.extractor;
 
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
 import org.gobiiproject.gobiimodel.dto.entity.children.PropNameId;
+import org.gobiiproject.gobiimodel.dto.entity.flex.VertexDTO;
 import org.gobiiproject.gobiimodel.types.GobiiExtractFilterType;
 import org.gobiiproject.gobiimodel.types.GobiiFileType;
 import org.gobiiproject.gobiimodel.types.GobiiSampleListType;
@@ -39,6 +40,9 @@ public class GobiiDataSetExtract {
     private List<PropNameId> markerGroups = new ArrayList<>();
     private List<File> extractedFiles = new ArrayList<>();
     private String logMessage;
+    private List<VertexDTO> vertices = new ArrayList<>();
+    private String gqlMarkerFileName = null;
+    private String gqlSampleFileName = null;
 
     public GobiiExtractFilterType getGobiiExtractFilterType() {
         return gobiiExtractFilterType;
@@ -172,5 +176,31 @@ public class GobiiDataSetExtract {
     public String getLogMessage() { return logMessage; }
 
     public void setLogMessage(String logMessage) { this.logMessage = logMessage; }
+
+
+    public List<VertexDTO> getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(List<VertexDTO> vertices) {
+        this.vertices = vertices;
+    }
+
+
+    public String getGqlMarkerFileName() {
+        return gqlMarkerFileName;
+    }
+
+    public void setGqlMarkerFileName(String gqlMarkerFileName) {
+        this.gqlMarkerFileName = gqlMarkerFileName;
+    }
+
+    public String getGqlSampleFileName() {
+        return gqlSampleFileName;
+    }
+
+    public void setGqlSampleFileName(String gqlSampleFileName) {
+        this.gqlSampleFileName = gqlSampleFileName;
+    }
 
 }

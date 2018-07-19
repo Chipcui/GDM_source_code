@@ -8,7 +8,7 @@ import {ExtractorItemType} from "../model//type-extractor-item";
 import {Observable} from "rxjs/Observable";
 import * as fromRoot from '../store/reducers';
 import {Store} from "@ngrx/store";
-import {FileItemService} from "../services/core/file-item-service";
+import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
 
 /***
  * The RadioButton module is not compatabile with font-awesome. So
@@ -63,7 +63,7 @@ import {FileItemService} from "../services/core/file-item-service";
 export class SampleListTypeComponent implements OnInit, OnChanges {
 
     constructor(private store: Store<fromRoot.State>,
-                private fileItemService: FileItemService) {
+                private fileItemService: NameIdFileItemService) {
     } // ctor
 
     private onHeaderStatusMessage: EventEmitter<HeaderStatusMessage> = new EventEmitter();
