@@ -1,5 +1,3 @@
-import {EntityType} from "./type-entity";
-
 export enum CvGroup {
     UNKNOWN,
     ANY,

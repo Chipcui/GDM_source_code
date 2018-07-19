@@ -231,6 +231,7 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
                     //
                     this.store.dispatch(new fileItemAction.RemoveAllFromExtractAction(arg));
                     this.store.dispatch(new fileItemAction.SetExtractType({ gobiiExtractFilterType: arg }));
+                    this.flexQueryService.invalidateMarkerSampleCount(true);
                     // this will trigger onchange events in child components
                     this.gobiiExtractFilterType = arg;
                     this.instructionSubmissionService.submitReady(this.gobiiExtractFilterType)

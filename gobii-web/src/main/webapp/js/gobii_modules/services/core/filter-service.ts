@@ -180,7 +180,7 @@ export class FilterService {
 
         let returnVal: GobiiFileItem;
 
-        if (filterParamsToLoad.getMameIdLabelType() != NameIdLabelType.UNKNOWN) {
+        if (filterParamsToLoad.getNameIdLabelType() != NameIdLabelType.UNKNOWN) {
 
             let entityName: string = "";
             if (filterParamsToLoad.getCvGroup() !== CvGroup.UNKNOWN) {
@@ -194,7 +194,7 @@ export class FilterService {
             }
 
             let label: string = "";
-            switch (filterParamsToLoad.getMameIdLabelType()) {
+            switch (filterParamsToLoad.getNameIdLabelType()) {
 
                 case NameIdLabelType.SELECT_A:
                     label = "Select a " + entityName;
@@ -211,7 +211,7 @@ export class FilterService {
 
                 default:
                     this.store.dispatch(new historyAction.AddStatusAction(new HeaderStatusMessage("Unknown label type "
-                        + NameIdLabelType[filterParamsToLoad.getMameIdLabelType()], null, null)));
+                        + NameIdLabelType[filterParamsToLoad.getNameIdLabelType()], null, null)));
 
             }
 
@@ -222,7 +222,7 @@ export class FilterService {
                 .setEntitySubType(filterParamsToLoad.getEntitySubType())
                 .setCvGroup(filterParamsToLoad.getCvGroup())
                 .setExtractorItemType(ExtractorItemType.UNKNOWN)
-                .setNameIdLabelType(filterParamsToLoad.getMameIdLabelType())
+                .setNameIdLabelType(filterParamsToLoad.getNameIdLabelType())
                 .setItemName(label)
                 .setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
                 .setItemId("0");

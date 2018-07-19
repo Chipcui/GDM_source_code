@@ -4,7 +4,7 @@ import {EntitySubType, EntityType} from "../../model/type-entity";
 import {Labels} from "../../views/entity-labels";
 import {ExtractorItemType} from "../../model/type-extractor-item";
 import {GobiiExtractFilterType} from "../../model/type-extractor-filter";
-import {CvGroup} from "../../model/cv-group";
+import {CvGroup, getCvGroupName} from "../../model/cv-group";
 import {GobiiFileItem} from "../../model/gobii-file-item";
 import {GobiiExtractFormat} from "../../model/type-extract-format";
 import {ProcessType} from "../../model/type-process";
@@ -183,38 +183,45 @@ export class TreeStructureService {
                      cvTerm: String,
                      sequenceNum: number): string {
 
-        let labelValue: string = null;
+        let labelValue: string = "";
 
         if (itemType === ExtractorItemType.ENTITY) {
 
             labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
 
-        } else if (itemType === ExtractorItemType.VERTEX) {
+        } else if ((itemType === ExtractorItemType.VERTEX)
+            || (itemType == ExtractorItemType.VERTEX_VALUE)) {
 
-            labelValue = "Filter " + sequenceNum.toString();
+            let separator = "";
+            if (itemType === ExtractorItemType.VERTEX) {
+                labelValue = "Filter " + sequenceNum.toString();
+                separator = ": ";
+            }
 
             if (cvTerm) {
 
                 let entityLabel: string = this.getEntityLabel(entityType, entitySubType, cvGroup);
 
-                labelValue += ": " + entityLabel + " " + cvTerm;
+                labelValue += separator + entityLabel + " " + cvTerm;
 
             } else if (entityType !== EntityType.UNKNOWN
                 || entitySubType !== EntitySubType.UNKNOWN
                 || cvGroup !== CvGroup.UNKNOWN) {
 
-                labelValue += ": " + this.getEntityLabel(entityType, entitySubType, cvGroup);
+                labelValue += separator + this.getEntityLabel(entityType, entitySubType, cvGroup);
             }
 
         } else {
-            labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
+            labelValue = Labels.instance().treeExtractorTypeLabels[itemType];
         }
 
         return labelValue;
 
     }
 
-    private getEntityIcon(entityType: EntityType, cvFilterType: CvGroup): { icon: string, expandedIcon: string, collapsedIcon: string } {
+    private getEntityIcon(entityType: EntityType,
+                          cvGroup: CvGroup,
+                          cvTerm: string): { icon: string, expandedIcon: string, collapsedIcon: string } {
 
         let icon: string;
         let expandedIcon: string;
@@ -250,13 +257,41 @@ export class TreeStructureService {
             expandedIcon = "fa-clipboard";
             collapsedIcon = "fa-clipboard";
 
-        } else if (entityType === EntityType.CV && cvFilterType !== null) {
+        } else if (entityType === EntityType.EXPERIMENT) {
 
-            if (cvFilterType === CvGroup.DATASET_TYPE) {
-                icon = "fa-file-excel-o";
-                expandedIcon = "fa-file-excel-o";
-                collapsedIcon = "fa-file-excel-o";
-            }
+            icon = "fa-flask";
+            expandedIcon = "fa-flask";
+            collapsedIcon = "fa-flask";
+
+        } else if (entityType === EntityType.ANALYSIS) {
+
+            icon = "fa-line-chart";
+            expandedIcon = "fa-line-chart";
+            collapsedIcon = "fa-line-chart";
+
+        } else if (entityType === EntityType.LINKAGE_GROUP) {
+
+            icon = "fa-link";
+            expandedIcon = "fa-link";
+            collapsedIcon = "fa-link";
+
+        } else if (entityType === EntityType.PROTOCOL) {
+
+            icon = "fa-bars";
+            expandedIcon = "fa-bars";
+            collapsedIcon = "fa-bars";
+
+        } else if (entityType === EntityType.VENDOR) {
+
+            icon = "fa-building";
+            expandedIcon = "fa-building";
+            collapsedIcon = "fa-building";
+
+        } else if (entityType === EntityType.VENDOR_PROTOCOL) {
+
+            icon = "fa-copyright";
+            expandedIcon = "fa-copyright";
+            collapsedIcon = "fa-copyright";
 
         } else if (entityType === EntityType.MARKER_GROUP) {
 
@@ -264,12 +299,68 @@ export class TreeStructureService {
             icon = "fa-pencil";
             expandedIcon = "fa-pencil";
             collapsedIcon = "fa-pencil";
+        } else if (entityType === EntityType.CV && cvGroup !== null) {
+
+            if (cvGroup === CvGroup.DATASET_TYPE) {
+                icon = "fa-file-excel-o";
+                expandedIcon = "fa-file-excel-o";
+                collapsedIcon = "fa-file-excel-o";
+            } else if (cvGroup === CvGroup.ANALYSIS_TYPE) {
+                icon = "fa-area-chart";
+                expandedIcon = "fa-area-chart";
+                collapsedIcon = "fa-area-chart";
+            } else if (cvGroup === CvGroup.GERMPLASM_TYPE) {
+                icon = "fa-tree";
+                expandedIcon = "fa-tree";
+                collapsedIcon = "fa-tree";
+            } else if (cvGroup === CvGroup.MAPSET_TYPE) {
+                icon = "fa-map-pin";
+                expandedIcon = "fa-map-pin";
+                collapsedIcon = "fa-map-pin";
+            }
+
+        } else if (cvTerm) {
+            // this condition captures all properties
+            // all props within a group will get the same icon
+            // technically, cvterm should be an enum; but, to paraphrase
+            // Fermat -- I don't have the time for that solution now
+
+            if (cvGroup === CvGroup.GERMPLASM_PROP) {
+                icon = "fa-tree";
+                expandedIcon = "fa-tree";
+                collapsedIcon = "fa-tree";
+            }
+
+            if (cvGroup === CvGroup.PROJECT_PROP) {
+                icon = "fa-clipboard";
+                expandedIcon = "fa-clipboard";
+                collapsedIcon = "fa-clipboard";
+            }
+
+            if (cvGroup === CvGroup.DNARUN_PROP) {
+                icon = "fa-fast-forward";
+                expandedIcon = "fa-fast-forward";
+                collapsedIcon = "fa-fast-forward";
+            }
+
+            if (cvGroup === CvGroup.DNASAMPLE_PROP) {
+                icon = "fa-eyedropper";
+                expandedIcon = "fa-eyedropper";
+                collapsedIcon = "fa-eyedropper";
+            }
+
+            if (cvGroup === CvGroup.MARKER_PROP) {
+                icon = "fa-pencil";
+                expandedIcon = "fa-pencil";
+                collapsedIcon = "fa-pencil";
+            }
+
+
 
         }
 
         return {icon: icon, expandedIcon: expandedIcon, collapsedIcon: collapsedIcon};
     }
-
 
     private getEntityLabel(entityType: EntityType, entitySubType: EntitySubType, cvFilterType: CvGroup) {
 
@@ -299,7 +390,9 @@ export class TreeStructureService {
         if (gobiiFileItemCompoundId.getEntityType() != null
             && gobiiFileItemCompoundId.getEntityType() != EntityType.UNKNOWN) {
 
-            let entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getCvGroup());
+            let entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(),
+                gobiiFileItemCompoundId.getCvGroup(),
+                gobiiFileItemCompoundId.getCvTerm());
             icon = entityIcons.icon;
             expandedIcon = entityIcons.expandedIcon;
             collapsedIcon = entityIcons.collapsedIcon;
@@ -371,18 +464,12 @@ export class TreeStructureService {
     public makeTreeNodeFromFileItem(gobiiFileItem: GobiiFileItem): GobiiTreeNode {
 
 
-        let returnVal: GobiiTreeNode = GobiiTreeNode
-            .build(gobiiFileItem.getGobiiExtractFilterType(), gobiiFileItem.getExtractorItemType())
-            .setFileItemId(gobiiFileItem.getFileItemUniqueId())
-            .setEntityType(gobiiFileItem.getEntityType())
-            .setEntitySubType(gobiiFileItem.getEntitySubType())
-            .setCvGroup(gobiiFileItem.getCvGroup())
-            .setSequenceNum(gobiiFileItem.getSequenceNum());
+        let returnVal: GobiiTreeNode = GobiiTreeNode.fromFileItem(gobiiFileItem);
 
         this.addIconsToNode(returnVal, false);
 
 
-        let label:string = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());
+        let label: string = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());
 
         returnVal.setLabel(label);
         returnVal.setGenericLabel(label)

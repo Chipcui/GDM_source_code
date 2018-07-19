@@ -598,6 +598,7 @@ export class ExtractorRoot implements OnInit {
         //
         this.store.dispatch(new fileItemAction.RemoveAllFromExtractAction(arg));
         this.store.dispatch(new fileItemAction.SetExtractType({gobiiExtractFilterType: arg}));
+        this.flexQueryService.invalidateMarkerSampleCount(true);
 
         // this will trigger onchange events in child components
         this.gobiiExtractFilterType = arg;
@@ -757,6 +758,7 @@ export class ExtractorRoot implements OnInit {
             .submit(this.gobiiExtractFilterType)
             .subscribe(instructions => {
                 this.refreshJobId();
+
                 this.handleClearTree()
             });
     }

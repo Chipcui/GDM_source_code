@@ -177,7 +177,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../mo
                 }; // getForFilter()
                 FilterService.prototype.makeLabelItem = function (gobiiExtractFilterType, filterParamsToLoad) {
                     var returnVal;
-                    if (filterParamsToLoad.getMameIdLabelType() != name_id_label_type_1.NameIdLabelType.UNKNOWN) {
+                    if (filterParamsToLoad.getNameIdLabelType() != name_id_label_type_1.NameIdLabelType.UNKNOWN) {
                         var entityName = "";
                         if (filterParamsToLoad.getCvGroup() !== cv_group_1.CvGroup.UNKNOWN) {
                             entityName += entity_labels_1.Labels.instance().cvGroupLabels[filterParamsToLoad.getCvGroup()];
@@ -192,7 +192,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../mo
                             entityName += entity_labels_1.Labels.instance().treeExtractorTypeLabels[filterParamsToLoad.getExtractorItemType()];
                         }
                         var label = "";
-                        switch (filterParamsToLoad.getMameIdLabelType()) {
+                        switch (filterParamsToLoad.getNameIdLabelType()) {
                             case name_id_label_type_1.NameIdLabelType.SELECT_A:
                                 label = "Select a " + entityName;
                                 break;
@@ -205,7 +205,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../mo
                                 break;
                             default:
                                 this.store.dispatch(new historyAction.AddStatusAction(new dto_header_status_message_1.HeaderStatusMessage("Unknown label type "
-                                    + name_id_label_type_1.NameIdLabelType[filterParamsToLoad.getMameIdLabelType()], null, null)));
+                                    + name_id_label_type_1.NameIdLabelType[filterParamsToLoad.getNameIdLabelType()], null, null)));
                         }
                         returnVal = gobii_file_item_1.GobiiFileItem
                             .build(gobiiExtractFilterType, type_process_1.ProcessType.CREATE)
@@ -213,7 +213,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../mo
                             .setEntitySubType(filterParamsToLoad.getEntitySubType())
                             .setCvGroup(filterParamsToLoad.getCvGroup())
                             .setExtractorItemType(type_extractor_item_1.ExtractorItemType.UNKNOWN)
-                            .setNameIdLabelType(filterParamsToLoad.getMameIdLabelType())
+                            .setNameIdLabelType(filterParamsToLoad.getNameIdLabelType())
                             .setItemName(label)
                             .setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
                             .setItemId("0");
