@@ -295,7 +295,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                 .setEntityType(type_entity_1.EntityType.MARKER)
                                 .setItemName("Marker Count")
                                 .setEntity(vertexFilterDtoResponse.markerCount)
-                                .setIsEphemeral(true);
+                                .setIsEphemeral(false);
                             // default count items on load
                             var loadActionMarkerCount = new fileItemActions.LoadFileItemtAction({
                                 gobiiFileItem: markerCountItem,
@@ -309,7 +309,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                     .setEntityType(type_entity_1.EntityType.DNA_SAMPLE)
                                     .setItemName("Sample Count")
                                     .setEntity(vertexFilterDtoResponse.sampleCount)
-                                    .setIsEphemeral(true),
+                                    .setIsEphemeral(false),
                                 selectForExtract: true
                             });
                             _this.store.dispatch(loadActionSampleCount);

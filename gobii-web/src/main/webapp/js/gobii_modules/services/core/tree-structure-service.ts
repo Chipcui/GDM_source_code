@@ -331,6 +331,32 @@ export class TreeStructureService {
                 collapsedIcon = "fa-tree";
             }
 
+            if (cvGroup === CvGroup.PROJECT_PROP) {
+                icon = "fa-clipboard";
+                expandedIcon = "fa-clipboard";
+                collapsedIcon = "fa-clipboard";
+            }
+
+            if (cvGroup === CvGroup.DNARUN_PROP) {
+                icon = "fa-fast-forward";
+                expandedIcon = "fa-fast-forward";
+                collapsedIcon = "fa-fast-forward";
+            }
+
+            if (cvGroup === CvGroup.DNASAMPLE_PROP) {
+                icon = "fa-eyedropper";
+                expandedIcon = "fa-eyedropper";
+                collapsedIcon = "fa-eyedropper";
+            }
+
+            if (cvGroup === CvGroup.MARKER_PROP) {
+                icon = "fa-pencil";
+                expandedIcon = "fa-pencil";
+                collapsedIcon = "fa-pencil";
+            }
+
+
+
         }
 
         return {icon: icon, expandedIcon: expandedIcon, collapsedIcon: collapsedIcon};

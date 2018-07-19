@@ -242,7 +242,7 @@ System.register(["./filter-type", "./type-entity", "./cv-group", "./type-extract
                     this._nameIdLabelType = nameIdLabelType;
                     return this;
                 };
-                FilterParams.prototype.getMameIdLabelType = function () {
+                FilterParams.prototype.getNameIdLabelType = function () {
                     return this._nameIdLabelType;
                 };
                 FilterParams.prototype.setParentFileItemParams = function (fileItemParams) {

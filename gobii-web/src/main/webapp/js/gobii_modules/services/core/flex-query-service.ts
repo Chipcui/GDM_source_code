@@ -361,7 +361,7 @@ export class FlexQueryService {
                         .setEntityType(EntityType.MARKER)
                         .setItemName("Marker Count")
                         .setEntity(vertexFilterDtoResponse.markerCount)
-                        .setIsEphemeral(true);
+                        .setIsEphemeral(false);
                     // default count items on load
                     let loadActionMarkerCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
                         {
@@ -380,7 +380,7 @@ export class FlexQueryService {
                                 .setEntityType(EntityType.DNA_SAMPLE)
                                 .setItemName("Sample Count")
                                 .setEntity(vertexFilterDtoResponse.sampleCount)
-                                .setIsEphemeral(true),
+                                .setIsEphemeral(false),
                             selectForExtract: true
                         }
                     );

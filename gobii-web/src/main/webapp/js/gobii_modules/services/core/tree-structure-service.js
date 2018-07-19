@@ -310,6 +310,26 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                             expandedIcon = "fa-tree";
                             collapsedIcon = "fa-tree";
                         }
+                        if (cvGroup === cv_group_1.CvGroup.PROJECT_PROP) {
+                            icon = "fa-clipboard";
+                            expandedIcon = "fa-clipboard";
+                            collapsedIcon = "fa-clipboard";
+                        }
+                        if (cvGroup === cv_group_1.CvGroup.DNARUN_PROP) {
+                            icon = "fa-fast-forward";
+                            expandedIcon = "fa-fast-forward";
+                            collapsedIcon = "fa-fast-forward";
+                        }
+                        if (cvGroup === cv_group_1.CvGroup.DNASAMPLE_PROP) {
+                            icon = "fa-eyedropper";
+                            expandedIcon = "fa-eyedropper";
+                            collapsedIcon = "fa-eyedropper";
+                        }
+                        if (cvGroup === cv_group_1.CvGroup.MARKER_PROP) {
+                            icon = "fa-pencil";
+                            expandedIcon = "fa-pencil";
+                            collapsedIcon = "fa-pencil";
+                        }
                     }
                     return { icon: icon, expandedIcon: expandedIcon, collapsedIcon: collapsedIcon };
                 };
