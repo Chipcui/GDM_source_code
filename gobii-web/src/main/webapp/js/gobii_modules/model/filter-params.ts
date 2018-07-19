@@ -289,7 +289,7 @@ export class FilterParams {
         return this;
     }
 
-    getMameIdLabelType(): NameIdLabelType {
+    getNameIdLabelType(): NameIdLabelType {
         return this._nameIdLabelType;
     }
 

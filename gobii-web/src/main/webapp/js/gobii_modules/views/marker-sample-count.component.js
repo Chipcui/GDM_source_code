@@ -51,7 +51,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/ac
                     this.panelCollapsed = false;
                     this.markerCount$ = this.store.select(fromRoot.getCurrentMarkerCount);
                     this.sampleCount$ = this.store.select(fromRoot.getCurrentSampleCount);
-                    this.displaySpinner = true;
+                    this.displaySpinner = false;
                     this.markerCount$.subscribe(function (value) {
                         if (value >= 0) {
                             _this.displayCounts = true;
@@ -77,10 +77,6 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/ac
                 };
                 MarkerSampleCountComponent.prototype.onBeforeToggle = function ($event) {
                 };
-                MarkerSampleCountComponent.prototype.initCount = function () {
-                    this.displayCounts = false;
-                    this.displaySpinner = true;
-                };
                 MarkerSampleCountComponent.prototype.onAfterToggle = function ($event) {
                     // if ($event.collapsed) {
                     //
@@ -100,7 +96,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/ac
                         if ((changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) &&
                             (changes['gobiiExtractFilterType'].currentValue === type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY)) {
                             this.displayPanel = true;
-                            this.displaySpinner = true;
+                            this.displaySpinner = false;
                             var markerCountItem = gobii_file_item_1.GobiiFileItem
                                 .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
                                 .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ITEM_COUNT)

@@ -5,6 +5,7 @@ import {Guid} from "./guid";
 import {GobiiExtractFilterType} from "./type-extractor-filter";
 import {ExtractorItemType} from "./type-extractor-item";
 import {GobiiFileItemCompoundId} from "./gobii-file-item-compound-id";
+import {GobiiFileItem} from "./gobii-file-item";
 
 
 export enum ContainerType {NONE, STRUCTURE, DATA}
@@ -73,6 +74,18 @@ export class GobiiTreeNode extends GobiiFileItemCompoundId implements TreeNode {
 
     } //build
 
+
+    public static fromFileItem(gobiiFileItem:GobiiFileItem) {
+
+        return GobiiTreeNode.build(gobiiFileItem.getGobiiExtractFilterType(),
+            gobiiFileItem.getExtractorItemType())
+            .setFileItemId(gobiiFileItem.getFileItemUniqueId())
+            .setEntityType(gobiiFileItem.getEntityType())
+            .setEntitySubType(gobiiFileItem.getEntitySubType())
+            .setCvGroup(gobiiFileItem.getCvGroup())
+            .setCvTerm(gobiiFileItem.getCvTerm())
+            .setSequenceNum(gobiiFileItem.getSequenceNum());
+    }
 
     getId(): string {
         return this.id;

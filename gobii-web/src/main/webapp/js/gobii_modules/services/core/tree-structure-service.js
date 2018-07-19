@@ -187,28 +187,33 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     });
                 };
                 TreeStructureService.prototype.getLabel = function (itemType, entityType, entitySubType, cvGroup, cvTerm, sequenceNum) {
-                    var labelValue = null;
+                    var labelValue = "";
                     if (itemType === type_extractor_item_1.ExtractorItemType.ENTITY) {
                         labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
                     }
-                    else if (itemType === type_extractor_item_1.ExtractorItemType.VERTEX) {
-                        labelValue = "Filter " + sequenceNum.toString();
+                    else if ((itemType === type_extractor_item_1.ExtractorItemType.VERTEX)
+                        || (itemType == type_extractor_item_1.ExtractorItemType.VERTEX_VALUE)) {
+                        var separator = "";
+                        if (itemType === type_extractor_item_1.ExtractorItemType.VERTEX) {
+                            labelValue = "Filter " + sequenceNum.toString();
+                            separator = ": ";
+                        }
                         if (cvTerm) {
                             var entityLabel = this.getEntityLabel(entityType, entitySubType, cvGroup);
-                            labelValue += ": " + entityLabel + " " + cvTerm;
+                            labelValue += separator + entityLabel + " " + cvTerm;
                         }
                         else if (entityType !== type_entity_1.EntityType.UNKNOWN
                             || entitySubType !== type_entity_1.EntitySubType.UNKNOWN
                             || cvGroup !== cv_group_1.CvGroup.UNKNOWN) {
-                            labelValue += ": " + this.getEntityLabel(entityType, entitySubType, cvGroup);
+                            labelValue += separator + this.getEntityLabel(entityType, entitySubType, cvGroup);
                         }
                     }
                     else {
-                        labelValue = this.getEntityLabel(entityType, entitySubType, cvGroup);
+                        labelValue = entity_labels_1.Labels.instance().treeExtractorTypeLabels[itemType];
                     }
                     return labelValue;
                 };
-                TreeStructureService.prototype.getEntityIcon = function (entityType, cvFilterType) {
+                TreeStructureService.prototype.getEntityIcon = function (entityType, cvGroup, cvTerm) {
                     var icon;
                     var expandedIcon;
                     var collapsedIcon;
@@ -237,18 +242,94 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                         expandedIcon = "fa-clipboard";
                         collapsedIcon = "fa-clipboard";
                     }
-                    else if (entityType === type_entity_1.EntityType.CV && cvFilterType !== null) {
-                        if (cvFilterType === cv_group_1.CvGroup.DATASET_TYPE) {
-                            icon = "fa-file-excel-o";
-                            expandedIcon = "fa-file-excel-o";
-                            collapsedIcon = "fa-file-excel-o";
-                        }
+                    else if (entityType === type_entity_1.EntityType.EXPERIMENT) {
+                        icon = "fa-flask";
+                        expandedIcon = "fa-flask";
+                        collapsedIcon = "fa-flask";
+                    }
+                    else if (entityType === type_entity_1.EntityType.ANALYSIS) {
+                        icon = "fa-line-chart";
+                        expandedIcon = "fa-line-chart";
+                        collapsedIcon = "fa-line-chart";
+                    }
+                    else if (entityType === type_entity_1.EntityType.LINKAGE_GROUP) {
+                        icon = "fa-link";
+                        expandedIcon = "fa-link";
+                        collapsedIcon = "fa-link";
+                    }
+                    else if (entityType === type_entity_1.EntityType.PROTOCOL) {
+                        icon = "fa-bars";
+                        expandedIcon = "fa-bars";
+                        collapsedIcon = "fa-bars";
+                    }
+                    else if (entityType === type_entity_1.EntityType.VENDOR) {
+                        icon = "fa-building";
+                        expandedIcon = "fa-building";
+                        collapsedIcon = "fa-building";
+                    }
+                    else if (entityType === type_entity_1.EntityType.VENDOR_PROTOCOL) {
+                        icon = "fa-copyright";
+                        expandedIcon = "fa-copyright";
+                        collapsedIcon = "fa-copyright";
                     }
                     else if (entityType === type_entity_1.EntityType.MARKER_GROUP) {
                         // if (isParent) {
                         icon = "fa-pencil";
                         expandedIcon = "fa-pencil";
                         collapsedIcon = "fa-pencil";
+                    }
+                    else if (entityType === type_entity_1.EntityType.CV && cvGroup !== null) {
+                        if (cvGroup === cv_group_1.CvGroup.DATASET_TYPE) {
+                            icon = "fa-file-excel-o";
+                            expandedIcon = "fa-file-excel-o";
+                            collapsedIcon = "fa-file-excel-o";
+                        }
+                        else if (cvGroup === cv_group_1.CvGroup.ANALYSIS_TYPE) {
+                            icon = "fa-area-chart";
+                            expandedIcon = "fa-area-chart";
+                            collapsedIcon = "fa-area-chart";
+                        }
+                        else if (cvGroup === cv_group_1.CvGroup.GERMPLASM_TYPE) {
+                            icon = "fa-tree";
+                            expandedIcon = "fa-tree";
+                            collapsedIcon = "fa-tree";
+                        }
+                        else if (cvGroup === cv_group_1.CvGroup.MAPSET_TYPE) {
+                            icon = "fa-map-pin";
+                            expandedIcon = "fa-map-pin";
+                            collapsedIcon = "fa-map-pin";
+                        }
+                    }
+                    else if (cvTerm) {
+                        // this condition captures all properties
+                        // all props within a group will get the same icon
+                        // technically, cvterm should be an enum; but, to paraphrase
+                        // Fermat -- I don't have the time for that solution now
+                        if (cvGroup === cv_group_1.CvGroup.GERMPLASM_PROP) {
+                            icon = "fa-tree";
+                            expandedIcon = "fa-tree";
+                            collapsedIcon = "fa-tree";
+                        }
+                        if (cvGroup === cv_group_1.CvGroup.PROJECT_PROP) {
+                            icon = "fa-clipboard";
+                            expandedIcon = "fa-clipboard";
+                            collapsedIcon = "fa-clipboard";
+                        }
+                        if (cvGroup === cv_group_1.CvGroup.DNARUN_PROP) {
+                            icon = "fa-fast-forward";
+                            expandedIcon = "fa-fast-forward";
+                            collapsedIcon = "fa-fast-forward";
+                        }
+                        if (cvGroup === cv_group_1.CvGroup.DNASAMPLE_PROP) {
+                            icon = "fa-eyedropper";
+                            expandedIcon = "fa-eyedropper";
+                            collapsedIcon = "fa-eyedropper";
+                        }
+                        if (cvGroup === cv_group_1.CvGroup.MARKER_PROP) {
+                            icon = "fa-pencil";
+                            expandedIcon = "fa-pencil";
+                            collapsedIcon = "fa-pencil";
+                        }
                     }
                     return { icon: icon, expandedIcon: expandedIcon, collapsedIcon: collapsedIcon };
                 };
@@ -273,7 +354,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     var collapsedIcon;
                     if (gobiiFileItemCompoundId.getEntityType() != null
                         && gobiiFileItemCompoundId.getEntityType() != type_entity_1.EntityType.UNKNOWN) {
-                        var entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getCvGroup());
+                        var entityIcons = this.getEntityIcon(gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getCvGroup(), gobiiFileItemCompoundId.getCvTerm());
                         icon = entityIcons.icon;
                         expandedIcon = entityIcons.expandedIcon;
                         collapsedIcon = entityIcons.collapsedIcon;
@@ -344,13 +425,7 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                     treeNode.collapsedIcon = icons.collapsedIcon;
                 };
                 TreeStructureService.prototype.makeTreeNodeFromFileItem = function (gobiiFileItem) {
-                    var returnVal = gobii_tree_node_1.GobiiTreeNode
-                        .build(gobiiFileItem.getGobiiExtractFilterType(), gobiiFileItem.getExtractorItemType())
-                        .setFileItemId(gobiiFileItem.getFileItemUniqueId())
-                        .setEntityType(gobiiFileItem.getEntityType())
-                        .setEntitySubType(gobiiFileItem.getEntitySubType())
-                        .setCvGroup(gobiiFileItem.getCvGroup())
-                        .setSequenceNum(gobiiFileItem.getSequenceNum());
+                    var returnVal = gobii_tree_node_1.GobiiTreeNode.fromFileItem(gobiiFileItem);
                     this.addIconsToNode(returnVal, false);
                     var label = this.getLabel(returnVal.getItemType(), returnVal.getEntityType(), returnVal.getEntitySubType(), returnVal.getCvGroup(), returnVal.getCvTerm(), returnVal.getSequenceNum());
                     returnVal.setLabel(label);

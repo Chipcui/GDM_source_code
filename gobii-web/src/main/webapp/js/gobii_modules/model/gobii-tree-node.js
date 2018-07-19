@@ -56,6 +56,15 @@ System.register(["./guid", "./type-extractor-filter", "./gobii-file-item-compoun
                     returnVal.setItemType(extractoItemType);
                     return returnVal;
                 }; //build
+                GobiiTreeNode.fromFileItem = function (gobiiFileItem) {
+                    return GobiiTreeNode.build(gobiiFileItem.getGobiiExtractFilterType(), gobiiFileItem.getExtractorItemType())
+                        .setFileItemId(gobiiFileItem.getFileItemUniqueId())
+                        .setEntityType(gobiiFileItem.getEntityType())
+                        .setEntitySubType(gobiiFileItem.getEntitySubType())
+                        .setCvGroup(gobiiFileItem.getCvGroup())
+                        .setCvTerm(gobiiFileItem.getCvTerm())
+                        .setSequenceNum(gobiiFileItem.getSequenceNum());
+                };
                 GobiiTreeNode.prototype.getId = function () {
                     return this.id;
                 };
