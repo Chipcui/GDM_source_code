@@ -5,7 +5,7 @@
     <parent>
         <artifactId>parent</artifactId>
         <groupId>org.gobiiproject</groupId>
-        <version>GP1-1527_Epic_FlexQuery-2018-07-17</version>
+        <version>GP1-1527_Epic_FlexQuery-2018-07-19</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
