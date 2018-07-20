@@ -488,17 +488,17 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                     return Observable_1.Observable.create(function (observer) {
                         _this.dtoRequestServiceExtractorFile.post(new dto_request_item_extractor_submission_1.DtoRequestItemExtractorSubmission(new dto_extractor_instruction_files_1.ExtractorInstructionFilesDTO([
                             new gobii_extractor_instruction_1.GobiiExtractorInstruction(gobiiDataSetExtracts, submitterContactId, null, mapsetIds)
-                        ], jobId))).subscribe(function (extractorInstructionFilesDTOResponse) {
-                            if (extractorInstructionFilesDTOResponse.succeeded()) {
+                        ], jobId))).subscribe(function (payloadReader) {
+                            if (payloadReader.succeeded()) {
                                 _this.store.dispatch(new historyAction
                                     .AddStatusMessageAction("Extractor instruction file created on server: "
                                     + jobId));
-                                observer.next(extractorInstructionFilesDTOResponse.getData().getGobiiExtractorInstructions());
+                                observer.next(payloadReader.getData().getGobiiExtractorInstructions());
                                 observer.complete();
                             }
                             else {
                                 _this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
-                                    extractorInstructionFilesDTOResponse.getError()));
+                                    payloadReader.getError()));
                             }
                         }); //
                     }); // Observable.create()

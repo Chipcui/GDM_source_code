@@ -73,12 +73,19 @@ System.register(["@angular/core", "../../model/http-values", "@angular/http", ".
                                 .post(dtoRequestItem.getUrl(), dtoRequestItem.getRequestBody(), { headers: headers })
                                 .map(function (response) { return response.json(); })
                                 .subscribe(function (json) {
-                                var payloadReader = new payload_reader_1.PayloadReader(json, dtoRequestItem);
+                                var payloadReader = new payload_reader_1.PayloadReader(json, dtoRequestItem, null);
                                 observer.next(payloadReader);
                                 observer.complete();
                             }, function (raw) {
-                                var jsonFromBody = JSON.parse(raw._body);
-                                var payloadReader = new payload_reader_1.PayloadReader(jsonFromBody, dtoRequestItem);
+                                var contentType = raw.headers.get("content-type");
+                                var payloadReader;
+                                if (contentType.toLowerCase().indexOf("json") > -1) {
+                                    var jsonFromBody = JSON.parse(raw._body);
+                                    payloadReader = new payload_reader_1.PayloadReader(jsonFromBody, dtoRequestItem, null);
+                                }
+                                else {
+                                    payloadReader = new payload_reader_1.PayloadReader(null, dtoRequestItem, raw._body);
+                                }
                                 observer.next(payloadReader);
                                 observer.complete();
                             }); // subscribe http

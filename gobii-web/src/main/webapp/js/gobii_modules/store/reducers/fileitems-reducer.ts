@@ -971,7 +971,7 @@ export const getExperimentsFilterOptional = createSelector(getFileItems, getFilt
     return returnVal;
 });
 
-function compareVertices(gfi_a:GobiiFileItem,gfi_b:GobiiFileItem): number {
+function compareVertices(gfi_a: GobiiFileItem, gfi_b: GobiiFileItem): number {
 
     let returnVal: number;
     if (gfi_a.getNameIdLabelType() != NameIdLabelType.UNKNOWN) {
@@ -993,7 +993,9 @@ export const getFqF1Vertices = createSelector(getFileItems, getFilters, getGobii
                 && e.getExtractorItemType() === ExtractorItemType.VERTEX)
             && e.getProcessType() !== ProcessType.DUMMY
     ).map(fi => fi)
-        .sort((gfi_a, gfi_b) => {return compareVertices(gfi_a,gfi_b)});
+        .sort((gfi_a, gfi_b) => {
+            return compareVertices(gfi_a, gfi_b)
+        });
 
     return returnVal;
 });
@@ -1019,7 +1021,9 @@ export const getFqF2Vertices = createSelector(getFileItems, getFilters, getGobii
                         || e.getNameIdLabelType() === NameIdLabelType.SELECT_A))
                 && e.getProcessType() !== ProcessType.DUMMY
         ).map(fi => fi)
-            .sort((gfi_a, gfi_b) => {return compareVertices(gfi_a,gfi_b)});
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
 
     } else {
         returnVal = fileItems.filter(
@@ -1029,7 +1033,9 @@ export const getFqF2Vertices = createSelector(getFileItems, getFilters, getGobii
                     && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
         ).map(fi => fi)
-            .sort((gfi_a, gfi_b) => {return compareVertices(gfi_a,gfi_b)});
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
 
     }
 
@@ -1062,7 +1068,9 @@ export const getFqF3Vertices = createSelector(getFileItems, getFilters, getGobii
                     || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
         ).map(fi => fi)
-            .sort((gfi_a, gfi_b) => {return compareVertices(gfi_a,gfi_b)});
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
 
 
     } else {
@@ -1073,7 +1081,9 @@ export const getFqF3Vertices = createSelector(getFileItems, getFilters, getGobii
                     && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
         ).map(fi => fi)
-            .sort((gfi_a, gfi_b) => {return compareVertices(gfi_a,gfi_b)});
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
     }
 
     return returnVal;
@@ -1111,7 +1121,9 @@ export const getFqF4Vertices = createSelector(getFileItems, getFilters, getGobii
                     || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
         ).map(fi => fi)
-            .sort((gfi_a, gfi_b) => {return compareVertices(gfi_a,gfi_b)});
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
 
     } else {
         returnVal = fileItems.filter(
@@ -1121,7 +1133,9 @@ export const getFqF4Vertices = createSelector(getFileItems, getFilters, getGobii
                     && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                 && e.getProcessType() !== ProcessType.DUMMY
         ).map(fi => fi)
-            .sort((gfi_a, gfi_b) => {return compareVertices(gfi_a,gfi_b)});
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
     }
 
     return returnVal;
@@ -1131,19 +1145,23 @@ export const getFqF1VerticesValues = createSelector(getFileItems, getFilters, ge
 
     let returnVal: GobiiFileItem[] = [];
 
-    let entityType: EntityType = EntityType.UNKNOWN;
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
     if (filters[FilterParamNames.FQ_F1_VERTEX_VALUES]) {
-        entityType = filters[FilterParamNames.FQ_F1_VERTEX_VALUES].targetEntityUniqueId.getEntityType();
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F1_VERTEX_VALUES].targetEntityUniqueId;
     }
 
-
-    if (entityType != EntityType.UNKNOWN) {
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
 
         returnVal = fileItems.filter(
-            e =>
+            e => // you can't use compoundIdeEquals() because the extractor item type won't match the vertex filter
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
-                    && e.getEntityType() === entityType)
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
                 return gfi_a.getItemName().localeCompare(gfi_b.getItemName())
@@ -1157,24 +1175,28 @@ export const getFqF2VerticesValues = createSelector(getFileItems, getFilters, ge
 
     let returnVal: GobiiFileItem[] = [];
 
-    let entityType: EntityType = EntityType.UNKNOWN;
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
     if (filters[FilterParamNames.FQ_F2_VERTEX_VALUES]) {
-        entityType = filters[FilterParamNames.FQ_F2_VERTEX_VALUES].targetEntityUniqueId.getEntityType();
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F2_VERTEX_VALUES].targetEntityUniqueId;
     }
 
 
-    if (entityType != EntityType.UNKNOWN) {
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
 
         returnVal = fileItems.filter(
             e =>
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
-                    && e.getEntityType() === entityType)
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
                 return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
             });
-        ;
     }
 
     return returnVal;
@@ -1185,24 +1207,28 @@ export const getFqF3VerticesValues = createSelector(getFileItems, getFilters, ge
 
     let returnVal: GobiiFileItem[] = [];
 
-    let entityType: EntityType = EntityType.UNKNOWN;
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
     if (filters[FilterParamNames.FQ_F3_VERTEX_VALUES]) {
-        entityType = filters[FilterParamNames.FQ_F3_VERTEX_VALUES].targetEntityUniqueId.getEntityType();
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F3_VERTEX_VALUES].targetEntityUniqueId;
     }
 
 
-    if (entityType != EntityType.UNKNOWN) {
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
 
         returnVal = fileItems.filter(
             e =>
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
-                    && e.getEntityType() === entityType)
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
                 return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
             });
-        ;
     }
 
     return returnVal;
@@ -1212,24 +1238,28 @@ export const getFqF4VerticesValues = createSelector(getFileItems, getFilters, ge
 
     let returnVal: GobiiFileItem[] = [];
 
-    let entityType: EntityType = EntityType.UNKNOWN;
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
     if (filters[FilterParamNames.FQ_F4_VERTEX_VALUES]) {
-        entityType = filters[FilterParamNames.FQ_F4_VERTEX_VALUES].targetEntityUniqueId.getEntityType();
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F4_VERTEX_VALUES].targetEntityUniqueId;
     }
 
 
-    if (entityType != EntityType.UNKNOWN) {
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
 
         returnVal = fileItems.filter(
             e =>
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
-                    && e.getEntityType() === entityType)
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                   && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                   && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                   && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
                 return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
             });
-        ;
     }
 
     return returnVal;
@@ -1275,7 +1305,7 @@ export const getFilterCountState = createSelector(getFileItems, getFilters, getG
 
     let returnVal: FilterCountState = new FilterCountState(new Map<string, PayloadFilter>(), -1, -1);
 
-    Object.keys(filters).forEach( key =>  {
+    Object.keys(filters).forEach(key => {
 
         if (key === FilterParamNames.FQ_F1_VERTEX_VALUES ||
             key === FilterParamNames.FQ_F2_VERTEX_VALUES ||

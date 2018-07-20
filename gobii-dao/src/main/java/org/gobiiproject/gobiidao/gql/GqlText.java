@@ -54,6 +54,7 @@ public class GqlText {
 
             if (!new File(this.mdePathFqpn).exists()) {
 
+                System.out.println("Unable to find gql script " + this.mdePathFqpn + " reverting to test script");
                 this.mdePathFqpn = configSettings
                         .getFullyQualifiedFilePath(null, GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE)
                         + GQL_DUMMY_SCRIPT_NAME;
@@ -75,7 +76,7 @@ public class GqlText {
         }
     }
 
-    private final static String GQL_SCRIPT_NAME = "python gobii_gql.py";
+    private final static String GQL_SCRIPT_NAME = "gobii_gql.py";
     private final String GQL_DUMMY_SCRIPT_NAME = "gobii_gql_placeholder.py";
 
 
