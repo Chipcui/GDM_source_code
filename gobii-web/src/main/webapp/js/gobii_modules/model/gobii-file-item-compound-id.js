@@ -58,7 +58,8 @@ System.register(["./type-entity", "./cv-group", "./type-extractor-item"], functi
                         && (this.getEntityType() === gobiiFileItemCompoundId.getEntityType())
                         && (this.getEntitySubType() === gobiiFileItemCompoundId.getEntitySubType())
                         && (this.getCvGroup() === gobiiFileItemCompoundId.getCvGroup())
-                        && this.getCvFilterValue() === gobiiFileItemCompoundId.getCvFilterValue()));
+                        && this.getCvFilterValue() === gobiiFileItemCompoundId.getCvFilterValue()
+                        && this.getCvTerm() === gobiiFileItemCompoundId.getCvTerm()));
                 };
                 GobiiFileItemCompoundId.prototype.getExtractorItemType = function () {
                     return this._extractorItemType;

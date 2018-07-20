@@ -1158,9 +1158,9 @@ export const getFqF1VerticesValues = createSelector(getFileItems, getFilters, ge
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
                     && e.getEntityType() === filterCompoundUniqueId.getEntityType()
-//                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
-//                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
-//                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
                 )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
@@ -1189,15 +1189,14 @@ export const getFqF2VerticesValues = createSelector(getFileItems, getFilters, ge
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
                     && e.getEntityType() === filterCompoundUniqueId.getEntityType()
-//                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
-//                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
-//                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
                 )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
                 return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
             });
-        ;
     }
 
     return returnVal;
@@ -1222,15 +1221,14 @@ export const getFqF3VerticesValues = createSelector(getFileItems, getFilters, ge
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
                     && e.getEntityType() === filterCompoundUniqueId.getEntityType()
-//                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
-//                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
-//                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
                 )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
                 return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
             });
-        ;
     }
 
     return returnVal;
@@ -1254,15 +1252,14 @@ export const getFqF4VerticesValues = createSelector(getFileItems, getFilters, ge
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
                     && e.getEntityType() === filterCompoundUniqueId.getEntityType()
-//                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
-//                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
-//                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                   && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                   && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                   && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
                 )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {
                 return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
             });
-        ;
     }
 
     return returnVal;

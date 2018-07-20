@@ -169,7 +169,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store
                         this.selectedVertexValues = [];
                         this.JobId$.subscribe(function (fileItemJobId) {
                             var jobId = fileItemJobId.getItemId();
-                            _this.flexQueryService.loadVertexValues(jobId, arg.value, _this.filterParamNameVertexValues);
+                            _this.flexQueryService.loadVertexValues(jobId, arg.value, _this.filterParamNameVertexValues, entityType_1, entitySubType_1, cvGroup_1, cvTerm_1);
                             _this.flexQueryService.loadSelectedVertexFilter(_this.filterParamNameVertices, vertexId_1, entityType_1, entitySubType_1, cvGroup_1, cvTerm_1, jobId, previousSelectionExisted_1);
                         }).unsubscribe();
                     }

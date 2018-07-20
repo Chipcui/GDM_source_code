@@ -179,7 +179,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                  *      * This method relies very heavily on the compound IDs for the entities. Pre FlexQuery functionality does not
                  *        have dynamic entity types and so did not need to operate in this way. It will be noded that the CompoundUnqiueID
                  *        class now has a "from" method to copy an existing one: in this method, we almost always want to make copies
-                 *        in this way; otherwise, we are copying references to insteawnces and that does not do what we want.
+                 *        in this way; otherwise, we are copying references to instances and that does not do what we want.
                  *
                  * @param {FilterParamNames} eventedFilterParamsName
                  * @param {string} eventedVertexId
@@ -263,6 +263,10 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         });
                         _this.store.dispatch(loadAction);
                     });
+                    var targetFilterParams = this.filterParamsColl.getFilter(filterParamsName, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY);
+                    if (targetFilterParams) {
+                        targetFilterParams.setTargetEntityUniqueId(gobii_file_item_compound_id_1.GobiiFileItemCompoundId.fromGobiiFileItemCompoundId(targetValueVertex));
+                    }
                     this.filterService.loadFilter(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, filterParamsName, targetValueVertex);
                     // null out filters to the right
                     var nextSiblingFilter = this.filterParamsColl
@@ -363,9 +367,15 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         }
                     }); // observable create
                 }; // get vertex filters
-                FlexQueryService.prototype.loadVertexValues = function (jobId, vertexFileItem, vertexValuesFilterPararamName) {
+                FlexQueryService.prototype.loadVertexValues = function (jobId, vertexFileItem, vertexValuesFilterPararamName, eventedEntityType, eventedEntitySubType, eventedCvGroup, eventedCvTerm) {
                     var _this = this;
                     var targetChildFilterParams = this.filterParamsColl.getFilter(vertexValuesFilterPararamName, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY);
+                    var targetChildFilterParamsToLoad = gobii_file_item_compound_id_1.GobiiFileItemCompoundId
+                        .fromGobiiFileItemCompoundId(targetChildFilterParams.getTargetEntityUniqueId())
+                        .setEntityType(eventedEntityType)
+                        .setEntitySubType(eventedEntitySubType)
+                        .setCvGroup(eventedCvGroup)
+                        .setCvTerm(eventedCvTerm);
                     if (vertexFileItem.getNameIdLabelType() == name_id_label_type_1.NameIdLabelType.UNKNOWN) {
                         this.getVertexFilters(vertexValuesFilterPararamName)
                             .subscribe(function (vertices) {
@@ -391,7 +401,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                             .setItemId(item.id)
                                             .setItemName(item.name)
                                             .setRequired(false)
-                                            .setIsEphemeral(true)
+                                            .setIsEphemeral(false)
                                             .setSequenceNum(targetChildFilterParams.getSequenceNum());
                                         //.setParentItemId(filterValue)
                                         //.setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
@@ -406,7 +416,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                     var loadAction = new fileItemActions.LoadFileItemListWithFilterAction({
                                         gobiiFileItems: vertexFileItems_1,
                                         filterId: targetChildFilterParams.getQueryName(),
-                                        filter: new action_payload_filter_1.PayloadFilter(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, targetCompoundUniqueId, targetChildFilterParams.getRelatedEntityUniqueId(), null, null, null, null)
+                                        filter: new action_payload_filter_1.PayloadFilter(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, targetChildFilterParamsToLoad, targetChildFilterParams.getRelatedEntityUniqueId(), null, null, null, null)
                                     });
                                     _this.store.dispatch(loadAction);
                                     //observer.next(vertexFileItems);

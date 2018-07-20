@@ -142,7 +142,7 @@ export class FlexQueryService {
      *      * This method relies very heavily on the compound IDs for the entities. Pre FlexQuery functionality does not
      *        have dynamic entity types and so did not need to operate in this way. It will be noded that the CompoundUnqiueID
      *        class now has a "from" method to copy an existing one: in this method, we almost always want to make copies
-     *        in this way; otherwise, we are copying references to insteawnces and that does not do what we want.
+     *        in this way; otherwise, we are copying references to instances and that does not do what we want.
      *
      * @param {FilterParamNames} eventedFilterParamsName
      * @param {string} eventedVertexId
@@ -293,6 +293,15 @@ export class FlexQueryService {
 
         });
 
+        let targetFilterParams:FilterParams = this.filterParamsColl.getFilter(filterParamsName,
+            GobiiExtractFilterType.FLEX_QUERY);
+
+        if( targetFilterParams ) {
+            targetFilterParams.setTargetEntityUniqueId(
+                GobiiFileItemCompoundId.fromGobiiFileItemCompoundId(targetValueVertex)
+            );
+        }
+
         this.filterService.loadFilter(GobiiExtractFilterType.FLEX_QUERY,
             filterParamsName,
             targetValueVertex);
@@ -317,7 +326,7 @@ export class FlexQueryService {
                 : null;
         }
 
-        this.recalcMarkerSampleCount(filterParamsName, jobId);
+         this.recalcMarkerSampleCount(filterParamsName, jobId);
 
     } // function
 
@@ -453,10 +462,23 @@ export class FlexQueryService {
     } // get vertex filters
 
 
-    public loadVertexValues(jobId: string, vertexFileItem: GobiiFileItem, vertexValuesFilterPararamName: FilterParamNames) {
+    public loadVertexValues(jobId: string, vertexFileItem: GobiiFileItem,
+                            vertexValuesFilterPararamName: FilterParamNames,
+                            eventedEntityType:EntityType,
+                            eventedEntitySubType:EntitySubType,
+                            eventedCvGroup:CvGroup,
+                            eventedCvTerm:string) {
 
 
         let targetChildFilterParams: FilterParams = this.filterParamsColl.getFilter(vertexValuesFilterPararamName, GobiiExtractFilterType.FLEX_QUERY);
+        let targetChildFilterParamsToLoad:GobiiFileItemCompoundId =
+            GobiiFileItemCompoundId
+                .fromGobiiFileItemCompoundId(targetChildFilterParams.getTargetEntityUniqueId())
+                .setEntityType(eventedEntityType)
+                .setEntitySubType(eventedEntitySubType)
+                .setCvGroup(eventedCvGroup)
+                .setCvTerm(eventedCvTerm);
+
         if (vertexFileItem.getNameIdLabelType() == NameIdLabelType.UNKNOWN) {
 
             this.getVertexFilters(vertexValuesFilterPararamName)
@@ -501,7 +523,7 @@ export class FlexQueryService {
                                             .setItemId(item.id)
                                             .setItemName(item.name)
                                             .setRequired(false)
-                                            .setIsEphemeral(true)
+                                            .setIsEphemeral(false)
                                             .setSequenceNum(targetChildFilterParams.getSequenceNum());
                                     //.setParentItemId(filterValue)
                                     //.setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
@@ -523,7 +545,7 @@ export class FlexQueryService {
                                         filterId: targetChildFilterParams.getQueryName(),
                                         filter: new PayloadFilter(
                                             GobiiExtractFilterType.FLEX_QUERY,
-                                            targetCompoundUniqueId,
+                                            targetChildFilterParamsToLoad,
                                             targetChildFilterParams.getRelatedEntityUniqueId(),
                                             null,
                                             null,

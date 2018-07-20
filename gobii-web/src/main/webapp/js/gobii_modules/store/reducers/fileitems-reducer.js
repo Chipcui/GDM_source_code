@@ -893,7 +893,10 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     returnVal = fileItems.filter(function (e) {
                         return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
                             && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX_VALUE
-                            && e.getEntityType() === filterCompoundUniqueId.getEntityType());
+                            && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                            && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                            && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                            && e.getCvTerm() === filterCompoundUniqueId.getCvTerm());
                     }).map(function (fi) { return fi; })
                         .sort(function (gfi_a, gfi_b) {
                         return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
@@ -912,12 +915,14 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     returnVal = fileItems.filter(function (e) {
                         return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
                             && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX_VALUE
-                            && e.getEntityType() === filterCompoundUniqueId.getEntityType());
+                            && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                            && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                            && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                            && e.getCvTerm() === filterCompoundUniqueId.getCvTerm());
                     }).map(function (fi) { return fi; })
                         .sort(function (gfi_a, gfi_b) {
                         return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
                     });
-                    ;
                 }
                 return returnVal;
             }));
@@ -932,12 +937,14 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     returnVal = fileItems.filter(function (e) {
                         return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
                             && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX_VALUE
-                            && e.getEntityType() === filterCompoundUniqueId.getEntityType());
+                            && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                            && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                            && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                            && e.getCvTerm() === filterCompoundUniqueId.getCvTerm());
                     }).map(function (fi) { return fi; })
                         .sort(function (gfi_a, gfi_b) {
                         return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
                     });
-                    ;
                 }
                 return returnVal;
             }));
@@ -952,12 +959,14 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     returnVal = fileItems.filter(function (e) {
                         return (e.getGobiiExtractFilterType() == type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY
                             && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX_VALUE
-                            && e.getEntityType() === filterCompoundUniqueId.getEntityType());
+                            && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                            && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                            && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                            && e.getCvTerm() === filterCompoundUniqueId.getCvTerm());
                     }).map(function (fi) { return fi; })
                         .sort(function (gfi_a, gfi_b) {
                         return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
                     });
-                    ;
                 }
                 return returnVal;
             }));
