@@ -199,12 +199,18 @@ export class FlexQueryFilterComponent implements OnInit, OnChanges, AfterViewIni
                 this.previousSelectedVertices = [];
             }
 
+            this.selectedVertexValues = [];
+
             this.JobId$.subscribe(
                 fileItemJobId => {
                     let jobId: string = fileItemJobId.getItemId();
                     this.flexQueryService.loadVertexValues(jobId,
                         arg.value,
-                        this.filterParamNameVertexValues);
+                        this.filterParamNameVertexValues,
+                        entityType,
+                        entitySubType,
+                        cvGroup,
+                        cvTerm);
 
                     this.flexQueryService.loadSelectedVertexFilter(this.filterParamNameVertices,
                         vertexId,

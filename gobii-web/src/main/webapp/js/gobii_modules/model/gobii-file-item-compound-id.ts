@@ -57,7 +57,8 @@ export class GobiiFileItemCompoundId {
                 && (this.getEntityType() === gobiiFileItemCompoundId.getEntityType())
                 && (this.getEntitySubType() === gobiiFileItemCompoundId.getEntitySubType())
                 && (this.getCvGroup() === gobiiFileItemCompoundId.getCvGroup())
-                && this.getCvFilterValue() === gobiiFileItemCompoundId.getCvFilterValue())
+                && this.getCvFilterValue() === gobiiFileItemCompoundId.getCvFilterValue()
+                && this.getCvTerm() === gobiiFileItemCompoundId.getCvTerm())
         )
     }
 
