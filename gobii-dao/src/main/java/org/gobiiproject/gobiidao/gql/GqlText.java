@@ -108,13 +108,14 @@ public class GqlText {
 
         String returnVal = this.makeGqlJobPath();
 
-        returnVal += gqlDestinationFileType.getDestination();
+        String fileName = gqlDestinationFileType.getDestination();
         if (gqlOFileType.getIoName().equals(GqlOFileType.NONE.getIoName())) {
-            returnVal += ".txt";
+            fileName += ".txt";
         } else {
-            returnVal += gqlOFileType.getIoName();
+            fileName += gqlOFileType.getIoName();
         }
 
+        returnVal = this.makeNextFileName(fileName,3);
         return returnVal;
     }
 
@@ -221,10 +222,7 @@ public class GqlText {
         String extension = FilenameUtils.getExtension(fileName);
         String fileNameStem =
                 FilenameUtils.removeExtension(new File(fileName).getName());
-//        String filter = fileNameStem + "*" + extension;
-//        Collection<File> currentFiles = FileUtils.listFiles(new File(currentDirectory),
-//                FileFilterUtils.nameFileFilter(filter),
-//                null);
+
         Integer currentIncrement;
         File[] fileArray = new File(currentDirectory).listFiles();
         if( fileArray != null ) {
@@ -270,10 +268,10 @@ public class GqlText {
     private void writeCommandlineFile(String commandline, String outputFileFqpn) throws GobiiDaoException {
 
         try {
-            String fileNameStem = FilenameUtils.removeExtension(outputFileFqpn);
-            fileNameStem += "_cmd.txt";
-            String cmdFileName = this.makeNextFileName(fileNameStem, 3);
-            FileUtils.writeStringToFile(new File(cmdFileName), commandline);
+            String fileName = FilenameUtils.removeExtension(outputFileFqpn) + "_cmd.txt";
+//            fileNameStem += "_cmd.txt";
+            //String cmdFileName = this.makeNextFileName(fileNameStem, 3);
+            FileUtils.writeStringToFile(new File(fileName), commandline);
 
         } catch (IOException e) {
             throw new GobiiDaoException(e);
