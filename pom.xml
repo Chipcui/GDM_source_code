@@ -6,7 +6,7 @@
 
     <groupId>org.gobiiproject</groupId>
     <artifactId>parent</artifactId>
-    <version>GP1-1527_Epic_FlexQuery-2018-07-20</version>
+    <version>GP1-1839-01</version>
     <packaging>pom</packaging>
 
     <description>Parent for GOBii project genotype application</description>
@@ -14,7 +14,7 @@
     <properties>
 
         <!-- Gobii Version -->
-        <gobii.version>GP1-1527_Epic_FlexQuery-2018-07-20</gobii.version>
+        <gobii.version>GP1-1839-01</gobii.version>
 
         <!-- Spring Version -->
         <spring.version>4.2.2.RELEASE</spring.version>
