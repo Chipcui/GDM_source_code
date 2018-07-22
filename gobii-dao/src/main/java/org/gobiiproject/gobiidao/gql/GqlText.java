@@ -2,8 +2,6 @@ package org.gobiiproject.gobiidao.gql;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.comparator.LastModifiedFileComparator;
-import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiException;
@@ -18,19 +16,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static jdk.nashorn.internal.objects.NativeArray.sort;
 
 public class GqlText {
 
@@ -39,6 +32,7 @@ public class GqlText {
     private String mdePathFqpn;
     private String cropType;
     private String jobId;
+    private boolean isServer = false;
 
     public GqlText(String cropType, String jobId) throws GobiiException {
         try {
@@ -54,6 +48,7 @@ public class GqlText {
 
             if (!new File(this.mdePathFqpn).exists()) {
 
+                this.isServer = false;
                 System.out.println("Unable to find gql script " + this.mdePathFqpn + " reverting to test script");
                 this.mdePathFqpn = configSettings
                         .getFullyQualifiedFilePath(null, GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE)
@@ -69,7 +64,9 @@ public class GqlText {
                         throw new GobiiDaoException("Unable to make input stream for " + resourcePath);
                     }
                 }
-            }
+            } else {
+                this.isServer = true;
+            } // if-else gql script is present
 
         } catch (Exception e) {
             throw new GobiiException(e);
@@ -108,13 +105,14 @@ public class GqlText {
 
         String returnVal = this.makeGqlJobPath();
 
-        returnVal += gqlDestinationFileType.getDestination();
+        String fileName = gqlDestinationFileType.getDestination();
         if (gqlOFileType.getIoName().equals(GqlOFileType.NONE.getIoName())) {
-            returnVal += ".txt";
+            fileName += ".txt";
         } else {
-            returnVal += gqlOFileType.getIoName();
+            fileName += gqlOFileType.getIoName();
         }
 
+        returnVal = this.makeNextFileName(fileName,3);
         return returnVal;
     }
 
@@ -204,27 +202,36 @@ public class GqlText {
                     false));
         }
 
-        returnVal = commandLineBuilder.toString();
+        String plainCommand = commandLineBuilder.toString();
+
+        if( this.isServer) {
+            plainCommand = plainCommand.replace("\"","\\\"");
+            returnVal = "ssh -t gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
+                    + plainCommand
+                    + "\"";
+        } else {
+            returnVal = plainCommand;
+        }
 
         this.writeCommandlineFile(returnVal, outputFileFqpn);
 
         return returnVal;
     }
 
-    private void writeCommandlineFile(String commandline, String outputFileFqpn) throws GobiiDaoException {
 
-        try {
-            String currentDirectory = this.makeGqlJobPath();
-            String fileNameStem =
-                    FilenameUtils.removeExtension(new File(outputFileFqpn).getName())
-                    + "_cmd_";
-            String extension = ".txt";
-            String filter = fileNameStem + "*" + extension;
-            Integer incrementLength = 3;
-            Collection<File> currentFiles = FileUtils.listFiles(new File(currentDirectory),
-                    FileFilterUtils.nameFileFilter(filter),
-                    null);
-            File[] fileArray = new File(currentDirectory).listFiles();
+    private String makeNextFileName(String fileName, Integer incrementLength) throws GobiiDaoException {
+
+        String returnVal;
+
+        String currentDirectory = this.makeGqlJobPath();
+
+        String extension = FilenameUtils.getExtension(fileName);
+        String fileNameStem =
+                FilenameUtils.removeExtension(new File(fileName).getName());
+
+        Integer currentIncrement;
+        File[] fileArray = new File(currentDirectory).listFiles();
+        if( fileArray != null ) {
             Arrays.sort(fileArray, new Comparator<File>() {
                 public int compare(File f1, File f2) {
                     return Long.compare(f2.lastModified(), f1.lastModified());
@@ -236,12 +243,12 @@ public class GqlText {
                     .filter(file -> file.getName().contains(fileNameStem))
                     .collect(Collectors.toList());
 
-            Integer currentIncrement;
+
             if (matchingFile.size() > 0) {
 
                 File mostRecentFile = matchingFile.get(0);
                 String mostRecentFileName = mostRecentFile.getName();
-                Integer segmentBeginIdx = mostRecentFileName.length() - extension.length() - incrementLength;
+                Integer segmentBeginIdx = mostRecentFileName.length() - extension.length() - incrementLength -1;
                 String mostRecentIncrementSegment = mostRecentFileName.substring(
                         segmentBeginIdx,
                         segmentBeginIdx + incrementLength
@@ -253,17 +260,28 @@ public class GqlText {
                 currentIncrement = 0;
             }
 
-            String formatString = "%0" + incrementLength + "d";
-            String incrementSegment = String.format(formatString, currentIncrement + 1);
-            String cmdFileName = currentDirectory + fileNameStem + incrementSegment + extension;
-            FileUtils.writeStringToFile(new File(cmdFileName), commandline);
+        } else {
+            currentIncrement = 0;
+        }
+
+        String formatString = "%0" + incrementLength + "d";
+        String incrementSegment = String.format(formatString, currentIncrement + 1);
+        returnVal = currentDirectory + fileNameStem + "_" + incrementSegment + "." + extension;
+        return returnVal;
+    }
+
+
+    private void writeCommandlineFile(String commandline, String outputFileFqpn) throws GobiiDaoException {
+
+        try {
+            String fileName = FilenameUtils.removeExtension(outputFileFqpn) + "_cmd.txt";
+            FileUtils.writeStringToFile(new File(fileName), commandline);
 
         } catch (IOException e) {
             throw new GobiiDaoException(e);
         }
 
     } // writeCommandlineFile()
-
 
     public List<NameIdDTO> makeValues(String fqpn, VertexDTO destinationVertex) throws Exception {
 
