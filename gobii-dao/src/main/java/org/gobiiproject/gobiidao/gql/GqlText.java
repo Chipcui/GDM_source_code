@@ -2,8 +2,6 @@ package org.gobiiproject.gobiidao.gql;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.comparator.LastModifiedFileComparator;
-import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiException;
@@ -18,19 +16,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static jdk.nashorn.internal.objects.NativeArray.sort;
 
 public class GqlText {
 
@@ -39,6 +32,7 @@ public class GqlText {
     private String mdePathFqpn;
     private String cropType;
     private String jobId;
+    private boolean isServer = false;
 
     public GqlText(String cropType, String jobId) throws GobiiException {
         try {
@@ -54,6 +48,7 @@ public class GqlText {
 
             if (!new File(this.mdePathFqpn).exists()) {
 
+                this.isServer = false;
                 System.out.println("Unable to find gql script " + this.mdePathFqpn + " reverting to test script");
                 this.mdePathFqpn = configSettings
                         .getFullyQualifiedFilePath(null, GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE)
@@ -69,7 +64,9 @@ public class GqlText {
                         throw new GobiiDaoException("Unable to make input stream for " + resourcePath);
                     }
                 }
-            }
+            } else {
+                this.isServer = true;
+            } // if-else gql script is present
 
         } catch (Exception e) {
             throw new GobiiException(e);
@@ -205,7 +202,16 @@ public class GqlText {
                     false));
         }
 
-        returnVal = commandLineBuilder.toString();
+        String plainCommand = commandLineBuilder.toString();
+
+        if( this.isServer) {
+            plainCommand = plainCommand.replace("\"","\\\"");
+            returnVal = "ssh -t gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
+                    + plainCommand
+                    + "\"";
+        } else {
+            returnVal = plainCommand;
+        }
 
         this.writeCommandlineFile(returnVal, outputFileFqpn);
 
@@ -269,8 +275,6 @@ public class GqlText {
 
         try {
             String fileName = FilenameUtils.removeExtension(outputFileFqpn) + "_cmd.txt";
-//            fileNameStem += "_cmd.txt";
-            //String cmdFileName = this.makeNextFileName(fileNameStem, 3);
             FileUtils.writeStringToFile(new File(fileName), commandline);
 
         } catch (IOException e) {
