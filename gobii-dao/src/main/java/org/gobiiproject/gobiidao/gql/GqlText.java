@@ -186,10 +186,10 @@ public class GqlText {
                 columnList.append(",");
             }
         }
-//        columnList.append("]");
-//        commandLineBuilder.append(this.makeArg(GQL_PARM_TARGET_VERTEX_COLUMNS,
-//                columnList.toString(),
-//                true));
+        columnList.append("]");
+        commandLineBuilder.append(this.makeArg(GQL_PARM_TARGET_VERTEX_COLUMNS,
+                columnList.toString(),
+                true));
 
 
         commandLineBuilder.append(this.makeArg(GQL_PARM_COUNT_LIMIT,
@@ -205,7 +205,7 @@ public class GqlText {
         String plainCommand = commandLineBuilder.toString();
 
 //        if( this.isServer) {
-        plainCommand = plainCommand.replace("\"", "\\\"");
+        //plainCommand = plainCommand.replace("\"", "\\\"");
 //            returnVal = "ssh -tt gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
 //                    + plainCommand
 //                    + "\"";
