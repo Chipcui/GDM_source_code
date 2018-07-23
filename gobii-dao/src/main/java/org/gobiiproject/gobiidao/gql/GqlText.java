@@ -112,7 +112,7 @@ public class GqlText {
             fileName += gqlOFileType.getIoName();
         }
 
-        returnVal = this.makeNextFileName(fileName,3);
+        returnVal = this.makeNextFileName(fileName, 3);
         return returnVal;
     }
 
@@ -204,14 +204,14 @@ public class GqlText {
 
         String plainCommand = commandLineBuilder.toString();
 
-        if( this.isServer) {
-            plainCommand = plainCommand.replace("\"","\\\"");
-            returnVal = "ssh -tt gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
-                    + plainCommand
-                    + "\"";
-        } else {
-            returnVal = plainCommand;
-        }
+//        if( this.isServer) {
+//            plainCommand = plainCommand.replace("\"","\\\"");
+//            returnVal = "ssh -tt gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
+//                    + plainCommand
+//                    + "\"";
+//        } else {
+        returnVal = plainCommand;
+//        }
 
         this.writeCommandlineFile(returnVal, outputFileFqpn);
 
@@ -231,7 +231,7 @@ public class GqlText {
 
         Integer currentIncrement;
         File[] fileArray = new File(currentDirectory).listFiles();
-        if( fileArray != null ) {
+        if (fileArray != null) {
             Arrays.sort(fileArray, new Comparator<File>() {
                 public int compare(File f1, File f2) {
                     return Long.compare(f2.lastModified(), f1.lastModified());
@@ -248,7 +248,7 @@ public class GqlText {
 
                 File mostRecentFile = matchingFile.get(0);
                 String mostRecentFileName = mostRecentFile.getName();
-                Integer segmentBeginIdx = mostRecentFileName.length() - extension.length() - incrementLength -1;
+                Integer segmentBeginIdx = mostRecentFileName.length() - extension.length() - incrementLength - 1;
                 String mostRecentIncrementSegment = mostRecentFileName.substring(
                         segmentBeginIdx,
                         segmentBeginIdx + incrementLength
