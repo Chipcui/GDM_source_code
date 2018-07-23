@@ -186,10 +186,10 @@ public class GqlText {
                 columnList.append(",");
             }
         }
-        columnList.append("]");
-        commandLineBuilder.append(this.makeArg(GQL_PARM_TARGET_VERTEX_COLUMNS,
-                columnList.toString(),
-                true));
+//        columnList.append("]");
+//        commandLineBuilder.append(this.makeArg(GQL_PARM_TARGET_VERTEX_COLUMNS,
+//                columnList.toString(),
+//                true));
 
 
         commandLineBuilder.append(this.makeArg(GQL_PARM_COUNT_LIMIT,
