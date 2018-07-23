@@ -204,6 +204,7 @@ public class GqlText {
 
         String plainCommand = commandLineBuilder.toString();
 
+        plainCommand = plainCommand.replace("'", "");
 //        if( this.isServer) {
         //plainCommand = plainCommand.replace("\"", "\\\"");
 //            returnVal = "ssh -tt gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
