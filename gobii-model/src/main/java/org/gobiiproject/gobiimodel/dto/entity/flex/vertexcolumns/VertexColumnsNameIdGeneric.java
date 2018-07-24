@@ -1,5 +1,6 @@
 package org.gobiiproject.gobiimodel.dto.entity.flex.vertexcolumns;
 
+import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobiimodel.dto.entity.children.NameIdDTO;
 
 import java.util.ArrayList;
@@ -21,15 +22,25 @@ public class VertexColumnsNameIdGeneric implements VertexColumns {
     // the columns are combined for the output (e.g., principal_investigator) have to
     // be implemented in a specific way
     private final String FIELD_ID = "id";
-    private final String FIELD_NAME = "name";
+    private String valueFiledName = "name";
 
 
     private List<String> columns;
+    private boolean useIdColumn = true;
     public VertexColumnsNameIdGeneric() {
 
         this.columns = new ArrayList<>(Arrays.asList(
                 FIELD_ID,
-                FIELD_NAME));
+                valueFiledName));
+    }
+
+    public VertexColumnsNameIdGeneric(String valueColumnName, boolean useIdColumn) {
+
+        this.useIdColumn = useIdColumn;
+        this.valueFiledName = valueColumnName;
+        this.columns = new ArrayList<>(Arrays.asList(
+                FIELD_ID,
+                valueFiledName));
     }
 
     @Override
@@ -40,15 +51,36 @@ public class VertexColumnsNameIdGeneric implements VertexColumns {
     @Override
     public NameIdDTO vertexValueFromLine(String line) throws Exception {
 
+        // As long as the target file used getColumnNames() to specify
+        // the columns to be used, the ordering by which they are retrieved
+        // from the line will work out
+        Integer valueIndex;
         NameIdDTO returnVal = new NameIdDTO();
-
         String[] values = line.split("\t", -1);
+        if(this.useIdColumn) {
 
-        String id = values[this.columns.indexOf(FIELD_ID)];
-        String name = values[this.columns.indexOf(FIELD_NAME)];
+            valueIndex = this.columns.indexOf(valueFiledName);
+            if( values.length < 2 ) {
+                throw new Exception("Line does not contain at least two columns");
+            }
+
+            String id = values[this.columns.indexOf(FIELD_ID)];
+
+            if( !NumberUtils.isNumber(id))
+                throw new Exception("Column named 'id' is not numeric ");
+
+            returnVal.setId(Integer.parseInt(id));
+        } else {
+            if( values.length < 1) {
+                throw new Exception("Line does not contain at least one column");
+            }
+
+            valueIndex = 0;
+        }
+
+        String name = values[valueIndex];
 
         returnVal.setName(name);
-        returnVal.setId( Integer.parseInt(id));
 
         return returnVal;
 

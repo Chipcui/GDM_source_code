@@ -1,5 +1,6 @@
 package org.gobiiproject.gobiimodel.dto.entity.flex.vertexcolumns;
 
+import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.dto.entity.children.NameIdDTO;
 
@@ -29,6 +30,9 @@ public class VertexColumnsPrincipleInvestigator implements VertexColumns {
         NameIdDTO returnVal = new NameIdDTO();
 
         String[] values = line.split("\t", -1);
+        if( values.length < 3 ) {
+            throw new Exception("The line does not contain three fields");
+        }
 
         if (values.length < this.columns.size()) {
             throw new GobiiException("The parsed line "
@@ -41,6 +45,11 @@ public class VertexColumnsPrincipleInvestigator implements VertexColumns {
         String contactid = values[this.columns.indexOf(FIELD_CONTACT_ID)];
 
         returnVal.setName(lastName + ", " + firstName);
+
+        if (!NumberUtils.isNumber(contactid)) {
+            throw new Exception("The id column is not numeric");
+        }
+
         returnVal.setId(Integer.parseInt(contactid));
 
         return returnVal;
