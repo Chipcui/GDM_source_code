@@ -2,6 +2,7 @@ package org.gobiiproject.gobiidao.gql;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiException;
@@ -227,10 +228,6 @@ public class GqlText {
 
         String currentDirectory = this.makeGqlJobPath();
 
-        String extension = FilenameUtils.getExtension(fileName);
-        String fileNameStem =
-                FilenameUtils.removeExtension(new File(fileName).getName());
-
         Integer currentIncrement;
         File[] fileArray = new File(currentDirectory).listFiles();
         if (fileArray != null) {
@@ -242,7 +239,7 @@ public class GqlText {
             List<File> fileList = Arrays.asList(fileArray);
             List<File> matchingFile = fileList
                     .stream()
-                    .filter(file -> file.getName().contains(fileNameStem))
+                    .filter(file -> file.getName().contains(fileName))
                     .collect(Collectors.toList());
 
 
@@ -250,14 +247,13 @@ public class GqlText {
 
                 File mostRecentFile = matchingFile.get(0);
                 String mostRecentFileName = mostRecentFile.getName();
-                Integer segmentBeginIdx = mostRecentFileName.length() - extension.length() - incrementLength - 1;
-                String mostRecentIncrementSegment = mostRecentFileName.substring(
-                        segmentBeginIdx,
-                        segmentBeginIdx + incrementLength
-                );
-
-                currentIncrement = Integer.parseInt(mostRecentIncrementSegment);
-
+                String numberSegmentChars = mostRecentFileName.substring(0, incrementLength);
+                Integer currentSegmentVal = 0;
+                if (NumberUtils.isNumber(numberSegmentChars)) {
+                    currentIncrement = Integer.parseInt(numberSegmentChars);
+                } else {
+                    currentIncrement = 0;
+                }
             } else {
                 currentIncrement = 0;
             }
@@ -268,7 +264,7 @@ public class GqlText {
 
         String formatString = "%0" + incrementLength + "d";
         String incrementSegment = String.format(formatString, currentIncrement + 1);
-        returnVal = currentDirectory + fileNameStem + "_" + incrementSegment + "." + extension;
+        returnVal = currentDirectory + incrementSegment + "_" + fileName;
         return returnVal;
     }
 
