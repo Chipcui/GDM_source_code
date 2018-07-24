@@ -101,10 +101,16 @@ def main(argv):
     else:
         total_lines = 20
         leading_trailing_chars = ""
+        id_column = ""
+        name_column = ""
         if target_vertex_name == "marker":
             total_lines = random.randint(1, max_result)
+            id_column = "id"
+            name_column = "name"
         elif target_vertex_name == "dnasample":
             total_lines = random.randint(1, max_result)
+            id_column = "id"
+            name_column = "name"
         elif (str(target_vertex_name) == str("sampling_date") or
             str(target_vertex_name) == str("genotyping_purpose") or
             str(target_vertex_name) == str("division") or
@@ -114,14 +120,39 @@ def main(argv):
             str(target_vertex_name) == str("germplasm_species") or
             str(target_vertex_name) == str("genotyping_purpose")):
             leading_trailing_chars = '"""'
-        file_lines.append("id\tname")
+            name_column = target_vertex_name
+            id_column = "";
+        elif (str(target_vertex_name) == str("analysis") or
+              str(target_vertex_name) == str("experiment") or
+              str(target_vertex_name) == str("dataset") or
+              str(target_vertex_name) == str("linkage_group") or
+              str(target_vertex_name) == str("mapset") or
+              str(target_vertex_name) == str("vendor") or
+              str(target_vertex_name) == str("platform") or
+              str(target_vertex_name) == str("project") or
+              str(target_vertex_name) == str("protocol") or
+              str(target_vertex_name) == str("vendor_protocol")):
+                id_column = "id";
+                name_column = "name"
+        else:
+                id_column = "id"
+                name_column = "term"
+                # The left over category should be cv_subset
+        if not id_column:
+            file_lines.append(name_column)
+        else:
+            file_lines.append(id_column + "\t" + name_column)
+
         # the_file.write("id\tname\n")
         idx = 0
         while idx < total_lines:
             idx = idx + 1
             value = leading_trailing_chars + target_vertex_name + " # " + '{:02d}'.format(idx) + leading_trailing_chars
             #the_file.write("%i\t%s\n" % (idx, value))
-            file_lines.append(str(idx) + "\t" + value)
+            if not id_column:
+                file_lines.append(value)
+            else:
+                file_lines.append(str(idx) + "\t" + value)
 
     with open(output_file_name, 'w') as the_file:
         the_file.write("\n".join(file_lines))

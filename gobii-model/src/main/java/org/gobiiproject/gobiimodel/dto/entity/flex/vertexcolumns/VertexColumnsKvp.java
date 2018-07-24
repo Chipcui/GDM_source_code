@@ -2,15 +2,15 @@ package org.gobiiproject.gobiimodel.dto.entity.flex.vertexcolumns;
 
 import org.gobiiproject.gobiimodel.dto.entity.children.NameIdDTO;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class VertexColumnsKvp implements VertexColumns {
 
 
-    VertexColumnsNameIdGeneric vertexColumnsNameIdGeneric = new VertexColumnsNameIdGeneric();
-
+    private VertexColumnsNameIdGeneric vertexColumnsNameIdGeneric;
+    public VertexColumnsKvp(String kvpColumnName) {
+        vertexColumnsNameIdGeneric = new VertexColumnsNameIdGeneric(kvpColumnName,false);
+    }
 
     @Override
     public List<String> getColumnNames() {

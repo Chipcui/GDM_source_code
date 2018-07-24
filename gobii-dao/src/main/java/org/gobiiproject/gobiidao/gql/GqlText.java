@@ -203,8 +203,12 @@ public class GqlText {
                     false));
         }
 
-        String plainCommand = commandLineBuilder.toString();
 
+        // for now the plainCommand is what will work directly from the
+        // commandline, and so it's what we want to write to our logs
+        String plainCommand = commandLineBuilder.toString();
+        returnVal = plainCommand;
+        this.writeCommandlineFile(returnVal, outputFileFqpn);
         if (this.isServer) {
             returnVal = plainCommand.replace("'", "");
 
@@ -212,11 +216,7 @@ public class GqlText {
 //            returnVal = "ssh -tt gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
 //                    + plainCommand
 //                    + "\"";
-        } else {
-            returnVal = plainCommand;
         }
-
-        this.writeCommandlineFile(returnVal, outputFileFqpn);
 
         return returnVal;
     }

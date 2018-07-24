@@ -146,11 +146,19 @@ public class VertexDTO extends DTOBase {
         VertexColumns returnVal;
 
         if (this.getGobiiVertexType().equals(GobiiVertexType.CVTERM)) {
-            returnVal = new VertexColumnsKvp();
+
+            returnVal = new VertexColumnsKvp(this.getVertexNameType().getVertexName());
+
+        } else if (this.getVertexNameType().equals(GobiiVertexType.CVGROUP)) {
+
+            returnVal = new VertexColumnsNameIdGeneric("term", true);
+
         } else if (this.getVertexNameType().getVertexName()
                 .equals(VertexNameType.VERTEX_TYPE_PRINCIPLE_INVESTIGATOR.getVertexName())) {
             returnVal = new VertexColumnsPrincipleInvestigator();
         } else {
+            // all other currently supported vertices of type GobiiVertexType.ENTITY
+            // have a "name column"
             returnVal = new VertexColumnsNameIdGeneric();
         }
 
