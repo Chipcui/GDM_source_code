@@ -14,6 +14,7 @@ import {GobiiFileItemCompoundId} from "../../model/gobii-file-item-compound-id";
 import {PayloadFilter} from "../actions/action-payload-filter";
 import {NameIdLabelType} from "../../model/name-id-label-type";
 import {FilterCountState} from "../actions/action-filter-count-state";
+import {VertexNameType} from "../../model/type-vertex-name";
 
 
 /***
@@ -992,6 +993,24 @@ export const getFqF1Vertices = createSelector(getFileItems, getFilters, getGobii
             (e.getGobiiExtractFilterType() == gobiiExtractFilterType
                 && e.getExtractorItemType() === ExtractorItemType.VERTEX)
             && e.getProcessType() !== ProcessType.DUMMY
+            && ( // For now F1 allows only for these vertices, which provide a path to samples
+                // without schema changes
+                e.getNameIdLabelType() === NameIdLabelType.SELECT_A
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PRINCIPLE_INVESTIGATOR
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PROJECT
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_EXPERIMENT
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_DATASET
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_DATASET_TYPE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_SAMPLING_DATE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_GENOTYPING_PURPOSE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_DIVISION
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_ANALYSIS
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_ANALYSIS_TYPE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PLATFORM
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_VENDOR
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_VENDOR_PROTOCOL
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PROTOCOL
+            )
     ).map(fi => fi)
         .sort((gfi_a, gfi_b) => {
             return compareVertices(gfi_a, gfi_b)
@@ -1252,9 +1271,9 @@ export const getFqF4VerticesValues = createSelector(getFileItems, getFilters, ge
                 (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
                     && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
                     && e.getEntityType() === filterCompoundUniqueId.getEntityType()
-                   && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
-                   && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
-                   && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
                 )
         ).map(fi => fi)
             .sort((gfi_a, gfi_b) => {

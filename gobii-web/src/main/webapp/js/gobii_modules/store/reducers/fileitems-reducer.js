@@ -1,4 +1,4 @@
-System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem-action", "../../model/type-extractor-item", "../../model/type-entity", "../../model/file-item-param-names", "../../model/type-process", "../../views/entity-labels", "../../model/type-extractor-filter", "../../model/type-extract-format", "../../model/cv-group", "../../model/type-extractor-sample-list", "../../model/name-id-label-type", "../actions/action-filter-count-state"], function (exports_1, context_1) {
+System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem-action", "../../model/type-extractor-item", "../../model/type-entity", "../../model/file-item-param-names", "../../model/type-process", "../../views/entity-labels", "../../model/type-extractor-filter", "../../model/type-extract-format", "../../model/cv-group", "../../model/type-extractor-sample-list", "../../model/name-id-label-type", "../actions/action-filter-count-state", "../../model/type-vertex-name"], function (exports_1, context_1) {
     "use strict";
     _this = this;
     var __moduleName = context_1 && context_1.id;
@@ -299,7 +299,7 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
         }
         return (returnVal);
     }
-    var _this, reselect_1, gobii_file_item_1, gobiiFileItemAction, type_extractor_item_1, type_entity_1, file_item_param_names_1, type_process_1, entity_labels_1, type_extractor_filter_1, type_extract_format_1, cv_group_1, type_extractor_sample_list_1, name_id_label_type_1, action_filter_count_state_1, initialState, getGobiiExtractFilterType, getFileItems, getUniqueIds, getSelectedUniqueIds, getFilters, getSelected, getAll, getSelectedFileFormat, getSelectedSampleType, getJobId, getUploadFiles, getPiContacts, getProjects, getExperiments, getDatasets, getCvTermsDataType, getCvTermsJobStatus, getMapsets, getPlatforms, getMarkerGroups, getSelectedPiContacts, getProjectsForSelectedPi, getExperimentsForSelectedProject, getDatasetsForSelectedExperiment, getDatasetEntities, getDatasetEntitiesPaged, getPiContactsFilterOptional, getProjectsFilterOptional, getExperimentsFilterOptional, getFqF1Vertices, getFqF2Vertices, getFqF3Vertices, getFqF4Vertices, getFqF1VerticesValues, getFqF2VerticesValues, getFqF3VerticesValues, getFqF4VerticesValues, getCurrentMarkerCount, getCurrentSampleCount, getFilterCountState;
+    var _this, reselect_1, gobii_file_item_1, gobiiFileItemAction, type_extractor_item_1, type_entity_1, file_item_param_names_1, type_process_1, entity_labels_1, type_extractor_filter_1, type_extract_format_1, cv_group_1, type_extractor_sample_list_1, name_id_label_type_1, action_filter_count_state_1, type_vertex_name_1, initialState, getGobiiExtractFilterType, getFileItems, getUniqueIds, getSelectedUniqueIds, getFilters, getSelected, getAll, getSelectedFileFormat, getSelectedSampleType, getJobId, getUploadFiles, getPiContacts, getProjects, getExperiments, getDatasets, getCvTermsDataType, getCvTermsJobStatus, getMapsets, getPlatforms, getMarkerGroups, getSelectedPiContacts, getProjectsForSelectedPi, getExperimentsForSelectedProject, getDatasetsForSelectedExperiment, getDatasetEntities, getDatasetEntitiesPaged, getPiContactsFilterOptional, getProjectsFilterOptional, getExperimentsFilterOptional, getFqF1Vertices, getFqF2Vertices, getFqF3Vertices, getFqF4Vertices, getFqF1VerticesValues, getFqF2VerticesValues, getFqF3VerticesValues, getFqF4VerticesValues, getCurrentMarkerCount, getCurrentSampleCount, getFilterCountState;
     return {
         setters: [
             function (reselect_1_1) {
@@ -343,6 +343,9 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
             },
             function (action_filter_count_state_1_1) {
                 action_filter_count_state_1 = action_filter_count_state_1_1;
+            },
+            function (type_vertex_name_1_1) {
+                type_vertex_name_1 = type_vertex_name_1_1;
             }
         ],
         execute: function () {
@@ -767,7 +770,24 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                 returnVal = fileItems.filter(function (e) {
                     return (e.getGobiiExtractFilterType() == gobiiExtractFilterType
                         && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.VERTEX)
-                        && e.getProcessType() !== type_process_1.ProcessType.DUMMY;
+                        && e.getProcessType() !== type_process_1.ProcessType.DUMMY
+                        && (
+                        // without schema changes
+                        e.getNameIdLabelType() === name_id_label_type_1.NameIdLabelType.SELECT_A
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_PRINCIPLE_INVESTIGATOR
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_PROJECT
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_EXPERIMENT
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_DATASET
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_DATASET_TYPE
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_SAMPLING_DATE
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_GENOTYPING_PURPOSE
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_DIVISION
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_ANALYSIS
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_ANALYSIS_TYPE
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_PLATFORM
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_VENDOR
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_VENDOR_PROTOCOL
+                            || e.getEntity().vertexNameType === type_vertex_name_1.VertexNameType.VERTEX_TYPE_PROTOCOL);
                 }).map(function (fi) { return fi; })
                     .sort(function (gfi_a, gfi_b) {
                     return compareVertices(gfi_a, gfi_b);

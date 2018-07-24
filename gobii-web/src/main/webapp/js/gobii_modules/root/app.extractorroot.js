@@ -153,7 +153,7 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
                         if (serverConfigs && (serverConfigs.length > 0)) {
                             scope$.serverConfigList = serverConfigs;
                             var serverCrop_1 = _this._dtoRequestServiceServerConfigs.getGobiiCropType();
-                            var gobiiVersion_1 = _this._dtoRequestServiceServerConfigs.getGobbiiVersion();
+                            var gobiiVersion = _this._dtoRequestServiceServerConfigs.getGobbiiVersion();
                             scope$.selectedServerConfig =
                                 scope$.serverConfigList
                                     .filter(function (c) {
@@ -161,9 +161,12 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
                                 })[0];
                             _this.handleExportTypeSelected(type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET);
                             //                    scope$.initializeSubmissionContact();
-                            _this.store.select(fromRoot.getAllFileItems).subscribe(function (all) {
-                                scope$.currentStatus = "GOBII Server " + gobiiVersion_1 + " ( " + all.length + " )";
-                            });
+                            scope$.currentStatus = "GOBII Server " + gobiiVersion;
+                            // this.store.select(fromRoot.getAllFileItems).subscribe(
+                            //     all => {
+                            //         scope$.currentStatus = "GOBII Server " + gobiiVersion + " ( "+ all.length +" )";
+                            //     }
+                            // );
                             //scope$.handleAddMessage("Connected to crop config: " + scope$.selectedServerConfig.crop);
                         }
                         else {

@@ -1,5 +1,5 @@
 ////<reference path="../../../../../../typings/index.d.ts"/>
-import {Component, OnInit, ChangeDetectorRef} from "@angular/core";
+import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
 import {DtoRequestService} from "../services/core/dto-request.service";
 import {ProcessType} from "../model/type-process";
 import {GobiiFileItem} from "../model/gobii-file-item";
@@ -15,7 +15,6 @@ import {FileName} from "../model/file_name";
 import {Contact} from "../model/contact";
 import {ContactSearchType, DtoRequestItemContact} from "../services/app/dto-request-item-contact";
 import {AuthenticationService} from "../services/core/authentication.service";
-import {NameIdLabelType} from "../model/name-id-label-type";
 import {StatusLevel} from "../model/type-status-level";
 import {Store} from "@ngrx/store";
 import * as fromRoot from '../store/reducers';
@@ -490,11 +489,12 @@ export class ExtractorRoot implements OnInit {
                     this.handleExportTypeSelected(GobiiExtractFilterType.WHOLE_DATASET);
 //                    scope$.initializeSubmissionContact();
 
-                    this.store.select(fromRoot.getAllFileItems).subscribe(
-                        all => {
-                            scope$.currentStatus = "GOBII Server " + gobiiVersion + " ( "+ all.length +" )";
-                        }
-                    );
+                    scope$.currentStatus = "GOBII Server " + gobiiVersion;
+                    // this.store.select(fromRoot.getAllFileItems).subscribe(
+                    //     all => {
+                    //         scope$.currentStatus = "GOBII Server " + gobiiVersion + " ( "+ all.length +" )";
+                    //     }
+                    // );
 
                     //scope$.handleAddMessage("Connected to crop config: " + scope$.selectedServerConfig.crop);
 
