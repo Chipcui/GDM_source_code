@@ -119,9 +119,13 @@ def main(argv):
             str(target_vertex_name) == str("germplasm_subspecies") or
             str(target_vertex_name) == str("germplasm_species") or
             str(target_vertex_name) == str("genotyping_purpose")):
+
+            if target_vertex_name not in column_names:
+                return_val = 3
+                sys.stderr.write("KVP type must have fetch column " + target_vertex_name)
             leading_trailing_chars = '"""'
             name_column = target_vertex_name
-            id_column = "";
+            id_column = ""
         elif (str(target_vertex_name) == str("analysis") or
               str(target_vertex_name) == str("experiment") or
               str(target_vertex_name) == str("dataset") or
@@ -132,9 +136,15 @@ def main(argv):
               str(target_vertex_name) == str("project") or
               str(target_vertex_name) == str("protocol") or
               str(target_vertex_name) == str("vendor_protocol")):
-                id_column = "id";
+                if "name" not in column_names:
+                    return_val = 3
+                    sys.stderr.write("ENTITY type must have fetch column 'name'")
+                id_column = "id"
                 name_column = "name"
         else:
+                if "term" not in column_names:
+                    return_val = 3
+                    sys.stderr.write("CVGROUP type must have fetch column 'term'")
                 id_column = "id"
                 name_column = "term"
                 # The left over category should be cv_subset

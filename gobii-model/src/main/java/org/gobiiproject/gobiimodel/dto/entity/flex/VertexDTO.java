@@ -149,7 +149,7 @@ public class VertexDTO extends DTOBase {
 
             returnVal = new VertexColumnsKvp(this.getVertexNameType().getVertexName());
 
-        } else if (this.getVertexNameType().equals(GobiiVertexType.CVGROUP)) {
+        } else if (this.getGobiiVertexType().equals(GobiiVertexType.CVGROUP)) {
 
             returnVal = new VertexColumnsNameIdGeneric("term", true);
 
