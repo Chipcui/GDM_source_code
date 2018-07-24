@@ -204,15 +204,16 @@ public class GqlText {
 
         String plainCommand = commandLineBuilder.toString();
 
-        plainCommand = plainCommand.replace("'", "");
-//        if( this.isServer) {
-        //plainCommand = plainCommand.replace("\"", "\\\"");
+        if (this.isServer) {
+            returnVal = plainCommand.replace("'", "");
+
+            //plainCommand = plainCommand.replace("\"", "\\\"");
 //            returnVal = "ssh -tt gadm@cbsugobii03.tc.cornell.edu -p 2222 \""
 //                    + plainCommand
 //                    + "\"";
-//        } else {
-        returnVal = plainCommand;
-//        }
+        } else {
+            returnVal = plainCommand;
+        }
 
         this.writeCommandlineFile(returnVal, outputFileFqpn);
 
