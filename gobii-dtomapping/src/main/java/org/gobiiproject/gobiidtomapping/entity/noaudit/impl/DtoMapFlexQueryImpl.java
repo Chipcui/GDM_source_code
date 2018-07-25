@@ -151,7 +151,7 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             if (sampleRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
                 if (!sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
-                    sampleCount = Files.lines(Paths.get(markerOutputFileFqpn)).count();
+                    sampleCount = Files.lines(Paths.get(sampleOutputFileFqpn)).count();
                 }
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
