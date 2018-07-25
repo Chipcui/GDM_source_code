@@ -1,15 +1,15 @@
 import {createSelector} from 'reselect';
 import * as gobiiTreeNodeAction from "../actions/treenode-action";
-import {ContainerType, GobiiTreeNode} from "../../model/GobiiTreeNode";
+import {ContainerType, GobiiTreeNode} from "../../model/gobii-tree-node";
 import {GobiiExtractFilterType} from "../../model/type-extractor-filter";
 import {GobiiFileItemCompoundId} from "../../model/gobii-file-item-compound-id";
-import {TypeTreeNodeStatus} from "../../model/type-tree-node-status";
+import {EntityType} from "../../model/type-entity";
 
 
 export interface State {
     gobiiExtractFilterType: GobiiExtractFilterType;
     gobiiTreeNodesActive: string[];
-    gobiiTreeNodes: GobiiTreeNode[] ;
+    gobiiTreeNodes: GobiiTreeNode[];
 };
 
 export const initialState: State = {
@@ -27,7 +27,8 @@ function placeNodeInTree(nodeToPlace: GobiiTreeNode, treeNodes: GobiiTreeNode[],
 
         let currentTreenode: GobiiTreeNode = treeNodes[idx];
         if (currentTreenode.getGobiiExtractFilterType() === gobiiExtractFilterType &&
-            currentTreenode.compoundIdeEquals(nodeToPlace)
+            (currentTreenode.compoundIdeEquals(nodeToPlace)
+                || currentTreenode.getChildCompoundUniqueId().compoundIdeEquals(nodeToPlace))
             && currentTreenode.getContainerType() !== ContainerType.STRUCTURE
         ) {
             if (currentTreenode.getContainerType() === ContainerType.NONE) {
@@ -77,8 +78,19 @@ function findTreeNodeByCompoundId(treeNodes: GobiiTreeNode[],
     for (let idx: number = 0; (idx < treeNodes.length) && !returnVal; idx++) {
 
         let currentTreeNode: GobiiTreeNode = treeNodes[idx];
-        if (currentTreeNode.getGobiiExtractFilterType() === gobiiExtractFilterType
-            && gobiiFileItemCompoundId.compoundIdeEquals(currentTreeNode)) {
+
+        // in the condition, we are using the sequence number to distinguish the flex query
+        // parent filter nodes from all other nodes. This is not a great way to express these
+        // semantics. Ideally, there should be an explicit category property to indicate that the
+        // node is this type of node. But for now this works reasonably well.
+        if ((
+                currentTreeNode.getSequenceNum() === 0
+                && currentTreeNode.getGobiiExtractFilterType() === gobiiExtractFilterType
+                && gobiiFileItemCompoundId.compoundIdeEquals(currentTreeNode))
+            || (
+                currentTreeNode.getSequenceNum() > 0 &&
+                currentTreeNode.getSequenceNum() === gobiiFileItemCompoundId.getSequenceNum()
+            )) {
             returnVal = currentTreeNode;
         } else {
             returnVal = findTreeNodeByCompoundId(currentTreeNode.getChildren(), gobiiExtractFilterType, gobiiFileItemCompoundId);
@@ -151,7 +163,7 @@ export function gobiiTreeNodesReducer(state: State = initialState, action: gobii
                 gobiiFileItemUniqueId);
 
             // not all file items are in the tree
-            if( gobiiTreeNodeToDeActivate ) {
+            if (gobiiTreeNodeToDeActivate) {
 
                 let containerType: ContainerType = gobiiTreeNodeToDeActivate.parent ?
                     gobiiTreeNodeToDeActivate.parent.getContainerType() :
@@ -201,22 +213,47 @@ export function gobiiTreeNodesReducer(state: State = initialState, action: gobii
         case gobiiTreeNodeAction.SET_NODE_STATUS: {
 
             const gobiiExtractFilterType: GobiiExtractFilterType = action.payload.gobiiExtractFilterType;
-            const gobiiFileItemCompoundId: GobiiFileItemCompoundId = action.payload.gobiiFileItemCompoundId;
-            const icon: string = action.payload.icon;
-
+            const gobiiFileItemCompoundId: GobiiFileItemCompoundId = action.payload.targetCompoundId;
             const newTreeNodesState = state.gobiiTreeNodes.slice();
-
             let treeNodeToMutate: GobiiTreeNode = findTreeNodeByCompoundId(newTreeNodesState,
                 gobiiExtractFilterType,
                 gobiiFileItemCompoundId);
 
-            treeNodeToMutate.icon = icon;
+            if (treeNodeToMutate) {
 
-            returnVal = {
-                gobiiExtractFilterType: state.gobiiExtractFilterType,
-                gobiiTreeNodesActive: state.gobiiTreeNodesActive,
-                gobiiTreeNodes: newTreeNodesState
-            };
+                const icon: string = action.payload.icons.icon;
+                const expandedIcon: string = action.payload.icons.expandedIcon;
+                const collapsedIcon: string = action.payload.icons.collapsedIcon;
+                const label: string = action.payload.label;
+                const entityType: EntityType = action.payload.entityType;
+
+
+                treeNodeToMutate.icon = icon ? icon : treeNodeToMutate.icon;
+                treeNodeToMutate.expandedIcon = expandedIcon ? expandedIcon : treeNodeToMutate.expandedIcon;
+                treeNodeToMutate.collapsedIcon = collapsedIcon ? collapsedIcon : treeNodeToMutate.collapsedIcon;
+                treeNodeToMutate.label = label ? label : treeNodeToMutate.label;
+                treeNodeToMutate.genericLabel = treeNodeToMutate.label;
+                //treeNodeToMutate.setEntityType(entityType ? entityType : treeNodeToMutate.getEntityType());
+
+                if (action.payload.childCompoundId) {
+                    treeNodeToMutate.setChildCompoundUniqueId(action.payload.childCompoundId)
+                }
+
+                returnVal = {
+                    gobiiExtractFilterType: state.gobiiExtractFilterType,
+                    gobiiTreeNodesActive: state.gobiiTreeNodesActive,
+                    gobiiTreeNodes: newTreeNodesState
+                };
+
+            } else {
+
+                returnVal = {
+                    gobiiExtractFilterType: state.gobiiExtractFilterType,
+                    gobiiTreeNodesActive: state.gobiiTreeNodesActive,
+                    gobiiTreeNodes: state.gobiiTreeNodes
+                };
+
+            }
 
             break;
 
@@ -269,36 +306,8 @@ export const getSelected = createSelector(getGobiiTreeNodes, getIdsOfActivated, 
 
         return returnVal;
 
-        // this needs to be done in a more filterish way. For now it works
-        // let returnVal: GobiiTreeNode[] =
-        //     gobiiTreeNodes
-        //         .filter(gtn => gtn.getGobiiExtractFilterType() === getExtractFilterType)
-        //         .filter(function find(gtn) {
-        //             let returnVal: boolean = selectedUniqueIds.filter(id => id === gtn.getId()).length > 0;
-        //             if (!returnVal) {
-        //                 returnVal = ( gtn.getContainerType() != ContainerType.STRUCTURE )
-        //                     && (gtn.getChildren().filter(find).length > 0);
-        //             }
-        //
-        //             return returnVal;
-        //         });
-        //
-        // return returnVal;
     }
 );
-
-
-//    let returnVal: GobiiTreeNode[] = [];
-// gobiiTreeNodes
-//     .filter(gtn => gtn.getGobiiExtractFilterType() === getExtractFilterType )
-//     .forEach(n => {
-//         selectedUniqueIds.forEach(i => {
-//             if (n.getId() === i)
-//                 returnVal.push(n);
-//         })
-//
-//     }
-// );
 
 
 export const getAll = createSelector(getGobiiTreeNodes, getGobiiTreeItemIds, (treeItems, ids) => {

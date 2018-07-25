@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@ngrx/store", "../store/actions/fileitem-action", "../store/actions/history-action", "../services/core/file-item-service"], function (exports_1, context_1) {
+System.register(["@angular/core", "@ngrx/store", "../store/actions/fileitem-action", "../store/actions/history-action", "../services/core/nameid-file-item-service", "../services/core/filter-service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@ngrx/store", "../store/actions/fileitem-acti
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, store_1, fileAction, historyAction, file_item_service_1, NameIdListBoxComponent;
+    var core_1, store_1, fileAction, historyAction, nameid_file_item_service_1, filter_service_1, NameIdListBoxComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -25,20 +25,24 @@ System.register(["@angular/core", "@ngrx/store", "../store/actions/fileitem-acti
             function (historyAction_1) {
                 historyAction = historyAction_1;
             },
-            function (file_item_service_1_1) {
-                file_item_service_1 = file_item_service_1_1;
+            function (nameid_file_item_service_1_1) {
+                nameid_file_item_service_1 = nameid_file_item_service_1_1;
+            },
+            function (filter_service_1_1) {
+                filter_service_1 = filter_service_1_1;
             }
         ],
         execute: function () {
             NameIdListBoxComponent = (function () {
-                function NameIdListBoxComponent(store, fileItemService) {
+                function NameIdListBoxComponent(store, fileItemService, filterService) {
                     this.store = store;
                     this.fileItemService = fileItemService;
+                    this.filterService = filterService;
                     this.previousSelectedItemId = null;
                 } // ctor
                 NameIdListBoxComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this.fileItems$ = this.fileItemService.getForFilter(this.filterParamName);
+                    this.fileItems$ = this.filterService.getForFilter(this.filterParamName);
                     this
                         .fileItems$
                         .subscribe(function (items) {
@@ -71,7 +75,8 @@ System.register(["@angular/core", "@ngrx/store", "../store/actions/fileitem-acti
                         template: "<select class=\"nameIdListBox\" (change)=\"handleFileItemSelected($event)\" >\n        <option *ngFor=\"let fileItem of fileItems$ | async\"\n                [value]=\"fileItem.getFileItemUniqueId()\"\n                [selected]=\"fileItem.getSelected()\"\n                title=\"{{fileItem.getItemName()}}\">\n            {{fileItem.getItemName().length < 34 ? fileItem.getItemName() : fileItem.getItemName().substr(0,30).concat(\" . . .\")}}\n            \n        </option>\n    </select>\n    " // end template
                     }),
                     __metadata("design:paramtypes", [store_1.Store,
-                        file_item_service_1.FileItemService])
+                        nameid_file_item_service_1.NameIdFileItemService,
+                        filter_service_1.FilterService])
                 ], NameIdListBoxComponent);
                 return NameIdListBoxComponent;
             }());

@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../../model/http-values", "@angular/http", "./authentication.service", "../../model/payload/payload-envelope", "rxjs/Observable", "rxjs/add/operator/map", "../../model/payload/header", "../../model/payload/status", "../../model/dto-header-status-message"], function (exports_1, context_1) {
+System.register(["@angular/core", "../../model/http-values", "@angular/http", "./authentication.service", "../../model/payload/payload-envelope", "rxjs/Observable", "rxjs/add/operator/map", "../../model/payload/header", "../../model/payload/status", "../../model/dto-header-status-message", "../../model/payload/payload-reader"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../../model/http-values", "@angular/http", ".
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, http_values_1, http_1, authentication_service_1, payload_envelope_1, Observable_1, header_1, status_1, dto_header_status_message_1, DtoRequestService;
+    var core_1, http_values_1, http_1, authentication_service_1, payload_envelope_1, Observable_1, header_1, status_1, dto_header_status_message_1, payload_reader_1, DtoRequestService;
     return {
         setters: [
             function (core_1_1) {
@@ -41,6 +41,9 @@ System.register(["@angular/core", "../../model/http-values", "@angular/http", ".
             },
             function (dto_header_status_message_1_1) {
                 dto_header_status_message_1 = dto_header_status_message_1_1;
+            },
+            function (payload_reader_1_1) {
+                payload_reader_1 = payload_reader_1_1;
             }
         ],
         execute: function () {
@@ -70,19 +73,21 @@ System.register(["@angular/core", "../../model/http-values", "@angular/http", ".
                                 .post(dtoRequestItem.getUrl(), dtoRequestItem.getRequestBody(), { headers: headers })
                                 .map(function (response) { return response.json(); })
                                 .subscribe(function (json) {
-                                var payloadResponse = payload_envelope_1.PayloadEnvelope.fromJSON(json);
-                                if (payloadResponse.header.status.succeeded) {
-                                    var result = dtoRequestItem.resultFromJson(json);
-                                    observer.next(result);
-                                    observer.complete();
+                                var payloadReader = new payload_reader_1.PayloadReader(json, dtoRequestItem, null);
+                                observer.next(payloadReader);
+                                observer.complete();
+                            }, function (raw) {
+                                var contentType = raw.headers.get("content-type");
+                                var payloadReader;
+                                if (contentType.toLowerCase().indexOf("json") > -1) {
+                                    var jsonFromBody = JSON.parse(raw._body);
+                                    payloadReader = new payload_reader_1.PayloadReader(jsonFromBody, dtoRequestItem, null);
                                 }
                                 else {
-                                    observer.error(payloadResponse.header);
+                                    payloadReader = new payload_reader_1.PayloadReader(null, dtoRequestItem, raw._body);
                                 }
-                            }, function (json) {
-                                var obj = JSON.parse(json._body);
-                                var payloadResponse = payload_envelope_1.PayloadEnvelope.fromJSON(obj);
-                                observer.error(payloadResponse.header);
+                                observer.next(payloadReader);
+                                observer.complete();
                             }); // subscribe http
                         }
                         else {

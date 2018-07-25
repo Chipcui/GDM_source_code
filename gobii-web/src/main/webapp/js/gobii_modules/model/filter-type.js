@@ -12,6 +12,8 @@ System.register([], function (exports_1, context_1) {
                 FilterType[FilterType["NAMES_BY_NAME_LIST"] = 3] = "NAMES_BY_NAME_LIST";
                 FilterType[FilterType["ENTITY_LIST"] = 4] = "ENTITY_LIST";
                 FilterType[FilterType["ENTITY_BY_ID"] = 5] = "ENTITY_BY_ID";
+                FilterType[FilterType["FLEX_QUERY_VERTICES"] = 6] = "FLEX_QUERY_VERTICES";
+                FilterType[FilterType["FLEX_QUERY_VALUES"] = 7] = "FLEX_QUERY_VALUES";
             })(FilterType || (FilterType = {}));
             exports_1("FilterType", FilterType);
         }

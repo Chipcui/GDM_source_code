@@ -73,24 +73,24 @@ public class JobStatusReporter {
     public String getExtractorInstructionFileFqpn(String cropType) throws Exception {
 
 
-        String returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS)
+        String returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS)
                 + this.jobId
                 + this.fileExtension;
 
         if (!new File(returnVal).exists()) {
 
-            returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.EXTRACTOR_INPROGRESS)
+            returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.EXTRACTOR_INPROGRESS)
                     + this.jobId
                     + this.fileExtension;
 
             if (!new File(returnVal).exists()) {
 
-                returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS)
+                returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS)
                         + this.jobId
                         + this.fileExtension;
 
                 if (!new File(returnVal).exists()) {
-                    returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.EXTRACTOR_DONE)
+                    returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.EXTRACTOR_DONE)
                             + this.jobId
                             + this.fileExtension;
                 }
@@ -109,23 +109,23 @@ public class JobStatusReporter {
     public String getLoaderInstructionFileFqpn(String cropType) throws Exception {
 
 
-        String returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.LOADER_INSTRUCTIONS)
+        String returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.LOADER_INSTRUCTIONS)
                 + this.jobId
                 + this.fileExtension;
 
         if (!new File(returnVal).exists()) {
 
-            returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.LOADER_INPROGRESS_FILES)
+            returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.LOADER_INPROGRESS_FILES)
                     + this.jobId
                     + this.fileExtension;
 
             if (!new File(returnVal).exists()) {
-                returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.LOADER_INTERMEDIATE_FILES)
+                returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.LOADER_INTERMEDIATE_FILES)
                         + this.jobId
                         + this.fileExtension;
 
                 if (!new File(returnVal).exists()) {
-                    returnVal = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.LOADER_DONE)
+                    returnVal = configSettings.getFullyQualifiedFilePath(cropType, GobiiFileProcessDir.LOADER_DONE)
                             + this.jobId
                             + this.fileExtension;
 

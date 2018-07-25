@@ -1,15 +1,45 @@
 import {TreeNode} from "primeng/components/common/api";
 import {EntitySubType, EntityType} from "./type-entity";
-import {CvFilterType} from "./cv-filter-type";
+import {CvGroup} from "./cv-group";
 import {Guid} from "./guid";
 import {GobiiExtractFilterType} from "./type-extractor-filter";
 import {ExtractorItemType} from "./type-extractor-item";
 import {GobiiFileItemCompoundId} from "./gobii-file-item-compound-id";
+import {GobiiFileItem} from "./gobii-file-item";
 
 
 export enum ContainerType {NONE, STRUCTURE, DATA}
 
 export class GobiiTreeNode extends GobiiFileItemCompoundId implements TreeNode {
+
+
+    private id: string;
+
+    //NG properties
+    public label?: string;
+    public data?: any;
+    public icon?: any;
+    public expandedIcon?: any;
+    public collapsedIcon?: any;
+    public children?: GobiiTreeNode[] = [];
+    public leaf?: boolean;
+    public expanded?: boolean;
+    public type?: string;
+    public parent?: GobiiTreeNode;
+    public partialSelected?: boolean;
+    public styleClass?: string;
+    public draggable?: boolean;
+    public droppable?: boolean;
+    public selectable?: boolean;
+
+    //GOBII UI properties
+    private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
+    public genericLabel: string;
+    public fileItemId: string;
+    public required: boolean = false;
+    public active: boolean = false;
+    private containerType: ContainerType = ContainerType.NONE;
+    private childCompoundUniqueId:GobiiFileItemCompoundId = null;
 
     constructor(parent: GobiiTreeNode,
                 fileItemId: string,
@@ -45,6 +75,18 @@ export class GobiiTreeNode extends GobiiFileItemCompoundId implements TreeNode {
     } //build
 
 
+    public static fromFileItem(gobiiFileItem:GobiiFileItem) {
+
+        return GobiiTreeNode.build(gobiiFileItem.getGobiiExtractFilterType(),
+            gobiiFileItem.getExtractorItemType())
+            .setFileItemId(gobiiFileItem.getFileItemUniqueId())
+            .setEntityType(gobiiFileItem.getEntityType())
+            .setEntitySubType(gobiiFileItem.getEntitySubType())
+            .setCvGroup(gobiiFileItem.getCvGroup())
+            .setCvTerm(gobiiFileItem.getCvTerm())
+            .setSequenceNum(gobiiFileItem.getSequenceNum());
+    }
+
     getId(): string {
         return this.id;
     }
@@ -77,12 +119,21 @@ export class GobiiTreeNode extends GobiiFileItemCompoundId implements TreeNode {
         return this;
     }
 
-    getCvFilterType(): CvFilterType {
-        return super.getCvFilterType();
+    getCvGroup(): CvGroup {
+        return super.getCvGroup();
     }
 
-    setCvFilterType(value: CvFilterType): GobiiTreeNode {
-        super.setCvFilterType(value);
+    setCvGroup(value: CvGroup): GobiiTreeNode {
+        super.setCvGroup(value);
+        return this;
+    }
+
+    getCvTerm(): string {
+        return super.getCvTerm();
+    }
+
+    setCvTerm(value: string): GobiiTreeNode {
+        super.setCvTerm(value);
         return this;
     }
 
@@ -93,6 +144,16 @@ export class GobiiTreeNode extends GobiiFileItemCompoundId implements TreeNode {
     setCvFilterValue(value: string) {
 
         super.setCvFilterValue(value);
+        return this;
+    }
+
+
+    getSequenceNum(): number {
+        return super.getSequenceNum();
+    }
+
+    setSequenceNum(value:number) {
+        super.setSequenceNum(value);
         return this;
     }
 
@@ -107,33 +168,6 @@ export class GobiiTreeNode extends GobiiFileItemCompoundId implements TreeNode {
 
 
 
-    private id: string;
-
-
-//NG properties
-    public label?: string;
-    public data?: any;
-    public icon?: any;
-    public expandedIcon?: any;
-    public collapsedIcon?: any;
-    public children?: GobiiTreeNode[] = [];
-    public leaf?: boolean;
-    public expanded?: boolean;
-    public type?: string;
-    public parent?: GobiiTreeNode;
-    public partialSelected?: boolean;
-    public styleClass?: string;
-    public draggable?: boolean;
-    public droppable?: boolean;
-    public selectable?: boolean;
-
-//GOBII UI properties
-    private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
-    public genericLabel: string;
-    public fileItemId: string;
-    public required: boolean = false;
-    public active: boolean = false;
-    private containerType: ContainerType = ContainerType.NONE;
 
 
     setGobiiExtractFilterType(gobiiExtractFilterType: GobiiExtractFilterType): GobiiTreeNode {
@@ -289,5 +323,17 @@ export class GobiiTreeNode extends GobiiFileItemCompoundId implements TreeNode {
         return this;
     }
 
+    getChildCompoundUniqueId():GobiiFileItemCompoundId {
 
+        if(!this.childCompoundUniqueId) {
+            this.childCompoundUniqueId = GobiiFileItemCompoundId.fromGobiiFileItemCompoundId(this);
+        }
+
+        return this.childCompoundUniqueId;
+    }
+
+    setChildCompoundUniqueId(value:GobiiFileItemCompoundId) {
+        this.childCompoundUniqueId = value;
+        return this;
+    }
 }

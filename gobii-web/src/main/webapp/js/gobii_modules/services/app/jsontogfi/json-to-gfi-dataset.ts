@@ -61,22 +61,22 @@ export class JsonToGfiDataset implements JsonToGfi {
 
         let piContactRelation: GobiiFileItemEntityRelation = GobiiFileItemEntityRelation
             .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(FilterParamNames.CONTACT_PI_FILTER_OPTIONAL,
-                GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
             .setRelatedEntityId(dataset.piContactId != null ? dataset.piContactId.toString() : null);
 
         let projectRelation: GobiiFileItemEntityRelation = GobiiFileItemEntityRelation
             .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(FilterParamNames.PROJECT_FILTER_OPTIONAL,
-                GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
             .setRelatedEntityId(dataset.projectId != null ? dataset.projectId.toString() : null);
 
         let experimentRelation: GobiiFileItemEntityRelation = GobiiFileItemEntityRelation
             .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(FilterParamNames.EXPERIMENT_FILTER_OPTIONAL,
-                GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
             .setRelatedEntityId(dataset.experimentId != null ? dataset.experimentId.toString() : null);
 
         let statusRelation: GobiiFileItemEntityRelation = GobiiFileItemEntityRelation
             .fromGobiiFileItemCompoundId(this._filterParamsColl.getFilter(FilterParamNames.CV_JOB_STATUS,
-                GobiiExtractFilterType.WHOLE_DATASET).getTargetEtityUniqueId())
+                GobiiExtractFilterType.WHOLE_DATASET).getTargetEntityUniqueId())
             .setRelatedEntityId(dataset.jobStatusId != null ? dataset.jobStatusId.toString() : null);
 
         // note that we are the parent id to the job status ID. This is because

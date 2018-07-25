@@ -4,6 +4,8 @@ export enum FilterType {
     NAMES_BY_TYPE_NAME,
     NAMES_BY_NAME_LIST,
     ENTITY_LIST,
-    ENTITY_BY_ID
+    ENTITY_BY_ID,
+    FLEX_QUERY_VERTICES,
+    FLEX_QUERY_VALUES
 }
 

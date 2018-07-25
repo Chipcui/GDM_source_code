@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extractor-filter", "../model/type-extractor-sample-list", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "../store/reducers", "@ngrx/store", "../services/core/file-item-service"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/type-extractor-filter", "../model/type-extractor-sample-list", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "../store/reducers", "@ngrx/store", "../services/core/nameid-file-item-service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../model/ty
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extractor_filter_1, type_extractor_sample_list_1, gobii_file_item_1, type_process_1, type_extractor_item_1, fromRoot, store_1, file_item_service_1, SampleListTypeComponent;
+    var core_1, type_extractor_filter_1, type_extractor_sample_list_1, gobii_file_item_1, type_process_1, type_extractor_item_1, fromRoot, store_1, nameid_file_item_service_1, SampleListTypeComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -37,8 +37,8 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../model/ty
             function (store_1_1) {
                 store_1 = store_1_1;
             },
-            function (file_item_service_1_1) {
-                file_item_service_1 = file_item_service_1_1;
+            function (nameid_file_item_service_1_1) {
+                nameid_file_item_service_1 = nameid_file_item_service_1_1;
             }
         ],
         execute: function () {
@@ -74,7 +74,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../model/ty
                         template: "\n        <form>\n            <label class=\"the-legend\">List Item Type:&nbsp;</label>\n            <BR>\n            <div class=\"ui-g\" style=\"width:250px;margin-bottom:5px\">\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleSampleTypeSelected($event)\"\n                            [ngModel]=\"(sampleListType$ | async).getItemId()\"\n                            name=\"listType\"\n                            value=\"GERMPLASM_NAME\"\n                            label=\"Germplasm Name\">\n                    </p-radioButton>\n                </div>\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleSampleTypeSelected($event)\"\n                            [ngModel]=\"(sampleListType$ | async).getItemId()\"\n                            name=\"listType\"\n                            value=\"EXTERNAL_CODE\"\n                            label=\"External Code\"></p-radioButton>\n                </div>\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleSampleTypeSelected($event)\"\n                            [ngModel]=\"(sampleListType$ | async).getItemId()\"\n                            name=\"listType\"\n                            value=\"DNA_SAMPLE\"\n                            label=\"DNA Sample\"></p-radioButton>\n                </div>\n            </div>\n        </form>" // end template
                     }),
                     __metadata("design:paramtypes", [store_1.Store,
-                        file_item_service_1.FileItemService])
+                        nameid_file_item_service_1.NameIdFileItemService])
                 ], SampleListTypeComponent);
                 return SampleListTypeComponent;
             }());

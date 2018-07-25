@@ -9,7 +9,7 @@ import {Effect, Actions} from '@ngrx/effects';
 import {of} from 'rxjs/observable/of';
 import {TreeStructureService} from '../../services/core/tree-structure-service';
 import * as treeNodeActions from '../actions/treenode-action'
-import {GobiiTreeNode} from "../../model/GobiiTreeNode";
+import {GobiiTreeNode} from "../../model/gobii-tree-node";
 
 @Injectable()
 export class TreeEffects {
@@ -43,24 +43,3 @@ export class TreeEffects {
                 private router: Router) {
     }
 }
-
-/*
-* export class TreeEffects {
-    @Effect()
-    initTreeNodes$ = this.actions$
-        .ofType(treeNodeActions.INIT)
-        .map((action: Auth.Login) => action.payload)
-        .exhaustMap(auth =>
-            this.authService
-                .login(auth)
-                .map(user => new Auth.LoginSuccess({user}))
-                .catch(error => of(new Auth.LoginFailure(error)))
-        );
-    constructor(
-        private actions$: Actions,
-        private treeStructureService: TreeStructureService,
-        private router: Router
-    ) {}
-}
-
-* */

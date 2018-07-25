@@ -8,15 +8,13 @@ import {ProcessType} from "../../model/type-process";
 import {Labels} from "../../views/entity-labels";
 import {GobiiExtractFilterType} from "../../model/type-extractor-filter";
 import {GobiiExtractFormat} from "../../model/type-extract-format";
-import {CvFilterType} from "../../model/cv-filter-type";
+import {CvGroup} from "../../model/cv-group";
 import {GobiiSampleListType} from "../../model/type-extractor-sample-list";
-import {DataSet} from "../../model/dataset";
 import {GobiiFileItemCompoundId} from "../../model/gobii-file-item-compound-id";
-import {FilterParams} from "../../model/filter-params";
-import {Pagination} from "../../model/payload/pagination";
 import {PayloadFilter} from "../actions/action-payload-filter";
-import {map} from "rxjs/operator/map";
-import {REMOVE_ALL_FROM_EXTRACT} from "../actions/fileitem-action";
+import {NameIdLabelType} from "../../model/name-id-label-type";
+import {FilterCountState} from "../actions/action-filter-count-state";
+import {VertexNameType} from "../../model/type-vertex-name";
 
 
 /***
@@ -82,11 +80,11 @@ function removeFromExtractItems(state: State, gobiiFileItem: GobiiFileItem): Sta
     if (gobiiFileItem.getIsEphemeral()) {
         newFileItemState = newFileItemState.filter(fi => !fi.getIsEphemeral());
     } else {
-        let fileItemInNewState:GobiiFileItem = newFileItemState
+        let fileItemInNewState: GobiiFileItem = newFileItemState
             .find(fi => fi.getFileItemUniqueId() === gobiiFileItem.getFileItemUniqueId());
 
-        if(fileItemInNewState ) {
-            fileItemInNewState.setSelected( false );
+        if (fileItemInNewState) {
+            fileItemInNewState.setSelected(false);
         }
     }
 
@@ -231,7 +229,7 @@ export function fileItemsReducer(state: State = initialState, action: gobiiFileI
                     .filter(gfi => {
                         return (gfi.getGobiiExtractFilterType() === state.gobiiExtractFilterType
                             && gfi.getExtractorItemType() === ExtractorItemType.ENTITY
-                            || gfi.getExtractorItemType() === ExtractorItemType.LABEL)
+                            || gfi.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
                             && gfi.getProcessType() !== ProcessType.DUMMY
                             && gfi.getEntityType() === gobiiFileItemCompoundId.getEntityType()
                     });
@@ -398,11 +396,15 @@ export function fileItemsReducer(state: State = initialState, action: gobiiFileI
             newFIleItemState = newFIleItemState
                 .filter(fi => !fi.getIsEphemeral());
 
+            // remove filters
+            let newFilterState = Object.assign({}, state.filters);
+            newFilterState = new Map<string, PayloadFilter>();
+
             returnVal = {
                 gobiiExtractFilterType: state.gobiiExtractFilterType,
                 allFileItems: newFIleItemState,
                 uniqueIdsOfExtractFileItems: newSelectedItems,
-                filters: state.filters
+                filters: newFilterState
             };
 
             break;
@@ -461,6 +463,9 @@ export const getSelected = createSelector(getFileItems, getSelectedUniqueIds, (f
             selectedUniqueIds
                 .find(uniqueId => fileItem.getFileItemUniqueId() === uniqueId)
         );
+
+
+    let foo: string = "foo";
 
     return returnVal;
 });
@@ -560,7 +565,7 @@ export const getPiContacts = createSelector(getFileItems, getUniqueIds, (fileIte
 
     let returnVal: GobiiFileItem[] = fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.CONTACT
         && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
         .map(fi => fi);
@@ -575,7 +580,7 @@ export const getProjects = createSelector(getFileItems, getUniqueIds, (fileItems
 
     returnVal = fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.PROJECT
         && e.getProcessType() !== ProcessType.DUMMY)
         .map(fi => fi);
@@ -596,7 +601,7 @@ export const getExperiments = createSelector(getFileItems, getUniqueIds, (fileIt
 
     return fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.EXPERIMENT)
         .map(fi => fi);
 });
@@ -606,7 +611,7 @@ export const getDatasets = createSelector(getFileItems, getUniqueIds, (fileItems
 
     return fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.DATASET)
         .map(fi => fi);
 });
@@ -616,9 +621,9 @@ export const getCvTermsDataType = createSelector(getFileItems, getUniqueIds, (fi
 
     let returnVal: GobiiFileItem[] = fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.CV
-        && e.getCvFilterType() === CvFilterType.DATASET_TYPE)
+        && e.getCvGroup() === CvGroup.DATASET_TYPE)
         .map(fi => fi);
 
     return returnVal;
@@ -629,9 +634,9 @@ export const getCvTermsJobStatus = createSelector(getFileItems, getUniqueIds, (f
 
     let returnVal: GobiiFileItem[] = fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.CV
-        && e.getCvFilterType() === CvFilterType.JOB_STATUS)
+        && e.getCvGroup() === CvGroup.JOBSTATUS)
         .map(fi => fi);
 
     return returnVal;
@@ -642,7 +647,7 @@ export const getMapsets = createSelector(getFileItems, getUniqueIds, (fileItems,
 
     return fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.MAPSET)
         .map(fi => fi);
 });
@@ -652,7 +657,7 @@ export const getPlatforms = createSelector(getFileItems, getUniqueIds, (fileItem
 
     return fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.PLATFORM)
         .map(fi => fi);
 });
@@ -662,7 +667,7 @@ export const getMarkerGroups = createSelector(getFileItems, getUniqueIds, (fileI
 
     return fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.MARKER_GROUP)
         .map(fi => fi);
 });
@@ -696,7 +701,7 @@ export const getProjectsForSelectedPi = createSelector(getFileItems, getFilters,
         e =>
             (e.getGobiiExtractFilterType() === gobiiExtractFilterType
                 && e.getExtractorItemType() === ExtractorItemType.ENTITY
-                || e.getExtractorItemType() === ExtractorItemType.LABEL)
+                || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
             && e.getProcessType() !== ProcessType.DUMMY
             && e.getEntityType() === EntityType.PROJECT
             && ((!contactId || (+contactId < 0)) // state is not filtered -- we don't care, or . . .
@@ -870,7 +875,7 @@ export const getPiContactsFilterOptional = createSelector(getFileItems, getGobii
     return fileItems.filter(e =>
         (e.getGobiiExtractFilterType() === gobiiExtractFilterType
             && e.getExtractorItemType() === ExtractorItemType.ENTITY
-            || e.getExtractorItemType() === ExtractorItemType.LABEL)
+            || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.CONTACT
         && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
         .map(fi => fi);
@@ -891,7 +896,7 @@ export const getProjectsFilterOptional = createSelector(getFileItems, getFilters
         e =>
             (e.getGobiiExtractFilterType() === gobiiExtractFilterType
                 && e.getExtractorItemType() === ExtractorItemType.ENTITY
-                || e.getExtractorItemType() === ExtractorItemType.LABEL)
+                || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
             && e.getProcessType() !== ProcessType.DUMMY
             && e.getEntityType() === EntityType.PROJECT
             && ((!contactId || (+contactId < 0)) // state is not filtered -- we don't care, or . . .
@@ -913,40 +918,6 @@ export const getProjectsFilterOptional = createSelector(getFileItems, getFilters
     return returnVal;
 
 });
-
-// export const getExperimentsFilterOptional = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
-//
-//     let returnVal: GobiiFileItem[] = [];
-//
-//     let projectId: string = null;
-//     if (filters[FilterParamNames.EXPERIMENT_FILTER_OPTIONAL]) {
-//         projectId = filters[FilterParamNames.EXPERIMENT_FILTER_OPTIONAL].relatedEntityFilterValue;
-//     }
-//
-//     returnVal = fileItems.filter(
-//         e =>
-//             (e.getGobiiExtractFilterType() == gobiiExtractFilterType
-//                 && e.getExtractorItemType() === ExtractorItemType.ENTITY
-//                 || e.getExtractorItemType() === ExtractorItemType.LABEL)
-//             && e.getProcessType() !== ProcessType.DUMMY
-//             && e.getEntityType() === EntityType.EXPERIMENT
-//             && ((!projectId || (+projectId < 0)) // state is not filtered -- we don't care, or . . .
-//             || +e.getItemId() === 0 // Inlcude label "All Projects"
-//             || (e.getRelatedEntityFilterValue(filters[FilterParamNames.PROJECT_FILTER_OPTIONAL].gobiiCompoundUniqueId) // the item has an fk value
-//                 && e.getRelatedEntityFilterValue(filters[FilterParamNames.PROJECT_FILTER_OPTIONAL].gobiiCompoundUniqueId) === projectId)) // and it matches
-//     ).map(fi => fi);
-//
-//
-//     if (returnVal.length <= 0) {
-//         returnVal = fileItems.filter(e =>
-//             (e.getExtractorItemType() === ExtractorItemType.ENTITY
-//                 && e.getEntityType() === EntityType.EXPERIMENT
-//                 && e.getProcessType() === ProcessType.DUMMY))
-//             .map(fi => fi);
-//     }
-//
-//     return returnVal;
-// });
 
 
 export const getExperimentsFilterOptional = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
@@ -980,7 +951,7 @@ export const getExperimentsFilterOptional = createSelector(getFileItems, getFilt
         e =>
             (e.getGobiiExtractFilterType() == gobiiExtractFilterType
                 && e.getExtractorItemType() === ExtractorItemType.ENTITY
-                || e.getExtractorItemType() === ExtractorItemType.LABEL)
+                || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
             && e.getProcessType() !== ProcessType.DUMMY
             && e.getEntityType() === EntityType.EXPERIMENT
             && ((!projectId && !contactId) // state is not filtered -- we don't care, or . . .
@@ -1001,3 +972,394 @@ export const getExperimentsFilterOptional = createSelector(getFileItems, getFilt
     return returnVal;
 });
 
+function compareVertices(gfi_a: GobiiFileItem, gfi_b: GobiiFileItem): number {
+
+    let returnVal: number;
+    if (gfi_a.getNameIdLabelType() != NameIdLabelType.UNKNOWN) {
+        returnVal = -1; // force label item to sort to the top of the list
+    } else {
+        returnVal = gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+    }
+    return (returnVal);
+
+}
+
+export const getFqF1Vertices = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    returnVal = fileItems.filter(
+        e =>
+            (e.getGobiiExtractFilterType() == gobiiExtractFilterType
+                && e.getExtractorItemType() === ExtractorItemType.VERTEX)
+            && e.getProcessType() !== ProcessType.DUMMY
+            && ( // For now F1 allows only for these vertices, which provide a path to samples
+                // without schema changes
+                e.getNameIdLabelType() === NameIdLabelType.SELECT_A
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PRINCIPLE_INVESTIGATOR
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PROJECT
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_EXPERIMENT
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_DATASET
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_DATASET_TYPE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_SAMPLING_DATE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_GENOTYPING_PURPOSE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_DIVISION
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_ANALYSIS
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_ANALYSIS_TYPE
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PLATFORM
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_VENDOR
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_VENDOR_PROTOCOL
+                || e.getEntity().vertexNameType === VertexNameType.VERTEX_TYPE_PROTOCOL
+            )
+    ).map(fi => fi)
+        .sort((gfi_a, gfi_b) => {
+            return compareVertices(gfi_a, gfi_b)
+        });
+
+    return returnVal;
+});
+
+
+export const getFqF2Vertices = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    let f1VertexId: string = null;
+    if (filters[FilterParamNames.FQ_F1_VERTICES]) {
+        f1VertexId = filters[FilterParamNames.FQ_F1_VERTICES].targetEntityFilterValue;
+    }
+
+
+    if (f1VertexId) {
+
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == gobiiExtractFilterType
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX
+                    && (e.getEntity().vertexId != f1VertexId
+                        || e.getNameIdLabelType() === NameIdLabelType.SELECT_A))
+                && e.getProcessType() !== ProcessType.DUMMY
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
+
+    } else {
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == gobiiExtractFilterType
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX
+                    && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
+                && e.getProcessType() !== ProcessType.DUMMY
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
+
+    }
+
+    return returnVal;
+});
+
+
+export const getFqF3Vertices = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    let f2VertexId: string = null;
+    if (filters[FilterParamNames.FQ_F2_VERTICES]) {
+        f2VertexId = filters[FilterParamNames.FQ_F2_VERTICES].targetEntityFilterValue;
+    }
+
+    let f1VertexId: string = null;
+    if (filters[FilterParamNames.FQ_F1_VERTICES]) {
+        f1VertexId = filters[FilterParamNames.FQ_F1_VERTICES].targetEntityFilterValue;
+    }
+
+    if (f1VertexId && f2VertexId) {
+
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == gobiiExtractFilterType
+                    && e.getEntity().vertexId != f2VertexId
+                    && e.getEntity().vertexId != f1VertexId
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX
+                    || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
+                && e.getProcessType() !== ProcessType.DUMMY
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
+
+
+    } else {
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == gobiiExtractFilterType
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX
+                    && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
+                && e.getProcessType() !== ProcessType.DUMMY
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
+    }
+
+    return returnVal;
+});
+
+export const getFqF4Vertices = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    let f3VertexId: string = null;
+    if (filters[FilterParamNames.FQ_F3_VERTICES]) {
+        f3VertexId = filters[FilterParamNames.FQ_F3_VERTICES].targetEntityFilterValue;
+    }
+
+    let f2VertexId: string = null;
+    if (filters[FilterParamNames.FQ_F2_VERTICES]) {
+        f2VertexId = filters[FilterParamNames.FQ_F2_VERTICES].targetEntityFilterValue;
+    }
+
+    let f1VertexId: string = null;
+    if (filters[FilterParamNames.FQ_F1_VERTICES]) {
+        f1VertexId = filters[FilterParamNames.FQ_F1_VERTICES].targetEntityFilterValue;
+    }
+
+
+    if (f1VertexId && f2VertexId && f3VertexId) {
+
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == gobiiExtractFilterType
+                    && e.getEntity().vertexId != f3VertexId
+                    && e.getEntity().vertexId != f2VertexId
+                    && e.getEntity().vertexId != f1VertexId
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX
+                    || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
+                && e.getProcessType() !== ProcessType.DUMMY
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
+
+    } else {
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == gobiiExtractFilterType
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX
+                    && e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
+                && e.getProcessType() !== ProcessType.DUMMY
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return compareVertices(gfi_a, gfi_b)
+            });
+    }
+
+    return returnVal;
+});
+
+export const getFqF1VerticesValues = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
+    if (filters[FilterParamNames.FQ_F1_VERTEX_VALUES]) {
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F1_VERTEX_VALUES].targetEntityUniqueId;
+    }
+
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
+
+        returnVal = fileItems.filter(
+            e => // you can't use compoundIdeEquals() because the extractor item type won't match the vertex filter
+                (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return gfi_a.getItemName().localeCompare(gfi_b.getItemName())
+            });
+    }
+
+    return returnVal;
+});
+
+export const getFqF2VerticesValues = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
+    if (filters[FilterParamNames.FQ_F2_VERTEX_VALUES]) {
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F2_VERTEX_VALUES].targetEntityUniqueId;
+    }
+
+
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
+
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+            });
+    }
+
+    return returnVal;
+
+});
+
+export const getFqF3VerticesValues = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
+    if (filters[FilterParamNames.FQ_F3_VERTEX_VALUES]) {
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F3_VERTEX_VALUES].targetEntityUniqueId;
+    }
+
+
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
+
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+            });
+    }
+
+    return returnVal;
+});
+
+export const getFqF4VerticesValues = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: GobiiFileItem[] = [];
+
+    let filterCompoundUniqueId: GobiiFileItemCompoundId;
+    if (filters[FilterParamNames.FQ_F4_VERTEX_VALUES]) {
+        filterCompoundUniqueId = filters[FilterParamNames.FQ_F4_VERTEX_VALUES].targetEntityUniqueId;
+    }
+
+
+    if (filterCompoundUniqueId &&
+        (filterCompoundUniqueId.getEntityType() != EntityType.UNKNOWN)) {
+
+        returnVal = fileItems.filter(
+            e =>
+                (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                    && e.getExtractorItemType() === ExtractorItemType.VERTEX_VALUE
+                    && e.getEntityType() === filterCompoundUniqueId.getEntityType()
+                    && e.getEntitySubType() === filterCompoundUniqueId.getEntitySubType()
+                    && e.getCvGroup() === filterCompoundUniqueId.getCvGroup()
+                    && e.getCvTerm() === filterCompoundUniqueId.getCvTerm()
+                )
+        ).map(fi => fi)
+            .sort((gfi_a, gfi_b) => {
+                return gfi_a.getItemName().localeCompare(gfi_b.getItemName());
+            });
+    }
+
+    return returnVal;
+});
+
+export const getCurrentMarkerCount = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: number = 0;
+
+    let countFileItems: GobiiFileItem[] = fileItems.filter(
+        e =>
+            (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                && e.getExtractorItemType() === ExtractorItemType.ITEM_COUNT
+                && e.getEntityType() === EntityType.MARKER)
+    )
+
+    if (countFileItems.length > 0) {
+        returnVal = countFileItems[0].getEntity();
+    }
+
+    return returnVal;
+});
+
+export const getCurrentSampleCount = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: number = 0;
+
+    let countFileItems: GobiiFileItem[] = fileItems.filter(
+        e =>
+            (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                && e.getExtractorItemType() === ExtractorItemType.ITEM_COUNT
+                && e.getEntityType() === EntityType.DNA_SAMPLE)
+    )
+
+    if (countFileItems.length > 0) {
+        returnVal = countFileItems[0].getEntity();
+    }
+
+    return returnVal;
+});
+
+export const getFilterCountState = createSelector(getFileItems, getFilters, getGobiiExtractFilterType, (fileItems, filters, gobiiExtractFilterType) => {
+
+    let returnVal: FilterCountState = new FilterCountState(new Map<string, PayloadFilter>(), -1, -1);
+
+    Object.keys(filters).forEach(key => {
+
+        if (key === FilterParamNames.FQ_F1_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F2_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F3_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F4_VERTEX_VALUES ||
+            key === FilterParamNames.FQ_F1_VERTICES ||
+            key === FilterParamNames.FQ_F2_VERTICES ||
+            key === FilterParamNames.FQ_F3_VERTICES ||
+            key === FilterParamNames.FQ_F4_VERTICES) {
+
+            returnVal.flexQueryFilters.set(key, filters[key]);
+        }
+    }); //forEach filter
+
+    let dnaSampleCountFileItems: GobiiFileItem[] = fileItems.filter(
+        e =>
+            (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                && e.getExtractorItemType() === ExtractorItemType.ITEM_COUNT
+                && e.getEntityType() === EntityType.DNA_SAMPLE)
+    )
+
+    if (dnaSampleCountFileItems.length > 0) {
+        returnVal.sampleCount = dnaSampleCountFileItems[0].getEntity();
+    }
+
+    let markerCountFileItems: GobiiFileItem[] = fileItems.filter(
+        e =>
+            (e.getGobiiExtractFilterType() == GobiiExtractFilterType.FLEX_QUERY
+                && e.getExtractorItemType() === ExtractorItemType.ITEM_COUNT
+                && e.getEntityType() === EntityType.MARKER)
+    )
+
+    if (markerCountFileItems.length > 0) {
+        returnVal.markerCount = markerCountFileItems[0].getEntity();
+    }
+
+    return returnVal;
+});

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnChanges, OnInit, SimpleChange} from "@angular/core";
 import {TreeNode} from "primeng/components/common/api";
 import {GobiiFileItem} from "../model/gobii-file-item";
-import {GobiiTreeNode} from "../model/GobiiTreeNode";
+import {GobiiTreeNode} from "../model/gobii-tree-node";
 import {GobiiExtractFilterType} from "../model/type-extractor-filter";
 import {HeaderStatusMessage} from "../model/dto-header-status-message";
 import * as fromRoot from '../store/reducers';
