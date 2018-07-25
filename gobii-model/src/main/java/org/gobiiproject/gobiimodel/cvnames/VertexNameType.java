@@ -32,7 +32,8 @@ public enum VertexNameType {
     VERTEX_TYPE_GERMPLASM_TYPE("germplasm_type"),
     VERTEX_TYPE_PRINCIPLE_INVESTIGATOR("principal_investigator"),
     VERTEX_TYPE_MARKER("marker"),
-    VERTEX_TYPE_DNASAMPLE("dnasample");
+    VERTEX_TYPE_DNASAMPLE("dnasample"),
+    VERTEX_TYPE_DNARUN("dnarun");
 
     private String vertexName;
 

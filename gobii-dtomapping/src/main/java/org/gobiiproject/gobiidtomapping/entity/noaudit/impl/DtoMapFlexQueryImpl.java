@@ -122,8 +122,8 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             String stdOutFileFqpnSamples = gqlText.makeGqlJobFileFqpn(GqlOFileType.IO_FILE_STD_OUT, GqlDestinationFileType.DST_COUNT_SAMPLE);
             String stdErrFileFqpnSamples = gqlText.makeGqlJobFileFqpn(GqlOFileType.IO_FILE_STD_ERR, GqlDestinationFileType.DST_COUNT_SAMPLE);
 
-            VertexDTO destinationVertexMarkers = Vertices.makeMarkerVertex();
-            VertexDTO destinationVertexSamples = Vertices.makeSampleVertex();
+            VertexDTO destinationVertexMarkers = Vertices.makeMarkerCountVertex();
+            VertexDTO destinationVertexSamples = Vertices.makeSampleCountVertex();
 
             // ******* GET MARKER COUNT
             String gqlScriptCommandLineMarkers = gqlText.makeCommandLine(markerOutputFileFqpn,

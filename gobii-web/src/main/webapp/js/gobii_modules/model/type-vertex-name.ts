@@ -24,7 +24,8 @@ export enum VertexNameType {
     VERTEX_TYPE_GERMPLASM_TYPE,
     VERTEX_TYPE_PRINCIPLE_INVESTIGATOR,
     MARKER,
-    DNASAMPLE
+    DNA_SAMPLE,
+    DNA_RUN
 }
 
 

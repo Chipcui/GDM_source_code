@@ -107,7 +107,7 @@ def main(argv):
             total_lines = random.randint(1, max_result)
             id_column = "id"
             name_column = "name"
-        elif target_vertex_name == "dnasample":
+        elif target_vertex_name == "dnarun":
             total_lines = random.randint(1, max_result)
             id_column = "id"
             name_column = "name"
