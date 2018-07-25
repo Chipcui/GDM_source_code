@@ -236,7 +236,7 @@ public class Vertices {
      * Must be separate from the main collection because it is isEntry=false
      * @return
      */
-    public static VertexDTO makeMarkerVertex() {
+    public static VertexDTO makeMarkerCountVertex() {
 
         return new VertexDTO(25,
                 VertexNameType.VERTEX_TYPE_MARKER,
@@ -252,13 +252,13 @@ public class Vertices {
      * Must be separate from the main collection because it is isEntry=false
      * @return
      */
-    public static VertexDTO makeSampleVertex() {
+    public static VertexDTO makeSampleCountVertex() {
 
-        return new VertexDTO(26,
-                VertexNameType.VERTEX_TYPE_DNASAMPLE,
+        return new VertexDTO(27,
+                VertexNameType.VERTEX_TYPE_DNARUN,
                 GobiiVertexType.ENTITY,
-                "dnasample",
-                GobiiEntityNameType.DATASET,
+                "dnarun",
+                GobiiEntityNameType.DNA_RUN,
                 GobiiEntitySubType.UNKNOWN,
                 CvGroup.UNKNOWN,
                 null);
