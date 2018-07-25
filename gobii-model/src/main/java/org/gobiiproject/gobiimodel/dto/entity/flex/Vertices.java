@@ -44,16 +44,6 @@ public class Vertices {
                             CvGroup.UNKNOWN,
                             null),
 
-                    new VertexDTO(4,
-                            VertexNameType.VERTEX_TYPE_MAPSET_TYPE,
-                            GobiiVertexType.CVGROUP,
-                            "Mapset Type",
-                            GobiiEntityNameType.CV,
-                            GobiiEntitySubType.UNKNOWN,
-                            CvGroup.MAPSET_TYPE,
-                            null),
-
-
                     new VertexDTO(5,
                             VertexNameType.VERTEX_TYPE_ANALYSIS_TYPE,
                             GobiiVertexType.CVGROUP,
@@ -81,25 +71,6 @@ public class Vertices {
                             GobiiEntitySubType.UNKNOWN,
                             CvGroup.UNKNOWN,
                             null),
-
-                    new VertexDTO(9,
-                            VertexNameType.VERTEX_TYPE_MAPSET,
-                            GobiiVertexType.ENTITY,
-                            "Mapset",
-                            GobiiEntityNameType.MAPSET,
-                            GobiiEntitySubType.UNKNOWN,
-                            CvGroup.UNKNOWN,
-                            null),
-
-                    new VertexDTO(10,
-                            VertexNameType.VERTEX_TYPE_LINKAGE_GROUP,
-                            GobiiVertexType.ENTITY,
-                            "Linkage Group",
-                            GobiiEntityNameType.LINKAGE_GROUP,
-                            GobiiEntitySubType.UNKNOWN,
-                            CvGroup.UNKNOWN,
-                            null),
-
 
                     new VertexDTO(11,
                             VertexNameType.VERTEX_TYPE_PRINCIPLE_INVESTIGATOR,
@@ -228,7 +199,36 @@ public class Vertices {
                             GobiiEntitySubType.UNKNOWN,
                             CvGroup.UNKNOWN,
                             null)
-            )
+
+// Mapset, mapset Type, Linkage Group are not yet supported by the gql script
+//                    ,new VertexDTO(4,
+//                                  VertexNameType.VERTEX_TYPE_MAPSET_TYPE,
+//                                  GobiiVertexType.CVGROUP,
+//                            "Mapset Type",
+//                                  GobiiEntityNameType.CV,
+//                                  GobiiEntitySubType.UNKNOWN,
+//                                  CvGroup.MAPSET_TYPE,
+//                            null),
+//
+//                    new VertexDTO(9,
+//                            VertexNameType.VERTEX_TYPE_MAPSET,
+//                            GobiiVertexType.ENTITY,
+//                            "Mapset",
+//                            GobiiEntityNameType.MAPSET,
+//                            GobiiEntitySubType.UNKNOWN,
+//                            CvGroup.UNKNOWN,
+//                            null),
+//
+//                    new VertexDTO(10,
+//                            VertexNameType.VERTEX_TYPE_LINKAGE_GROUP,
+//                            GobiiVertexType.ENTITY,
+//                            "Linkage Group",
+//                            GobiiEntityNameType.LINKAGE_GROUP,
+//                            GobiiEntitySubType.UNKNOWN,
+//                            CvGroup.UNKNOWN,
+//                            null),
+
+                    )
     );
 
 
