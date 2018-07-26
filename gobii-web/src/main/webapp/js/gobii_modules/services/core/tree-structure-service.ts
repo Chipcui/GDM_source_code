@@ -80,7 +80,7 @@ export class TreeStructureService {
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.ENTITY)
                         .setEntityType(EntityType.PROJECT)
                         .setContainerType(ContainerType.NONE),
-                    GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.SAMPLE_FILE),
+                    GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.SAMPLE_INPUT_FILE),
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.SAMPLE_LIST_ITEM)
                         .setContainerType(ContainerType.DATA),
                 ]),
@@ -99,7 +99,7 @@ export class TreeStructureService {
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.ENTITY)
                         .setEntityType(EntityType.PLATFORM)
                         .setContainerType(ContainerType.DATA),
-                    GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.MARKER_FILE),
+                    GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.MARKER_INPUT_FILE),
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.MARKER_LIST_ITEM)
                         .setContainerType(ContainerType.DATA),
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.ENTITY)
@@ -150,12 +150,12 @@ export class TreeStructureService {
                 .setExpanded(true)
                 .setChildren([
                     GobiiTreeNode
-                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.MARKER_FILE),
+                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.MARKER_INPUT_FILE),
                     GobiiTreeNode
                         .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.MARKER_LIST_ITEM)
                         .setContainerType(ContainerType.DATA),
                     GobiiTreeNode
-                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.SAMPLE_FILE),
+                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.SAMPLE_INPUT_FILE),
                     GobiiTreeNode
                         .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.SAMPLE_LIST_ITEM)
                         .setContainerType(ContainerType.DATA),
@@ -418,7 +418,7 @@ export class TreeStructureService {
             icon = "fa-columns";
             expandedIcon = "fa-columns";
             collapsedIcon = "fa-columns";
-        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.SAMPLE_FILE) {
+        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.SAMPLE_INPUT_FILE) {
             icon = "fa-file-text-o";
             expandedIcon = "fa-file-text-o";
             collapsedIcon = "fa-file-text-o";
@@ -432,7 +432,7 @@ export class TreeStructureService {
                 expandedIcon = "fa-eyedropper";
                 collapsedIcon = "fa-eyedropper";
             }
-        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.MARKER_FILE) {
+        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.MARKER_INPUT_FILE) {
             icon = "fa-file-text-o";
             expandedIcon = "fa-file-text-o";
             collapsedIcon = "fa-file-text-o";

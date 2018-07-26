@@ -317,9 +317,35 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                         .setIsEphemeral(false),
                                     selectForExtract: true
                                 });
+                                _this.store.dispatch(loadActionSampleCount);
                                 console.log(jobId + ": marker count time is " + vertexFilterDtoResponse.markerCountMs + " ms.");
                                 console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
-                                _this.store.dispatch(loadActionSampleCount);
+                                var markerResultFileName = vertexFilterDtoResponse.markerFileFqpn;
+                                var markerResultFileItem = gobii_file_item_1.GobiiFileItem
+                                    .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
+                                    .setExtractorItemType(type_extractor_item_1.ExtractorItemType.MARKER_RESULT_FILE)
+                                    .setEntityType(type_entity_1.EntityType.MARKER)
+                                    .setItemName("Marker file: " + markerResultFileName)
+                                    .setEntity(markerResultFileName)
+                                    .setIsEphemeral(false);
+                                // default count items on load
+                                var replaceMarkerResultFile = new fileItemActions.ReplaceItemOfSameCompoundIdAction({
+                                    gobiiFileitemToReplaceWith: markerResultFileItem
+                                });
+                                _this.store.dispatch(replaceMarkerResultFile);
+                                var sampleResultFileName = vertexFilterDtoResponse.sampleFileFqpn;
+                                var sampleResultFileItem = gobii_file_item_1.GobiiFileItem
+                                    .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
+                                    .setExtractorItemType(type_extractor_item_1.ExtractorItemType.SAMPLE_RESULT_FILE)
+                                    .setEntityType(type_entity_1.EntityType.DNA_SAMPLE)
+                                    .setItemName("Sample file: " + sampleResultFileName)
+                                    .setEntity(sampleResultFileName)
+                                    .setIsEphemeral(false);
+                                // default count items on load
+                                var replaceSampleResultFile = new fileItemActions.ReplaceItemOfSameCompoundIdAction({
+                                    gobiiFileitemToReplaceWith: sampleResultFileItem
+                                });
+                                _this.store.dispatch(replaceSampleResultFile);
                             }
                             else {
                                 _this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +

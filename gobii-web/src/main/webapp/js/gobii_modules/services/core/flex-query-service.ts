@@ -399,11 +399,46 @@ export class FlexQueryService {
                                 selectForExtract: true
                             }
                         );
+                        this.store.dispatch(loadActionSampleCount);
 
                         console.log(jobId + ": marker count time is " + vertexFilterDtoResponse.markerCountMs + " ms.");
                         console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
 
-                        this.store.dispatch(loadActionSampleCount);
+
+
+                        let markerResultFileName:string = vertexFilterDtoResponse.markerFileFqpn;
+                        let markerResultFileItem: GobiiFileItem = GobiiFileItem
+                            .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                            .setExtractorItemType(ExtractorItemType.MARKER_RESULT_FILE)
+                            .setEntityType(EntityType.MARKER)
+                            .setItemName("Marker file: " + markerResultFileName)
+                            .setEntity(markerResultFileName)
+                            .setIsEphemeral(false);
+                        // default count items on load
+                        let replaceMarkerResultFile: fileItemActions.ReplaceItemOfSameCompoundIdAction =
+                            new fileItemActions.ReplaceItemOfSameCompoundIdAction(
+                            {
+                                gobiiFileitemToReplaceWith: markerResultFileItem
+                            }
+                        );
+                        this.store.dispatch(replaceMarkerResultFile);
+
+                        let sampleResultFileName:string = vertexFilterDtoResponse.sampleFileFqpn;
+                        let sampleResultFileItem: GobiiFileItem = GobiiFileItem
+                            .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                            .setExtractorItemType(ExtractorItemType.SAMPLE_RESULT_FILE)
+                            .setEntityType(EntityType.DNA_SAMPLE)
+                            .setItemName("Sample file: " + sampleResultFileName)
+                            .setEntity(sampleResultFileName)
+                            .setIsEphemeral(false);
+                        // default count items on load
+                        let replaceSampleResultFile: fileItemActions.ReplaceItemOfSameCompoundIdAction =
+                            new fileItemActions.ReplaceItemOfSameCompoundIdAction(
+                            {
+                                gobiiFileitemToReplaceWith: sampleResultFileItem
+                            }
+                        );
+                        this.store.dispatch(replaceSampleResultFile);
 
                     } else {
                         this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +

@@ -6,7 +6,7 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             GobiiDataSetExtract = (function () {
-                function GobiiDataSetExtract(gobiiFileType, accolate, extractDestinationDirectory, gobiiExtractFilterType, markerList, sampleList, listFileName, gobiiSampleListType, gobiiDatasetType, platforms, principleInvestigator, project, dataSet, markerGroups, vertices) {
+                function GobiiDataSetExtract(gobiiFileType, accolate, extractDestinationDirectory, gobiiExtractFilterType, markerList, sampleList, listFileName, gobiiSampleListType, gobiiDatasetType, platforms, principleInvestigator, project, dataSet, markerGroups, vertices, gqlMarkerResultFileName, gqlSampleResultFileName) {
                     this.gobiiFileType = gobiiFileType;
                     this.accolate = accolate;
                     this.extractDestinationDirectory = extractDestinationDirectory;
@@ -22,6 +22,8 @@ System.register([], function (exports_1, context_1) {
                     this.dataSet = dataSet;
                     this.markerGroups = markerGroups;
                     this.vertices = vertices;
+                    this.gqlMarkerResultFileName = gqlMarkerResultFileName;
+                    this.gqlSampleResultFileName = gqlSampleResultFileName;
                 } // ctor
                 GobiiDataSetExtract.prototype.getgobiiFileType = function () {
                     return this.gobiiFileType;
@@ -100,10 +102,12 @@ System.register([], function (exports_1, context_1) {
                     returnVal.dataSet = this.dataSet;
                     returnVal.markerGroups = this.markerGroups;
                     returnVal.vertices = this.vertices;
+                    returnVal.gqlMarkerResultFileName = this.gqlMarkerResultFileName;
+                    returnVal.gqlSampleResultFileName = this.gqlSampleResultFileName;
                     return returnVal;
                 };
                 GobiiDataSetExtract.fromJson = function (json) {
-                    var returnVal = new GobiiDataSetExtract(json.gobiiFileType, json.accolate, json.extractDestinationDirectory, json.gobiiExtractFilterType, json.markerList, json.sampleList, json.listFileName, json.gobiiSampleListType, json.gobiiDatasetType, json.platforms, json.principleInvestigator, json.project, json.dataSet, json.markerGroups, json.vertices);
+                    var returnVal = new GobiiDataSetExtract(json.gobiiFileType, json.accolate, json.extractDestinationDirectory, json.gobiiExtractFilterType, json.markerList, json.sampleList, json.listFileName, json.gobiiSampleListType, json.gobiiDatasetType, json.platforms, json.principleInvestigator, json.project, json.dataSet, json.markerGroups, json.vertices, json.gqlMarkerResultFileName, json.gqlSampleResultFileName);
                     return returnVal;
                 };
                 return GobiiDataSetExtract;

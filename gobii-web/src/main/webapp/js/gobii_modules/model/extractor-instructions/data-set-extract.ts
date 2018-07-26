@@ -20,7 +20,9 @@ export class GobiiDataSetExtract {
                        public project: NameId,
                        public dataSet: NameId,
                        public markerGroups: NameId[],
-                       public vertices:Vertex[]) {
+                       public vertices: Vertex[],
+                       public gqlMarkerResultFileName: string,
+                       public gqlSampleResultFileName: string) {
 
     } // ctor
 
@@ -124,6 +126,8 @@ export class GobiiDataSetExtract {
         returnVal.dataSet = this.dataSet;
         returnVal.markerGroups = this.markerGroups;
         returnVal.vertices = this.vertices;
+        returnVal.gqlMarkerResultFileName = this.gqlMarkerResultFileName;
+        returnVal.gqlSampleResultFileName = this.gqlSampleResultFileName;
 
         return returnVal;
     }
@@ -146,7 +150,9 @@ export class GobiiDataSetExtract {
                 json.project,
                 json.dataSet,
                 json.markerGroups,
-                json.vertices);
+                json.vertices,
+                json.gqlMarkerResultFileName,
+                json.gqlSampleResultFileName);
 
         return returnVal;
     }

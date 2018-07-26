@@ -1,7 +1,5 @@
 package org.gobiiproject.gobiidtomapping.instructions.impl;
 
-import org.gobiiproject.gobiidao.gql.GqlDestinationFileType;
-import org.gobiiproject.gobiidao.gql.GqlOFileType;
 import org.gobiiproject.gobiidao.gql.GqlText;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiDataSetExtract;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiExtractorInstruction;
@@ -86,25 +84,25 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
         return returnVal;
     }
 
-    private void addQqlFileNames(String cropType, String jobId, GobiiDataSetExtract gobiiDataSetExtract) throws GobiiException {
-
-        GqlText gqlText = new GqlText(cropType, jobId);
-        String gqlMarkerFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE,
-                GqlDestinationFileType.DST_COUNT_MARKER);
-        if (!new File(gqlMarkerFileName).exists()) {
-            throw new GobiiException("Gql result marker file does not exist: " + gqlMarkerFileName);
-        }
-
-        String gqlSampleFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE,
-                GqlDestinationFileType.DST_COUNT_SAMPLE);
-        if (!new File(gqlSampleFileName).exists()) {
-            throw new GobiiException("Gql result sample file does not exist: " + gqlSampleFileName);
-        }
-
-        gobiiDataSetExtract.setGqlMarkerFileName(gqlMarkerFileName);
-        gobiiDataSetExtract.setGqlSampleFileName(gqlSampleFileName);
-
-    }
+//    private void addQqlFileNames(String cropType, String jobId, GobiiDataSetExtract gobiiDataSetExtract) throws GobiiException {
+//
+//        GqlText gqlText = new GqlText(cropType, jobId);
+//        String gqlMarkerFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE,
+//                GqlDestinationFileType.DST_COUNT_MARKER);
+//        if (!new File(gqlMarkerFileName).exists()) {
+//            throw new GobiiException("Gql result marker file does not exist: " + gqlMarkerFileName);
+//        }
+//
+//        String gqlSampleFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE,
+//                GqlDestinationFileType.DST_COUNT_SAMPLE);
+//        if (!new File(gqlSampleFileName).exists()) {
+//            throw new GobiiException("Gql result sample file does not exist: " + gqlSampleFileName);
+//        }
+//
+//        gobiiDataSetExtract.setGqlMarkerResultFileName(gqlMarkerFileName);
+//        gobiiDataSetExtract.setGqlSampleResultFileName(gqlSampleFileName);
+//
+//    }
 
 
     @Override
@@ -196,6 +194,29 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                         }
                     }
 
+                    GqlText gqlText = new GqlText(cropType,extractorInstructionFilesDTO.getJobId());
+                    if (currentGobiiDataSetExtract.getGqlMarkerResultFileName() != null) {
+                        String presumptiveGqlMarkerFileFqpn = gqlText.makeGqlJobPath() + currentGobiiDataSetExtract.getGqlMarkerResultFileName();
+                        if(this.instructionFileAccess.doesPathExist(presumptiveGqlMarkerFileFqpn)) {
+                            currentGobiiDataSetExtract.setGqlMarkerResultFileName(presumptiveGqlMarkerFileFqpn);
+                        } else {
+                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
+                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
+                                    "The specified gql marker result file name does not exist on the server: " + presumptiveGqlMarkerFileFqpn);
+                        }
+                    } // if a gql marker result file name was specified
+
+                    if (currentGobiiDataSetExtract.getGqlSampleResultFileName() != null) {
+                        String presumptiveGqlSampleFileFqpn = gqlText.makeGqlJobPath() + currentGobiiDataSetExtract.getGqlSampleResultFileName();
+                        if(this.instructionFileAccess.doesPathExist(presumptiveGqlSampleFileFqpn)) {
+                            currentGobiiDataSetExtract.setGqlSampleResultFileName(presumptiveGqlSampleFileFqpn);
+                        } else {
+                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
+                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
+                                    "The specified gql sample result file name does not exist on the server: " + presumptiveGqlSampleFileFqpn);
+                        }
+                    } // if a gql sample result file name was specified
+
                     if (currentGobiiDataSetExtract.getGobiiExtractFilterType()
                             .equals(GobiiExtractFilterType.WHOLE_DATASET)) {
                         // check that we have all required values
@@ -257,9 +278,9 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                             + " but no vertices are specified");
                         }
 
-                        this.addQqlFileNames(cropType,
-                                extractorInstructionFilesDTO.getJobId(),
-                                currentGobiiDataSetExtract);
+//                        this.addQqlFileNames(cropType,
+//                                extractorInstructionFilesDTO.getJobId(),
+//                                currentGobiiDataSetExtract);
 
                     } else {
                         throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,

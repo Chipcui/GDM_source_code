@@ -125,7 +125,7 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
                     var returnVal;
                     if (this.targetEntityType === type_entity_1.EntityType.DNA_SAMPLE) {
                         if (inputType === this.ITEM_FILE_TYPE) {
-                            returnVal = entity_labels_1.Labels.instance().treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.SAMPLE_FILE];
+                            returnVal = entity_labels_1.Labels.instance().treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.SAMPLE_INPUT_FILE];
                         }
                         else if (inputType === this.ITEM_LIST_TYPE) {
                             returnVal = entity_labels_1.Labels.instance().treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.SAMPLE_LIST_ITEM];
@@ -139,7 +139,7 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
                     }
                     else if (this.targetEntityType === type_entity_1.EntityType.MARKER) {
                         if (inputType === this.ITEM_FILE_TYPE) {
-                            returnVal = entity_labels_1.Labels.instance().treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.MARKER_FILE];
+                            returnVal = entity_labels_1.Labels.instance().treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.MARKER_INPUT_FILE];
                         }
                         else if (inputType === this.ITEM_LIST_TYPE) {
                             returnVal = entity_labels_1.Labels.instance().treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.MARKER_LIST_ITEM];
@@ -168,11 +168,11 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
                         var extractorItemTypeFileToFind = type_extractor_item_1.ExtractorItemType.UNKNOWN;
                         if (_this.targetEntityType === type_entity_1.EntityType.DNA_SAMPLE) {
                             extractorItemTypeListToFind = type_extractor_item_1.ExtractorItemType.SAMPLE_LIST_ITEM;
-                            extractorItemTypeFileToFind = type_extractor_item_1.ExtractorItemType.SAMPLE_FILE;
+                            extractorItemTypeFileToFind = type_extractor_item_1.ExtractorItemType.SAMPLE_INPUT_FILE;
                         }
                         else if (_this.targetEntityType === type_entity_1.EntityType.MARKER) {
                             extractorItemTypeListToFind = type_extractor_item_1.ExtractorItemType.MARKER_LIST_ITEM;
-                            extractorItemTypeFileToFind = type_extractor_item_1.ExtractorItemType.MARKER_FILE;
+                            extractorItemTypeFileToFind = type_extractor_item_1.ExtractorItemType.MARKER_INPUT_FILE;
                         }
                         _this.currentFileItems = fileItems.filter(function (item) {
                             return ((item.getExtractorItemType() === extractorItemTypeListToFind) ||

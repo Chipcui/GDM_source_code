@@ -203,7 +203,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
             if (inputType === this.ITEM_FILE_TYPE) {
 
-                returnVal = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_FILE];
+                returnVal = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_INPUT_FILE];
 
             } else if (inputType === this.ITEM_LIST_TYPE) {
                 returnVal = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM];
@@ -223,7 +223,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
             if (inputType === this.ITEM_FILE_TYPE) {
 
-                returnVal = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.MARKER_FILE];
+                returnVal = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.MARKER_INPUT_FILE];
 
             } else if (inputType === this.ITEM_LIST_TYPE) {
 
@@ -269,11 +269,11 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
                     if (this.targetEntityType=== EntityType.DNA_SAMPLE) {
                         extractorItemTypeListToFind = ExtractorItemType.SAMPLE_LIST_ITEM;
-                        extractorItemTypeFileToFind = ExtractorItemType.SAMPLE_FILE;
+                        extractorItemTypeFileToFind = ExtractorItemType.SAMPLE_INPUT_FILE;
                     } else if (this.targetEntityType === EntityType.MARKER) {
 
                         extractorItemTypeListToFind = ExtractorItemType.MARKER_LIST_ITEM;
-                        extractorItemTypeFileToFind = ExtractorItemType.MARKER_FILE;
+                        extractorItemTypeFileToFind = ExtractorItemType.MARKER_INPUT_FILE;
                     }
 
                     this.currentFileItems = fileItems.filter(item => {

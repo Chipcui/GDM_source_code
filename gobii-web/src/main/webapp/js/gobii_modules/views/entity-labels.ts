@@ -73,9 +73,9 @@ export class Labels {
         this.extractorFilterTypeLabels[GobiiExtractFilterType.BY_MARKER] = "By Marker";
 
         this.treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM] = "Sample List";
-        this.treeExtractorTypeLabels[ExtractorItemType.SAMPLE_FILE] = "Sample File";
+        this.treeExtractorTypeLabels[ExtractorItemType.SAMPLE_INPUT_FILE] = "Sample File";
         this.treeExtractorTypeLabels[ExtractorItemType.MARKER_LIST_ITEM] = "Marker List";
-        this.treeExtractorTypeLabels[ExtractorItemType.MARKER_FILE] = "Marker File";
+        this.treeExtractorTypeLabels[ExtractorItemType.MARKER_INPUT_FILE] = "Marker File";
         this.treeExtractorTypeLabels[ExtractorItemType.CROP_TYPE] = "Crop Type";
         this.treeExtractorTypeLabels[ExtractorItemType.EXPORT_FORMAT] = "Format";
         this.treeExtractorTypeLabels[ExtractorItemType.JOB_ID] = "Job ID";

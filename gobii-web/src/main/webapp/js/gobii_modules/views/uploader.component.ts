@@ -248,7 +248,7 @@ export class UploaderComponent implements OnInit {
                         if (status == 200) {
                             let listItemType: ExtractorItemType =
                                 this.targetEntityType === EntityType.MARKER ?
-                                    ExtractorItemType.MARKER_FILE : ExtractorItemType.SAMPLE_FILE;
+                                    ExtractorItemType.MARKER_INPUT_FILE : ExtractorItemType.SAMPLE_INPUT_FILE;
 
                             this.fileItemService.loadFileItem(GobiiFileItem
                                     .build(this.gobiiExtractFilterType, ProcessType.CREATE)

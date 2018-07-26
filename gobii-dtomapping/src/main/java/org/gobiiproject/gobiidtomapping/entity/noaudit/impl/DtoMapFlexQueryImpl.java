@@ -1,5 +1,8 @@
 package org.gobiiproject.gobiidtomapping.entity.noaudit.impl;
 
+import ch.qos.logback.core.util.FileUtil;
+import com.sun.javafx.scene.shape.PathUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.time.StopWatch;
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiidao.gql.GqlOFileType;
@@ -175,8 +178,9 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
                 throw new GobiiDtoMappingException("Number of samples is too large to fit in an Integer: " + sampleCount);
             }
 
-            vertexFilterDTO.setMarkerCount(markerCount.intValue(), markerOutputFileFqpn, markerCountMs);
-            vertexFilterDTO.setSampleCount(sampleCount.intValue(), sampleOutputFileFqpn, sampleCountMs);
+
+            vertexFilterDTO.setMarkerCount(markerCount.intValue(), Paths.get(markerOutputFileFqpn).getFileName().toString(), markerCountMs);
+            vertexFilterDTO.setSampleCount(sampleCount.intValue(), Paths.get(sampleOutputFileFqpn).getFileName().toString(), sampleCountMs);
 
         } catch (Exception e) {
             LOGGER.error("Gobii Maping Error", e);

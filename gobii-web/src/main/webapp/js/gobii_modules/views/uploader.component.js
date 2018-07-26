@@ -111,7 +111,7 @@ System.register(["@angular/core", "ng2-file-upload", "../services/core/authentic
                             _this.uploader.onCompleteItem = function (item, response, status, headers) {
                                 if (status == 200) {
                                     var listItemType = _this.targetEntityType === type_entity_1.EntityType.MARKER ?
-                                        type_extractor_item_1.ExtractorItemType.MARKER_FILE : type_extractor_item_1.ExtractorItemType.SAMPLE_FILE;
+                                        type_extractor_item_1.ExtractorItemType.MARKER_INPUT_FILE : type_extractor_item_1.ExtractorItemType.SAMPLE_INPUT_FILE;
                                     _this.fileItemService.loadFileItem(gobii_file_item_1.GobiiFileItem
                                         .build(_this.gobiiExtractFilterType, type_process_1.ProcessType.CREATE)
                                         .setExtractorItemType(listItemType)
