@@ -353,6 +353,10 @@ export class FlexQueryService {
                     vertexFiltersForCount,
                     [],
                     null,
+                    null,
+                    null,
+                    null,
+                    null,
                     null
                 );
                 let vertexFilterDtoResponse: VertexFilterDTO = null;
@@ -395,6 +399,10 @@ export class FlexQueryService {
                                 selectForExtract: true
                             }
                         );
+
+                        console.log(jobId + ": marker count time is " + vertexFilterDtoResponse.markerCountMs + " ms.");
+                        console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
+
                         this.store.dispatch(loadActionSampleCount);
 
                     } else {
@@ -489,6 +497,10 @@ export class FlexQueryService {
                         targetVertex,
                         vertices,
                         [],
+                        null,
+                        null,
+                        null,
+                        null,
                         null,
                         null
                     );

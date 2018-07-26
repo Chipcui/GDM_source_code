@@ -1,5 +1,6 @@
 package org.gobiiproject.gobiidtomapping.entity.noaudit.impl;
 
+import org.apache.commons.lang.time.StopWatch;
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiidao.gql.GqlOFileType;
 import org.gobiiproject.gobiidao.gql.GqlDestinationFileType;
@@ -131,6 +132,9 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
                     destinationVertexMarkers,
                     maxCount);
             Long markerCount = 0L;
+
+            StopWatch stopWatchMarkerCount = new StopWatch();
+            stopWatchMarkerCount.start();
             Integer markerRunReturn = GqlWrapper.run(gqlScriptCommandLineMarkers, stdOutFileFqpnMarkers, stdErrFileFqpnMarkers);
             if (markerRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || markerRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
@@ -140,6 +144,8 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
             }
+            stopWatchMarkerCount.stop();
+            Integer markerCountMs = Math.toIntExact(stopWatchMarkerCount.getTime());
 
             // ******* GET SAMPLE COUNT
             String gqlScriptCommandLineSamples = gqlText.makeCommandLine(sampleOutputFileFqpn,
@@ -147,6 +153,8 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
                     destinationVertexSamples,
                     maxCount);
             Long sampleCount = 0L;
+            StopWatch stopWatchSampleCount = new StopWatch();
+            stopWatchSampleCount.start();
             Integer sampleRunReturn = GqlWrapper.run(gqlScriptCommandLineSamples, stdOutFileFqpnSamples, stdErrFileFqpnSamples);
             if (sampleRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
@@ -156,6 +164,8 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
             }
+            stopWatchSampleCount.stop();
+            Integer sampleCountMs = Math.toIntExact(stopWatchSampleCount.getTime());
 
             if (markerCount > Integer.MAX_VALUE) {
                 throw new GobiiDtoMappingException("Number of markers is too large to fit in an Integer: " + markerCount);
@@ -165,8 +175,8 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
                 throw new GobiiDtoMappingException("Number of samples is too large to fit in an Integer: " + sampleCount);
             }
 
-            vertexFilterDTO.setMarkerCount(markerCount.intValue());
-            vertexFilterDTO.setSampleCount(sampleCount.intValue());
+            vertexFilterDTO.setMarkerCount(markerCount.intValue(), markerOutputFileFqpn, markerCountMs);
+            vertexFilterDTO.setSampleCount(sampleCount.intValue(), sampleOutputFileFqpn, sampleCountMs);
 
         } catch (Exception e) {
             LOGGER.error("Gobii Maping Error", e);

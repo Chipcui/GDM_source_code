@@ -33,9 +33,14 @@ public class VertexFilterDTO extends DTOBase {
     private List<NameIdDTO> vertexValues = new ArrayList<>();
 
     // marker and sample counts given a path (the destination vertex is by definition the marker,sample tables
-    Integer markerCount = 0;
-    Integer sampleCount = 0;
-    Integer id = 1;
+    private Integer markerCount = 0;
+    private String markerFileFqpn;
+    private Integer markerCountMs;
+
+    private Integer sampleCount = 0;
+    private String sampleFileFqpn;
+    private Integer sampleCountMs;
+    private Integer id = 1;
 
 
 
@@ -63,8 +68,22 @@ public class VertexFilterDTO extends DTOBase {
         this.vertexValues = vertexValues;
     }
 
+    public void setSampleCount(Integer sampleCount, String sampleFileFqpn,Integer sampleCountMs) {
+        this.sampleCount = sampleCount;
+        this.sampleFileFqpn = sampleFileFqpn;
+        this.sampleCountMs = sampleCountMs;
+
+    }
+
     public Integer getMarkerCount() {
         return markerCount;
+    }
+
+    public void setMarkerCount(Integer markerCount, String markerFileFqpn,Integer markerCountMs) {
+       this.markerCount = markerCount;
+       this.markerFileFqpn = markerFileFqpn;
+       this.markerCountMs = markerCountMs;
+       
     }
 
     public void setMarkerCount(Integer markerCount) {
@@ -77,5 +96,37 @@ public class VertexFilterDTO extends DTOBase {
 
     public void setSampleCount(Integer sampleCount) {
         this.sampleCount = sampleCount;
+    }
+
+    public String getMarkerFileFqpn() {
+        return markerFileFqpn;
+    }
+
+    public void setMarkerFileFqpn(String markerFileFqpn) {
+        this.markerFileFqpn = markerFileFqpn;
+    }
+
+    public Integer getMarkerCountMs() {
+        return markerCountMs;
+    }
+
+    public void setMarkerCountMs(Integer markerCountMs) {
+        this.markerCountMs = markerCountMs;
+    }
+
+    public String getSampleFileFqpn() {
+        return sampleFileFqpn;
+    }
+
+    public void setSampleFileFqpn(String sampleFileFqpn) {
+        this.sampleFileFqpn = sampleFileFqpn;
+    }
+
+    public Integer getSampleCountMs() {
+        return sampleCountMs;
+    }
+
+    public void setSampleCountMs(Integer sampleCountMs) {
+        this.sampleCountMs = sampleCountMs;
     }
 }

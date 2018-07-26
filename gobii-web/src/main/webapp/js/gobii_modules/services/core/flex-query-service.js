@@ -289,7 +289,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         .subscribe(function (vertexFiltersForCount) {
                         var dummyVertex = new vertex_1.Vertex(0, type_vertex_name_1.VertexNameType.MARKER, type_vertex_1.VertexType.ENTITY, "countonly", type_entity_1.EntityType.MARKER, type_entity_1.EntitySubType.UNKNOWN, cv_group_1.CvGroup.UNKNOWN, null, []);
                         var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(dummyVertex, // the server should ignore this because it's a count query
-                        vertexFiltersForCount, [], null, null);
+                        vertexFiltersForCount, [], null, null, null, null, null, null);
                         var vertexFilterDtoResponse = null;
                         _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, true)).subscribe(function (payloadReader) {
                             if (payloadReader.succeeded()) {
@@ -317,6 +317,8 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                         .setIsEphemeral(false),
                                     selectForExtract: true
                                 });
+                                console.log(jobId + ": marker count time is " + vertexFilterDtoResponse.markerCountMs + " ms.");
+                                console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
                                 _this.store.dispatch(loadActionSampleCount);
                             }
                             else {
@@ -380,7 +382,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         this.getVertexFilters(vertexValuesFilterPararamName)
                             .subscribe(function (vertices) {
                             var targetVertex = vertexFileItem.getEntity();
-                            var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null);
+                            var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null, null, null, null, null);
                             var vertexFilterDtoResponse = null;
                             _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, false)).subscribe(function (payloadReader) {
                                 if (payloadReader.succeeded()) {
