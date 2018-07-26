@@ -17,7 +17,7 @@ import {EntityType} from "../model/type-entity";
 
 @Component({
     selector: 'sample-marker-box',
-    inputs: ['gobiiExtractFilterType'],
+    inputs: ['gobiiExtractFilterType', 'targetEntityType'],
     outputs: ['onSampleMarkerError'],
     encapsulation: ViewEncapsulation.Native,
     styleUrls: ["js/node_modules/primeng/resources/themes/omega/theme.css",
@@ -58,6 +58,7 @@ import {EntityType} from "../model/type-entity";
                 <div *ngIf="displayUploader" class="col-md-8">
                     <uploader
                             [gobiiExtractFilterType]="gobiiExtractFilterType"
+                            [targetEntityType]="targetEntityType"
                             (onUploaderError)="handleStatusHeaderMessage($event)"></uploader>
                 </div>
 
@@ -131,6 +132,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
     public gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
     public onSampleMarkerError: EventEmitter<HeaderStatusMessage> = new EventEmitter();
+    public targetEntityType: EntityType = EntityType.UNKNOWN;
 
     public extractTypeLabelExisting: string;
     public extractTypeLabelProposed: string;
@@ -159,7 +161,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
             });
 
             let listItemType: ExtractorItemType =
-                this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ?
+                this.targetEntityType === EntityType.MARKER ?
                     ExtractorItemType.MARKER_LIST_ITEM : ExtractorItemType.SAMPLE_LIST_ITEM;
 
             nonDuplicateItems.forEach(listItem => {
@@ -177,13 +179,13 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
         } else {
 
-            if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
+            if (this.targetEntityType === EntityType.MARKER) {
                 this.maxExceededTypeLabel = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.MARKER_LIST_ITEM];
-            } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE) {
+            } else if (this.targetEntityType === EntityType.DNA_SAMPLE) {
                 this.maxExceededTypeLabel = Labels.instance().treeExtractorTypeLabels[ExtractorItemType.SAMPLE_LIST_ITEM];
             } else {
-                this.handleStatusHeaderMessage(new HeaderStatusMessage("This control does not handle the currently selected item type: "
-                    + GobiiExtractFilterType[this.gobiiExtractFilterType]
+                this.handleStatusHeaderMessage(new HeaderStatusMessage("This control does not handle the currently specified entity type: "
+                    + EntityType[this.targetEntityType]
                     , null, null))
             }
 
@@ -197,7 +199,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
         let returnVal: string;
 
 
-        if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE) {
+        if (this.targetEntityType === EntityType.DNA_SAMPLE) {
 
             if (inputType === this.ITEM_FILE_TYPE) {
 
@@ -211,13 +213,13 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
                 this.store.dispatch(new historyAction.AddStatusAction(new HeaderStatusMessage(
                     "Unhandled input type making input type label "
                     + inputType
-                    + " for extract type "
-                    + GobiiExtractFilterType[this.gobiiExtractFilterType],
+                    + " for target entity type "
+                    + EntityType[this.targetEntityType],
                     StatusLevel.ERROR,
                     null)));
             }
 
-        } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
+        } else if (this.targetEntityType === EntityType.MARKER) {
 
             if (inputType === this.ITEM_FILE_TYPE) {
 
@@ -236,15 +238,15 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
                 this.store.dispatch(new historyAction.AddStatusAction(new HeaderStatusMessage(
                     "Unhandled input type making input type label "
                     + inputType
-                    + " for extract type "
-                    + GobiiExtractFilterType[this.gobiiExtractFilterType],
+                    + " for target entity type "
+                    + EntityType[this.targetEntityType],
                     StatusLevel.ERROR,
                     null)));
             }
 
         } else {
             this.store.dispatch(new historyAction.AddStatusAction(new HeaderStatusMessage(
-                "This component is not intended to be used in extract type: " + GobiiExtractFilterType[this.gobiiExtractFilterType],
+                "This component is not intended to be used with target entity type: " + EntityType[this.targetEntityType],
                 StatusLevel.ERROR,
                 null)));
         }
@@ -265,10 +267,10 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
                     let extractorItemTypeListToFind: ExtractorItemType = ExtractorItemType.UNKNOWN;
                     let extractorItemTypeFileToFind: ExtractorItemType = ExtractorItemType.UNKNOWN;
 
-                    if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_SAMPLE) {
+                    if (this.targetEntityType=== EntityType.DNA_SAMPLE) {
                         extractorItemTypeListToFind = ExtractorItemType.SAMPLE_LIST_ITEM;
                         extractorItemTypeFileToFind = ExtractorItemType.SAMPLE_FILE;
-                    } else if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
+                    } else if (this.targetEntityType === EntityType.MARKER) {
 
                         extractorItemTypeListToFind = ExtractorItemType.MARKER_LIST_ITEM;
                         extractorItemTypeFileToFind = ExtractorItemType.MARKER_FILE;

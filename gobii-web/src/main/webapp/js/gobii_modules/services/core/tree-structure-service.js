@@ -162,6 +162,22 @@ System.register(["@angular/core", "../../model/gobii-tree-node", "../../model/ty
                             .setEntityType(type_entity_1.EntityType.ANY)
                             .setEntitySubType(type_entity_1.EntitySubType.ANY)
                             .setCvGroup(cv_group_1.CvGroup.ANY)),
+                        gobii_tree_node_1.GobiiTreeNode.build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_extractor_item_1.ExtractorItemType.TREE_STRUCTURE)
+                            .setContainerType(gobii_tree_node_1.ContainerType.STRUCTURE)
+                            .setLabel("Intersect Lists")
+                            .setExpanded(true)
+                            .setChildren([
+                            gobii_tree_node_1.GobiiTreeNode
+                                .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_extractor_item_1.ExtractorItemType.MARKER_FILE),
+                            gobii_tree_node_1.GobiiTreeNode
+                                .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_extractor_item_1.ExtractorItemType.MARKER_LIST_ITEM)
+                                .setContainerType(gobii_tree_node_1.ContainerType.DATA),
+                            gobii_tree_node_1.GobiiTreeNode
+                                .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_extractor_item_1.ExtractorItemType.SAMPLE_FILE),
+                            gobii_tree_node_1.GobiiTreeNode
+                                .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_extractor_item_1.ExtractorItemType.SAMPLE_LIST_ITEM)
+                                .setContainerType(gobii_tree_node_1.ContainerType.DATA),
+                        ])
                     ]); // array of gobii tree nodes
                     // we know we only have to go one level deep in this case -- no need to recurse
                     returnVal.forEach(function (currentNode, idx, nodes) {
