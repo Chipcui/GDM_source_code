@@ -180,19 +180,35 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                         datasetIds.add(currentGobiiDataSetExtract.getDataSet().getId());
                     }
 
-                    if (currentGobiiDataSetExtract.getListFileName() != null) {
+                    if (currentGobiiDataSetExtract.getMarkerListFileName() != null) {
 
-                        String presumptiveListFileFqpn = instructionFileDirectory + currentGobiiDataSetExtract.getListFileName();
+                        String presumptiveMarkerListFileFqpn = instructionFileDirectory + currentGobiiDataSetExtract.getMarkerListFileName();
 
-                        if (this.instructionFileAccess.doesPathExist(presumptiveListFileFqpn)) {
-                            currentGobiiDataSetExtract.setListFileName(presumptiveListFileFqpn);
+                        if (this.instructionFileAccess.doesPathExist(presumptiveMarkerListFileFqpn)) {
+                            currentGobiiDataSetExtract.setMarkerListFileName(presumptiveMarkerListFileFqpn);
                         } else {
 
                             throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                                     GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
-                                    "The specified list file name does not exist on the server: " + presumptiveListFileFqpn);
+                                    "The specified marker list file name does not exist on the server: " + presumptiveMarkerListFileFqpn);
                         }
                     }
+
+
+                    if (currentGobiiDataSetExtract.getSampleListFileName() != null) {
+
+                        String presumptiveSampleListFileFqpn = instructionFileDirectory + currentGobiiDataSetExtract.getSampleListFileName();
+
+                        if (this.instructionFileAccess.doesPathExist(presumptiveSampleListFileFqpn)) {
+                            currentGobiiDataSetExtract.setSampleListFileName(presumptiveSampleListFileFqpn);
+                        } else {
+
+                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
+                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
+                                    "The specified sample list file name does not exist on the server: " + presumptiveSampleListFileFqpn);
+                        }
+                    }
+
 
                     GqlText gqlText = new GqlText(cropType,extractorInstructionFilesDTO.getJobId());
                     if (currentGobiiDataSetExtract.getGqlMarkerResultFileName() != null) {
@@ -231,7 +247,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
 
                         if ((currentGobiiDataSetExtract.getProject() == null)
                                 && (currentGobiiDataSetExtract.getPrincipleInvestigator() == null)
-                                && (currentGobiiDataSetExtract.getListFileName() == null)
+                                && (currentGobiiDataSetExtract.getMarkerListFileName() == null)
                                 && ((currentGobiiDataSetExtract.getSampleList() == null) ||
                                 (currentGobiiDataSetExtract.getSampleList().size() <= 0))) {
 
@@ -248,7 +264,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                     } else if (currentGobiiDataSetExtract.getGobiiExtractFilterType()
                             .equals(GobiiExtractFilterType.BY_MARKER)) {
 
-                        if ((currentGobiiDataSetExtract.getListFileName() == null)
+                        if ((currentGobiiDataSetExtract.getMarkerListFileName() == null)
                                 && ((currentGobiiDataSetExtract.getMarkerList() == null) ||
                                 (currentGobiiDataSetExtract.getMarkerList().size() <= 0))
                                 && ((currentGobiiDataSetExtract.getMarkerGroups() == null)
@@ -346,7 +362,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                 .filter(gei -> gei.getDataSetExtracts()
                                         .stream()
                                         .filter(dse -> (dse.getSampleList() != null && dse.getSampleList().size() > 0)
-                                                || (dse.getListFileName() != null && dse.getListFileName().length() > 0)).count() > 0)
+                                                || (dse.getMarkerListFileName() != null && dse.getMarkerListFileName().length() > 0)).count() > 0)
                                 .count() > 0
                                 ) {
                             thereAreSamples = true;
@@ -359,7 +375,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                 .filter(gei -> gei.getDataSetExtracts()
                                         .stream()
                                         .filter(dse -> (dse.getMarkerList() != null && dse.getMarkerList().size() > 0)
-                                                || (dse.getListFileName() != null && dse.getListFileName().length() > 0)).count() > 0)
+                                                || (dse.getMarkerListFileName() != null && dse.getMarkerListFileName().length() > 0)).count() > 0)
                                 .count() > 0
                                 ) {
                             thereAreMarkers = true;

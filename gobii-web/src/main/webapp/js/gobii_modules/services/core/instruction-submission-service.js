@@ -419,7 +419,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                 });
                                 dataSetItems.forEach(function (datsetFileItem) {
                                     var dataSet = new name_id_1.NameId(datsetFileItem.getItemId(), null, datsetFileItem.getItemName(), type_entity_1.EntityType.CV, null, null);
-                                    gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, null, null, markerFileName, null, datasetType, platforms, null, null, dataSet, null, [], markerResultFileName, sampleResultFileName));
+                                    gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, null, null, markerFileName, sampleFileName, null, datasetType, platforms, null, null, dataSet, null, [], markerResultFileName, sampleResultFileName));
                                 }); // iterate dataset items
                                 _this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                     .subscribe(function (extractorInstructions) {
@@ -428,7 +428,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                 });
                             }
                             else if (gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER) {
-                                gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, markerList, null, markerFileName, null, datasetType, platforms, null, null, null, markerGroups, [], markerResultFileName, sampleResultFileName));
+                                gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, markerList, null, markerFileName, sampleFileName, null, datasetType, platforms, null, null, null, markerGroups, [], markerResultFileName, sampleResultFileName));
                                 _this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                     .subscribe(function (extractorInstructions) {
                                     observer.next(extractorInstructions);
@@ -436,7 +436,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                 });
                             }
                             else if (gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE) {
-                                gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, null, sampleList, sampleFileName, sampleListType, datasetType, platforms, principleInvestigator, project, null, null, [], markerResultFileName, sampleResultFileName));
+                                gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, null, sampleList, markerFileName, sampleFileName, sampleListType, datasetType, platforms, principleInvestigator, project, null, null, [], markerResultFileName, sampleResultFileName));
                                 _this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                     .subscribe(function (extractorInstructions) {
                                     observer.next(extractorInstructions);
@@ -468,7 +468,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                             _loop_1(idx);
                                         }
                                         if (verticesMatchFileItems) {
-                                            gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, null, sampleList, sampleFileName, sampleListType, datasetType, platforms, principleInvestigator, project, null, null, vertices, markerResultFileName, sampleResultFileName));
+                                            gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, null, sampleList, markerFileName, sampleFileName, sampleListType, datasetType, platforms, principleInvestigator, project, null, null, vertices, markerResultFileName, sampleResultFileName));
                                             _this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                                 .subscribe(function (extractorInstructions) {
                                                 observer.next(extractorInstructions);

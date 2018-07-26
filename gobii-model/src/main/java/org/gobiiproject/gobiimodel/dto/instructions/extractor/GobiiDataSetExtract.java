@@ -30,7 +30,8 @@ public class GobiiDataSetExtract {
     private GobiiExtractFilterType gobiiExtractFilterType;
     private List<String> markerList = new ArrayList<>();
     private List<String> sampleList = new ArrayList<>();
-    private String listFileName;
+    private String markerListFileName;
+    private String sampleListFileName;
     private PropNameId gobiiDatasetType = new PropNameId();
     private PropNameId principleInvestigator = new PropNameId();
     private PropNameId project = new PropNameId();
@@ -68,12 +69,20 @@ public class GobiiDataSetExtract {
         this.sampleList = sampleList;
     }
 
-    public String getListFileName() {
-        return listFileName;
+    public String getMarkerListFileName() {
+        return markerListFileName;
     }
 
-    public void setListFileName(String listFileName) {
-        this.listFileName = listFileName;
+    public void setMarkerListFileName(String markerListFileName) {
+        this.markerListFileName = markerListFileName;
+    }
+
+    public String getSampleListFileName() {
+        return sampleListFileName;
+    }
+
+    public void setSampleListFileName(String sampleListFileName) {
+        this.sampleListFileName = sampleListFileName;
     }
 
     public GobiiSampleListType getGobiiSampleListType() {
