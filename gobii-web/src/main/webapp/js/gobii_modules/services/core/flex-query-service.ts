@@ -540,6 +540,8 @@ export class FlexQueryService {
                         null
                     );
                     let vertexFilterDtoResponse: VertexFilterDTO = null;
+
+                    let cvTermIdVal: number = 0;
                     this.dtoRequestServiceVertexFilterDTO.post(new DtoRequestItemVertexFilterDTO(
                         vertexFilterDTO,
                         jobId,
@@ -558,6 +560,17 @@ export class FlexQueryService {
                             let vertexFileItems: GobiiFileItem[] = [];
                             payloadReader.getData().vertexValues.forEach(item => {
 
+                                    // property-based items do not have their own ID;
+                                    // in order for the UI to work proerly, they must
+                                    // have an id
+                                    let itemId: string;
+                                    if (targetVertex.gobiiVertexType === VertexType.CVTERM) {
+
+                                        itemId = (++cvTermIdVal).toString();
+                                    } else {
+                                        itemId = item.id;
+                                    }
+
                                     let currentFileItem: GobiiFileItem =
                                         GobiiFileItem.build(
                                             GobiiExtractFilterType.FLEX_QUERY,
@@ -567,7 +580,7 @@ export class FlexQueryService {
                                             .setEntitySubType(targetVertex.entitySubType)
                                             .setCvGroup(targetVertex.cvGroup)
                                             .setCvTerm(targetVertex.cvTerm)
-                                            .setItemId(item.id)
+                                            .setItemId(itemId)
                                             .setItemName(item.name)
                                             .setRequired(false)
                                             .setIsEphemeral(false)

@@ -411,6 +411,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                             var targetVertex = vertexFileItem.getEntity();
                             var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null, null, null, null, null);
                             var vertexFilterDtoResponse = null;
+                            var cvTermIdVal = 0;
                             _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, false)).subscribe(function (payloadReader) {
                                 if (payloadReader.succeeded()) {
                                     vertexFilterDtoResponse = payloadReader.getData();
@@ -421,13 +422,23 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                     // largely on the content of the request request.
                                     var vertexFileItems_1 = [];
                                     payloadReader.getData().vertexValues.forEach(function (item) {
+                                        // property-based items do not have their own ID;
+                                        // in order for the UI to work proerly, they must
+                                        // have an id
+                                        var itemId;
+                                        if (targetVertex.gobiiVertexType === type_vertex_1.VertexType.CVTERM) {
+                                            itemId = (++cvTermIdVal).toString();
+                                        }
+                                        else {
+                                            itemId = item.id;
+                                        }
                                         var currentFileItem = gobii_file_item_1.GobiiFileItem.build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
                                             .setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE)
                                             .setEntityType(targetVertex.entityType)
                                             .setEntitySubType(targetVertex.entitySubType)
                                             .setCvGroup(targetVertex.cvGroup)
                                             .setCvTerm(targetVertex.cvTerm)
-                                            .setItemId(item.id)
+                                            .setItemId(itemId)
                                             .setItemName(item.name)
                                             .setRequired(false)
                                             .setIsEphemeral(false)
