@@ -142,7 +142,7 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             if (markerRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || markerRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
                 if (!markerRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
-                    markerCount = Files.lines(Paths.get(markerOutputFileFqpn)).count();
+                    markerCount = Files.lines(Paths.get(markerOutputFileFqpn)).count() - 1; // subtract one for header
                 }
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
@@ -162,7 +162,7 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             if (sampleRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
                 if (!sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
-                    sampleCount = Files.lines(Paths.get(sampleOutputFileFqpn)).count();
+                    sampleCount = Files.lines(Paths.get(sampleOutputFileFqpn)).count() - 1; // subtract one for header
                 }
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
