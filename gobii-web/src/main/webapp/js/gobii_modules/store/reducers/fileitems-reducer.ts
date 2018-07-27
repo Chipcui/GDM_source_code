@@ -552,8 +552,8 @@ export const getUploadFiles = createSelector(getFileItems, getSelectedUniqueIds,
 
     // default
     let returnVal: GobiiFileItem[] = fileItems
-        .filter(fi => fi.getExtractorItemType() === ExtractorItemType.MARKER_FILE
-            || fi.getExtractorItemType() === ExtractorItemType.SAMPLE_FILE);
+        .filter(fi => fi.getExtractorItemType() === ExtractorItemType.MARKER_INPUT_FILE
+            || fi.getExtractorItemType() === ExtractorItemType.SAMPLE_INPUT_FILE);
 
 
     return returnVal;

@@ -12,7 +12,8 @@ export class GobiiDataSetExtract {
                        public gobiiExtractFilterType: GobiiExtractFilterType,
                        public markerList: string[],
                        public sampleList: string[],
-                       public listFileName: string,
+                       public markerListFileName: string,
+                       public sampleListFileName: string,
                        public gobiiSampleListType: GobiiSampleListType,
                        public gobiiDatasetType: NameId,
                        public platforms: NameId[],
@@ -20,7 +21,9 @@ export class GobiiDataSetExtract {
                        public project: NameId,
                        public dataSet: NameId,
                        public markerGroups: NameId[],
-                       public vertices:Vertex[]) {
+                       public vertices: Vertex[],
+                       public gqlMarkerResultFileName: string,
+                       public gqlSampleResultFileName: string) {
 
     } // ctor
 
@@ -74,11 +77,11 @@ export class GobiiDataSetExtract {
     }
 
     public getlistFileName(): string {
-        return this.listFileName;
+        return this.markerListFileName;
     }
 
     public setlistFileName(value: string) {
-        this.listFileName = value;
+        this.markerListFileName = value;
     }
 
     public getgobiiSampleListType(): GobiiSampleListType {
@@ -115,7 +118,8 @@ export class GobiiDataSetExtract {
         returnVal.gobiiExtractFilterType = this.gobiiExtractFilterType;
         returnVal.markerList = this.markerList;
         returnVal.sampleList = this.sampleList;
-        returnVal.listFileName = this.listFileName;
+        returnVal.markerListFileName = this.markerListFileName;
+        returnVal.sampleListFileName = this.sampleListFileName;
         returnVal.gobiiSampleListType = this.gobiiSampleListType;
         returnVal.gobiiDatasetType = this.gobiiDatasetType;
         returnVal.platforms = this.platforms;
@@ -124,6 +128,8 @@ export class GobiiDataSetExtract {
         returnVal.dataSet = this.dataSet;
         returnVal.markerGroups = this.markerGroups;
         returnVal.vertices = this.vertices;
+        returnVal.gqlMarkerResultFileName = this.gqlMarkerResultFileName;
+        returnVal.gqlSampleResultFileName = this.gqlSampleResultFileName;
 
         return returnVal;
     }
@@ -138,7 +144,8 @@ export class GobiiDataSetExtract {
                 json.gobiiExtractFilterType,
                 json.markerList,
                 json.sampleList,
-                json.listFileName,
+                json.markerListFileName,
+                json.sampleListFileName,
                 json.gobiiSampleListType,
                 json.gobiiDatasetType,
                 json.platforms,
@@ -146,7 +153,9 @@ export class GobiiDataSetExtract {
                 json.project,
                 json.dataSet,
                 json.markerGroups,
-                json.vertices);
+                json.vertices,
+                json.gqlMarkerResultFileName,
+                json.gqlSampleResultFileName);
 
         return returnVal;
     }

@@ -1,7 +1,5 @@
 package org.gobiiproject.gobiidtomapping.instructions.impl;
 
-import org.gobiiproject.gobiidao.gql.GqlDestinationFileType;
-import org.gobiiproject.gobiidao.gql.GqlOFileType;
 import org.gobiiproject.gobiidao.gql.GqlText;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiDataSetExtract;
 import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiExtractorInstruction;
@@ -86,23 +84,25 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
         return returnVal;
     }
 
-    private void addQqlFileNames(String cropType, String jobId, GobiiDataSetExtract gobiiDataSetExtract) throws GobiiException {
-
-        GqlText gqlText = new GqlText(cropType,jobId);
-        String gqlMarkerFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE, GqlDestinationFileType.DST_COUNT_MARKER);
-        if (!new File(gqlMarkerFileName).exists()) {
-            throw new GobiiException("Gql result marker file does not exist: " + gqlMarkerFileName);
-        }
-
-        String gqlSampleFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE, GqlDestinationFileType.DST_COUNT_SAMPLE);
-        if (!new File(gqlSampleFileName).exists()) {
-            throw new GobiiException("Gql result sample file does not exist: " + gqlSampleFileName);
-        }
-
-        gobiiDataSetExtract.setGqlMarkerFileName(gqlMarkerFileName);
-        gobiiDataSetExtract.setGqlSampleFileName(gqlSampleFileName);
-
-    }
+//    private void addQqlFileNames(String cropType, String jobId, GobiiDataSetExtract gobiiDataSetExtract) throws GobiiException {
+//
+//        GqlText gqlText = new GqlText(cropType, jobId);
+//        String gqlMarkerFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE,
+//                GqlDestinationFileType.DST_COUNT_MARKER);
+//        if (!new File(gqlMarkerFileName).exists()) {
+//            throw new GobiiException("Gql result marker file does not exist: " + gqlMarkerFileName);
+//        }
+//
+//        String gqlSampleFileName = gqlText.makeGqlJobFileFqpn(GqlOFileType.NONE,
+//                GqlDestinationFileType.DST_COUNT_SAMPLE);
+//        if (!new File(gqlSampleFileName).exists()) {
+//            throw new GobiiException("Gql result sample file does not exist: " + gqlSampleFileName);
+//        }
+//
+//        gobiiDataSetExtract.setGqlMarkerResultFileName(gqlMarkerFileName);
+//        gobiiDataSetExtract.setGqlSampleResultFileName(gqlSampleFileName);
+//
+//    }
 
 
     @Override
@@ -180,19 +180,58 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                         datasetIds.add(currentGobiiDataSetExtract.getDataSet().getId());
                     }
 
-                    if (currentGobiiDataSetExtract.getListFileName() != null) {
+                    if (currentGobiiDataSetExtract.getMarkerListFileName() != null) {
 
-                        String presumptiveListFileFqpn = instructionFileDirectory + currentGobiiDataSetExtract.getListFileName();
+                        String presumptiveMarkerListFileFqpn = instructionFileDirectory + currentGobiiDataSetExtract.getMarkerListFileName();
 
-                        if (this.instructionFileAccess.doesPathExist(presumptiveListFileFqpn)) {
-                            currentGobiiDataSetExtract.setListFileName(presumptiveListFileFqpn);
+                        if (this.instructionFileAccess.doesPathExist(presumptiveMarkerListFileFqpn)) {
+                            currentGobiiDataSetExtract.setMarkerListFileName(presumptiveMarkerListFileFqpn);
                         } else {
 
                             throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                                     GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
-                                    "The specified list file name does not exist on the server: " + presumptiveListFileFqpn);
+                                    "The specified marker list file name does not exist on the server: " + presumptiveMarkerListFileFqpn);
                         }
                     }
+
+
+                    if (currentGobiiDataSetExtract.getSampleListFileName() != null) {
+
+                        String presumptiveSampleListFileFqpn = instructionFileDirectory + currentGobiiDataSetExtract.getSampleListFileName();
+
+                        if (this.instructionFileAccess.doesPathExist(presumptiveSampleListFileFqpn)) {
+                            currentGobiiDataSetExtract.setSampleListFileName(presumptiveSampleListFileFqpn);
+                        } else {
+
+                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
+                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
+                                    "The specified sample list file name does not exist on the server: " + presumptiveSampleListFileFqpn);
+                        }
+                    }
+
+
+                    GqlText gqlText = new GqlText(cropType,extractorInstructionFilesDTO.getJobId());
+                    if (currentGobiiDataSetExtract.getGqlMarkerResultFileName() != null) {
+                        String presumptiveGqlMarkerFileFqpn = gqlText.makeGqlJobPath() + currentGobiiDataSetExtract.getGqlMarkerResultFileName();
+                        if(this.instructionFileAccess.doesPathExist(presumptiveGqlMarkerFileFqpn)) {
+                            currentGobiiDataSetExtract.setGqlMarkerResultFileName(presumptiveGqlMarkerFileFqpn);
+                        } else {
+                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
+                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
+                                    "The specified gql marker result file name does not exist on the server: " + presumptiveGqlMarkerFileFqpn);
+                        }
+                    } // if a gql marker result file name was specified
+
+                    if (currentGobiiDataSetExtract.getGqlSampleResultFileName() != null) {
+                        String presumptiveGqlSampleFileFqpn = gqlText.makeGqlJobPath() + currentGobiiDataSetExtract.getGqlSampleResultFileName();
+                        if(this.instructionFileAccess.doesPathExist(presumptiveGqlSampleFileFqpn)) {
+                            currentGobiiDataSetExtract.setGqlSampleResultFileName(presumptiveGqlSampleFileFqpn);
+                        } else {
+                            throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
+                                    GobiiValidationStatusType.MISSING_REQUIRED_VALUE,
+                                    "The specified gql sample result file name does not exist on the server: " + presumptiveGqlSampleFileFqpn);
+                        }
+                    } // if a gql sample result file name was specified
 
                     if (currentGobiiDataSetExtract.getGobiiExtractFilterType()
                             .equals(GobiiExtractFilterType.WHOLE_DATASET)) {
@@ -208,7 +247,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
 
                         if ((currentGobiiDataSetExtract.getProject() == null)
                                 && (currentGobiiDataSetExtract.getPrincipleInvestigator() == null)
-                                && (currentGobiiDataSetExtract.getListFileName() == null)
+                                && (currentGobiiDataSetExtract.getMarkerListFileName() == null)
                                 && ((currentGobiiDataSetExtract.getSampleList() == null) ||
                                 (currentGobiiDataSetExtract.getSampleList().size() <= 0))) {
 
@@ -225,7 +264,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                     } else if (currentGobiiDataSetExtract.getGobiiExtractFilterType()
                             .equals(GobiiExtractFilterType.BY_MARKER)) {
 
-                        if ((currentGobiiDataSetExtract.getListFileName() == null)
+                        if ((currentGobiiDataSetExtract.getMarkerListFileName() == null)
                                 && ((currentGobiiDataSetExtract.getMarkerList() == null) ||
                                 (currentGobiiDataSetExtract.getMarkerList().size() <= 0))
                                 && ((currentGobiiDataSetExtract.getMarkerGroups() == null)
@@ -255,9 +294,9 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                             + " but no vertices are specified");
                         }
 
-                        this.addQqlFileNames(cropType,
-                                extractorInstructionFilesDTO.getJobId(),
-                                currentGobiiDataSetExtract);
+//                        this.addQqlFileNames(cropType,
+//                                extractorInstructionFilesDTO.getJobId(),
+//                                currentGobiiDataSetExtract);
 
                     } else {
                         throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
@@ -323,7 +362,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                 .filter(gei -> gei.getDataSetExtracts()
                                         .stream()
                                         .filter(dse -> (dse.getSampleList() != null && dse.getSampleList().size() > 0)
-                                                || (dse.getListFileName() != null && dse.getListFileName().length() > 0)).count() > 0)
+                                                || (dse.getMarkerListFileName() != null && dse.getMarkerListFileName().length() > 0)).count() > 0)
                                 .count() > 0
                                 ) {
                             thereAreSamples = true;
@@ -336,7 +375,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                 .filter(gei -> gei.getDataSetExtracts()
                                         .stream()
                                         .filter(dse -> (dse.getMarkerList() != null && dse.getMarkerList().size() > 0)
-                                                || (dse.getListFileName() != null && dse.getListFileName().length() > 0)).count() > 0)
+                                                || (dse.getMarkerListFileName() != null && dse.getMarkerListFileName().length() > 0)).count() > 0)
                                 .count() > 0
                                 ) {
                             thereAreMarkers = true;

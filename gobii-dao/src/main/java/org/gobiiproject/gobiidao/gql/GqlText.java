@@ -101,7 +101,6 @@ public class GqlText {
         return returnVal;
     }
 
-
     public String makeGqlJobFileFqpn(GqlOFileType gqlOFileType, GqlDestinationFileType gqlDestinationFileType) {
 
         String returnVal = this.makeGqlJobPath();
@@ -114,6 +113,7 @@ public class GqlText {
         }
 
         returnVal = this.makeNextFileName(fileName, 3);
+
         return returnVal;
     }
 

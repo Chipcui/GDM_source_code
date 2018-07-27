@@ -77,9 +77,9 @@ System.register(["../model/type-entity", "../model/cv-group", "../model/type-ext
                     this.extractorFilterTypeLabels[type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE] = "By Sample";
                     this.extractorFilterTypeLabels[type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER] = "By Marker";
                     this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.SAMPLE_LIST_ITEM] = "Sample List";
-                    this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.SAMPLE_FILE] = "Sample File";
+                    this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.SAMPLE_INPUT_FILE] = "Sample File";
                     this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.MARKER_LIST_ITEM] = "Marker List";
-                    this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.MARKER_FILE] = "Marker File";
+                    this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.MARKER_INPUT_FILE] = "Marker File";
                     this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.CROP_TYPE] = "Crop Type";
                     this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.EXPORT_FORMAT] = "Format";
                     this.treeExtractorTypeLabels[type_extractor_item_1.ExtractorItemType.JOB_ID] = "Job ID";
