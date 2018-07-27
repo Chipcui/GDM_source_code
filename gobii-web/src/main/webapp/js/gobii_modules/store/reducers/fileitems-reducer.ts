@@ -153,24 +153,39 @@ export function fileItemsReducer(state: State = initialState, action: gobiiFileI
             const filterId = action.payload.filterId.toString();
             const filterValue = action.payload.filter;
 
-            const newGobiiFileItems = gobiiFileItemsPayload.filter(newItem =>
-                state
-                    .allFileItems
-                    .filter(stateItem =>
-                        (
-                            stateItem.getGobiiExtractFilterType() === newItem.getGobiiExtractFilterType() &&
-                            stateItem.compoundIdeEquals(newItem) &&
-                            stateItem.getItemId() === newItem.getItemId() &&
+            let newGobiiFileItems: GobiiFileItem[] = [];
+            let stateFileItems: GobiiFileItem[] = state.allFileItems.slice();
+
+            if (action.payload.repalceByTarget) {
+
+                let statePurgedOfExistingItems: GobiiFileItem[]
+                    = stateFileItems
+                    .filter(fi => !fi.compoundIdeEquals(action.payload.filter.targetEntityUniqueId));
+
+                newGobiiFileItems = [...statePurgedOfExistingItems, ...gobiiFileItemsPayload];
+
+            } else {
+                let nonExistingFileItems: GobiiFileItem[] = gobiiFileItemsPayload.filter(newItem =>
+                    state
+                        .allFileItems
+                        .filter(stateItem =>
                             (
-                                (stateItem.getEntity() === null && newItem.getEntity() === null)
-                                || (
-                                    (stateItem.getEntity() !== null && newItem.getEntity() !== null)
-                                    && (stateItem.getEntity().id === newItem.getEntity().id)
+                                stateItem.getGobiiExtractFilterType() === newItem.getGobiiExtractFilterType() &&
+                                stateItem.compoundIdeEquals(newItem) &&
+                                stateItem.getItemId() === newItem.getItemId() &&
+                                (
+                                    (stateItem.getEntity() === null && newItem.getEntity() === null)
+                                    || (
+                                        (stateItem.getEntity() !== null && newItem.getEntity() !== null)
+                                        && (stateItem.getEntity().id === newItem.getEntity().id)
+                                    )
                                 )
                             )
-                        )
-                    ).length === 0
-            );
+                        ).length === 0
+                );
+
+                newGobiiFileItems = [...stateFileItems, ...nonExistingFileItems];
+            }
 
             let newFilterState = Object.assign({}, state.filters);
             newFilterState[filterId] = filterValue;
@@ -179,7 +194,7 @@ export function fileItemsReducer(state: State = initialState, action: gobiiFileI
             returnVal = {
                 gobiiExtractFilterType: state.gobiiExtractFilterType,
                 uniqueIdsOfExtractFileItems: state.uniqueIdsOfExtractFileItems,
-                allFileItems: [...state.allFileItems, ...newGobiiFileItems],
+                allFileItems: newGobiiFileItems,
                 filters: newFilterState
             };
 
@@ -313,29 +328,28 @@ export function fileItemsReducer(state: State = initialState, action: gobiiFileI
         case gobiiFileItemAction.REPLACE_ITEM_OF_SAME_COMPOUND_ID: {
 
             let newItemToAdd: GobiiFileItem = action.payload.gobiiFileitemToReplaceWith;
-            let newFileItemList: GobiiFileItem[] = state.allFileItems.slice();
 
-            let fileItemToReplace: GobiiFileItem = newFileItemList
+            let fileItemToReplace: GobiiFileItem = state.allFileItems
                 .find(fi => fi.getGobiiExtractFilterType() === newItemToAdd.getGobiiExtractFilterType()
                     && fi.compoundIdeEquals(newItemToAdd));
 
-            // remove existing item if applicable
-            if (fileItemToReplace) {
-                newFileItemList =
-                    newFileItemList.filter(fi =>
-                        fi.getFileItemUniqueId() !== fileItemToReplace.getFileItemUniqueId());
-            }
-
-
-            // add new item
-            newFileItemList.push(newItemToAdd);
-
-            let stateWithNewFileItem = {
+            let stateWithNewFileItem: State = {
                 gobiiExtractFilterType: state.gobiiExtractFilterType,
-                allFileItems: newFileItemList,
+                allFileItems: state.allFileItems,
                 uniqueIdsOfExtractFileItems: state.uniqueIdsOfExtractFileItems,
                 filters: state.filters
             };
+
+
+            // remove existing item if applicable
+            if (fileItemToReplace) {
+                stateWithNewFileItem.allFileItems =
+                    stateWithNewFileItem.allFileItems.filter(fi =>
+                        fi.getFileItemUniqueId() !== fileItemToReplace.getFileItemUniqueId());
+            }
+
+            // add new item
+            stateWithNewFileItem.allFileItems.push(newItemToAdd);
 
             // now add new item to selection if applicable
             let stateWithItemSelection: State;

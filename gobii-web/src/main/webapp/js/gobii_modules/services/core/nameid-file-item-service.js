@@ -361,7 +361,8 @@ System.register(["@angular/core", "../../model/type-extractor-item", "../../mode
                                         var loadAction = new fileItemActions.LoadFileItemListWithFilterAction({
                                             gobiiFileItems: fileItems,
                                             filterId: filterParamsToLoad.getQueryName(),
-                                            filter: new action_payload_filter_1.PayloadFilter(gobiiExtractFilterType, filterParamsToLoad.getTargetEntityUniqueId(), filterParamsToLoad.getRelatedEntityUniqueId(), filterValue, targetEntityFilterValue, minEntityLastUpdated, null)
+                                            filter: new action_payload_filter_1.PayloadFilter(gobiiExtractFilterType, filterParamsToLoad.getTargetEntityUniqueId(), filterParamsToLoad.getRelatedEntityUniqueId(), filterValue, targetEntityFilterValue, minEntityLastUpdated, null),
+                                            repalceByTarget: false
                                         });
                                         observer.next(loadAction);
                                         // if there are children, we will load their data as well

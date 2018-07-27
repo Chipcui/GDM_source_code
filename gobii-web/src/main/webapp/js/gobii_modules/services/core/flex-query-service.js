@@ -403,7 +403,8 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         .setEntityType(eventedEntityType)
                         .setEntitySubType(eventedEntitySubType)
                         .setCvGroup(eventedCvGroup)
-                        .setCvTerm(eventedCvTerm);
+                        .setCvTerm(eventedCvTerm)
+                        .setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE);
                     if (vertexFileItem.getNameIdLabelType() == name_id_label_type_1.NameIdLabelType.UNKNOWN) {
                         this.getVertexFilters(vertexValuesFilterPararamName)
                             .subscribe(function (vertices) {
@@ -444,7 +445,8 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                     var loadAction = new fileItemActions.LoadFileItemListWithFilterAction({
                                         gobiiFileItems: vertexFileItems_1,
                                         filterId: targetChildFilterParams.getQueryName(),
-                                        filter: new action_payload_filter_1.PayloadFilter(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, targetChildFilterParamsToLoad, targetChildFilterParams.getRelatedEntityUniqueId(), null, null, null, null)
+                                        filter: new action_payload_filter_1.PayloadFilter(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, targetChildFilterParamsToLoad, targetChildFilterParams.getRelatedEntityUniqueId(), null, null, null, null),
+                                        repalceByTarget: true
                                     });
                                     _this.store.dispatch(loadAction);
                                     //observer.next(vertexFileItems);
