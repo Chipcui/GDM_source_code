@@ -679,7 +679,7 @@ export class InstructionSubmissionService {
                                                     false,
                                                     null,
                                                     gobiiExtractFilterType,
-                                                    null,
+                                                    markerList,
                                                     sampleList,
                                                     markerFileName,
                                                     sampleFileName,

@@ -468,7 +468,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                             _loop_1(idx);
                                         }
                                         if (verticesMatchFileItems) {
-                                            gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, null, sampleList, markerFileName, sampleFileName, sampleListType, datasetType, platforms, principleInvestigator, project, null, null, vertices, markerResultFileName, sampleResultFileName));
+                                            gobiiDataSetExtracts.push(new data_set_extract_1.GobiiDataSetExtract(gobiiFileType, false, null, gobiiExtractFilterType, markerList, sampleList, markerFileName, sampleFileName, sampleListType, datasetType, platforms, principleInvestigator, project, null, null, vertices, markerResultFileName, sampleResultFileName));
                                             _this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                                 .subscribe(function (extractorInstructions) {
                                                 observer.next(extractorInstructions);
