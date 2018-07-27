@@ -293,6 +293,9 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                         _this.store.select(fromRoot.getSelectedFileItems)
                             .subscribe(function (fileItems) {
                             // ******** JOB ID
+                            var fileItemJobIds = fileItems.filter(function (item) {
+                                return item.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.JOB_ID;
+                            });
                             var fileItemJobId = fileItems.find(function (item) {
                                 return item.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.JOB_ID;
                             });
@@ -329,6 +332,9 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                 return Number(item.getItemId());
                             });
                             // ******** EXPORT FORMAT
+                            var exportFileItems = fileItems.filter(function (item) {
+                                return item.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.EXPORT_FORMAT;
+                            });
                             var exportFileItem = fileItems.find(function (item) {
                                 return item.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.EXPORT_FORMAT;
                             });

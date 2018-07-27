@@ -393,6 +393,10 @@ export class InstructionSubmissionService {
 
 
                             // ******** JOB ID
+                            let fileItemJobIds: GobiiFileItem[] = fileItems.filter(item => {
+                                return item.getExtractorItemType() === ExtractorItemType.JOB_ID
+                            });
+
                             let fileItemJobId: GobiiFileItem = fileItems.find(item => {
                                 return item.getExtractorItemType() === ExtractorItemType.JOB_ID
                             });
@@ -439,6 +443,11 @@ export class InstructionSubmissionService {
                                 });
 
                             // ******** EXPORT FORMAT
+                            let exportFileItems: GobiiFileItem[] = fileItems.filter(item => {
+                                return item.getExtractorItemType() === ExtractorItemType.EXPORT_FORMAT
+                            });
+
+
                             let exportFileItem: GobiiFileItem = fileItems.find(item => {
                                 return item.getExtractorItemType() === ExtractorItemType.EXPORT_FORMAT
                             });

@@ -207,24 +207,25 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                 }
             case gobiiFileItemAction.REPLACE_ITEM_OF_SAME_COMPOUND_ID: {
                 var newItemToAdd_1 = action.payload.gobiiFileitemToReplaceWith;
-                var fileItemToReplace_1 = state.allFileItems
+                var newFileItemList = state.allFileItems.slice();
+                var fileItemToReplace_1 = newFileItemList
                     .find(function (fi) { return fi.getGobiiExtractFilterType() === newItemToAdd_1.getGobiiExtractFilterType()
                     && fi.compoundIdeEquals(newItemToAdd_1); });
-                var stateWithNewFileItem = {
-                    gobiiExtractFilterType: state.gobiiExtractFilterType,
-                    allFileItems: state.allFileItems,
-                    uniqueIdsOfExtractFileItems: state.uniqueIdsOfExtractFileItems,
-                    filters: state.filters
-                };
                 // remove existing item if applicable
                 if (fileItemToReplace_1) {
-                    stateWithNewFileItem.allFileItems =
-                        stateWithNewFileItem.allFileItems.filter(function (fi) {
+                    newFileItemList =
+                        newFileItemList.filter(function (fi) {
                             return fi.getFileItemUniqueId() !== fileItemToReplace_1.getFileItemUniqueId();
                         });
                 }
                 // add new item
-                stateWithNewFileItem.allFileItems.push(newItemToAdd_1);
+                newFileItemList.push(newItemToAdd_1);
+                var stateWithNewFileItem = {
+                    gobiiExtractFilterType: state.gobiiExtractFilterType,
+                    allFileItems: newFileItemList,
+                    uniqueIdsOfExtractFileItems: state.uniqueIdsOfExtractFileItems,
+                    filters: state.filters
+                };
                 // now add new item to selection if applicable
                 var stateWithItemSelection = void 0;
                 if (newItemToAdd_1.getIsExtractCriterion()) {

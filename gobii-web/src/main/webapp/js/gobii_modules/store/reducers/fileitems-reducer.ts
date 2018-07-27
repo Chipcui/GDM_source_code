@@ -313,28 +313,29 @@ export function fileItemsReducer(state: State = initialState, action: gobiiFileI
         case gobiiFileItemAction.REPLACE_ITEM_OF_SAME_COMPOUND_ID: {
 
             let newItemToAdd: GobiiFileItem = action.payload.gobiiFileitemToReplaceWith;
+            let newFileItemList: GobiiFileItem[] = state.allFileItems.slice();
 
-            let fileItemToReplace: GobiiFileItem = state.allFileItems
+            let fileItemToReplace: GobiiFileItem = newFileItemList
                 .find(fi => fi.getGobiiExtractFilterType() === newItemToAdd.getGobiiExtractFilterType()
                     && fi.compoundIdeEquals(newItemToAdd));
 
-            let stateWithNewFileItem: State = {
-                gobiiExtractFilterType: state.gobiiExtractFilterType,
-                allFileItems: state.allFileItems,
-                uniqueIdsOfExtractFileItems: state.uniqueIdsOfExtractFileItems,
-                filters: state.filters
-            };
-
-
             // remove existing item if applicable
             if (fileItemToReplace) {
-                stateWithNewFileItem.allFileItems =
-                    stateWithNewFileItem.allFileItems.filter(fi =>
+                newFileItemList =
+                    newFileItemList.filter(fi =>
                         fi.getFileItemUniqueId() !== fileItemToReplace.getFileItemUniqueId());
             }
 
+
             // add new item
-            stateWithNewFileItem.allFileItems.push(newItemToAdd);
+            newFileItemList.push(newItemToAdd);
+
+            let stateWithNewFileItem = {
+                gobiiExtractFilterType: state.gobiiExtractFilterType,
+                allFileItems: newFileItemList,
+                uniqueIdsOfExtractFileItems: state.uniqueIdsOfExtractFileItems,
+                filters: state.filters
+            };
 
             // now add new item to selection if applicable
             let stateWithItemSelection: State;
