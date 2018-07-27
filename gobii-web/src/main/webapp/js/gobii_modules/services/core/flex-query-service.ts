@@ -293,10 +293,10 @@ export class FlexQueryService {
 
         });
 
-        let targetFilterParams:FilterParams = this.filterParamsColl.getFilter(filterParamsName,
+        let targetFilterParams: FilterParams = this.filterParamsColl.getFilter(filterParamsName,
             GobiiExtractFilterType.FLEX_QUERY);
 
-        if( targetFilterParams ) {
+        if (targetFilterParams) {
             targetFilterParams.setTargetEntityUniqueId(
                 GobiiFileItemCompoundId.fromGobiiFileItemCompoundId(targetValueVertex)
             );
@@ -326,7 +326,7 @@ export class FlexQueryService {
                 : null;
         }
 
-         this.recalcMarkerSampleCount(filterParamsName, jobId);
+        this.recalcMarkerSampleCount(filterParamsName, jobId);
 
     } // function
 
@@ -405,8 +405,7 @@ export class FlexQueryService {
                         console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
 
 
-
-                        let markerResultFileName:string = vertexFilterDtoResponse.markerFileFqpn;
+                        let markerResultFileName: string = vertexFilterDtoResponse.markerFileFqpn;
                         let markerResultFileItem: GobiiFileItem = GobiiFileItem
                             .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
                             .setExtractorItemType(ExtractorItemType.MARKER_RESULT_FILE)
@@ -417,13 +416,13 @@ export class FlexQueryService {
                         // default count items on load
                         let replaceMarkerResultFile: fileItemActions.ReplaceItemOfSameCompoundIdAction =
                             new fileItemActions.ReplaceItemOfSameCompoundIdAction(
-                            {
-                                gobiiFileitemToReplaceWith: markerResultFileItem
-                            }
-                        );
+                                {
+                                    gobiiFileitemToReplaceWith: markerResultFileItem
+                                }
+                            );
                         this.store.dispatch(replaceMarkerResultFile);
 
-                        let sampleResultFileName:string = vertexFilterDtoResponse.sampleFileFqpn;
+                        let sampleResultFileName: string = vertexFilterDtoResponse.sampleFileFqpn;
                         let sampleResultFileItem: GobiiFileItem = GobiiFileItem
                             .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
                             .setExtractorItemType(ExtractorItemType.SAMPLE_RESULT_FILE)
@@ -434,10 +433,10 @@ export class FlexQueryService {
                         // default count items on load
                         let replaceSampleResultFile: fileItemActions.ReplaceItemOfSameCompoundIdAction =
                             new fileItemActions.ReplaceItemOfSameCompoundIdAction(
-                            {
-                                gobiiFileitemToReplaceWith: sampleResultFileItem
-                            }
-                        );
+                                {
+                                    gobiiFileitemToReplaceWith: sampleResultFileItem
+                                }
+                            );
                         this.store.dispatch(replaceSampleResultFile);
 
                     } else {
@@ -507,20 +506,21 @@ export class FlexQueryService {
 
     public loadVertexValues(jobId: string, vertexFileItem: GobiiFileItem,
                             vertexValuesFilterPararamName: FilterParamNames,
-                            eventedEntityType:EntityType,
-                            eventedEntitySubType:EntitySubType,
-                            eventedCvGroup:CvGroup,
-                            eventedCvTerm:string) {
+                            eventedEntityType: EntityType,
+                            eventedEntitySubType: EntitySubType,
+                            eventedCvGroup: CvGroup,
+                            eventedCvTerm: string) {
 
 
         let targetChildFilterParams: FilterParams = this.filterParamsColl.getFilter(vertexValuesFilterPararamName, GobiiExtractFilterType.FLEX_QUERY);
-        let targetChildFilterParamsToLoad:GobiiFileItemCompoundId =
+        let targetChildFilterParamsToLoad: GobiiFileItemCompoundId =
             GobiiFileItemCompoundId
                 .fromGobiiFileItemCompoundId(targetChildFilterParams.getTargetEntityUniqueId())
                 .setEntityType(eventedEntityType)
                 .setEntitySubType(eventedEntitySubType)
                 .setCvGroup(eventedCvGroup)
-                .setCvTerm(eventedCvTerm);
+                .setCvTerm(eventedCvTerm)
+                .setExtractorItemType(ExtractorItemType.VERTEX_VALUE);
 
         if (vertexFileItem.getNameIdLabelType() == NameIdLabelType.UNKNOWN) {
 
@@ -540,6 +540,8 @@ export class FlexQueryService {
                         null
                     );
                     let vertexFilterDtoResponse: VertexFilterDTO = null;
+
+                    let cvTermIdVal: number = 0;
                     this.dtoRequestServiceVertexFilterDTO.post(new DtoRequestItemVertexFilterDTO(
                         vertexFilterDTO,
                         jobId,
@@ -558,6 +560,17 @@ export class FlexQueryService {
                             let vertexFileItems: GobiiFileItem[] = [];
                             payloadReader.getData().vertexValues.forEach(item => {
 
+                                    // property-based items do not have their own ID;
+                                    // in order for the UI to work proerly, they must
+                                    // have an id
+                                    let itemId: string;
+                                    if (targetVertex.gobiiVertexType === VertexType.CVTERM) {
+
+                                        itemId = (++cvTermIdVal).toString();
+                                    } else {
+                                        itemId = item.id;
+                                    }
+
                                     let currentFileItem: GobiiFileItem =
                                         GobiiFileItem.build(
                                             GobiiExtractFilterType.FLEX_QUERY,
@@ -567,7 +580,7 @@ export class FlexQueryService {
                                             .setEntitySubType(targetVertex.entitySubType)
                                             .setCvGroup(targetVertex.cvGroup)
                                             .setCvTerm(targetVertex.cvTerm)
-                                            .setItemId(item.id)
+                                            .setItemId(itemId)
                                             .setItemName(item.name)
                                             .setRequired(false)
                                             .setIsEphemeral(false)
@@ -598,7 +611,8 @@ export class FlexQueryService {
                                             null,
                                             null,
                                             null
-                                        )
+                                        ),
+                                        repalceByTarget: true
                                     }
                                 );
 

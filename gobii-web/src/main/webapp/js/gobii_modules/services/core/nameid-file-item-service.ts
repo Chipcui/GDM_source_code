@@ -110,13 +110,11 @@ export class NameIdFileItemService {
      */
     public replaceFileItemByCompoundId(gobiiFileItem: GobiiFileItem) {
 
-
         let loadAction: fileItemActions.ReplaceItemOfSameCompoundIdAction = new fileItemActions.ReplaceItemOfSameCompoundIdAction(
             {
                 gobiiFileitemToReplaceWith: gobiiFileItem
             }
         );
-
 
         this.store.dispatch(loadAction);
 
@@ -453,7 +451,8 @@ export class NameIdFileItemService {
                                                         targetEntityFilterValue,
                                                         minEntityLastUpdated,
                                                         null
-                                                    )
+                                                    ),
+                                                    repalceByTarget: false
                                                 }
                                             );
 

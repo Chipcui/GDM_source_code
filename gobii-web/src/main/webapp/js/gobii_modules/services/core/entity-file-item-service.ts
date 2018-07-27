@@ -29,7 +29,7 @@ export class EntityFileItemService {
     constructor(private nameIdService: NameIdService,
                 private entityStatsService: DtoRequestService<EntityStats>,
                 private fileItemRequestService: DtoRequestService<GobiiFileItem[]>,
-                private filterService:FilterService,
+                private filterService: FilterService,
                 private store: Store<fromRoot.State>,
                 private filterParamsColl: FilterParamsColl) {
 
@@ -150,7 +150,8 @@ export class EntityFileItemService {
                                                 filterValue,
                                                 date,
                                                 pagination
-                                            )
+                                            ),
+                                            repalceByTarget: false
                                         }
                                     );
 
