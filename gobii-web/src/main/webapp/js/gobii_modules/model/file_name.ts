@@ -1,4 +1,6 @@
 import {GobiiExtractFilterType} from "./type-extractor-filter";
+import {EntityType} from "./type-entity";
+
 export class FileName {
 
     public static makeUniqueFileId(): string {
@@ -8,9 +10,9 @@ export class FileName {
             + "_"
             + ('0' + (date.getMonth() + 1)).slice(-2)
             + "_"
-            + ( '0' + date.getDate()).slice(-2)
+            + ('0' + date.getDate()).slice(-2)
             + "_"
-            + ( '0' + date.getHours()).slice(-2)
+            + ('0' + date.getHours()).slice(-2)
             + "_"
             + ('0' + date.getMinutes()).slice(-2)
             + "_"
@@ -21,13 +23,13 @@ export class FileName {
 
     };
 
-    public static makeFileNameFromJobId(gobiiExtractFilterType: GobiiExtractFilterType, jobId: string): string {
+    public static makeFileNameFromJobId(targetEntityType: EntityType, jobId: string): string {
 
         let returnVal: string;
 
         let suffix = null;
 
-        if (gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
+        if (targetEntityType === EntityType.MARKER) {
             suffix = "_markers";
         } else {
             suffix = "_samples";

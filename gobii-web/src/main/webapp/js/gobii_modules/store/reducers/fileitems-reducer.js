@@ -439,8 +439,8 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
             exports_1("getUploadFiles", getUploadFiles = reselect_1.createSelector(getFileItems, getSelectedUniqueIds, function (fileItems, selectedUniqueIds) {
                 // default
                 var returnVal = fileItems
-                    .filter(function (fi) { return fi.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.MARKER_FILE
-                    || fi.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.SAMPLE_FILE; });
+                    .filter(function (fi) { return fi.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.MARKER_INPUT_FILE
+                    || fi.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.SAMPLE_INPUT_FILE; });
                 return returnVal;
             }));
             exports_1("getPiContacts", getPiContacts = reselect_1.createSelector(getFileItems, getUniqueIds, function (fileItems, ids) {

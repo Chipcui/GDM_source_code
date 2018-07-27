@@ -188,6 +188,7 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                                                 <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
                                                                 <sample-marker-box
                                                                         [gobiiExtractFilterType]="gobiiExtractFilterType"
+                                                                        [targetEntityType]="gobiiEntityTypes.DNA_SAMPLE"
                                                                         (onSampleMarkerError)="handleHeaderStatusMessage($event)">
                                                                 </sample-marker-box>
                                                             </div> <!-- panel body dataset datatable -->
@@ -232,6 +233,7 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                                             <div class="panel-body">
                                                                 <sample-marker-box
                                                                         [gobiiExtractFilterType]="gobiiExtractFilterType"
+                                                                        [targetEntityType]="gobiiEntityTypes.MARKER"
                                                                         (onSampleMarkerError)="handleHeaderStatusMessage($event)">
                                                                 </sample-marker-box>
                                                             </div> <!-- panel body dataset datatable -->
@@ -285,7 +287,8 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                                             </div>
                                                             <div class="panel-body">
                                                                 <sample-marker-box
-                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.BY_MARKER"
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.FLEX_QUERY"
+                                                                        [targetEntityType]="gobiiEntityTypes.MARKER"
                                                                         (onSampleMarkerError)="handleHeaderStatusMessage($event)">
                                                                 </sample-marker-box>
                                                             </div> <!-- panel body dataset datatable -->
@@ -298,12 +301,13 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                                             </div>
                                                             <div class="panel-body">
                                                                 <sample-list-type
-                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.BY_SAMPLE"
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.FLEX_QUERY"
                                                                         (onHeaderStatusMessage)="handleHeaderStatusMessage($event)">
                                                                 </sample-list-type>
                                                                 <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
                                                                 <sample-marker-box
-                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.BY_SAMPLE"
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterTypes.FLEX_QUERY"
+                                                                        [targetEntityType]="gobiiEntityTypes.DNA_SAMPLE"
                                                                         (onSampleMarkerError)="handleHeaderStatusMessage($event)">
                                                                 </sample-marker-box>
                                                             </div> <!-- panel body dataset datatable -->
@@ -410,6 +414,7 @@ export class ExtractorRoot implements OnInit {
 
     nameIdFilterParamTypes: any = Object.assign({}, FilterParamNames);
     gobiiExtractFilterTypes: any = Object.assign({}, GobiiExtractFilterType);
+    gobiiEntityTypes: any = Object.assign({}, EntityType);
 
     selectedExtractFormat$: Observable<GobiiFileItem> = this.store.select(fromRoot.getSelectedFileFormat);
 

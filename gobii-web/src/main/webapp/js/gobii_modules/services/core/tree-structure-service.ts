@@ -4,16 +4,14 @@ import {EntitySubType, EntityType} from "../../model/type-entity";
 import {Labels} from "../../views/entity-labels";
 import {ExtractorItemType} from "../../model/type-extractor-item";
 import {GobiiExtractFilterType} from "../../model/type-extractor-filter";
-import {CvGroup, getCvGroupName} from "../../model/cv-group";
+import {CvGroup} from "../../model/cv-group";
 import {GobiiFileItem} from "../../model/gobii-file-item";
 import {GobiiExtractFormat} from "../../model/type-extract-format";
 import {ProcessType} from "../../model/type-process";
 import {GobiiFileItemCompoundId} from "../../model/gobii-file-item-compound-id";
-import {TypeTreeNodeStatus} from "../../model/type-tree-node-status";
 import * as treeNodeActions from '../../store/actions/treenode-action'
 import {Store} from "@ngrx/store";
 import * as fromRoot from '../../store/reducers';
-import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
@@ -82,7 +80,7 @@ export class TreeStructureService {
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.ENTITY)
                         .setEntityType(EntityType.PROJECT)
                         .setContainerType(ContainerType.NONE),
-                    GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.SAMPLE_FILE),
+                    GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.SAMPLE_INPUT_FILE),
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.SAMPLE_LIST_ITEM)
                         .setContainerType(ContainerType.DATA),
                 ]),
@@ -101,7 +99,7 @@ export class TreeStructureService {
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.ENTITY)
                         .setEntityType(EntityType.PLATFORM)
                         .setContainerType(ContainerType.DATA),
-                    GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.MARKER_FILE),
+                    GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.MARKER_INPUT_FILE),
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.MARKER_LIST_ITEM)
                         .setContainerType(ContainerType.DATA),
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_MARKER, ExtractorItemType.ENTITY)
@@ -146,6 +144,22 @@ export class TreeStructureService {
                     .setEntityType(EntityType.ANY)
                     .setEntitySubType(EntitySubType.ANY)
                     .setCvGroup(CvGroup.ANY)),
+            GobiiTreeNode.build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.TREE_STRUCTURE)
+                .setContainerType(ContainerType.STRUCTURE)
+                .setLabel("Intersect Lists")
+                .setExpanded(true)
+                .setChildren([
+                    GobiiTreeNode
+                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.MARKER_INPUT_FILE),
+                    GobiiTreeNode
+                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.MARKER_LIST_ITEM)
+                        .setContainerType(ContainerType.DATA),
+                    GobiiTreeNode
+                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.SAMPLE_INPUT_FILE),
+                    GobiiTreeNode
+                        .build(GobiiExtractFilterType.FLEX_QUERY, ExtractorItemType.SAMPLE_LIST_ITEM)
+                        .setContainerType(ContainerType.DATA),
+                ])
         ]; // array of gobii tree nodes
 
         // we know we only have to go one level deep in this case -- no need to recurse
@@ -404,7 +418,7 @@ export class TreeStructureService {
             icon = "fa-columns";
             expandedIcon = "fa-columns";
             collapsedIcon = "fa-columns";
-        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.SAMPLE_FILE) {
+        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.SAMPLE_INPUT_FILE) {
             icon = "fa-file-text-o";
             expandedIcon = "fa-file-text-o";
             collapsedIcon = "fa-file-text-o";
@@ -418,7 +432,7 @@ export class TreeStructureService {
                 expandedIcon = "fa-eyedropper";
                 collapsedIcon = "fa-eyedropper";
             }
-        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.MARKER_FILE) {
+        } else if (gobiiFileItemCompoundId.getExtractorItemType() === ExtractorItemType.MARKER_INPUT_FILE) {
             icon = "fa-file-text-o";
             expandedIcon = "fa-file-text-o";
             collapsedIcon = "fa-file-text-o";

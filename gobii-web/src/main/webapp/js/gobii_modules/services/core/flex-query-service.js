@@ -289,7 +289,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         .subscribe(function (vertexFiltersForCount) {
                         var dummyVertex = new vertex_1.Vertex(0, type_vertex_name_1.VertexNameType.MARKER, type_vertex_1.VertexType.ENTITY, "countonly", type_entity_1.EntityType.MARKER, type_entity_1.EntitySubType.UNKNOWN, cv_group_1.CvGroup.UNKNOWN, null, []);
                         var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(dummyVertex, // the server should ignore this because it's a count query
-                        vertexFiltersForCount, [], null, null);
+                        vertexFiltersForCount, [], null, null, null, null, null, null);
                         var vertexFilterDtoResponse = null;
                         _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, true)).subscribe(function (payloadReader) {
                             if (payloadReader.succeeded()) {
@@ -318,6 +318,34 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                     selectForExtract: true
                                 });
                                 _this.store.dispatch(loadActionSampleCount);
+                                console.log(jobId + ": marker count time is " + vertexFilterDtoResponse.markerCountMs + " ms.");
+                                console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
+                                var markerResultFileName = vertexFilterDtoResponse.markerFileFqpn;
+                                var markerResultFileItem = gobii_file_item_1.GobiiFileItem
+                                    .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
+                                    .setExtractorItemType(type_extractor_item_1.ExtractorItemType.MARKER_RESULT_FILE)
+                                    .setEntityType(type_entity_1.EntityType.MARKER)
+                                    .setItemName("Marker file: " + markerResultFileName)
+                                    .setEntity(markerResultFileName)
+                                    .setIsEphemeral(false);
+                                // default count items on load
+                                var replaceMarkerResultFile = new fileItemActions.ReplaceItemOfSameCompoundIdAction({
+                                    gobiiFileitemToReplaceWith: markerResultFileItem
+                                });
+                                _this.store.dispatch(replaceMarkerResultFile);
+                                var sampleResultFileName = vertexFilterDtoResponse.sampleFileFqpn;
+                                var sampleResultFileItem = gobii_file_item_1.GobiiFileItem
+                                    .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
+                                    .setExtractorItemType(type_extractor_item_1.ExtractorItemType.SAMPLE_RESULT_FILE)
+                                    .setEntityType(type_entity_1.EntityType.DNA_SAMPLE)
+                                    .setItemName("Sample file: " + sampleResultFileName)
+                                    .setEntity(sampleResultFileName)
+                                    .setIsEphemeral(false);
+                                // default count items on load
+                                var replaceSampleResultFile = new fileItemActions.ReplaceItemOfSameCompoundIdAction({
+                                    gobiiFileitemToReplaceWith: sampleResultFileItem
+                                });
+                                _this.store.dispatch(replaceSampleResultFile);
                             }
                             else {
                                 _this.store.dispatch(new historyAction.AddStatusMessageAction("Error submitting extract insturctions: " +
@@ -380,7 +408,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         this.getVertexFilters(vertexValuesFilterPararamName)
                             .subscribe(function (vertices) {
                             var targetVertex = vertexFileItem.getEntity();
-                            var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null);
+                            var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null, null, null, null, null);
                             var vertexFilterDtoResponse = null;
                             _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, false)).subscribe(function (payloadReader) {
                                 if (payloadReader.succeeded()) {

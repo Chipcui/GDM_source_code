@@ -1,11 +1,11 @@
-System.register(["./type-extractor-filter"], function (exports_1, context_1) {
+System.register(["./type-entity"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var type_extractor_filter_1, FileName;
+    var type_entity_1, FileName;
     return {
         setters: [
-            function (type_extractor_filter_1_1) {
-                type_extractor_filter_1 = type_extractor_filter_1_1;
+            function (type_entity_1_1) {
+                type_entity_1 = type_entity_1_1;
             }
         ],
         execute: function () {
@@ -28,10 +28,10 @@ System.register(["./type-extractor-filter"], function (exports_1, context_1) {
                     return returnVal;
                 };
                 ;
-                FileName.makeFileNameFromJobId = function (gobiiExtractFilterType, jobId) {
+                FileName.makeFileNameFromJobId = function (targetEntityType, jobId) {
                     var returnVal;
                     var suffix = null;
-                    if (gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER) {
+                    if (targetEntityType === type_entity_1.EntityType.MARKER) {
                         suffix = "_markers";
                     }
                     else {

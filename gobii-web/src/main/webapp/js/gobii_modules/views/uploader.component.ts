@@ -13,12 +13,13 @@ import * as fromRoot from '../store/reducers';
 import {Observable} from "rxjs/Observable";
 import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
 import * as historyAction from '../store/actions/history-action';
+import {EntityType} from "../model/type-entity";
 
 const URL = 'gobii/v1/files/{gobiiJobId}/EXTRACTOR_INSTRUCTIONS?fileName=';
 
 @Component({
     selector: 'uploader',
-    inputs: ['gobiiExtractFilterType'],
+    inputs: ['gobiiExtractFilterType','targetEntityType'],
     outputs: ['onUploaderError', 'onClickBrowse'],
     template: `
         <style>
@@ -169,6 +170,7 @@ export class UploaderComponent implements OnInit {
 
     private onUploaderError: EventEmitter<HeaderStatusMessage> = new EventEmitter();
     private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
+    private targetEntityType:EntityType = EntityType.UNKNOWN;
     public uploadComplete = false;
 
     constructor(private _authenticationService: AuthenticationService,
@@ -216,7 +218,7 @@ export class UploaderComponent implements OnInit {
                 let jobId: string = fileItemJobId.getItemId();
                 let fileUploaderOptions: FileUploaderOptions = {}
                 let url: string = URL.replace("{gobiiJobId}", jobId);
-                let fileName = FileName.makeFileNameFromJobId(this.gobiiExtractFilterType, jobId);
+                let fileName = FileName.makeFileNameFromJobId(this.targetEntityType, jobId);
 
                 url += fileName;
                 fileUploaderOptions.url = url;
@@ -245,8 +247,8 @@ export class UploaderComponent implements OnInit {
 
                         if (status == 200) {
                             let listItemType: ExtractorItemType =
-                                this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER ?
-                                    ExtractorItemType.MARKER_FILE : ExtractorItemType.SAMPLE_FILE;
+                                this.targetEntityType === EntityType.MARKER ?
+                                    ExtractorItemType.MARKER_INPUT_FILE : ExtractorItemType.SAMPLE_INPUT_FILE;
 
                             this.fileItemService.loadFileItem(GobiiFileItem
                                     .build(this.gobiiExtractFilterType, ProcessType.CREATE)

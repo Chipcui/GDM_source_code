@@ -48,7 +48,7 @@ export class InstructionSubmissionService {
     ), false);
 
     private samplefileCriterion: GobiiFileItemCriterion = new GobiiFileItemCriterion(new GobiiFileItemCompoundId(
-        ExtractorItemType.SAMPLE_FILE,
+        ExtractorItemType.SAMPLE_INPUT_FILE,
         EntityType.UNKNOWN,
         EntitySubType.UNKNOWN,
         CvGroup.UNKNOWN,
@@ -90,7 +90,7 @@ export class InstructionSubmissionService {
 
 
     private markerListFileCriterion: GobiiFileItemCriterion = new GobiiFileItemCriterion(new GobiiFileItemCompoundId(
-        ExtractorItemType.MARKER_FILE,
+        ExtractorItemType.MARKER_INPUT_FILE,
         EntityType.UNKNOWN,
         EntitySubType.UNKNOWN,
         CvGroup.UNKNOWN,
@@ -385,6 +385,8 @@ export class InstructionSubmissionService {
                 let markerFileName: string = null;
                 let sampleFileName: string = null;
                 let sampleListType: GobiiSampleListType;
+                let sampleResultFileName: string = null;
+                let markerResultFileName: string = null;
 
                 this.store.select(fromRoot.getSelectedFileItems)
                     .subscribe(fileItems => {
@@ -401,7 +403,7 @@ export class InstructionSubmissionService {
 
                             // ******** MARKER FILE
                             let fileItemMarkerFile: GobiiFileItem = fileItems.find(item => {
-                                return item.getExtractorItemType() === ExtractorItemType.MARKER_FILE
+                                return item.getExtractorItemType() === ExtractorItemType.MARKER_INPUT_FILE
                             });
 
                             if (fileItemMarkerFile != null) {
@@ -410,7 +412,7 @@ export class InstructionSubmissionService {
 
                             // ******** SAMPLE FILE
                             let fileItemSampleFile: GobiiFileItem = fileItems.find(item => {
-                                return item.getExtractorItemType() === ExtractorItemType.SAMPLE_FILE
+                                return item.getExtractorItemType() === ExtractorItemType.SAMPLE_INPUT_FILE
                             });
 
                             if (fileItemSampleFile != null) {
@@ -530,6 +532,20 @@ export class InstructionSubmissionService {
                                 sampleListType = GobiiSampleListType[sampleListTypeFileItem.getItemId()];
                             }
 
+                            //result files
+                            let markerResultFileItem: GobiiFileItem = fileItems.find(item => {
+                                return item.getExtractorItemType() === ExtractorItemType.MARKER_RESULT_FILE;
+                            });
+                            if (markerResultFileItem) {
+                                markerResultFileName = markerResultFileItem.getEntity();
+                            }
+
+                            let sampleResultFileItem: GobiiFileItem = fileItems.find(item => {
+                                return item.getExtractorItemType() === ExtractorItemType.SAMPLE_RESULT_FILE;
+                            });
+                            if (sampleResultFileItem) {
+                                sampleResultFileName = sampleResultFileItem.getEntity();
+                            }
 
                             // *** NOW PUT TOGETHER THE EXTRACT INSTRUCTIONS
                             if (gobiiExtractFilterType === GobiiExtractFilterType.WHOLE_DATASET) {
@@ -553,6 +569,7 @@ export class InstructionSubmissionService {
                                         null,
                                         null,
                                         markerFileName,
+                                        sampleFileName,
                                         null,
                                         datasetType,
                                         platforms,
@@ -560,7 +577,9 @@ export class InstructionSubmissionService {
                                         null,
                                         dataSet,
                                         null,
-                                        []));
+                                        [],
+                                        markerResultFileName,
+                                        sampleResultFileName));
                                 }); // iterate dataset items
 
 
@@ -579,6 +598,7 @@ export class InstructionSubmissionService {
                                     markerList,
                                     null,
                                     markerFileName,
+                                    sampleFileName,
                                     null,
                                     datasetType,
                                     platforms,
@@ -586,7 +606,9 @@ export class InstructionSubmissionService {
                                     null,
                                     null,
                                     markerGroups,
-                                    []));
+                                    [],
+                                    markerResultFileName,
+                                    sampleResultFileName));
 
                                 this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                     .subscribe(extractorInstructions => {
@@ -602,6 +624,7 @@ export class InstructionSubmissionService {
                                     gobiiExtractFilterType,
                                     null,
                                     sampleList,
+                                    markerFileName,
                                     sampleFileName,
                                     sampleListType,
                                     datasetType,
@@ -610,7 +633,9 @@ export class InstructionSubmissionService {
                                     project,
                                     null,
                                     null,
-                                    []));
+                                    [],
+                                    markerResultFileName,
+                                    sampleResultFileName));
 
                                 this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                     .subscribe(extractorInstructions => {
@@ -654,8 +679,9 @@ export class InstructionSubmissionService {
                                                     false,
                                                     null,
                                                     gobiiExtractFilterType,
-                                                    null,
+                                                    markerList,
                                                     sampleList,
+                                                    markerFileName,
                                                     sampleFileName,
                                                     sampleListType,
                                                     datasetType,
@@ -664,7 +690,9 @@ export class InstructionSubmissionService {
                                                     project,
                                                     null,
                                                     null,
-                                                    vertices));
+                                                    vertices,
+                                                    markerResultFileName,
+                                                    sampleResultFileName));
 
                                                 this.post(jobId, gobiiDataSetExtracts, submitterContactid, mapsetIds)
                                                     .subscribe(extractorInstructions => {

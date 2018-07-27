@@ -30,7 +30,8 @@ public class GobiiDataSetExtract {
     private GobiiExtractFilterType gobiiExtractFilterType;
     private List<String> markerList = new ArrayList<>();
     private List<String> sampleList = new ArrayList<>();
-    private String listFileName;
+    private String markerListFileName;
+    private String sampleListFileName;
     private PropNameId gobiiDatasetType = new PropNameId();
     private PropNameId principleInvestigator = new PropNameId();
     private PropNameId project = new PropNameId();
@@ -41,8 +42,8 @@ public class GobiiDataSetExtract {
     private List<File> extractedFiles = new ArrayList<>();
     private String logMessage;
     private List<VertexDTO> vertices = new ArrayList<>();
-    private String gqlMarkerFileName = null;
-    private String gqlSampleFileName = null;
+    private String gqlMarkerResultFileName = null;
+    private String gqlSampleResultFileName = null;
 
     public GobiiExtractFilterType getGobiiExtractFilterType() {
         return gobiiExtractFilterType;
@@ -68,12 +69,20 @@ public class GobiiDataSetExtract {
         this.sampleList = sampleList;
     }
 
-    public String getListFileName() {
-        return listFileName;
+    public String getMarkerListFileName() {
+        return markerListFileName;
     }
 
-    public void setListFileName(String listFileName) {
-        this.listFileName = listFileName;
+    public void setMarkerListFileName(String markerListFileName) {
+        this.markerListFileName = markerListFileName;
+    }
+
+    public String getSampleListFileName() {
+        return sampleListFileName;
+    }
+
+    public void setSampleListFileName(String sampleListFileName) {
+        this.sampleListFileName = sampleListFileName;
     }
 
     public GobiiSampleListType getGobiiSampleListType() {
@@ -187,20 +196,20 @@ public class GobiiDataSetExtract {
     }
 
 
-    public String getGqlMarkerFileName() {
-        return gqlMarkerFileName;
+    public String getGqlMarkerResultFileName() {
+        return gqlMarkerResultFileName;
     }
 
-    public void setGqlMarkerFileName(String gqlMarkerFileName) {
-        this.gqlMarkerFileName = gqlMarkerFileName;
+    public void setGqlMarkerResultFileName(String gqlMarkerResultFileName) {
+        this.gqlMarkerResultFileName = gqlMarkerResultFileName;
     }
 
-    public String getGqlSampleFileName() {
-        return gqlSampleFileName;
+    public String getGqlSampleResultFileName() {
+        return gqlSampleResultFileName;
     }
 
-    public void setGqlSampleFileName(String gqlSampleFileName) {
-        this.gqlSampleFileName = gqlSampleFileName;
+    public void setGqlSampleResultFileName(String gqlSampleResultFileName) {
+        this.gqlSampleResultFileName = gqlSampleResultFileName;
     }
 
 }
