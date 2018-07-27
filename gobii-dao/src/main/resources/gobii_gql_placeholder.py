@@ -2,6 +2,7 @@
 import sys
 import random
 import getopt
+import datetime
 
 # test data generation script
 # by Phil Glaser
@@ -35,12 +36,13 @@ def main(argv):
         elif opt in ("-u", "--unique"):
             unique = True
 
-
     print("Initiated gql placeholder test script with arguments ", sys.argv)
     print("output file is: ", output_file_name)
     print("Target vertex is: ", target_vertex_name)
     print("subgraph path is: %s " %sub_graph_path)
     print("max result is: ", max_result)
+
+    time = datetime.datetime.now().strftime("%I-%M-%S")
 
     file_lines = []
     if str(target_vertex_name) == str("principal_investigator"):
@@ -99,7 +101,7 @@ def main(argv):
             file_lines.append(str(idx) + "\t" + last_name + "\t" + first_name)
             idx = idx + 1
     else:
-        total_lines = 20
+        total_lines = 5
         leading_trailing_chars = ""
         id_column = ""
         name_column = ""
@@ -154,10 +156,11 @@ def main(argv):
             file_lines.append(id_column + "\t" + name_column)
 
         # the_file.write("id\tname\n")
-        idx = 0
-        while idx < total_lines:
+        random_start = random.randint(1, 10000)
+        idx = random_start
+        while idx < ( random_start + total_lines) :
             idx = idx + 1
-            value = leading_trailing_chars + target_vertex_name + " # " + '{:02d}'.format(idx) + leading_trailing_chars
+            value = time + "-" + leading_trailing_chars + target_vertex_name + " # " + '{:02d}'.format(idx) + leading_trailing_chars
             #the_file.write("%i\t%s\n" % (idx, value))
             if not id_column:
                 file_lines.append(value)
