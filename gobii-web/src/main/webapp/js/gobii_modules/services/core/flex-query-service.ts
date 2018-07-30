@@ -401,8 +401,17 @@ export class FlexQueryService {
                         );
                         this.store.dispatch(loadActionSampleCount);
 
-                        console.log(jobId + ": marker count time is " + vertexFilterDtoResponse.markerCountMs + " ms.");
-                        console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
+                        console.log(jobId + ": marker count time for "
+                            + vertexFilterDtoResponse.markerCount
+                            + " markers is "
+                            + vertexFilterDtoResponse.markerCountMs
+                            + " ms.");
+
+                        console.log(jobId + ": sample count time for "
+                            + vertexFilterDtoResponse.sampleCount
+                            + " markers is "
+                            + vertexFilterDtoResponse.sampleCountMs
+                            + " ms.");
 
 
                         let markerResultFileName: string = vertexFilterDtoResponse.markerFileFqpn;

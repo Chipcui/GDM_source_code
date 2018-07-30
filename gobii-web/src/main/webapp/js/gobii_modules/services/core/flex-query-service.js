@@ -318,8 +318,16 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                     selectForExtract: true
                                 });
                                 _this.store.dispatch(loadActionSampleCount);
-                                console.log(jobId + ": marker count time is " + vertexFilterDtoResponse.markerCountMs + " ms.");
-                                console.log(jobId + ": sample count time is " + vertexFilterDtoResponse.sampleCountMs + " ms.");
+                                console.log(jobId + ": marker count time for "
+                                    + vertexFilterDtoResponse.markerCount
+                                    + " markers is "
+                                    + vertexFilterDtoResponse.markerCountMs
+                                    + " ms.");
+                                console.log(jobId + ": sample count time for "
+                                    + vertexFilterDtoResponse.sampleCount
+                                    + " markers is "
+                                    + vertexFilterDtoResponse.sampleCountMs
+                                    + " ms.");
                                 var markerResultFileName = vertexFilterDtoResponse.markerFileFqpn;
                                 var markerResultFileItem = gobii_file_item_1.GobiiFileItem
                                     .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)

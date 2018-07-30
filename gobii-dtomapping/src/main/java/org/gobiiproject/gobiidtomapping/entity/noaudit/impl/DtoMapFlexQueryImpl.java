@@ -139,6 +139,7 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             StopWatch stopWatchMarkerCount = new StopWatch();
             stopWatchMarkerCount.start();
             Integer markerRunReturn = GqlWrapper.run(gqlScriptCommandLineMarkers, stdOutFileFqpnMarkers, stdErrFileFqpnMarkers);
+            stopWatchMarkerCount.stop();
             if (markerRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || markerRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
                 if (!markerRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
@@ -147,7 +148,6 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
             }
-            stopWatchMarkerCount.stop();
             Integer markerCountMs = Math.toIntExact(stopWatchMarkerCount.getTime());
 
             // ******* GET SAMPLE COUNT
@@ -159,6 +159,7 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             StopWatch stopWatchSampleCount = new StopWatch();
             stopWatchSampleCount.start();
             Integer sampleRunReturn = GqlWrapper.run(gqlScriptCommandLineSamples, stdOutFileFqpnSamples, stdErrFileFqpnSamples);
+            stopWatchSampleCount.stop();
             if (sampleRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
                 if (!sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
@@ -167,7 +168,6 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
             }
-            stopWatchSampleCount.stop();
             Integer sampleCountMs = Math.toIntExact(stopWatchSampleCount.getTime());
 
             if (markerCount > Integer.MAX_VALUE) {
