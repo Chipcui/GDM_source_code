@@ -24,6 +24,10 @@ import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 //import com.sun.jna.Native;
 
 public class HelperFunctions {
+
+    private static final String PARAM_CTCN_USR = "{username}";
+    private static final String PARAM_CTCN_PWD = "{password}";
+
     private static boolean showTempFiles = true;
 
     /**
@@ -175,8 +179,8 @@ public class HelperFunctions {
 
         try {
             returnVal = builder.start();
-            if( waitSeconds != null ) {
-                returnVal.waitFor(waitSeconds,TimeUnit.SECONDS);
+            if (waitSeconds != null) {
+                returnVal.waitFor(waitSeconds, TimeUnit.SECONDS);
             } else {
                 returnVal.waitFor();
             }
@@ -192,7 +196,7 @@ public class HelperFunctions {
 
         String[] returnVal;
 
-        returnVal= execString.split(" ");
+        returnVal = execString.split(" ");
 
         return returnVal;
 
@@ -202,8 +206,8 @@ public class HelperFunctions {
 
         String returnVal = execString[0];
 
-        if(returnVal.equals("python")){
-            returnVal=execString[1];
+        if (returnVal.equals("python")) {
+            returnVal = execString[1];
         }
 
         return returnVal;
@@ -242,7 +246,6 @@ public class HelperFunctions {
     }
 
 
-
     /**
      * Returns a string from the output of a process
      *
@@ -279,19 +282,67 @@ public class HelperFunctions {
         } else return destination + "/" + "digest." + instruction.getTable();
     }
 
+    /***
+     * Returns a valid postgres connection string, including username and password
+     * in the clear
+     * @param config the config object for the crop
+     * @return The connection string
+     */
     public static String getPostgresConnectionString(GobiiCropConfig config) {
-        GobiiCropDbConfig crop = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
         String ret = "postgresql://"
-                + crop.getUserName()
+                + cropDbConfig.getUserName()
                 + ":"
-                + crop.getPassword()
+                + cropDbConfig.getPassword()
                 + "@"
-                + crop.getHost()
+                + cropDbConfig.getHost()
                 + ":"
-                + crop.getPort()
+                + cropDbConfig.getPort()
                 + "/"
-                + crop.getContextPath();
+                + cropDbConfig.getContextPath();
         return ret;
+    }
+
+    /***
+     * Returns a valid postgres connection string, but username and password
+     * are "parameterized" so that the string can be safely logged or used in
+     * error messages. This string can then be made useful for actual connections
+     * using the replacePostgressCredentials() method
+     * @param config the config object for the crop
+     * @return The safe connection string
+     */
+    public static String getSecurePostgresConnectionString(GobiiCropConfig config) {
+        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        String ret = "postgresql://"
+                + PARAM_CTCN_USR
+                + ":"
+                + PARAM_CTCN_PWD
+                + "@"
+                + cropDbConfig.getHost()
+                + ":"
+                + cropDbConfig.getPort()
+                + "/"
+                + cropDbConfig.getContextPath();
+        return ret;
+    }
+
+    /***
+     * Given a connection string created with getSecurePostgresConnectionString(),
+     * returns a new string that contains the real username and password for use in a
+     * real connection.
+     * @param secureString The connection string that was created with getSecurePostgresConnectionString()
+     * @param config the config object for the crop
+     * @return The safe connection string
+     */
+    public static String replacePostgressCredentials(String secureString, GobiiCropConfig config) {
+
+        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        String ret = secureString
+                .replace(PARAM_CTCN_USR, cropDbConfig.getUserName())
+                .replace(PARAM_CTCN_PWD, cropDbConfig.getPassword());
+
+        return ret;
+
     }
 
     public static boolean sendEmail(String jobName, String fileLocation, boolean success, String errorLogLoc, ConfigSettings config, String recipientAddress) {

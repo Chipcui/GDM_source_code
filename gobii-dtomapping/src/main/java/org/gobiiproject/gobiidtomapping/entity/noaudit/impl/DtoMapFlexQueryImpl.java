@@ -1,12 +1,9 @@
 package org.gobiiproject.gobiidtomapping.entity.noaudit.impl;
 
-import ch.qos.logback.core.util.FileUtil;
-import com.sun.javafx.scene.shape.PathUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.time.StopWatch;
 import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.gobiiproject.gobiidao.gql.GqlOFileType;
 import org.gobiiproject.gobiidao.gql.GqlDestinationFileType;
+import org.gobiiproject.gobiidao.gql.GqlOFileType;
 import org.gobiiproject.gobiidao.gql.GqlText;
 import org.gobiiproject.gobiidao.gql.GqlWrapper;
 import org.gobiiproject.gobiidtomapping.core.GobiiDtoMappingException;
@@ -92,7 +89,7 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
                     vertexFilterDTO.getDestinationVertexDTO(),
                     maxVertexValues);
 
-            Integer valuesRunReturn = GqlWrapper.run(gqlScriptCommandLine, stdOutFileFqpn, stdErrFileFqpn);
+            Integer valuesRunReturn = GqlWrapper.run(cropType, gqlScriptCommandLine, stdOutFileFqpn, stdErrFileFqpn);
             if (valuesRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)) {
                 List<NameIdDTO> values = gqlText.makeValues(outputFileFqpn, vertexFilterDTO.getDestinationVertexDTO());
                 returnVal.getVertexValues().addAll(values);
@@ -138,7 +135,8 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
 
             StopWatch stopWatchMarkerCount = new StopWatch();
             stopWatchMarkerCount.start();
-            Integer markerRunReturn = GqlWrapper.run(gqlScriptCommandLineMarkers, stdOutFileFqpnMarkers, stdErrFileFqpnMarkers);
+            Integer markerRunReturn = GqlWrapper.run(cropType, gqlScriptCommandLineMarkers, stdOutFileFqpnMarkers, stdErrFileFqpnMarkers);
+            stopWatchMarkerCount.stop();
             if (markerRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || markerRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
                 if (!markerRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
@@ -147,7 +145,6 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
             }
-            stopWatchMarkerCount.stop();
             Integer markerCountMs = Math.toIntExact(stopWatchMarkerCount.getTime());
 
             // ******* GET SAMPLE COUNT
@@ -158,7 +155,8 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             Long sampleCount = 0L;
             StopWatch stopWatchSampleCount = new StopWatch();
             stopWatchSampleCount.start();
-            Integer sampleRunReturn = GqlWrapper.run(gqlScriptCommandLineSamples, stdOutFileFqpnSamples, stdErrFileFqpnSamples);
+            Integer sampleRunReturn = GqlWrapper.run(cropType, gqlScriptCommandLineSamples, stdOutFileFqpnSamples, stdErrFileFqpnSamples);
+            stopWatchSampleCount.stop();
             if (sampleRunReturn.equals(GqlWrapper.GQL_RETURN_SUCCESS)
                     || sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
                 if (!sampleRunReturn.equals(GqlWrapper.GQL_RETURN_NO_FILTERS_APPLIED_TO_TARGET)) {
@@ -167,7 +165,6 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
             } else {
                 throw new GobiiDaoException(GqlWrapper.message());
             }
-            stopWatchSampleCount.stop();
             Integer sampleCountMs = Math.toIntExact(stopWatchSampleCount.getTime());
 
             if (markerCount > Integer.MAX_VALUE) {

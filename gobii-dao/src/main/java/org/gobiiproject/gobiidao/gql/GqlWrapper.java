@@ -1,7 +1,9 @@
 package org.gobiiproject.gobiidao.gql;
 
 import org.gobiiproject.gobiidao.GobiiDaoException;
+import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
+import org.hibernate.id.uuid.Helper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,11 +50,13 @@ public class GqlWrapper {
         return message;
     }
 
-    public static Integer run(String execString, String outputFileName, String errorFileName) throws Exception {
+    public static Integer run(String cropType, String execString, String outputFileName, String errorFileName) throws Exception {
 
         Integer returnVal = 0;
 
-        String[] execArray = HelperFunctions.makeExecString(execString);
+        ConfigSettings configSettings = new ConfigSettings();
+        String nonSecureExecString = HelperFunctions.replacePostgressCredentials(execString, configSettings.getCropConfig(cropType));
+        String[] execArray = HelperFunctions.makeExecString(nonSecureExecString);
         Process process = HelperFunctions.initProcecess(execArray, outputFileName, errorFileName, null, timeOutSecs);
 
         if (!process.isAlive()) {
