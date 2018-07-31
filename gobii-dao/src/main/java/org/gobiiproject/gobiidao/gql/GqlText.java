@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class GqlText {
 
 
-    private final String connectionString;
+    private final String secureConnectionString;
     private String mdePathFqpn;
     private String cropType;
     private String jobId;
@@ -41,7 +41,7 @@ public class GqlText {
             this.jobId = jobId;
             this.cropType = cropType;
             ConfigSettings configSettings = new ConfigSettings();
-            this.connectionString = HelperFunctions.getPostgresConnectionString(configSettings.getCropConfig(this.cropType));
+            this.secureConnectionString = HelperFunctions.getSecurePostgresConnectionString(configSettings.getCropConfig(this.cropType));
 
             this.mdePathFqpn = configSettings
                     .getFullyQualifiedFilePath(null, GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE)
@@ -138,7 +138,7 @@ public class GqlText {
         commandLineBuilder.append("python " + mdePathFqpn + " ");
 
         commandLineBuilder.append(this.makeArg(GQL_PARM_CONNECTION_STRING,
-                this.connectionString,
+                this.secureConnectionString,
                 false));
 
         // output fqpn
