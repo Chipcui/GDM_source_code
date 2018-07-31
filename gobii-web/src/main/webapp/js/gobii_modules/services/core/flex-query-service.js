@@ -415,9 +415,14 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                         .setExtractorItemType(type_extractor_item_1.ExtractorItemType.VERTEX_VALUE);
                     if (vertexFileItem.getNameIdLabelType() == name_id_label_type_1.NameIdLabelType.UNKNOWN) {
                         this.getVertexFilters(vertexValuesFilterPararamName)
-                            .subscribe(function (vertices) {
+                            .subscribe(function (verticesFromState) {
+                            // we only care about vertices from state on F2 through F4
+                            var filterVertices = [];
+                            if (targetChildFilterParams.getParentFileItemParams().getPreviousSiblingFileItemParams()) {
+                                filterVertices = verticesFromState;
+                            }
                             var targetVertex = vertexFileItem.getEntity();
-                            var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, vertices, [], null, null, null, null, null, null);
+                            var vertexFilterDTO = new vertex_filter_1.VertexFilterDTO(targetVertex, filterVertices, [], null, null, null, null, null, null);
                             var vertexFilterDtoResponse = null;
                             var cvTermIdVal = 0;
                             _this.dtoRequestServiceVertexFilterDTO.post(new dto_request_item_vertex_filter_1.DtoRequestItemVertexFilterDTO(vertexFilterDTO, jobId, false)).subscribe(function (payloadReader) {

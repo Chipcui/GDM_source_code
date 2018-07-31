@@ -534,12 +534,18 @@ export class FlexQueryService {
         if (vertexFileItem.getNameIdLabelType() == NameIdLabelType.UNKNOWN) {
 
             this.getVertexFilters(vertexValuesFilterPararamName)
-                .subscribe(vertices => {
+                .subscribe(verticesFromState => {
+
+                    // we only care about vertices from state on F2 through F4
+                    let filterVertices:Vertex[] = [];
+                    if( targetChildFilterParams.getParentFileItemParams().getPreviousSiblingFileItemParams() ) {
+                        filterVertices = verticesFromState;
+                    }
 
                     let targetVertex: Vertex = vertexFileItem.getEntity();
                     let vertexFilterDTO: VertexFilterDTO = new VertexFilterDTO(
                         targetVertex,
-                        vertices,
+                        filterVertices,
                         [],
                         null,
                         null,
