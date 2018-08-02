@@ -278,7 +278,7 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
                     this.onSampleMarkerError.emit(statusMessage);
                 };
                 SampleMarkerBoxComponent.prototype.ngOnInit = function () {
-                    if (this.gobiiExtractFilterType === type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER) {
+                    if (this.targetEntityType === type_entity_1.EntityType.MARKER) {
                         this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType, file_item_param_names_1.FilterParamNames.MARKER_GROUPS, null);
                     }
                     return null;
@@ -289,7 +289,7 @@ System.register(["@angular/core", "../model/dto-header-status-message", "../mode
                         && (changes['gobiiExtractFilterType'].currentValue != undefined)) {
                         if (changes['gobiiExtractFilterType'].currentValue != changes['gobiiExtractFilterType'].previousValue) {
                             //this.notificationSent = false;
-                            if (this.gobiiExtractFilterType == type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER) {
+                            if (this.targetEntityType == type_entity_1.EntityType.MARKER) {
                                 this.displayMarkerGroupRadio = true;
                             }
                             else {

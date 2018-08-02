@@ -43,7 +43,7 @@ import {NameIdLabelType} from "../../model/name-id-label-type";
  * class, and treat it as the canary in the coal mine: when that init code is only
  * ever called once, this class should be modified so that filter state is not persisted in the
  * filter params coll, and then it should be that selecting a vertex does not result in
- * creating a rogue label item. 
+ * creating a rogue label item.
  *
  *
  */

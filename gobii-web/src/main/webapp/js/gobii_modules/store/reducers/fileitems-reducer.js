@@ -535,12 +535,13 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     .map(function (fi) { return fi; });
             }));
             exports_1("getMarkerGroups", getMarkerGroups = reselect_1.createSelector(getFileItems, getUniqueIds, function (fileItems, ids) {
-                return fileItems.filter(function (e) {
+                var returnVal = fileItems.filter(function (e) {
                     return (e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ENTITY
                         || e.getNameIdLabelType() !== name_id_label_type_1.NameIdLabelType.UNKNOWN)
                         && e.getEntityType() === type_entity_1.EntityType.MARKER_GROUP;
                 })
                     .map(function (fi) { return fi; });
+                return returnVal;
             }));
             // **************** GET SELECTED PER ENTITY TYPE
             exports_1("getSelectedPiContacts", getSelectedPiContacts = reselect_1.createSelector(getFileItems, getUniqueIds, function (fileItems, ids) {

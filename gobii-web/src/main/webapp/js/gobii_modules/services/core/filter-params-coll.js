@@ -169,6 +169,9 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                     this.addFilter(filter_params_1.FilterParams
                         .build(file_item_param_names_1.FilterParamNames.MARKER_GROUPS, type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER, type_entity_1.EntityType.MARKER_GROUP)
                         .setIsDynamicFilterValue(false));
+                    this.addFilter(filter_params_1.FilterParams
+                        .build(file_item_param_names_1.FilterParamNames.MARKER_GROUPS, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_entity_1.EntityType.MARKER_GROUP)
+                        .setIsDynamicFilterValue(false));
                     // ************************************************************************
                     // **************************** BY DATASET *********************************
                     this.addFilter(filter_params_1.FilterParams

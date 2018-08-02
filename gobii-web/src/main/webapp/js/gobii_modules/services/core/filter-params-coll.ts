@@ -194,6 +194,14 @@ export class FilterParamsColl {
                 .setIsDynamicFilterValue(false)
         );
 
+        this.addFilter(
+            FilterParams
+                .build(FilterParamNames.MARKER_GROUPS,
+                    GobiiExtractFilterType.FLEX_QUERY,
+                    EntityType.MARKER_GROUP)
+                .setIsDynamicFilterValue(false)
+        );
+
 
         // ************************************************************************
         // **************************** BY DATASET *********************************
