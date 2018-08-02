@@ -75,6 +75,9 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../mo
                     this.store = store;
                     this.filterParamsColl = filterParamsColl;
                 } // constructor
+                FilterService.prototype.init = function () {
+                    this.filterParamsColl.init();
+                };
                 FilterService.prototype.loadFilter = function (gobiiExtractFilterType, filterParamsName, filterValue) {
                     var filterParams = this.filterParamsColl.getFilter(filterParamsName, gobiiExtractFilterType);
                     if (filterParams) {

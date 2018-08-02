@@ -232,6 +232,7 @@ System.register(["@angular/core", "../services/core/dto-request.service", "../mo
                 }; // handleTabPanelChange
                 ExtractorRoot.prototype.handleExportTypeSelected = function (arg) {
                     var _this = this;
+                    this.filterService.init();
                     //
                     this.store.dispatch(new fileItemAction.RemoveAllFromExtractAction(arg));
                     this.store.dispatch(new fileItemAction.SetExtractType({ gobiiExtractFilterType: arg }));

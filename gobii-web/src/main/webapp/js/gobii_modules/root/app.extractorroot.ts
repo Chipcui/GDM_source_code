@@ -600,6 +600,7 @@ export class ExtractorRoot implements OnInit {
     private handleExportTypeSelected(arg: GobiiExtractFilterType) {
 
 
+        this.filterService.init();
         //
         this.store.dispatch(new fileItemAction.RemoveAllFromExtractAction(arg));
         this.store.dispatch(new fileItemAction.SetExtractType({gobiiExtractFilterType: arg}));
