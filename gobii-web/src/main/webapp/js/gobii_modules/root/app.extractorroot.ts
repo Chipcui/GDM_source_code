@@ -249,9 +249,10 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                                 <div class="row">
                                                     <div class="container-fluid" style="border:1px solid #cecece;">
                                                         <div class="row">
+                                                            <div class="col-md-3"><BR/></div>
                                                             <div class="col-md-4"><BR/></div>
-                                                            <div class="col-md-4"><BR/></div>
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
+                                                                <BR/>
                                                                 <marker-sample-count
                                                                         [gobiiExtractFilterType]="gobiiExtractFilterType">
                                                                 </marker-sample-count>

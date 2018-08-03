@@ -15,7 +15,7 @@ import {Observable} from "rxjs/Observable";
     outputs: [],
     inputs: ['gobiiExtractFilterType'],
     template: `
-        <p-panel *ngIf="displayPanel" header="Estimated Marker/Sample Count"
+        <p-panel *ngIf="displayPanel" header="Estimated Counts"
                  [(toggleable)]="panelCollapsed"
                  [(collapsed)]="panelCollapsed"
                  (onBeforeToggle)="onBeforeToggle($event)"
@@ -24,8 +24,8 @@ import {Observable} from "rxjs/Observable";
                                strokeWidth="8" fill="#EEEEEE"
                                animationDuration="3s"></p-progressSpinner>
             <div *ngIf="displayCounts">
-                <p>Total Markers: {{markerCount$ | async}}</p>
-                <p>Total Samples: {{sampleCount$ | async}}</p>
+                <p>Markers: {{markerCount$ | async}}</p>
+                <p>DNA Runs: {{sampleCount$ | async}}</p>
             </div>
         </p-panel>
     `
@@ -46,7 +46,7 @@ export class MarkerSampleCountComponent implements OnChanges, OnInit {
             value => {
 
 
-                if ( value >= 0) {
+                if (value >= 0) {
                     this.displayCounts = true;
                     this.displaySpinner = false;
 
@@ -62,7 +62,7 @@ export class MarkerSampleCountComponent implements OnChanges, OnInit {
             value => {
 
 
-                if ( value >= 0) {
+                if (value >= 0) {
                     this.displayCounts = true;
                     this.displaySpinner = false;
                 } else {
