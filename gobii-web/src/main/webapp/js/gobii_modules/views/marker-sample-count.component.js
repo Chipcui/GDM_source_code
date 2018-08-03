@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extractor-filter", "../store/actions/fileitem-action", "../model/gobii-file-item", "../model/type-process", "../model/type-extractor-item", "../model/type-entity", "@ngrx/store", "../store/reducers"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/type-extractor-filter", "@ngrx/store", "../store/reducers"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/ac
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extractor_filter_1, fileItemActions, gobii_file_item_1, type_process_1, type_extractor_item_1, type_entity_1, store_1, fromRoot, MarkerSampleCountComponent;
+    var core_1, type_extractor_filter_1, store_1, fromRoot, MarkerSampleCountComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -18,21 +18,6 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/ac
             },
             function (type_extractor_filter_1_1) {
                 type_extractor_filter_1 = type_extractor_filter_1_1;
-            },
-            function (fileItemActions_1) {
-                fileItemActions = fileItemActions_1;
-            },
-            function (gobii_file_item_1_1) {
-                gobii_file_item_1 = gobii_file_item_1_1;
-            },
-            function (type_process_1_1) {
-                type_process_1 = type_process_1_1;
-            },
-            function (type_extractor_item_1_1) {
-                type_extractor_item_1 = type_extractor_item_1_1;
-            },
-            function (type_entity_1_1) {
-                type_entity_1 = type_entity_1_1;
             },
             function (store_1_1) {
                 store_1 = store_1_1;
@@ -97,28 +82,32 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/ac
                             (changes['gobiiExtractFilterType'].currentValue === type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY)) {
                             this.displayPanel = true;
                             this.displaySpinner = false;
-                            var markerCountItem = gobii_file_item_1.GobiiFileItem
-                                .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
-                                .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ITEM_COUNT)
-                                .setEntityType(type_entity_1.EntityType.MARKER)
-                                .setItemName("Marker Count")
-                                .setEntity(Number(0));
-                            // default count items on load
-                            var loadActionMarkerCount = new fileItemActions.LoadFileItemtAction({
-                                gobiiFileItem: markerCountItem,
-                                selectForExtract: true
-                            });
-                            this.store.dispatch(loadActionMarkerCount);
-                            var loadActionSampleCount = new fileItemActions.LoadFileItemtAction({
-                                gobiiFileItem: gobii_file_item_1.GobiiFileItem
-                                    .build(type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_process_1.ProcessType.CREATE)
-                                    .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ITEM_COUNT)
-                                    .setEntityType(type_entity_1.EntityType.DNA_SAMPLE)
-                                    .setItemName("Sample Count")
-                                    .setEntity(Number(0)),
-                                selectForExtract: true
-                            });
-                            this.store.dispatch(loadActionSampleCount);
+                            // let markerCountItem:GobiiFileItem = GobiiFileItem
+                            //     .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                            //     .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
+                            //     .setEntityType(EntityType.MARKER)
+                            //     .setItemName("Marker Count")
+                            //     .setEntity(Number(0));
+                            // // default count items on load
+                            // let loadActionMarkerCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
+                            //     {
+                            //         gobiiFileItem: markerCountItem,
+                            //         selectForExtract: true
+                            //     }
+                            // );
+                            // this.store.dispatch(loadActionMarkerCount);
+                            // let loadActionSampleCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
+                            //     {
+                            //         gobiiFileItem: GobiiFileItem
+                            //             .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                            //             .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
+                            //             .setEntityType(EntityType.DNA_SAMPLE)
+                            //             .setItemName("Sample Count")
+                            //             .setEntity(Number(0)),
+                            //         selectForExtract: true
+                            //     }
+                            // );
+                            // this.store.dispatch(loadActionSampleCount);
                         }
                         else {
                             this.displayPanel = false;

@@ -108,34 +108,34 @@ export class MarkerSampleCountComponent implements OnChanges, OnInit {
                 this.displayPanel = true;
                 this.displaySpinner = false;
 
-                let markerCountItem:GobiiFileItem = GobiiFileItem
-                    .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
-                    .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
-                    .setEntityType(EntityType.MARKER)
-                    .setItemName("Marker Count")
-                    .setEntity(Number(0));
-                // default count items on load
-                let loadActionMarkerCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
-                    {
-                        gobiiFileItem: markerCountItem,
-                        selectForExtract: true
-                    }
-                );
-                this.store.dispatch(loadActionMarkerCount);
+                // let markerCountItem:GobiiFileItem = GobiiFileItem
+                //     .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                //     .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
+                //     .setEntityType(EntityType.MARKER)
+                //     .setItemName("Marker Count")
+                //     .setEntity(Number(0));
+                // // default count items on load
+                // let loadActionMarkerCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
+                //     {
+                //         gobiiFileItem: markerCountItem,
+                //         selectForExtract: true
+                //     }
+                // );
+                // this.store.dispatch(loadActionMarkerCount);
 
 
-                let loadActionSampleCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
-                    {
-                        gobiiFileItem: GobiiFileItem
-                            .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
-                            .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
-                            .setEntityType(EntityType.DNA_SAMPLE)
-                            .setItemName("Sample Count")
-                            .setEntity(Number(0)),
-                        selectForExtract: true
-                    }
-                );
-                this.store.dispatch(loadActionSampleCount);
+                // let loadActionSampleCount: fileItemActions.LoadFileItemtAction = new fileItemActions.LoadFileItemtAction(
+                //     {
+                //         gobiiFileItem: GobiiFileItem
+                //             .build(GobiiExtractFilterType.FLEX_QUERY, ProcessType.CREATE)
+                //             .setExtractorItemType(ExtractorItemType.ITEM_COUNT)
+                //             .setEntityType(EntityType.DNA_SAMPLE)
+                //             .setItemName("Sample Count")
+                //             .setEntity(Number(0)),
+                //         selectForExtract: true
+                //     }
+                // );
+                // this.store.dispatch(loadActionSampleCount);
 
             } else {
                 this.displayPanel = false;
