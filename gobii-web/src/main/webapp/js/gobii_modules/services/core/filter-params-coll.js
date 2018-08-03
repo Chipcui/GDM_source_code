@@ -80,6 +80,32 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                     this.pagedDatasetRequestService = pagedDatasetRequestService;
                     this.fileItemRequestService = fileItemRequestService;
                     this.filterParams = [];
+                    this.init();
+                } // constructor
+                FilterParamsColl.prototype.addFilter = function (filterParamsToAdd) {
+                    var existingFilterParams = this.filterParams
+                        .find(function (ffp) {
+                        return ffp.getQueryName() === filterParamsToAdd.getQueryName()
+                            && ffp.getGobiiExtractFilterType() === filterParamsToAdd.getGobiiExtractFilterType();
+                    });
+                    if (!existingFilterParams) {
+                        this.filterParams.push(filterParamsToAdd);
+                    }
+                    else {
+                        this.store.dispatch(new historyAction.AddStatusMessageAction("The query "
+                            + filterParamsToAdd.getQueryName()
+                            + " because there is already a filter by that name for this extract type "
+                            + type_extractor_filter_1.GobiiExtractFilterType[filterParamsToAdd.getQueryName()]));
+                    }
+                };
+                FilterParamsColl.prototype.getFilter = function (nameIdFilterParamTypes, gobiiExtractFilterType) {
+                    return this.filterParams.find(function (ffp) {
+                        return ffp.getQueryName() === nameIdFilterParamTypes &&
+                            ffp.getGobiiExtractFilterType() === gobiiExtractFilterType;
+                    });
+                };
+                FilterParamsColl.prototype.init = function () {
+                    this.filterParams = [];
                     // ************************************************************************
                     // **************************** GENERAL  *********************************
                     var cvJobStatusCompoundUniqueId = new gobii_file_item_compound_id_1.GobiiFileItemCompoundId(type_extractor_item_1.ExtractorItemType.ENTITY, type_entity_1.EntityType.CV, type_entity_1.EntitySubType.UNKNOWN, cv_group_1.CvGroup.JOBSTATUS, cv_group_1.getCvGroupName(cv_group_1.CvGroup.JOBSTATUS));
@@ -142,6 +168,9 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                         .setIsDynamicFilterValue(false));
                     this.addFilter(filter_params_1.FilterParams
                         .build(file_item_param_names_1.FilterParamNames.MARKER_GROUPS, type_extractor_filter_1.GobiiExtractFilterType.BY_MARKER, type_entity_1.EntityType.MARKER_GROUP)
+                        .setIsDynamicFilterValue(false));
+                    this.addFilter(filter_params_1.FilterParams
+                        .build(file_item_param_names_1.FilterParamNames.MARKER_GROUPS, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY, type_entity_1.EntityType.MARKER_GROUP)
                         .setIsDynamicFilterValue(false));
                     // ************************************************************************
                     // **************************** BY DATASET *********************************
@@ -378,28 +407,6 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                         .getChildFileItemParams().push(this.getFilter(file_item_param_names_1.FilterParamNames.FQ_F4_VERTEX_VALUES, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY));
                     this.getFilter(file_item_param_names_1.FilterParamNames.FQ_F4_VERTEX_VALUES, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY)
                         .setParentFileItemParams(this.getFilter(file_item_param_names_1.FilterParamNames.FQ_F4_VERTICES, type_extractor_filter_1.GobiiExtractFilterType.FLEX_QUERY));
-                } // constructor
-                FilterParamsColl.prototype.addFilter = function (filterParamsToAdd) {
-                    var existingFilterParams = this.filterParams
-                        .find(function (ffp) {
-                        return ffp.getQueryName() === filterParamsToAdd.getQueryName()
-                            && ffp.getGobiiExtractFilterType() === filterParamsToAdd.getGobiiExtractFilterType();
-                    });
-                    if (!existingFilterParams) {
-                        this.filterParams.push(filterParamsToAdd);
-                    }
-                    else {
-                        this.store.dispatch(new historyAction.AddStatusMessageAction("The query "
-                            + filterParamsToAdd.getQueryName()
-                            + " because there is already a filter by that name for this extract type "
-                            + type_extractor_filter_1.GobiiExtractFilterType[filterParamsToAdd.getQueryName()]));
-                    }
-                };
-                FilterParamsColl.prototype.getFilter = function (nameIdFilterParamTypes, gobiiExtractFilterType) {
-                    return this.filterParams.find(function (ffp) {
-                        return ffp.getQueryName() === nameIdFilterParamTypes &&
-                            ffp.getGobiiExtractFilterType() === gobiiExtractFilterType;
-                    });
                 };
                 FilterParamsColl = __decorate([
                     core_1.Injectable(),

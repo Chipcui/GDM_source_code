@@ -151,7 +151,7 @@ export class FlexQueryService {
      * @param {CvGroup} eventedCvGroup
      * @param {string} eventedCvTerm
      */
-    private resetVertexFilters(eventedFilterParamsName: FilterParamNames,
+    public resetVertexFilters(eventedFilterParamsName: FilterParamNames,
                                eventedVertexId: string,
                                eventedEntityType: EntityType,
                                eventedEntitySubType: EntitySubType,
@@ -409,7 +409,7 @@ export class FlexQueryService {
 
                         console.log(jobId + ": sample count time for "
                             + vertexFilterDtoResponse.sampleCount
-                            + " markers is "
+                            + " samples  is "
                             + vertexFilterDtoResponse.sampleCountMs
                             + " ms.");
 

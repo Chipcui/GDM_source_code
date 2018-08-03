@@ -267,7 +267,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
                     let extractorItemTypeListToFind: ExtractorItemType = ExtractorItemType.UNKNOWN;
                     let extractorItemTypeFileToFind: ExtractorItemType = ExtractorItemType.UNKNOWN;
 
-                    if (this.targetEntityType=== EntityType.DNA_SAMPLE) {
+                    if (this.targetEntityType === EntityType.DNA_SAMPLE) {
                         extractorItemTypeListToFind = ExtractorItemType.SAMPLE_LIST_ITEM;
                         extractorItemTypeFileToFind = ExtractorItemType.SAMPLE_INPUT_FILE;
                     } else if (this.targetEntityType === EntityType.MARKER) {
@@ -434,7 +434,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
     ngOnInit(): any {
 
-        if (this.gobiiExtractFilterType === GobiiExtractFilterType.BY_MARKER) {
+        if (this.targetEntityType === EntityType.MARKER) {
             this.fileItemService.loadNameIdsFromFilterParams(this.gobiiExtractFilterType,
                 FilterParamNames.MARKER_GROUPS,
                 null);
@@ -454,7 +454,7 @@ export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
                 //this.notificationSent = false;
 
-                if (this.gobiiExtractFilterType == GobiiExtractFilterType.BY_MARKER) {
+                if (this.targetEntityType == EntityType.MARKER) {
                     this.displayMarkerGroupRadio = true;
                 } else {
                     this.displayMarkerGroupRadio = false

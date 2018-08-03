@@ -29,7 +29,7 @@ public class DtoMapFlexQueryImpl implements DtoMapFlexQuery {
 
 
     private Integer maxVertexValues = 500;
-    private Integer maxCount = 100000;
+    private Integer maxCount = 1000000;
 
     Logger LOGGER = LoggerFactory.getLogger(DtoMapDataSetImpl.class);
     private InstructionFileAccess<GobiiExtractorInstruction> instructionFileAccess = new InstructionFileAccess<>(GobiiExtractorInstruction.class);

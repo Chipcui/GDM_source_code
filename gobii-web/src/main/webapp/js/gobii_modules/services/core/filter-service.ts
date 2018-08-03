@@ -21,6 +21,32 @@ import {ExtractorItemType} from "../../model/type-extractor-item";
 import {EntitySubType, EntityType} from "../../model/type-entity";
 import {NameIdLabelType} from "../../model/name-id-label-type";
 
+/***
+ * There is something going on in this class that I have concerns about.
+ * In essence, filters in the filter params collection are being modified
+ * in real-time. This means, in essence, that we are storing some kind of
+ * state in the filter params collection rather than in the ngrx/store. All state
+ * should be kept in the store and retrieved with a selector. There is a symptom
+ * of this problem that I am working around by introducing an init() method to
+ * filter params collection and calling it whenever the extract type is changed.
+ * Without that change, what was happening was that if you selected, say, Principle
+ * Investigator in FB1, and then hit the clear button, you would see the an an
+ * item in the vertex list called "Select a Principle Investigator." If you
+ * look at th code in entity file item service that is loading the vertices, you'll
+ * see that the label-making method creates the "Select a Principle Investigator"
+ * label item because it thinks that the FB1 filter is of entity type Principle Investigator.
+ * In other words, the change we make to FB1 filter in in this class persists
+ * after you do a clear (the clear simply triggering a change extract type event).
+ * Making the init() method can calling it in the extract type change method
+ * solves the problem for now. So eventually, to really make this filtering code
+ * robust, we need to move that init() code back to the constructor of the params coll
+ * class, and treat it as the canary in the coal mine: when that init code is only
+ * ever called once, this class should be modified so that filter state is not persisted in the
+ * filter params coll, and then it should be that selecting a vertex does not result in
+ * creating a rogue label item.
+ *
+ *
+ */
 @Injectable()
 export class FilterService {
 
@@ -28,6 +54,10 @@ export class FilterService {
                 private filterParamsColl: FilterParamsColl) {
 
     } // constructor
+
+    public init() {
+        this.filterParamsColl.init();
+    }
 
     public loadFilter(gobiiExtractFilterType: GobiiExtractFilterType,
                       filterParamsName: FilterParamNames,

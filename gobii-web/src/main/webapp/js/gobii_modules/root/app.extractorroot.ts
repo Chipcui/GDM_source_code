@@ -247,35 +247,54 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                         <ng-template pTemplate="content"> <!-- lazy-load controls -->
                                             <div class="container-fluid">
                                                 <div class="row">
-                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
-                                                        <flex-query-filter
-                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F1_VERTICES"
-                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F1_VERTEX_VALUES"
-                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
-                                                        </flex-query-filter>
-                                                    </div> <!-- inner column 1 of row 1: fitler 1 -->
-                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
-                                                        <flex-query-filter
-                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F2_VERTICES"
-                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F2_VERTEX_VALUES"
-                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
-                                                        </flex-query-filter>
-                                                    </div> <!-- inner column 2 of row 1: fitler 2 -->
-                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
-                                                        <flex-query-filter
-                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F3_VERTICES"
-                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F3_VERTEX_VALUES"
-                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
-                                                        </flex-query-filter>
-                                                    </div> <!-- inner column 3 of row 1: fitler 3 -->
-                                                    <div class="col-md-3"> <!-- inner column 1 of row 1: Filter 1 -->
-                                                        <flex-query-filter
-                                                                [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F4_VERTICES"
-                                                                [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F4_VERTEX_VALUES"
-                                                                [gobiiExtractFilterType]="gobiiExtractFilterType">
-                                                        </flex-query-filter>
-                                                    </div> <!-- inner column 4 of row 1: fitler 4 -->
-
+                                                    <div class="container-fluid" style="border:1px solid #cecece;">
+                                                        <div class="row">
+                                                            <div class="col-md-3"><BR/></div>
+                                                            <div class="col-md-4"><BR/></div>
+                                                            <div class="col-md-5">
+                                                                <BR/>
+                                                                <marker-sample-count
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                                </marker-sample-count>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <BR>
+                                                            <div class="col-md-3">
+                                                                <!-- inner column 1 of row 1: Filter 1 -->
+                                                                <flex-query-filter
+                                                                        [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F1_VERTICES"
+                                                                        [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F1_VERTEX_VALUES"
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                                </flex-query-filter>
+                                                            </div> <!-- inner column 1 of row 1: fitler 1 -->
+                                                            <div class="col-md-3">
+                                                                <!-- inner column 1 of row 1: Filter 1 -->
+                                                                <flex-query-filter
+                                                                        [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F2_VERTICES"
+                                                                        [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F2_VERTEX_VALUES"
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                                </flex-query-filter>
+                                                            </div> <!-- inner column 2 of row 1: fitler 2 -->
+                                                            <div class="col-md-3">
+                                                                <!-- inner column 1 of row 1: Filter 1 -->
+                                                                <flex-query-filter
+                                                                        [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F3_VERTICES"
+                                                                        [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F3_VERTEX_VALUES"
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                                </flex-query-filter>
+                                                            </div> <!-- inner column 3 of row 1: fitler 3 -->
+                                                            <div class="col-md-3">
+                                                                <!-- inner column 1 of row 1: Filter 1 -->
+                                                                <flex-query-filter
+                                                                        [filterParamNameVertices]="nameIdFilterParamTypes.FQ_F4_VERTICES"
+                                                                        [filterParamNameVertexValues]="nameIdFilterParamTypes.FQ_F4_VERTEX_VALUES"
+                                                                        [gobiiExtractFilterType]="gobiiExtractFilterType">
+                                                                </flex-query-filter>
+                                                            </div> <!-- inner column 4 of row 1: fitler 4 -->
+                                                        </div> <!-- inner filter box row-->
+                                                    </div> <!-- Filter box container-->
+                                                    <BR>
                                                 </div> <!-- ROW filters -->
 
                                                 <div clas="row"><!-- ROW marker/sample lists-->
@@ -386,9 +405,6 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                     </button>
                                     <BR>
                                     <BR>
-                                    <marker-sample-count
-                                            [gobiiExtractFilterType]="gobiiExtractFilterType">
-                                    </marker-sample-count>
                                 </div> <!-- panel body -->
                             </div> <!-- panel primary -->
 
@@ -600,6 +616,7 @@ export class ExtractorRoot implements OnInit {
     private handleExportTypeSelected(arg: GobiiExtractFilterType) {
 
 
+        this.filterService.init();
         //
         this.store.dispatch(new fileItemAction.RemoveAllFromExtractAction(arg));
         this.store.dispatch(new fileItemAction.SetExtractType({gobiiExtractFilterType: arg}));

@@ -59,6 +59,15 @@ export class FilterParamsColl {
                 private pagedDatasetRequestService: DtoRequestService<PagedFileItemList>,
                 private fileItemRequestService: DtoRequestService<GobiiFileItem[]>) {
 
+        this.init();
+
+    } // constructor
+
+    public init() {
+
+        this.filterParams = [];
+
+
         // ************************************************************************
         // **************************** GENERAL  *********************************
         let cvJobStatusCompoundUniqueId: GobiiFileItemCompoundId =
@@ -181,6 +190,14 @@ export class FilterParamsColl {
             FilterParams
                 .build(FilterParamNames.MARKER_GROUPS,
                     GobiiExtractFilterType.BY_MARKER,
+                    EntityType.MARKER_GROUP)
+                .setIsDynamicFilterValue(false)
+        );
+
+        this.addFilter(
+            FilterParams
+                .build(FilterParamNames.MARKER_GROUPS,
+                    GobiiExtractFilterType.FLEX_QUERY,
                     EntityType.MARKER_GROUP)
                 .setIsDynamicFilterValue(false)
         );
@@ -567,7 +584,6 @@ export class FilterParamsColl {
         );
 
 
-
         // ******* F4
         this.addFilter(
             FilterParams
@@ -591,7 +607,6 @@ export class FilterParamsColl {
                 .setNameIdLabelType(NameIdLabelType.UNKNOWN)
                 .setSequenceNum(4)
         );
-
 
 
         // FLEX QUERY FILTER OBJECT GRAPH
@@ -632,5 +647,5 @@ export class FilterParamsColl {
         this.getFilter(FilterParamNames.FQ_F4_VERTEX_VALUES, GobiiExtractFilterType.FLEX_QUERY)
             .setParentFileItemParams(this.getFilter(FilterParamNames.FQ_F4_VERTICES, GobiiExtractFilterType.FLEX_QUERY));
 
-    } // constructor
+    }
 }

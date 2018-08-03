@@ -325,7 +325,7 @@ System.register(["@angular/core", "../../model/type-extractor-filter", "../../st
                                     + " ms.");
                                 console.log(jobId + ": sample count time for "
                                     + vertexFilterDtoResponse.sampleCount
-                                    + " markers is "
+                                    + " samples  is "
                                     + vertexFilterDtoResponse.sampleCountMs
                                     + " ms.");
                                 var markerResultFileName = vertexFilterDtoResponse.markerFileFqpn;

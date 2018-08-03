@@ -680,11 +680,14 @@ export const getPlatforms = createSelector(getFileItems, getUniqueIds, (fileItem
 
 export const getMarkerGroups = createSelector(getFileItems, getUniqueIds, (fileItems, ids) => {
 
-    return fileItems.filter(e =>
+    let returnVal =
+    fileItems.filter(e =>
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
             || e.getNameIdLabelType() !== NameIdLabelType.UNKNOWN)
         && e.getEntityType() === EntityType.MARKER_GROUP)
         .map(fi => fi);
+
+    return returnVal;
 });
 
 
