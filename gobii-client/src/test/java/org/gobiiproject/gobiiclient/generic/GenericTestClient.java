@@ -18,6 +18,7 @@ import org.gobiiproject.gobiiclient.generic.model.GenericTestValues;
 import org.gobiiproject.gobiiclient.generic.model.Person;
 import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
+import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.junit.AfterClass;
@@ -55,7 +56,8 @@ public class GenericTestClient {
         // By setting the packages() to one of the service implementation classes,
         // we tell the resource to scan that package for all classes having the Jersey
         // annotations. So we don't need to to manually create the context classes here.
-        serverBase = new ServerBase("localhost",
+        serverBase = new ServerBase(GobiiCropServerType.GENERIC,
+                "localhost",
                 GenericTestPaths.GENERIC_CONTEXT_ONE,
                 8099,
                 true);

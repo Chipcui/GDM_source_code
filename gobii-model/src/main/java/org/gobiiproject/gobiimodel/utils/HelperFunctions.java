@@ -16,7 +16,7 @@ import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.*;
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
@@ -289,7 +289,7 @@ public class HelperFunctions {
      * @return The connection string
      */
     public static String getPostgresConnectionString(GobiiCropConfig config) {
-        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiCropServerType.POSTGRESQL);
         String ret = "postgresql://"
                 + cropDbConfig.getUserName()
                 + ":"
@@ -312,7 +312,7 @@ public class HelperFunctions {
      * @return The safe connection string
      */
     public static String getSecurePostgresConnectionString(GobiiCropConfig config) {
-        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiCropServerType.POSTGRESQL);
         String ret = "postgresql://"
                 + PARAM_CTCN_USR
                 + ":"
@@ -336,7 +336,7 @@ public class HelperFunctions {
      */
     public static String replacePostgressCredentials(String secureString, GobiiCropConfig config) {
 
-        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiCropServerType.POSTGRESQL);
         String ret = secureString
                 .replace(PARAM_CTCN_USR, cropDbConfig.getUserName())
                 .replace(PARAM_CTCN_PWD, cropDbConfig.getPassword());

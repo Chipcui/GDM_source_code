@@ -630,7 +630,7 @@
     <!--<bean id="dataSourceRice"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigRice.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigRice.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigRice.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigRice.getPassword()}"/>-->
     <!--</bean>-->
@@ -654,7 +654,7 @@
     <!--<bean id="dataSourceWheat"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigWheat.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigWheat.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigWheat.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigWheat.getPassword()}"/>-->
     <!--</bean>-->
@@ -677,7 +677,7 @@
     <!--<bean id="dataSourceMaize"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigMaize.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigMaize.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigMaize.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigMaize.getPassword()}"/>-->
     <!--</bean>-->
@@ -700,7 +700,7 @@
     <!--<bean id="dataSourceDev"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigDev.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigDev.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigDev.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigDev.getPassword()}"/>-->
     <!--</bean>-->
@@ -723,7 +723,7 @@
     <!--<bean id="dataSourceTest"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigTest.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigTest.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigTest.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigTest.getPassword()}"/>-->
     <!--</bean>-->
@@ -747,7 +747,7 @@
     <!--<bean id="dataSourceSorghum"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigSorghum.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigSorghum.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigSorghum.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigSorghum.getPassword()}"/>-->
     <!--</bean>-->
@@ -770,7 +770,7 @@
     <!--<bean id="dataSourceChickpea"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" valu   e="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigChickpea.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigChickpea.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigChickpea.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigChickpea.getPassword()}"/>-->
     <!--</bean>-->

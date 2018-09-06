@@ -2,12 +2,11 @@ package org.gobiiproject.gobiiweb.spring;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
 import org.gobiiproject.gobiiweb.DataSourceSelector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,20 +39,20 @@ public class ConfigSupplement {
             currentDataSource.setDriverClassName("org.postgresql.Driver");
 
             currentDataSource.setUrl(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
-                    .getConnectionString());
+                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
+                    .getJdbcConnectionString());
 
             currentDataSource.setUsername(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
+                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
                     .getUserName());
 
             currentDataSource.setUsername(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
+                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
                     .getUserName());
 
 
             currentDataSource.setPassword(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
+                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
                     .getPassword());
 
             targetDataSources.put(currentGobiiCropConfig.getGobiiCropType(),currentDataSource);

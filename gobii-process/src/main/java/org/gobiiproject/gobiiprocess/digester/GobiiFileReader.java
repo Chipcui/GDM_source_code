@@ -68,7 +68,6 @@ public class GobiiFileReader {
 	private static String errorLogOverride;
 	private static String propertiesFile;
 	private static GobiiUriFactory gobiiUriFactory;
-	private static boolean enableMonet=false;
 	//To calculate RunTime of Extraction
 	private static long startTime, endTime, duration;
 	//Not null if QC Extract is happening
@@ -90,8 +89,7 @@ public class GobiiFileReader {
          		.addOption("e", "errlog", true, "Error log override location")
          		.addOption("r", "rootDir", true, "Fully qualified path to gobii root directory")
          		.addOption("c","config",true,"Fully qualified path to gobii configuration file")
-         		.addOption("h", "hdfFiles", true, "Fully qualified path to hdf files")
-				.addOption("em","enableMonet",false,"Enable Monet");
+         		.addOption("h", "hdfFiles", true, "Fully qualified path to hdf files");
 		LoaderGlobalConfigs.addOptions(o);
         ProcessMessage pm = new ProcessMessage();
 		CommandLineParser parser = new DefaultParser();
@@ -102,7 +100,6 @@ public class GobiiFileReader {
             if(cli.hasOption("errLog")) errorLogOverride = cli.getOptionValue("errLog");
             if(cli.hasOption("config")) propertiesFile = cli.getOptionValue("config");
             if(cli.hasOption("hdfFiles")) HDF5Interface.setPathToHDF5Files(cli.getOptionValue("hdfFiles"));
-			if(cli.hasOption("enableMonet")) enableMonet=true;
 			LoaderGlobalConfigs.setFromFlags(cli);
             args=cli.getArgs();//Remaining args passed through
 
@@ -305,7 +302,7 @@ public class GobiiFileReader {
 
 		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_VALIDATION.getCvName(),"Database Validation");
 		//Database Validation
-		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getCropDbConfig(GobiiDbType.POSTGRESQL));
+		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getCropDbConfig(GobiiCropServerType.POSTGRESQL));
 
 		//If we're doing a DS upload and there is no DS_Marker
 		if(loaderInstructionMap.containsKey(VARIANT_CALL_TABNAME) && loaderInstructionMap.containsKey(DS_MARKER_TABNAME) && !loaderInstructionMap.containsKey(MARKER_TABNAME)) {
@@ -469,10 +466,6 @@ public class GobiiFileReader {
 			}
 			if((variantFile!=null)&&dataSetId!=null){ //Create an HDF5 and a Monet
 				jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_MATRIXLOAD.getCvName(),"Matrix Upload");
-				if(enableMonet) {//Turned off by default
-					uploadToMonet(dataSetId, gobiiCropConfig, errorPath, variantFile, markerFileLoc, sampleFileLoc);
-				}
-
                 HDF5Interface.createHDF5FromDataset(pm, dst, configuration, dataSetId, crop, errorPath, variantFilename, variantFile);
                 rmIfExist(variantFile.getPath());
             }
@@ -509,20 +502,6 @@ public class GobiiFileReader {
         }
         HelperFunctions.completeInstruction(instructionFile, configuration.getFullyQualifiedFilePath(crop, GobiiFileProcessDir.LOADER_DONE));
     }
-
-    private static void uploadToMonet(Integer dataSetId, GobiiCropConfig gobiiCropConfig, String errorPath, File variantFile, String markerFileLoc, String sampleFileLoc) {
-        String loadVariantMatrix = loaderScriptPath + "monet/loadVariantMatrix.py";
-        //python loadVariantMatrix.py <Dataset Name> <Dataset_Identifier.variant> <Dataset_Identifier.marker_id> <Dataset_Identifier.dnarun_id> <hostname> <port> <dbuser> <dbpass> <dbname>
-
-        GobiiCropDbConfig monetConf = gobiiCropConfig.getCropDbConfig(GobiiDbType.MONETDB);
-		String loadVariantUserPort = monetConf.getHost() + " " + monetConf.getPort() + " " + monetConf.getUserName() + " " + monetConf.getPassword() + " " + monetConf.getContextPath();
-		generateIdLists(gobiiCropConfig, markerFileLoc, sampleFileLoc, dataSetId, errorPath);
-		ErrorLogger.logDebug("MonetDB", "python " + loadVariantMatrix + " DS" + dataSetId + " " + variantFile.getPath() + " " + new File(markerFileLoc).getAbsolutePath() + " " + new File(sampleFileLoc).getAbsolutePath() + " " + loadVariantUserPort);
-		HelperFunctions.tryExec("python " + loadVariantMatrix + " DS" + dataSetId + " " + variantFile.getPath() + " " + new File(markerFileLoc).getAbsolutePath() + " " + new File(sampleFileLoc).getAbsolutePath() + " " + loadVariantUserPort, null, errorPath);
-		//Clean up marker and sample data
-		rm(markerFileLoc);
-		rm(sampleFileLoc);
-	}
 
 	private static GobiiExtractorInstruction createQCExtractInstruction(GobiiLoaderInstruction zero, String crop) {
 		GobiiExtractorInstruction gobiiExtractorInstruction;
@@ -864,7 +843,7 @@ public class GobiiFileReader {
     }
 
     private static String getJDBCConnectionString(GobiiCropConfig config) {
-        return config.getCropDbConfig(GobiiDbType.POSTGRESQL).getConnectionString();
+        return config.getCropDbConfig(GobiiCropServerType.POSTGRESQL).getJdbcConnectionString();
     }
 
     /**

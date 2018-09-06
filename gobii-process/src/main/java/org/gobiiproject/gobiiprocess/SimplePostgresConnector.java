@@ -18,7 +18,7 @@ public class SimplePostgresConnector {
     public static Connection getDataSource(GobiiCropDbConfig config){
         Connection conn = null;
         try{
-            conn=DriverManager.getConnection(config.getConnectionString(),config.getUserName(),config.getPassword());
+            conn=DriverManager.getConnection(config.getJdbcConnectionString(),config.getUserName(),config.getPassword());
         }catch(SQLException e){
             ErrorLogger.logError("SimplePostgresConnector","Failed creating postgres connection",e);
         }

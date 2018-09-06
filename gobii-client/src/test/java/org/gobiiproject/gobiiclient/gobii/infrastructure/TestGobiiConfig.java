@@ -7,7 +7,7 @@ import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
 import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
@@ -544,7 +544,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiDbType.POSTGRESQL);
+        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.POSTGRESQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 gobiiCropDbConfig);
 
@@ -609,7 +609,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiDbType.POSTGRESQL);
+        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.POSTGRESQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 gobiiCropDbConfig);
 
@@ -648,7 +648,7 @@ public class TestGobiiConfig {
                 + testFileFqpn
                 + " -c "
                 + cropId
-                + " -stM "
+                + " -stC "
                 + " -soH "
                 + host
                 + " -soN "
@@ -665,7 +665,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiDbType.MONETDB);
+        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.COMPUTE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 gobiiCropDbConfig);
 
@@ -787,7 +787,7 @@ public class TestGobiiConfig {
                 + testFileFqpn
                 + " -c "
                 + cropId
-                + " -stM "
+                + " -stC "
                 + " -soH "
                 + host
                 + " -soN "
@@ -810,7 +810,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiDbType.MONETDB);
+        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.COMPUTE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 gobiiCropDbConfig);
 
@@ -1083,19 +1083,18 @@ public class TestGobiiConfig {
         return returnVal;
     }
 
-    private boolean configureDataBase(String testFileFqpn,
-                                      String cropId,
-                                      GobiiDbType gobiiDbType,
-                                      String host,
-                                      String databaseName,
-                                      Integer port,
-                                      String user,
-                                      String password) {
+    private boolean configureComputeNode(String testFileFqpn,
+                                         String cropId,
+                                         String host,
+                                         String databaseName,
+                                         Integer port,
+                                         String user,
+                                         String password) {
 
         boolean returnVal;
 
 
-        String serverType = gobiiDbType == GobiiDbType.POSTGRESQL ? " -stP " : "-stM ";
+        String serverType = "-stC ";
 
         String commandLine = makeCommandline("-a -wfqpn "
                 + testFileFqpn
@@ -1260,36 +1259,32 @@ public class TestGobiiConfig {
                 8383);
 
 
-        configureDataBase(testFileFqpn,
+        configureComputeNode(testFileFqpn,
                 cropIdDev,
-                GobiiDbType.POSTGRESQL,
                 "localhost",
                 "gobii_dev",
                 5432,
                 "dummy-user",
                 "dummy-password");
 
-        configureDataBase(testFileFqpn,
+        configureComputeNode(testFileFqpn,
                 cropIdDev,
-                GobiiDbType.MONETDB,
                 "localhost",
                 "gobii_dev",
                 5000,
                 "dummy-user",
                 "dummy-user");
 
-        configureDataBase(testFileFqpn,
+        configureComputeNode(testFileFqpn,
                 cropidTest,
-                GobiiDbType.POSTGRESQL,
                 "localhost",
                 "gobii_test",
                 5432,
                 "dummy-user",
                 "dummy-password");
 
-        configureDataBase(testFileFqpn,
+        configureComputeNode(testFileFqpn,
                 cropidTest,
-                GobiiDbType.MONETDB,
                 "localhost",
                 "gobii_test",
                 5000,

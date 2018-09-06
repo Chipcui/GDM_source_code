@@ -685,7 +685,8 @@ public class GobiiExtractor {
 		ErrorLogger.logInfo("QC", "KDC Context Path: " + configuration.getKDCConfig().getContextPath());
 		ErrorLogger.logInfo("QC", "KDC Port: " + configuration.getKDCConfig().getPort());
 		ErrorLogger.logInfo("QC", "KDC Active: " + configuration.getKDCConfig().isActive());
-			ServerBase serverBase = new ServerBase(configuration.getKDCConfig().getHost(),
+			ServerBase serverBase = new ServerBase(GobiiCropServerType.GENERIC,
+					configuration.getKDCConfig().getHost(),
 					configuration.getKDCConfig().getContextPath(),
 					configuration.getKDCConfig().getPort(),
 					configuration.getKDCConfig().isActive());
