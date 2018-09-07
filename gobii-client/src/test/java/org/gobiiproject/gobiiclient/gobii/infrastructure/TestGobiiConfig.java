@@ -7,7 +7,7 @@ import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
-import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
@@ -443,19 +443,19 @@ public class TestGobiiConfig {
                 gobiiCropConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropConfig.getHost().equals(host));
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropConfig.getPort(),
-                gobiiCropConfig.getPort().equals(port));
+                        + gobiiCropConfig.getServer(GobiiServerType.WEB).getPort(),
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getPort().equals(port));
 
         Assert.assertTrue("Crop is not set to active by default",
                 gobiiCropConfig.isActive());
 
         Assert.assertTrue("The context path not match",
-                gobiiCropConfig.getContextPath().equals(contextPathWithTerminator));
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath().equals(contextPathWithTerminator));
 
     }
 
@@ -491,20 +491,20 @@ public class TestGobiiConfig {
                 gobiiCropConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropConfig.getHost().equals(host));
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropConfig.getPort(),
-                gobiiCropConfig.getPort().equals(port));
+                        + gobiiCropConfig.getServer(GobiiServerType.WEB).getPort(),
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getPort().equals(port));
 
         Assert.assertTrue("Crop is not set to active by default",
                 gobiiCropConfig.isActive());
 
         // this file should not pass validation. However, it should also not
         // cause an NPE
-        String contextPath = gobiiCropConfig.getContextPath(true);
+        String contextPath = gobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath(true);
         Assert.assertTrue(contextPath == "");
 
     }
@@ -544,7 +544,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.POSTGRESQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 postGresConfig);
 
@@ -609,7 +609,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.POSTGRESQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 postGresConfig);
 
@@ -665,7 +665,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.COMPUTE_NODE);
+        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.COMPUTE_NODE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 computeNodeConfig);
 
@@ -810,7 +810,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.COMPUTE_NODE);
+        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.COMPUTE_NODE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 computeNodeConfig);
 

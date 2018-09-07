@@ -2,7 +2,7 @@ package org.gobiiproject.gobiimodel.config;
 
 
 import org.gobiiproject.gobiimodel.security.Decrypter;
-import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -20,7 +20,7 @@ public class ServerBase {
     private String password = null;
 
     @Element(required = false)
-    private GobiiCropServerType gobiiCropServerType = null;
+    private GobiiServerType gobiiServerType = null;
 
     @Element(required = false)
     private String host = "";
@@ -37,7 +37,7 @@ public class ServerBase {
     public ServerBase() {
     }
 
-    public ServerBase(GobiiCropServerType gobiiCropServerType,
+    public ServerBase(GobiiServerType gobiiServerType,
                       String host,
                       String contextPath,
                       Integer port,
@@ -46,7 +46,7 @@ public class ServerBase {
                       String password,
                       boolean decrypt) {
 
-        this.gobiiCropServerType = gobiiCropServerType;
+        this.gobiiServerType = gobiiServerType;
         this.host = host;
         this.contextPath = contextPath;
         this.port = port;
@@ -57,14 +57,14 @@ public class ServerBase {
 
     }
 
-    public ServerBase(GobiiCropServerType gobiiCropServerType,
+    public ServerBase(GobiiServerType gobiiServerType,
                       String host,
                       String contextPath,
                       Integer port,
                       boolean isActive,
                       boolean decrypt) {
 
-        this.gobiiCropServerType = gobiiCropServerType;
+        this.gobiiServerType = gobiiServerType;
         this.host = host;
         this.contextPath = contextPath;
         this.port = port;
@@ -119,12 +119,12 @@ public class ServerBase {
     }
 
 
-    public GobiiCropServerType getGobiiCropServerType() {
-        return gobiiCropServerType;
+    public GobiiServerType getGobiiServerType() {
+        return gobiiServerType;
     }
 
-    public ServerBase setGobiiCropServerType(GobiiCropServerType gobiiCropServerType) {
-        this.gobiiCropServerType = gobiiCropServerType;
+    public ServerBase setGobiiServerType(GobiiServerType gobiiServerType) {
+        this.gobiiServerType = gobiiServerType;
         return this;
     }
 

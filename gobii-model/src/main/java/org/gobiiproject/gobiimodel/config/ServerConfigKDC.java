@@ -1,7 +1,7 @@
 package org.gobiiproject.gobiimodel.config;
 
 
-import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
@@ -38,7 +38,7 @@ public class ServerConfigKDC extends ServerBase {
                            boolean isActive,
                            boolean decrypt) {
 
-        super(GobiiCropServerType.KDC, host, contextPath, port, isActive, decrypt);
+        super(GobiiServerType.KDC, host, contextPath, port, isActive, decrypt);
     }
 
 

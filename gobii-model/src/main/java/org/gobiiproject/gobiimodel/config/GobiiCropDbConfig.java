@@ -1,8 +1,6 @@
 package org.gobiiproject.gobiimodel.config;
 
-import org.gobiiproject.gobiimodel.security.Decrypter;
-import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
-import org.simpleframework.xml.Element;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.simpleframework.xml.Root;
 
 /**
@@ -14,7 +12,7 @@ public class GobiiCropDbConfig extends ServerBase {
     public GobiiCropDbConfig() {
     }
 
-    public GobiiCropDbConfig(GobiiCropServerType gobiiCropServerType,
+    public GobiiCropDbConfig(GobiiServerType gobiiServerType,
                              String host,
                              String dbName,
                              Integer port,
@@ -22,7 +20,7 @@ public class GobiiCropDbConfig extends ServerBase {
                              String password,
                              boolean decrypt) {
 
-        super(gobiiCropServerType, host,dbName,port,true,userName,password,decrypt);
+        super(gobiiServerType, host,dbName,port,true,userName,password,decrypt);
 
     }
 

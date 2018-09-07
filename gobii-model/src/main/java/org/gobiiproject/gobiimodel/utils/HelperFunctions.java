@@ -16,7 +16,7 @@ import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.*;
-import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
@@ -289,7 +289,7 @@ public class HelperFunctions {
      * @return The connection string
      */
     public static String getPostgresConnectionString(GobiiCropConfig config) {
-        ServerBase postGresConfig = config.getServerBase(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
         String ret = "postgresql://"
                 + postGresConfig.getUserName()
                 + ":"
@@ -324,7 +324,7 @@ public class HelperFunctions {
 
     public static String getJdbcConnectionString(GobiiCropConfig config) {
 
-        ServerBase postGresConfig = config.getServerBase(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
         String ret = getJdbcConnectionString(postGresConfig);
         return ret;
     }
@@ -339,7 +339,7 @@ public class HelperFunctions {
      * @return The safe connection string
      */
     public static String getSecurePostgresConnectionString(GobiiCropConfig config) {
-        ServerBase postGresConfig = config.getServerBase(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
         String ret = "postgresql://"
                 + PARAM_CTCN_USR
                 + ":"
@@ -363,7 +363,7 @@ public class HelperFunctions {
      */
     public static String replacePostgressCredentials(String secureString, GobiiCropConfig config) {
 
-        ServerBase postGresConfig = config.getServerBase(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
         String ret = secureString
                 .replace(PARAM_CTCN_USR, postGresConfig.getUserName())
                 .replace(PARAM_CTCN_PWD, postGresConfig.getPassword());
