@@ -1,8 +1,6 @@
 package org.gobiiproject.gobiiprocess.digester;
 
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
 import org.gobiiproject.gobiimodel.config.ServerBase;
-import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 import org.gobiiproject.gobiiprocess.SimplePostgresConnector;
 
