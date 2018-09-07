@@ -559,7 +559,7 @@ ConfigValues {
 
         for (GobiiCropConfig currentGobiiCropConfig : this.cropConfigs.values()) {
 
-            for (ServerBase currentServerBase : currentGobiiCropConfig.getCropConfigs()) {
+            for (ServerBase currentServerBase : currentGobiiCropConfig.getServers()) {
                 currentServerBase.setDecrypt(isDecrypt);
             }
         }
