@@ -3,7 +3,7 @@ package org.gobiiproject.gobiiclient.gobii.infrastructure;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiTestConfiguration;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
+import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
@@ -519,7 +519,7 @@ public class TestGobiiConfig {
         String user = "user_" + UUID.randomUUID().toString();
         String password = "password_" + UUID.randomUUID().toString();
         String host = "host_" + UUID.randomUUID().toString();
-        String contextPath = "foodbname-" + UUID.randomUUID().toString();
+        String contextPath = "foodbname-" + UUID.randomUUID().toString() + "/";
         Integer port = 5063;
 
         String commandLine = makeCommandline("-a -wfqpn "
@@ -544,27 +544,27 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.POSTGRESQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
-                gobiiCropDbConfig);
+                postGresConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropDbConfig.getHost().equals(host));
+                postGresConfig.getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropDbConfig.getPort(),
-                gobiiCropDbConfig.getPort().equals(port));
+                        + postGresConfig.getPort(),
+                postGresConfig.getPort().equals(port));
 
         Assert.assertTrue("The context path not match",
-                gobiiCropDbConfig.getContextPath().equals(contextPath));
+                postGresConfig.getContextPath().equals(contextPath));
 
         Assert.assertTrue("The user name does not match",
-                gobiiCropDbConfig.getUserName().equals(user));
+                postGresConfig.getUserName().equals(user));
 
         Assert.assertTrue("The password does not match",
-                gobiiCropDbConfig.getPassword().equals(password));
+                postGresConfig.getPassword().equals(password));
     }
 
     @Test
@@ -579,7 +579,7 @@ public class TestGobiiConfig {
         String userEncrypted = "MMmn4rz4WqjfWew2+kkwssZ4jLl/ekRA0uI918BNVLQ=";
         String passwordEncrypted = "vxI/Bh2/YLytBxLpA5ZBrIFUJejBkcv9uJlg5FrQGRw=";
         String host = "host_" + UUID.randomUUID().toString();
-        String contextPath = "foodbname-" + UUID.randomUUID().toString();
+        String contextPath = "foodbname-" + UUID.randomUUID().toString() + "/";
         Integer port = 5063;
 
         String commandLine = makeCommandline("-a -wfqpn "
@@ -609,27 +609,27 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.POSTGRESQL);
+        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.POSTGRESQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
-                gobiiCropDbConfig);
+                postGresConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropDbConfig.getHost().equals(host));
+                postGresConfig.getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropDbConfig.getPort(),
-                gobiiCropDbConfig.getPort().equals(port));
+                        + postGresConfig.getPort(),
+                postGresConfig.getPort().equals(port));
 
         Assert.assertTrue("The context path not match",
-                gobiiCropDbConfig.getContextPath().equals(contextPath));
+                postGresConfig.getContextPath().equals(contextPath));
 
         Assert.assertTrue("The plain user retrieved name does not match the enrypted user written: " + ecnryptionWarning,
-                gobiiCropDbConfig.getUserName().equals(userPlain));
+                postGresConfig.getUserName().equals(userPlain));
 
         Assert.assertTrue("The plain password retrieved name does not match the enrypted password written: " + ecnryptionWarning,
-                gobiiCropDbConfig.getPassword().equals(passwordPlain));
+                postGresConfig.getPassword().equals(passwordPlain));
     }
 
 
@@ -641,7 +641,7 @@ public class TestGobiiConfig {
         String user = "user_" + UUID.randomUUID().toString();
         String password = "password_" + UUID.randomUUID().toString();
         String host = "host_" + UUID.randomUUID().toString();
-        String contextPath = "foodbname-" + UUID.randomUUID().toString();
+        String contextPath = "foodbname-" + UUID.randomUUID().toString() + "/";
         Integer port = 5063;
 
         String commandLine = makeCommandline("-a -wfqpn "
@@ -665,27 +665,27 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.COMPUTE);
+        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.COMPUTE_NODE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
-                gobiiCropDbConfig);
+                computeNodeConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropDbConfig.getHost().equals(host));
+                computeNodeConfig.getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropDbConfig.getPort(),
-                gobiiCropDbConfig.getPort().equals(port));
+                        + computeNodeConfig.getPort(),
+                computeNodeConfig.getPort().equals(port));
 
         Assert.assertTrue("The context path not match",
-                gobiiCropDbConfig.getContextPath().equals(contextPath));
+                computeNodeConfig.getContextPath().equals(contextPath));
 
         Assert.assertTrue("The user name does not match",
-                gobiiCropDbConfig.getUserName().equals(user));
+                computeNodeConfig.getUserName().equals(user));
 
         Assert.assertTrue("The password does not match",
-                gobiiCropDbConfig.getPassword().equals(password));
+                computeNodeConfig.getPassword().equals(password));
     }
 
     @Test
@@ -780,7 +780,7 @@ public class TestGobiiConfig {
         String userEncrypted = "MMmn4rz4WqjfWew2+kkwstTa47exiUVJDw0pL5wcwr8=";
         String passwordEncrypted = "vxI/Bh2/YLytBxLpA5ZBrBnxWbwoLeJ6Sv4nM3n14J0=";
         String host = "host_" + UUID.randomUUID().toString();
-        String contextPath = "foodbname-" + UUID.randomUUID().toString();
+        String contextPath = "foodbname-" + UUID.randomUUID().toString() + "/";
         Integer port = 5063;
 
         String commandLine = makeCommandline("-a -wfqpn "
@@ -810,27 +810,27 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        GobiiCropDbConfig gobiiCropDbConfig = configSettings.getCropConfig(cropId).getCropDbConfig(GobiiCropServerType.COMPUTE);
+        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServerBase(GobiiCropServerType.COMPUTE_NODE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
-                gobiiCropDbConfig);
+                computeNodeConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropDbConfig.getHost().equals(host));
+                computeNodeConfig.getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropDbConfig.getPort(),
-                gobiiCropDbConfig.getPort().equals(port));
+                        + computeNodeConfig.getPort(),
+                computeNodeConfig.getPort().equals(port));
 
         Assert.assertTrue("The context path not match",
-                gobiiCropDbConfig.getContextPath().equals(contextPath));
+                computeNodeConfig.getContextPath().equals(contextPath));
 
         Assert.assertTrue("The retrieved user name does not match the encrypted user name: " + ecnryptionWarning,
-                gobiiCropDbConfig.getUserName().equals(userPlain));
+                computeNodeConfig.getUserName().equals(userPlain));
 
         Assert.assertTrue("The retrieved password does not match the encrypted password: " + ecnryptionWarning,
-                gobiiCropDbConfig.getPassword().equals(passwordPlain));
+                computeNodeConfig.getPassword().equals(passwordPlain));
     }
 
 

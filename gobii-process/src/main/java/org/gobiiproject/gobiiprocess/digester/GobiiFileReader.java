@@ -302,7 +302,7 @@ public class GobiiFileReader {
 
 		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_VALIDATION.getCvName(),"Database Validation");
 		//Database Validation
-		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getCropDbConfig(GobiiCropServerType.POSTGRESQL));
+		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getServerBase(GobiiCropServerType.POSTGRESQL));
 
 		//If we're doing a DS upload and there is no DS_Marker
 		if(loaderInstructionMap.containsKey(VARIANT_CALL_TABNAME) && loaderInstructionMap.containsKey(DS_MARKER_TABNAME) && !loaderInstructionMap.containsKey(MARKER_TABNAME)) {
@@ -843,7 +843,7 @@ public class GobiiFileReader {
     }
 
     private static String getJDBCConnectionString(GobiiCropConfig config) {
-        return config.getCropDbConfig(GobiiCropServerType.POSTGRESQL).getJdbcConnectionString();
+    	return HelperFunctions.getJdbcConnectionString(config);
     }
 
     /**

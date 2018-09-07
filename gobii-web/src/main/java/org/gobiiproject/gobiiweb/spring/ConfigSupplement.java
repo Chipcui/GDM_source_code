@@ -2,7 +2,9 @@ package org.gobiiproject.gobiiweb.spring;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
+import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.types.GobiiCropServerType;
+import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiiweb.DataSourceSelector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,26 +36,15 @@ public class ConfigSupplement {
         Map<Object,Object> targetDataSources = new HashMap<>();
         for (GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs()) {
 
+            ServerBase currentPostGresConfig = currentGobiiCropConfig.getServerBase(GobiiCropServerType.POSTGRESQL);
             DriverManagerDataSource currentDataSource = new DriverManagerDataSource();
 
             currentDataSource.setDriverClassName("org.postgresql.Driver");
 
-            currentDataSource.setUrl(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
-                    .getJdbcConnectionString());
-
-            currentDataSource.setUsername(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
-                    .getUserName());
-
-            currentDataSource.setUsername(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
-                    .getUserName());
-
-
-            currentDataSource.setPassword(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiCropServerType.POSTGRESQL)
-                    .getPassword());
+            String url = HelperFunctions.getJdbcConnectionString(currentPostGresConfig);
+            currentDataSource.setUrl(url);
+            currentDataSource.setUsername(currentPostGresConfig.getUserName());
+            currentDataSource.setPassword(currentPostGresConfig.getPassword());
 
             targetDataSources.put(currentGobiiCropConfig.getGobiiCropType(),currentDataSource);
 

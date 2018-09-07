@@ -689,7 +689,8 @@ public class GobiiExtractor {
 					configuration.getKDCConfig().getHost(),
 					configuration.getKDCConfig().getContextPath(),
 					configuration.getKDCConfig().getPort(),
-					configuration.getKDCConfig().isActive());
+					configuration.getKDCConfig().isActive(),
+					configuration.getKDCConfig().isDecrypt());
 			GenericClientContext genericClientContext = new GenericClientContext(serverBase);
 			RestUri restUriGetQCJobID = new RestUri("/",
 					configuration.getKDCConfig().getContextPath(),

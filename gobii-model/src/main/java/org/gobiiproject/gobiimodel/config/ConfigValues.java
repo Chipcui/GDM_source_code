@@ -554,8 +554,8 @@ ConfigValues {
 
         for (GobiiCropConfig currentGobiiCropConfig : this.cropConfigs.values()) {
 
-            for (GobiiCropDbConfig currentGobiiCropDbConfig : currentGobiiCropConfig.getCropConfigs()) {
-                currentGobiiCropDbConfig.setDecrypt(isDecrypt);
+            for (ServerBase currentServerBase : currentGobiiCropConfig.getCropConfigs()) {
+                currentServerBase.setDecrypt(isDecrypt);
             }
         }
     }

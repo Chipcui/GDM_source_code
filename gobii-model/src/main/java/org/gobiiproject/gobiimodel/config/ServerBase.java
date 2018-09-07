@@ -61,13 +61,15 @@ public class ServerBase {
                       String host,
                       String contextPath,
                       Integer port,
-                      boolean isActive) {
+                      boolean isActive,
+                      boolean decrypt) {
 
         this.gobiiCropServerType = gobiiCropServerType;
         this.host = host;
         this.contextPath = contextPath;
         this.port = port;
         this.isActive = isActive;
+        this.decrypt = decrypt;
 
     }
 
@@ -116,19 +118,7 @@ public class ServerBase {
         return this;
     }
 
-    public String getJdbcConnectionString() {
 
-        String returnVal = "jdbc:"
-                + this.gobiiCropServerType.toString().toLowerCase()
-                + "://"
-                + this.getHost()
-                + ":"
-                + this.getPort()
-                + "/"
-                + this.getContextPath();
-
-        return (returnVal);
-    }
     public GobiiCropServerType getGobiiCropServerType() {
         return gobiiCropServerType;
     }

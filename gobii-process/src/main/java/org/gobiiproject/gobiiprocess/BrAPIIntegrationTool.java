@@ -172,6 +172,7 @@ public class BrAPIIntegrationTool {
                 bdmsUrlObj.getHost(),
                 "json-context",
                 bdmsUrlObj.getPort(),
+                true,
                 true);
         GenericClientContext bdmsGenericClientContext = new GenericClientContext(serverBase);
 
@@ -245,6 +246,7 @@ public class BrAPIIntegrationTool {
                 gdsUrlObj.getHost(),
                 "json-context",
                 gdsUrlObj.getPort(),
+                true,
                 true);
         GenericClientContext genericClientContext = new GenericClientContext(serverBase);
 

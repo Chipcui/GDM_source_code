@@ -10,7 +10,6 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
 import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
@@ -795,11 +794,11 @@ public class GobiiConfig {
 
 
                 //CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES
-            } else if (commandLine.hasOption(CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES) ) {
+            } else if (commandLine.hasOption(CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES)) {
 
                 String maxUploadMbytes = commandLine.getOptionValue(CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES);
 
-                if( NumberUtils.isNumber(maxUploadMbytes) ) {
+                if (NumberUtils.isNumber(maxUploadMbytes)) {
                     Integer maxUPloadMbytesInt = Integer.parseInt(maxUploadMbytes);
                     configSettings.setMaxUploadSizeMbytes(maxUPloadMbytesInt);
 
@@ -919,7 +918,7 @@ public class GobiiConfig {
 
                 if (commandLine.hasOption(CONFIG_TST_GLOBAL_ASYNCH_OP_TIMEOUT)) {
                     String asycnTimeOutValAsString = commandLine.getOptionValue(CONFIG_TST_GLOBAL_ASYNCH_OP_TIMEOUT);
-                    if( ! StringUtils.isNumeric(asycnTimeOutValAsString) ) {
+                    if (!StringUtils.isNumeric(asycnTimeOutValAsString)) {
                         throw new Exception("Value provided for option " + CONFIG_TST_GLOBAL_ASYNCH_OP_TIMEOUT + "is not a number");
                     }
                     Integer asycnTimeout = Integer.parseInt(asycnTimeOutValAsString);
@@ -1119,12 +1118,12 @@ public class GobiiConfig {
                             argsSet.add(CONFIG_SVR_CROP_POSTGRES);
                             valsSet.add("");
                         } else if (commandLine.hasOption(CONFIG_SVR_CROP_COMPUTE)) {
-                            gobiiCropServerType = GobiiCropServerType.COMPUTE;
+                            gobiiCropServerType = GobiiCropServerType.COMPUTE_NODE;
                             argsSet.add(CONFIG_SVR_CROP_COMPUTE);
                             valsSet.add("");
                         }
 
-                        gobiiCropConfig.setCropDbConfig(gobiiCropServerType,
+                        gobiiCropConfig.setServerBase(gobiiCropServerType,
                                 svrHost,
                                 contextRoot,
                                 svrPort,
@@ -1380,20 +1379,20 @@ public class GobiiConfig {
 
                     }
 
-                    GobiiCropDbConfig gobiiCropDbConfigPostGres = currentGobiiCropConfig.getCropDbConfig(GobiiCropServerType.POSTGRESQL);
-                    if (gobiiCropDbConfigPostGres == null) {
+                    ServerBase postGresConfig = currentGobiiCropConfig.getServerBase(GobiiCropServerType.POSTGRESQL);
+                    if (postGresConfig == null) {
                         messages.add("The postgresdb for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
                     } else {
-                        returnVal = returnVal && verifyDbConfig(gobiiCropDbConfigPostGres);
+                        returnVal = returnVal && verifyDbConfig(postGresConfig);
                     }
 
-                    GobiiCropDbConfig gobiiCropComputeNode = currentGobiiCropConfig.getCropDbConfig(GobiiCropServerType.COMPUTE);
-                    if (gobiiCropComputeNode == null) {
+                    ServerBase computeNodeConfig = currentGobiiCropConfig.getServerBase(GobiiCropServerType.COMPUTE_NODE);
+                    if (computeNodeConfig == null) {
                         messages.add("The compute node for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
                     } else {
-                        returnVal = returnVal && verifyDbConfig(gobiiCropComputeNode);
+                        returnVal = returnVal && verifyDbConfig(computeNodeConfig);
                     }
                 }
 
@@ -1432,7 +1431,7 @@ public class GobiiConfig {
         }
 
 
-        if( gobiiServerBase.getGobiiCropServerType().equals(GobiiCropServerType.POSTGRESQL)) {
+        if (gobiiServerBase.getGobiiCropServerType().equals(GobiiCropServerType.POSTGRESQL)) {
             if (LineUtils.isNullOrEmpty(gobiiServerBase.getUserName())) {
                 System.err.println("The db config for " + gobiiServerBase.getGobiiCropServerType().toString() + " does not define a user name");
                 returnVal = false;

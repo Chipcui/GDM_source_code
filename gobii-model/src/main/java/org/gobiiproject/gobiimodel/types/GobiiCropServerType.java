@@ -7,7 +7,7 @@ public enum GobiiCropServerType {
     // these must correspond to the jdbc driver name
     POSTGRESQL,
     WEB,
-    COMPUTE,
+    COMPUTE_NODE,
     KDC,
     GENERIC,
     UNKNOWN

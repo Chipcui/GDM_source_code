@@ -60,6 +60,7 @@ public class GenericTestClient {
                 "localhost",
                 GenericTestPaths.GENERIC_CONTEXT_ONE,
                 8099,
+                true,
                 true);
 
 

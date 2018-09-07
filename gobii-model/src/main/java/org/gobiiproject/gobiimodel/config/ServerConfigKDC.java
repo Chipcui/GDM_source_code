@@ -38,7 +38,7 @@ public class ServerConfigKDC extends ServerBase {
                            boolean isActive,
                            boolean decrypt) {
 
-        super(GobiiCropServerType.KDC, host, contextPath, port, isActive);
+        super(GobiiCropServerType.KDC, host, contextPath, port, isActive, decrypt);
     }
 
 
