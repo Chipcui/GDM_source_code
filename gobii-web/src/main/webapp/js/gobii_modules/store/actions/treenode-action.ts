@@ -1,9 +1,8 @@
 import {Action} from '@ngrx/store';
-import {GobiiTreeNode} from "../../model/GobiiTreeNode";
+import {GobiiTreeNode} from "../../model/gobii-tree-node";
 import {GobiiExtractFilterType} from "../../model/type-extractor-filter";
-import {ClearTextStream} from "tls";
-import {TypeTreeNodeStatus} from "../../model/type-tree-node-status";
 import {GobiiFileItemCompoundId} from "../../model/gobii-file-item-compound-id";
+import {EntityType} from "../../model/type-entity";
 
 export const INIT = '[GobiiTreeNode] Init';
 export const INIT_TREE = '[GobiiTreeNode] Load Tree Nodes';
@@ -77,8 +76,11 @@ export class SetTreeNodeLook implements Action {
 
     constructor(public payload: {
         gobiiExtractFilterType: GobiiExtractFilterType,
-        gobiiFileItemCompoundId: GobiiFileItemCompoundId,
-        icon: string
+        targetCompoundId: GobiiFileItemCompoundId,
+        childCompoundId: GobiiFileItemCompoundId,
+        icons: any,
+        label: string,
+        entityType: EntityType
     }) {
     }
 }

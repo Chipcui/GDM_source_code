@@ -1,5 +1,6 @@
 package org.gobiiproject.gobidomain.services;
 
+import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 
@@ -15,21 +16,21 @@ public interface FilesService {
                              String jobId,
                              String fileName,
                              GobiiFileProcessDir gobiiFileProcessDir,
-                             byte[] byteArray) throws GobiiException, Exception;
+                             byte[] byteArray) throws GobiiDomainException;
 
     void deleteFileFromProcessDir(String cropType,
                                   String fileName,
-                                  GobiiFileProcessDir gobiiFileProcessDir) throws Exception;
+                                  GobiiFileProcessDir gobiiFileProcessDir) throws GobiiDomainException;
 
     void writeFileToProcessDir(String cropType,
                                String fileName,
                                GobiiFileProcessDir gobiiFileProcessDir,
-                               byte[] byteArray) throws Exception;
+                               byte[] byteArray) throws GobiiDomainException;
 
     File readCropFileForJob(String cropType,
                             String gobiiJobId,
                             String fileName,
-                            GobiiFileProcessDir gobiiFileProcessDir) throws GobiiException, Exception;
+                            GobiiFileProcessDir gobiiFileProcessDir) throws GobiiDomainException;
 
 
 }

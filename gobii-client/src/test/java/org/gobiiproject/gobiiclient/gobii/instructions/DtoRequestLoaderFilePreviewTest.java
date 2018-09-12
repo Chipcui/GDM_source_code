@@ -98,7 +98,7 @@ public class DtoRequestLoaderFilePreviewTest {
         //get intended path for the created directory
         GobiiTestConfiguration gobiiTestConfiguration = new GobiiTestConfiguration();
         String testCrop = gobiiTestConfiguration.getConfigSettings().getTestExecConfig().getTestCrop();
-        String destinationDirectory = gobiiTestConfiguration.getConfigSettings().getProcessingPath(testCrop, GobiiFileProcessDir.RAW_USER_FILES);
+        String destinationDirectory = gobiiTestConfiguration.getConfigSettings().getFullyQualifiedFilePath(testCrop, GobiiFileProcessDir.RAW_USER_FILES);
         String createdFileDirectory = destinationDirectory + new File(resultLoaderFilePreviewDTOCreated.getDirectoryName()).getName();
 
         Assert.assertTrue(  "Destination file directory was not created: " + createdFileDirectory,
@@ -153,7 +153,7 @@ public class DtoRequestLoaderFilePreviewTest {
         //get intended path for the created directory
         GobiiTestConfiguration gobiiTestConfigurationHmp = new GobiiTestConfiguration();
         String testCropHmp = gobiiTestConfigurationHmp.getConfigSettings().getTestExecConfig().getTestCrop();
-        String destinationDirectoryHmp = gobiiTestConfigurationHmp.getConfigSettings().getProcessingPath(testCropHmp, GobiiFileProcessDir.RAW_USER_FILES);
+        String destinationDirectoryHmp = gobiiTestConfigurationHmp.getConfigSettings().getFullyQualifiedFilePath(testCropHmp, GobiiFileProcessDir.RAW_USER_FILES);
         String createdFileDirectoryHmp = destinationDirectoryHmp + new File(resultLoaderFilePreviewDTOCreatedHmp.getDirectoryName()).getName();
 
         File resourceDirectoryHmp = new File("src/test/resources/hmp_dataset");

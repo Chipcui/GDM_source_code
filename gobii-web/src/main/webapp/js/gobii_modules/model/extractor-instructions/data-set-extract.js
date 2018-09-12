@@ -6,21 +6,15 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             GobiiDataSetExtract = (function () {
-                function GobiiDataSetExtract(gobiiFileType, accolate, extractDestinationDirectory, gobiiExtractFilterType, markerList, sampleList, listFileName, gobiiSampleListType, gobiiDatasetType, platforms, principleInvestigator, project, dataSet, markerGroups) {
-                    // this.setGobiiFileType(gobiiFileType);
-                    // this.setAccolate(accolate);
-                    // this.setDataSetId(dataSetId);
-                    // this.setDataSetName(dataSetName);
-                    // this.setExtractDestinationDirectory(extractDestinationDirectory);
-                    // this.setGobiiFileType(gobiiExtractFilterType);
-                    //
+                function GobiiDataSetExtract(gobiiFileType, accolate, extractDestinationDirectory, gobiiExtractFilterType, markerList, sampleList, markerListFileName, sampleListFileName, gobiiSampleListType, gobiiDatasetType, platforms, principleInvestigator, project, dataSet, markerGroups, vertices, gqlMarkerResultFileName, gqlSampleResultFileName) {
                     this.gobiiFileType = gobiiFileType;
                     this.accolate = accolate;
                     this.extractDestinationDirectory = extractDestinationDirectory;
                     this.gobiiExtractFilterType = gobiiExtractFilterType;
                     this.markerList = markerList;
                     this.sampleList = sampleList;
-                    this.listFileName = listFileName;
+                    this.markerListFileName = markerListFileName;
+                    this.sampleListFileName = sampleListFileName;
                     this.gobiiSampleListType = gobiiSampleListType;
                     this.gobiiDatasetType = gobiiDatasetType;
                     this.platforms = platforms;
@@ -28,7 +22,10 @@ System.register([], function (exports_1, context_1) {
                     this.project = project;
                     this.dataSet = dataSet;
                     this.markerGroups = markerGroups;
-                } // ctor 
+                    this.vertices = vertices;
+                    this.gqlMarkerResultFileName = gqlMarkerResultFileName;
+                    this.gqlSampleResultFileName = gqlSampleResultFileName;
+                } // ctor
                 GobiiDataSetExtract.prototype.getgobiiFileType = function () {
                     return this.gobiiFileType;
                 };
@@ -66,10 +63,10 @@ System.register([], function (exports_1, context_1) {
                     this.sampleList = value;
                 };
                 GobiiDataSetExtract.prototype.getlistFileName = function () {
-                    return this.listFileName;
+                    return this.markerListFileName;
                 };
                 GobiiDataSetExtract.prototype.setlistFileName = function (value) {
-                    this.listFileName = value;
+                    this.markerListFileName = value;
                 };
                 GobiiDataSetExtract.prototype.getgobiiSampleListType = function () {
                     return this.gobiiSampleListType;
@@ -97,7 +94,8 @@ System.register([], function (exports_1, context_1) {
                     returnVal.gobiiExtractFilterType = this.gobiiExtractFilterType;
                     returnVal.markerList = this.markerList;
                     returnVal.sampleList = this.sampleList;
-                    returnVal.listFileName = this.listFileName;
+                    returnVal.markerListFileName = this.markerListFileName;
+                    returnVal.sampleListFileName = this.sampleListFileName;
                     returnVal.gobiiSampleListType = this.gobiiSampleListType;
                     returnVal.gobiiDatasetType = this.gobiiDatasetType;
                     returnVal.platforms = this.platforms;
@@ -105,10 +103,13 @@ System.register([], function (exports_1, context_1) {
                     returnVal.project = this.project;
                     returnVal.dataSet = this.dataSet;
                     returnVal.markerGroups = this.markerGroups;
+                    returnVal.vertices = this.vertices;
+                    returnVal.gqlMarkerResultFileName = this.gqlMarkerResultFileName;
+                    returnVal.gqlSampleResultFileName = this.gqlSampleResultFileName;
                     return returnVal;
                 };
                 GobiiDataSetExtract.fromJson = function (json) {
-                    var returnVal = new GobiiDataSetExtract(json.gobiiFileType, json.accolate, json.extractDestinationDirectory, json.gobiiExtractFilterType, json.markerList, json.sampleList, json.listFileName, json.gobiiSampleListType, json.gobiiDatasetType, json.platforms, json.principleInvestigator, json.project, json.dataSet, json.markerGroups);
+                    var returnVal = new GobiiDataSetExtract(json.gobiiFileType, json.accolate, json.extractDestinationDirectory, json.gobiiExtractFilterType, json.markerList, json.sampleList, json.markerListFileName, json.sampleListFileName, json.gobiiSampleListType, json.gobiiDatasetType, json.platforms, json.principleInvestigator, json.project, json.dataSet, json.markerGroups, json.vertices, json.gqlMarkerResultFileName, json.gqlSampleResultFileName);
                     return returnVal;
                 };
                 return GobiiDataSetExtract;

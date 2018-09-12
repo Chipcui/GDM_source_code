@@ -4,5 +4,6 @@ public enum GobiiExtractFilterType {
     UNKNOWN,
     WHOLE_DATASET,
     BY_MARKER,
-    BY_SAMPLE
+    BY_SAMPLE,
+    FLEX_QUERY
 }

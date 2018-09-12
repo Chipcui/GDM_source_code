@@ -1,38 +1,37 @@
-import {ProcessType} from "../../model/type-process";
 import {GobiiExtractorInstruction} from "./gobii-extractor-instruction";
 
 export class ExtractorInstructionFilesDTO {
 
-    constructor(private gobiiExtractorInstructions:GobiiExtractorInstruction[],
-                private instructionFileName:string) {
+    constructor(private gobiiExtractorInstructions: GobiiExtractorInstruction[],
+                private jobId: string) {
 
         this.gobiiExtractorInstructions = gobiiExtractorInstructions;
-        this.instructionFileName = instructionFileName;
+        this.jobId= jobId;
 
     } // ctor
 
-    public getGobiiExtractorInstructions():any {
+    public getGobiiExtractorInstructions(): any {
         return this.gobiiExtractorInstructions;
     }
 
-    public setGobiiExtractorInstructions(value:any) {
+    public setGobiiExtractorInstructions(value: any) {
         this.gobiiExtractorInstructions = value;
     }
 
-    public getInstructionFileName():string {
-        return this.instructionFileName;
+    public getjobId(): string {
+        return this.jobId;
     }
 
-    public setInstructionFileName(value:string) {
-        this.instructionFileName = value;
+    public setjobId(value: string) {
+        this.jobId = value;
     }
 
 
-    public getJson():any {
+    public getJson(): any {
 
-        let returnVal:any = {};
+        let returnVal: any = {};
 
-        returnVal.instructionFileName = this.instructionFileName;
+        returnVal.jobId = this.jobId;
         returnVal.gobiiExtractorInstructions = [];
 
         this.gobiiExtractorInstructions.forEach(i => {
@@ -43,16 +42,16 @@ export class ExtractorInstructionFilesDTO {
 
     } // getJson()
 
-    public static fromJson(json:any):ExtractorInstructionFilesDTO {
+    public static fromJson(json: any): ExtractorInstructionFilesDTO {
 
-        let gobiiExtractorInstructions:GobiiExtractorInstruction[] = [];
+        let gobiiExtractorInstructions: GobiiExtractorInstruction[] = [];
 
         json.gobiiExtractorInstructions.forEach(i =>
             gobiiExtractorInstructions.push(GobiiExtractorInstruction.fromJson(i)));
 
-        let returnVal:ExtractorInstructionFilesDTO = new ExtractorInstructionFilesDTO(
+        let returnVal: ExtractorInstructionFilesDTO = new ExtractorInstructionFilesDTO(
             gobiiExtractorInstructions,
-            json.instructionFileName
+            json.jobId
         );
 
         return returnVal;

@@ -10,11 +10,11 @@ System.register(["./gobii-extractor-instruction"], function (exports_1, context_
         ],
         execute: function () {
             ExtractorInstructionFilesDTO = (function () {
-                function ExtractorInstructionFilesDTO(gobiiExtractorInstructions, instructionFileName) {
+                function ExtractorInstructionFilesDTO(gobiiExtractorInstructions, jobId) {
                     this.gobiiExtractorInstructions = gobiiExtractorInstructions;
-                    this.instructionFileName = instructionFileName;
+                    this.jobId = jobId;
                     this.gobiiExtractorInstructions = gobiiExtractorInstructions;
-                    this.instructionFileName = instructionFileName;
+                    this.jobId = jobId;
                 } // ctor
                 ExtractorInstructionFilesDTO.prototype.getGobiiExtractorInstructions = function () {
                     return this.gobiiExtractorInstructions;
@@ -22,15 +22,15 @@ System.register(["./gobii-extractor-instruction"], function (exports_1, context_
                 ExtractorInstructionFilesDTO.prototype.setGobiiExtractorInstructions = function (value) {
                     this.gobiiExtractorInstructions = value;
                 };
-                ExtractorInstructionFilesDTO.prototype.getInstructionFileName = function () {
-                    return this.instructionFileName;
+                ExtractorInstructionFilesDTO.prototype.getjobId = function () {
+                    return this.jobId;
                 };
-                ExtractorInstructionFilesDTO.prototype.setInstructionFileName = function (value) {
-                    this.instructionFileName = value;
+                ExtractorInstructionFilesDTO.prototype.setjobId = function (value) {
+                    this.jobId = value;
                 };
                 ExtractorInstructionFilesDTO.prototype.getJson = function () {
                     var returnVal = {};
-                    returnVal.instructionFileName = this.instructionFileName;
+                    returnVal.jobId = this.jobId;
                     returnVal.gobiiExtractorInstructions = [];
                     this.gobiiExtractorInstructions.forEach(function (i) {
                         returnVal.gobiiExtractorInstructions.push(i.getJson());
@@ -42,7 +42,7 @@ System.register(["./gobii-extractor-instruction"], function (exports_1, context_
                     json.gobiiExtractorInstructions.forEach(function (i) {
                         return gobiiExtractorInstructions.push(gobii_extractor_instruction_1.GobiiExtractorInstruction.fromJson(i));
                     });
-                    var returnVal = new ExtractorInstructionFilesDTO(gobiiExtractorInstructions, json.instructionFileName);
+                    var returnVal = new ExtractorInstructionFilesDTO(gobiiExtractorInstructions, json.jobId);
                     return returnVal;
                 };
                 return ExtractorInstructionFilesDTO;

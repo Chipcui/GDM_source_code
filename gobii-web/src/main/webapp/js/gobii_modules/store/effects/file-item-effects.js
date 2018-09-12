@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/operator/switchMap", "rxjs/add/observable/of", "rxjs/add/operator/concat", "../actions/fileitem-action", "../actions/treenode-action", "../../services/core/tree-structure-service", "../reducers", "../../store/actions/history-action", "../../model/type-extractor-item", "rxjs/Observable", "@ngrx/store", "../../services/core/file-item-service", "../../model/file-item-param-names", "rxjs/add/operator/mergeMap", "../../services/core/filter-params-coll"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/operator/switchMap", "rxjs/add/observable/of", "rxjs/add/operator/concat", "../actions/fileitem-action", "../actions/treenode-action", "../../services/core/tree-structure-service", "../reducers", "../../store/actions/history-action", "rxjs/Observable", "@ngrx/store", "../../services/core/nameid-file-item-service", "../../model/file-item-param-names", "rxjs/add/operator/mergeMap", "../../services/core/filter-params-coll", "../../model/name-id-label-type"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, effects_1, fileItemActions, treeNodeActions, tree_structure_service_1, fromRoot, historyAction, type_extractor_item_1, Observable_1, store_1, file_item_service_1, file_item_param_names_1, filter_params_coll_1, FileItemEffects;
+    var core_1, router_1, effects_1, fileItemActions, treeNodeActions, tree_structure_service_1, fromRoot, historyAction, Observable_1, store_1, nameid_file_item_service_1, file_item_param_names_1, filter_params_coll_1, name_id_label_type_1, FileItemEffects;
     return {
         setters: [
             function (core_1_1) {
@@ -43,17 +43,14 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
             function (historyAction_1) {
                 historyAction = historyAction_1;
             },
-            function (type_extractor_item_1_1) {
-                type_extractor_item_1 = type_extractor_item_1_1;
-            },
             function (Observable_1_1) {
                 Observable_1 = Observable_1_1;
             },
             function (store_1_1) {
                 store_1 = store_1_1;
             },
-            function (file_item_service_1_1) {
-                file_item_service_1 = file_item_service_1_1;
+            function (nameid_file_item_service_1_1) {
+                nameid_file_item_service_1 = nameid_file_item_service_1_1;
             },
             function (file_item_param_names_1_1) {
                 file_item_param_names_1 = file_item_param_names_1_1;
@@ -62,58 +59,22 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
             },
             function (filter_params_coll_1_1) {
                 filter_params_coll_1 = filter_params_coll_1_1;
+            },
+            function (name_id_label_type_1_1) {
+                name_id_label_type_1 = name_id_label_type_1_1;
             }
         ],
         execute: function () {
             FileItemEffects = (function () {
                 // @Effect()
-                // setEntityFilter$ = this.actions$
-                //     .ofType(fileItemActions.SET_FILTER_VALUE)
-                //     .switchMap((action: fileItemActions.SetFilterValueAction)  => {
-                //
-                //         let payload = action.payload;
-                //
-                //         return Observable.create(observer => {
-                //
-                //
-                //             this.nameIdService.get(payload.nameIdRequestParams)
-                //                 .subscribe(nameIds => {
-                //                         if (nameIds && ( nameIds.length > 0 )) {
-                //
-                //
-                //                             nameIds.forEach(n => {
-                //                                 let currentFileItem: GobiiFileItem =
-                //                                     GobiiFileItem.build(
-                //                                         payload.gobiiExtractFilterType,
-                //                                         ProcessType.CREATE)
-                //                                         .setExtractorItemType(ExtractorItemType.ENTITY)
-                //                                         .setEntityType(payload.nameIdRequestParams.getEntityType())
-                //                                         .setCvFilterType(CvFilterType.UNKNOWN)
-                //                                         .setItemId(n.id)
-                //                                         .setItemName(n.name)
-                //                                         .setSelected(false)
-                //                                         .setRequired(false)
-                //                                         .setParentEntityType(payload.nameIdRequestParams.getRefTargetEntityType())
-                //                                         .setParentItemId(payload.nameIdRequestParams.getFkEntityFilterValue());
-                //
-                //                                 //fileItems.push(currentFileItem);
-                //                                 observer.next(currentFileItem);
-                //
-                //                             });
-                //
-                //                             //new fileItemActions.LoadAction(fileItems);
-                //                         }
-                //                     },
-                //                     responseHeader => {
-                //                         console.log(responseHeader);
-                //                     });
-                //
-                //         }).map( gfi => {
-                //             return new fileItemActions.LoadAction([gfi]);
-                //         })
-                //
-                //
-                //     }); //switch map
+                // loadFilter = this.actions$
+                //     .ofType(fileItemActions.LOAD_FILTER)
+                //     .switchMap((action: fileItemActions.LoadFilterAction) => {
+                //             //set tree node
+                //             return this.treeStructureService.makeUpdateTreeNodeAction(action.payload.filter.gobiiExtractFilterType,
+                //                 action.payload.filter.targetEntityUniqueId);
+                //         }
+                //     );
                 function FileItemEffects(actions$, treeStructureService, fileItemService, store, filterParamsColl, router) {
                     var _this = this;
                     this.actions$ = actions$;
@@ -282,6 +243,190 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
                     //         //     //subscribe --> loadFIleItemsFromFilter()
                     //         // }).map( fileItems => new fileItemActions.LoadFileItemListAction({gobiiFileItems: fileItems}));
                     //     });// switchMap()
+                    //******************************************************************************************************
+                    // What follows is yet another attempt to get a call to a web service working inside an effec.t
+                    // In There are two actions defined here. The second one below is the one that would be the real action.
+                    // It depends on a function that I blew away, but that you can imagine what it does: it is the same as
+                    // recalcMarkerSampleCount() but creates actions instead. The first is my careful attempt to figure out
+                    // where the problem is. I can do all kinds of asynchronous things with the store in the action. The one
+                    // thing where it breaks down is in the post call to get the marker/sample count. This DEFINITELY works
+                    // when it is called outside of an effect. It works now in the recalcMarkerSampleCount() as it is. But
+                    // for some reason, when you call the post() method inside this effect, you can see that the post method
+                    // is getting called with a break point. But some how the result of the call just doesn't get passed through.
+                    // I strongly that the problem is the fact that the web service call is wrapped in an Observable. Even though
+                    // the post() method calls observer.complete and unsubscribes from the actual http call, it just doesn't work.
+                    // There must be _something_  I'm suppposed to be doing. For example, this article seems to imply that you
+                    // have to remap the reseult of the http query. I've just run out of time to experiment with this:
+                    // http://blog.danieleghidoli.it/2016/10/22/http-rxjs-observables-angular/
+                    //
+                    // THIS JUST IN: In the course of working on branch feature/GSD-1820-01, I created a wrapper observable method
+                    // for the post() call to to DatRequestService::post(). My initial attempts broke the change of observables
+                    // so that the subscribe() in ExtractorRoot::handleExtractSubmission() was not getting the completion of the
+                    // submission, and handleClearTree() was not getting called. I did a useful refactoring of the service's post()
+                    // method so as to encapsulate the interpretation of the service call result in anticipation of needing to
+                    // use switchMap() as is suggested in the various articles on this topic. That was a good refactoring in
+                    // itself. But I think that I did not change anything meaningful with respect to how the observables are
+                    // chained together. What did make a big difference is that when calling the post() encapsulation method in
+                    // the submission services, I had been calling unsubscribe(). When there is a chain of observables from
+                    // and http services, this is _not_ the thing to do: when I removed the unsubscribe(), the observable.next()
+                    // was passed through and it worked. I think that I've been using unsubscribe() incorrectly in this way, by
+                    // incorrect with analogy from unsubscribing to store selectors. In any case, in the below code, I am calling
+                    // unsubscribe after the post(), which is definitely wrong. I suspect that an unsubscribe() anywhere in the
+                    // observable chain is going to interrupt the flow of the observables. Cave Canem!
+                    //
+                    // @Effect()
+                    // loadFileItems$ = this.actions$
+                    //     .ofType(fileItemActions.LOAD_FILTER)
+                    //     .switchMap((action: fileItemActions.LoadFilterAction) => {
+                    //
+                    //             return Observable.create(observer => {
+                    //
+                    //                 let history1 = new historyAction.AddFilterRetrieved(
+                    //                     {
+                    //                         gobiiExtractFilterType: action.payload.filter.gobiiExtractFilterType,
+                    //                         filterId: action.payload.filterId,
+                    //                         filterValue: "HERE 1",
+                    //                         entityLasteUpdated: action.payload.filter.entityLasteUpdated
+                    //                     });
+                    //
+                    //                 observer.next(history1);
+                    //
+                    //                 // this.store.select(fromRoot.getJobId)
+                    //                 //     .subscribe(
+                    //                 //         fileItemJobId => {
+                    //                 //             let history2 = new historyAction.AddFilterRetrieved(
+                    //                 //                 {
+                    //                 //                     gobiiExtractFilterType: action.payload.filter.gobiiExtractFilterType,
+                    //                 //                     filterId: action.payload.filterId,
+                    //                 //                     filterValue: " NEXT: " + fileItemJobId.getItemName(),
+                    //                 //                     entityLasteUpdated: action.payload.filter.entityLasteUpdated
+                    //                 //                 });
+                    //                 //         });// subscribe to job id
+                    //
+                    //                 // this.flexQueryService
+                    //                 //     .getVertexFilters(FilterParamNames.FQ_F1_VERTEX_VALUES)
+                    //                 //     .subscribe(loadFileItemListActions => {
+                    //                 //
+                    //                 //             let history2 = new historyAction.AddFilterRetrieved(
+                    //                 //                 {
+                    //                 //                     gobiiExtractFilterType: action.payload.filter.gobiiExtractFilterType,
+                    //                 //                     filterId: action.payload.filterId,
+                    //                 //                     filterValue: " NEXT: SECOND" ,
+                    //                 //                     entityLasteUpdated: action.payload.filter.entityLasteUpdated
+                    //                 //                 });
+                    //                 //
+                    //                 //             this.store.select(fromRoot.getJobId)
+                    //                 //                 .subscribe(
+                    //                 //                     fileItemJobId => {
+                    //                 //                         observer.next(history2);
+                    //                 //                     });
+                    //                 //         },
+                    //                 //         error => {
+                    //                 //             this.store.dispatch(new historyAction.AddStatusMessageAction(error))
+                    //                 //         }); // subscribe to marker sample count actions
+                    //
+                    //
+                    //                 let dummyVertex: Vertex = new Vertex(0,
+                    //                     VertexNameType.MARKER,
+                    //                     VertexType.ENTITY,
+                    //                     "countonly",
+                    //                     EntityType.MARKER,
+                    //                     EntitySubType.UNKNOWN,
+                    //                     CvGroup.UNKNOWN,
+                    //                     null,
+                    //                     []);
+                    //
+                    //                 let vertexFilterDTO: VertexFilterDTO = new VertexFilterDTO(
+                    //                     dummyVertex, // the server should ignore this because it's a count query
+                    //                     [new Vertex(0, VertexNameType.VERTEX_TYPE_DATASET, VertexType.ENTITY, "foo", EntityType.DATASET, EntitySubType.UNKNOWN, CvGroup.UNKNOWN, null, [1, 2])],
+                    //                     [],
+                    //                     null,
+                    //                     null
+                    //                 );
+                    //                 let vertexFilterDtoResponse: VertexFilterDTO = null;
+                    //                 this.dtoRequestServiceVertexFilterDTO.post(new DtoRequestItemVertexFilterDTO(
+                    //                     vertexFilterDTO,
+                    //                     "foo",
+                    //                     true
+                    //                 )).subscribe(vertexFilterDto => {
+                    //                     vertexFilterDtoResponse = vertexFilterDto;
+                    //                     let history2 = new historyAction.AddFilterRetrieved(
+                    //                         {
+                    //                             gobiiExtractFilterType: action.payload.filter.gobiiExtractFilterType,
+                    //                             filterId: action.payload.filterId,
+                    //                             filterValue: " NEXT: SECOND",
+                    //                             entityLasteUpdated: action.payload.filter.entityLasteUpdated
+                    //                         });
+                    //                     observer.next(history2);
+                    //
+                    //                 }, error => {
+                    //                     this.store.dispatch(new historyAction.AddStatusMessageAction(error))
+                    //                 }).unsubscribe();
+                    //
+                    //
+                    //                 observer.complete();
+                    //
+                    //             }).mergeMap(actions => {
+                    //                 return Observable.of(actions);
+                    //             });
+                    // return Observable.create(observer => {
+                    //
+                    //         let eventedFilterParams: FilterParams = this.filterParamsColl
+                    //             .getFilter(action.payload.filterId,
+                    //                 action.payload.filter.gobiiExtractFilterType);
+                    //         if (action.payload.isEvented && eventedFilterParams) {
+                    //
+                    //             let vertexValuesFilterParams: FilterParams = null;
+                    //             if (eventedFilterParams.getQueryName() === FilterParamNames.FQ_F1_VERTEX_VALUES
+                    //                 || eventedFilterParams.getQueryName() === FilterParamNames.FQ_F2_VERTEX_VALUES
+                    //                 || eventedFilterParams.getQueryName() === FilterParamNames.FQ_F3_VERTEX_VALUES
+                    //                 || eventedFilterParams.getQueryName() === FilterParamNames.FQ_F4_VERTEX_VALUES
+                    //             ) { // if query id is vertex values
+                    //                 vertexValuesFilterParams = eventedFilterParams;
+                    //             } else if (eventedFilterParams.getQueryName() === FilterParamNames.FQ_F4_VERTICES
+                    //                 || eventedFilterParams.getQueryName() === FilterParamNames.FQ_F1_VERTICES
+                    //                 || eventedFilterParams.getQueryName() === FilterParamNames.FQ_F2_VERTICES
+                    //                 || eventedFilterParams.getQueryName() === FilterParamNames.FQ_F3_VERTICES) {
+                    //
+                    //                 if (eventedFilterParams.getChildFileItemParams().length > 0) {
+                    //
+                    //                     vertexValuesFilterParams = eventedFilterParams;
+                    //                 }
+                    //             } // if query id vertices
+                    //
+                    //             if (vertexValuesFilterParams) {
+                    //                 this.store.select(fromRoot.getJobId)
+                    //                     .subscribe(
+                    //                         fileItemJobId => {
+                    //                             let jobId: string = fileItemJobId.getItemId();
+                    //                             this.flexQueryService
+                    //                                 .recalcMarkerSampleCounActions(vertexValuesFilterParams.getQueryName(), jobId)
+                    //                                 .subscribe(loadFileItemListActions => {
+                    //
+                    //                                         if (loadFileItemListActions) {
+                    //                                             loadFileItemListActions.forEach(currentAction => {
+                    //                                                 observer.next(currentAction);
+                    //                                             });
+                    //                                             observer.complete();
+                    //                                         }
+                    //                                     },
+                    //                                     error => {
+                    //                                         this.store.dispatch(new historyAction.AddStatusMessageAction(error))
+                    //                                     }).unsubscribe(); // subscribe to marker sample count actions
+                    //                         }).unsubscribe(); //subscribe to get job id
+                    //             } // if we have a vertex params to process
+                    //
+                    //         } // if action is evented
+                    //     } // observable create
+                    //
+                    // ).mergeMap(actions => {
+                    //
+                    //     return actions;
+                    //     //return Observable.of(actions);
+                    //
+                    // });
+                    //    }//switchmap
+                    //)
                     this.replaceInExtract$ = this.actions$
                         .ofType(fileItemActions.REPLACE_BY_ITEM_ID)
                         .switchMap(function (action) {
@@ -317,7 +462,7 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
                                 } // if we had a filter to dispatch
                                 // LOAD THE CORRESPONDING TREE NODE FOR THE SELECTED ITEM
                                 if (fileItemToReplaceWith.getIsExtractCriterion()) {
-                                    if (fileItemToReplaceWith.getExtractorItemType() != type_extractor_item_1.ExtractorItemType.LABEL) {
+                                    if (fileItemToReplaceWith.getNameIdLabelType() === name_id_label_type_1.NameIdLabelType.UNKNOWN) {
                                         var treeNode = _this.treeStructureService.makeTreeNodeFromFileItem(fileItemToReplaceWith);
                                         observer.next(new treeNodeActions.PlaceTreeNodeAction(treeNode));
                                     }
@@ -435,7 +580,7 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
                     core_1.Injectable(),
                     __metadata("design:paramtypes", [effects_1.Actions,
                         tree_structure_service_1.TreeStructureService,
-                        file_item_service_1.FileItemService,
+                        nameid_file_item_service_1.NameIdFileItemService,
                         store_1.Store,
                         filter_params_coll_1.FilterParamsColl,
                         router_1.Router])
@@ -443,50 +588,6 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
                 return FileItemEffects;
             }());
             exports_1("FileItemEffects", FileItemEffects);
-            /*
-            
-            
-                @Effect()
-                setEntityFilter$ = this.actions$
-                    .ofType(fileItemActions.SET_FILTER_VALUE)
-                    .map((action: fileItemActions.SetFilterValueAction) => {
-            
-                        }
-                    );
-            
-            *
-            *                 this.nameIdService.get(nameIdRequestParams)
-                            .subscribe(nameIds => {
-                                    if (nameIds && ( nameIds.length > 0 )) {
-            
-                                        let fileItems: GobiiFileItem[] = [];
-            
-                                        nameIds.forEach(n => {
-                                            let currentFileItem: GobiiFileItem =
-                                                GobiiFileItem.build(
-                                                    gobiiExtractFilterType,
-                                                    ProcessType.CREATE)
-                                                    .setExtractorItemType(ExtractorItemType.ENTITY)
-                                                    .setEntityType(nameIdRequestParams.getEntityType())
-                                                    .setCvFilterType(CvFilterType.UNKNOWN)
-                                                    .setItemId(n.id)
-                                                    .setItemName(n.name)
-                                                    .setSelected(false)
-                                                    .setRequired(false)
-                                                    .setParentEntityType(nameIdRequestParams.getRefTargetEntityType())
-                                                    .setParentItemId(nameIdRequestParams.getFkEntityFilterValue());
-            
-                                            fileItems.push(currentFileItem);
-            
-                                        });
-            
-                                        return new fileItemActions.LoadAction(fileItems);
-                                    }
-                                },
-                                responseHeader => {
-                                    console.log(responseHeader);
-                                });
-            */
         }
     };
 });

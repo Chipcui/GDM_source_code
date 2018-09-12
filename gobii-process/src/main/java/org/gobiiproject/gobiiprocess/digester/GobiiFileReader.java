@@ -507,7 +507,7 @@ public class GobiiFileReader {
 		}catch(Exception e){
 			ErrorLogger.logError("MailInterface","Error Sending Mail",e);
         }
-        HelperFunctions.completeInstruction(instructionFile, configuration.getProcessingPath(crop, GobiiFileProcessDir.LOADER_DONE));
+        HelperFunctions.completeInstruction(instructionFile, configuration.getFullyQualifiedFilePath(crop, GobiiFileProcessDir.LOADER_DONE));
     }
 
     private static void uploadToMonet(Integer dataSetId, GobiiCropConfig gobiiCropConfig, String errorPath, File variantFile, String markerFileLoc, String sampleFileLoc) {
@@ -558,7 +558,7 @@ public class GobiiFileReader {
 		ErrorLogger.logInfo("Digester","Entering into the QC Subsection #3 of 3...");
         ExtractorInstructionFilesDTO extractorInstructionFilesDTOToSend = new ExtractorInstructionFilesDTO();
         extractorInstructionFilesDTOToSend.getGobiiExtractorInstructions().add(qcExtractInstruction);
-        extractorInstructionFilesDTOToSend.setInstructionFileName("extractor_" + DateUtils.makeDateIdString());
+        extractorInstructionFilesDTOToSend.setJobId("extractor_" + DateUtils.makeDateIdString());
         GobiiClientContext gobiiClientContext = GobiiClientContext.getInstance(configuration, crop, GobiiAutoLoginType.USER_RUN_AS);
         if (LineUtils.isNullOrEmpty(gobiiClientContext.getUserToken())) {
             ErrorLogger.logError("Digester", "Unable to log in with user " + GobiiAutoLoginType.USER_RUN_AS.toString());
