@@ -41,11 +41,11 @@
                     <DbPKey></DbPKey>
                 </Keys>
                 <Properties>
-                    <PlatformName>SSR</PlatformName>
-                    <PlatformCode>SSR</PlatformCode>
-                    <PlatformDescription>SSR</PlatformDescription>
+                    <PlatformName>KASP</PlatformName>
+                    <PlatformCode>KASP</PlatformCode>
+                    <PlatformDescription>KASP</PlatformDescription>
                     <StatusId>1</StatusId>
-                    <TypeId>SSR</TypeId>
+                    <TypeId>KASP</TypeId>
                     <Properties/>
                 </Properties>
             </Platform>
@@ -55,13 +55,13 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Platform" fkproperty="platformId">
-                        <DbPKeySurrogate>SSR</DbPKeySurrogate>
+                        <DbPKeySurrogate>KASP</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <Name>SSR</Name>
-                    <Description>SSR</Description>
+                    <Name>KASP</Name>
+                    <Description>KASP</Description>
                     <TypeId>1</TypeId>
                     <Status>1</Status>
                     <Props/>
@@ -78,12 +78,12 @@
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="Protocol" fkproperty="protocolId">
-                        <DbPKeySurrogate>SSR</DbPKeySurrogate>
+                        <DbPKeySurrogate>KASP</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <Name>Cornell_SSR</Name>
+                    <Name>Cornell_KASP</Name>
                     <Status>1</Status>
                 </Properties>
             </VendorProtocol>
@@ -147,13 +147,13 @@
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="VendorProtocol" fkproperty="vendorProtocolId">
-                        <DbPKeySurrogate>Cornell_SSR</DbPKeySurrogate>
+                        <DbPKeySurrogate>Cornell_KASP</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <ExperimentName>sim_codominant_exp_01</ExperimentName>
-                    <ExperimentCode>sim_codominant_exp_01</ExperimentCode>
+                    <ExperimentName>sim_codominant_exp_02</ExperimentName>
+                    <ExperimentCode>sim_codominant_exp_02</ExperimentCode>
                     <StatusId>1</StatusId>
                 </Properties>
             </Experiment>
@@ -183,7 +183,7 @@
                 <Keys>
                     <DbPKey></DbPKey>
                     <Fkey entity="Experiment" fkproperty="experimentId">
-                        <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
+                        <DbPKeySurrogate>sim_codominant_exp_02</DbPKeySurrogate>
                         <DbPKey></DbPKey>
                     </Fkey>
                     <Fkey entity="Analysis" fkproperty="callingAnalysisId">
@@ -192,11 +192,11 @@
                     </Fkey>
                 </Keys>
                 <Properties>
-                    <DatasetName>sim_codominant_ds_02</DatasetName>
-                    <DataTable>sim_codominant_ds_02_datatable</DataTable>
-                    <DataFile>sim_codominant_ds_02_datafile</DataFile>
-                    <QualityTable>sim_codominant_ds_02_qualitytable</QualityTable>
-                    <QualityFile>sim_codominant_ds_02_qualityfile</QualityFile>
+                    <DatasetName>sim_codominant_ds_03</DatasetName>
+                    <DataTable>sim_codominant_ds_03_datatable</DataTable>
+                    <DataFile>sim_codominant_ds_03_datafile</DataFile>
+                    <QualityTable>sim_codominant_ds_03_qualitytable</QualityTable>
+                    <QualityFile>sim_codominant_ds_03_qualityfile</QualityFile>
                     <StatusId>1</StatusId>
                     <TypeId>CO_DOMINANT_NON_NUCLEOTIDE</TypeId>
                     <AnalysesIds/>
@@ -207,19 +207,24 @@
     </Entities>
 
     <Scenarios>
-        <Load>
-            <Scenario>
-                <Name>sim_codominant_proj_01_marker</Name>
-                <Files>
-                    <Instruction>data_20180611_143609_daw279.json</Instruction>
-                    <Data>Deb_FQ_codom_markermap11-20.txt</Data>
-                </Files>
-                <PayloadType>markers</PayloadType>
 
             <DbFkey entity="Contact">
                 <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
                 <DbPKey></DbPKey>
             </DbFkey>
+
+            <Scenario>
+                <Name>sim_codominant_proj_01_marker</Name>
+                <Files>
+                    <Instruction>data_20180614_124604_daw279.json</Instruction>
+                    <Data>Deb_FQ_codom_markermap5-14_21-25.txt</Data>
+                </Files>
+                <PayloadType>markers</PayloadType>
+
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
                 <DbFkey entity="Project">
                     <DbPKeySurrogate>sim_codominant_proj_01</DbPKeySurrogate>
@@ -227,12 +232,12 @@
                 </DbFkey>
 
                 <DbFkey entity="Experiment">
-                    <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
+                    <DbPKeySurrogate>sim_codominant_exp_02</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Dataset">
-                    <DbPKeySurrogate>sim_codominant_ds_02</DbPKeySurrogate>
+                    <DbPKeySurrogate>sim_codominant_ds_03</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
@@ -242,24 +247,27 @@
                 </DbFkey>
 
                 <DbFkey entity="Platform">
-                    <DbPKeySurrogate>SSR</DbPKeySurrogate>
+                    <DbPKeySurrogate>KASP</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
-            </Scenario>
+            <DbFkey entity="Contact">
+                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
 
             <Scenario>
                 <Name>sim_codominant_proj_01_sample</Name>
                 <Files>
-                    <Instruction>data_20180611_143721_daw279.json</Instruction>
-                    <Data>Deb_FQ_codom_samples_11-20.txt</Data>
+                    <Instruction>data_20180614_125648_daw279.json</Instruction>
+                    <Data>Deb_FQ_codom_samples_5-14_21-25.txt</Data>
                 </Files>
                 <PayloadType>samples</PayloadType>
 
-            <DbFkey entity="Contact">
-                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
                 <DbFkey entity="Project">
                     <DbPKeySurrogate>sim_codominant_proj_01</DbPKeySurrogate>
@@ -267,12 +275,12 @@
                 </DbFkey>
 
                 <DbFkey entity="Experiment">
-                    <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
+                    <DbPKeySurrogate>sim_codominant_exp_02</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Dataset">
-                    <DbPKeySurrogate>sim_codominant_ds_02</DbPKeySurrogate>
+                    <DbPKeySurrogate>sim_codominant_ds_03</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
@@ -282,24 +290,27 @@
                 </DbFkey>
 
                 <DbFkey entity="Platform">
-                    <DbPKeySurrogate>SSR</DbPKeySurrogate>
+                    <DbPKeySurrogate>KASP</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
-            </Scenario>
+            <DbFkey entity="Contact">
+                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                <DbPKey></DbPKey>
+            </DbFkey>
 
             <Scenario>
                 <Name>sim_codominant_proj_01_dataset</Name>
                 <Files>
-                    <Instruction>data_20180611_145834_daw279.json</Instruction>
-                    <Data>Deb_FQ_codom_alleledata_m11-m20.txt</Data>
+                    <Instruction>data_20180614_131340_daw279.json</Instruction>
+                    <Data>Deb_FQ_codom_alleledata_5-14_21-25.txt</Data>
                 </Files>
                 <PayloadType>matrix</PayloadType>
 
-            <DbFkey entity="Contact">
-                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
                 <DbFkey entity="Project">
                     <DbPKeySurrogate>sim_codominant_proj_01</DbPKeySurrogate>
@@ -307,12 +318,12 @@
                 </DbFkey>
 
                 <DbFkey entity="Experiment">
-                    <DbPKeySurrogate>sim_codominant_exp_01</DbPKeySurrogate>
+                    <DbPKeySurrogate>sim_codominant_exp_02</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Dataset">
-                    <DbPKeySurrogate>sim_codominant_ds_02</DbPKeySurrogate>
+                    <DbPKeySurrogate>sim_codominant_ds_03</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
@@ -322,7 +333,7 @@
                 </DbFkey>
 
                 <DbFkey entity="Platform">
-                    <DbPKeySurrogate>SSR</DbPKeySurrogate>
+                    <DbPKeySurrogate>KASP</DbPKeySurrogate>
                     <DbPKey></DbPKey>
                 </DbFkey>
 
@@ -342,16 +353,21 @@
                 </Files>
 
                 <Contact>gobii.dev@gmail.com</Contact>
-                <Mapsets><Mapset></Mapset></Mapsets>
+                <Mapsets>
+                    <Mapset></Mapset>
+                </Mapsets>
 
                 <Datasets>
                     <Dataset>
-                        <DatasetName>sim_codominant_ds_02</DatasetName>
-                        <ExperimentName>sim_codominant_exp_01</ExperimentName>
+                        <DatasetName>sim_codominant_ds_03</DatasetName>
+                        <ExperimentName>sim_codominant_exp_02</ExperimentName>
                         <ProjectName>sim_codominant_proj_01</ProjectName>
                         <PIContact>gobii.dev@gmail.com</PIContact>
                     </Dataset>
+
                 </Datasets>
+
+
             </Scenario>
 
         </Extract>

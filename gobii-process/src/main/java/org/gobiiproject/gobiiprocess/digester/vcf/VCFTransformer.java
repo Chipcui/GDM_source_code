@@ -26,6 +26,11 @@ public class VCFTransformer {
 
 	//Bi-allelic unknown character state
 	private static final String BI_UNKNOWN="N";
+
+	//Maximum Transformer errors in one file, because you can get a lot of them
+	private static final int MAX_ERRORS=20;
+	private static int errorsSoFar=0;
+
 	/**
 	 * Creates a new VCFTransformer using the path arguments of the ".mref" and "matrix" files to capture all their data
 	 * as well as the path argument of the new "bimatrix" file to dump the transformed VCF data
@@ -46,13 +51,22 @@ public class VCFTransformer {
 			while (((mrefLine = mrefFileBufferedReader.readLine()) != null) &&
 				   ((matrixLine = matrixFileBufferedReader.readLine()) != null)) {
 				lineNumber++;
+				boolean unspecifiedAlt=false;
 				String[] mrefLineRawData = mrefLine.trim().toUpperCase().split("\\s+");
-				String[] mrefAltData = mrefLineRawData[1].split("[^A-Za-z\\-]+");//Split on non-alphabetic, may be jsonified already
+				String[] mrefAltData=new String[]{""};
+
+				//If alternates are unspecified (.), need to handle as a special case. Will let AltData become an empty lsit, and all alts will be dealt with appropriately.
+				//And since it looks like ""{value}"",""{Value}"", lets just use contains.
+				if(mrefLineRawData[1].contains(".")){
+					unspecifiedAlt=true;
+				}
+				mrefAltData = mrefLineRawData[1].split("[^A-Za-z\\-.]+");//Split on non-alphabetic, may be jsonified already
 
 				if(mrefAltData.length==0)mrefAltData=new String[]{""};//if we have no entries, make it a blank first and all below will work fine
 
 				int offset=0;//offset for first alt being blank (happens with this regex and split (freaking split)
 				if(mrefAltData[0].equals(""))offset=1;
+
 				String mrefLineData[]=new String[mrefAltData.length+1-offset];//List of 1 + alts length
 				mrefLineData[0]=mrefLineRawData[0];
 				System.arraycopy(mrefAltData,0+offset,mrefLineData,1,mrefAltData.length-offset);
@@ -74,7 +88,7 @@ public class VCFTransformer {
 						bimatrixFileBufferedWriter.write("\t");
 					}
 					matrixLineData[i] = matrixLineData[i].split(":")[0];
-					String bimatrixCell = getBiallelicEntry( lineNumber,  mrefLineData, matrixLineData[i], i);
+					String bimatrixCell = getBiallelicEntry( lineNumber,  mrefLineData, matrixLineData[i], i,unspecifiedAlt);
 					if (bimatrixCell == null) {
 						mrefFileBufferedReader.close();
 						matrixFileBufferedReader.close();
@@ -106,11 +120,13 @@ public class VCFTransformer {
 	 */
 	//TODO - need to add some separation to appropriately deal with multi-allelic alternates downstream - potentially wrapper class
 	@SuppressWarnings("StringConcatenationInLoop")
-	private String getBiallelicEntry(int lineNumber,  String[] mrefLineData, String matrixLineDatum, int col){
+	private String getBiallelicEntry(int lineNumber,  String[] mrefLineData, String matrixLineDatum, int col,boolean unspecifiedAlt){
 		String[] terms = matrixLineDatum.split("/");
 		if (terms.length != 2) {
-			ErrorLogger.logError("VCFTransformer", "Incorrect number of alleles: " + matrixLineDatum
-					+ "\n Data line " + lineNumber + " column " + col);
+			if(++errorsSoFar<MAX_ERRORS) {
+				ErrorLogger.logError("VCFTransformer", "Incorrect number of alleles: " + matrixLineDatum
+						+ "\n Data line " + lineNumber + " column " + col);
+			}
 			return null;
 		}
 		String bimatrixCell = "";
@@ -119,17 +135,28 @@ public class VCFTransformer {
 				case "0": case "1": case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9":
 					int value=Integer.parseInt(terms[k]);
 					if(value >= mrefLineData.length) {
-						ErrorLogger.logError("VCFTransformer", "Alternate number " + terms[k] + " exceeds the length of the alternates list on data line " + lineNumber + " column " + col);
+						if(unspecifiedAlt){
+							ErrorLogger.logWarning("VCFTransformer", "Alternate number " + terms[k] + " specified with '.' alts listed on data line " + lineNumber + " column " + col);
+						}
+							else{
+							if(++errorsSoFar<MAX_ERRORS){
+								ErrorLogger.logError("VCFTransformer", "Alternate number " + terms[k] + " exceeds the length of the alternates list on data line " + lineNumber + " column " + col);
+							}
+						}
 						bimatrixCell += BI_UNKNOWN;
 					}else {
-						bimatrixCell += mrefLineData[value];
+						String cellValue = mrefLineData[value];
+						if(cellValue.equals("."))cellValue=BI_UNKNOWN;
+						bimatrixCell += cellValue;
 					}
 					break;
 				case ".":
 					bimatrixCell += BI_UNKNOWN;
 					break;
 				default:
-					ErrorLogger.logError("VCFTransformer", "Unsupported alternate: " + terms[k] + " on data line " + lineNumber + " column " + col);
+					if(++errorsSoFar<MAX_ERRORS) {
+						ErrorLogger.logError("VCFTransformer", "Unsupported alternate: " + terms[k] + " on data line " + lineNumber + " column " + col);
+					}
 					return null;
 			}
 		}

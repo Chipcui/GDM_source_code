@@ -6,9 +6,9 @@
 package org.gobiiproject.gobidomain.services.impl;
 
 
+import org.gobiiproject.gobidomain.security.impl.UserContext;
 import org.gobiiproject.gobiidao.entity.access.UserDao;
 import org.gobiiproject.gobiimodel.dto.system.User;
-import org.gobiiproject.gobidomain.security.impl.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;

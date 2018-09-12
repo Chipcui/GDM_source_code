@@ -63,7 +63,7 @@
 
     <!-- **** Security Beans *************************************** -->
     <bean id="UserDao"
-          class="org.gobiiproject.gobiidao.entity.access.impl.UserDaoImpl"/>
+          class="org.gobiiproject.gobiidao.entity.access.impl.mock.UserDaoImpl"/>
     <bean id="dtoMapProject" class="org.gobiiproject.gobiidtomapping.entity.auditable.impl.DtoMapProjectImpl"/>
     <bean id="projectService"
           class="org.gobiiproject.gobidomain.services.impl.ProjectServiceImpl"/>
@@ -794,11 +794,8 @@
     <!--&lt;!&ndash; <property name="defaultTargetDataSource" ref="concreteDataSourceOne"/> &ndash;&gt;-->
     <!--</bean>-->
 
-    <!-- We need these to make JavaConfig-based class visible -->
-    <!--<bean class="org.gobiiproject.gobiiweb.spring.ConfigSupplement"/>-->
-    <!--&lt;!&ndash; be sure to include the JavaConfig bean post-processor &ndash;&gt;-->
-    <!--<bean class="org.springframework.config.java.process.ConfigurationPostProcessor"/>-->
-
+    <!-- Even though we are not using hibernate, we still need the entity manager
+    for the purpose of doling out JDBC connections. -->
     <context:component-scan base-package="org.gobiiproject.gobiiweb.spring"/>
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
