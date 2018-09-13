@@ -41,10 +41,13 @@ public class ConfigFileReaderXml {
 
         // third parameter false causes serializer to ignore elements in the
         // file that do not have a corresponding proeprty in te pojo.
-        returnVal = serializer.read(ConfigValues.class, file,false);
+        if (file.exists()) {
+            returnVal = serializer.read(ConfigValues.class, file, false);
+        } else {
+            throw new Exception("Config file does not exist: " + fileName);
+        }
 
         return returnVal;
-
 
     }
 }

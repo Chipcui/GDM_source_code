@@ -10,11 +10,11 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
+import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.w3c.dom.Document;
@@ -64,7 +64,7 @@ public class GobiiConfig {
     private static String CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES = "stMUM";
     private static String CONFIG_SVR_CROP_WEB = "stW";
     private static String CONFIG_SVR_CROP_POSTGRES = "stP";
-    private static String CONFIG_SVR_CROP_MONET = "stM";
+    private static String CONFIG_SVR_CROP_COMPUTE = "stC";
 
 
     private static String CONFIG_SVR_GLOBAL_AUTH_TYPE = "auT";
@@ -173,14 +173,14 @@ public class GobiiConfig {
      * java -jar gobiiconfig.jar -a -wfqpn /gobii-config-test/gobii-web.xml -c  DEV  -stP
      * -soH localhost -soN 5432 -soU appuser -soP password -soR gobii_dev
      * <p>
-     * # Configure MonetDB server for crop DEV
-     * java -jar gobiiconfig.jar -a -wfqpn /gobii-config-test/gobii-web.xml -c  DEV -stM  -soH localhost -soN 5000 -soU appuser -soP appuser -soR gobii_dev
+     * # Configure Compute Node server for crop DEV
+     * java -jar gobiiconfig.jar -a -wfqpn /gobii-config-test/gobii-web.xml -c  DEV -stC  -soH localhost -soN 5000 -soU appuser -soP appuser -soR gobii_dev
      * <p>
      * # Configure PostGRES server for crop TEST
      * java -jar gobiiconfig.jar -a -wfqpn /gobii-config-test/gobii-web.xml -c  TEST  -stP  -soH localhost -soN 5432 -soU appuser -soP appuser -soR gobii_test
      * <p>
-     * # Configure MonetDB server for crop DEV
-     * java -jar gobiiconfig.jar -a -wfqpn /gobii-config-test/gobii-web.xml -c  TEST -stM  -soH localhost -soN 5000 -soU appuser -soP appuser -soR gobii_test
+     * # Configure Compute Node server for crop DEV
+     * java -jar gobiiconfig.jar -a -wfqpn /gobii-config-test/gobii-web.xml -c  TEST -stC  -soH localhost -soN 5000 -soU appuser -soP appuser -soR gobii_test
      * <p>
      * # Configure integration testing (global)
      * java -jar gobiiconfig.jar -a -wfqpn /gobii-config-test/gobii-web.xml -gt  -gtcd /gobii-config-test -gtcq /gobii-config-test/gobii-web.xml -gtcr  DEV  -gtcs  "java -jar gobiiconfig.jar"  -gtiu http://localhost:8282/gobii-dev -gtsf false -gtsh localhost -gtsp 8080 -gtsu http://localhost:8080/gobii-dev
@@ -237,7 +237,7 @@ public class GobiiConfig {
             setOption(options, CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES, true, "Max file upload size (mbytes)", "max upload size"); // does not require -c
             setOption(options, CONFIG_SVR_CROP_WEB, false, "Server type: Web", "server: web");
             setOption(options, CONFIG_SVR_CROP_POSTGRES, false, "Server type: postgres", "server: pgsql");
-            setOption(options, CONFIG_SVR_CROP_MONET, false, "Server type: Monet DB", "server: monet");
+            setOption(options, CONFIG_SVR_CROP_COMPUTE, false, "Server type: Compute Node", "server: compute");
 
 
             setOption(options, CONFIG_SVR_GLOBAL_AUTH_TYPE, true, "Authentication type (LDAP | LDAP_CONNECT_WITH_MANAGER | ACTIVE_DIRECTORY | ACTIVE_DIRECTORY_CONNECT_WITH_MANAGER | TEST)", "authentication type");
@@ -257,7 +257,7 @@ public class GobiiConfig {
                     + CONFIG_SVR_CROP_WEB
                     + ") or database name ("
                     + CONFIG_SVR_CROP_POSTGRES + " and " + "("
-                    + CONFIG_SVR_CROP_MONET
+                    + CONFIG_SVR_CROP_COMPUTE
                     + ")", "context path");
             setOption(options, CONFIG_SVR_OPTIONS_USER_NAME, true, "Server option: Username", "user name");
             setOption(options, CONFIG_SVR_OPTIONS_PASSWORD, true, "Server option: Password", "password");
@@ -340,11 +340,11 @@ public class GobiiConfig {
                                 ConfigSettings configSettings = new ConfigSettings(propertiesFileFqpn);
 
                                 String configServerUrl = "http://"
-                                        + configSettings.getCurrentCropConfig().getHost()
+                                        + configSettings.getCurrentCropConfig().getServer(GobiiServerType.WEB).getHost()
                                         + ":"
-                                        + configSettings.getCurrentCropConfig().getPort().toString()
+                                        + configSettings.getCurrentCropConfig().getServer(GobiiServerType.WEB).getPort().toString()
                                         + "/"
-                                        + configSettings.getCurrentCropConfig().getContextPath();
+                                        + configSettings.getCurrentCropConfig().getServer(GobiiServerType.WEB).getContextPath();
 
                                 String configFileContextFqpn = tomcatBaseDirectory + "/conf/context.xml";
                                 File configFileContext = new File(configFileContextFqpn);
@@ -794,11 +794,11 @@ public class GobiiConfig {
 
 
                 //CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES
-            } else if (commandLine.hasOption(CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES) ) {
+            } else if (commandLine.hasOption(CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES)) {
 
                 String maxUploadMbytes = commandLine.getOptionValue(CONFIG_SVR_GLOBAL_MAX_UPLOAD_MBYTES);
 
-                if( NumberUtils.isNumber(maxUploadMbytes) ) {
+                if (NumberUtils.isNumber(maxUploadMbytes)) {
                     Integer maxUPloadMbytesInt = Integer.parseInt(maxUploadMbytes);
                     configSettings.setMaxUploadSizeMbytes(maxUPloadMbytesInt);
 
@@ -918,7 +918,7 @@ public class GobiiConfig {
 
                 if (commandLine.hasOption(CONFIG_TST_GLOBAL_ASYNCH_OP_TIMEOUT)) {
                     String asycnTimeOutValAsString = commandLine.getOptionValue(CONFIG_TST_GLOBAL_ASYNCH_OP_TIMEOUT);
-                    if( ! StringUtils.isNumeric(asycnTimeOutValAsString) ) {
+                    if (!StringUtils.isNumeric(asycnTimeOutValAsString)) {
                         throw new Exception("Value provided for option " + CONFIG_TST_GLOBAL_ASYNCH_OP_TIMEOUT + "is not a number");
                     }
                     Integer asycnTimeout = Integer.parseInt(asycnTimeOutValAsString);
@@ -1105,31 +1105,31 @@ public class GobiiConfig {
                         argsSet.add(CONFIG_SVR_CROP_WEB);
                         valsSet.add("");
 
-                        gobiiCropConfig.setHost(svrHost);
-                        gobiiCropConfig.setPort(svrPort);
-                        gobiiCropConfig.setContextPath(contextRoot);
+                        gobiiCropConfig.getServer(GobiiServerType.WEB).setHost(svrHost);
+                        gobiiCropConfig.getServer(GobiiServerType.WEB).setPort(svrPort);
+                        gobiiCropConfig.getServer(GobiiServerType.WEB).setContextPath(contextRoot);
 
                     } else if (commandLine.hasOption(CONFIG_SVR_CROP_POSTGRES) ||
-                            (commandLine.hasOption(CONFIG_SVR_CROP_MONET))) {
+                            (commandLine.hasOption(CONFIG_SVR_CROP_COMPUTE))) {
 
-                        GobiiDbType gobiiDbType = GobiiDbType.UNKNOWN;
+                        GobiiServerType gobiiServerType = GobiiServerType.UNKNOWN;
                         if (commandLine.hasOption(CONFIG_SVR_CROP_POSTGRES)) {
-                            gobiiDbType = GobiiDbType.POSTGRESQL;
+                            gobiiServerType = GobiiServerType.POSTGRESQL;
                             argsSet.add(CONFIG_SVR_CROP_POSTGRES);
                             valsSet.add("");
-                        } else if (commandLine.hasOption(CONFIG_SVR_CROP_MONET)) {
-                            gobiiDbType = GobiiDbType.MONETDB;
-                            argsSet.add(CONFIG_SVR_CROP_MONET);
+                        } else if (commandLine.hasOption(CONFIG_SVR_CROP_COMPUTE)) {
+                            gobiiServerType = GobiiServerType.COMPUTE_NODE;
+                            argsSet.add(CONFIG_SVR_CROP_COMPUTE);
                             valsSet.add("");
                         }
 
-
-                        gobiiCropConfig.setCropDbConfig(gobiiDbType,
+                        gobiiCropConfig.addServer(gobiiServerType,
                                 svrHost,
                                 contextRoot,
                                 svrPort,
                                 svrUserName,
-                                svrPassword);
+                                svrPassword,
+                                false);
 
                     } else {
                         // do nothing: allow control to fall through to print help
@@ -1354,47 +1354,47 @@ public class GobiiConfig {
                     }
 
 
-                    if (LineUtils.isNullOrEmpty(currentGobiiCropConfig.getHost())) {
+                    if (LineUtils.isNullOrEmpty(currentGobiiCropConfig.getServer(GobiiServerType.WEB).getHost())) {
                         messages.add("The web server host for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
 
                     }
 
 
-                    if (LineUtils.isNullOrEmpty(currentGobiiCropConfig.getContextPath())) {
+                    if (LineUtils.isNullOrEmpty(currentGobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath())) {
                         messages.add("The web server context path for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
                     } else {
-                        if (!contextPathList.contains(currentGobiiCropConfig.getContextPath())) {
-                            contextPathList.add(currentGobiiCropConfig.getContextPath());
+                        if (!contextPathList.contains(currentGobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath())) {
+                            contextPathList.add(currentGobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath());
                         } else {
-                            messages.add("The context path for the crop occurs more than once -- context paths must be unique:" + currentGobiiCropConfig.getContextPath());
+                            messages.add("The context path for the crop occurs more than once -- context paths must be unique:" + currentGobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath());
                             returnVal = false;
                         }
                     }
 
 
-                    if (currentGobiiCropConfig.getPort() == null) {
+                    if (currentGobiiCropConfig.getServer(GobiiServerType.WEB).getPort() == null) {
                         messages.add("The web server port for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
 
                     }
 
-                    GobiiCropDbConfig gobiiCropDbConfigPostGres = currentGobiiCropConfig.getCropDbConfig(GobiiDbType.POSTGRESQL);
-                    if (gobiiCropDbConfigPostGres == null) {
+                    ServerBase postGresConfig = currentGobiiCropConfig.getServer(GobiiServerType.POSTGRESQL);
+                    if (postGresConfig == null) {
                         messages.add("The postgresdb for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
                         returnVal = false;
                     } else {
-                        returnVal = returnVal && verifyDbConfig(gobiiCropDbConfigPostGres);
+                        returnVal = returnVal && verifyDbConfig(postGresConfig);
                     }
 
-//                    GobiiCropDbConfig gobiiCropDbConfigMonetDB = currentGobiiCropConfig.getCropDbConfig(GobiiDbType.MONETDB);
-//                    if (gobiiCropDbConfigMonetDB == null) {
-//                        messages.add("The monetdb for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
-//                        returnVal = false;
-//                    } else {
-//                        returnVal = returnVal && verifyDbConfig(gobiiCropDbConfigMonetDB);
-//                    }
+                    ServerBase computeNodeConfig = currentGobiiCropConfig.getServer(GobiiServerType.COMPUTE_NODE);
+                    if (computeNodeConfig == null) {
+                        messages.add("The compute node for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
+                        returnVal = false;
+                    } else {
+                        returnVal = returnVal && verifyDbConfig(computeNodeConfig);
+                    }
                 }
 
 
@@ -1416,36 +1416,37 @@ public class GobiiConfig {
     } //
 
 
-    private static boolean verifyDbConfig(GobiiCropDbConfig gobiiCropDbConfig) {
+    private static boolean verifyDbConfig(ServerBase gobiiServerBase) {
 
         boolean returnVal = true;
 
-        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getHost())) {
-            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a host");
+        if (LineUtils.isNullOrEmpty(gobiiServerBase.getHost())) {
+            System.err.println("The server  config for " + gobiiServerBase.getGobiiServerType().toString() + " does not define a host");
             returnVal = false;
         }
 
 
-        if (gobiiCropDbConfig.getPort() == null) {
-            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a port");
+        if (gobiiServerBase.getPort() == null) {
+            System.err.println("The server config for " + gobiiServerBase.getGobiiServerType().toString() + " does not define a port");
             returnVal = false;
         }
 
 
-        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getUserName())) {
-            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a user name");
-            returnVal = false;
-        }
+        if (gobiiServerBase.getGobiiServerType().equals(GobiiServerType.POSTGRESQL)) {
+            if (LineUtils.isNullOrEmpty(gobiiServerBase.getUserName())) {
+                System.err.println("The db config for " + gobiiServerBase.getGobiiServerType().toString() + " does not define a user name");
+                returnVal = false;
+            }
 
+            if (LineUtils.isNullOrEmpty(gobiiServerBase.getPassword())) {
+                System.err.println("The db config for " + gobiiServerBase.getGobiiServerType().toString() + " does not define a password");
+                returnVal = false;
+            }
 
-        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getPassword())) {
-            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a password");
-            returnVal = false;
-        }
-
-        if (LineUtils.isNullOrEmpty(gobiiCropDbConfig.getContextPath())) {
-            System.err.println("The db config for " + gobiiCropDbConfig.getGobiiDbType().toString() + " does not define a database name");
-            returnVal = false;
+            if (LineUtils.isNullOrEmpty(gobiiServerBase.getContextPath())) {
+                System.err.println("The db config for " + gobiiServerBase.getGobiiServerType().toString() + " does not define a database name");
+                returnVal = false;
+            }
         }
 
         return returnVal;

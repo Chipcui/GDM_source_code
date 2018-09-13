@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  * for this functionality, it delegates most of its functionality to component classes. In particular,
  * it consumes:
  * * A ConfigValues instance, which contains the actual configuration data;
- * * A ConfigValuesFactory, which knows how to create a ConfigValues instance.
+ * * A ConfigValuesReader, which knows how to create a ConfigValues instance.
  * This form of organization enables this class to function as a dependency firewall between the actual
  * format of the data and the rest of the system.
  */
@@ -35,7 +35,7 @@ public class ConfigSettings {
 
     public ConfigSettings() {
         try {
-            configValues = ConfigValuesFactory.read(null);
+            configValues = ConfigValuesReader.read(null);
         } catch (Exception e) {
             LOGGER.error("Error instancing ConfigValues with null fqpn", e);
         }
@@ -46,7 +46,7 @@ public class ConfigSettings {
     public ConfigSettings(String configFileWebPath) {
 
         try {
-            configValues = ConfigValuesFactory.read(configFileWebPath);
+            configValues = ConfigValuesReader.read(configFileWebPath);
             this.configFileFqpn = configFileWebPath;
         } catch (Exception e) {
             LOGGER.error("Error instancing ConfigValues with fqpn: " + configFileWebPath, e);
@@ -62,7 +62,7 @@ public class ConfigSettings {
 
         ConfigSettings returnVal = null;
 
-        ConfigValues configValues = ConfigValuesFactory.makeNew(userFqpn);
+        ConfigValues configValues = ConfigValuesReader.makeNew(userFqpn);
         if (configValues != null) {
             returnVal = new ConfigSettings(configValues);
             returnVal.configFileFqpn = userFqpn;
@@ -76,7 +76,7 @@ public class ConfigSettings {
 
         ConfigSettings returnVal = null;
 
-        ConfigValues configValues = ConfigValuesFactory.read(userFqpn);
+        ConfigValues configValues = ConfigValuesReader.read(userFqpn);
         if (configValues != null) {
             returnVal = new ConfigSettings(configValues);
             returnVal.configFileFqpn = userFqpn;
@@ -113,7 +113,7 @@ public class ConfigSettings {
 
 
     public void commit() throws Exception {
-        ConfigValuesFactory.commitConfigValues(this.configValues, this.configFileFqpn);
+        ConfigValuesReader.commitConfigValues(this.configValues, this.configFileFqpn);
     }
 
     public List<String> getLegalUpdloadDIrectories(String cropType) throws Exception {

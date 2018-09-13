@@ -14,9 +14,9 @@ import javax.mail.internet.MimeMessage;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
+import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.*;
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
@@ -289,19 +289,46 @@ public class HelperFunctions {
      * @return The connection string
      */
     public static String getPostgresConnectionString(GobiiCropConfig config) {
-        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
         String ret = "postgresql://"
-                + cropDbConfig.getUserName()
+                + postGresConfig.getUserName()
                 + ":"
-                + cropDbConfig.getPassword()
+                + postGresConfig.getPassword()
                 + "@"
-                + cropDbConfig.getHost()
+                + postGresConfig.getHost()
                 + ":"
-                + cropDbConfig.getPort()
+                + postGresConfig.getPort()
                 + "/"
-                + cropDbConfig.getContextPath();
+                + postGresConfig.getContextPath();
         return ret;
     }
+
+    public static String getJdbcConnectionString(ServerBase postGresConfig) {
+
+//        String contextPath = postGresConfig.getContextPath();
+//        Integer idxOfFinalFwdSlash = contextPath.lastIndexOf('/');
+//        if (idxOfFinalFwdSlash > -1) {
+//            contextPath = contextPath.substring(0, idxOfFinalFwdSlash);
+//        }
+//
+
+        String ret = "jdbc:postgresql://"
+                + postGresConfig.getHost()
+                + ":"
+                + postGresConfig.getPort()
+                + "/"
+                + postGresConfig.getContextPath(false);
+
+        return ret;
+    }
+
+    public static String getJdbcConnectionString(GobiiCropConfig config) {
+
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
+        String ret = getJdbcConnectionString(postGresConfig);
+        return ret;
+    }
+
 
     /***
      * Returns a valid postgres connection string, but username and password
@@ -312,17 +339,17 @@ public class HelperFunctions {
      * @return The safe connection string
      */
     public static String getSecurePostgresConnectionString(GobiiCropConfig config) {
-        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
         String ret = "postgresql://"
                 + PARAM_CTCN_USR
                 + ":"
                 + PARAM_CTCN_PWD
                 + "@"
-                + cropDbConfig.getHost()
+                + postGresConfig.getHost()
                 + ":"
-                + cropDbConfig.getPort()
+                + postGresConfig.getPort()
                 + "/"
-                + cropDbConfig.getContextPath();
+                + postGresConfig.getContextPath();
         return ret;
     }
 
@@ -336,10 +363,10 @@ public class HelperFunctions {
      */
     public static String replacePostgressCredentials(String secureString, GobiiCropConfig config) {
 
-        GobiiCropDbConfig cropDbConfig = config.getCropDbConfig(GobiiDbType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
         String ret = secureString
-                .replace(PARAM_CTCN_USR, cropDbConfig.getUserName())
-                .replace(PARAM_CTCN_PWD, cropDbConfig.getPassword());
+                .replace(PARAM_CTCN_USR, postGresConfig.getUserName())
+                .replace(PARAM_CTCN_PWD, postGresConfig.getPassword());
 
         return ret;
 
