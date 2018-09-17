@@ -18,15 +18,14 @@ import org.gobiiproject.gobiiclient.generic.model.GenericTestValues;
 import org.gobiiproject.gobiiclient.generic.model.Person;
 import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
-import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.ws.rs.core.MediaType;
 import java.io.File;
@@ -55,9 +54,11 @@ public class GenericTestClient {
         // By setting the packages() to one of the service implementation classes,
         // we tell the resource to scan that package for all classes having the Jersey
         // annotations. So we don't need to to manually create the context classes here.
-        serverBase = new ServerBase("localhost",
+        serverBase = new ServerBase(GobiiServerType.GENERIC,
+                "localhost",
                 GenericTestPaths.GENERIC_CONTEXT_ONE,
                 8099,
+                true,
                 true);
 
 

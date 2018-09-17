@@ -1,6 +1,7 @@
 package org.gobiiproject.gobiiprocess;
 
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
+import org.gobiiproject.gobiimodel.config.ServerBase;
+import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 
 import java.sql.*;
@@ -10,15 +11,16 @@ import java.sql.*;
  */
 public class SimplePostgresConnector {
 
-    public SimplePostgresConnector(GobiiCropDbConfig config){
+    public SimplePostgresConnector(ServerBase config){
         this.dbConn=getDataSource(config);
     }
 
     private Connection dbConn=null;
-    public static Connection getDataSource(GobiiCropDbConfig config){
+    public static Connection getDataSource(ServerBase config){
         Connection conn = null;
         try{
-            conn=DriverManager.getConnection(config.getConnectionString(),config.getUserName(),config.getPassword());
+            String jdbcUrl = HelperFunctions.getJdbcConnectionString(config);
+            conn=DriverManager.getConnection(jdbcUrl,config.getUserName(),config.getPassword());
         }catch(SQLException e){
             ErrorLogger.logError("SimplePostgresConnector","Failed creating postgres connection",e);
         }

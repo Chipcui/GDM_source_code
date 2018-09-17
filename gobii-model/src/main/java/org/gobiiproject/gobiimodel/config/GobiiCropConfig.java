@@ -1,7 +1,7 @@
 package org.gobiiproject.gobiimodel.config;
 
 
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
@@ -16,78 +16,66 @@ import java.util.Map;
  * for the specific crop.
  */
 @Root
-public class GobiiCropConfig extends ServerBase {
+public class GobiiCropConfig {
 
+    public GobiiCropConfig(String cropType, boolean isActive) {
+        this.gobiiCropType = cropType;
+        this.isActive = isActive;
+    }
 
     @Element(required = false)
     private String gobiiCropType;
 
+    @Element(required = false)
+    private boolean isActive;
+
     @ElementMap(required = false)
-    private Map<GobiiDbType, GobiiCropDbConfig> cropDbConfigsByDbType = new HashMap<>();
+    private Map<GobiiServerType, ServerBase> serversByServerType = new HashMap<>();
 
     public GobiiCropConfig() {
     }
 
-    public GobiiCropConfig(String gobiiCropType,
-                           String host,
-                           String contextPath,
-                           Integer port,
-                           boolean isActive,
-                           boolean decrypt) {
+    public void addServer(GobiiServerType gobiiServerType,
+                          String host,
+                          String contextPath,
+                          Integer port,
+                          String userName,
+                          String password,
+                          boolean decrypt) {
 
-        super(host,contextPath,port,isActive);
-        this.gobiiCropType = gobiiCropType;
-    }
+        
+        ServerBase serverBase = this.serversByServerType.get(gobiiServerType);
+        if (serverBase == null) {
 
-    public void setCropDbConfig(GobiiDbType gobiiDbType,
-                                String host,
-                                String dbName,
-                                Integer port,
-                                String userName,
-                                String password) {
-
-        GobiiCropDbConfig gobiiCropDbConfig = this.cropDbConfigsByDbType.get(gobiiDbType);
-        if (gobiiCropDbConfig == null) {
-
-            gobiiCropDbConfig = new GobiiCropDbConfig();
-            this.cropDbConfigsByDbType.put(gobiiDbType, gobiiCropDbConfig);
+            serverBase = new ServerBase();
+            this.serversByServerType.put(gobiiServerType, serverBase);
 
         }
 
-        gobiiCropDbConfig
-                .setGobiiDbType(gobiiDbType)
+        serverBase
+                .setGobiiServerType(gobiiServerType)
                 .setHost(host)
-                .setContextPath(dbName)
+                .setContextPath(contextPath)
                 .setPort(port)
                 .setUserName(userName)
-                .setPassword(password);
+                .setPassword(password)
+                .setDecrypt(decrypt);
     }
 
-    public GobiiCropConfig setHost(String host) {
-        super.setHost(host);
+    public GobiiCropConfig setServersByServerType(Map<GobiiServerType, ServerBase> serversByServerType) {
+        this.serversByServerType = serversByServerType;
         return this;
     }
 
-    public GobiiCropConfig setPort(Integer port) {
-        super.setPort(port);
-        return this;
+    public ServerBase getServer(GobiiServerType gobiiServerType) {
+        ServerBase returnVal = this.serversByServerType.get(gobiiServerType);
+        return returnVal;
+    } // getServer()
+
+    public Collection<ServerBase> getServers() {
+        return this.serversByServerType.values();
     }
 
-    public GobiiCropConfig setCropDbConfigsByDbType(Map<GobiiDbType, GobiiCropDbConfig> cropDbConfigsByDbType) {
-        this.cropDbConfigsByDbType = cropDbConfigsByDbType;
-        return this;
-    }
-
-    public GobiiCropConfig setActive(boolean active) {
-        super.setActive(active);
-        return this;
-    }
-
-
-    public GobiiCropConfig setContextPath(String contextPath) {
-        super.setContextPath(contextPath);
-        return this;
-    }
 
     public String getGobiiCropType() {
         return gobiiCropType;
@@ -98,18 +86,12 @@ public class GobiiCropConfig extends ServerBase {
         return this;
     }
 
-    public void addCropDbConfig(GobiiDbType gobiiDbTypee, GobiiCropDbConfig gobiiCropDbConfig) {
-        cropDbConfigsByDbType.put(gobiiDbTypee, gobiiCropDbConfig);
-
-    } // addCropDbConfig()
-
-    public GobiiCropDbConfig getCropDbConfig(GobiiDbType gobiiDbType) {
-        GobiiCropDbConfig returnVal = this.cropDbConfigsByDbType.get(gobiiDbType);
-        return returnVal;
-    } // getCropDbConfig()
-
-    public Collection<GobiiCropDbConfig> getCropConfigs() {
-        return this.cropDbConfigsByDbType.values();
+    public boolean isActive() {
+        return isActive;
     }
 
+    public GobiiCropConfig setActive(boolean active) {
+        isActive = active;
+        return this;
+    }
 }

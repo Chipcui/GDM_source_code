@@ -30,14 +30,6 @@
 
 
 
-    <!-- ******************** explicitly defined beans  ****************-->
-    <!-- **** Ping Beans *************************************** -->
-    <bean id="pingDao"
-          class="org.gobiiproject.gobiidao.entity.access.impl.mock.PingEntityDaoImplMock"/>
-    <bean id="dtoPing" class="org.gobiiproject.gobiidtomapping.system.impl.DtoMapPingImpl"/>
-    <bean id="pingService"
-          class="org.gobiiproject.gobidomain.services.impl.PingServiceImpl"/>
-
     <!-- ************************ DATA ACCESS BEANS ************************* -->
 
     <!--<&#45;&#45; Hibernate/JDBC connection properties &ndash;&gt;-->

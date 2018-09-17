@@ -116,8 +116,8 @@ public class ADLEncapsulator {
             setErrorMsg("Please set all the input parameters and try again.");
         }
 
-        String outputFileName = getInputDirectory() + OUTPUT_FILE_NAME;
-        String errorFileName = getInputDirectory() + ERROR_FILE_NAME;
+        String outputFileName = getInputDirectory() + "/" + OUTPUT_FILE_NAME;
+        String errorFileName = getInputDirectory() + "/" + ERROR_FILE_NAME;
 
         boolean returnVal = HelperFunctions.tryExec(getBatchAdlCommand(),
                 outputFileName,
@@ -126,7 +126,7 @@ public class ADLEncapsulator {
         if (!returnVal) {
 
             String message = "gobiiadl failed but there was no output error file reported";
-            File errorFile = new File(getClass().getClassLoader().getResource(errorFileName).getFile());
+            File errorFile = new File(errorFileName);
             if( errorFile.exists()) {
                 message = FileUtils.readFileToString(errorFile);
             } else {

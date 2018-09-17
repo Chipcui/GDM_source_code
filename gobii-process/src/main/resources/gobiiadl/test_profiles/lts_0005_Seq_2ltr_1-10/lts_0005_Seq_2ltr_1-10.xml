@@ -207,125 +207,160 @@
     </Entities>
 
     <Scenarios>
-        <Scenario>
-            <Name>sim_2letternuc_proj_01_marker</Name>
-            <Files>
-                <Instruction>data_20180614_163622_daw279.json</Instruction>
-                <Data>Deb_FQ_2ltr_markers_m1-m10.txt</Data>
-            </Files>
-            <PayloadType>markers</PayloadType>
 
-            <DbFkey entity="Contact">
-                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+        <Load>
+            <Scenario>
+                <Name>sim_2letternuc_proj_01_marker</Name>
+                <Files>
+                    <Instruction>data_20180614_163622_daw279.json</Instruction>
+                    <Data>Deb_FQ_2ltr_markers_m1-m10.txt</Data>
+                </Files>
+                <PayloadType>markers</PayloadType>
 
-            <DbFkey entity="Project">
-                <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Experiment">
-                <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Project">
+                    <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Dataset">
-                <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Experiment">
+                    <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Mapset">
-                <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Dataset">
+                    <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Platform">
-                <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Mapset">
+                    <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-        </Scenario>
+                <DbFkey entity="Platform">
+                    <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-        <Scenario>
-            <Name>sim_2letternuc_proj_01_sample</Name>
-            <Files>
-                <Instruction>data_20180614_163714_daw279.json</Instruction>
-                <Data>Deb_FQ_2ltr_samples1-10.txt</Data>
-            </Files>
-            <PayloadType>samples</PayloadType>
+            </Scenario>
 
-            <DbFkey entity="Contact">
-                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+            <Scenario>
+                <Name>sim_2letternuc_proj_01_sample</Name>
+                <Files>
+                    <Instruction>data_20180614_163714_daw279.json</Instruction>
+                    <Data>Deb_FQ_2ltr_samples1-10.txt</Data>
+                </Files>
+                <PayloadType>samples</PayloadType>
 
-            <DbFkey entity="Project">
-                <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Experiment">
-                <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Project">
+                    <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Dataset">
-                <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Experiment">
+                    <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Mapset">
-                <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Dataset">
+                    <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Platform">
-                <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Mapset">
+                    <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-        </Scenario>
+                <DbFkey entity="Platform">
+                    <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-        <Scenario>
-            <Name>sim_2letternuc_proj_01_dataset</Name>
-            <Files>
-                <Instruction>data_20180614_165023_daw279.json</Instruction>
-                <Data>Deb_FQ_2ltr_alleles1-10.txt</Data>
-            </Files>
-            <PayloadType>matrix</PayloadType>
+            </Scenario>
 
-            <DbFkey entity="Contact">
-                <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+            <Scenario>
+                <Name>sim_2letternuc_proj_01_dataset</Name>
+                <Files>
+                    <Instruction>data_20180614_165023_daw279.json</Instruction>
+                    <Data>Deb_FQ_2ltr_alleles1-10.txt</Data>
+                </Files>
+                <PayloadType>matrix</PayloadType>
 
-            <DbFkey entity="Project">
-                <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Experiment">
-                <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Project">
+                    <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Dataset">
-                <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Experiment">
+                    <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Mapset">
-                <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Dataset">
+                    <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-            <DbFkey entity="Platform">
-                <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                <DbPKey></DbPKey>
-            </DbFkey>
+                <DbFkey entity="Mapset">
+                    <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
 
-        </Scenario>
+                <DbFkey entity="Platform">
+                    <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
+                    <DbPKey></DbPKey>
+                </DbFkey>
+
+            </Scenario>
+
+        </Load>
+
+        <Extract>
+
+            <Scenario>
+                <Name>sim_2letternuc_extract_by_dataset</Name>
+                <ExtractType>WHOLE_DATASET</ExtractType>
+                <FileType>HAPMAP</FileType>
+
+                <Files>
+                    <Data>extract_files</Data>
+                </Files>
+
+                <Contact>gobii.dev@gmail.com</Contact>
+                <Mapsets>
+                    <Mapset></Mapset>
+                </Mapsets>
+
+                <Datasets>
+                    <Dataset>
+                        <DatasetName>sim_2letternuc_ds_01</DatasetName>
+                        <ExperimentName>sim_2letternuc_exp_01</ExperimentName>
+                        <ProjectName>sim_2letternuc_proj_01</ProjectName>
+                        <PIContact>gobii.dev@gmail.com</PIContact>
+                    </Dataset>
+
+                </Datasets>
+
+
+            </Scenario>
+
+        </Extract>
 
     </Scenarios>
 

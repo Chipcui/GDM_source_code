@@ -2,6 +2,7 @@ package org.gobiiproject.gobiimodel.config;
 
 import org.gobiiproject.gobiimodel.security.Decrypter;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
@@ -85,8 +86,8 @@ ConfigValues {
                 new DirectorySpec(GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE, "extractors/postgres/gobii_mde/", false)
         ));
 
-        for(DirectorySpec currentSpec : listOfSpecs) {
-            put(currentSpec.getGobiiFileProcessDir(),currentSpec);
+        for (DirectorySpec currentSpec : listOfSpecs) {
+            put(currentSpec.getGobiiFileProcessDir(), currentSpec);
         }
 
     }};
@@ -207,10 +208,10 @@ ConfigValues {
 
         List<String> returnVal = new ArrayList<>();
 
-        for(DirectorySpec currentDirectorySpec : relativePaths.values()) {
+        for (DirectorySpec currentDirectorySpec : relativePaths.values()) {
 
-            if( currentDirectorySpec.isCropRelative) {
-                String currentDirectory = this.getFullyQualifiedFilePath(cropType,currentDirectorySpec.getGobiiFileProcessDir());
+            if (currentDirectorySpec.isCropRelative) {
+                String currentDirectory = this.getFullyQualifiedFilePath(cropType, currentDirectorySpec.getGobiiFileProcessDir());
                 returnVal.add(currentDirectory);
             }
 
@@ -238,9 +239,9 @@ ConfigValues {
             throw new GobiiException("There is no directory entry for directory " + gobiiFileProcessDir.toString());
         }
 
-        if( directorySpec.isCropRelative() ) {
+        if (directorySpec.isCropRelative()) {
 
-            if( cropType == null ) {
+            if (cropType == null) {
                 throw new Exception("The crop type specified for for crop-relative directory " + directorySpec.getGobiiFileProcessDir().toString() + " is null");
             }
 
@@ -336,9 +337,13 @@ ConfigValues {
         gobiiCropConfig
                 .setGobiiCropType(gobiiCropType)
                 .setActive(isActive)
-                .setHost(serviceDomain)
-                .setContextPath(serviceAppRoot)
-                .setPort(servicePort);
+                .addServer(GobiiServerType.WEB,
+                        serviceDomain,
+                        serviceAppRoot,
+                        servicePort,
+                        null,
+                        null,
+                        false);
     }
 
     public void removeCrop(String cropId) throws Exception {
@@ -554,8 +559,8 @@ ConfigValues {
 
         for (GobiiCropConfig currentGobiiCropConfig : this.cropConfigs.values()) {
 
-            for (GobiiCropDbConfig currentGobiiCropDbConfig : currentGobiiCropConfig.getCropConfigs()) {
-                currentGobiiCropDbConfig.setDecrypt(isDecrypt);
+            for (ServerBase currentServerBase : currentGobiiCropConfig.getServers()) {
+                currentServerBase.setDecrypt(isDecrypt);
             }
         }
     }
