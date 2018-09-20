@@ -40,7 +40,7 @@ public class ExtractorInstructionFileServiceImpl implements ExtractorInstruction
         ExtractorInstructionFilesDTO returnVal;
 
         try {
-            returnVal = dtoMapExtractorInstructions.getStatus(cropType,jobId);
+            returnVal = dtoMapExtractorInstructions.getStatus(cropType, jobId);
 
             returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
 

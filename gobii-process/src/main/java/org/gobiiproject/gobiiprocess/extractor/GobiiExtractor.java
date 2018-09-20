@@ -299,8 +299,8 @@ public class GobiiExtractor {
 							List<String> markerList = extract.getMarkerList();
 							if (markerList != null && !markerList.isEmpty()) {
 								markerListLocation = " -X " + createTempFileForMarkerList(extractDir, markerList);
-							} else if (extract.getListFileName() != null) {
-								markerListLocation = " -X " + extract.getListFileName();
+							} else if (extract.getMarkerListFileName() != null) {
+								markerListLocation = " -X " + extract.getMarkerListFileName();
 							}
 							//else if file is null and list is empty or null - > no term
 
@@ -337,8 +337,8 @@ public class GobiiExtractor {
                             List<String> sampleList = extract.getSampleList();
                             if (sampleList != null && !sampleList.isEmpty()) {
                                 sampleListFile = createTempFileForMarkerList(extractDir, sampleList, "sampleList");
-                            } else if (extract.getListFileName() != null) {
-                                sampleListFile = extract.getListFileName();
+                            } else if (extract.getMarkerListFileName() != null) {
+                                sampleListFile = extract.getMarkerListFileName();
                             }
                             if (sampleListFile != null) {
                                 sampleListLocation = " -Y " + sampleListFile;
@@ -430,8 +430,8 @@ public class GobiiExtractor {
 					//We're moving it into the extract directory when we're done now, so lets be vague as to its location.
 					//They'll find it if they want to
 					String listFileName=null;
-					if(extract.getListFileName() != null){
-						listFileName=new File(extract.getListFileName()).getName();
+					if(extract.getMarkerListFileName() != null){
+						listFileName=new File(extract.getMarkerListFileName()).getName();
 					}
 
 					//Marker List or List File (see above for selection logic)
@@ -571,7 +571,7 @@ public class GobiiExtractor {
 					rmIfExist(extractDir + "mdeOut");//remove mde output file
 					rmIfExist("position.file");
 
-					mv(extract.getListFileName(),extractDir); //Move the list file to the extract directory
+					mv(extract.getMarkerListFileName(),extractDir); //Move the list file to the extract directory
 
 					ErrorLogger.logDebug("Extractor", "DataSet " + datasetName + " Created");
 
@@ -591,7 +591,7 @@ public class GobiiExtractor {
 					}
 				}
 				if(!inst.isQcCheck())mailInterface.send(pm);
-				HelperFunctions.completeInstruction(instructionFile, configuration.getProcessingPath(crop, GobiiFileProcessDir.EXTRACTOR_DONE));
+				HelperFunctions.completeInstruction(instructionFile, configuration.getFullyQualifiedFilePath(crop, GobiiFileProcessDir.EXTRACTOR_DONE));
 			}catch(Exception e){
 				//TODO - make better email here
 					ErrorLogger.logError("GobiiExtractor","Uncaught fatal error found in program.",e);
@@ -685,10 +685,12 @@ public class GobiiExtractor {
 		ErrorLogger.logInfo("QC", "KDC Context Path: " + configuration.getKDCConfig().getContextPath());
 		ErrorLogger.logInfo("QC", "KDC Port: " + configuration.getKDCConfig().getPort());
 		ErrorLogger.logInfo("QC", "KDC Active: " + configuration.getKDCConfig().isActive());
-			ServerBase serverBase = new ServerBase(configuration.getKDCConfig().getHost(),
+			ServerBase serverBase = new ServerBase(GobiiServerType.GENERIC,
+					configuration.getKDCConfig().getHost(),
 					configuration.getKDCConfig().getContextPath(),
 					configuration.getKDCConfig().getPort(),
-					configuration.getKDCConfig().isActive());
+					configuration.getKDCConfig().isActive(),
+					configuration.getKDCConfig().isDecrypt());
 			GenericClientContext genericClientContext = new GenericClientContext(serverBase);
 			RestUri restUriGetQCJobID = new RestUri("/",
 					configuration.getKDCConfig().getContextPath(),

@@ -12,5 +12,5 @@ import org.gobiiproject.gobiimodel.dto.instructions.extractor.ExtractorInstructi
 public interface DtoMapExtractorInstructions {
 
     ExtractorInstructionFilesDTO writeInstructions(String cropType, ExtractorInstructionFilesDTO extractorInstructionFilesDTO)  throws GobiiException;
-    ExtractorInstructionFilesDTO getStatus(String cropType, String instructionFileName)  throws GobiiException;
+    ExtractorInstructionFilesDTO getStatus(String cropType, String jobId)  throws GobiiException;
 }

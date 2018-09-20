@@ -26,7 +26,7 @@ public class ExtractorInstructionFilesDTO extends DTOBase {
     }
 
     private List<GobiiExtractorInstruction>  gobiiExtractorInstructions = new ArrayList<>();
-    private String instructionFileName = null;
+
 
     public List<GobiiExtractorInstruction> getGobiiExtractorInstructions() {
         return gobiiExtractorInstructions;
@@ -34,14 +34,6 @@ public class ExtractorInstructionFilesDTO extends DTOBase {
 
     public void setGobiiExtractorInstructions(List<GobiiExtractorInstruction> gobiiExtractorInstructions) {
         this.gobiiExtractorInstructions = gobiiExtractorInstructions;
-    }
-
-    public String getInstructionFileName() {
-        return instructionFileName;
-    }
-
-    public void setInstructionFileName(String instructionFileName) {
-        this.instructionFileName = instructionFileName;
     }
 
     public String getJobId() {

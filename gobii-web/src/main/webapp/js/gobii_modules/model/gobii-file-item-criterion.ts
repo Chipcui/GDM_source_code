@@ -1,5 +1,5 @@
 import {EntitySubType, EntityType} from "./type-entity";
-import {CvFilterType} from "./cv-filter-type";
+import {CvGroup} from "./cv-group";
 import {GobiiExtractFilterType} from "./type-extractor-filter";
 import {ExtractorItemType} from "./type-extractor-item";
 import {GobiiFileItemCompoundId} from "./gobii-file-item-compound-id";
@@ -11,7 +11,7 @@ export class GobiiFileItemCriterion extends GobiiFileItemCompoundId {
         super(gobiiFileItemCompoundId.getExtractorItemType(),
             gobiiFileItemCompoundId.getEntityType(),
             gobiiFileItemCompoundId.getEntitySubType(),
-            gobiiFileItemCompoundId.getCvFilterType(),
+            gobiiFileItemCompoundId.getCvGroup(),
             gobiiFileItemCompoundId.getCvFilterValue());
     }
 

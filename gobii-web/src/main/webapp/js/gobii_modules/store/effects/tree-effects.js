@@ -84,26 +84,6 @@ System.register(["rxjs/add/operator/catch", "rxjs/add/operator/do", "rxjs/add/op
                 return TreeEffects;
             }());
             exports_1("TreeEffects", TreeEffects);
-            /*
-            * export class TreeEffects {
-                @Effect()
-                initTreeNodes$ = this.actions$
-                    .ofType(treeNodeActions.INIT)
-                    .map((action: Auth.Login) => action.payload)
-                    .exhaustMap(auth =>
-                        this.authService
-                            .login(auth)
-                            .map(user => new Auth.LoginSuccess({user}))
-                            .catch(error => of(new Auth.LoginFailure(error)))
-                    );
-                constructor(
-                    private actions$: Actions,
-                    private treeStructureService: TreeStructureService,
-                    private router: Router
-                ) {}
-            }
-            
-            * */ 
         }
     };
 });

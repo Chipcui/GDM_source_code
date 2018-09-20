@@ -89,7 +89,7 @@ public class DtoCrudRequestNameIdListTest {
         RestUri restUriCvGroupDetails = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .cvGroupByQueryParams()
-                .setParamValue("groupName", CvGroup.CVGROUP_GERMPLASM_SPECIES.getCvGroupName())
+                .setParamValue("groupName", CvGroup.GERMPLASM_SPECIES.getCvGroupName())
                 .setParamValue("cvGroupTypeId", GobiiCvGroupType.GROUP_TYPE_USER.getGroupTypeId().toString());
 
         GobiiEnvelopeRestResource<CvGroupDTO> cvGroupDTOGobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriCvGroupDetails);
@@ -98,7 +98,7 @@ public class DtoCrudRequestNameIdListTest {
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(cvGroupDTOResultEnvelope.getHeader()));
         CvGroupDTO cvGroupDTO = cvGroupDTOResultEnvelope.getPayload().getData().get(0);
         Assert.assertTrue(cvGroupDTO.getCvGroupId() > 0);
-        Assert.assertEquals(cvGroupDTO.getName(), CvGroup.CVGROUP_GERMPLASM_SPECIES.getCvGroupName());
+        Assert.assertEquals(cvGroupDTO.getName(), CvGroup.GERMPLASM_SPECIES.getCvGroupName());
 
         Integer cvGroupId = cvGroupDTO.getCvGroupId();
 
@@ -182,7 +182,7 @@ public class DtoCrudRequestNameIdListTest {
         GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(namesUri);
         namesUri.setParamValue("entity", GobiiEntityNameType.CV.toString().toLowerCase());
         namesUri.setParamValue("filterType", StringUtils.capitalize(GobiiFilterType.NAMES_BY_NAME_LIST.toString().toUpperCase()));
-        namesUri.setParamValue("filterValue", CvGroup.CVGROUP_GERMPLASM_SPECIES.getCvGroupName());
+        namesUri.setParamValue("filterValue", CvGroup.GERMPLASM_SPECIES.getCvGroupName());
         PayloadEnvelope<NameIdDTO> responsePayloadEnvelope = gobiiEnvelopeRestResource.post(NameIdDTO.class, payloadEnvelope);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(responsePayloadEnvelope.getHeader()));

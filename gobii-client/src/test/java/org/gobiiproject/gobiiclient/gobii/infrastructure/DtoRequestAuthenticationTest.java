@@ -25,6 +25,7 @@ import org.gobiiproject.gobiimodel.dto.entity.auditable.ContactDTO;
 import org.gobiiproject.gobiimodel.types.GobiiAutoLoginType;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -83,9 +84,9 @@ public class DtoRequestAuthenticationTest {
         String returnVal;
 
         URL url = new URL("http",
-                gobiiCropConfig.getHost(),
-                gobiiCropConfig.getPort(),
-                gobiiCropConfig.getContextPath());
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getHost(),
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getPort(),
+                gobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath());
 
         returnVal = url.toString();
         return returnVal;
@@ -104,8 +105,8 @@ public class DtoRequestAuthenticationTest {
             GobiiCropConfig gobiiCropConfigOne = activeGobiiCropConfigs.get(0);
             String serviceUrlOne = makeUrl(gobiiCropConfigOne);
             String cropIdOne = gobiiCropConfigOne.getGobiiCropType();
-            String cropContextRootOne = gobiiCropConfigOne.getContextPath();
-            Integer cropPortOne = gobiiCropConfigOne.getPort();
+            String cropContextRootOne = gobiiCropConfigOne.getServer(GobiiServerType.WEB).getContextPath();
+            Integer cropPortOne = gobiiCropConfigOne.getServer(GobiiServerType.WEB).getPort();
             GobiiUriFactory gobiiUriFactoryServerOne = new GobiiUriFactory(cropContextRootOne);
             RestUri restUriContactServerOne = gobiiUriFactoryServerOne
                     .resourceByUriIdParam(GobiiServiceRequestId.URL_CONTACTS);
@@ -113,8 +114,8 @@ public class DtoRequestAuthenticationTest {
             GobiiCropConfig gobiiCropConfigTwo = activeGobiiCropConfigs.get(1);
             String serviceUrlTwo = makeUrl(gobiiCropConfigTwo);
             String cropIdTwo = gobiiCropConfigTwo.getGobiiCropType();
-            String cropContextRootTwo = gobiiCropConfigTwo.getContextPath();
-            Integer cropPortTwo = gobiiCropConfigTwo.getPort();
+            String cropContextRootTwo = gobiiCropConfigTwo.getServer(GobiiServerType.WEB).getContextPath();
+            Integer cropPortTwo = gobiiCropConfigTwo.getServer(GobiiServerType.WEB).getPort();
             GobiiUriFactory gobiiUriFactoryServeTwo = new GobiiUriFactory(cropContextRootTwo);
             RestUri restUriContactServerTwo = gobiiUriFactoryServeTwo
                     .resourceByUriIdParam(GobiiServiceRequestId.URL_CONTACTS);

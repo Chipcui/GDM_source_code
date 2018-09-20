@@ -2,6 +2,7 @@ package org.gobiiproject.gobiimodel.dto.instructions.extractor;
 
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
 import org.gobiiproject.gobiimodel.dto.entity.children.PropNameId;
+import org.gobiiproject.gobiimodel.dto.entity.flex.VertexDTO;
 import org.gobiiproject.gobiimodel.types.GobiiExtractFilterType;
 import org.gobiiproject.gobiimodel.types.GobiiFileType;
 import org.gobiiproject.gobiimodel.types.GobiiSampleListType;
@@ -29,7 +30,8 @@ public class GobiiDataSetExtract {
     private GobiiExtractFilterType gobiiExtractFilterType;
     private List<String> markerList = new ArrayList<>();
     private List<String> sampleList = new ArrayList<>();
-    private String listFileName;
+    private String markerListFileName;
+    private String sampleListFileName;
     private PropNameId gobiiDatasetType = new PropNameId();
     private PropNameId principleInvestigator = new PropNameId();
     private PropNameId project = new PropNameId();
@@ -39,6 +41,9 @@ public class GobiiDataSetExtract {
     private List<PropNameId> markerGroups = new ArrayList<>();
     private List<File> extractedFiles = new ArrayList<>();
     private String logMessage;
+    private List<VertexDTO> vertices = new ArrayList<>();
+    private String gqlMarkerResultFileName = null;
+    private String gqlSampleResultFileName = null;
 
     public GobiiExtractFilterType getGobiiExtractFilterType() {
         return gobiiExtractFilterType;
@@ -64,12 +69,20 @@ public class GobiiDataSetExtract {
         this.sampleList = sampleList;
     }
 
-    public String getListFileName() {
-        return listFileName;
+    public String getMarkerListFileName() {
+        return markerListFileName;
     }
 
-    public void setListFileName(String listFileName) {
-        this.listFileName = listFileName;
+    public void setMarkerListFileName(String markerListFileName) {
+        this.markerListFileName = markerListFileName;
+    }
+
+    public String getSampleListFileName() {
+        return sampleListFileName;
+    }
+
+    public void setSampleListFileName(String sampleListFileName) {
+        this.sampleListFileName = sampleListFileName;
     }
 
     public GobiiSampleListType getGobiiSampleListType() {
@@ -172,5 +185,31 @@ public class GobiiDataSetExtract {
     public String getLogMessage() { return logMessage; }
 
     public void setLogMessage(String logMessage) { this.logMessage = logMessage; }
+
+
+    public List<VertexDTO> getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(List<VertexDTO> vertices) {
+        this.vertices = vertices;
+    }
+
+
+    public String getGqlMarkerResultFileName() {
+        return gqlMarkerResultFileName;
+    }
+
+    public void setGqlMarkerResultFileName(String gqlMarkerResultFileName) {
+        this.gqlMarkerResultFileName = gqlMarkerResultFileName;
+    }
+
+    public String getGqlSampleResultFileName() {
+        return gqlSampleResultFileName;
+    }
+
+    public void setGqlSampleResultFileName(String gqlSampleResultFileName) {
+        this.gqlSampleResultFileName = gqlSampleResultFileName;
+    }
 
 }

@@ -1,14 +1,14 @@
-System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item"], function (exports_1, context_1) {
+System.register(["./type-entity", "./cv-group", "./type-extractor-item"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var type_entity_1, cv_filter_type_1, type_extractor_item_1, GobiiFileItemCompoundId;
+    var type_entity_1, cv_group_1, type_extractor_item_1, GobiiFileItemCompoundId;
     return {
         setters: [
             function (type_entity_1_1) {
                 type_entity_1 = type_entity_1_1;
             },
-            function (cv_filter_type_1_1) {
-                cv_filter_type_1 = cv_filter_type_1_1;
+            function (cv_group_1_1) {
+                cv_group_1 = cv_group_1_1;
             },
             function (type_extractor_item_1_1) {
                 type_extractor_item_1 = type_extractor_item_1_1;
@@ -16,21 +16,25 @@ System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item"], 
         ],
         execute: function () {
             GobiiFileItemCompoundId = (function () {
-                function GobiiFileItemCompoundId(_extractorItemType, _entityType, _entitySubType, _cvFilterType, _cvFilterValue, _isExtractCriterion) {
+                function GobiiFileItemCompoundId(_extractorItemType, _entityType, _entitySubType, _cvGroup, _cvTerm, _cvFilterValue, _isExtractCriterion, _sequenceNum) {
                     if (_extractorItemType === void 0) { _extractorItemType = type_extractor_item_1.ExtractorItemType.UNKNOWN; }
                     if (_entityType === void 0) { _entityType = type_entity_1.EntityType.UNKNOWN; }
                     if (_entitySubType === void 0) { _entitySubType = type_entity_1.EntitySubType.UNKNOWN; }
-                    if (_cvFilterType === void 0) { _cvFilterType = cv_filter_type_1.CvFilterType.UNKNOWN; }
+                    if (_cvGroup === void 0) { _cvGroup = cv_group_1.CvGroup.UNKNOWN; }
+                    if (_cvTerm === void 0) { _cvTerm = null; }
                     if (_cvFilterValue === void 0) { _cvFilterValue = null; }
                     if (_isExtractCriterion === void 0) { _isExtractCriterion = true; }
+                    if (_sequenceNum === void 0) { _sequenceNum = 0; }
                     this._extractorItemType = _extractorItemType;
                     this._entityType = _entityType;
                     this._entitySubType = _entitySubType;
-                    this._cvFilterType = _cvFilterType;
+                    this._cvGroup = _cvGroup;
+                    this._cvTerm = _cvTerm;
                     this._cvFilterValue = _cvFilterValue;
                     this._isExtractCriterion = _isExtractCriterion;
-                    if (this._cvFilterType === null) {
-                        this._cvFilterType = cv_filter_type_1.CvFilterType.UNKNOWN;
+                    this._sequenceNum = _sequenceNum;
+                    if (this._cvGroup === null) {
+                        this._cvGroup = cv_group_1.CvGroup.UNKNOWN;
                     }
                     if (this._extractorItemType == null) {
                         this._extractorItemType = type_extractor_item_1.ExtractorItemType.UNKNOWN;
@@ -42,12 +46,20 @@ System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item"], 
                         this._entitySubType = type_entity_1.EntitySubType.UNKNOWN;
                     }
                 }
+                GobiiFileItemCompoundId.fromGobiiFileItemCompoundId = function (gobiiFileItemCompoundId) {
+                    return new GobiiFileItemCompoundId(gobiiFileItemCompoundId.getExtractorItemType(), gobiiFileItemCompoundId.getEntityType(), gobiiFileItemCompoundId.getEntitySubType(), gobiiFileItemCompoundId.getCvGroup(), gobiiFileItemCompoundId.getCvTerm(), gobiiFileItemCompoundId.getCvFilterValue(), gobiiFileItemCompoundId.getIsExtractCriterion(), gobiiFileItemCompoundId.getSequenceNum());
+                };
                 GobiiFileItemCompoundId.prototype.compoundIdeEquals = function (gobiiFileItemCompoundId) {
-                    return this.getExtractorItemType() === gobiiFileItemCompoundId.getExtractorItemType()
-                        && this.getEntityType() === gobiiFileItemCompoundId.getEntityType()
-                        && this.getEntitySubType() === gobiiFileItemCompoundId.getEntitySubType()
-                        && this.getCvFilterType() === gobiiFileItemCompoundId.getCvFilterType()
-                        && this.getCvFilterValue() === gobiiFileItemCompoundId.getCvFilterValue();
+                    return (
+                    // (this.getSequenceNum() > 0 &&
+                    //     this.getSequenceNum() === gobiiFileItemCompoundId.getSequenceNum())
+                    // ||
+                    (this.getExtractorItemType() === gobiiFileItemCompoundId.getExtractorItemType() // for FlexQuery filter items
+                        && (this.getEntityType() === gobiiFileItemCompoundId.getEntityType())
+                        && (this.getEntitySubType() === gobiiFileItemCompoundId.getEntitySubType())
+                        && (this.getCvGroup() === gobiiFileItemCompoundId.getCvGroup())
+                        && this.getCvFilterValue() === gobiiFileItemCompoundId.getCvFilterValue()
+                        && this.getCvTerm() === gobiiFileItemCompoundId.getCvTerm()));
                 };
                 GobiiFileItemCompoundId.prototype.getExtractorItemType = function () {
                     return this._extractorItemType;
@@ -85,16 +97,23 @@ System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item"], 
                     }
                     return this;
                 };
-                GobiiFileItemCompoundId.prototype.getCvFilterType = function () {
-                    return this._cvFilterType;
+                GobiiFileItemCompoundId.prototype.getCvGroup = function () {
+                    return this._cvGroup;
                 };
-                GobiiFileItemCompoundId.prototype.setCvFilterType = function (value) {
+                GobiiFileItemCompoundId.prototype.setCvGroup = function (value) {
                     if (value != null) {
-                        this._cvFilterType = value;
+                        this._cvGroup = value;
                     }
                     else {
-                        this._cvFilterType = cv_filter_type_1.CvFilterType.UNKNOWN;
+                        this._cvGroup = cv_group_1.CvGroup.UNKNOWN;
                     }
+                    return this;
+                };
+                GobiiFileItemCompoundId.prototype.getCvTerm = function () {
+                    return this._cvTerm;
+                };
+                GobiiFileItemCompoundId.prototype.setCvTerm = function (value) {
+                    this._cvTerm = value;
                     return this;
                 };
                 GobiiFileItemCompoundId.prototype.getCvFilterValue = function () {
@@ -109,6 +128,13 @@ System.register(["./type-entity", "./cv-filter-type", "./type-extractor-item"], 
                 };
                 GobiiFileItemCompoundId.prototype.setIsExtractCriterion = function (value) {
                     this._isExtractCriterion = value;
+                    return this;
+                };
+                GobiiFileItemCompoundId.prototype.getSequenceNum = function () {
+                    return this._sequenceNum;
+                };
+                GobiiFileItemCompoundId.prototype.setSequenceNum = function (value) {
+                    this._sequenceNum = value;
                     return this;
                 };
                 return GobiiFileItemCompoundId;

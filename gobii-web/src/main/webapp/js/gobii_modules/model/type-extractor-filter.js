@@ -10,6 +10,7 @@ System.register([], function (exports_1, context_1) {
                 GobiiExtractFilterType[GobiiExtractFilterType["WHOLE_DATASET"] = 1] = "WHOLE_DATASET";
                 GobiiExtractFilterType[GobiiExtractFilterType["BY_MARKER"] = 2] = "BY_MARKER";
                 GobiiExtractFilterType[GobiiExtractFilterType["BY_SAMPLE"] = 3] = "BY_SAMPLE";
+                GobiiExtractFilterType[GobiiExtractFilterType["FLEX_QUERY"] = 4] = "FLEX_QUERY";
             })(GobiiExtractFilterType || (GobiiExtractFilterType = {}));
             exports_1("GobiiExtractFilterType", GobiiExtractFilterType);
         }

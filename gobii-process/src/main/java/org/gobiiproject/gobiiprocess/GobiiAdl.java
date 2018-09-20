@@ -2536,7 +2536,7 @@ public class GobiiAdl {
             System.out.println("\nSubmitting extract request with job name: " + jobName +".\n");
 
             ExtractorInstructionFilesDTO extractorInstructionFilesDTO = new ExtractorInstructionFilesDTO();
-            extractorInstructionFilesDTO.setInstructionFileName(jobName);
+            extractorInstructionFilesDTO.setJobId(jobName);
             extractorInstructionFilesDTO.getGobiiExtractorInstructions().add(gobiiExtractorInstruction);
 
 
@@ -2553,7 +2553,7 @@ public class GobiiAdl {
                 System.out.println("Could not get a valid response from server. Please try again.");
             } else {
 
-                String instructionFileName = payload.getData().get(0).getInstructionFileName();
+                String instructionFileName = payload.getData().get(0).getJobId();
                 System.out.println("Request " + instructionFileName + " submitted.");
                 returnVal = checkJobStatusExtract(instructionFileName);
 

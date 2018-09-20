@@ -8,7 +8,7 @@ export class PayloadFilter {
                 public targetEntityUniqueId:GobiiFileItemCompoundId,
                 public relatedEntityUniqueId:GobiiFileItemCompoundId,
                 public relatedEntityFilterValue: string,
-                public targetEntityFilterValue: string,
+                public targetEntityFilterValue: any,
                 public entityLasteUpdated: Date,
                 public pagination: Pagination) {
 

@@ -2,6 +2,7 @@ import {GobiiFileType} from "../type-gobii-file"
 import {GobiiExtractFilterType} from "../type-extractor-filter";
 import {GobiiSampleListType} from "../type-extractor-sample-list";
 import {NameId} from "../name-id";
+import {Vertex} from "../vertex";
 
 export class GobiiDataSetExtract {
 
@@ -11,24 +12,20 @@ export class GobiiDataSetExtract {
                        public gobiiExtractFilterType: GobiiExtractFilterType,
                        public markerList: string[],
                        public sampleList: string[],
-                       public listFileName: string,
+                       public markerListFileName: string,
+                       public sampleListFileName: string,
                        public gobiiSampleListType: GobiiSampleListType,
                        public gobiiDatasetType: NameId,
                        public platforms: NameId[],
                        public principleInvestigator: NameId,
                        public project: NameId,
                        public dataSet: NameId,
-                       public markerGroups: NameId[]) {
+                       public markerGroups: NameId[],
+                       public vertices: Vertex[],
+                       public gqlMarkerResultFileName: string,
+                       public gqlSampleResultFileName: string) {
 
-        // this.setGobiiFileType(gobiiFileType);
-        // this.setAccolate(accolate);
-        // this.setDataSetId(dataSetId);
-        // this.setDataSetName(dataSetName);
-        // this.setExtractDestinationDirectory(extractDestinationDirectory);
-        // this.setGobiiFileType(gobiiExtractFilterType);
-        //
-
-    } // ctor 
+    } // ctor
 
 
     public getgobiiFileType(): GobiiFileType {
@@ -80,11 +77,11 @@ export class GobiiDataSetExtract {
     }
 
     public getlistFileName(): string {
-        return this.listFileName;
+        return this.markerListFileName;
     }
 
     public setlistFileName(value: string) {
-        this.listFileName = value;
+        this.markerListFileName = value;
     }
 
     public getgobiiSampleListType(): GobiiSampleListType {
@@ -121,7 +118,8 @@ export class GobiiDataSetExtract {
         returnVal.gobiiExtractFilterType = this.gobiiExtractFilterType;
         returnVal.markerList = this.markerList;
         returnVal.sampleList = this.sampleList;
-        returnVal.listFileName = this.listFileName;
+        returnVal.markerListFileName = this.markerListFileName;
+        returnVal.sampleListFileName = this.sampleListFileName;
         returnVal.gobiiSampleListType = this.gobiiSampleListType;
         returnVal.gobiiDatasetType = this.gobiiDatasetType;
         returnVal.platforms = this.platforms;
@@ -129,6 +127,9 @@ export class GobiiDataSetExtract {
         returnVal.project = this.project;
         returnVal.dataSet = this.dataSet;
         returnVal.markerGroups = this.markerGroups;
+        returnVal.vertices = this.vertices;
+        returnVal.gqlMarkerResultFileName = this.gqlMarkerResultFileName;
+        returnVal.gqlSampleResultFileName = this.gqlSampleResultFileName;
 
         return returnVal;
     }
@@ -143,14 +144,18 @@ export class GobiiDataSetExtract {
                 json.gobiiExtractFilterType,
                 json.markerList,
                 json.sampleList,
-                json.listFileName,
+                json.markerListFileName,
+                json.sampleListFileName,
                 json.gobiiSampleListType,
                 json.gobiiDatasetType,
                 json.platforms,
                 json.principleInvestigator,
                 json.project,
                 json.dataSet,
-                json.markerGroups);
+                json.markerGroups,
+                json.vertices,
+                json.gqlMarkerResultFileName,
+                json.gqlSampleResultFileName);
 
         return returnVal;
     }

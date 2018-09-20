@@ -57,7 +57,7 @@ public class DtoRequestFileExtractorInstructionsTest {
 
 
         String instructionFileName = "testapp_" + DateUtils.makeDateIdString();
-        extractorInstructionFilesDTOToSend.setInstructionFileName(instructionFileName);
+        extractorInstructionFilesDTOToSend.setJobId(instructionFileName);
 
 
         // ************** INSTRUCTION ONE
@@ -174,7 +174,7 @@ public class DtoRequestFileExtractorInstructionsTest {
         );
 
         // ************** VERIFY THAT A JOB RECORD WAS CREATED FOR OUR INSTRUCTION
-        String jobName = extractorInstructionFilesDTOretrieveResponse.getInstructionFileName();
+        String jobName = extractorInstructionFilesDTOretrieveResponse.getJobId();
         RestUri restUriForJob = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_JOB)
@@ -267,7 +267,7 @@ public class DtoRequestFileExtractorInstructionsTest {
         RestUri restUriExtractorInstructionsForGetByFilename = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS)
-                .setParamValue("id",extractorInstructionFilesDTOFromSecondRetrieval.getInstructionFileName());
+                .setParamValue("id",extractorInstructionFilesDTOFromSecondRetrieval.getJobId());
         GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriExtractorInstructionsForGetByFilename);
         PayloadEnvelope<ExtractorInstructionFilesDTO> resultEnvelopeForGetStatusByFileName = gobiiEnvelopeRestResourceForGetById
                 .get(ExtractorInstructionFilesDTO.class);

@@ -32,8 +32,8 @@ export class LoadFileItemListWithFilterAction implements Action {
     constructor(public payload: {
         gobiiFileItems: GobiiFileItem[],
         filterId: FilterParamNames,
-        filter: PayloadFilter
-
+        filter: PayloadFilter,
+        repalceByTarget: boolean
     }) {
     }
 }
@@ -53,7 +53,7 @@ export class LoadFilterAction implements Action {
 
     constructor(public payload: {
         filterId: FilterParamNames,
-        filter:PayloadFilter
+        filter: PayloadFilter
     }) {
     }
 }

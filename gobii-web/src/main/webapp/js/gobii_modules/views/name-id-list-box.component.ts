@@ -7,7 +7,8 @@ import * as fileAction from '../store/actions/fileitem-action';
 import * as historyAction from '../store/actions/history-action';
 import {Observable} from "rxjs/Observable";
 import {FilterParamNames} from "../model/file-item-param-names";
-import {FileItemService} from "../services/core/file-item-service";
+import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
+import {FilterService} from "../services/core/filter-service";
 
 
 @Component({
@@ -35,7 +36,8 @@ export class NameIdListBoxComponent  {
 
     private filterParamName:FilterParamNames;
     constructor(private store: Store<fromRoot.State>,
-                private fileItemService:FileItemService) {
+                private fileItemService:NameIdFileItemService,
+                private filterService:FilterService) {
 
 
     } // ctor
@@ -43,7 +45,7 @@ export class NameIdListBoxComponent  {
 
     ngOnInit(): any {
 
-        this.fileItems$ = this.fileItemService.getForFilter(this.filterParamName)
+        this.fileItems$ = this.filterService.getForFilter(this.filterParamName)
 
         this
             .fileItems$

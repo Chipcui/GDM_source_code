@@ -375,6 +375,11 @@
     <bean id="dtoMapSample" class="org.gobiiproject.gobiidtomapping.impl.DtoMapSampleImpl"/>
     <bean id="rsSampleDao" class="org.gobiiproject.gobiidao.resultset.access.impl.RsSampleDaoImpl"/>
 
+    <!-- **** FlexQuery Beans *************************************** -->
+    <bean id="FlexQueryService" class="org.gobiiproject.gobidomain.services.impl.FlexQueryServiceImpl"/>
+    <bean id="dtoMapFlexQuery" class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapFlexQueryImpl"/>
+    <!--<bean id="rsFlexQueryDao" class="org.gobiiproject.gobiidao.resultset.access.impl.RsFlexQueryDaoImpl"/>-->
+
 
     <!-- **** ListStatement queries *************************************** -->
     <bean id="listStatementContactAll"
@@ -618,14 +623,14 @@
     <!--<bean id="cropDbConfigRice"-->
     <!--class="org.gobiiproject.gobiimodel.config.GobiiCropDbConfigonfig"-->
     <!--factory-bean="cropConfigRice"-->
-    <!--factory-method="getCropDbConfig">-->
+    <!--factory-method="getServer">-->
     <!--<constructor-arg value="#{T(org.gobiiproject.gobiimodel.types.GobiiDbType).POSTGRESQL}"/>-->
     <!--</bean>-->
 
     <!--<bean id="dataSourceRice"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigRice.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigRice.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigRice.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigRice.getPassword()}"/>-->
     <!--</bean>-->
@@ -642,14 +647,14 @@
     <!--<bean id="cropDbConfigWheat"-->
     <!--class="org.gobiiproject.gobiimodel.config.GobiiCropDbConfigonfig"-->
     <!--factory-bean="cropConfigWheat"-->
-    <!--factory-method="getCropDbConfig">-->
+    <!--factory-method="getServer">-->
     <!--<constructor-arg value="#{T(org.gobiiproject.gobiimodel.types.GobiiDbType).POSTGRESQL}"/>-->
     <!--</bean>-->
 
     <!--<bean id="dataSourceWheat"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigWheat.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigWheat.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigWheat.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigWheat.getPassword()}"/>-->
     <!--</bean>-->
@@ -665,14 +670,14 @@
     <!--<bean id="cropDbConfigMaize"-->
     <!--class="org.gobiiproject.gobiimodel.config.GobiiCropDbConfigonfig"-->
     <!--factory-bean="cropConfigMaize"-->
-    <!--factory-method="getCropDbConfig">-->
+    <!--factory-method="getServer">-->
     <!--<constructor-arg value="#{T(org.gobiiproject.gobiimodel.types.GobiiDbType).POSTGRESQL}"/>-->
     <!--</bean>-->
 
     <!--<bean id="dataSourceMaize"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigMaize.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigMaize.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigMaize.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigMaize.getPassword()}"/>-->
     <!--</bean>-->
@@ -688,14 +693,14 @@
     <!--<bean id="cropDbConfigDev"-->
     <!--class="org.gobiiproject.gobiimodel.config.GobiiCropDbConfigonfig"-->
     <!--factory-bean="cropConfigDev"-->
-    <!--factory-method="getCropDbConfig">-->
+    <!--factory-method="getServer">-->
     <!--<constructor-arg value="#{T(org.gobiiproject.gobiimodel.types.GobiiDbType).POSTGRESQL}"/>-->
     <!--</bean>-->
 
     <!--<bean id="dataSourceDev"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigDev.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigDev.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigDev.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigDev.getPassword()}"/>-->
     <!--</bean>-->
@@ -711,14 +716,14 @@
     <!--<bean id="cropDbConfigTest"-->
     <!--class="org.gobiiproject.gobiimodel.config.GobiiCropDbConfigonfig"-->
     <!--factory-bean="cropConfigTest"-->
-    <!--factory-method="getCropDbConfig">-->
+    <!--factory-method="getServer">-->
     <!--<constructor-arg value="#{T(org.gobiiproject.gobiimodel.types.GobiiDbType).POSTGRESQL}"/>-->
     <!--</bean>-->
 
     <!--<bean id="dataSourceTest"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigTest.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigTest.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigTest.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigTest.getPassword()}"/>-->
     <!--</bean>-->
@@ -735,14 +740,14 @@
     <!--<bean id="cropDbConfigSorghum"-->
     <!--class="org.gobiiproject.gobiimodel.config.GobiiCropDbConfigonfig"-->
     <!--factory-bean="cropConfigSorghum"-->
-    <!--factory-method="getCropDbConfig">-->
+    <!--factory-method="getServer">-->
     <!--<constructor-arg value="#{T(org.gobiiproject.gobiimodel.types.GobiiDbType).POSTGRESQL}"/>-->
     <!--</bean>-->
 
     <!--<bean id="dataSourceSorghum"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigSorghum.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigSorghum.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigSorghum.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigSorghum.getPassword()}"/>-->
     <!--</bean>-->
@@ -758,14 +763,14 @@
     <!--<bean id="cropDbConfigChickpea"-->
     <!--class="org.gobiiproject.gobiimodel.config.GobiiCropDbConfigonfig"-->
     <!--factory-bean="cropConfigChickpea"-->
-    <!--factory-method="getCropDbConfig">-->
+    <!--factory-method="getServer">-->
     <!--<constructor-arg value="#{T(org.gobiiproject.gobiimodel.types.GobiiDbType).POSTGRESQL}"/>-->
     <!--</bean>-->
 
     <!--<bean id="dataSourceChickpea"-->
     <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
     <!--<property name="driverClassName" valu   e="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="#{cropDbConfigChickpea.getConnectionString()}"/>-->
+    <!--<property name="url" value="#{cropDbConfigChickpea.getJdbcConnectionString()}"/>-->
     <!--<property name="username" value="#{cropDbConfigChickpea.getUserName()}"/>-->
     <!--<property name="password" value="#{cropDbConfigChickpea.getPassword()}"/>-->
     <!--</bean>-->
