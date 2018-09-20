@@ -5,6 +5,7 @@ import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
@@ -12,6 +13,7 @@ import org.simpleframework.xml.ElementMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,12 +51,20 @@ ConfigValues {
 //          directorySpecList.add(new DirectorySpec(GobiiFileProcessDir.CODE_EXTRACTORS_POSTGRES_MDE, "extractors/postgres/gobii_mde/", false) );
 //    }
 
+    public ConfigValues() {
+        this.globalServersByServerType.put(GobiiServerType.KDC,
+                new ServerBase(GobiiServerType.KDC, "", "", null, true, "", "", false)
+        );
+        this.globalServersByServerType.put(GobiiServerType.OWN_CLOUD,
+                new ServerBase(GobiiServerType.OWN_CLOUD, "", "", null, true, "", "", false)
+        );
+    } // ctor
+
     @Element(required = false)
     private TestExecConfig testExecConfig = new TestExecConfig();
 
-    @Element(required = false)
-    private ServerConfigKDC serverConfigKDC = new ServerConfigKDC();
-
+    @ElementMap(required = false)
+    private Map<GobiiServerType, ServerBase> globalServersByServerType = new HashMap<>();
 
     @ElementMap(required = false)
     private Map<GobiiFileNoticeType, String> noticeFileNames = new EnumMap<GobiiFileNoticeType, String>(GobiiFileNoticeType.class) {{
@@ -161,8 +171,16 @@ ConfigValues {
         return testExecConfig;
     }
 
-    public ServerConfigKDC getKDCConfig() {
-        return serverConfigKDC;
+    public ServerBase getGlobalServer(GobiiServerType gobiiServerType) throws Exception {
+
+        ServerBase returnVal = null;
+
+        if (this.globalServersByServerType.containsKey(gobiiServerType)) {
+
+            returnVal = this.globalServersByServerType.get(gobiiServerType);
+        }
+
+        return returnVal;
     }
 
     public void setTestExecConfig(TestExecConfig testExecConfig) {
@@ -563,6 +581,10 @@ ConfigValues {
                 currentServerBase.setDecrypt(isDecrypt);
             }
         }
+
+        for( ServerBase currentServerBase : this.globalServersByServerType.values() ) {
+            currentServerBase.setDecrypt(isDecrypt);
+        }
     }
 
     public String getLdapUserForBackendProcs() {
@@ -621,5 +643,13 @@ ConfigValues {
 
     public void setProvidesBackend(boolean providesBackend) {
         isProvidesBackend = providesBackend;
+    }
+
+    public Map<GobiiServerType, ServerBase> getGlobalServersByServerType() {
+        return globalServersByServerType;
+    }
+
+    public void setGlobalServersByServerType(Map<GobiiServerType, ServerBase> globalServersByServerType) {
+        this.globalServersByServerType = globalServersByServerType;
     }
 }

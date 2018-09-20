@@ -12,7 +12,6 @@ import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.config.ServerConfig;
-import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
@@ -100,16 +99,17 @@ public class GobiiConfig {
     private static String CONFIG_SVR_OPTIONS_CONTEXT_PATH = "soR";
     private static String CONFIG_SVR_OPTIONS_USER_NAME = "soU";
     private static String CONFIG_SVR_OPTIONS_PASSWORD = "soP";
+    private static String CONFIG_SVR_OPTIONS_ACTIVE = "soA";
 
 
     private static String SVR_KDC = "ksvr";
+    private static String SVO_OWNC = "ownc";
     private static String SVR_KDC_RESOURCE_START = "krscSTA";
     private static String SVR_KDC_RESOURCE_STATUS = "krscSTT";
     private static String SVR_KDC_RESOURCE_DOWNLOAD = "krscDLD";
     private static String SVR_KDC_RESOURCE_PURGE = "krscPRG";
     private static String SVR_KDC_STATUS_CHECK_INTERVAL_SECS = "kstTRS";
     private static String SVR_KDC_STATUS_CHECK_MAX_TIME_MINS = "kstTRM";
-    private static String SVR_KDC_STATUS_ACTIVE = "kA";
 
 
     // we don't actually use the default crop any more, but for now we need to
@@ -261,6 +261,7 @@ public class GobiiConfig {
                     + ")", "context path");
             setOption(options, CONFIG_SVR_OPTIONS_USER_NAME, true, "Server option: Username", "user name");
             setOption(options, CONFIG_SVR_OPTIONS_PASSWORD, true, "Server option: Password", "password");
+            setOption(options, CONFIG_SVR_OPTIONS_ACTIVE, true, "Marker server inactive 'false'", "Server active");
 
 
             setOption(options, CONFIG_TST_GLOBAL, false, "Configure test options", "test options");
@@ -279,13 +280,13 @@ public class GobiiConfig {
             setOption(options, VALIDATE_CONFIGURATION, false, "Verify that the specified configuration has all the values necessary for the system to function (does not test that the servers exist); requires " + PROP_FILE_FQPN, "validate");
 
             setOption(options, SVR_KDC, false, "KDC server to add or modify; must be accompanied by a server options and KDC options", "KDC Server options");
+            setOption(options, SVO_OWNC, false, "ownCloud configuration to add or modify a server options", "ownCloud");
             setOption(options, SVR_KDC_RESOURCE_START, true, "KDC qcStart resource path", "qcStart resource");
             setOption(options, SVR_KDC_RESOURCE_STATUS, true, "KDC qcStatus resource path", "qcStatus resource");
             setOption(options, SVR_KDC_RESOURCE_DOWNLOAD, true, "KDC qcDownload resource path", "qcDownload resource");
             setOption(options, SVR_KDC_RESOURCE_PURGE, true, "KDC qcPurge resource path", "qcPurge resource");
             setOption(options, SVR_KDC_STATUS_CHECK_INTERVAL_SECS, true, "Status check interval for KDC jobs in seconds", "KDC status check interval");
             setOption(options, SVR_KDC_STATUS_CHECK_MAX_TIME_MINS, true, "Total time to wait for KDC job completion in minutes", "KDC job wait threshold");
-            setOption(options, SVR_KDC_STATUS_ACTIVE, true, "Mark KDC server inactive 'false'", "KDC active");
 
 
             // we don't actually use this value any more; it shold be removed when there is time to
@@ -489,10 +490,17 @@ public class GobiiConfig {
                     System.err.println("Value is required: " + options.getOption(PROP_FILE_FQPN).getDescription());
                 }
 
-            } else if (commandLine.hasOption(SVR_KDC)
+            } else if ((commandLine.hasOption(SVR_KDC) || commandLine.hasOption(SVO_OWNC))
                     && commandLine.hasOption(PROP_FILE_FQPN)) {
 
-                if (setKdcOptions(options, commandLine)) {
+                GobiiServerType gobiiServerType = GobiiServerType.UNKNOWN;
+                if (commandLine.hasOption(SVR_KDC)) {
+                    gobiiServerType = GobiiServerType.KDC;
+                } else {
+                    gobiiServerType = GobiiServerType.OWN_CLOUD;
+                }
+
+                if (setGlobalServerOptions(gobiiServerType, options, commandLine)) {
                     exitCode = 0;
                 }
 
@@ -511,6 +519,7 @@ public class GobiiConfig {
 
 
     private static void writeConfigSettingsMessage(Options options,
+                                                   GobiiServerType gobiiServerType,
                                                    String configFileFqpn,
                                                    List<String> configArgs,
                                                    List<String> configVals,
@@ -521,6 +530,7 @@ public class GobiiConfig {
         }
 
         String contextMessage = "The following "
+                + ((gobiiServerType != null && gobiiServerType != GobiiServerType.UNKNOWN) ? " " + gobiiServerType.toString() + " " : "")
                 + (LineUtils.isNullOrEmpty(cropId) ? "global " : "")
                 + "options "
                 + (LineUtils.isNullOrEmpty(cropId) ? "" : "for the " + cropId + " crop ")
@@ -528,6 +538,8 @@ public class GobiiConfig {
                 + configFileFqpn
                 + ": ";
 
+        System.out.println();
+        System.out.println("__________________________________________________");
         System.out.println(contextMessage);
         for (int idx = 0; idx < configArgs.size(); idx++) {
             String currentArg = configArgs.get(idx);
@@ -579,6 +591,7 @@ public class GobiiConfig {
             returnVal = true;
 
             writeConfigSettingsMessage(options,
+                    GobiiServerType.UNKNOWN,
                     propFileFqpn,
                     Arrays.asList(CONFIG_SVR_GLOBAL_LDAP_DECRYPT),
                     Arrays.asList(decrypt ? "true" : "false"),
@@ -592,7 +605,9 @@ public class GobiiConfig {
         return returnVal;
     }
 
-    private static boolean setKdcOptions(Options options, CommandLine commandLine) {
+    private static boolean setGlobalServerOptions(GobiiServerType gobiiServerType,
+                                                  Options options,
+                                                  CommandLine commandLine) {
 
         boolean returnVal = false;
 
@@ -610,6 +625,8 @@ public class GobiiConfig {
             String svrHost;
             Integer port;
             String contextPath;
+            String userName;
+            String password;
             String resourceQCStart;
             String resourceQCStatus;
             String resourceQCDownload;
@@ -623,67 +640,39 @@ public class GobiiConfig {
                 svrHost = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_HOST);
                 argsSet.add(CONFIG_SVR_OPTIONS_HOST);
                 valsSet.add(svrHost);
-                configSettings.getKDCConfig().setHost(svrHost);
+                configSettings.getGlobalServer(gobiiServerType).setHost(svrHost);
             }
 
             if (commandLine.hasOption(CONFIG_SVR_OPTIONS_PORT)) {
                 port = Integer.parseInt(commandLine.getOptionValue(CONFIG_SVR_OPTIONS_PORT));
                 argsSet.add(CONFIG_SVR_OPTIONS_PORT);
                 valsSet.add(port.toString());
-                configSettings.getKDCConfig().setPort(port);
+                configSettings.getGlobalServer(gobiiServerType).setPort(port);
             }
 
             if (commandLine.hasOption(CONFIG_SVR_OPTIONS_CONTEXT_PATH)) {
                 contextPath = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_CONTEXT_PATH);
                 argsSet.add(CONFIG_SVR_OPTIONS_CONTEXT_PATH);
                 valsSet.add(contextPath);
-                configSettings.getKDCConfig().setContextPath(contextPath);
+                configSettings.getGlobalServer(gobiiServerType).setContextPath(contextPath);
             }
 
-            if (commandLine.hasOption(SVR_KDC_RESOURCE_START)) {
-                resourceQCStart = commandLine.getOptionValue(SVR_KDC_RESOURCE_START);
-                argsSet.add(SVR_KDC_RESOURCE_START);
-                valsSet.add(resourceQCStart);
-                configSettings.getKDCConfig().addPath(ServerConfigKDC.KDCResource.QC_START, resourceQCStart);
+            if (commandLine.hasOption(CONFIG_SVR_OPTIONS_USER_NAME)) {
+                userName = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_USER_NAME);
+                argsSet.add(CONFIG_SVR_OPTIONS_USER_NAME);
+                valsSet.add(userName);
+                configSettings.getGlobalServer(gobiiServerType).setUserName(userName);
             }
 
-            if (commandLine.hasOption(SVR_KDC_RESOURCE_STATUS)) {
-                resourceQCStatus = commandLine.getOptionValue(SVR_KDC_RESOURCE_STATUS);
-                argsSet.add(SVR_KDC_RESOURCE_STATUS);
-                valsSet.add(resourceQCStatus);
-                configSettings.getKDCConfig().addPath(ServerConfigKDC.KDCResource.QC_STATUS_, resourceQCStatus);
+            if (commandLine.hasOption(CONFIG_SVR_OPTIONS_PASSWORD)) {
+                password = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_PASSWORD);
+                argsSet.add(CONFIG_SVR_OPTIONS_PASSWORD);
+                valsSet.add(password);
+                configSettings.getGlobalServer(gobiiServerType).setPassword(password);
             }
 
-            if (commandLine.hasOption(SVR_KDC_RESOURCE_DOWNLOAD)) {
-                resourceQCDownload = commandLine.getOptionValue(SVR_KDC_RESOURCE_DOWNLOAD);
-                argsSet.add(SVR_KDC_RESOURCE_DOWNLOAD);
-                valsSet.add(resourceQCDownload);
-                configSettings.getKDCConfig().addPath(ServerConfigKDC.KDCResource.QC_DOWNLOAD, resourceQCDownload);
-            }
-
-            if (commandLine.hasOption(SVR_KDC_RESOURCE_PURGE)) {
-                resourceQCPurge = commandLine.getOptionValue(SVR_KDC_RESOURCE_PURGE);
-                argsSet.add(SVR_KDC_RESOURCE_PURGE);
-                valsSet.add(resourceQCPurge);
-                configSettings.getKDCConfig().addPath(ServerConfigKDC.KDCResource.QC_PURGE, resourceQCPurge);
-            }
-
-            if (commandLine.hasOption(SVR_KDC_STATUS_CHECK_INTERVAL_SECS)) {
-                statusCheckIntervalSecs = Integer.parseInt(commandLine.getOptionValue(SVR_KDC_STATUS_CHECK_INTERVAL_SECS));
-                argsSet.add(SVR_KDC_STATUS_CHECK_INTERVAL_SECS);
-                valsSet.add(statusCheckIntervalSecs.toString());
-                configSettings.getKDCConfig().setStatusCheckIntervalSecs(statusCheckIntervalSecs);
-            }
-
-            if (commandLine.hasOption(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS)) {
-                statusWaitThresholdMinutes = Integer.parseInt(commandLine.getOptionValue(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS));
-                argsSet.add(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS);
-                valsSet.add(statusWaitThresholdMinutes.toString());
-                configSettings.getKDCConfig().setMaxStatusCheckMins(statusWaitThresholdMinutes);
-            }
-
-            if (commandLine.hasOption(SVR_KDC_STATUS_ACTIVE)) {
-                String activeStr = commandLine.getOptionValue(SVR_KDC_STATUS_ACTIVE);
+            if (commandLine.hasOption(CONFIG_SVR_OPTIONS_ACTIVE)) {
+                String activeStr = commandLine.getOptionValue(CONFIG_SVR_OPTIONS_ACTIVE);
                 if (activeStr.toLowerCase().equals("false")) {
                     active = false;
                 } else {
@@ -692,13 +681,58 @@ public class GobiiConfig {
             } else {
                 active = true;
             }
-
-            argsSet.add(SVR_KDC_STATUS_ACTIVE);
+            argsSet.add(CONFIG_SVR_OPTIONS_ACTIVE);
             valsSet.add(active ? "true" : "false");
-            configSettings.getKDCConfig().setActive(active);
+            configSettings.getGlobalServer(gobiiServerType).setActive(active);
+
+            if (gobiiServerType.equals(GobiiServerType.KDC)) {
+                if (commandLine.hasOption(SVR_KDC_RESOURCE_START)) {
+                    resourceQCStart = commandLine.getOptionValue(SVR_KDC_RESOURCE_START);
+                    argsSet.add(SVR_KDC_RESOURCE_START);
+                    valsSet.add(resourceQCStart);
+                    configSettings.getGlobalServer(GobiiServerType.KDC).addPath(ServerBase.KDCResource.QC_START, resourceQCStart);
+                }
+
+                if (commandLine.hasOption(SVR_KDC_RESOURCE_STATUS)) {
+                    resourceQCStatus = commandLine.getOptionValue(SVR_KDC_RESOURCE_STATUS);
+                    argsSet.add(SVR_KDC_RESOURCE_STATUS);
+                    valsSet.add(resourceQCStatus);
+                    configSettings.getGlobalServer(GobiiServerType.KDC).addPath(ServerBase.KDCResource.QC_STATUS_, resourceQCStatus);
+                }
+
+                if (commandLine.hasOption(SVR_KDC_RESOURCE_DOWNLOAD)) {
+                    resourceQCDownload = commandLine.getOptionValue(SVR_KDC_RESOURCE_DOWNLOAD);
+                    argsSet.add(SVR_KDC_RESOURCE_DOWNLOAD);
+                    valsSet.add(resourceQCDownload);
+                    configSettings.getGlobalServer(GobiiServerType.KDC).addPath(ServerBase.KDCResource.QC_DOWNLOAD, resourceQCDownload);
+                }
+
+                if (commandLine.hasOption(SVR_KDC_RESOURCE_PURGE)) {
+                    resourceQCPurge = commandLine.getOptionValue(SVR_KDC_RESOURCE_PURGE);
+                    argsSet.add(SVR_KDC_RESOURCE_PURGE);
+                    valsSet.add(resourceQCPurge);
+                    configSettings.getGlobalServer(GobiiServerType.KDC).addPath(ServerBase.KDCResource.QC_PURGE, resourceQCPurge);
+                }
+
+                if (commandLine.hasOption(SVR_KDC_STATUS_CHECK_INTERVAL_SECS)) {
+                    statusCheckIntervalSecs = Integer.parseInt(commandLine.getOptionValue(SVR_KDC_STATUS_CHECK_INTERVAL_SECS));
+                    argsSet.add(SVR_KDC_STATUS_CHECK_INTERVAL_SECS);
+                    valsSet.add(statusCheckIntervalSecs.toString());
+                    configSettings.getGlobalServer(GobiiServerType.KDC).setStatusCheckIntervalSecs(statusCheckIntervalSecs);
+                }
+
+                if (commandLine.hasOption(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS)) {
+                    statusWaitThresholdMinutes = Integer.parseInt(commandLine.getOptionValue(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS));
+                    argsSet.add(SVR_KDC_STATUS_CHECK_MAX_TIME_MINS);
+                    valsSet.add(statusWaitThresholdMinutes.toString());
+                    configSettings.getGlobalServer(GobiiServerType.KDC).setMaxStatusCheckMins(statusWaitThresholdMinutes);
+                }
+
+            }
 
 
             writeConfigSettingsMessage(options,
+                    gobiiServerType,
                     propFileFqpn,
                     argsSet,
                     valsSet,
@@ -733,6 +767,7 @@ public class GobiiConfig {
                 configSettings.commit();
 
                 writeConfigSettingsMessage(options,
+                        GobiiServerType.UNKNOWN,
                         propFileFqpn,
                         Arrays.asList(CONFIG_GLOBAL_FILESYS_ROOT),
                         Arrays.asList(fileSysRoot),
@@ -745,6 +780,7 @@ public class GobiiConfig {
                 configSettings.commit();
 
                 writeConfigSettingsMessage(options,
+                        GobiiServerType.UNKNOWN,
                         propFileFqpn,
                         Arrays.asList(CONFIG_GLOBAL_FILESYS_LOG),
                         Arrays.asList(fileSysLog),
@@ -758,6 +794,7 @@ public class GobiiConfig {
                 configSettings.commit();
 
                 writeConfigSettingsMessage(options,
+                        GobiiServerType.UNKNOWN,
                         propFileFqpn,
                         Arrays.asList(CONFIG_GLOBAL_PROVIDES_BACKEND),
                         Arrays.asList(flag ? "true" : "false"),
@@ -930,6 +967,7 @@ public class GobiiConfig {
                 configSettings.commit();
 
                 writeConfigSettingsMessage(options,
+                        GobiiServerType.UNKNOWN,
                         propFileFqpn,
                         argsSet,
                         valsSet,
@@ -1009,6 +1047,7 @@ public class GobiiConfig {
                 configSettings.commit();
 
                 writeConfigSettingsMessage(options,
+                        GobiiServerType.LDAP,
                         propFileFqpn,
                         argsSet,
                         valsSet,
@@ -1084,6 +1123,8 @@ public class GobiiConfig {
 
                 } else if (commandLine.hasOption(CONFIG_CROP_ID)) {
 
+                    GobiiServerType gobiiServerType = GobiiServerType.UNKNOWN;
+
                     String cropId = commandLine.getOptionValue(CONFIG_CROP_ID);
 
 
@@ -1105,14 +1146,14 @@ public class GobiiConfig {
                         argsSet.add(CONFIG_SVR_CROP_WEB);
                         valsSet.add("");
 
-                        gobiiCropConfig.getServer(GobiiServerType.WEB).setHost(svrHost);
-                        gobiiCropConfig.getServer(GobiiServerType.WEB).setPort(svrPort);
-                        gobiiCropConfig.getServer(GobiiServerType.WEB).setContextPath(contextRoot);
+                        gobiiServerType = GobiiServerType.WEB;
+                        gobiiCropConfig.getServer(gobiiServerType).setHost(svrHost);
+                        gobiiCropConfig.getServer(gobiiServerType).setPort(svrPort);
+                        gobiiCropConfig.getServer(gobiiServerType).setContextPath(contextRoot);
 
                     } else if (commandLine.hasOption(CONFIG_SVR_CROP_POSTGRES) ||
                             (commandLine.hasOption(CONFIG_SVR_CROP_COMPUTE))) {
 
-                        GobiiServerType gobiiServerType = GobiiServerType.UNKNOWN;
                         if (commandLine.hasOption(CONFIG_SVR_CROP_POSTGRES)) {
                             gobiiServerType = GobiiServerType.POSTGRESQL;
                             argsSet.add(CONFIG_SVR_CROP_POSTGRES);
@@ -1136,6 +1177,7 @@ public class GobiiConfig {
                     }
 
                     writeConfigSettingsMessage(options,
+                            gobiiServerType,
                             propFileFqpn,
                             argsSet,
                             valsSet,

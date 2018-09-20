@@ -4,7 +4,6 @@ import org.gobiiproject.gobiiclient.core.gobii.GobiiTestConfiguration;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.config.ServerBase;
-import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiServerType;
@@ -725,7 +724,7 @@ public class TestGobiiConfig {
                 + statusCheckIntervalSecs
                 + " -kstTRM "
                 + statusWaitThresholdMinutes
-                + " -kA "
+                + " -soA "
                 + (active ? "true" : false)
         );
 
@@ -735,38 +734,94 @@ public class TestGobiiConfig {
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
         Assert.assertTrue("The host name does not match",
-                configSettings.getKDCConfig().getHost().equals(host));
+                configSettings.getGlobalServer(GobiiServerType.KDC).getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + configSettings.getKDCConfig().getPort(),
-                configSettings.getKDCConfig().getPort().equals(port));
+                        + configSettings.getGlobalServer(GobiiServerType.KDC).getPort(),
+                configSettings.getGlobalServer(GobiiServerType.KDC).getPort().equals(port));
 
-        String contextPathRetrieved = configSettings.getKDCConfig().getContextPath();
+        String contextPathRetrieved = configSettings.getGlobalServer(GobiiServerType.KDC).getContextPath();
         Assert.assertTrue("The context path not match",
                 contextPathRetrieved.equals(contextPath));
 
         Assert.assertTrue("The start resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_START).equals(resourceQCStart));
+                configSettings.getGlobalServer(GobiiServerType.KDC).getPath(ServerBase.KDCResource.QC_START).equals(resourceQCStart));
 
         Assert.assertTrue("The status resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_STATUS_).equals(resourceQCStatus));
+                configSettings.getGlobalServer(GobiiServerType.KDC).getPath(ServerBase.KDCResource.QC_STATUS_).equals(resourceQCStatus));
 
         Assert.assertTrue("The download resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_DOWNLOAD).equals(resourceQCDownload));
+                configSettings.getGlobalServer(GobiiServerType.KDC).getPath(ServerBase.KDCResource.QC_DOWNLOAD).equals(resourceQCDownload));
 
         Assert.assertTrue("The purge resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_PURGE).equals(resourceQCPurge));
+                configSettings.getGlobalServer(GobiiServerType.KDC).getPath(ServerBase.KDCResource.QC_PURGE).equals(resourceQCPurge));
 
         Assert.assertTrue("The status check interval does not match",
-                configSettings.getKDCConfig().getStatusCheckIntervalSecs().equals(statusCheckIntervalSecs));
+                configSettings.getGlobalServer(GobiiServerType.KDC).getStatusCheckIntervalSecs().equals(statusCheckIntervalSecs));
 
         Assert.assertTrue("The max status check threshold does not not match",
-                configSettings.getKDCConfig().getMaxStatusCheckMins().equals(statusWaitThresholdMinutes));
+                configSettings.getGlobalServer(GobiiServerType.KDC).getMaxStatusCheckMins().equals(statusWaitThresholdMinutes));
 
         Assert.assertFalse("The active flag value does not match",
-                configSettings.getKDCConfig().isActive());
+                configSettings.getGlobalServer(GobiiServerType.KDC).isActive());
+
+    }
+
+    @Test
+    public void testSetOwnCloudServerOptions() throws Exception {
+
+        String testFileFqpn = makeTestFileFqpn("OwnCloudOptions");
+
+        String host = "myowncloud.com";
+        Integer port = 5063;
+        String contextPath = "foodkdcpath-" + UUID.randomUUID().toString() + "/";
+        String userName = "fooowncloudusername-" + UUID.randomUUID().toString() + "/";
+        String password = "fooowncloudpassword-" + UUID.randomUUID().toString() + "/";
+
+        boolean active = false;
+
+
+        String commandLine = makeCommandline("-ownc -wfqpn "
+                + testFileFqpn
+                + " -soH "
+                + host
+                + " -soN "
+                + port.toString()
+                + " -soR "
+                + contextPath
+                + " -soU "
+                + userName
+                + " -soP "
+                + password
+                + " -soA "
+                + (active ? "true" : false)
+        );
+
+        boolean succeeded = HelperFunctions.tryExec(commandLine, testFileFqpn + ".out", testFileFqpn + ".err");
+        Assert.assertTrue("Command failed: " + commandLine, succeeded);
+
+        ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
+
+        Assert.assertTrue("The host name does not match",
+                configSettings.getGlobalServer(GobiiServerType.OWN_CLOUD).getHost().equals(host));
+
+        Assert.assertTrue("The port does not match: should be "
+                        + port.toString()
+                        + "; got: "
+                        + configSettings.getGlobalServer(GobiiServerType.OWN_CLOUD).getPort(),
+                configSettings.getGlobalServer(GobiiServerType.OWN_CLOUD).getPort().equals(port));
+
+        String contextPathRetrieved = configSettings.getGlobalServer(GobiiServerType.OWN_CLOUD).getContextPath();
+        Assert.assertTrue("The context path not match",
+                contextPathRetrieved.equals(contextPath));
+
+        Assert.assertTrue("The password does not match",
+                configSettings.getGlobalServer(GobiiServerType.OWN_CLOUD).getPassword().equals(password));
+
+        Assert.assertTrue("The username does not match",
+                configSettings.getGlobalServer(GobiiServerType.OWN_CLOUD).getUserName().equals(userName));
 
     }
 

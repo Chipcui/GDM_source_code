@@ -5,7 +5,11 @@ import org.gobiiproject.gobiimodel.security.Decrypter;
 import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Root
 public class ServerBase {
@@ -177,4 +181,58 @@ public class ServerBase {
     }
 
 
+
+    // These are in the general base class only temporarily until these KDC properties
+    // can be handled differently
+
+    public enum KDCResource {
+        QC_START,
+        QC_STATUS_,
+        QC_DOWNLOAD,
+        QC_PURGE
+    }
+
+    @ElementMap(required = false)
+    Map<ServerBase.KDCResource, String> kdcResources = new HashMap<>();
+
+    @Element(required = false)
+    Integer statusCheckIntervalSecs = 0;
+
+    @Element(required = false)
+    Integer maxStatusCheckMins = 0;
+
+
+    public ServerBase addPath(ServerBase.KDCResource kdcResource, String resource) {
+        this.kdcResources.put(kdcResource, resource);
+        return this;
+    }
+
+    public String getPath(ServerBase.KDCResource kdcResource) {
+
+        String returnVal = null;
+
+        if (this.kdcResources.containsKey(kdcResource)) {
+            returnVal = this.kdcResources.get(kdcResource);
+        }
+
+        return returnVal;
+    }
+
+    public Integer getStatusCheckIntervalSecs() {
+        return statusCheckIntervalSecs;
+    }
+
+    public ServerBase setStatusCheckIntervalSecs(Integer statusCheckIntervalSecs) {
+        this.statusCheckIntervalSecs = statusCheckIntervalSecs;
+        return this;
+    }
+
+    public Integer getMaxStatusCheckMins() {
+        return maxStatusCheckMins;
+    }
+
+    public ServerBase setMaxStatusCheckMins(Integer maxStatusCheckMins) {
+        this.maxStatusCheckMins = maxStatusCheckMins;
+        return this;
+    }
 }

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
+import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.ServerCapabilityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,12 +94,12 @@ public class ConfigSettings {
      * However, that would have resulted in reduntant values.
      * @return
      */
-    public Map<ServerCapabilityType, Boolean> getServerCapabilities() {
+    public Map<ServerCapabilityType, Boolean> getServerCapabilities() throws Exception {
 
         Map<ServerCapabilityType, Boolean> returnVal = new HashMap<>();
 
-        if (this.configValues.getKDCConfig() != null) {
-            returnVal.put(ServerCapabilityType.KDC, this.configValues.getKDCConfig().isActive());
+        if (this.configValues.getGlobalServer(GobiiServerType.KDC) != null) {
+            returnVal.put(ServerCapabilityType.KDC, this.configValues.getGlobalServer(GobiiServerType.KDC).isActive());
         } else {
             returnVal.put(ServerCapabilityType.KDC, false);
         }
@@ -148,6 +149,10 @@ public class ConfigSettings {
         return this.configValues.isCropDefined(gobiiCropType);
     }
 
+    public ServerBase getGlobalServer(GobiiServerType gobiiServerType) throws Exception {
+        return this.configValues.getGlobalServer(gobiiServerType);
+    }
+
     public GobiiCropConfig getCropConfig(String gobiiCropType) throws Exception {
 
         return (this.configValues.getCropConfig(gobiiCropType));
@@ -173,12 +178,6 @@ public class ConfigSettings {
     public void setTestExecConfig(TestExecConfig testExecConfig) {
         this.configValues.setTestExecConfig(testExecConfig);
     }
-
-    public ServerConfigKDC getKDCConfig() {
-
-        return this.configValues.getKDCConfig();
-    }
-
 
     public List<String> getActiveCropTypes() throws Exception {
         return this
@@ -375,6 +374,7 @@ public class ConfigSettings {
     public void setMaxUploadSizeMbytes(Integer maxUploadSizeMbytes) {
         this.configValues.setMaxUploadSizeMbytes(maxUploadSizeMbytes);
     }
+
     public boolean isProvidesBackend() {
         return this.configValues.isProvidesBackend();
     }

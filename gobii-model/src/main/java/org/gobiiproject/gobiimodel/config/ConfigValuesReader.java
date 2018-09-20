@@ -67,7 +67,7 @@ class ConfigValuesReader {
 //                }
 
             } else {
-                throw new Exception("");
+                throw new Exception("The input file name does not have the xml extension: " + "xml");
             }
 
         } else {
