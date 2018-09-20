@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.gobiiproject</groupId>
         <artifactId>parent</artifactId>
-        <version>GP1-1716_Epic_OwnCloud-2018-09-18</version>
+        <version>GP1-1967-02</version>
     </parent>
 
     <groupId>org.gobiiproject</groupId>
