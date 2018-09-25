@@ -44,7 +44,7 @@ public class DtoCrudRequestCvGroupTest implements DtoCrudRequestTest {
                 .setParamValue("groupId", cvGroupId.toString())
                 .appendSegment(GobiiServiceRequestId.URL_CV);
 
-        GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriCvGroup);
+        GobiiEnvelopeRestResource<CvDTO,CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriCvGroup);
         PayloadEnvelope<CvDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(CvDTO.class);
 

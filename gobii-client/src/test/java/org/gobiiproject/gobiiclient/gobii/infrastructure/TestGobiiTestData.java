@@ -97,7 +97,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_ORGANIZATION);
         restUriOrganizationForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
+        GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
         PayloadEnvelope<OrganizationDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(OrganizationDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -124,7 +124,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_CONTACTS);
         restUriContactForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriContactForGetById);
+        GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriContactForGetById);
         PayloadEnvelope<ContactDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(ContactDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -151,7 +151,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PLATFORM);
         restUriPlatformForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
         PayloadEnvelope<PlatformDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(PlatformDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -178,7 +178,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PROTOCOL);
         restUriProtocolForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<ProtocolDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
         PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(ProtocolDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -205,7 +205,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_REFERENCE);
         restUriReferenceForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<ReferenceDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriReferenceForGetById);
+        GobiiEnvelopeRestResource<ReferenceDTO,ReferenceDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriReferenceForGetById);
         PayloadEnvelope<ReferenceDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(ReferenceDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -232,7 +232,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
         restUriMapsetForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
         PayloadEnvelope<MapsetDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(MapsetDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -259,7 +259,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PROJECTS);
         restUriProjectForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<ProjectDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProjectForGetById);
+        GobiiEnvelopeRestResource<ProjectDTO,ProjectDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProjectForGetById);
         PayloadEnvelope<ProjectDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(ProjectDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -286,7 +286,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_MANIFEST);
         restUriManifestForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
         PayloadEnvelope<ManifestDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(ManifestDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -313,7 +313,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_EXPERIMENTS);
         restUriExperimentForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<ExperimentDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriExperimentForGetById);
+        GobiiEnvelopeRestResource<ExperimentDTO,ExperimentDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriExperimentForGetById);
         PayloadEnvelope<ExperimentDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(ExperimentDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -340,7 +340,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_ANALYSIS);
         restUriAnalysisForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriAnalysisForGetById);
+        GobiiEnvelopeRestResource<AnalysisDTO,AnalysisDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriAnalysisForGetById);
         PayloadEnvelope<AnalysisDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(AnalysisDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));
@@ -367,7 +367,7 @@ public class TestGobiiTestData {
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_DATASETS);
         restUriDatasetForGetById.setParamValue("id", currentElementId);
 
-        GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriDatasetForGetById);
+        GobiiEnvelopeRestResource<DataSetDTO,DataSetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriDatasetForGetById);
         PayloadEnvelope<DataSetDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(DataSetDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetById.getHeader()));

@@ -8,6 +8,7 @@ package org.gobiiproject.gobiiweb.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobidomain.services.*;
+import org.gobiiproject.gobiiapimodel.payload.Payload;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiEntityNameConverter;
@@ -43,6 +44,7 @@ import org.gobiiproject.gobiimodel.dto.system.EntityStatsDTO;
 import org.gobiiproject.gobiimodel.dto.system.PagedList;
 import org.gobiiproject.gobiimodel.dto.system.PingDTO;
 import org.gobiiproject.gobiiapimodel.payload.HeaderAuth;
+import org.gobiiproject.gobiimodel.headerlesscontainer.DnaSampleDTO;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiFilterType;
@@ -4198,6 +4200,48 @@ public class GOBIIControllerV1 {
         return (returnVal);
 
     }
+
+
+    @RequestMapping(value = "/jobs/dnasamples/{jobName}", method = RequestMethod.POST)
+    @ResponseBody
+    public PayloadEnvelope<JobDTO> submitDnaSamplesByJobName(@RequestBody PayloadEnvelope<DnaSampleDTO> payloadEnvelope,
+                                                             @PathVariable("jobName") String jobName,
+                                                             HttpServletRequest request,
+                                                             HttpServletResponse response) {
+
+        PayloadEnvelope<JobDTO> returnVal = new PayloadEnvelope<>();
+
+        try {
+
+            PayloadReader<DnaSampleDTO> payloadReader = new PayloadReader<>(DnaSampleDTO.class);
+            List<DnaSampleDTO> dnaSampleDTOList = payloadReader.extractListOfItems(payloadEnvelope);
+
+            JobDTO dnaSampleJobDTO = jobService.submitDnaSamplesByJobName(jobName, dnaSampleDTOList);
+
+            PayloadWriter<JobDTO> payloadWriter = new PayloadWriter<>(request, response, JobDTO.class);
+
+            payloadWriter.writeSingleItemForDefaultId(returnVal,
+                    GobiiUriFactory.resourceByUriIdParam(request.getContextPath(),
+                            GobiiServiceRequestId.URL_JOB),
+                    dnaSampleJobDTO);
+
+        } catch (GobiiException e) {
+            returnVal.getHeader().getStatus().addException(e);
+        } catch (Exception e) {
+            returnVal.getHeader().getStatus().addException(e);
+        }
+
+
+        ControllerUtils.setHeaderResponse(returnVal.getHeader(),
+                response,
+                HttpStatus.CREATED,
+                HttpStatus.INTERNAL_SERVER_ERROR);
+
+
+        return (returnVal);
+
+    }
+
 
 
     // *********************************************

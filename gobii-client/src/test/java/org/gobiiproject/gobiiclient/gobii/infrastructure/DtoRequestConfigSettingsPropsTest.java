@@ -53,7 +53,7 @@ public class DtoRequestConfigSettingsPropsTest {
         RestUri confgSettingsUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_CONFIGSETTINGS);
-        GobiiEnvelopeRestResource<ConfigSettingsDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(confgSettingsUri);
+        GobiiEnvelopeRestResource<ConfigSettingsDTO,ConfigSettingsDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(confgSettingsUri);
         PayloadEnvelope<ConfigSettingsDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(ConfigSettingsDTO.class);
 
@@ -207,7 +207,7 @@ public class DtoRequestConfigSettingsPropsTest {
 
         PingDTO pingDTORequest = TestDtoFactory.makePingDTO();
         //DtoRequestPing dtoRequestPing = new DtoRequestPing();
-        GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<PingDTO,PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PING));
 

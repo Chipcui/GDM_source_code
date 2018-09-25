@@ -60,7 +60,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
         namesUri.setParamValue("filterType", StringUtils.capitalize(GobiiFilterType.NAMES_BY_TYPE_NAME.toString()));
         namesUri.setParamValue("filterValue", "platform_type");
 
-        GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResourceForPlatformTerms = new GobiiEnvelopeRestResource<>(namesUri);
+        GobiiEnvelopeRestResource<NameIdDTO,NameIdDTO> gobiiEnvelopeRestResourceForPlatformTerms = new GobiiEnvelopeRestResource<>(namesUri);
         PayloadEnvelope<NameIdDTO> resultEnvelope = gobiiEnvelopeRestResourceForPlatformTerms
                 .get(NameIdDTO.class);
 
@@ -78,7 +78,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .makePopulatedPlatformDTO(GobiiProcessType.CREATE, 1, entityParamValues);
 
         PayloadEnvelope<PlatformDTO> payloadEnvelope = new PayloadEnvelope<>(newPlatformDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false).getUriFactory()
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false).getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PLATFORM));
         PayloadEnvelope<PlatformDTO> platformDTOResponseEnvelope = gobiiEnvelopeRestResource.post(PlatformDTO.class,
                 payloadEnvelope);
@@ -94,7 +94,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PLATFORM);
         restUriPlatformForGetById.setParamValue("id", platformDTOResponse.getPlatformId().toString());
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
         PayloadEnvelope<PlatformDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                 .get(PlatformDTO.class);
 
@@ -148,7 +148,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
         namesUri.setParamValue("filterType", StringUtils.capitalize(GobiiFilterType.NAMES_BY_TYPE_NAME.toString()));
         namesUri.setParamValue("filterValue", "platform_type");
 
-        GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResourceForPlatformTerms = new GobiiEnvelopeRestResource<>(namesUri);
+        GobiiEnvelopeRestResource<NameIdDTO,NameIdDTO> gobiiEnvelopeRestResourceForPlatformTerms = new GobiiEnvelopeRestResource<>(namesUri);
         PayloadEnvelope<NameIdDTO> resultEnvelope = gobiiEnvelopeRestResourceForPlatformTerms
                 .get(NameIdDTO.class);
 
@@ -165,7 +165,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .makePopulatedPlatformDTO(GobiiProcessType.CREATE, 1, entityParamValues);
 
         PayloadEnvelope<PlatformDTO> payloadEnvelope = new PayloadEnvelope<>(newPlatformDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PLATFORM));
         PayloadEnvelope<PlatformDTO> platformDTOResponseEnvelope = gobiiEnvelopeRestResource.post(PlatformDTO.class,
@@ -179,7 +179,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PLATFORM);
         restUriPlatformForGetById.setParamValue("id", newPlatformDTOResponse.getPlatformId().toString());
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
         PayloadEnvelope<PlatformDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                 .get(PlatformDTO.class);
 
@@ -237,7 +237,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
         RestUri restUriPlatform = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PLATFORM);
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriPlatform);
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriPlatform);
         PayloadEnvelope<PlatformDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(PlatformDTO.class);
 
@@ -254,7 +254,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PLATFORM);
         restUriPlatformForGetById.setParamValue("id", platformId.toString());
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
         PayloadEnvelope<PlatformDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                 .get(PlatformDTO.class);
 
@@ -290,7 +290,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
         RestUri restUriPlatform = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PLATFORM);
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriPlatform);
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriPlatform);
         PayloadEnvelope<PlatformDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(PlatformDTO.class);
 
@@ -322,7 +322,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
             RestUri restUriPlatformForGetById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
                     .RestUriFromUri(currentLink.getHref());
-            GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
+            GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
             PayloadEnvelope<PlatformDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                     .get(PlatformDTO.class);
             Assert.assertNotNull(resultEnvelopeForGetByID);
@@ -348,7 +348,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PROTOCOL);
         restUriForGetProtocolById.setParamValue("id", protocolId.toString());
-        GobiiEnvelopeRestResource<ProtocolDTO> gobiiEnvelopeRestResourceForGetProtocolById =
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> gobiiEnvelopeRestResourceForGetProtocolById =
                 new GobiiEnvelopeRestResource<>(restUriForGetProtocolById);
         PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetProtocolByID = gobiiEnvelopeRestResourceForGetProtocolById
                 .get(ProtocolDTO.class);
@@ -362,7 +362,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .makePopulatedOrganizationDTO(GobiiProcessType.CREATE, 1);
 
         PayloadEnvelope<OrganizationDTO> payloadEnvelope = new PayloadEnvelope<>(newOrganizationDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceOrganization = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResourceOrganization = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_ORGANIZATION));
         PayloadEnvelope<OrganizationDTO> organizationDTOResponseEnvelope = gobiiEnvelopeRestResourceOrganization.post(OrganizationDTO.class,
@@ -393,7 +393,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                     .childResourceByUriIdParam(GobiiServiceRequestId.URL_PROTOCOL,
                             GobiiServiceRequestId.URL_VENDORS);
             restUriProtocoLVendor.setParamValue("id", protocolId.toString());
-            GobiiEnvelopeRestResource<OrganizationDTO> protocolVendorResource =
+            GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> protocolVendorResource =
                     new GobiiEnvelopeRestResource<>(restUriProtocoLVendor);
             PayloadEnvelope<OrganizationDTO> vendorPayloadEnvelope =
                     new PayloadEnvelope<>(organizationDTO, GobiiProcessType.CREATE);
@@ -410,7 +410,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
             RestUri namesUri = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
                     .nameIdListByQueryParams();
-            GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(namesUri);
+            GobiiEnvelopeRestResource<NameIdDTO,NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(namesUri);
             namesUri.setParamValue("entity", GobiiEntityNameType.VENDOR_PROTOCOL.toString().toLowerCase());
 
             PayloadEnvelope<NameIdDTO> resultEnvelopeProtocoLVendornames = gobiiEnvelopeRestResource
@@ -437,7 +437,7 @@ public class DtoCrudRequestPlatformTest implements DtoCrudRequestTest {
                 .addUriParam("vendorProtocolId")
                 .setParamValue("vendorProtocolId", Integer.toString(vendorProtocolId));
 
-        GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetByVendorProtocolId);
+        GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetByVendorProtocolId);
         PayloadEnvelope<PlatformDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                 .get(PlatformDTO.class);
 

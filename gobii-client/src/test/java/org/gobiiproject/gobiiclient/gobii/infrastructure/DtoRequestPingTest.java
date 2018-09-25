@@ -38,7 +38,7 @@ public class DtoRequestPingTest {
         PingDTO pingDTORequest = TestDtoFactory.makePingDTO();
 
         //DtoRequestPing dtoRequestPing = new DtoRequestPing();
-        GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<PingDTO,PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PING));
 

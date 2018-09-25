@@ -1,6 +1,5 @@
 package org.gobiiproject.gobiidtomapping.entity.noaudit.impl;
 
-import org.apache.commons.lang.time.DateUtils;
 import org.gobiiproject.gobiidao.resultset.access.RsJobDao;
 import org.gobiiproject.gobiidao.resultset.core.ParamExtractor;
 import org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQueryColl;
@@ -12,8 +11,11 @@ import org.gobiiproject.gobiimodel.cvnames.JobPayloadType;
 import org.gobiiproject.gobiimodel.cvnames.JobType;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.DataSetDTO;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.JobDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.DnaSampleDTO;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
+import org.gobiiproject.gobiimodel.utils.DateUtils;
+import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +86,12 @@ public class DtoMapJobImpl implements DtoMapJob {
 
     @Override
     public JobDTO createJob(JobDTO jobDTO) throws GobiiDtoMappingException, ParseException {
+
+        //check if JobName is not null
+
+        if(LineUtils.isNullOrEmpty(jobDTO.getJobName())){ // if empty or null, indicate a new jobName.
+            jobDTO.setJobName(DateUtils.makeDateIdString());
+        }
 
         JobDTO returnVal = jobDTO;
 
@@ -191,5 +199,4 @@ public class DtoMapJobImpl implements DtoMapJob {
 
 
     }
-
 }

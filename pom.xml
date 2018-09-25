@@ -6,7 +6,7 @@
 
     <groupId>org.gobiiproject</groupId>
     <artifactId>parent</artifactId>
-    <version>2.0_2018-09-05</version>
+    <version>GP1-1885_Epic_SampleSubmission</version>
     <packaging>pom</packaging>
 
     <description>Parent for GOBii project genotype application</description>
@@ -14,7 +14,7 @@
     <properties>
 
         <!-- Gobii Version -->
-        <gobii.version>2.0_2018-09-05</gobii.version>
+        <gobii.version>GP1-1885_Epic_SampleSubmission</gobii.version>
 
         <!-- Spring Version -->
         <spring.version>4.2.2.RELEASE</spring.version>

@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.gobiiproject</groupId>
         <artifactId>parent</artifactId>
-        <version>2.0_2018-09-05</version>
+        <version>GP1-1885_Epic_SampleSubmission</version>
     </parent>
 
     <groupId>org.gobiiproject</groupId>

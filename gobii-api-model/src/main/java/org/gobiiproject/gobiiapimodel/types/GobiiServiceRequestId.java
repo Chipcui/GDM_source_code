@@ -51,6 +51,7 @@ public enum GobiiServiceRequestId {
     URL_ALLELE_MATRICES("allelematrices"),
     URL_FILES("files"),
     URL_JOB("jobs"),
+    URL_JOB_DNASAMPLE("jobs/dnasamples"),
     URL_ENTITIES("entities"),
     URL_COUNT("count"),
     URL_LAST_MODIFIED("lastmodified");

@@ -2,7 +2,7 @@ package org.gobiiproject.gobidomain.services;
 
 import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.DataSetDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.SampleDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.DnaSampleDTO;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface SampleService {
 
-    SampleDTO getSampleDetailsByExternalCode(String externalCode) throws GobiiDomainException;
+    DnaSampleDTO getSampleDetailsByExternalCode(String externalCode) throws GobiiDomainException;
 
     List<DataSetDTO> getDatasetForLoadedSamplesOfDataType(String externalCode, String datasetType) throws GobiiDomainException;
 

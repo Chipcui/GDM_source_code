@@ -1087,7 +1087,7 @@ public class GobiiExtractor {
 			RestUri mapUri = gobiiUriFactory
 					.resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
 			mapUri.setParamValue("id", mapId.toString());
-			GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(mapUri);
+			GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(mapUri);
 			PayloadEnvelope<MapsetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDatasets
 					.get(MapsetDTO.class);
 
