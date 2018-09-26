@@ -2240,7 +2240,17 @@ public class GobiiAdl {
         documentBuilderFactory.setNamespaceAware(true);
 
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        Document document = documentBuilder.parse(xmlFile);
+
+        Document document = null;
+
+        try {
+
+            document = documentBuilder.parse(xmlFile);
+
+        } catch (Exception e) {
+
+            processError(e.getMessage(), GobiiStatusLevel.ERROR);
+        }
 
         return document;
 
