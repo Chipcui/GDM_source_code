@@ -168,6 +168,7 @@ public class GobiiExtractor {
 		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_INPROGRESS.getCvName(),"Beginning Extract");
 
 		for (GobiiExtractorInstruction inst : list) {
+          System.out.println("Starting instruction read: QC is: " + inst.isQcCheck());
 			String crop = inst.getGobiiCropType();
 			String extractType="";
 			if (crop == null) crop = divineCrop(instructionFile);
@@ -574,7 +575,8 @@ public class GobiiExtractor {
 					mv(extract.getListFileName(),extractDir); //Move the list file to the extract directory
 
 					ErrorLogger.logDebug("Extractor", "DataSet " + datasetName + " Created");
-
+                  System.out.println("Error Status: " + ErrorLogger.success());
+                  System.out.println("QC Status: " + inst.isQcCheck());
 					/*Perform QC if the instruction is QC-based AND we are a successful extract*/
 					if (inst.isQcCheck()) {
 						if (ErrorLogger.success()) {//QC - Subsection #1 of 1
