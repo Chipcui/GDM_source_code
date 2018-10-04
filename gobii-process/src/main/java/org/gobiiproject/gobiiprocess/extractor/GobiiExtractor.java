@@ -222,6 +222,10 @@ public class GobiiExtractor {
 					String sampleFile = extractDir + "sample.file";
 					String projectFile = extractDir + "project.file";
 					String extractSummaryFile = extractDir+"summary.file";
+					if(inst.isQcCheck()){//FIXES ERROR - KDC EXPECTS PROJECT SUMMARY IN SUMMARY.FILE
+						projectFile = extractDir + "summary.file"; //HACK, NEED FIX AND REMOVE LATER FOR CONSISTENCY
+						extractSummaryFile = extractDir+"project_summary.file";
+					}
 					String chrLengthFile = markerFile + ".chr";
 					Path mdePath = FileSystems.getDefault().getPath(extractorScriptPath + "postgres/gobii_mde/gobii_mde.py");
 					if (!mdePath.toFile().isFile()) {
@@ -562,7 +566,7 @@ public class GobiiExtractor {
 						jobStatus.setError("Unsuccessful Data Extract");
 						if(!inst.isQcCheck())mailInterface.send(pm);
                     }
-
+					boolean overallSuccess=ErrorLogger.success(); //quick and dirty way to make sure errors past the 'end' of processing don't affect output
                     //Clean Temporary Files
 					rmIfExist(genoFile);
                     rmIfExist(chrLengthFile);
@@ -571,13 +575,17 @@ public class GobiiExtractor {
 					rmIfExist(extractDir + "mdeOut");//remove mde output file
 					rmIfExist("position.file");
 
-					mv(extract.getListFileName(),extractDir); //Move the list file to the extract directory
-
+					if(extract.getListFileName()!=null) {
+						File listFile=new File(extract.getListFileName());
+						if(listFile.exists()) {
+							mv(extract.getListFileName(), extractDir); //Move the list file to the extract directory
+						}
+					}
 					ErrorLogger.logDebug("Extractor", "DataSet " + datasetName + " Created");
 
 					/*Perform QC if the instruction is QC-based AND we are a successful extract*/
 					if (inst.isQcCheck()) {
-						if (ErrorLogger.success()) {//QC - Subsection #1 of 1
+						if (overallSuccess) {//QC - Subsection #1 of 1
 							ErrorLogger.logInfo("Extractor", "qcCheck detected");
 							ErrorLogger.logInfo("Extractor", "Entering into the QC Subsection #1 of 1...");
 							jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_QCPROCESSING.getCvName(),"Processing QC Job");
