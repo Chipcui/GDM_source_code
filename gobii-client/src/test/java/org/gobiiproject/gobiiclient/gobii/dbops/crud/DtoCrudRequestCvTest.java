@@ -9,7 +9,7 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -46,7 +46,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
     public void get() throws Exception {
         RestUri restUriCv = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_CV);
+                .resourceColl(RestRequestId.URL_CV);
         GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriCv);
         PayloadEnvelope<CvDTO> resultEnvelope = gobiiEnvelopeRestResource.get(CvDTO.class);
 
@@ -60,7 +60,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         Integer cvId = cvDTOList.get(0).getCvId();
         RestUri restUriCvForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                .resourceByUriIdParam(RestRequestId.URL_CV);
         restUriCvForGetById.setParamValue("id", cvId.toString());
         GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
         PayloadEnvelope<CvDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById
@@ -77,7 +77,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
     @Override
     public void testEmptyResult() throws Exception {
 
-        DtoRestRequestUtils<CvDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(CvDTO.class, GobiiServiceRequestId.URL_CV);
+        DtoRestRequestUtils<CvDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(CvDTO.class, RestRequestId.URL_CV);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentID = maxId + 1;
 
@@ -101,7 +101,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         PayloadEnvelope<CvDTO> payloadEnvelope = new PayloadEnvelope<>(newCvDto, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_CV));
+                .resourceColl(RestRequestId.URL_CV));
         PayloadEnvelope<CvDTO> cvDTOResponseEnvelope = gobiiEnvelopeRestResource.post(CvDTO.class,
                 payloadEnvelope);
         CvDTO cvDTOResponse = cvDTOResponseEnvelope.getPayload().getData().get(0);
@@ -116,7 +116,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         RestUri restUriCvForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                .resourceByUriIdParam(RestRequestId.URL_CV);
         restUriCvForGetById.setParamValue("id", cvDTOResponse.getCvId().toString());
         GobiiEnvelopeRestResource<CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
         PayloadEnvelope<CvDTO> resultEnvelopeForGetByID = restResourceForGetById
@@ -143,7 +143,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
             PayloadEnvelope<CvDTO> payloadEnvelope = new PayloadEnvelope<>(newCvDto, GobiiProcessType.CREATE);
             GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(GobiiServiceRequestId.URL_CV));
+                    .resourceColl(RestRequestId.URL_CV));
             PayloadEnvelope<CvDTO> cvDTOResponseEnvelope = gobiiEnvelopeRestResource.post(CvDTO.class,
                     payloadEnvelope);
 
@@ -176,7 +176,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         PayloadEnvelope<CvDTO> payloadEnvelope = new PayloadEnvelope<>(newCvDto, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<CvDTO> restResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_CV));
+                .resourceColl(RestRequestId.URL_CV));
         PayloadEnvelope<CvDTO> protocolDTOResponseEnvelope = restResource.post(CvDTO.class,
                 payloadEnvelope);
         CvDTO newCvDTOResponse = protocolDTOResponseEnvelope.getPayload().getData().get(0);
@@ -185,7 +185,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         RestUri restUriCvForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                .resourceByUriIdParam(RestRequestId.URL_CV);
         restUriCvForGetById.setParamValue("id", newCvDTOResponse.getCvId().toString());
         GobiiEnvelopeRestResource<CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
         PayloadEnvelope<CvDTO> resultEnvelopeForGetByID = restResourceForGetById
@@ -226,7 +226,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         Integer systemType = GobiiCvGroupType.GROUP_TYPE_SYSTEM.getGroupTypeId();
         RestUri restUriCvGroupByType = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CVGROUP)
+                .resourceByUriIdParam(RestRequestId.URL_CVGROUP)
                 .setParamValue("id", systemType.toString());
 
         GobiiEnvelopeRestResource<CvGroupDTO> restResourceForGetCvByType = new GobiiEnvelopeRestResource<>(restUriCvGroupByType);
@@ -262,7 +262,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         RestUri restUriCvForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                .resourceByUriIdParam(RestRequestId.URL_CV);
         restUriCvForGetById.setParamValue("id", "1");
         GobiiEnvelopeRestResource<CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
         PayloadEnvelope<CvDTO> resultEnvelopeForGetByID = restResourceForGetById
@@ -327,7 +327,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         GobiiEnvelopeRestResource<CvDTO> restResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_CV));
+                .resourceColl(RestRequestId.URL_CV));
 
         PayloadEnvelope<CvDTO> protocolDTOResponseEnvelope = restResource.post(CvDTO.class,
                 payloadEnvelope);
@@ -340,7 +340,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         RestUri restUriCvForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                .resourceByUriIdParam(RestRequestId.URL_CV);
 
         restUriCvForGetById.setParamValue("id", newCvDTOResponse.getCvId().toString());
         GobiiEnvelopeRestResource<CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
@@ -361,7 +361,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         RestUri restUriCvForGetByIdDeleted = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                .resourceByUriIdParam(RestRequestId.URL_CV);
         restUriCvForGetByIdDeleted.setParamValue("id", newCvId.toString());
         GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetByIdDeleted);
         PayloadEnvelope<CvDTO> resultEnvelopeForGetByIdDeleted = gobiiEnvelopeRestResourceForGetById
@@ -386,7 +386,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
         if (systemOnlyGroupId > 0) {
             RestUri restUriCvForGetById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                    .resourceByUriIdParam(RestRequestId.URL_CV);
 
             restUriCvForGetById.setParamValue("id", "1");
             GobiiEnvelopeRestResource<CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
@@ -414,7 +414,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
             RestUri restUriCvForGetByIdDeleted = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                    .resourceByUriIdParam(RestRequestId.URL_CV);
             restUriCvForGetByIdDeleted.setParamValue("id", cvDTOReceived.getCvId().toString());
             GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetByIdDeleted);
             PayloadEnvelope<CvDTO> resultEnvelopeForGetByIdDeleted = gobiiEnvelopeRestResourceForGetById
@@ -436,7 +436,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         RestUri restUriCv = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_CV);
+                .resourceColl(RestRequestId.URL_CV);
         GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriCv);
         PayloadEnvelope<CvDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(CvDTO.class);
@@ -481,7 +481,7 @@ public class DtoCrudRequestCvTest implements DtoCrudRequestTest {
 
         RestUri restUriCvForGetByGroupName = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParamName("groupName", GobiiServiceRequestId.URL_CV);
+                .resourceByUriIdParamName("groupName", RestRequestId.URL_CV);
         restUriCvForGetByGroupName.setParamValue("groupName", "germplasm_prop");
         GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResourceForGetByGroupName = new GobiiEnvelopeRestResource<>(restUriCvForGetByGroupName);
         PayloadEnvelope<CvDTO> resultEnvelopeForGetByGroupName = gobiiEnvelopeRestResourceForGetByGroupName

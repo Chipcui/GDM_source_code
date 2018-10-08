@@ -5,7 +5,7 @@ import org.gobiiproject.gobidomain.services.ExtractorInstructionFilesService;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiibrapi.core.common.BrapiMetaData;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.cvnames.CvGroup;
@@ -191,7 +191,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
                                 // first make the http link
                                 RestUri restUri = new GobiiUriFactory(request.getServerName(), request.getServerPort(),
                                         request.getContextPath(), GobiiControllerType.GOBII)
-                                        .resourceColl(GobiiServiceRequestId.URL_FILES)
+                                        .resourceColl(RestRequestId.URL_FILES)
                                         .addUriParam("gobiiJobId", jobId)
                                         .addUriParam("destinationType", GobiiFileProcessDir.EXTRACTOR_OUTPUT.toString().toLowerCase())
                                         .addQueryParam("fileName", currentFile.getName());

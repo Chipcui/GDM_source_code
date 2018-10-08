@@ -4,7 +4,7 @@ import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -125,7 +125,7 @@ public class DtoRequestFileExtractorInstructionsTest {
 
         PayloadEnvelope<ExtractorInstructionFilesDTO> payloadEnvelope = new PayloadEnvelope<>(extractorInstructionFilesDTOToSend, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO> gobiiEnvelopeRestResourceForPost = new GobiiEnvelopeRestResource<>(gobiiUriFactory
-                .resourceColl(GobiiServiceRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS));
+                .resourceColl(RestRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS));
         PayloadEnvelope<ExtractorInstructionFilesDTO> extractorInstructionFileDTOResponseEnvelope = gobiiEnvelopeRestResourceForPost.post(ExtractorInstructionFilesDTO.class,
                 payloadEnvelope);
 
@@ -177,7 +177,7 @@ public class DtoRequestFileExtractorInstructionsTest {
         String jobName = extractorInstructionFilesDTOretrieveResponse.getJobId();
         RestUri restUriForJob = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_JOB)
+                .resourceColl(RestRequestId.URL_JOB)
                 .addUriParam("jobName", jobName);
         GobiiEnvelopeRestResource<JobDTO> gobiiEnvelopeRestResourceForJob = new GobiiEnvelopeRestResource<>(restUriForJob);
         PayloadEnvelope<JobDTO> resultEnvelopeForJob = gobiiEnvelopeRestResourceForJob
@@ -197,7 +197,7 @@ public class DtoRequestFileExtractorInstructionsTest {
         Integer extractedDataSetId = extractorInstructionFilesDTOretrieveResponse.getGobiiExtractorInstructions().get(0).getDataSetExtracts().get(0).getDataSet().getId();
         RestUri dataSetUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_DATASETS);
+                .resourceByUriIdParam(RestRequestId.URL_DATASETS);
         dataSetUri.setParamValue("id", extractedDataSetId.toString());
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForExtractedDataset = new GobiiEnvelopeRestResource<>(dataSetUri);
         PayloadEnvelope<DataSetDTO> resultEnvelopeForExrtractedDataset = gobiiEnvelopeRestResourceForExtractedDataset
@@ -266,7 +266,7 @@ public class DtoRequestFileExtractorInstructionsTest {
 
         RestUri restUriExtractorInstructionsForGetByFilename = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS)
+                .resourceByUriIdParam(RestRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS)
                 .setParamValue("id",extractorInstructionFilesDTOFromSecondRetrieval.getJobId());
         GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriExtractorInstructionsForGetByFilename);
         PayloadEnvelope<ExtractorInstructionFilesDTO> resultEnvelopeForGetStatusByFileName = gobiiEnvelopeRestResourceForGetById

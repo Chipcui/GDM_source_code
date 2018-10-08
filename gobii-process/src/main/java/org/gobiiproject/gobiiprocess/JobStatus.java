@@ -4,7 +4,7 @@ import org.gobiiproject.gobiiapimodel.payload.HeaderStatusMessage;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
@@ -66,7 +66,7 @@ public class JobStatus {
 		}
             try{
                 RestUri restUri=uriFactory
-                        .resourceByUriIdParam(GobiiServiceRequestId.URL_JOB);
+                        .resourceByUriIdParam(RestRequestId.URL_JOB);
                 restUri.setParamValue("id", jobName);
             GobiiEnvelopeRestResource<JobDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUri);
             PayloadEnvelope<JobDTO> resultEnvelope = gobiiEnvelopeRestResource

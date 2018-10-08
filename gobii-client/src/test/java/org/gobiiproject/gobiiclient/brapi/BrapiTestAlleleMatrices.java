@@ -3,7 +3,7 @@ package org.gobiiproject.gobiiclient.brapi;
 import org.apache.commons.lang.ObjectUtils;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrices.BrapiResponseAlleleMatrices;
 import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelopeMasterDetail;
 import org.gobiiproject.gobiiclient.core.brapi.BrapiEnvelopeRestResource;
@@ -20,7 +20,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Phil on 12/15/2016.
@@ -51,7 +50,7 @@ public class BrapiTestAlleleMatrices {
 
         RestUri alleleMatrices = GobiiClientContext.getInstance(null, false)
                 .getUriFactory(GobiiControllerType.BRAPI)
-                .resourceColl(GobiiServiceRequestId.URL_ALLELE_MATRICES);
+                .resourceColl(RestRequestId.URL_ALLELE_MATRICES);
 
 
         BrapiEnvelopeRestResource<ObjectUtils.Null, ObjectUtils.Null, BrapiResponseAlleleMatrices> brapiEnvelopeRestResource =

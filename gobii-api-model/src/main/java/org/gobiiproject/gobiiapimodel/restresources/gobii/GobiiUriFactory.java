@@ -3,11 +3,9 @@ package org.gobiiproject.gobiiapimodel.restresources.gobii;
 
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
-import org.gobiiproject.gobiimodel.types.GobiiExtractFilterType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 
 /**
  * Created by Phil on 9/7/2016.
@@ -42,7 +40,7 @@ public class GobiiUriFactory {
         return new RestUri(uri);
     }
 
-    public RestUri resourceColl(GobiiServiceRequestId gobiiServiceRequestId) throws Exception {
+    public RestUri resourceColl(RestRequestId restRequestId) throws Exception {
 
         RestUri returnVal;
 
@@ -50,65 +48,65 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                gobiiServiceRequestId.getResourcePath());
+                restRequestId.getResourcePath());
 
         return returnVal;
 
     } //
 
-    public static RestUri resourceColl(String contextRoot, GobiiServiceRequestId gobiiServiceRequestId) throws Exception {
+    public static RestUri resourceColl(String contextRoot, RestRequestId restRequestId) throws Exception {
 
         RestUri returnVal;
 
         returnVal = new RestUri(contextRoot,
                 GobiiControllerType.GOBII.getControllerPath(),
-                gobiiServiceRequestId.getResourcePath());
+                restRequestId.getResourcePath());
 
         return returnVal;
 
     } //
 
-    public RestUri resourceByUriIdParam(GobiiServiceRequestId gobiiServiceRequestId) throws Exception {
+    public RestUri resourceByUriIdParam(RestRequestId restRequestId) throws Exception {
 
         String paramName = "id";
         return new RestUri(this.domain,
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                gobiiServiceRequestId.getResourcePath())
+                restRequestId.getResourcePath())
                 .addUriParam(paramName);
     } //
 
-    public RestUri resourceByUriIdParamName(String paramName, GobiiServiceRequestId gobiiServiceRequestId) throws Exception {
+    public RestUri resourceByUriIdParamName(String paramName, RestRequestId restRequestId) throws Exception {
 
         return new RestUri(this.domain,
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                gobiiServiceRequestId.getResourcePath())
+                restRequestId.getResourcePath())
                 .addUriParam(paramName);
     } //
 
-    public static RestUri resourceByUriIdParam(String contextRoot, GobiiServiceRequestId gobiiServiceRequestId) throws Exception {
+    public static RestUri resourceByUriIdParam(String contextRoot, RestRequestId restRequestId) throws Exception {
 
         String paramName = "id";
         return new RestUri(contextRoot,
                 GobiiControllerType.GOBII.getControllerPath(),
-                gobiiServiceRequestId.getResourcePath())
+                restRequestId.getResourcePath())
                 .addUriParam(paramName);
     } //
 
 
-    public RestUri childResourceByUriIdParam(GobiiServiceRequestId parentGobiiServiceRequestId, GobiiServiceRequestId childGobiiServiceRequestId) throws Exception {
+    public RestUri childResourceByUriIdParam(RestRequestId parentRestRequestId, RestRequestId childRestRequestId) throws Exception {
 
         String paramName = "id";
         RestUri returnVal = new RestUri(this.domain,
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                parentGobiiServiceRequestId.getResourcePath())
+                parentRestRequestId.getResourcePath())
                 .addUriParam(paramName)
-                .appendSegment(childGobiiServiceRequestId);
+                .appendSegment(childRestRequestId);
 
         return returnVal;
 
@@ -120,7 +118,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_CONTACT_SEARCH.getResourcePath())
+                RestRequestId.URL_CONTACT_SEARCH.getResourcePath())
                 .addQueryParam("email")
                 .addQueryParam("lastName")
                 .addQueryParam("firstName")
@@ -136,7 +134,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_CVGROUP.getResourcePath())
+                RestRequestId.URL_CVGROUP.getResourcePath())
                 .addUriParam("groupName")
                 .addQueryParam("cvGroupTypeId");
 
@@ -149,7 +147,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_MARKER_SEARCH.getResourcePath())
+                RestRequestId.URL_MARKER_SEARCH.getResourcePath())
                 .addQueryParam("name");
 
         return returnVal;
@@ -162,7 +160,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_NAMES.getResourcePath())
+                RestRequestId.URL_NAMES.getResourcePath())
                 .addUriParam("entity")
                 .addQueryParam("filterType")
                 .addQueryParam("filterValue");
@@ -177,7 +175,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_FILE_LOAD.getResourcePath())
+                RestRequestId.URL_FILE_LOAD.getResourcePath())
                 .addUriParam("directoryName")
                 .addQueryParam("fileFormat");
 
@@ -193,7 +191,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_FILES.getResourcePath())
+                RestRequestId.URL_FILES.getResourcePath())
                 .addUriParam("gobiiJobId", jobId)
                 .addUriParam("destinationType", gobiiFileProcessDir.toString())
                 .addQueryParam("fileName", fileName);
@@ -208,7 +206,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_FILES.getResourcePath())
+                RestRequestId.URL_FILES.getResourcePath())
                 .addUriParam("destinationType", gobiiFileProcessDir.toString())
                 .addQueryParam("fileName", fileName);
 
@@ -221,9 +219,9 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_ENTITIES.getResourcePath())
+                RestRequestId.URL_ENTITIES.getResourcePath())
                 .addUriParam("entityName", gobiiEntityNameType.toString().toLowerCase())
-                .appendSegment(GobiiServiceRequestId.URL_COUNT);
+                .appendSegment(RestRequestId.URL_COUNT);
 
         return returnVal;
     }
@@ -236,11 +234,11 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_ENTITIES.getResourcePath())
+                RestRequestId.URL_ENTITIES.getResourcePath())
                 .addUriParam("entityNameParent", gobiiEntityNameTypeParent.toString().toLowerCase())
                 .addUriParam("parentId", parentId.toString())
                 .addUriParam("entityNameChild", gobiiEntityNameTypeChild.toString())
-                .appendSegment(GobiiServiceRequestId.URL_COUNT);
+                .appendSegment(RestRequestId.URL_COUNT);
 
         return returnVal;
     }
@@ -251,19 +249,19 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                GobiiServiceRequestId.URL_ENTITIES.getResourcePath())
+                RestRequestId.URL_ENTITIES.getResourcePath())
                 .addUriParam("entityName", gobiiEntityNameType.toString().toLowerCase())
-                .appendSegment(GobiiServiceRequestId.URL_LAST_MODIFIED);
+                .appendSegment(RestRequestId.URL_LAST_MODIFIED);
 
         return returnVal;
     }
 
-    public RestUri pagedList(GobiiServiceRequestId gobiiServiceRequestId,
+    public RestUri pagedList(RestRequestId restRequestId,
                              Integer pageSize,
                              Integer pageNo,
                              String queryId) throws Exception {
 
-        RestUri returnVal = this.resourceColl(gobiiServiceRequestId)
+        RestUri returnVal = this.resourceColl(restRequestId)
                 .addQueryParam("pageSize", pageSize.toString())
                 .addQueryParam("pageNo", pageNo.toString())
                 .addQueryParam("queryId", queryId);

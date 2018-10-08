@@ -4,7 +4,7 @@ package org.gobiiproject.gobiiclient.brapi;
 import org.apache.commons.lang.ObjectUtils;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiibrapi.calls.studies.observationvariables.BrapiResponseObservationVariablesMaster;
 import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelopeMaster;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
@@ -39,8 +39,8 @@ public class BrapiTestObservationVariables {
 
         RestUri restUriObservationVariables = GobiiClientContext.getInstance(null, false)
                 .getUriFactory(GobiiControllerType.BRAPI)
-                .childResourceByUriIdParam(GobiiServiceRequestId.URL_STUDIES,
-                        GobiiServiceRequestId.URL_OBSERVATION_VARIABLES);
+                .childResourceByUriIdParam(RestRequestId.URL_STUDIES,
+                        RestRequestId.URL_OBSERVATION_VARIABLES);
         restUriObservationVariables.setParamValue("id", "1");
 
         BrapiEnvelopeRestResource<ObjectUtils.Null, BrapiResponseObservationVariablesMaster, BrapiResponseObservationVariablesMaster> brapiEnvelopeRestResource =

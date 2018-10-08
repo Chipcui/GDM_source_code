@@ -1558,7 +1558,7 @@ public class GobiiConfig {
 //                //DtoRequestPing dtoRequestPing = new DtoRequestPing();
 //                GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
 //                        .getUriFactory()
-//                        .resourceColl(GobiiServiceRequestId.URL_PING));
+//                        .resourceColl(RestRequestId.URL_PING));
 //
 //                PayloadEnvelope<PingDTO> resultEnvelopePing = gobiiEnvelopeRestResourcePingDTO.post(PingDTO.class,
 //                        new PayloadEnvelope<>(pingDTORequest, GobiiProcessType.CREATE));

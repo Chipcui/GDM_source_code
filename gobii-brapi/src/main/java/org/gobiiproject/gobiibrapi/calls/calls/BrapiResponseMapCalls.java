@@ -2,7 +2,7 @@ package org.gobiiproject.gobiibrapi.calls.calls;
 
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiibrapi.types.BrapiDataTypes;
 import org.gobiiproject.gobiimodel.types.RestMethodTypes;
 
@@ -29,37 +29,37 @@ public class BrapiResponseMapCalls {
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
                 GobiiControllerType.BRAPI.getControllerPath(),
-                GobiiServiceRequestId.URL_CALLS.getResourcePath()),
+                RestRequestId.URL_CALLS.getResourcePath()),
                 Arrays.asList(RestMethodTypes.GET),
                 Arrays.asList(BrapiDataTypes.JSON)));
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
                 GobiiControllerType.BRAPI.getControllerPath(),
-                GobiiServiceRequestId.URL_STUDIES_SEARCH.getResourcePath()),
+                RestRequestId.URL_STUDIES_SEARCH.getResourcePath()),
                 Arrays.asList(RestMethodTypes.POST),
                 Arrays.asList(BrapiDataTypes.JSON)));
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
                 GobiiControllerType.BRAPI.getControllerPath(),
-                GobiiServiceRequestId.URL_GERMPLASM.getResourcePath()).addUriParam("id"),
+                RestRequestId.URL_GERMPLASM.getResourcePath()).addUriParam("id"),
                 Arrays.asList(RestMethodTypes.POST),
                 Arrays.asList(BrapiDataTypes.JSON)));
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
                 GobiiControllerType.BRAPI.getControllerPath(),
-                GobiiServiceRequestId.URL_STUDIES.getResourcePath()).addUriParam("id").appendSegment(GobiiServiceRequestId.URL_OBSERVATION_VARIABLES),
+                RestRequestId.URL_STUDIES.getResourcePath()).addUriParam("id").appendSegment(RestRequestId.URL_OBSERVATION_VARIABLES),
                 Arrays.asList(RestMethodTypes.POST),
                 Arrays.asList(BrapiDataTypes.JSON)));
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
                 GobiiControllerType.BRAPI.getControllerPath(),
-                GobiiServiceRequestId.URL_ALLELE_MATRICES.getResourcePath()).addQueryParam("studyDbId"),
+                RestRequestId.URL_ALLELE_MATRICES.getResourcePath()).addQueryParam("studyDbId"),
                 Arrays.asList(RestMethodTypes.GET),
                 Arrays.asList(BrapiDataTypes.JSON)));
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
                 GobiiControllerType.BRAPI.getControllerPath(),
-                GobiiServiceRequestId.URL_ALLELE_MATRIX_SEARCH .getResourcePath()),
+                RestRequestId.URL_ALLELE_MATRIX_SEARCH .getResourcePath()),
                 Arrays.asList(RestMethodTypes.GET,RestMethodTypes.POST),
                 Arrays.asList(BrapiDataTypes.FLAPJACK)));
 

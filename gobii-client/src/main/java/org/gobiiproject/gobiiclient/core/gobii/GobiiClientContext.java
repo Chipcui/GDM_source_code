@@ -4,7 +4,7 @@ import org.apache.http.HttpStatus;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.common.HttpCore;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiimodel.types.GobiiAutoLoginType;
@@ -249,7 +249,7 @@ public final class GobiiClientContext {
         // The /configsettings resource does not require authentication
         // this should be the only case in which we don't provide a crop ID
         HttpCore httpCore = new HttpCore(host, port);
-        String settingsPath = GobiiServiceRequestId.URL_CONFIGSETTINGS.getRequestUrl(context, GobiiControllerType.GOBII.getControllerPath());
+        String settingsPath = RestRequestId.URL_CONFIGSETTINGS.getRequestUrl(context, GobiiControllerType.GOBII.getControllerPath());
 
         RestUri configSettingsUri = new GobiiUriFactory(null).RestUriFromUri(settingsPath);
         HttpMethodResult httpMethodResult = httpCore.get(configSettingsUri);
@@ -464,7 +464,7 @@ public final class GobiiClientContext {
         this.cropId = cropId;
 
         try {
-            String authUrl = GobiiServiceRequestId.URL_AUTH
+            String authUrl = RestRequestId.URL_AUTH
                     .getRequestUrl(this.getCurrentCropContextRoot(),
                             GobiiControllerType.GOBII.getControllerPath());
 

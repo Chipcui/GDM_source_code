@@ -7,7 +7,7 @@ package org.gobiiproject.gobiiclient.gobii.infrastructure;
 
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiTestConfiguration;
@@ -59,7 +59,7 @@ public class DtoRequestMultiDbTest {
 
         RestUri confgSettingsUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_CONFIGSETTINGS);
+                .resourceColl(RestRequestId.URL_CONFIGSETTINGS);
 
         GobiiEnvelopeRestResource<ConfigSettingsDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(confgSettingsUri);
         PayloadEnvelope<ConfigSettingsDTO> resultEnvelope = gobiiEnvelopeRestResource
@@ -82,7 +82,7 @@ public class DtoRequestMultiDbTest {
             //DtoRequestPing dtoRequestPing = new DtoRequestPing();
             GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(GobiiServiceRequestId.URL_PING));
+                    .resourceColl(RestRequestId.URL_PING));
 
             PayloadEnvelope<PingDTO> resultEnvelopePing = gobiiEnvelopeRestResourcePingDTO.post(PingDTO.class,
                     new PayloadEnvelope<>(pingDTORequest, GobiiProcessType.CREATE));
@@ -134,7 +134,7 @@ public class DtoRequestMultiDbTest {
             PayloadEnvelope<CvDTO> payloadEnvelope = new PayloadEnvelope<>(currentCvDtoRequest, GobiiProcessType.CREATE);
             GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(GobiiServiceRequestId.URL_CV));
+                    .resourceColl(RestRequestId.URL_CV));
             PayloadEnvelope<CvDTO> cvDTOResponseEnvelope = gobiiEnvelopeRestResource.post(CvDTO.class,
                     payloadEnvelope);
             CvDTO cvDTOResponse = cvDTOResponseEnvelope.getPayload().getData().get(0);
@@ -149,7 +149,7 @@ public class DtoRequestMultiDbTest {
 
             RestUri restUriCvForGetById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
+                    .resourceByUriIdParam(RestRequestId.URL_CV);
             restUriCvForGetById.setParamValue("id", cvDTOResponse.getCvId().toString());
             GobiiEnvelopeRestResource<CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
             PayloadEnvelope<CvDTO> resultEnvelopeForGetByID = restResourceForGetById

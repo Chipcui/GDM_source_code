@@ -1,7 +1,7 @@
 package org.gobiiproject.gobiiapimodel.restresources.gobii;
 
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 
@@ -21,83 +21,83 @@ public class GobiiEntityNameConverter {
 
                 case ANALYSIS:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_ANALYSIS);
+                            RestRequestId.URL_ANALYSIS);
                     break;
 
                 case CONTACT:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_CONTACTS);
+                            RestRequestId.URL_CONTACTS);
                     break;
 
                 case DATASET:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_DATASETS);
+                            RestRequestId.URL_DATASETS);
                     break;
 
                 case CV:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_CV);
+                            RestRequestId.URL_CV);
                     break;
 
                 case CVGROUP:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_CV);
+                            RestRequestId.URL_CV);
                     break;
 
                 case PROJECT:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_PROJECTS);
+                            RestRequestId.URL_PROJECTS);
                     break;
 
                 case ORGANIZATION:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_ORGANIZATION);
+                            RestRequestId.URL_ORGANIZATION);
                     break;
 
                 case PLATFORM:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_PLATFORM);
+                            RestRequestId.URL_PLATFORM);
                     break;
 
                 case MANIFEST:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_MANIFEST);
+                            RestRequestId.URL_MANIFEST);
                     break;
 
                 case MAPSET:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_MAPSET);
+                            RestRequestId.URL_MAPSET);
                     break;
 
                 case MARKER_GROUP:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_MARKERGROUP);
+                            RestRequestId.URL_MARKERGROUP);
                     break;
 
                 case EXPERIMENT:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_EXPERIMENTS);
+                            RestRequestId.URL_EXPERIMENTS);
                     break;
 
                 case REFERENCE:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_REFERENCE);
+                            RestRequestId.URL_REFERENCE);
                     break;
 
                 case ROLE:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_ROLES);
+                            RestRequestId.URL_ROLES);
                     break;
 
                 case PROTOCOL:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_PROTOCOL);
+                            RestRequestId.URL_PROTOCOL);
                     break;
 
                 case VENDOR_PROTOCOL:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
-                            GobiiServiceRequestId.URL_PROTOCOL)
-                            .appendSegment(GobiiServiceRequestId.URL_VENDORS);
+                            RestRequestId.URL_PROTOCOL)
+                            .appendSegment(RestRequestId.URL_VENDORS);
                     break;
 
                 default:

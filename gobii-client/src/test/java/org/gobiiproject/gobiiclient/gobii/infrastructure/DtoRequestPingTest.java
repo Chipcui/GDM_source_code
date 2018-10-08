@@ -6,7 +6,7 @@
 package org.gobiiproject.gobiiclient.gobii.infrastructure;
 
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -40,7 +40,7 @@ public class DtoRequestPingTest {
         //DtoRequestPing dtoRequestPing = new DtoRequestPing();
         GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_PING));
+                .resourceColl(RestRequestId.URL_PING));
 
         PayloadEnvelope<PingDTO> resultEnvelopePing = gobiiEnvelopeRestResourcePingDTO.post(PingDTO.class,
                 new PayloadEnvelope<>(pingDTORequest, GobiiProcessType.CREATE));

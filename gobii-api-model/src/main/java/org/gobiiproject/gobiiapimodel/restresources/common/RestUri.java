@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiapimodel.restresources.common;
 
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 
@@ -175,10 +175,10 @@ public class RestUri {
         return this;
     }
 
-    public RestUri appendSegment(GobiiServiceRequestId gobiiServiceRequestId) throws Exception {
+    public RestUri appendSegment(RestRequestId restRequestId) throws Exception {
 
         this.requestTemplate = this.delimitSegment(this.requestTemplate);
-        String segment = gobiiServiceRequestId.getResourcePath();
+        String segment = restRequestId.getResourcePath();
 
         this.requestTemplate += this.delimitSegment(segment);
 

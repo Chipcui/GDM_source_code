@@ -7,7 +7,7 @@ import org.gobiiproject.gobiimodel.utils.LineUtils;
  */
 
 
-public enum GobiiServiceRequestId {
+public enum RestRequestId {
 
     URL_AUTH("auth"),
     URL_PING("ping"),
@@ -60,7 +60,7 @@ public enum GobiiServiceRequestId {
 
     private String requestPath;
 
-    GobiiServiceRequestId(String requestPath) {
+    RestRequestId(String requestPath) {
         this.requestPath = requestPath;
     }
 

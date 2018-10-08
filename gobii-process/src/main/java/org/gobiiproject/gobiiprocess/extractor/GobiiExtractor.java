@@ -19,7 +19,7 @@ import org.gobiiproject.gobiiapimodel.payload.HeaderStatusMessage;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.common.GenericClientContext;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
@@ -1086,7 +1086,7 @@ public class GobiiExtractor {
 			GobiiUriFactory gobiiUriFactory = new GobiiUriFactory(currentCropContextRoot);
 
 			RestUri mapUri = gobiiUriFactory
-					.resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
+					.resourceByUriIdParam(RestRequestId.URL_MAPSET);
 			mapUri.setParamValue("id", mapId.toString());
 			GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(mapUri);
 			PayloadEnvelope<MapsetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDatasets

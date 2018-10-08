@@ -6,11 +6,9 @@
 package org.gobiiproject.gobiiclient.gobii.flex;
 
 
-import org.apache.http.HttpStatus;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
-import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
+import org.gobiiproject.gobiiapimodel.types.RestRequestId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -27,7 +25,6 @@ import org.gobiiproject.gobiimodel.dto.entity.flex.VertexFilterDTO;
 import org.gobiiproject.gobiimodel.dto.entity.flex.Vertices;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiEntitySubType;
-import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 import org.gobiiproject.gobiimodel.types.GobiiVertexType;
 import org.gobiiproject.gobiimodel.utils.DateUtils;
@@ -36,7 +33,6 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,7 +112,7 @@ public class DtoRequestFlexQueryTest {
 
         RestUri restUriVertices = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_VERTICES);
+                .resourceColl(RestRequestId.URL_VERTICES);
 
         GobiiEnvelopeRestResource<VertexDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriVertices);
         PayloadEnvelope<VertexDTO> resultEnvelope = gobiiEnvelopeRestResource
@@ -150,9 +146,9 @@ public class DtoRequestFlexQueryTest {
         String jobId = DateUtils.makeDateIdString() + "_test";
         RestUri restUriVerticesValues = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_VERTICES)
+                .resourceColl(RestRequestId.URL_VERTICES)
                 .addUriParam("jobId", jobId)
-                .appendSegment(GobiiServiceRequestId.URL_VALUES);
+                .appendSegment(RestRequestId.URL_VALUES);
 
 
         // Add destination vertex
@@ -232,9 +228,9 @@ public class DtoRequestFlexQueryTest {
         String jobId = DateUtils.makeDateIdString() + "_test";
         RestUri restUriVerticesValuesCount = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_VERTICES)
+                .resourceColl(RestRequestId.URL_VERTICES)
                 .addUriParam("jobId", jobId)
-                .appendSegment(GobiiServiceRequestId.URL_COUNT);
+                .appendSegment(RestRequestId.URL_COUNT);
 
 
         VertexFilterDTO vertexFilterDTO = new VertexFilterDTO();
