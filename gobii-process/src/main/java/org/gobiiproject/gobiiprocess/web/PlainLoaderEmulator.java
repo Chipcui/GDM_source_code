@@ -16,7 +16,7 @@ public class PlainLoaderEmulator {
 
             ConfigSettings configSettings = new ConfigSettings("C:\\gobii-config\\gobii-web.properties");
             for(GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs() ) {
-                System.out.println(currentGobiiCropConfig.getServer(GobiiServerType.WEB).getHost());
+                System.out.println(currentGobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getHost());
             }
 
 

@@ -5,7 +5,6 @@ import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
@@ -355,7 +354,7 @@ ConfigValues {
         gobiiCropConfig
                 .setGobiiCropType(gobiiCropType)
                 .setActive(isActive)
-                .addServer(GobiiServerType.WEB,
+                .addServer(GobiiServerType.GOBII_WEB,
                         serviceDomain,
                         serviceAppRoot,
                         servicePort,

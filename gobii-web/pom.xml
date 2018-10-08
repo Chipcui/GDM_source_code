@@ -71,7 +71,7 @@
             <!--</exclusions>-->
         </dependency>
 
-        <!-- Spring WEB -->
+        <!-- Spring GOBII_WEB -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>

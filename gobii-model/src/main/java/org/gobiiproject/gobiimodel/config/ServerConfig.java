@@ -30,9 +30,9 @@ public class ServerConfig {
                         String rawUserFilesDir,
                         String confidentialityNoticeFqpn) throws Exception {
 
-        this.port = gobiiCropConfig.getServer(GobiiServerType.WEB).getPort();
-        this.domain = gobiiCropConfig.getServer(GobiiServerType.WEB).getHost();
-        this.contextRoot = gobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath();
+        this.port = gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getPort();
+        this.domain = gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getHost();
+        this.contextRoot = gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getContextPath();
         this.gobiiCropType = gobiiCropConfig.getGobiiCropType();
 
         fileLocations

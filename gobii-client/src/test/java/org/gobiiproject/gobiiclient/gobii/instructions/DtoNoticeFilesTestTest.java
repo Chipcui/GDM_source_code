@@ -164,7 +164,7 @@ public class DtoNoticeFilesTestTest {
 
 
         //*****************************************************************
-        // CHECK THAT WE GET THE NOTICE VIA THE WEB SERVICE
+        // CHECK THAT WE GET THE NOTICE VIA THE GOBII_WEB SERVICE
         GobiiClientContext.resetConfiguration();
         Assert.assertTrue(GobiiClientContextAuth.authenticate());
 

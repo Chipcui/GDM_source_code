@@ -46,7 +46,7 @@ public class CropRequestAnalyzer {
                 GobiiCropConfig currentCropConfig = CONFIG_SETTINGS.getActiveCropConfigs().get(idx);
 
                 String rawContextPath = currentCropConfig
-                        .getServer(GobiiServerType.WEB)
+                        .getServer(GobiiServerType.GOBII_WEB)
                         .getContextPath();
 
                 // double check that context paths are unique
@@ -54,7 +54,7 @@ public class CropRequestAnalyzer {
                         .getActiveCropConfigs()
                         .stream()
                         .filter(cc -> {
-                            return cc.getServer(GobiiServerType.WEB)
+                            return cc.getServer(GobiiServerType.GOBII_WEB)
                                     .getContextPath().equals(rawContextPath);
                         })
                         .count() < 2) {

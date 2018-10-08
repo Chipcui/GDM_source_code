@@ -36,7 +36,7 @@ public class ConfigSupplement {
         Map<Object,Object> targetDataSources = new HashMap<>();
         for (GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs()) {
 
-            ServerBase currentPostGresConfig = currentGobiiCropConfig.getServer(GobiiServerType.POSTGRESQL);
+            ServerBase currentPostGresConfig = currentGobiiCropConfig.getServer(GobiiServerType.GOBII_PGSQL);
             DriverManagerDataSource currentDataSource = new DriverManagerDataSource();
 
             currentDataSource.setDriverClassName("org.postgresql.Driver");

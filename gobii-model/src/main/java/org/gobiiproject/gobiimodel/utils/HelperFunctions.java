@@ -289,7 +289,7 @@ public class HelperFunctions {
      * @return The connection string
      */
     public static String getPostgresConnectionString(GobiiCropConfig config) {
-        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.GOBII_PGSQL);
         String ret = "postgresql://"
                 + postGresConfig.getUserName()
                 + ":"
@@ -324,7 +324,7 @@ public class HelperFunctions {
 
     public static String getJdbcConnectionString(GobiiCropConfig config) {
 
-        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.GOBII_PGSQL);
         String ret = getJdbcConnectionString(postGresConfig);
         return ret;
     }
@@ -339,7 +339,7 @@ public class HelperFunctions {
      * @return The safe connection string
      */
     public static String getSecurePostgresConnectionString(GobiiCropConfig config) {
-        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.GOBII_PGSQL);
         String ret = "postgresql://"
                 + PARAM_CTCN_USR
                 + ":"
@@ -363,7 +363,7 @@ public class HelperFunctions {
      */
     public static String replacePostgressCredentials(String secureString, GobiiCropConfig config) {
 
-        ServerBase postGresConfig = config.getServer(GobiiServerType.POSTGRESQL);
+        ServerBase postGresConfig = config.getServer(GobiiServerType.GOBII_PGSQL);
         String ret = secureString
                 .replace(PARAM_CTCN_USR, postGresConfig.getUserName())
                 .replace(PARAM_CTCN_PWD, postGresConfig.getPassword());

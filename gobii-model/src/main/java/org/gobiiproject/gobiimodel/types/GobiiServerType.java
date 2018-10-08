@@ -5,9 +5,9 @@ package org.gobiiproject.gobiimodel.types;
  */
 public enum GobiiServerType {
     // these must correspond to the jdbc driver name
-    POSTGRESQL,
-    WEB,
-    COMPUTE_NODE,
+    GOBII_PGSQL,
+    GOBII_WEB,
+    GOBII_COMPUTE,
     KDC,
     GENERIC,
     OWN_CLOUD,
