@@ -302,7 +302,7 @@ public class GobiiFileReader {
 
 		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_VALIDATION.getCvName(),"Database Validation");
 		//Database Validation
-		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getServer(GobiiServerType.GOBII_PGSQL));
+		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getServer(ServerType.GOBII_PGSQL));
 
 		//If we're doing a DS upload and there is no DS_Marker
 		if(loaderInstructionMap.containsKey(VARIANT_CALL_TABNAME) && loaderInstructionMap.containsKey(DS_MARKER_TABNAME) && !loaderInstructionMap.containsKey(MARKER_TABNAME)) {

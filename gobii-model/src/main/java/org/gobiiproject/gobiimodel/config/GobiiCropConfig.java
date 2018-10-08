@@ -1,7 +1,7 @@
 package org.gobiiproject.gobiimodel.config;
 
 
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
@@ -30,12 +30,12 @@ public class GobiiCropConfig {
     private boolean isActive;
 
     @ElementMap(required = false)
-    private Map<GobiiServerType, ServerBase> serversByServerType = new HashMap<>();
+    private Map<ServerType, ServerBase> serversByServerType = new HashMap<>();
 
     public GobiiCropConfig() {
     }
 
-    public void addServer(GobiiServerType gobiiServerType,
+    public void addServer(ServerType serverType,
                           String host,
                           String contextPath,
                           Integer port,
@@ -44,16 +44,16 @@ public class GobiiCropConfig {
                           boolean decrypt) {
 
         
-        ServerBase serverBase = this.serversByServerType.get(gobiiServerType);
+        ServerBase serverBase = this.serversByServerType.get(serverType);
         if (serverBase == null) {
 
             serverBase = new ServerBase();
-            this.serversByServerType.put(gobiiServerType, serverBase);
+            this.serversByServerType.put(serverType, serverBase);
 
         }
 
         serverBase
-                .setGobiiServerType(gobiiServerType)
+                .setServerType(serverType)
                 .setHost(host)
                 .setContextPath(contextPath)
                 .setPort(port)
@@ -62,13 +62,13 @@ public class GobiiCropConfig {
                 .setDecrypt(decrypt);
     }
 
-    public GobiiCropConfig setServersByServerType(Map<GobiiServerType, ServerBase> serversByServerType) {
+    public GobiiCropConfig setServersByServerType(Map<ServerType, ServerBase> serversByServerType) {
         this.serversByServerType = serversByServerType;
         return this;
     }
 
-    public ServerBase getServer(GobiiServerType gobiiServerType) {
-        ServerBase returnVal = this.serversByServerType.get(gobiiServerType);
+    public ServerBase getServer(ServerType serverType) {
+        ServerBase returnVal = this.serversByServerType.get(serverType);
         return returnVal;
     } // getServer()
 

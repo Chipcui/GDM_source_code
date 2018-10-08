@@ -1,5 +1,6 @@
 package org.gobiiproject.gobiiapimodel.types;
 
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 
 /**
@@ -9,63 +10,69 @@ import org.gobiiproject.gobiimodel.utils.LineUtils;
 
 public enum RestRequestId {
 
-    URL_AUTH("auth"),
-    URL_PING("ping"),
-    URL_PROJECTS("projects"),
-    URL_NAME_ID_LIST_DEPRECATED("nameidlist"),
-    URL_NAMES("names"),
-    URL_FILE_LOAD("files/loader"),
-    URL_FILE_LOAD_INSTRUCTIONS("instructions/loader"),
-    URL_FILE_EXTRACTOR_INSTRUCTIONS("instructions/extractor"),
-    URL_FILE_EXTRACTOR_JOBS("instructions/extractor/jobs"),
-    URL_FILE_LOADER_JOBS("instructions/loader/jobs"),
-    URL_DISPLAY("displays"),
-    URL_CV("cvs"),
-    URL_CVGROUP("cvgroups"),
-    URL_CONTACTS("contacts"),
-    URL_CONTACT_SEARCH("contact-search"),
-    URL_ORGANIZATION_SEARCH("organization-search"),
-    URL_REFERENCE("references"),
-    URL_EXPERIMENTS("experiments"),
-    URL_DATASETS("datasets"),
-    URL_DATASETTYPES("datasets/types"),
-    URL_ANALYSIS("analyses"),
-    URL_MARKERGROUP("markergroups"),
-    URL_MANIFEST("manifests"),
-    URL_ORGANIZATION("organizations"),
-    URL_PLATFORM("platforms"),
-    URL_MAPSET("mapsets"),
-    URL_CONFIGSETTINGS("configsettings"),
-    URL_ROLES("roles"),
-    URL_MARKERS("markers"),
-    URL_MARKER_SEARCH("marker-search"),
-    URL_CALLS("calls"),
-    URL_STUDIES_SEARCH("studies-search"),
-    URL_STUDIES("studies"),
-    URL_GERMPLASM("germplasm"),
-    URL_OBSERVATION_VARIABLES("observationVariables"),
-    URL_PROTOCOL("protocols"),
-    URL_VENDORS("vendors"),
-    URL_ALLELE_MATRIX_SEARCH("allelematrix-search"),
-    URL_ALLELE_MATRIX_SEARCH_STATUS("allelematrix-search/status"),
-    URL_ALLELE_MATRICES("allelematrices"),
-    URL_FILES("files"),
-    URL_JOB("jobs"),
-    URL_ENTITIES("entities"),
-    URL_COUNT("count"),
-    URL_LAST_MODIFIED("lastmodified"),
-    URL_VERTICES("vertices"),
-    URL_VALUES("values");
+    URL_AUTH("auth", ServerType.GOBII_WEB),
+    URL_PING("ping", ServerType.GOBII_WEB),
+    URL_PROJECTS("projects", ServerType.GOBII_WEB),
+    URL_NAME_ID_LIST_DEPRECATED("nameidlist", ServerType.GOBII_WEB),
+    URL_NAMES("names", ServerType.GOBII_WEB),
+    URL_FILE_LOAD("files/loader", ServerType.GOBII_WEB),
+    URL_FILE_LOAD_INSTRUCTIONS("instructions/loader", ServerType.GOBII_WEB),
+    URL_FILE_EXTRACTOR_INSTRUCTIONS("instructions/extractor", ServerType.GOBII_WEB),
+    URL_FILE_EXTRACTOR_JOBS("instructions/extractor/jobs", ServerType.GOBII_WEB),
+    URL_FILE_LOADER_JOBS("instructions/loader/jobs", ServerType.GOBII_WEB),
+    URL_DISPLAY("displays", ServerType.GOBII_WEB),
+    URL_CV("cvs", ServerType.GOBII_WEB),
+    URL_CVGROUP("cvgroups", ServerType.GOBII_WEB),
+    URL_CONTACTS("contacts", ServerType.GOBII_WEB),
+    URL_CONTACT_SEARCH("contact-search", ServerType.GOBII_WEB),
+    URL_ORGANIZATION_SEARCH("organization-search", ServerType.GOBII_WEB),
+    URL_REFERENCE("references", ServerType.GOBII_WEB),
+    URL_EXPERIMENTS("experiments", ServerType.GOBII_WEB),
+    URL_DATASETS("datasets", ServerType.GOBII_WEB),
+    URL_DATASETTYPES("datasets/types", ServerType.GOBII_WEB),
+    URL_ANALYSIS("analyses", ServerType.GOBII_WEB),
+    URL_MARKERGROUP("markergroups", ServerType.GOBII_WEB),
+    URL_MANIFEST("manifests", ServerType.GOBII_WEB),
+    URL_ORGANIZATION("organizations", ServerType.GOBII_WEB),
+    URL_PLATFORM("platforms", ServerType.GOBII_WEB),
+    URL_MAPSET("mapsets", ServerType.GOBII_WEB),
+    URL_CONFIGSETTINGS("configsettings", ServerType.GOBII_WEB),
+    URL_ROLES("roles", ServerType.GOBII_WEB),
+    URL_MARKERS("markers", ServerType.GOBII_WEB),
+    URL_MARKER_SEARCH("marker-search", ServerType.GOBII_WEB),
+    URL_CALLS("calls", ServerType.GOBII_WEB),
+    URL_STUDIES_SEARCH("studies-search", ServerType.GOBII_WEB),
+    URL_STUDIES("studies", ServerType.GOBII_WEB),
+    URL_GERMPLASM("germplasm", ServerType.GOBII_WEB),
+    URL_OBSERVATION_VARIABLES("observationVariables", ServerType.GOBII_WEB),
+    URL_PROTOCOL("protocols", ServerType.GOBII_WEB),
+    URL_VENDORS("vendors", ServerType.GOBII_WEB),
+    URL_ALLELE_MATRIX_SEARCH("allelematrix-search", ServerType.GOBII_WEB),
+    URL_ALLELE_MATRIX_SEARCH_STATUS("allelematrix-search/status", ServerType.GOBII_WEB),
+    URL_ALLELE_MATRICES("allelematrices", ServerType.GOBII_WEB),
+    URL_FILES("files", ServerType.GOBII_WEB),
+    URL_JOB("jobs", ServerType.GOBII_WEB),
+    URL_ENTITIES("entities", ServerType.GOBII_WEB),
+    URL_COUNT("count", ServerType.GOBII_WEB),
+    URL_LAST_MODIFIED("lastmodified", ServerType.GOBII_WEB),
+    URL_VERTICES("vertices", ServerType.GOBII_WEB),
+    URL_VALUES("values",ServerType.GOBII_WEB);
 
 
     private String requestPath;
+    private ServerType serverType;
 
-    RestRequestId(String requestPath) {
+    RestRequestId(String requestPath, ServerType serverType) {
         this.requestPath = requestPath;
+        this.serverType = serverType;
     }
 
     public String getResourcePath() {
         return this.requestPath;
+    }
+
+    public ServerType getServerType() {
+        return this.serverType;
     }
 
     public String getRequestUrl(String contextRoot, String secondaryPath) throws Exception {

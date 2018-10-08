@@ -25,7 +25,7 @@ import org.gobiiproject.gobiimodel.dto.entity.auditable.ContactDTO;
 import org.gobiiproject.gobiimodel.types.GobiiAutoLoginType;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -84,9 +84,9 @@ public class DtoRequestAuthenticationTest {
         String returnVal;
 
         URL url = new URL("http",
-                gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getHost(),
-                gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getPort(),
-                gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getContextPath());
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getHost(),
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getPort(),
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getContextPath());
 
         returnVal = url.toString();
         return returnVal;
@@ -105,8 +105,8 @@ public class DtoRequestAuthenticationTest {
             GobiiCropConfig gobiiCropConfigOne = activeGobiiCropConfigs.get(0);
             String serviceUrlOne = makeUrl(gobiiCropConfigOne);
             String cropIdOne = gobiiCropConfigOne.getGobiiCropType();
-            String cropContextRootOne = gobiiCropConfigOne.getServer(GobiiServerType.GOBII_WEB).getContextPath();
-            Integer cropPortOne = gobiiCropConfigOne.getServer(GobiiServerType.GOBII_WEB).getPort();
+            String cropContextRootOne = gobiiCropConfigOne.getServer(ServerType.GOBII_WEB).getContextPath();
+            Integer cropPortOne = gobiiCropConfigOne.getServer(ServerType.GOBII_WEB).getPort();
             GobiiUriFactory gobiiUriFactoryServerOne = new GobiiUriFactory(cropContextRootOne);
             RestUri restUriContactServerOne = gobiiUriFactoryServerOne
                     .resourceByUriIdParam(RestRequestId.URL_CONTACTS);
@@ -114,8 +114,8 @@ public class DtoRequestAuthenticationTest {
             GobiiCropConfig gobiiCropConfigTwo = activeGobiiCropConfigs.get(1);
             String serviceUrlTwo = makeUrl(gobiiCropConfigTwo);
             String cropIdTwo = gobiiCropConfigTwo.getGobiiCropType();
-            String cropContextRootTwo = gobiiCropConfigTwo.getServer(GobiiServerType.GOBII_WEB).getContextPath();
-            Integer cropPortTwo = gobiiCropConfigTwo.getServer(GobiiServerType.GOBII_WEB).getPort();
+            String cropContextRootTwo = gobiiCropConfigTwo.getServer(ServerType.GOBII_WEB).getContextPath();
+            Integer cropPortTwo = gobiiCropConfigTwo.getServer(ServerType.GOBII_WEB).getPort();
             GobiiUriFactory gobiiUriFactoryServeTwo = new GobiiUriFactory(cropContextRootTwo);
             RestUri restUriContactServerTwo = gobiiUriFactoryServeTwo
                     .resourceByUriIdParam(RestRequestId.URL_CONTACTS);

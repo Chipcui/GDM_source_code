@@ -2,7 +2,7 @@ package org.gobiiproject.gobiimodel.config;
 
 
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.simpleframework.xml.Element;
 
 import java.io.File;
@@ -30,9 +30,9 @@ public class ServerConfig {
                         String rawUserFilesDir,
                         String confidentialityNoticeFqpn) throws Exception {
 
-        this.port = gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getPort();
-        this.domain = gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getHost();
-        this.contextRoot = gobiiCropConfig.getServer(GobiiServerType.GOBII_WEB).getContextPath();
+        this.port = gobiiCropConfig.getServer(ServerType.GOBII_WEB).getPort();
+        this.domain = gobiiCropConfig.getServer(ServerType.GOBII_WEB).getHost();
+        this.contextRoot = gobiiCropConfig.getServer(ServerType.GOBII_WEB).getContextPath();
         this.gobiiCropType = gobiiCropConfig.getGobiiCropType();
 
         fileLocations

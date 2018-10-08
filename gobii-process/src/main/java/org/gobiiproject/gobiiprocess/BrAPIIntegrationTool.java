@@ -8,7 +8,7 @@ import org.gobiiproject.gobiiclient.core.common.GenericClientContext;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiimodel.config.ServerBase;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.springframework.util.Assert;
 
@@ -168,7 +168,7 @@ public class BrAPIIntegrationTool {
 
         String b4rAccessToken = "Bearer 7b7e071584e14fc2fe1df41257df61f72ac9689d";
 
-        serverBase = new ServerBase(GobiiServerType.GENERIC,
+        serverBase = new ServerBase(ServerType.GENERIC,
                 bdmsUrlObj.getHost(),
                 "json-context",
                 bdmsUrlObj.getPort(),
@@ -242,7 +242,7 @@ public class BrAPIIntegrationTool {
 
         URL gdsUrlObj = new URL(gdsUrl);
 
-        serverBase = new ServerBase(GobiiServerType.GENERIC,
+        serverBase = new ServerBase(ServerType.GENERIC,
                 gdsUrlObj.getHost(),
                 "json-context",
                 gdsUrlObj.getPort(),

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.types.ServerCapabilityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,8 +98,8 @@ public class ConfigSettings {
 
         Map<ServerCapabilityType, Boolean> returnVal = new HashMap<>();
 
-        if (this.configValues.getGlobalServer(GobiiServerType.KDC) != null) {
-            returnVal.put(ServerCapabilityType.KDC, this.configValues.getGlobalServer(GobiiServerType.KDC).isActive());
+        if (this.configValues.getGlobalServer(ServerType.KDC) != null) {
+            returnVal.put(ServerCapabilityType.KDC, this.configValues.getGlobalServer(ServerType.KDC).isActive());
         } else {
             returnVal.put(ServerCapabilityType.KDC, false);
         }
@@ -149,8 +149,8 @@ public class ConfigSettings {
         return this.configValues.isCropDefined(gobiiCropType);
     }
 
-    public ServerBase getGlobalServer(GobiiServerType gobiiServerType) throws Exception {
-        return this.configValues.getGlobalServer(gobiiServerType);
+    public ServerBase getGlobalServer(ServerType serverType) throws Exception {
+        return this.configValues.getGlobalServer(serverType);
     }
 
     public GobiiCropConfig getCropConfig(String gobiiCropType) throws Exception {

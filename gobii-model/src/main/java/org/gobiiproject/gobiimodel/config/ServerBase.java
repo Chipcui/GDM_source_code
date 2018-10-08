@@ -2,7 +2,7 @@ package org.gobiiproject.gobiimodel.config;
 
 
 import org.gobiiproject.gobiimodel.security.Decrypter;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
@@ -24,7 +24,7 @@ public class ServerBase {
     private String password = null;
 
     @Element(required = false)
-    private GobiiServerType gobiiServerType = null;
+    private ServerType serverType = null;
 
     @Element(required = false)
     private String host = "";
@@ -41,7 +41,7 @@ public class ServerBase {
     public ServerBase() {
     }
 
-    public ServerBase(GobiiServerType gobiiServerType,
+    public ServerBase(ServerType serverType,
                       String host,
                       String contextPath,
                       Integer port,
@@ -50,7 +50,7 @@ public class ServerBase {
                       String password,
                       boolean decrypt) {
 
-        this.gobiiServerType = gobiiServerType;
+        this.serverType = serverType;
         this.host = host;
         this.contextPath = contextPath;
         this.port = port;
@@ -61,14 +61,14 @@ public class ServerBase {
 
     }
 
-    public ServerBase(GobiiServerType gobiiServerType,
+    public ServerBase(ServerType serverType,
                       String host,
                       String contextPath,
                       Integer port,
                       boolean isActive,
                       boolean decrypt) {
 
-        this.gobiiServerType = gobiiServerType;
+        this.serverType = serverType;
         this.host = host;
         this.contextPath = contextPath;
         this.port = port;
@@ -123,12 +123,12 @@ public class ServerBase {
     }
 
 
-    public GobiiServerType getGobiiServerType() {
-        return gobiiServerType;
+    public ServerType getServerType() {
+        return serverType;
     }
 
-    public ServerBase setGobiiServerType(GobiiServerType gobiiServerType) {
-        this.gobiiServerType = gobiiServerType;
+    public ServerBase setServerType(ServerType serverType) {
+        this.serverType = serverType;
         return this;
     }
 
