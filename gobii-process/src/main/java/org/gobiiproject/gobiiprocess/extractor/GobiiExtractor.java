@@ -1086,7 +1086,7 @@ public class GobiiExtractor {
 			GobiiUriFactory gobiiUriFactory = new GobiiUriFactory(currentCropContextRoot);
 
 			RestUri mapUri = gobiiUriFactory
-					.resourceByUriIdParam(RestRequestId.URL_MAPSET);
+					.resourceByUriIdParam(RestRequestId.GOBII_MAPSET);
 			mapUri.setParamValue("id", mapId.toString());
 			GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(mapUri);
 			PayloadEnvelope<MapsetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDatasets

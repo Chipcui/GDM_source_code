@@ -454,7 +454,7 @@ public class DtoRequestNameIdListTest {
 
         RestUri restUriProtocol = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_PROTOCOL);
+                .resourceColl(RestRequestId.GOBII_PROTOCOL);
         GobiiEnvelopeRestResource<ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(restUriProtocol);
         PayloadEnvelope<ProtocolDTO> resultEnvelope = restResource
                 .get(ProtocolDTO.class);

@@ -39,8 +39,8 @@ public class BrapiTestObservationVariables {
 
         RestUri restUriObservationVariables = GobiiClientContext.getInstance(null, false)
                 .getUriFactory(GobiiControllerType.BRAPI)
-                .childResourceByUriIdParam(RestRequestId.URL_STUDIES,
-                        RestRequestId.URL_OBSERVATION_VARIABLES);
+                .childResourceByUriIdParam(RestRequestId.GOBII_STUDIES,
+                        RestRequestId.GOBII_OBSERVATION_VARIABLES);
         restUriObservationVariables.setParamValue("id", "1");
 
         BrapiEnvelopeRestResource<ObjectUtils.Null, BrapiResponseObservationVariablesMaster, BrapiResponseObservationVariablesMaster> brapiEnvelopeRestResource =

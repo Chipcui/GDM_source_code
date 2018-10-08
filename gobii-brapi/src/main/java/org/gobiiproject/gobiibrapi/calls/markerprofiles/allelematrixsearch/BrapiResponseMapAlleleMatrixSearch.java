@@ -191,7 +191,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
                                 // first make the http link
                                 RestUri restUri = new GobiiUriFactory(request.getServerName(), request.getServerPort(),
                                         request.getContextPath(), GobiiControllerType.GOBII)
-                                        .resourceColl(RestRequestId.URL_FILES)
+                                        .resourceColl(RestRequestId.GOBII_FILES)
                                         .addUriParam("gobiiJobId", jobId)
                                         .addUriParam("destinationType", GobiiFileProcessDir.EXTRACTOR_OUTPUT.toString().toLowerCase())
                                         .addQueryParam("fileName", currentFile.getName());

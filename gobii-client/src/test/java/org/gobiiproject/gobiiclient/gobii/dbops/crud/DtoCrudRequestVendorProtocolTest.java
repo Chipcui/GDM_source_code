@@ -57,7 +57,7 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
                 .getAPkVal(DtoCrudRequestProtocolTest.class, GobiiEntityNameType.PROTOCOL));
         RestUri restUriForGetProtocolById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_PROTOCOL);
+                .resourceByUriIdParam(RestRequestId.GOBII_PROTOCOL);
         restUriForGetProtocolById.setParamValue("id", protocolId.toString());
         GobiiEnvelopeRestResource<ProtocolDTO> gobiiEnvelopeRestResourceForGetProtocolById =
                 new GobiiEnvelopeRestResource<>(restUriForGetProtocolById);
@@ -76,7 +76,7 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
 
             RestUri restUriForGetOrganizationById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(RestRequestId.URL_ORGANIZATION);
+                    .resourceByUriIdParam(RestRequestId.GOBII_ORGANIZATION);
             restUriForGetOrganizationById.setParamValue("id", currentVendorPk.toString());
             GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceForGetOrganizationById =
                     new GobiiEnvelopeRestResource<>(restUriForGetOrganizationById);
@@ -99,8 +99,8 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
 
             RestUri restUriProtocoLVendor = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .childResourceByUriIdParam(RestRequestId.URL_PROTOCOL,
-                            RestRequestId.URL_VENDORS);
+                    .childResourceByUriIdParam(RestRequestId.GOBII_PROTOCOL,
+                            RestRequestId.GOBII_VENDORS);
             restUriProtocoLVendor.setParamValue("id", protocolId.toString());
             GobiiEnvelopeRestResource<OrganizationDTO> protocolVendorResource =
                     new GobiiEnvelopeRestResource<>(restUriProtocoLVendor);
@@ -162,9 +162,9 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
         // ************* VERIFY THAT WE CAN RETRIEVE THE CREATED VENDOR THROUGH THE PROTOCOL URL
 //        RestUri restUriOrganizationThroughProtocol = GobiiClientContext.getInstance(null, false)
 //                .getUriFactory()
-//                .resourceColl(RestRequestId.URL_PROTOCOL)
+//                .resourceColl(RestRequestId.GOBII_PROTOCOL)
 //                .addUriParam("id")
-//                .appendSegment(RestRequestId.URL_VENDORS)
+//                .appendSegment(RestRequestId.GOBII_VENDORS)
 //                .addUriParam("vendorProtocolName");
 //        restUriOrganizationThroughProtocol.setParamValue("id", protocolId.toString());
 //        restUriOrganizationThroughProtocol.setParamValue("vendorProtocolName", predictedVendorProtocolName);
@@ -200,8 +200,8 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
 
             RestUri restUriProtocoLVendor = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .childResourceByUriIdParam(RestRequestId.URL_PROTOCOL,
-                            RestRequestId.URL_VENDORS);
+                    .childResourceByUriIdParam(RestRequestId.GOBII_PROTOCOL,
+                            RestRequestId.GOBII_VENDORS);
             restUriProtocoLVendor.setParamValue("id", currentProtocolId.toString());
             GobiiEnvelopeRestResource<OrganizationDTO> protocolVendorResource =
                     new GobiiEnvelopeRestResource<>(restUriProtocoLVendor);
@@ -212,7 +212,7 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
                 // RETRIEVE THE VENDOR
                 RestUri restUriForGetOrganizationById = GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
-                        .resourceByUriIdParam(RestRequestId.URL_ORGANIZATION);
+                        .resourceByUriIdParam(RestRequestId.GOBII_ORGANIZATION);
                 restUriForGetOrganizationById.setParamValue("id", currentVendorId.toString());
                 GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceForGetOrganizationById =
                         new GobiiEnvelopeRestResource<>(restUriForGetOrganizationById);
@@ -250,7 +250,7 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
             // verify we get the same result through the plain organization service
             RestUri restUriOrganization = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(RestRequestId.URL_ORGANIZATION)
+                    .resourceByUriIdParam(RestRequestId.GOBII_ORGANIZATION)
                     .setParamValue("id", currentOrganizationDTO.getOrganizationId().toString());
 
             GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriOrganization);
@@ -278,8 +278,8 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
 
             RestUri restUriProtocoLVendor = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .childResourceByUriIdParam(RestRequestId.URL_PROTOCOL,
-                            RestRequestId.URL_VENDORS);
+                    .childResourceByUriIdParam(RestRequestId.GOBII_PROTOCOL,
+                            RestRequestId.GOBII_VENDORS);
 
             restUriProtocoLVendor.setParamValue("id", vendorProtocolDTOToUpdate.getProtocolId().toString());
             GobiiEnvelopeRestResource<OrganizationDTO> protocolVendorResource =
@@ -337,7 +337,7 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
 
             RestUri restUriProtocolByProtocolId = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(RestRequestId.URL_PROTOCOL)
+                    .resourceColl(RestRequestId.GOBII_PROTOCOL)
                     .addUriParam("id")
                     .setParamValue("id", currentProtocolId.toString());
 
@@ -393,10 +393,10 @@ public class DtoCrudRequestVendorProtocolTest implements DtoCrudRequestTest {
 
         RestUri restUriVendorsForProtocol = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_PROTOCOL)
+                .resourceColl(RestRequestId.GOBII_PROTOCOL)
                 .addUriParam("protocolId")
                 .setParamValue("protocolId", protocolId.toString())
-                .appendSegment(RestRequestId.URL_VENDORS);
+                .appendSegment(RestRequestId.GOBII_VENDORS);
 
         GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriVendorsForProtocol);
         PayloadEnvelope<OrganizationDTO> resultEnvelope = gobiiEnvelopeRestResource

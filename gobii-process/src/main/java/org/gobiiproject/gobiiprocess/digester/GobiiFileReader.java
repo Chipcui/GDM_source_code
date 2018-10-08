@@ -547,7 +547,7 @@ public class GobiiFileReader {
         gobiiUriFactory = new GobiiUriFactory(currentCropContextRoot);
         PayloadEnvelope<ExtractorInstructionFilesDTO> payloadEnvelope = new PayloadEnvelope<>(extractorInstructionFilesDTOToSend, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO> gobiiEnvelopeRestResourceForPost = new GobiiEnvelopeRestResource<>(gobiiUriFactory
-                .resourceColl(RestRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS));
+                .resourceColl(RestRequestId.GOBII_FILE_EXTRACTOR_INSTRUCTIONS));
         PayloadEnvelope<ExtractorInstructionFilesDTO> extractorInstructionFileDTOResponseEnvelope = gobiiEnvelopeRestResourceForPost.post(ExtractorInstructionFilesDTO.class,
                 payloadEnvelope);
 
@@ -785,7 +785,7 @@ public class GobiiFileReader {
             GobiiUriFactory gobiiUriFactory = new GobiiUriFactory(currentCropContextRoot);
 
             RestUri projectsUri = gobiiUriFactory
-                    .resourceByUriIdParam(RestRequestId.URL_DATASETS);
+                    .resourceByUriIdParam(RestRequestId.GOBII_DATASETS);
             projectsUri.setParamValue("id", dataSetId.toString());
             GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(projectsUri);
             PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDatasets

@@ -118,7 +118,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_CONTACT_SEARCH.getResourcePath())
+                RestRequestId.GOBII_CONTACT_SEARCH.getResourcePath())
                 .addQueryParam("email")
                 .addQueryParam("lastName")
                 .addQueryParam("firstName")
@@ -134,7 +134,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_CVGROUP.getResourcePath())
+                RestRequestId.GOBII_CVGROUP.getResourcePath())
                 .addUriParam("groupName")
                 .addQueryParam("cvGroupTypeId");
 
@@ -147,7 +147,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_MARKER_SEARCH.getResourcePath())
+                RestRequestId.GOBII_MARKER_SEARCH.getResourcePath())
                 .addQueryParam("name");
 
         return returnVal;
@@ -160,7 +160,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_NAMES.getResourcePath())
+                RestRequestId.GOBII_NAMES.getResourcePath())
                 .addUriParam("entity")
                 .addQueryParam("filterType")
                 .addQueryParam("filterValue");
@@ -175,7 +175,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_FILE_LOAD.getResourcePath())
+                RestRequestId.GOBII_FILE_LOAD.getResourcePath())
                 .addUriParam("directoryName")
                 .addQueryParam("fileFormat");
 
@@ -191,7 +191,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_FILES.getResourcePath())
+                RestRequestId.GOBII_FILES.getResourcePath())
                 .addUriParam("gobiiJobId", jobId)
                 .addUriParam("destinationType", gobiiFileProcessDir.toString())
                 .addQueryParam("fileName", fileName);
@@ -206,7 +206,7 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_FILES.getResourcePath())
+                RestRequestId.GOBII_FILES.getResourcePath())
                 .addUriParam("destinationType", gobiiFileProcessDir.toString())
                 .addQueryParam("fileName", fileName);
 
@@ -219,9 +219,9 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_ENTITIES.getResourcePath())
+                RestRequestId.GOBII_ENTITIES.getResourcePath())
                 .addUriParam("entityName", gobiiEntityNameType.toString().toLowerCase())
-                .appendSegment(RestRequestId.URL_COUNT);
+                .appendSegment(RestRequestId.GOBII_COUNT);
 
         return returnVal;
     }
@@ -234,11 +234,11 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_ENTITIES.getResourcePath())
+                RestRequestId.GOBII_ENTITIES.getResourcePath())
                 .addUriParam("entityNameParent", gobiiEntityNameTypeParent.toString().toLowerCase())
                 .addUriParam("parentId", parentId.toString())
                 .addUriParam("entityNameChild", gobiiEntityNameTypeChild.toString())
-                .appendSegment(RestRequestId.URL_COUNT);
+                .appendSegment(RestRequestId.GOBII_COUNT);
 
         return returnVal;
     }
@@ -249,9 +249,9 @@ public class GobiiUriFactory {
                 this.port,
                 this.cropContextRoot,
                 this.gobiiControllerType.getControllerPath(),
-                RestRequestId.URL_ENTITIES.getResourcePath())
+                RestRequestId.GOBII_ENTITIES.getResourcePath())
                 .addUriParam("entityName", gobiiEntityNameType.toString().toLowerCase())
-                .appendSegment(RestRequestId.URL_LAST_MODIFIED);
+                .appendSegment(RestRequestId.GOBII_LAST_MODIFIED);
 
         return returnVal;
     }

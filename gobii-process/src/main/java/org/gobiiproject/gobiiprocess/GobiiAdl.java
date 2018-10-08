@@ -93,7 +93,7 @@ public class GobiiAdl {
 
         RestUri restUriAnalysis = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_ANALYSIS);
+                .resourceColl(RestRequestId.GOBII_ANALYSIS);
 
         GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriAnalysis);
         PayloadEnvelope<AnalysisDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(AnalysisDTO.class);
@@ -108,7 +108,7 @@ public class GobiiAdl {
 
         RestUri restUriDataset = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_DATASETS);
+                .resourceColl(RestRequestId.GOBII_DATASETS);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriDataset);
         PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(DataSetDTO.class);
         checkStatus(resultEnvelope);
@@ -121,7 +121,7 @@ public class GobiiAdl {
 
         RestUri restUriExperiment = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_EXPERIMENTS);
+                .resourceColl(RestRequestId.GOBII_EXPERIMENTS);
         GobiiEnvelopeRestResource<ExperimentDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriExperiment);
         PayloadEnvelope<ExperimentDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(ExperimentDTO.class);
         checkStatus(resultEnvelope);
@@ -134,7 +134,7 @@ public class GobiiAdl {
 
         RestUri restUriProject = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_PROJECTS);
+                .resourceColl(RestRequestId.GOBII_PROJECTS);
         GobiiEnvelopeRestResource<ProjectDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriProject);
         PayloadEnvelope<ProjectDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(ProjectDTO.class);
 
@@ -148,7 +148,7 @@ public class GobiiAdl {
 
         RestUri restUriMapset = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_MAPSET);
+                .resourceColl(RestRequestId.GOBII_MAPSET);
         GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriMapset);
         PayloadEnvelope<MapsetDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(MapsetDTO.class);
 
@@ -368,7 +368,7 @@ public class GobiiAdl {
         /* check if entity already exist in the database */
         RestUri restUriOrganization = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_ORGANIZATION);
+                .resourceColl(RestRequestId.GOBII_ORGANIZATION);
         GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriOrganization);
         PayloadEnvelope<OrganizationDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(OrganizationDTO.class);
 
@@ -408,7 +408,7 @@ public class GobiiAdl {
         PayloadEnvelope<OrganizationDTO> payloadEnvelope = new PayloadEnvelope<>(newOrganizationDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_ORGANIZATION));
+                .resourceColl(RestRequestId.GOBII_ORGANIZATION));
         PayloadEnvelope<OrganizationDTO> organizationDTOResponseEnvelope = gobiiEnvelopeRestResource.post(OrganizationDTO.class,
                 payloadEnvelope);
 
@@ -502,7 +502,7 @@ public class GobiiAdl {
         PayloadEnvelope<ContactDTO> payloadEnvelopeContact = new PayloadEnvelope<>(newContactDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceContact = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_CONTACTS));
+                .resourceColl(RestRequestId.GOBII_CONTACTS));
         PayloadEnvelope<ContactDTO> contactDTOResponseEnvelope = gobiiEnvelopeRestResourceContact.post(ContactDTO.class,
                 payloadEnvelopeContact);
         checkStatus(contactDTOResponseEnvelope);
@@ -518,7 +518,7 @@ public class GobiiAdl {
         /* check if entity already exist in the database */
         RestUri restUriPlatform = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_PLATFORM);
+                .resourceColl(RestRequestId.GOBII_PLATFORM);
         GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriPlatform);
         PayloadEnvelope<PlatformDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(PlatformDTO.class);
         checkStatus(resultEnvelope);
@@ -572,7 +572,7 @@ public class GobiiAdl {
         PayloadEnvelope<PlatformDTO> payloadEnvelopePlatform = new PayloadEnvelope<>(newPlatformDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<PlatformDTO> gobiiEnvelopeRestResourcePlatform = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_PLATFORM));
+                .resourceColl(RestRequestId.GOBII_PLATFORM));
         PayloadEnvelope<PlatformDTO> platformDTOResponseEnvelope = gobiiEnvelopeRestResourcePlatform.post(PlatformDTO.class,
                 payloadEnvelopePlatform);
         checkStatus(platformDTOResponseEnvelope);
@@ -589,7 +589,7 @@ public class GobiiAdl {
         /* check if entity already exist in the database */
         RestUri restUriProtocol = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_PROTOCOL);
+                .resourceColl(RestRequestId.GOBII_PROTOCOL);
         GobiiEnvelopeRestResource<ProtocolDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriProtocol);
         PayloadEnvelope<ProtocolDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(ProtocolDTO.class);
         checkStatus(resultEnvelope);
@@ -695,7 +695,7 @@ public class GobiiAdl {
         PayloadEnvelope<ProtocolDTO> payloadEnvelopeProtocol = new PayloadEnvelope<>(newProtocolDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<ProtocolDTO> gobiiEnvelopeRestResourceProtocol = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_PROTOCOL));
+                .resourceColl(RestRequestId.GOBII_PROTOCOL));
         PayloadEnvelope<ProtocolDTO> protocolDTOResponseEnvelope = gobiiEnvelopeRestResourceProtocol.post(ProtocolDTO.class,
                 payloadEnvelopeProtocol);
 
@@ -725,7 +725,7 @@ public class GobiiAdl {
         /* check if entity already exist in the database */
         RestUri restUriOrganizationForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_ORGANIZATION);
+                .resourceByUriIdParam(RestRequestId.GOBII_ORGANIZATION);
         restUriOrganizationForGetById.setParamValue("id", newVendorProtocolDTO.getOrganizationId().toString());
         GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
         PayloadEnvelope<OrganizationDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById.get(OrganizationDTO.class);
@@ -748,7 +748,7 @@ public class GobiiAdl {
         // get organization/vendor
         RestUri restUriForGetOrganizationById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_ORGANIZATION);
+                .resourceByUriIdParam(RestRequestId.GOBII_ORGANIZATION);
         restUriForGetOrganizationById.setParamValue("id", newVendorProtocolDTO.getOrganizationId().toString());
         GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceForGetOrganizationById =
                 new GobiiEnvelopeRestResource<>(restUriForGetOrganizationById);
@@ -759,8 +759,8 @@ public class GobiiAdl {
 
         RestUri restUriProtocoLVendor = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .childResourceByUriIdParam(RestRequestId.URL_PROTOCOL,
-                        RestRequestId.URL_VENDORS);
+                .childResourceByUriIdParam(RestRequestId.GOBII_PROTOCOL,
+                        RestRequestId.GOBII_VENDORS);
         restUriProtocoLVendor.setParamValue("id", newVendorProtocolDTO.getProtocolId().toString());
         GobiiEnvelopeRestResource<OrganizationDTO> protocolVendorResource =
                 new GobiiEnvelopeRestResource<>(restUriProtocoLVendor);
@@ -788,7 +788,7 @@ public class GobiiAdl {
         /* check if entity already exist in the database */
         RestUri restUriReference = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_REFERENCE);
+                .resourceColl(RestRequestId.GOBII_REFERENCE);
         GobiiEnvelopeRestResource<ReferenceDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriReference);
         PayloadEnvelope<ReferenceDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(ReferenceDTO.class);
         checkStatus(resultEnvelope);
@@ -824,7 +824,7 @@ public class GobiiAdl {
         PayloadEnvelope<ReferenceDTO> payloadEnvelopeReference = new PayloadEnvelope<>(newReferenceDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<ReferenceDTO> gobiiEnvelopeRestResourceReference = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_REFERENCE));
+                .resourceColl(RestRequestId.GOBII_REFERENCE));
         PayloadEnvelope<ReferenceDTO> referenceDTOResponseEnvelope = gobiiEnvelopeRestResourceReference.post(ReferenceDTO.class,
                 payloadEnvelopeReference);
 
@@ -893,7 +893,7 @@ public class GobiiAdl {
         PayloadEnvelope<MapsetDTO> payloadEnvelopeMapset = new PayloadEnvelope<>(newMapsetDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceMapset = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_MAPSET));
+                .resourceColl(RestRequestId.GOBII_MAPSET));
         PayloadEnvelope<MapsetDTO> mapsetDTOResponseEnvelope = gobiiEnvelopeRestResourceMapset.post(MapsetDTO.class,
                 payloadEnvelopeMapset);
 
@@ -973,7 +973,7 @@ public class GobiiAdl {
         System.out.println("Calling the web service...\n");
 
         /* create project */
-        RestUri projectsUri = GobiiClientContext.getInstance(null, false).getUriFactory().resourceColl(RestRequestId.URL_PROJECTS);
+        RestUri projectsUri = GobiiClientContext.getInstance(null, false).getUriFactory().resourceColl(RestRequestId.GOBII_PROJECTS);
         GobiiEnvelopeRestResource<ProjectDTO> gobiiEnvelopeRestResourceForProjects = new GobiiEnvelopeRestResource<>(projectsUri);
         PayloadEnvelope<ProjectDTO> payloadEnvelope = new PayloadEnvelope<>(newProjectDTO, GobiiProcessType.CREATE);
         PayloadEnvelope<ProjectDTO> projectDTOResponseEnvelope = gobiiEnvelopeRestResourceForProjects.post(ProjectDTO.class, payloadEnvelope);
@@ -991,7 +991,7 @@ public class GobiiAdl {
         /* check if entity already exist in the database */
         RestUri restUriManifest = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_MANIFEST);
+                .resourceColl(RestRequestId.GOBII_MANIFEST);
         GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriManifest);
         PayloadEnvelope<ManifestDTO> resultEnvelope = gobiiEnvelopeRestResourceGet.get(ManifestDTO.class);
         checkStatus(resultEnvelope);
@@ -1028,7 +1028,7 @@ public class GobiiAdl {
         PayloadEnvelope<ManifestDTO> payloadEnvelopeManifest = new PayloadEnvelope<>(newManifestDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResourceManifest = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_MANIFEST));
+                .resourceColl(RestRequestId.GOBII_MANIFEST));
         PayloadEnvelope<ManifestDTO> manifestDTOResponseEnvelope = gobiiEnvelopeRestResourceManifest.post(ManifestDTO.class,
                 payloadEnvelopeManifest);
 
@@ -1129,7 +1129,7 @@ public class GobiiAdl {
         PayloadEnvelope<ExperimentDTO> payloadEnvelopeExperiment = new PayloadEnvelope<>(newExperimentDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<ExperimentDTO> gobiiEnvelopeRestResourceExperiment = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_EXPERIMENTS));
+                .resourceColl(RestRequestId.GOBII_EXPERIMENTS));
         PayloadEnvelope<ExperimentDTO> experimentDTOResponseEnvelope = gobiiEnvelopeRestResourceExperiment.post(ExperimentDTO.class,
                 payloadEnvelopeExperiment);
         checkStatus(experimentDTOResponseEnvelope);
@@ -1195,7 +1195,7 @@ public class GobiiAdl {
         PayloadEnvelope<AnalysisDTO> payloadEnvelopeAnalysis = new PayloadEnvelope<>(newAnalysisDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResourceAnalysis = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_ANALYSIS));
+                .resourceColl(RestRequestId.GOBII_ANALYSIS));
         PayloadEnvelope<AnalysisDTO> analysisDTOResponseEnvelope = gobiiEnvelopeRestResourceAnalysis.post(AnalysisDTO.class,
                 payloadEnvelopeAnalysis);
         checkStatus(analysisDTOResponseEnvelope);
@@ -1341,7 +1341,7 @@ public class GobiiAdl {
         PayloadEnvelope<DataSetDTO> payloadEnvelopeDataSet = new PayloadEnvelope<>(newDataSetDTO, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceDataSet = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_DATASETS));
+                .resourceColl(RestRequestId.GOBII_DATASETS));
         PayloadEnvelope<DataSetDTO> dataSetDTOResponseEnvelope = gobiiEnvelopeRestResourceDataSet.post(DataSetDTO.class,
                 payloadEnvelopeDataSet);
 
@@ -1564,7 +1564,7 @@ public class GobiiAdl {
         RestUri previewTestUriCreate = GobiiClientContext
                 .getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_FILE_LOAD);
+                .resourceByUriIdParam(RestRequestId.GOBII_FILE_LOAD);
         previewTestUriCreate.setParamValue("id", folderName);
         GobiiEnvelopeRestResource<LoaderFilePreviewDTO> gobiiEnvelopeRestResourceCreate = new GobiiEnvelopeRestResource<>(previewTestUriCreate);
         PayloadEnvelope<LoaderFilePreviewDTO> resultEnvelopeCreate = gobiiEnvelopeRestResourceCreate.put(LoaderFilePreviewDTO.class,
@@ -1730,7 +1730,7 @@ public class GobiiAdl {
                 PayloadEnvelope<LoaderInstructionFilesDTO> payloadEnvelope = new PayloadEnvelope<>(loaderInstructionFilesDTO, GobiiProcessType.CREATE);
                 GobiiEnvelopeRestResource<LoaderInstructionFilesDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
-                        .resourceColl(RestRequestId.URL_FILE_LOAD_INSTRUCTIONS));
+                        .resourceColl(RestRequestId.GOBII_FILE_LOAD_INSTRUCTIONS));
                 PayloadEnvelope<LoaderInstructionFilesDTO> loaderInstructionFileDTOResponseEnvelope = gobiiEnvelopeRestResource.post(LoaderInstructionFilesDTO.class,
                         payloadEnvelope);
                 checkStatus(loaderInstructionFileDTOResponseEnvelope);
@@ -1757,7 +1757,7 @@ public class GobiiAdl {
         GobiiEnvelopeRestResource<LoaderInstructionFilesDTO> loaderJobResponseEnvolope = new GobiiEnvelopeRestResource<>(
                 GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
-                        .resourceColl(RestRequestId.URL_FILE_LOAD_INSTRUCTIONS)
+                        .resourceColl(RestRequestId.GOBII_FILE_LOAD_INSTRUCTIONS)
                         .addUriParam("instructionFileName", instructionFileName));
 
 
@@ -1811,7 +1811,7 @@ public class GobiiAdl {
         GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO> extractJobResponseEnvelope = new GobiiEnvelopeRestResource<>(
                 GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
-                        .resourceColl(RestRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS)
+                        .resourceColl(RestRequestId.GOBII_FILE_EXTRACTOR_INSTRUCTIONS)
                         .addUriParam("instructionFileName", instructionFileName));
 
         boolean statusDetermined = false;
@@ -2002,7 +2002,7 @@ public class GobiiAdl {
 
                         RestUri datasetGetUri = GobiiClientContext.getInstance(null, false)
                                 .getUriFactory()
-                                .resourceByUriIdParam(RestRequestId.URL_DATASETS);
+                                .resourceByUriIdParam(RestRequestId.GOBII_DATASETS);
                         datasetGetUri.setParamValue("id", currentEntityId);
                         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDatasetGet = new GobiiEnvelopeRestResource<>(datasetGetUri);
                         PayloadEnvelope<DataSetDTO> resultEnvelopeForDatasetGet = gobiiEnvelopeRestResourceForDatasetGet.get(DataSetDTO.class);
@@ -2542,7 +2542,7 @@ public class GobiiAdl {
             PayloadEnvelope<ExtractorInstructionFilesDTO> payloadEnvelope = new PayloadEnvelope<>(extractorInstructionFilesDTO, GobiiProcessType.CREATE);
             GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO> gobiiEnvelopeRestResourceForPost = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(RestRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS));
+                    .resourceColl(RestRequestId.GOBII_FILE_EXTRACTOR_INSTRUCTIONS));
             PayloadEnvelope<ExtractorInstructionFilesDTO> resultEnvelope = gobiiEnvelopeRestResourceForPost.post(ExtractorInstructionFilesDTO.class,
                     payloadEnvelope);
             checkStatus(resultEnvelope);

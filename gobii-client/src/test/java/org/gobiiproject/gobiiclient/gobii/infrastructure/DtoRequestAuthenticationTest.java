@@ -71,7 +71,7 @@ public class DtoRequestAuthenticationTest {
         analysisDTORequest.setAnalysisId(1);
 
 
-        String url = RestRequestId.URL_ANALYSIS.getRequestUrl(GobiiClientContext.getInstance(null, false).getCurrentCropContextRoot(),
+        String url = RestRequestId.GOBII_ANALYSIS.getRequestUrl(GobiiClientContext.getInstance(null, false).getCurrentCropContextRoot(),
                 GobiiControllerType.GOBII.getControllerPath());
 
 //        DtoRequestProcessor<AnalysisDTO> dtoDtoRequestProcessor = new DtoRequestProcessor<>();
@@ -109,7 +109,7 @@ public class DtoRequestAuthenticationTest {
             Integer cropPortOne = gobiiCropConfigOne.getServer(ServerType.GOBII_WEB).getPort();
             GobiiUriFactory gobiiUriFactoryServerOne = new GobiiUriFactory(cropContextRootOne);
             RestUri restUriContactServerOne = gobiiUriFactoryServerOne
-                    .resourceByUriIdParam(RestRequestId.URL_CONTACTS);
+                    .resourceByUriIdParam(RestRequestId.GOBII_CONTACTS);
 
             GobiiCropConfig gobiiCropConfigTwo = activeGobiiCropConfigs.get(1);
             String serviceUrlTwo = makeUrl(gobiiCropConfigTwo);
@@ -118,7 +118,7 @@ public class DtoRequestAuthenticationTest {
             Integer cropPortTwo = gobiiCropConfigTwo.getServer(ServerType.GOBII_WEB).getPort();
             GobiiUriFactory gobiiUriFactoryServeTwo = new GobiiUriFactory(cropContextRootTwo);
             RestUri restUriContactServerTwo = gobiiUriFactoryServeTwo
-                    .resourceByUriIdParam(RestRequestId.URL_CONTACTS);
+                    .resourceByUriIdParam(RestRequestId.GOBII_CONTACTS);
 
             Assert.assertNotNull("Could not get testexecconfig", GobiiClientContextAuth.getTestExecConfig());
             String testUser = GobiiClientContextAuth.getTestExecConfig().getLdapUserForUnitTest();
@@ -207,7 +207,7 @@ public class DtoRequestAuthenticationTest {
             // this should now work
             GobiiClientContext.getInstance(null, false).login(cropIdTwo, testUser, testPassword);
             restUriContactServerTwo = gobiiUriFactoryServeTwo
-                    .resourceByUriIdParam(RestRequestId.URL_CONTACTS);
+                    .resourceByUriIdParam(RestRequestId.GOBII_CONTACTS);
             restUriContactServerTwo.setParamValue("id", "6");
             gobiiEnvelopeRestResourceServerTwo = new GobiiEnvelopeRestResource<>(restUriContactServerTwo);
             resultEnvelope = gobiiEnvelopeRestResourceServerTwo
@@ -297,7 +297,7 @@ public class DtoRequestAuthenticationTest {
 
         RestUri restUriContactUpdate = gobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_CONTACTS)
+                .resourceColl(RestRequestId.GOBII_CONTACTS)
                 .addUriParam("id")
                 .setParamValue("id", contactDTOFromGet.getContactId().toString());
 
@@ -355,7 +355,7 @@ public class DtoRequestAuthenticationTest {
                 //STEP ONE -- if we don't ahve a a contact with the backend user user name, create one
                 RestUri restUriContactForAll = GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
-                        .resourceColl(RestRequestId.URL_CONTACTS);
+                        .resourceColl(RestRequestId.GOBII_CONTACTS);
                 GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceGetAll = new GobiiEnvelopeRestResource<>(restUriContactForAll);
                 PayloadEnvelope<ContactDTO> resultEnvelopeAll = gobiiEnvelopeRestResourceGetAll
                         .get(ContactDTO.class);
@@ -375,7 +375,7 @@ public class DtoRequestAuthenticationTest {
                             GobiiEntityNameType.CONTACT);
                     RestUri restUriContactForUpdate = GobiiClientContext.getInstance(null, false)
                             .getUriFactory()
-                            .resourceByUriIdParam(RestRequestId.URL_CONTACTS)
+                            .resourceByUriIdParam(RestRequestId.GOBII_CONTACTS)
                             .setParamValue("id", contactId.toString());
                     GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceGetForUpdate = new GobiiEnvelopeRestResource<>(restUriContactForUpdate);
                     PayloadEnvelope<ContactDTO> resultEnvelope = gobiiEnvelopeRestResourceGetForUpdate
@@ -421,7 +421,7 @@ public class DtoRequestAuthenticationTest {
                 // resources that require authentication
                 RestUri restUriContactForGet = GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
-                        .resourceByUriIdParam(RestRequestId.URL_CONTACTS)
+                        .resourceByUriIdParam(RestRequestId.GOBII_CONTACTS)
                         .setParamValue("id", contactId.toString());
                 GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriContactForGet);
                 PayloadEnvelope<ContactDTO> resultEnvelopePostRunAsAuthentication = gobiiEnvelopeRestResourceGet

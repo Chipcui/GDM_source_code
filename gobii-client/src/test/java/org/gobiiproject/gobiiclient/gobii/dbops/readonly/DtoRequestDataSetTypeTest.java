@@ -37,7 +37,7 @@ public class DtoRequestDataSetTypeTest {
 
         RestUri restUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_DATASETTYPES);
+                .resourceColl(RestRequestId.GOBII_DATASETTYPES);
 
         GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUri);
         PayloadEnvelope<NameIdDTO> resultEnvelope = gobiiEnvelopeRestResource

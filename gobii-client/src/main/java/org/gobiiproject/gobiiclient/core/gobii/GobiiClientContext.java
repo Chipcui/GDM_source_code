@@ -249,7 +249,7 @@ public final class GobiiClientContext {
         // The /configsettings resource does not require authentication
         // this should be the only case in which we don't provide a crop ID
         HttpCore httpCore = new HttpCore(host, port);
-        String settingsPath = RestRequestId.URL_CONFIGSETTINGS.getRequestUrl(context, GobiiControllerType.GOBII.getControllerPath());
+        String settingsPath = RestRequestId.GOBII_CONFIGSETTINGS.getRequestUrl(context, GobiiControllerType.GOBII.getControllerPath());
 
         RestUri configSettingsUri = new GobiiUriFactory(null).RestUriFromUri(settingsPath);
         HttpMethodResult httpMethodResult = httpCore.get(configSettingsUri);
@@ -464,7 +464,7 @@ public final class GobiiClientContext {
         this.cropId = cropId;
 
         try {
-            String authUrl = RestRequestId.URL_AUTH
+            String authUrl = RestRequestId.GOBII_AUTH
                     .getRequestUrl(this.getCurrentCropContextRoot(),
                             GobiiControllerType.GOBII.getControllerPath());
 

@@ -8,6 +8,7 @@ public enum ServerType {
     GOBII_PGSQL,
     GOBII_WEB,
     GOBII_COMPUTE,
+    BRAPI,
     KDC,
     GENERIC,
     OWN_CLOUD,

@@ -38,7 +38,7 @@ public class BrapiTestCalls {
 
         RestUri restUriCalls = GobiiClientContext.getInstance(null, false)
                 .getUriFactory(GobiiControllerType.BRAPI)
-                .resourceColl(RestRequestId.URL_CALLS);
+                .resourceColl(RestRequestId.GOBII_CALLS);
 
         BrapiEnvelopeRestResource<ObjectUtils.Null,ObjectUtils.Null,BrapiResponseCalls> brapiEnvelopeRestResource =
                 new BrapiEnvelopeRestResource<>(restUriCalls,

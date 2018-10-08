@@ -50,7 +50,7 @@ public class BrapiTestAlleleMatrices {
 
         RestUri alleleMatrices = GobiiClientContext.getInstance(null, false)
                 .getUriFactory(GobiiControllerType.BRAPI)
-                .resourceColl(RestRequestId.URL_ALLELE_MATRICES);
+                .resourceColl(RestRequestId.BRAPI_ALLELE_MATRICES);
 
 
         BrapiEnvelopeRestResource<ObjectUtils.Null, ObjectUtils.Null, BrapiResponseAlleleMatrices> brapiEnvelopeRestResource =

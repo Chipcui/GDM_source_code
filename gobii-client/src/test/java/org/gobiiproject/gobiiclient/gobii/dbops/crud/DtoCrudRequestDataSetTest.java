@@ -69,7 +69,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         RestUri projectsUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_DATASETS);
+                .resourceByUriIdParam(RestRequestId.GOBII_DATASETS);
         projectsUri.setParamValue("id", dataSetid.toString());
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForProjects = new GobiiEnvelopeRestResource<>(projectsUri);
         PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResourceForProjects
@@ -95,7 +95,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
     public void testEmptyResult() throws Exception {
 
         DtoRestRequestUtils<DataSetDTO> dtoDtoRestRequestUtils =
-                new DtoRestRequestUtils<>(DataSetDTO.class, RestRequestId.URL_DATASETS);
+                new DtoRestRequestUtils<>(DataSetDTO.class, RestRequestId.GOBII_DATASETS);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentId = maxId + 1;
 
@@ -135,7 +135,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
         PayloadEnvelope<AnalysisDTO> payloadEnvelopeAnalysis = new PayloadEnvelope<>(analysisDTORequest, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_ANALYSIS));
+                .resourceColl(RestRequestId.GOBII_ANALYSIS));
         PayloadEnvelope<AnalysisDTO> analysisDTOResponseEnvelope = gobiiEnvelopeRestResource.post(AnalysisDTO.class,
                 payloadEnvelopeAnalysis);
         AnalysisDTO callingAnalysisDTO = analysisDTOResponseEnvelope.getPayload().getData().get(0);
@@ -161,7 +161,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
             payloadEnvelopeAnalysis = new PayloadEnvelope<>(currentAnalysis, GobiiProcessType.CREATE);
             gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(RestRequestId.URL_ANALYSIS));
+                    .resourceColl(RestRequestId.GOBII_ANALYSIS));
             analysisDTOResponseEnvelope = gobiiEnvelopeRestResource.post(AnalysisDTO.class,
                     payloadEnvelopeAnalysis);
             AnalysisDTO createdAnalysis = analysisDTOResponseEnvelope.getPayload().getData().get(0);
@@ -180,7 +180,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         RestUri projectsCollUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_DATASETS);
+                .resourceColl(RestRequestId.GOBII_DATASETS);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDataSetPost = new GobiiEnvelopeRestResource<>(projectsCollUri);
         PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDataSetPost
                 .post(DataSetDTO.class, new PayloadEnvelope<>(dataSetDTORequest, GobiiProcessType.CREATE));
@@ -207,7 +207,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         RestUri projectsByIdUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_DATASETS);
+                .resourceByUriIdParam(RestRequestId.GOBII_DATASETS);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDataSetGet = new GobiiEnvelopeRestResource<>(projectsByIdUri);
         gobiiEnvelopeRestResourceForDataSetGet.setParamValue("id", dataSetDTOResponse.getDataSetId().toString());
         resultEnvelope = gobiiEnvelopeRestResourceForDataSetGet
@@ -257,7 +257,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
         PayloadEnvelope<AnalysisDTO> payloadEnvelopeAnalysis = new PayloadEnvelope<>(analysisDTORequest, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_ANALYSIS));
+                .resourceColl(RestRequestId.GOBII_ANALYSIS));
         PayloadEnvelope<AnalysisDTO> analysisDTOResponseEnvelope = gobiiEnvelopeRestResource.post(AnalysisDTO.class,
                 payloadEnvelopeAnalysis);
         AnalysisDTO newCallingAnalysisDTO = analysisDTOResponseEnvelope.getPayload().getData().get(0);
@@ -284,7 +284,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
             payloadEnvelopeAnalysis = new PayloadEnvelope<>(currentAnalysis, GobiiProcessType.CREATE);
             gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(RestRequestId.URL_ANALYSIS));
+                    .resourceColl(RestRequestId.GOBII_ANALYSIS));
             analysisDTOResponseEnvelope = gobiiEnvelopeRestResource.post(AnalysisDTO.class,
                     payloadEnvelopeAnalysis);
             AnalysisDTO newAnalysis = analysisDTOResponseEnvelope.getPayload().getData().get(0);
@@ -308,7 +308,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         RestUri projectsCollUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_DATASETS);
+                .resourceColl(RestRequestId.GOBII_DATASETS);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDataSetPost = new GobiiEnvelopeRestResource<>(projectsCollUri);
         PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDataSetPost
                 .post(DataSetDTO.class, new PayloadEnvelope<>(newDataSetDto, GobiiProcessType.CREATE));
@@ -326,7 +326,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         RestUri projectsByIdUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_DATASETS);
+                .resourceByUriIdParam(RestRequestId.GOBII_DATASETS);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDataSetById = new GobiiEnvelopeRestResource<>(projectsByIdUri);
         gobiiEnvelopeRestResourceForDataSetById.setParamValue("id", newDataSetDTOResponse.getDataSetId().toString());
         resultEnvelope = gobiiEnvelopeRestResourceForDataSetById
@@ -380,7 +380,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
     public void getList() throws Exception {
 
         RestUri restUriDataSet = GobiiClientContext.getInstance(null, false)
-                .getUriFactory().resourceColl(RestRequestId.URL_DATASETS);
+                .getUriFactory().resourceColl(RestRequestId.GOBII_DATASETS);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriDataSet);
         PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(DataSetDTO.class);
@@ -427,7 +427,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
                 RestUri restUriAnalysisForGetById = GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
-                        .resourceByUriIdParam(RestRequestId.URL_ANALYSIS);
+                        .resourceByUriIdParam(RestRequestId.GOBII_ANALYSIS);
                 restUriAnalysisForGetById.setParamValue("id", currentAnalysisId.toString());
                 GobiiEnvelopeRestResource<AnalysisDTO> gobiiEnvelopeRestResourceAnalysisForGetById = new GobiiEnvelopeRestResource<>(restUriAnalysisForGetById);
                 PayloadEnvelope<AnalysisDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceAnalysisForGetById
@@ -459,7 +459,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
         Integer minimalRequiredDatasetsForTest = 100;
 
         RestUri restUriDataSet = GobiiClientContext.getInstance(null, false)
-                .getUriFactory().resourceColl(RestRequestId.URL_DATASETS);
+                .getUriFactory().resourceColl(RestRequestId.GOBII_DATASETS);
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriDataSet);
         PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(DataSetDTO.class);
@@ -498,7 +498,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
             RestUri datasetByIdUri = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(RestRequestId.URL_DATASETS)
+                    .resourceByUriIdParam(RestRequestId.GOBII_DATASETS)
                     .setParamValue("id", currentDataset.getDataSetId().toString());
             GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDataSetById = new GobiiEnvelopeRestResource<>(datasetByIdUri);
             resultEnvelope = gobiiEnvelopeRestResourceForDataSetById
@@ -542,7 +542,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
             Integer pageNo = currentPageKey - 1; // pages are zero based
             RestUri pagedUriDataSet = GobiiClientContext.getInstance(null, false)
-                    .getUriFactory().pagedList(RestRequestId.URL_DATASETS,
+                    .getUriFactory().pagedList(RestRequestId.GOBII_DATASETS,
                             pageSize,
                             pageNo,
                             queryKey);
@@ -600,7 +600,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         Integer exceedingPageNo = pageMap.keySet().size(); // pages are zero based
         RestUri pagedUriDataSet = GobiiClientContext.getInstance(null, false)
-                .getUriFactory().pagedList(RestRequestId.URL_DATASETS,
+                .getUriFactory().pagedList(RestRequestId.GOBII_DATASETS,
                         pageSize,
                         exceedingPageNo + 1,
                         queryKey);
@@ -633,7 +633,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         RestUri restUriForDataSets = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_DATASETS);
+                .resourceByUriIdParam(RestRequestId.GOBII_DATASETS);
         restUriForDataSets.setParamValue("id", dataSetid.toString());
         GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDataSet = new GobiiEnvelopeRestResource<>(restUriForDataSets);
         PayloadEnvelope<DataSetDTO> resultEnvelopeDataSet = gobiiEnvelopeRestResourceForDataSet
@@ -646,7 +646,7 @@ public class DtoCrudRequestDataSetTest implements DtoCrudRequestTest {
 
         RestUri restUriForDataTypes = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_DATASETTYPES)
+                .resourceColl(RestRequestId.GOBII_DATASETTYPES)
                 .addUriParam("id")
                 .setParamValue("id", typeId.toString());
 

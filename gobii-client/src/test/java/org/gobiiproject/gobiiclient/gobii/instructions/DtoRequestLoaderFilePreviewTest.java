@@ -48,7 +48,7 @@ public class DtoRequestLoaderFilePreviewTest {
         RestUri previewTestUri = GobiiClientContext
                 .getInstance(null,false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_FILE_LOAD);
+                .resourceByUriIdParam(RestRequestId.GOBII_FILE_LOAD);
 
         String folderName = TestDtoFactory.getFolderNameWithTimestamp("Loader File Preview Test");
         previewTestUri.setParamValue("id", folderName );
@@ -83,7 +83,7 @@ public class DtoRequestLoaderFilePreviewTest {
         RestUri previewTestUriCreate = GobiiClientContext
                 .getInstance(null,false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_FILE_LOAD);
+                .resourceByUriIdParam(RestRequestId.GOBII_FILE_LOAD);
         previewTestUriCreate.setParamValue("id", TestDtoFactory.getFolderNameWithTimestamp("Loader File Preview Test"));
         GobiiEnvelopeRestResource<LoaderFilePreviewDTO> gobiiEnvelopeRestResourceCreate = new GobiiEnvelopeRestResource<>(previewTestUriCreate);
         PayloadEnvelope<LoaderFilePreviewDTO> resultEnvelopeCreate = gobiiEnvelopeRestResourceCreate.put(LoaderFilePreviewDTO.class,
@@ -138,7 +138,7 @@ public class DtoRequestLoaderFilePreviewTest {
         RestUri previewTestUriCreateHmp = GobiiClientContext
                 .getInstance(null,false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_FILE_LOAD);
+                .resourceByUriIdParam(RestRequestId.GOBII_FILE_LOAD);
         previewTestUriCreateHmp.setParamValue("id", TestDtoFactory.getFolderNameWithTimestamp("Loader File Preview Test"));
         GobiiEnvelopeRestResource<LoaderFilePreviewDTO> gobiiEnvelopeRestResourceCreateHmp = new GobiiEnvelopeRestResource<>(previewTestUriCreateHmp);
         PayloadEnvelope<LoaderFilePreviewDTO> resultEnvelopeCreateHmp = gobiiEnvelopeRestResourceCreateHmp.put(LoaderFilePreviewDTO.class,

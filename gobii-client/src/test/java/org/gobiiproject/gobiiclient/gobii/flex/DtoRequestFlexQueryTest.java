@@ -112,7 +112,7 @@ public class DtoRequestFlexQueryTest {
 
         RestUri restUriVertices = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_VERTICES);
+                .resourceColl(RestRequestId.GOBII_VERTICES);
 
         GobiiEnvelopeRestResource<VertexDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriVertices);
         PayloadEnvelope<VertexDTO> resultEnvelope = gobiiEnvelopeRestResource
@@ -146,9 +146,9 @@ public class DtoRequestFlexQueryTest {
         String jobId = DateUtils.makeDateIdString() + "_test";
         RestUri restUriVerticesValues = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_VERTICES)
+                .resourceColl(RestRequestId.GOBII_VERTICES)
                 .addUriParam("jobId", jobId)
-                .appendSegment(RestRequestId.URL_VALUES);
+                .appendSegment(RestRequestId.GOBII_VALUES);
 
 
         // Add destination vertex
@@ -228,9 +228,9 @@ public class DtoRequestFlexQueryTest {
         String jobId = DateUtils.makeDateIdString() + "_test";
         RestUri restUriVerticesValuesCount = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_VERTICES)
+                .resourceColl(RestRequestId.GOBII_VERTICES)
                 .addUriParam("jobId", jobId)
-                .appendSegment(RestRequestId.URL_COUNT);
+                .appendSegment(RestRequestId.GOBII_COUNT);
 
 
         VertexFilterDTO vertexFilterDTO = new VertexFilterDTO();

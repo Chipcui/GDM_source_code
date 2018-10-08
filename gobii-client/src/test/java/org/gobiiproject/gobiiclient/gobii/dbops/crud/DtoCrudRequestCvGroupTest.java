@@ -39,10 +39,10 @@ public class DtoCrudRequestCvGroupTest implements DtoCrudRequestTest {
 
         RestUri restUriCvGroup = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_CVGROUP)
+                .resourceColl(RestRequestId.GOBII_CVGROUP)
                 .addUriParam("groupId")
                 .setParamValue("groupId", cvGroupId.toString())
-                .appendSegment(RestRequestId.URL_CV);
+                .appendSegment(RestRequestId.GOBII_CV);
 
         GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriCvGroup);
         PayloadEnvelope<CvDTO> resultEnvelope = gobiiEnvelopeRestResource

@@ -49,7 +49,7 @@ public class DtoCrudRequestMarkerTest implements DtoCrudRequestTest {
 
         RestUri projectsUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_MARKERS);
+                .resourceByUriIdParam(RestRequestId.GOBII_MARKERS);
         projectsUri.setParamValue("id", markerId.toString());
         GobiiEnvelopeRestResource<MarkerDTO> gobiiEnvelopeRestResourceForProjects = new GobiiEnvelopeRestResource<>(projectsUri);
         PayloadEnvelope<MarkerDTO> resultEnvelope = gobiiEnvelopeRestResourceForProjects
@@ -81,7 +81,7 @@ public class DtoCrudRequestMarkerTest implements DtoCrudRequestTest {
     public void testEmptyResult() throws Exception {
 
         DtoRestRequestUtils<MarkerDTO> dtoDtoRestRequestUtils =
-                new DtoRestRequestUtils<>(MarkerDTO.class, RestRequestId.URL_MARKERS);
+                new DtoRestRequestUtils<>(MarkerDTO.class, RestRequestId.GOBII_MARKERS);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentId = maxId + 1;
 
@@ -109,7 +109,7 @@ public class DtoCrudRequestMarkerTest implements DtoCrudRequestTest {
 
         RestUri markerCollUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_MARKERS);
+                .resourceColl(RestRequestId.GOBII_MARKERS);
         GobiiEnvelopeRestResource<MarkerDTO> gobiiEnvelopeRestResourceForMarkerPost = new GobiiEnvelopeRestResource<>(markerCollUri);
         PayloadEnvelope<MarkerDTO> resultEnvelope = gobiiEnvelopeRestResourceForMarkerPost
                 .post(MarkerDTO.class, new PayloadEnvelope<>(markerDTORequest, GobiiProcessType.CREATE));

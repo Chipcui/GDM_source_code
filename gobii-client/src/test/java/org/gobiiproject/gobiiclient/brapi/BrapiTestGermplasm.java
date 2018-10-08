@@ -40,7 +40,7 @@ public class BrapiTestGermplasm {
 
         RestUri restUriGermplasm = GobiiClientContext.getInstance(null, false)
                 .getUriFactory(GobiiControllerType.BRAPI)
-                .resourceByUriIdParam(RestRequestId.URL_GERMPLASM);
+                .resourceByUriIdParam(RestRequestId.GOBII_GERMPLASM);
         restUriGermplasm.setParamValue("id", "1");
 
         BrapiEnvelopeRestResource<ObjectUtils.Null, BrapiResponseGermplasmByDbId, BrapiResponseDataList> brapiEnvelopeRestResource =

@@ -140,7 +140,7 @@ public class DtoRequestEntityStatsTest {
         Integer arbitrarOrganizationId = organizationPkVals.get(0);
         RestUri restUriOrganizationForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(RestRequestId.URL_ORGANIZATION);
+                .resourceByUriIdParam(RestRequestId.GOBII_ORGANIZATION);
         restUriOrganizationForGetById.setParamValue("id", arbitrarOrganizationId.toString());
         GobiiEnvelopeRestResource<OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
         PayloadEnvelope<OrganizationDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
@@ -270,7 +270,7 @@ public class DtoRequestEntityStatsTest {
         for (Integer currentExperimentId : experimentPks) {
             RestUri experimentsUriById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(RestRequestId.URL_EXPERIMENTS);
+                    .resourceByUriIdParam(RestRequestId.GOBII_EXPERIMENTS);
 
             experimentsUriById.setParamValue("id", currentExperimentId.toString());
             GobiiEnvelopeRestResource<ExperimentDTO> gobiiEnvelopeRestResourceForExperimentsById = new GobiiEnvelopeRestResource<>(experimentsUriById);
@@ -312,7 +312,7 @@ public class DtoRequestEntityStatsTest {
 
         RestUri allEntityStatsUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(RestRequestId.URL_ENTITIES);
+                .resourceColl(RestRequestId.GOBII_ENTITIES);
 
         GobiiEnvelopeRestResource<EntityStatsDTO> gobiiEnvelopeRestResource =
                 new GobiiEnvelopeRestResource<>(allEntityStatsUri);
