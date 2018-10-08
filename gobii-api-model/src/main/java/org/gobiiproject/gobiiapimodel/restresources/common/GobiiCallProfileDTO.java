@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiimodel.dto.system;
+package org.gobiiproject.gobiiapimodel.restresources.common;
 
 import org.gobiiproject.gobiimodel.types.RestMethodTypes;
 
@@ -7,7 +7,10 @@ import java.util.List;
 
 public class GobiiCallProfileDTO {
 
-    public GobiiCallProfileDTO(String methodName, List<RestMethodTypes> supportedVerbs, Integer maxPostPut, Integer maxGet) {
+    public GobiiCallProfileDTO(String methodName,
+                               List<RestMethodTypes> supportedVerbs,
+                               Integer maxPostPut,
+                               Integer maxGet) {
         this.methodName = methodName;
         this.supportedVerbs = supportedVerbs;
         this.maxPostPut = maxPostPut;
