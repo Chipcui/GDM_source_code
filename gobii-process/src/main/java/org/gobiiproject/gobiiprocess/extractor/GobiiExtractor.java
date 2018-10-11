@@ -564,7 +564,7 @@ public class GobiiExtractor {
                         ErrorLogger.logError("GobiiExtractor", "No genetic data extracted. Extract failed.");
                         pm.setBody(jobReadableIdentifier, extractType, SimpleTimer.stop("Extract"), ErrorLogger.getFirstErrorReason(), ErrorLogger.success(), ErrorLogger.getAllErrorStringsHTML());
 						jobStatus.setError("Unsuccessful Data Extract");
-						if(!inst.isQcCheck())mailInterface.send(pm);
+//						if(!inst.isQcCheck())mailInterface.send(pm);
                     }
 					boolean overallSuccess=ErrorLogger.success(); //quick and dirty way to make sure errors past the 'end' of processing don't affect output
                     //Clean Temporary Files
@@ -594,7 +594,7 @@ public class GobiiExtractor {
 						}
 						//inst.isQcCheck has supressed the email output, we wnat to *unsupress* it if there was a problem with file generation
 						else{
-							mailInterface.send(pm);
+//							mailInterface.send(pm);
 						}
 					}
 				}
