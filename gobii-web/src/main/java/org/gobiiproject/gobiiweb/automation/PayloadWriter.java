@@ -2,11 +2,13 @@ package org.gobiiproject.gobiiweb.automation;
 
 import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
+import org.gobiiproject.gobiiapimodel.restresources.common.ResourceParam;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.payload.HeaderAuth;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiimodel.dto.system.PagedList;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
-import org.gobiiproject.gobiimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
 import org.gobiiproject.gobiimodel.dto.base.DTOBase;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
@@ -67,9 +69,9 @@ public class PayloadWriter<T extends DTOBase> {
 
                 payloadEnvelope.getPayload().getData().add(itemToWrite);
 
-                if( restUri != null ) {
+                if (restUri != null) {
                     restUri.setParamValue("id", id);
-                    //And hence we can create the link ehre
+                    //And hence we can create the link here
 
                     String uri = restUri.makeUrlPath();
                     Link link = new Link(uri, "Link to " + dtoType + ", id " + id);
@@ -79,17 +81,17 @@ public class PayloadWriter<T extends DTOBase> {
                         switch (currentProcessType) {
 
                             case CREATE:
-                                link.getMethods().add(RestMethodTypes.POST);
+                                link.getMethods().add(RestMethodType.POST);
                                 break;
                             case READ:
-                                link.getMethods().add(RestMethodTypes.GET);
+                                link.getMethods().add(RestMethodType.GET);
                                 break;
                             case UPDATE:
-                                link.getMethods().add(RestMethodTypes.PUT);
+                                link.getMethods().add(RestMethodType.PUT);
                                 // add PATCH when we support that
                                 break;
                             case DELETE:
-                                link.getMethods().add(RestMethodTypes.DELETE);
+                                link.getMethods().add(RestMethodType.DELETE);
                         }
                     }
                     payloadEnvelope.getPayload().getLinkCollection().getLinksPerDataItem().add(link);
@@ -97,9 +99,8 @@ public class PayloadWriter<T extends DTOBase> {
 
 
                 payloadEnvelope.getHeader().setGobiiVersion(this.gobiiWebVersion);
-                setAuthHeader(payloadEnvelope.getHeader().getDtoHeaderAuth(),this.httpServletResponse);
+                setAuthHeader(payloadEnvelope.getHeader().getDtoHeaderAuth(), this.httpServletResponse);
                 payloadEnvelope.getHeader().setCropType(payloadEnvelope.getHeader().getDtoHeaderAuth().getGobiiCropType());
-
 
             } else {
                 throw new GobiiWebException(GobiiStatusLevel.VALIDATION,
@@ -144,8 +145,8 @@ public class PayloadWriter<T extends DTOBase> {
     }
 
     public void writeListFromPagedQuery(PayloadEnvelope<T> payloadEnvelope,
-                          RestUri restUri,
-                          PagedList<T> pagedListToWrite) throws GobiiWebException, Exception {
+                                        RestUri restUri,
+                                        PagedList<T> pagedListToWrite) throws GobiiWebException, Exception {
 
         for (T currentItem : pagedListToWrite.getDtoList()) {
             this.writeSingleItemForDefaultId(payloadEnvelope, restUri, currentItem);
@@ -172,4 +173,53 @@ public class PayloadWriter<T extends DTOBase> {
         headerAuth.setUserName(userName);
 
     }
+
+
+    public void setCallLimitToHeader(PayloadEnvelope<T> payloadEnvelope,
+                                     RestUri restUri) throws Exception {
+        if (restUri != null) {
+            RestResourceId restResourceId = restUri.getRestResourceId();
+            if (restResourceId != null) {
+
+                Integer callLimitGet = null;
+                Integer callLimitPost = null;
+                Integer callLimitPut = null;
+
+                // If there are any template parameters in the uri, we have to just grab
+                // all of them and interrogate the call profiles as to whether any parameter
+                // in particular returns a limit
+                if (restUri.getTemplateParams().size() <= 0) {
+
+                    callLimitGet = RestResourceLimits.getResourceLimit(restResourceId, RestMethodType.GET);
+                    callLimitPost = RestResourceLimits.getResourceLimit(restResourceId, RestMethodType.POST);
+                    callLimitPut = RestResourceLimits.getResourceLimit(restResourceId, RestMethodType.PUT);
+
+                } else {
+
+                    for (ResourceParam currentResourceParam : restUri.getTemplateParams()) {
+
+                        String currentTemplateParam = currentResourceParam.getValue().toUpperCase();
+                        callLimitGet = RestResourceLimits.getResourceLimit(restResourceId, RestMethodType.GET, currentTemplateParam);
+                        callLimitPost = RestResourceLimits.getResourceLimit(restResourceId, RestMethodType.POST, currentTemplateParam);
+                        callLimitPut = RestResourceLimits.getResourceLimit(restResourceId, RestMethodType.PUT, currentTemplateParam);
+
+                        //if any one got a valid limit, it means that, if there were any others for the current
+                        //template parameter, they would have been set; so here we want to call it quits
+                        //the limitation to this approach is of course that you can only have only one template
+                        //parameter per method type
+                        if( callLimitGet != null || callLimitPost != null || callLimitPut != null ) {
+                            break;
+                        }
+
+                    }
+
+                }
+
+                payloadEnvelope.getHeader().setMaxGet(callLimitGet);
+                payloadEnvelope.getHeader().setMaxPost(callLimitPost);
+                payloadEnvelope.getHeader().setMaxPut(callLimitPut);
+
+            }
+        }
+    } // setCallLimitToHeader()
 }

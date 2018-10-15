@@ -3,11 +3,11 @@ package org.gobiiproject.gobiiclient.gobii.infrastructure;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiTestConfiguration;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.ServerBase;
-import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
@@ -95,8 +95,8 @@ public class TestGobiiConfig {
                 + testFileFqpn
                 + " -gR "
                 + fsSystemRoot
-        + " -gB "
-        + (isProvidesBackend ? "true" : "false"));
+                + " -gB "
+                + (isProvidesBackend ? "true" : "false"));
 
         boolean succeeded = HelperFunctions.tryExec(commandLine, testFileFqpn + ".out", testFileFqpn + ".err");
         Assert.assertTrue("Command failed: " + commandLine, succeeded);
@@ -118,7 +118,6 @@ public class TestGobiiConfig {
     public void testSetEmailServerWithEncryption() throws Exception {
 
         String testFileFqpn = makeTestFileFqpn("setemailoptions");
-
 
 
         //first turn on encypt/decrypt
@@ -443,19 +442,19 @@ public class TestGobiiConfig {
                 gobiiCropConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropConfig.getServer(GobiiServerType.WEB).getHost().equals(host));
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropConfig.getServer(GobiiServerType.WEB).getPort(),
-                gobiiCropConfig.getServer(GobiiServerType.WEB).getPort().equals(port));
+                        + gobiiCropConfig.getServer(ServerType.GOBII_WEB).getPort(),
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getPort().equals(port));
 
         Assert.assertTrue("Crop is not set to active by default",
                 gobiiCropConfig.isActive());
 
         Assert.assertTrue("The context path not match",
-                gobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath().equals(contextPathWithTerminator));
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getContextPath().equals(contextPathWithTerminator));
 
     }
 
@@ -491,20 +490,20 @@ public class TestGobiiConfig {
                 gobiiCropConfig);
 
         Assert.assertTrue("The host name does not match",
-                gobiiCropConfig.getServer(GobiiServerType.WEB).getHost().equals(host));
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + gobiiCropConfig.getServer(GobiiServerType.WEB).getPort(),
-                gobiiCropConfig.getServer(GobiiServerType.WEB).getPort().equals(port));
+                        + gobiiCropConfig.getServer(ServerType.GOBII_WEB).getPort(),
+                gobiiCropConfig.getServer(ServerType.GOBII_WEB).getPort().equals(port));
 
         Assert.assertTrue("Crop is not set to active by default",
                 gobiiCropConfig.isActive());
 
         // this file should not pass validation. However, it should also not
         // cause an NPE
-        String contextPath = gobiiCropConfig.getServer(GobiiServerType.WEB).getContextPath(true);
+        String contextPath = gobiiCropConfig.getServer(ServerType.GOBII_WEB).getContextPath(true);
         Assert.assertTrue(contextPath == "");
 
     }
@@ -544,7 +543,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.POSTGRESQL);
+        ServerConfig postGresConfig = configSettings.getCropConfig(cropId).getServer(ServerType.GOBII_PGSQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 postGresConfig);
 
@@ -609,7 +608,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase postGresConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.POSTGRESQL);
+        ServerConfig postGresConfig = configSettings.getCropConfig(cropId).getServer(ServerType.GOBII_PGSQL);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 postGresConfig);
 
@@ -665,7 +664,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.COMPUTE_NODE);
+        ServerConfig computeNodeConfig = configSettings.getCropConfig(cropId).getServer(ServerType.GOBII_COMPUTE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 computeNodeConfig);
 
@@ -696,10 +695,10 @@ public class TestGobiiConfig {
         String host = "mykdc.com";
         Integer port = 5063;
         String contextPath = "foodkdcpath-" + UUID.randomUUID().toString() + "/";
-        String resourceQCStart = "qcStart";
-        String resourceQCStatus = "qcStatus";
-        String resourceQCDownload = "qcDownload";
-        String resourceQCPurge = "qcPurge";
+        String resourceQCStart = RestResourceId.KDC_START.getResourcePath();
+        String resourceQCStatus = RestResourceId.KDC_STATUS.getResourcePath();
+        String resourceQCDownload = RestResourceId.KDC_DOWNLOAD.getResourcePath();
+        String resourceQCPurge = RestResourceId.KDC_PURGE.getResourcePath();
         Integer statusCheckIntervalSecs = 60;
         Integer statusWaitThresholdMinutes = 20;
         boolean active = false;
@@ -725,7 +724,7 @@ public class TestGobiiConfig {
                 + statusCheckIntervalSecs
                 + " -kstTRM "
                 + statusWaitThresholdMinutes
-                + " -kA "
+                + " -soA "
                 + (active ? "true" : false)
         );
 
@@ -735,38 +734,96 @@ public class TestGobiiConfig {
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
         Assert.assertTrue("The host name does not match",
-                configSettings.getKDCConfig().getHost().equals(host));
+                configSettings.getGlobalServer(ServerType.KDC).getHost().equals(host));
 
         Assert.assertTrue("The port does not match: should be "
                         + port.toString()
                         + "; got: "
-                        + configSettings.getKDCConfig().getPort(),
-                configSettings.getKDCConfig().getPort().equals(port));
+                        + configSettings.getGlobalServer(ServerType.KDC).getPort(),
+                configSettings.getGlobalServer(ServerType.KDC).getPort().equals(port));
 
-        String contextPathRetrieved = configSettings.getKDCConfig().getContextPath();
+        String contextPathRetrieved = configSettings.getGlobalServer(ServerType.KDC).getContextPath();
         Assert.assertTrue("The context path not match",
                 contextPathRetrieved.equals(contextPath));
 
         Assert.assertTrue("The start resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_START).equals(resourceQCStart));
+                configSettings.getGlobalServer(ServerType.KDC).getCallResourcePath(RestResourceId.KDC_START).equals(resourceQCStart));
 
         Assert.assertTrue("The status resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_STATUS_).equals(resourceQCStatus));
+                configSettings.getGlobalServer(ServerType.KDC).getCallResourcePath(RestResourceId.KDC_STATUS).equals(resourceQCStatus));
 
-        Assert.assertTrue("The download resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_DOWNLOAD).equals(resourceQCDownload));
+        Assert.assertTrue("The download resource does not not match; "
+                        + " expected " + resourceQCDownload
+                        + " got " + configSettings.getGlobalServer(ServerType.KDC).getCallResourcePath(RestResourceId.KDC_DOWNLOAD),
+                configSettings.getGlobalServer(ServerType.KDC).getCallResourcePath(RestResourceId.KDC_DOWNLOAD).equals(resourceQCDownload));
 
         Assert.assertTrue("The purge resource does not not match",
-                configSettings.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_PURGE).equals(resourceQCPurge));
+                configSettings.getGlobalServer(ServerType.KDC).getCallResourcePath(RestResourceId.KDC_PURGE).equals(resourceQCPurge));
 
         Assert.assertTrue("The status check interval does not match",
-                configSettings.getKDCConfig().getStatusCheckIntervalSecs().equals(statusCheckIntervalSecs));
+                configSettings.getGlobalServer(ServerType.KDC).getStatusCheckIntervalSecs().equals(statusCheckIntervalSecs));
 
         Assert.assertTrue("The max status check threshold does not not match",
-                configSettings.getKDCConfig().getMaxStatusCheckMins().equals(statusWaitThresholdMinutes));
+                configSettings.getGlobalServer(ServerType.KDC).getMaxStatusCheckMins().equals(statusWaitThresholdMinutes));
 
         Assert.assertFalse("The active flag value does not match",
-                configSettings.getKDCConfig().isActive());
+                configSettings.getGlobalServer(ServerType.KDC).isActive());
+
+    }
+
+    @Test
+    public void testSetOwnCloudServerOptions() throws Exception {
+
+        String testFileFqpn = makeTestFileFqpn("OwnCloudOptions");
+
+        String host = "myowncloud.com";
+        Integer port = 5063;
+        String contextPath = "foodkdcpath-" + UUID.randomUUID().toString() + "/";
+        String userName = "fooowncloudusername-" + UUID.randomUUID().toString() + "/";
+        String password = "fooowncloudpassword-" + UUID.randomUUID().toString() + "/";
+
+        boolean active = false;
+
+
+        String commandLine = makeCommandline("-ownc -wfqpn "
+                + testFileFqpn
+                + " -soH "
+                + host
+                + " -soN "
+                + port.toString()
+                + " -soR "
+                + contextPath
+                + " -soU "
+                + userName
+                + " -soP "
+                + password
+                + " -soA "
+                + (active ? "true" : false)
+        );
+
+        boolean succeeded = HelperFunctions.tryExec(commandLine, testFileFqpn + ".out", testFileFqpn + ".err");
+        Assert.assertTrue("Command failed: " + commandLine, succeeded);
+
+        ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
+
+        Assert.assertTrue("The host name does not match",
+                configSettings.getGlobalServer(ServerType.OWN_CLOUD).getHost().equals(host));
+
+        Assert.assertTrue("The port does not match: should be "
+                        + port.toString()
+                        + "; got: "
+                        + configSettings.getGlobalServer(ServerType.OWN_CLOUD).getPort(),
+                configSettings.getGlobalServer(ServerType.OWN_CLOUD).getPort().equals(port));
+
+        String contextPathRetrieved = configSettings.getGlobalServer(ServerType.OWN_CLOUD).getContextPath();
+        Assert.assertTrue("The context path not match",
+                contextPathRetrieved.equals(contextPath));
+
+        Assert.assertTrue("The password does not match",
+                configSettings.getGlobalServer(ServerType.OWN_CLOUD).getPassword().equals(password));
+
+        Assert.assertTrue("The username does not match",
+                configSettings.getGlobalServer(ServerType.OWN_CLOUD).getUserName().equals(userName));
 
     }
 
@@ -810,7 +867,7 @@ public class TestGobiiConfig {
 
         ConfigSettings configSettings = new ConfigSettings(testFileFqpn);
 
-        ServerBase computeNodeConfig = configSettings.getCropConfig(cropId).getServer(GobiiServerType.COMPUTE_NODE);
+        ServerConfig computeNodeConfig = configSettings.getCropConfig(cropId).getServer(ServerType.GOBII_COMPUTE);
         Assert.assertNotNull("The crop db config was not created: " + cropId,
                 computeNodeConfig);
 

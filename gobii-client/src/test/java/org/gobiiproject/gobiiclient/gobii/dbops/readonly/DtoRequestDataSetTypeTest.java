@@ -2,7 +2,7 @@ package org.gobiiproject.gobiiclient.gobii.dbops.readonly;
 
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -37,9 +37,9 @@ public class DtoRequestDataSetTypeTest {
 
         RestUri restUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_DATASETTYPES);
+                .resourceColl(RestResourceId.GOBII_DATASETTYPES);
 
-        GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUri);
+        GobiiEnvelopeRestResource<NameIdDTO,NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUri);
         PayloadEnvelope<NameIdDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(NameIdDTO.class);
 

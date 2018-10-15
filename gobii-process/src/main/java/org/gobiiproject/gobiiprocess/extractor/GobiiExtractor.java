@@ -19,15 +19,14 @@ import org.gobiiproject.gobiiapimodel.payload.HeaderStatusMessage;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.common.GenericClientContext;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.ServerBase;
-import org.gobiiproject.gobiimodel.config.ServerConfigKDC;
 import org.gobiiproject.gobiimodel.dto.entity.auditable.MapsetDTO;
 import org.gobiiproject.gobiimodel.dto.entity.children.PropNameId;
 import org.gobiiproject.gobiimodel.types.*;
@@ -649,7 +648,7 @@ public class GobiiExtractor {
 	/**
 	 * Extractor QC subsection 1
      *
-	 * @param configuration configuration object for system
+	 * @param configSettings configuration object for system
 	 * @param inst instruction being processed
 	 * @param crop name of crop being processed (unused
 	 * @param datasetId ID of the dataset being used
@@ -658,43 +657,43 @@ public class GobiiExtractor {
 	 * @param extractType type of extract being performed
      * @throws Exception when an exception has occurred (all of them)
      */
-    private static void performQC(ConfigSettings configuration, GobiiExtractorInstruction inst, String crop, Integer datasetId, String extractDir, MailInterface mailInterface, String extractType) throws Exception {
-        if (configuration.getKDCConfig().getHost() == null) {
+    private static void performQC(ConfigSettings configSettings, GobiiExtractorInstruction inst, String crop, Integer datasetId, String extractDir, MailInterface mailInterface, String extractType) throws Exception {
+        if (configSettings.getGlobalServer(ServerType.KDC).getHost() == null) {
             ErrorLogger.logInfo("QC", "Unable to continue QC with the KDC host name being null");
             return;
         } else {
-            if (configuration.getKDCConfig().getHost().equals("")) {
+            if (configSettings.getGlobalServer(ServerType.KDC).getHost().equals("")) {
                 ErrorLogger.logInfo("QC", "Unable to continue QC with the KDC host name being empty");
                 return;
             }
         }
-        if (configuration.getKDCConfig().getContextPath() == null) {
+        if (configSettings.getGlobalServer(ServerType.KDC).getContextPath() == null) {
             ErrorLogger.logInfo("QC", "Unable to continue QC with the KDC context path being null");
             return;
         } else {
-            if (configuration.getKDCConfig().getContextPath().equals("")) {
+            if (configSettings.getGlobalServer(ServerType.KDC).getContextPath().equals("")) {
                 ErrorLogger.logInfo("QC", "Unable to continue QC with the KDC context path being empty");
                 return;
             }
         }
-        if (!configuration.getKDCConfig().isActive()) {
+        if (!configSettings.getGlobalServer(ServerType.KDC).isActive()) {
             ErrorLogger.logInfo("QC", "Unable to continue QC with the KDC server inactive");
 			return;
 		}
-		ErrorLogger.logInfo("QC", "KDC Host: " + configuration.getKDCConfig().getHost());
-		ErrorLogger.logInfo("QC", "KDC Context Path: " + configuration.getKDCConfig().getContextPath());
-		ErrorLogger.logInfo("QC", "KDC Port: " + configuration.getKDCConfig().getPort());
-		ErrorLogger.logInfo("QC", "KDC Active: " + configuration.getKDCConfig().isActive());
-			ServerBase serverBase = new ServerBase(GobiiServerType.GENERIC,
-					configuration.getKDCConfig().getHost(),
-					configuration.getKDCConfig().getContextPath(),
-					configuration.getKDCConfig().getPort(),
-					configuration.getKDCConfig().isActive(),
-					configuration.getKDCConfig().isDecrypt());
-			GenericClientContext genericClientContext = new GenericClientContext(serverBase);
+		ErrorLogger.logInfo("QC", "KDC Host: " + configSettings.getGlobalServer(ServerType.KDC).getHost());
+		ErrorLogger.logInfo("QC", "KDC Context Path: " + configSettings.getGlobalServer(ServerType.KDC).getContextPath());
+		ErrorLogger.logInfo("QC", "KDC Port: " + configSettings.getGlobalServer(ServerType.KDC).getPort());
+		ErrorLogger.logInfo("QC", "KDC Active: " + configSettings.getGlobalServer(ServerType.KDC).isActive());
+			ServerConfig serverConfig = new ServerConfig(ServerType.GENERIC,
+					configSettings.getGlobalServer(ServerType.KDC).getHost(),
+					configSettings.getGlobalServer(ServerType.KDC).getContextPath(),
+					configSettings.getGlobalServer(ServerType.KDC).getPort(),
+					configSettings.getGlobalServer(ServerType.KDC).isActive(),
+					configSettings.getGlobalServer(ServerType.KDC).isDecrypt());
+			GenericClientContext genericClientContext = new GenericClientContext(serverConfig);
 			RestUri restUriGetQCJobID = new RestUri("/",
-					configuration.getKDCConfig().getContextPath(),
-					configuration.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_START));
+					configSettings.getGlobalServer(ServerType.KDC).getContextPath(),
+					configSettings.getGlobalServer(ServerType.KDC).getCallResourcePath(RestResourceId.KDC_START));
 			restUriGetQCJobID
 					.addQueryParam("datasetId", String.valueOf(datasetId))
 					.addQueryParam("directory", extractDir)
@@ -728,14 +727,14 @@ public class GobiiExtractor {
 					qcStartPm.setBody("new QC Job #"+qcJobID,"QC",0,"",true,"");
 					//mailInterface.send(qcStartPm);
 						RestUri restUriGetQCJobStatus = new RestUri("/",
-								configuration.getKDCConfig().getContextPath(),
-								configuration.getKDCConfig().getPath(ServerConfigKDC.KDCResource.QC_STATUS_));
+								configSettings.getGlobalServer(ServerType.KDC).getContextPath(),
+								configSettings.getGlobalServer(ServerType.KDC).getCallResourcePath(RestResourceId.KDC_STATUS));
 						restUriGetQCJobStatus
 								.addQueryParam("jobid")
 								.setParamValue("jobid", String.valueOf(qcJobID));
 						jsonPayload = null;
 						String status = null;
-						long maxStatusCheckMillis = configuration.getKDCConfig().getMaxStatusCheckMins() * 60 * 1000;
+						long maxStatusCheckMillis = configSettings.getGlobalServer(ServerType.KDC).getMaxStatusCheckMins() * 60 * 1000;
 						SimpleTimer.start("QC");
 						do {
 							long qcProcessTimeMillis = System.currentTimeMillis() - SimpleTimer.time("QC");
@@ -743,7 +742,7 @@ public class GobiiExtractor {
 								break;
 							}
 							try {
-								Thread.sleep(configuration.getKDCConfig().getStatusCheckIntervalSecs() * 1000);
+								Thread.sleep(configSettings.getGlobalServer(ServerType.KDC).getStatusCheckIntervalSecs() * 1000);
 							} catch (InterruptedException interruptedException) {
 								Thread.currentThread().interrupt();
 								ErrorLogger.logError("QC", "qcStatus: " + interruptedException.getMessage());
@@ -796,7 +795,7 @@ public class GobiiExtractor {
 										    String destinationFqpn = Paths.get(extractDir, key).toString();
 										    ErrorLogger.logInfo("QC", new StringBuilder("destinationFqpn: ").append(destinationFqpn).toString());
 										    RestUri restUriGetQCDownload = new RestUri("/",
-												    configuration.getKDCConfig().getContextPath(),
+												    configSettings.getGlobalServer(ServerType.KDC).getContextPath(),
 												    fileDownloadLink)
 												    .withHttpHeader(GobiiHttpHeaderNames.HEADER_NAME_CONTENT_TYPE,
 														    MediaType.APPLICATION_OCTET_STREAM)
@@ -845,7 +844,7 @@ public class GobiiExtractor {
 										.append(" was unsuccessful. Its status: " + status).toString());
 							} else {
 								ErrorLogger.logError("QC", new StringBuilder("The process time of the QC job #").append(qcJobID)
-										.append(" exceeded the limit: ").append(configuration.getKDCConfig().getMaxStatusCheckMins()).append(" minutes").toString());
+										.append(" exceeded the limit: ").append(configSettings.getGlobalServer(ServerType.KDC).getMaxStatusCheckMins()).append(" minutes").toString());
 							}
 							qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDuration, ErrorLogger.getFirstErrorReason(), false, ErrorLogger.getAllErrorStringsHTML());
 						}
@@ -1087,9 +1086,9 @@ public class GobiiExtractor {
 			GobiiUriFactory gobiiUriFactory = new GobiiUriFactory(currentCropContextRoot);
 
 			RestUri mapUri = gobiiUriFactory
-					.resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
+					.resourceByUriIdParam(RestResourceId.GOBII_MAPSET);
 			mapUri.setParamValue("id", mapId.toString());
-			GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(mapUri);
+			GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(mapUri);
 			PayloadEnvelope<MapsetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDatasets
 					.get(MapsetDTO.class);
 

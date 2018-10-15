@@ -5,7 +5,7 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -47,8 +47,8 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
 
         RestUri restUriMapset = GobiiClientContext.getInstance(null,false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MAPSET);
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriMapset);
+                .resourceColl(RestResourceId.GOBII_MAPSET);
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriMapset);
         PayloadEnvelope<MapsetDTO> resultEnvelope = gobiiEnvelopeRestResource.get(MapsetDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelope.getHeader()));
@@ -61,9 +61,9 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
         Integer mapsetId = mapsetDTOList.get(0).getMapsetId();
         RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
+                .resourceByUriIdParam(RestResourceId.GOBII_MAPSET);
         restUriMapsetForGetById.setParamValue("id", mapsetId.toString());
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
         PayloadEnvelope<MapsetDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById
                 .get(MapsetDTO.class);
 
@@ -76,7 +76,7 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
     @Test
     public void testEmptyResult() throws Exception {
 
-        DtoRestRequestUtils<MapsetDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(MapsetDTO.class, GobiiServiceRequestId.URL_MAPSET);
+        DtoRestRequestUtils<MapsetDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(MapsetDTO.class, RestResourceId.GOBII_MAPSET);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentID = maxId + 1;
 
@@ -99,7 +99,7 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
         namesUri.setParamValue("filterType", StringUtils.capitalize(GobiiFilterType.NAMES_BY_TYPE_NAME.toString()));
         namesUri.setParamValue("filterValue", "mapset_type");
 
-        GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResourceForMapsetTerms = new GobiiEnvelopeRestResource<>(namesUri);
+        GobiiEnvelopeRestResource<NameIdDTO,NameIdDTO> gobiiEnvelopeRestResourceForMapsetTerms = new GobiiEnvelopeRestResource<>(namesUri);
         PayloadEnvelope<NameIdDTO> resultEnvelope = gobiiEnvelopeRestResourceForMapsetTerms
                 .get(NameIdDTO.class);
 
@@ -114,9 +114,9 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
                 .makePopulatedMapsetDTO(GobiiProcessType.CREATE, 1, entityParamValues);
 
         PayloadEnvelope<MapsetDTO> payloadEnvelope = new PayloadEnvelope<>(newMapsetDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MAPSET));
+                .resourceColl(RestResourceId.GOBII_MAPSET));
         PayloadEnvelope<MapsetDTO> mapsetDTOResponseEnvelope = gobiiEnvelopeRestResource.post(MapsetDTO.class,
                 payloadEnvelope);
         MapsetDTO mapsetDTOResponse = mapsetDTOResponseEnvelope.getPayload().getData().get(0);
@@ -129,9 +129,9 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
 
         RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
+                .resourceByUriIdParam(RestResourceId.GOBII_MAPSET);
         restUriMapsetForGetById.setParamValue("id", mapsetDTOResponse.getMapsetId().toString());
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResouceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResouceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
         PayloadEnvelope<MapsetDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResouceForGetById
                 .get(MapsetDTO.class);
 
@@ -152,7 +152,7 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
         namesUri.setParamValue("filterType", StringUtils.capitalize(GobiiFilterType.NAMES_BY_TYPE_NAME.toString()));
         namesUri.setParamValue("filterValue", "mapset_type");
 
-        GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResourceForMapsetTerms = new GobiiEnvelopeRestResource<>(namesUri);
+        GobiiEnvelopeRestResource<NameIdDTO,NameIdDTO> gobiiEnvelopeRestResourceForMapsetTerms = new GobiiEnvelopeRestResource<>(namesUri);
         PayloadEnvelope<NameIdDTO> resultEnvelope = gobiiEnvelopeRestResourceForMapsetTerms
                 .get(NameIdDTO.class);
 
@@ -168,9 +168,9 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
                 .makePopulatedMapsetDTO(GobiiProcessType.CREATE, 1, entityParamValues);
 
         PayloadEnvelope<MapsetDTO> payloadEnvelope = new PayloadEnvelope<>(newMapsetDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MAPSET));
+                .resourceColl(RestResourceId.GOBII_MAPSET));
         PayloadEnvelope<MapsetDTO> mapsetDTOResponseEnvelope = gobiiEnvelopeRestResource.post(MapsetDTO.class,
                 payloadEnvelope);
         MapsetDTO newMapsetDTOResponse = mapsetDTOResponseEnvelope.getPayload().getData().get(0);
@@ -179,9 +179,9 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
 
         RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
+                .resourceByUriIdParam(RestResourceId.GOBII_MAPSET);
         restUriMapsetForGetById.setParamValue("id", newMapsetDTOResponse.getMapsetId().toString());
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
         PayloadEnvelope<MapsetDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                 .get(MapsetDTO.class);
 
@@ -218,8 +218,8 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
 
         RestUri restUriMapset = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MAPSET);
-        GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriMapset);
+                .resourceColl(RestResourceId.GOBII_MAPSET);
+        GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriMapset);
         PayloadEnvelope<MapsetDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(MapsetDTO.class);
 
@@ -249,7 +249,7 @@ public class DtoCrudRequestMapsetTest implements DtoCrudRequestTest {
             RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
                     .RestUriFromUri(currentLink.getHref());
-            GobiiEnvelopeRestResource<MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
+            GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
             PayloadEnvelope<MapsetDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById
                     .get(MapsetDTO.class);
             Assert.assertNotNull(resultEnvelopeForGetById);

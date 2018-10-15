@@ -6,7 +6,7 @@ import org.gobiiproject.gobiimodel.dto.base.DTOBase;
 import org.gobiiproject.gobiimodel.dto.entity.annotations.GobiiEntityColumn;
 import org.gobiiproject.gobiimodel.dto.entity.annotations.GobiiEntityParam;
 
-public class SampleDTO extends DTOBase {
+public class DnaSampleDTO extends DTOBase {
 
 
     Integer dnaRunId;
@@ -16,7 +16,12 @@ public class SampleDTO extends DTOBase {
     String germplasmName;
     String analysisMethodName;
     Integer markerCount;
-
+    String dnaSampleName;
+    String germplasmExternalCode;
+    Integer projectId;
+    Integer dnaSampleNum;
+    String dnarunName;
+    Integer experimentId;
 
     @Override
     public Integer getId() {
@@ -98,6 +103,42 @@ public class SampleDTO extends DTOBase {
     public void setMarkerCount(Integer markerCount) {
         this.markerCount = markerCount;
     }
+
+    @GobiiEntityParam(paramName = "dnaSampleName")
+    public String getDnaSampleName() { return dnaSampleName;}
+
+    @GobiiEntityColumn(columnName = "name")
+    public void setDnaSampleName(String dnaSampleName) { this.dnaSampleName = dnaSampleName; }
+
+    @GobiiEntityParam(paramName = "germplasmExternalCode")
+    public String getGermplasmExternalCode() { return germplasmExternalCode; }
+
+    @GobiiEntityColumn(columnName = "code")
+    public void setGermplasmExternalCode(String germplasmExternalCode) { this.germplasmExternalCode = germplasmExternalCode; }
+
+    @GobiiEntityParam(paramName = "projectId")
+    public Integer getProjectId() { return projectId; }
+
+    @GobiiEntityColumn(columnName = "project_id")
+    public void setProjectId(Integer projectId) { this.projectId = projectId; }
+
+    @GobiiEntityParam(paramName = "dnaSampleNum")
+    public Integer getDnaSampleNum() { return dnaSampleNum; }
+
+    @GobiiEntityColumn(columnName = "num")
+    public void setDnaSampleNum(Integer dnaSampleNum) { this.dnaSampleNum = dnaSampleNum; }
+
+    @GobiiEntityParam(paramName = "dnarunName")
+    public String getDnarunName() { return dnarunName; }
+
+    @GobiiEntityColumn(columnName = "dnarunname")
+    public void setDnarunName(String dnarunName) { this.dnarunName = dnarunName; }
+
+    @GobiiEntityParam(paramName = "experimentId")
+    public Integer getExperimentId() { return experimentId; }
+
+    @GobiiEntityColumn(columnName = "experiment_id")
+    public void setExperimentId(Integer experimentId) { this.experimentId = experimentId; }
 }
 
 

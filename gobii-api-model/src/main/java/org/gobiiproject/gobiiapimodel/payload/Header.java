@@ -28,6 +28,10 @@ public class Header implements Serializable {
     private Status status = new Status();
     private Pagination pagination = null;
 
+    private Integer maxGet = null; // add additional verbs as needed
+    private Integer maxPost = null;
+    private Integer maxPut = null;
+
 
     private String gobiiVersion;
 
@@ -95,4 +99,27 @@ public class Header implements Serializable {
         this.gobiiVersion = gobiiVersion;
     }
 
+    public Integer getMaxGet() {
+        return maxGet;
+    }
+
+    public void setMaxGet(Integer maxGet) {
+        this.maxGet = maxGet;
+    }
+
+    public Integer getMaxPost() {
+        return maxPost;
+    }
+
+    public void setMaxPost(Integer maxPost) {
+        this.maxPost = maxPost;
+    }
+
+    public Integer getMaxPut() {
+        return maxPut;
+    }
+
+    public void setMaxPut(Integer maxPut) {
+        this.maxPut = maxPut;
+    }
 } // Header

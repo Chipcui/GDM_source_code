@@ -4,7 +4,7 @@ import org.gobiiproject.gobiimodel.config.ConfigSettings;
 
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestAttributes;
@@ -46,7 +46,7 @@ public class CropRequestAnalyzer {
                 GobiiCropConfig currentCropConfig = CONFIG_SETTINGS.getActiveCropConfigs().get(idx);
 
                 String rawContextPath = currentCropConfig
-                        .getServer(GobiiServerType.WEB)
+                        .getServer(ServerType.GOBII_WEB)
                         .getContextPath();
 
                 // double check that context paths are unique
@@ -54,7 +54,7 @@ public class CropRequestAnalyzer {
                         .getActiveCropConfigs()
                         .stream()
                         .filter(cc -> {
-                            return cc.getServer(GobiiServerType.WEB)
+                            return cc.getServer(ServerType.GOBII_WEB)
                                     .getContextPath().equals(rawContextPath);
                         })
                         .count() < 2) {
