@@ -4,7 +4,7 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -52,7 +52,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
         PayloadEnvelope<OrganizationDTO> payloadEnvelope = new PayloadEnvelope<>(newOrganizationDto, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_ORGANIZATION));
+                .resourceColl(RestResourceId.GOBII_ORGANIZATION));
         PayloadEnvelope<OrganizationDTO> organizationDTOResponseEnvelope = gobiiEnvelopeRestResource.post(OrganizationDTO.class,
                 payloadEnvelope);
         OrganizationDTO organizationDTOResponse = organizationDTOResponseEnvelope.getPayload().getData().get(0);
@@ -67,7 +67,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
 
         RestUri restUriOrganizationForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_ORGANIZATION);
+                .resourceByUriIdParam(RestResourceId.GOBII_ORGANIZATION);
         restUriOrganizationForGetById.setParamValue("id", organizationDTOResponse.getOrganizationId().toString());
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
         PayloadEnvelope<OrganizationDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
@@ -90,7 +90,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
         PayloadEnvelope<OrganizationDTO> payloadEnvelope = new PayloadEnvelope<>(newOrganizationDto, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_ORGANIZATION));
+                .resourceColl(RestResourceId.GOBII_ORGANIZATION));
         PayloadEnvelope<OrganizationDTO> organizationDTOResponseEnvelope = gobiiEnvelopeRestResource.post(OrganizationDTO.class,
                 payloadEnvelope);
         OrganizationDTO newOrganizationDTOResponse = organizationDTOResponseEnvelope.getPayload().getData().get(0);
@@ -99,7 +99,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
 
         RestUri restUriOrganizationForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_ORGANIZATION);
+                .resourceByUriIdParam(RestResourceId.GOBII_ORGANIZATION);
         restUriOrganizationForGetById.setParamValue("id", newOrganizationDTOResponse.getOrganizationId().toString());
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
         PayloadEnvelope<OrganizationDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
@@ -144,7 +144,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
         // get a list of organizations
         RestUri restUriOrganization = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_ORGANIZATION);
+                .resourceColl(RestResourceId.GOBII_ORGANIZATION);
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriOrganization);
         PayloadEnvelope<OrganizationDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(OrganizationDTO.class);
@@ -160,7 +160,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
         Integer organizationId = organizationDTOList.get(0).getOrganizationId();
         RestUri restUriOrganizationForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_ORGANIZATION);
+                .resourceByUriIdParam(RestResourceId.GOBII_ORGANIZATION);
         restUriOrganizationForGetById.setParamValue("id", organizationId.toString());
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
         PayloadEnvelope<OrganizationDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
@@ -177,7 +177,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
     public void testEmptyResult() throws Exception {
 
         DtoRestRequestUtils<OrganizationDTO> dtoDtoRestRequestUtils =
-                new DtoRestRequestUtils<>(OrganizationDTO.class, GobiiServiceRequestId.URL_ORGANIZATION);
+                new DtoRestRequestUtils<>(OrganizationDTO.class, RestResourceId.GOBII_ORGANIZATION);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentId = maxId + 1;
 
@@ -199,7 +199,7 @@ public class DtoCrudRequestOrganizationTest implements DtoCrudRequestTest {
 
         RestUri restUriOrganization = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_ORGANIZATION);
+                .resourceColl(RestResourceId.GOBII_ORGANIZATION);
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriOrganization);
         PayloadEnvelope<OrganizationDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(OrganizationDTO.class);

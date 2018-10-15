@@ -1,128 +1,294 @@
 package org.gobiiproject.gobiimodel.config;
 
 
-import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
-import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
+import org.gobiiproject.gobiimodel.dto.rest.RestResourceProfile;
+import org.gobiiproject.gobiimodel.security.Decrypter;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
+import org.gobiiproject.gobiimodel.types.ServerType;
+import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementMap;
+import org.simpleframework.xml.Root;
 
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.List;
 
-/**
- * This class encapsualtes the configuration properties that are returned to web clients via
- * web services. For most intents and purposes, it is superfluous. However, for security purposes
- * we use it to prevent sensitive configuration data from being sent through web services: it forces
- * careful decisions to be made by the author of the web service that returns this data to the web
- * client.
- */
+@Root
 public class ServerConfig {
 
-    public ServerConfig() {
-    }
+    @Element(required = false)
+    private boolean decrypt = false;
 
-    public ServerConfig(GobiiCropConfig gobiiCropConfig,
-                        String extractorInstructionsDir,
-                        String loaderInstructionsDir,
-                        String intermediateFilesDir,
-                        String rawUserFilesDir,
-                        String confidentialityNoticeFqpn) throws Exception {
+    @Element(required = false)
+    private String userName = null;
 
-        this.port = gobiiCropConfig.getPort();
-        this.domain = gobiiCropConfig.getHost();
-        this.contextRoot = gobiiCropConfig.getContextPath();
-        this.gobiiCropType = gobiiCropConfig.getGobiiCropType();
+    @Element(required = false)
+    private String password = null;
 
-        fileLocations
-                .put(GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS, extractorInstructionsDir);
+    @Element(required = false)
+    private ServerType serverType = null;
 
-        fileLocations
-                .put(GobiiFileProcessDir.LOADER_INSTRUCTIONS, loaderInstructionsDir);
+    @Element(required = false)
+    private String host = "";
 
-        fileLocations
-                .put(GobiiFileProcessDir.LOADER_INTERMEDIATE_FILES, intermediateFilesDir);
-
-        fileLocations
-                .put(GobiiFileProcessDir.RAW_USER_FILES, rawUserFilesDir);
-
-
-        File file = new File(confidentialityNoticeFqpn);
-        if (file.exists()) {
-            StringBuilder lines = new StringBuilder();
-            Files.readAllLines(Paths.get(confidentialityNoticeFqpn)).forEach(fileLine -> lines.append(fileLine));
-            this.setConfidentialityNotice(lines.toString());
-        }
-
-    }
+    @Element(required = false)
+    private String contextPath = "";
 
     @Element(required = false)
     private Integer port = 0;
 
     @Element(required = false)
-    private String domain = "";
+    private boolean isActive = false;
 
-    @Element(required = false)
-    private String contextRoot = "";
+    public ServerConfig() {
+    }
 
-    @Element(required = false)
-    private String gobiiCropType;
+    public ServerConfig(ServerType serverType,
+                        String host,
+                        String contextPath,
+                        Integer port,
+                        boolean isActive,
+                        String userName,
+                        String password,
+                        boolean decrypt,
+                        EnumMap<RestResourceId, RestResourceProfile> resourceProfilesByRestRequestId) {
 
-    @Element(required = false)
-    private String confidentialityNotice;
+        this.serverType = serverType;
+        this.host = host;
+        this.contextPath = contextPath;
+        this.port = port;
+        this.isActive = isActive;
+        this.userName = userName;
+        this.password = password;
+        this.decrypt = decrypt;
+        this.resourceProfilesByRestRequestId = resourceProfilesByRestRequestId;
+    }
 
-    @Element
-    private Map<GobiiFileProcessDir, String> fileLocations = new HashMap<>();
+    public ServerConfig(ServerType serverType,
+                        String host,
+                        String contextPath,
+                        Integer port,
+                        boolean isActive,
+                        boolean decrypt) {
+
+        this.serverType = serverType;
+        this.host = host;
+        this.contextPath = contextPath;
+        this.port = port;
+        this.isActive = isActive;
+        this.decrypt = decrypt;
+
+    }
+
+    public boolean isDecrypt() {
+        return decrypt;
+    }
+
+    public ServerConfig setDecrypt(boolean decrypt) {
+        this.decrypt = decrypt;
+        return this;
+    }
+
+    public String getUserName() {
+
+        String returnVal = null;
+
+        if (this.decrypt) {
+            returnVal = Decrypter.decrypt(this.userName, null);
+        } else {
+            returnVal = this.userName;
+        }
+
+        return returnVal;
+    }
+
+    public ServerConfig setUserName(String userName) {
+        this.userName = userName;
+        return this;
+    }
+
+    public String getPassword() {
+
+        String returnVal = null;
+
+        if (this.decrypt) {
+            returnVal = Decrypter.decrypt(this.password, null);
+        } else {
+            returnVal = this.password;
+        }
+
+        return returnVal;
+    }
+
+    public ServerConfig setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+
+    public ServerType getServerType() {
+        return serverType;
+    }
+
+    public ServerConfig setServerType(ServerType serverType) {
+        this.serverType = serverType;
+        return this;
+    }
+
+    public ServerConfig setHost(String host) {
+        this.host = host;
+        return this;
+    }
+
+    public ServerConfig setPort(Integer port) {
+        this.port = port;
+        return this;
+    }
 
     public Integer getPort() {
         return port;
     }
 
-    public void setPort(Integer port) {
-        this.port = port;
+
+    public String getHost() {
+
+        return host;
     }
 
-    public String getDomain() {
-        return domain;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setDomain(String domain) {
-        this.domain = domain;
+    public ServerConfig setActive(boolean active) {
+        isActive = active;
+        return this;
     }
 
-    public String getContextRoot() {
-        return contextRoot;
+    public String getContextPath() {
+        return this.getContextPath(true);
     }
 
-    public void setContextRoot(String contextRoot) {
-        this.contextRoot = contextRoot;
+    public String getContextPath(boolean terminate) {
+
+        String returnVal = this.contextPath;
+
+        if (terminate && !LineUtils.isNullOrEmpty(returnVal)) {
+            returnVal = LineUtils.terminateDirectoryPath(returnVal);
+        }
+        return returnVal;
     }
 
-    public String getGobiiCropType() {
-        return gobiiCropType;
+    public ServerConfig setContextPath(String contextPath) {
+        this.contextPath = contextPath;
+        return this;
     }
 
-    public void setGobiiCropType(String gobiiCropType) {
-        this.gobiiCropType = gobiiCropType;
+
+    @ElementMap(required = false)
+    EnumMap<RestResourceId, RestResourceProfile> resourceProfilesByRestRequestId = new EnumMap<>(RestResourceId.class);
+
+    @Element(required = false)
+    Integer statusCheckIntervalSecs = 0;
+
+    @Element(required = false)
+    Integer maxStatusCheckMins = 0;
+
+
+    public Integer getStatusCheckIntervalSecs() {
+        return statusCheckIntervalSecs;
     }
 
-    public Map<GobiiFileProcessDir, String> getFileLocations() {
-        return fileLocations;
+    public ServerConfig setStatusCheckIntervalSecs(Integer statusCheckIntervalSecs) {
+        this.statusCheckIntervalSecs = statusCheckIntervalSecs;
+        return this;
     }
 
-    public void setFileLocations(Map<GobiiFileProcessDir, String> fileLocations) {
-        this.fileLocations = fileLocations;
+    public Integer getMaxStatusCheckMins() {
+        return maxStatusCheckMins;
     }
 
-    public String getConfidentialityNotice() {
-        return this.confidentialityNotice;
+    public ServerConfig setMaxStatusCheckMins(Integer maxStatusCheckMins) {
+        this.maxStatusCheckMins = maxStatusCheckMins;
+        return this;
     }
 
-    public void setConfidentialityNotice(String confidentialityNotice) {
-        this.confidentialityNotice = confidentialityNotice;
+
+    List<ServerType> nonUpdatableServerTypes = Arrays.asList(ServerType.GOBII_WEB,
+            ServerType.GOBII_PGSQL,
+            ServerType.GOBII_COMPUTE);
+
+
+    public boolean isResourceProfileDefined(RestResourceId restResourceId, RestMethodType restMethodType) {
+
+        return this.resourceProfilesByRestRequestId.containsKey(restResourceId)
+                && this.resourceProfilesByRestRequestId.get(restResourceId).isRestMethodDefined(restMethodType);
     }
 
+    public boolean isResourceProfileDefined(RestResourceId restResourceId, RestMethodType restMethodType, String templateParameter) {
+
+        return this.resourceProfilesByRestRequestId.containsKey(restResourceId)
+                && this.resourceProfilesByRestRequestId.get(restResourceId).isRestMethodDefined(restMethodType,templateParameter);
+    }
+
+    private RestResourceProfile getResourceProfile(RestResourceId restResourceId) {
+
+        if (!this.resourceProfilesByRestRequestId.containsKey(restResourceId)) {
+            throw new GobiiException("There is no call profile for restResourceId " + restResourceId.getResourcePath());
+        }
+
+        return this.resourceProfilesByRestRequestId.get(restResourceId);
+    }
+
+    public EnumMap<RestResourceId, RestResourceProfile> getResourceProfilesByRestRequestId() {
+        return resourceProfilesByRestRequestId;
+    }
+
+    public void setResourceProfilesByRestRequestId(EnumMap<RestResourceId, RestResourceProfile> resourceProfilesByRestRequestId) {
+        this.resourceProfilesByRestRequestId = resourceProfilesByRestRequestId;
+    }
+
+    public Integer getRestResourceLimit(RestResourceId restResourceId, RestMethodType restMethodType) {
+
+        return this.getResourceProfile(restResourceId).getMethodLimit(restMethodType);
+    }
+
+    public Integer getRestResourceLimit(RestResourceId restResourceId,
+                                        RestMethodType restMethodType,
+                                        String templateParameter) {
+
+        return this.getResourceProfile(restResourceId).getMethodLimit(restMethodType,
+                templateParameter);
+    }
+
+    public void setRestResourceLimit(RestResourceId restResourceId,
+                                        RestMethodType restMethodType,
+                                        Integer max) {
+
+        this.getResourceProfile(restResourceId).setMethodLimit(restMethodType, max);
+    }
+
+    public void setRestResourceLimit(RestResourceId restResourceId,
+                                        RestMethodType restMethodType,
+                                        String templateParameter,
+                                        Integer max) {
+
+        this.getResourceProfile(restResourceId).setMethodLimit(restMethodType,
+                templateParameter,max);
+    }
+
+    public String getCallResourcePath(RestResourceId restResourceId) {
+        return this.getResourceProfile(restResourceId).getRestResourceId().getResourcePath();
+    }
+
+    public void setCallResourcePath(RestResourceId restResourceId, String resourcePath) throws GobiiException {
+
+
+        if (this.nonUpdatableServerTypes.contains(restResourceId.getServerType())) {
+            throw new GobiiException("This server type does not allow dynamic configuration of resource paths: " + restResourceId.getServerType().toString());
+        }
+
+        this.getResourceProfile(restResourceId).getRestResourceId().setResourcePath(resourcePath);
+    }
 
 }

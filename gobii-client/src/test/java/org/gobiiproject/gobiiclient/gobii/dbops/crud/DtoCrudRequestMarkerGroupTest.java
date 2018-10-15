@@ -10,7 +10,7 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -65,7 +65,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
 
             RestUri markerCollUri = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceColl(GobiiServiceRequestId.URL_MARKERS);
+                    .resourceColl(RestResourceId.GOBII_MARKERS);
             GobiiEnvelopeRestResource<MarkerDTO,MarkerDTO> gobiiEnvelopeRestResourceForMarkerPost = new GobiiEnvelopeRestResource<>(markerCollUri);
             resultEnvelope = gobiiEnvelopeRestResourceForMarkerPost
                     .post(MarkerDTO.class, new PayloadEnvelope<>(markerDTORequest, GobiiProcessType.CREATE));
@@ -118,7 +118,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
             Integer platformId = markerDTO.getPlatformId();
             RestUri restUriPlatformForGetById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
-                    .resourceByUriIdParam(GobiiServiceRequestId.URL_PLATFORM);
+                    .resourceByUriIdParam(RestResourceId.GOBII_PLATFORM);
             restUriPlatformForGetById.setParamValue("id", platformId.toString());
             GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
             PayloadEnvelope<PlatformDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
@@ -166,7 +166,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
         PayloadEnvelope<MarkerGroupDTO> payloadEnvelope = new PayloadEnvelope<>(newMarkerGroupDto, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<MarkerGroupDTO,MarkerGroupDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MARKERGROUP));
+                .resourceColl(RestResourceId.GOBII_MARKERGROUP));
         PayloadEnvelope<MarkerGroupDTO> markerGroupDTOResponseEnvelope = gobiiEnvelopeRestResource.post(MarkerGroupDTO.class,
                 payloadEnvelope);
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(markerGroupDTOResponseEnvelope.getHeader()));
@@ -178,7 +178,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
 
         RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MARKERGROUP);
+                .resourceByUriIdParam(RestResourceId.GOBII_MARKERGROUP);
         restUriMapsetForGetById.setParamValue("id", markerGroupDTOResponse.getMarkerGroupId().toString());
         GobiiEnvelopeRestResource<MarkerGroupDTO,MarkerGroupDTO> gobiiEnvelopeRestResouceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
         PayloadEnvelope<MarkerGroupDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResouceForGetById
@@ -197,7 +197,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
 
         RestUri restUriMarkerGroup = GobiiClientContext.getInstance(null,false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MARKERGROUP);
+                .resourceColl(RestResourceId.GOBII_MARKERGROUP);
         GobiiEnvelopeRestResource<MarkerGroupDTO,MarkerGroupDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriMarkerGroup);
         PayloadEnvelope<MarkerGroupDTO> resultEnvelope = gobiiEnvelopeRestResource.get(MarkerGroupDTO.class);
 
@@ -211,7 +211,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
         Integer markerGroupId = markerGroupDTOList.get(0).getMarkerGroupId();
         RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MARKERGROUP);
+                .resourceByUriIdParam(RestResourceId.GOBII_MARKERGROUP);
         restUriMapsetForGetById.setParamValue("id", markerGroupId.toString());
         GobiiEnvelopeRestResource<MarkerGroupDTO,MarkerGroupDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
         PayloadEnvelope<MarkerGroupDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById
@@ -226,7 +226,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
     @Override
     public void testEmptyResult() throws Exception {
 
-        DtoRestRequestUtils<MarkerGroupDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(MarkerGroupDTO.class, GobiiServiceRequestId.URL_MARKERGROUP);
+        DtoRestRequestUtils<MarkerGroupDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(MarkerGroupDTO.class, RestResourceId.GOBII_MARKERGROUP);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentID = maxId + 1;
 
@@ -268,7 +268,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
         PayloadEnvelope<MarkerGroupDTO> payloadEnvelope = new PayloadEnvelope<>(newMarkerGroupDto, GobiiProcessType.CREATE);
         GobiiEnvelopeRestResource<MarkerGroupDTO,MarkerGroupDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MARKERGROUP));
+                .resourceColl(RestResourceId.GOBII_MARKERGROUP));
         PayloadEnvelope<MarkerGroupDTO> markerGroupDTOResponseEnvelope = gobiiEnvelopeRestResource.post(MarkerGroupDTO.class,
                 payloadEnvelope);
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(markerGroupDTOResponseEnvelope.getHeader()));
@@ -279,7 +279,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
 
         RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MARKERGROUP);
+                .resourceByUriIdParam(RestResourceId.GOBII_MARKERGROUP);
         restUriMapsetForGetById.setParamValue("id", newMarkerGroupDTOResponse.getMarkerGroupId().toString());
         GobiiEnvelopeRestResource<MarkerGroupDTO,MarkerGroupDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
         PayloadEnvelope<MarkerGroupDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
@@ -330,7 +330,7 @@ public class DtoCrudRequestMarkerGroupTest implements DtoCrudRequestTest {
 
         RestUri restUriMarkerGroup = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MARKERGROUP);
+                .resourceColl(RestResourceId.GOBII_MARKERGROUP);
         GobiiEnvelopeRestResource<MarkerGroupDTO,MarkerGroupDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriMarkerGroup);
         PayloadEnvelope<MarkerGroupDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(MarkerGroupDTO.class);

@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiapimodel.hateos;
 
-import org.gobiiproject.gobiimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class Link {
 
     private String href;
     private String description;
-    private Set<RestMethodTypes> methods = new HashSet<>();
+    private Set<RestMethodType> methods = new HashSet<>();
 
     public String getHref() {
         return href;
@@ -38,11 +38,11 @@ public class Link {
         this.description = description;
     }
 
-    public Set<RestMethodTypes> getMethods() {
+    public Set<RestMethodType> getMethods() {
         return methods;
     }
 
-    public void setMethods(Set<RestMethodTypes> methods) {
+    public void setMethods(Set<RestMethodType> methods) {
         this.methods = methods;
     }
 }

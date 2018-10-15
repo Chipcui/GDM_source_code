@@ -15,16 +15,22 @@ public class DtoMapNameIdParams {
     private GobiiFilterType gobiiFilterType;
     private Object filterValue;
     private List<NameIdDTO> nameIdDTOList;
+    private Integer callLimit = null;
 
-    public DtoMapNameIdParams(GobiiEntityNameType gobiiEntityNameType, GobiiFilterType gobiiFilterType, Object filterValue, List<NameIdDTO> nameIdDTOList) {
+    public DtoMapNameIdParams(GobiiEntityNameType gobiiEntityNameType,
+                              GobiiFilterType gobiiFilterType,
+                              Object filterValue,
+                              List<NameIdDTO> nameIdDTOList,
+                              Integer callLimit) {
         this.gobiiEntityNameType = gobiiEntityNameType;
         this.gobiiFilterType = gobiiFilterType;
         this.filterValue = filterValue;
         this.nameIdDTOList = nameIdDTOList;
+        this.callLimit = callLimit;
     }
 
-    public DtoMapNameIdParams(GobiiEntityNameType gobiiEntityNameType, GobiiFilterType gobiiFilterType, Object filterValue) {
-        this(gobiiEntityNameType, gobiiFilterType, filterValue, null);
+    public DtoMapNameIdParams(GobiiEntityNameType gobiiEntityNameType, GobiiFilterType gobiiFilterType, Object filterValue, Integer callLimit) {
+        this(gobiiEntityNameType, gobiiFilterType, filterValue, null, callLimit);
     }
 
     public GobiiEntityNameType getEntityType() {
@@ -59,7 +65,19 @@ public class DtoMapNameIdParams {
         this.filterValue = filterValue;
     }
 
-    public List<NameIdDTO> getNameIdDTOList() { return nameIdDTOList; }
+    public Integer getCallLimit() {
+        return callLimit;
+    }
 
-    public void setNameIdDTOList(List<NameIdDTO> nameIdDTOList) { this.nameIdDTOList = nameIdDTOList; }
+    public void setCallLimit(Integer callLimit) {
+        this.callLimit = callLimit;
+    }
+
+    public List<NameIdDTO> getNameIdDTOList() {
+        return nameIdDTOList;
+    }
+
+    public void setNameIdDTOList(List<NameIdDTO> nameIdDTOList) {
+        this.nameIdDTOList = nameIdDTOList;
+    }
 }

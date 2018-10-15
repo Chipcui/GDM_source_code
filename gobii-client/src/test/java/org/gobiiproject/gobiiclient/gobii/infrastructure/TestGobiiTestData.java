@@ -2,7 +2,7 @@ package org.gobiiproject.gobiiclient.gobii.infrastructure;
 
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiTestConfiguration;
@@ -94,7 +94,7 @@ public class TestGobiiTestData {
 
         RestUri restUriOrganizationForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_ORGANIZATION);
+                .resourceByUriIdParam(RestResourceId.GOBII_ORGANIZATION);
         restUriOrganizationForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<OrganizationDTO,OrganizationDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriOrganizationForGetById);
@@ -121,7 +121,7 @@ public class TestGobiiTestData {
 
         RestUri restUriContactForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_CONTACTS);
+                .resourceByUriIdParam(RestResourceId.GOBII_CONTACTS);
         restUriContactForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriContactForGetById);
@@ -148,7 +148,7 @@ public class TestGobiiTestData {
 
         RestUri restUriPlatformForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_PLATFORM);
+                .resourceByUriIdParam(RestResourceId.GOBII_PLATFORM);
         restUriPlatformForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<PlatformDTO,PlatformDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriPlatformForGetById);
@@ -175,7 +175,7 @@ public class TestGobiiTestData {
 
         RestUri restUriProtocolForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_PROTOCOL);
+                .resourceByUriIdParam(RestResourceId.GOBII_PROTOCOL);
         restUriProtocolForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
@@ -202,7 +202,7 @@ public class TestGobiiTestData {
 
         RestUri restUriReferenceForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_REFERENCE);
+                .resourceByUriIdParam(RestResourceId.GOBII_REFERENCE);
         restUriReferenceForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<ReferenceDTO,ReferenceDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriReferenceForGetById);
@@ -229,7 +229,7 @@ public class TestGobiiTestData {
 
         RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MAPSET);
+                .resourceByUriIdParam(RestResourceId.GOBII_MAPSET);
         restUriMapsetForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<MapsetDTO,MapsetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
@@ -256,7 +256,7 @@ public class TestGobiiTestData {
 
         RestUri restUriProjectForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_PROJECTS);
+                .resourceByUriIdParam(RestResourceId.GOBII_PROJECTS);
         restUriProjectForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<ProjectDTO,ProjectDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProjectForGetById);
@@ -283,7 +283,7 @@ public class TestGobiiTestData {
 
         RestUri restUriManifestForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MANIFEST);
+                .resourceByUriIdParam(RestResourceId.GOBII_MANIFEST);
         restUriManifestForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
@@ -310,7 +310,7 @@ public class TestGobiiTestData {
 
         RestUri restUriExperimentForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_EXPERIMENTS);
+                .resourceByUriIdParam(RestResourceId.GOBII_EXPERIMENTS);
         restUriExperimentForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<ExperimentDTO,ExperimentDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriExperimentForGetById);
@@ -337,7 +337,7 @@ public class TestGobiiTestData {
 
         RestUri restUriAnalysisForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_ANALYSIS);
+                .resourceByUriIdParam(RestResourceId.GOBII_ANALYSIS);
         restUriAnalysisForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<AnalysisDTO,AnalysisDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriAnalysisForGetById);
@@ -364,7 +364,7 @@ public class TestGobiiTestData {
 
         RestUri restUriDatasetForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_DATASETS);
+                .resourceByUriIdParam(RestResourceId.GOBII_DATASETS);
         restUriDatasetForGetById.setParamValue("id", currentElementId);
 
         GobiiEnvelopeRestResource<DataSetDTO,DataSetDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriDatasetForGetById);
