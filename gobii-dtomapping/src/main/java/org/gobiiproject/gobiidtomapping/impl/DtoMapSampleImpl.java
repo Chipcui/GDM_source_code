@@ -7,8 +7,10 @@ import org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQueryColl;
 import org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId;
 import org.gobiiproject.gobiidtomapping.DtoMapSample;
 import org.gobiiproject.gobiidtomapping.core.GobiiDtoMappingException;
+import org.gobiiproject.gobiidtomapping.entity.noaudit.DtoMapJob;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.DataSetDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.SampleDTO;
+import org.gobiiproject.gobiimodel.dto.entity.noaudit.JobDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.DnaSampleDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +33,18 @@ public class DtoMapSampleImpl implements DtoMapSample {
     RsSampleDao rsSampleDao = null;
 
     @Autowired
+    private DtoMapJob dtoMapJob = null;
+
+    @Autowired
     private DtoListQueryColl dtoListQueryColl;
 
 
 
     @Transactional
     @Override
-    public SampleDTO getSampleDetailsByExternalCode(String externalCode) throws GobiiDtoMappingException {
+    public DnaSampleDTO getSampleDetailsByExternalCode(String externalCode) throws GobiiDtoMappingException {
 
-        SampleDTO returnVal = new SampleDTO();
+        DnaSampleDTO returnVal = new DnaSampleDTO();
 
 
         try {
@@ -91,6 +96,24 @@ public class DtoMapSampleImpl implements DtoMapSample {
 
         return returnVal;
 
+    }
+
+    @Override
+    public JobDTO submitDnaSamplesByJobName(String jobName, List<DnaSampleDTO> dnaSampleDTOList) throws GobiiDtoMappingException {
+
+        JobDTO returnVal = new JobDTO();
+
+        try {
+
+            returnVal = dtoMapJob.getJobDetailsByJobName(jobName);
+
+
+        } catch (Exception e) {
+
+
+        }
+
+        return returnVal;
     }
 
 } // DtoMapMarkerImpl

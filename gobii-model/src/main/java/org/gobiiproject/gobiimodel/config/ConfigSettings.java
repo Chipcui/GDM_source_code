@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.types.ServerCapabilityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +30,6 @@ import org.slf4j.LoggerFactory;
 public class ConfigSettings {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ConfigSettings.class);
-
-
     private String configFileFqpn;
 
     public ConfigSettings() {
@@ -98,8 +96,8 @@ public class ConfigSettings {
 
         Map<ServerCapabilityType, Boolean> returnVal = new HashMap<>();
 
-        if (this.configValues.getGlobalServer(GobiiServerType.KDC) != null) {
-            returnVal.put(ServerCapabilityType.KDC, this.configValues.getGlobalServer(GobiiServerType.KDC).isActive());
+        if (this.configValues.getGlobalServer(ServerType.KDC) != null) {
+            returnVal.put(ServerCapabilityType.KDC, this.configValues.getGlobalServer(ServerType.KDC).isActive());
         } else {
             returnVal.put(ServerCapabilityType.KDC, false);
         }
@@ -113,8 +111,23 @@ public class ConfigSettings {
     }
 
 
+    public void commit(boolean getFqpnFromJndi) throws Exception {
+
+        String fqpn;
+
+        if (getFqpnFromJndi) {
+            fqpn = ConfigValuesReader.getFqpnFromTomcat();
+        } else {
+            fqpn = this.configFileFqpn;
+        }
+
+        ConfigValuesReader.commitConfigValues(this.configValues, fqpn);
+    }
+
     public void commit() throws Exception {
-        ConfigValuesReader.commitConfigValues(this.configValues, this.configFileFqpn);
+        // In the case where we are committing, we need to make sure that
+        // we already have the fqpn of the config file
+        this.commit(false);
     }
 
     public String getProcessingPath(String cropType, GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
@@ -143,8 +156,8 @@ public class ConfigSettings {
         return this.configValues.isCropDefined(gobiiCropType);
     }
 
-    public ServerBase getGlobalServer(GobiiServerType gobiiServerType) throws Exception {
-        return this.configValues.getGlobalServer(gobiiServerType);
+    public ServerConfig getGlobalServer(ServerType serverType) throws Exception {
+        return this.configValues.getGlobalServer(serverType);
     }
 
     public GobiiCropConfig getCropConfig(String gobiiCropType) throws Exception {

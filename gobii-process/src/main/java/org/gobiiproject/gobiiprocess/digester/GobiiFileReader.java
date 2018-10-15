@@ -10,7 +10,7 @@ import org.gobiiproject.gobiiapimodel.payload.Header;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
@@ -302,7 +302,7 @@ public class GobiiFileReader {
 
 		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_VALIDATION.getCvName(),"Database Validation");
 		//Database Validation
-		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getServer(GobiiServerType.POSTGRESQL));
+		DatabaseQuerier querier=new DatabaseQuerier(gobiiCropConfig.getServer(ServerType.GOBII_PGSQL));
 
 		//If we're doing a DS upload and there is no DS_Marker
 		if(loaderInstructionMap.containsKey(VARIANT_CALL_TABNAME) && loaderInstructionMap.containsKey(DS_MARKER_TABNAME) && !loaderInstructionMap.containsKey(MARKER_TABNAME)) {
@@ -546,8 +546,8 @@ public class GobiiFileReader {
         String currentCropContextRoot = GobiiClientContext.getInstance(null, false).getCurrentCropContextRoot();
         gobiiUriFactory = new GobiiUriFactory(currentCropContextRoot);
         PayloadEnvelope<ExtractorInstructionFilesDTO> payloadEnvelope = new PayloadEnvelope<>(extractorInstructionFilesDTOToSend, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO> gobiiEnvelopeRestResourceForPost = new GobiiEnvelopeRestResource<>(gobiiUriFactory
-                .resourceColl(GobiiServiceRequestId.URL_FILE_EXTRACTOR_INSTRUCTIONS));
+        GobiiEnvelopeRestResource<ExtractorInstructionFilesDTO,ExtractorInstructionFilesDTO> gobiiEnvelopeRestResourceForPost = new GobiiEnvelopeRestResource<>(gobiiUriFactory
+                .resourceColl(RestResourceId.GOBII_FILE_EXTRACTOR_INSTRUCTIONS));
         PayloadEnvelope<ExtractorInstructionFilesDTO> extractorInstructionFileDTOResponseEnvelope = gobiiEnvelopeRestResourceForPost.post(ExtractorInstructionFilesDTO.class,
                 payloadEnvelope);
 
@@ -785,9 +785,9 @@ public class GobiiFileReader {
             GobiiUriFactory gobiiUriFactory = new GobiiUriFactory(currentCropContextRoot);
 
             RestUri projectsUri = gobiiUriFactory
-                    .resourceByUriIdParam(GobiiServiceRequestId.URL_DATASETS);
+                    .resourceByUriIdParam(RestResourceId.GOBII_DATASETS);
             projectsUri.setParamValue("id", dataSetId.toString());
-            GobiiEnvelopeRestResource<DataSetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(projectsUri);
+            GobiiEnvelopeRestResource<DataSetDTO,DataSetDTO> gobiiEnvelopeRestResourceForDatasets = new GobiiEnvelopeRestResource<>(projectsUri);
             PayloadEnvelope<DataSetDTO> resultEnvelope = gobiiEnvelopeRestResourceForDatasets
                     .get(DataSetDTO.class);
 

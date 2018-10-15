@@ -9,7 +9,7 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -44,8 +44,8 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
 
         RestUri restUriManifest = GobiiClientContext.getInstance(null,false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MANIFEST);
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriManifest);
+                .resourceColl(RestResourceId.GOBII_MANIFEST);
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriManifest);
         PayloadEnvelope<ManifestDTO> resultEnvelope = gobiiEnvelopeRestResource.get(ManifestDTO.class);
 
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelope.getHeader()));
@@ -58,9 +58,9 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
         Integer manifestId = manifestDTOList.get(0).getManifestId();
         RestUri restUriManifestForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MANIFEST);
+                .resourceByUriIdParam(RestResourceId.GOBII_MANIFEST);
         restUriManifestForGetById.setParamValue("id", manifestId.toString());
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
         PayloadEnvelope<ManifestDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById
                 .get(ManifestDTO.class);
 
@@ -74,7 +74,7 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
     @Override
     public void testEmptyResult() throws Exception {
 
-        DtoRestRequestUtils<ManifestDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(ManifestDTO.class, GobiiServiceRequestId.URL_MANIFEST);
+        DtoRestRequestUtils<ManifestDTO> dtoDtoRestRequestUtils = new DtoRestRequestUtils<>(ManifestDTO.class, RestResourceId.GOBII_MANIFEST);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentID = maxId + 1;
 
@@ -96,9 +96,9 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
                 .makePopulatedManifestDTO(GobiiProcessType.CREATE, 1);
 
         PayloadEnvelope<ManifestDTO> payloadEnvelope = new PayloadEnvelope<>(newManifestDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MANIFEST));
+                .resourceColl(RestResourceId.GOBII_MANIFEST));
         PayloadEnvelope<ManifestDTO> manifestDTOResponseEnvelope = gobiiEnvelopeRestResource.post(ManifestDTO.class,
                 payloadEnvelope);
         ManifestDTO manifestDTOResponse = manifestDTOResponseEnvelope.getPayload().getData().get(0);
@@ -111,9 +111,9 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
 
         RestUri restUriManifestForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MANIFEST);
+                .resourceByUriIdParam(RestResourceId.GOBII_MANIFEST);
         restUriManifestForGetById.setParamValue("id", manifestDTOResponse.getManifestId().toString());
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResouceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResouceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
         PayloadEnvelope<ManifestDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResouceForGetById
                 .get(ManifestDTO.class);
 
@@ -135,9 +135,9 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
                 .makePopulatedManifestDTO(GobiiProcessType.CREATE, 1);
 
         PayloadEnvelope<ManifestDTO> payloadEnvelope = new PayloadEnvelope<>(newManifestDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MANIFEST));
+                .resourceColl(RestResourceId.GOBII_MANIFEST));
         PayloadEnvelope<ManifestDTO> manifestDTOResponseEnvelope = gobiiEnvelopeRestResource.post(ManifestDTO.class,
                 payloadEnvelope);
         ManifestDTO newManifestDTOResponse = manifestDTOResponseEnvelope.getPayload().getData().get(0);
@@ -146,9 +146,9 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
 
         RestUri restUriManifestForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MANIFEST);
+                .resourceByUriIdParam(RestResourceId.GOBII_MANIFEST);
         restUriManifestForGetById.setParamValue("id", newManifestDTOResponse.getManifestId().toString());
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriManifestForGetById);
         PayloadEnvelope<ManifestDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                 .get(ManifestDTO.class);
 
@@ -184,8 +184,8 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
 
         RestUri restUriManifest = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MANIFEST);
-        GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriManifest);
+                .resourceColl(RestResourceId.GOBII_MANIFEST);
+        GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUriManifest);
         PayloadEnvelope<ManifestDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(ManifestDTO.class);
 
@@ -215,7 +215,7 @@ public class DtoCrudRequestManifestTest implements DtoCrudRequestTest {
             RestUri restUriMapsetForGetById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
                     .RestUriFromUri(currentLink.getHref());
-            GobiiEnvelopeRestResource<ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
+            GobiiEnvelopeRestResource<ManifestDTO,ManifestDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriMapsetForGetById);
             PayloadEnvelope<ManifestDTO> resultEnvelopeForGetById = gobiiEnvelopeRestResourceForGetById
                     .get(ManifestDTO.class);
             Assert.assertNotNull(resultEnvelopeForGetById);

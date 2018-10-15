@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.gobiiproject</groupId>
         <artifactId>parent</artifactId>
-        <version>GP1-1716_Epic_OwnCloud-2018-09-18</version>
+        <version>GP1-1890-04</version>
     </parent>
 
     <groupId>org.gobiiproject</groupId>
@@ -71,7 +71,7 @@
             <!--</exclusions>-->
         </dependency>
 
-        <!-- Spring WEB -->
+        <!-- Spring GOBII_WEB -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>

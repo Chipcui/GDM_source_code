@@ -3,6 +3,7 @@ package org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discre
 import org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId;
 import org.gobiiproject.gobiidao.resultset.core.listquery.ListStatement;
 import org.gobiiproject.gobiidao.resultset.core.listquery.ParameterizedSql;
+import org.gobiiproject.gobiimodel.dto.entity.children.NameIdDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,19 +26,11 @@ public class ListStatementReferencesForList implements ListStatement {
     @Override
     public PreparedStatement makePreparedStatement(Connection dbConnection, Map<String, Object> jdbcParamVals, Map<String, Object> sqlParamVals) throws SQLException {
 
-        String parsedNameList = "";
-
-        List<String> nameArray = (ArrayList) sqlParamVals.get(PARAM_NAME_NAME_LIST);
+        List<NameIdDTO> nameArray = (ArrayList) sqlParamVals.get(PARAM_NAME_NAME_LIST);
 
         // parse array into csv
 
-        for (String name : nameArray) {
-
-            String quotedName = "'" +  name + "'";
-
-            parsedNameList = (parsedNameList.equals("")) ? quotedName : parsedNameList + ", " + quotedName;
-
-        }
+        String parsedNameList = ListStatementUtil.generateParsedNameList(nameArray);
 
         ParameterizedSql parameterizedSql =
                 new ParameterizedSql("select * " +

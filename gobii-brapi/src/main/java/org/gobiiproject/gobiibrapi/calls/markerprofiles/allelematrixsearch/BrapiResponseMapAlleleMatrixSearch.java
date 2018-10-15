@@ -1,12 +1,11 @@
 package org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrixsearch;
 
-import org.apache.commons.io.FilenameUtils;
 import org.gobiiproject.gobidomain.services.CvService;
 import org.gobiiproject.gobidomain.services.ExtractorInstructionFilesService;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiibrapi.core.common.BrapiMetaData;
 import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.cvnames.CvGroup;
@@ -27,11 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-
-import org.gobiiproject.gobiimodel.types.GobiiJobStatus;
 
 /**
  * Created by Phil on 12/15/2016.
@@ -196,7 +191,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
                                 // first make the http link
                                 RestUri restUri = new GobiiUriFactory(request.getServerName(), request.getServerPort(),
                                         request.getContextPath(), GobiiControllerType.GOBII)
-                                        .resourceColl(GobiiServiceRequestId.URL_FILES)
+                                        .resourceColl(RestResourceId.GOBII_FILES)
                                         .addUriParam("gobiiJobId", jobId)
                                         .addUriParam("destinationType", GobiiFileProcessDir.EXTRACTOR_OUTPUT.toString().toLowerCase())
                                         .addQueryParam("fileName", currentFile.getName());
