@@ -1,6 +1,7 @@
 package org.gobiiproject.gobiimodel.config;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.jndi.JndiTemplate;
@@ -16,6 +17,7 @@ import java.io.File;
 class ConfigValuesReader {
 
     private static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ConfigValuesReader.class);
+
 
 
     /**
@@ -136,11 +138,23 @@ class ConfigValuesReader {
 
     } // make()
 
-    public static void commitConfigValues(ConfigValues configValues, String fqpn) throws Exception {
+    public static void commitConfigValues(ConfigValues configValues, String fqpn) throws GobiiException {
 
-        ConfigFileReaderXml configFileReaderXml = new ConfigFileReaderXml();
-        configFileReaderXml.write(configValues, fqpn);
+        if(LineUtils.isNullOrEmpty(fqpn)) {
+            throw new GobiiException("Cannot write config file without fqpn");
+        }
 
-    }
+        try {
+            ConfigFileReaderXml configFileReaderXml = new ConfigFileReaderXml();
+            configFileReaderXml.write(configValues, fqpn);
+
+        } catch (Exception e) {
+
+            throw new GobiiException("Error writing config file: " +
+                    e.getMessage()
+                    + ": " + e.getStackTrace());
+        } // try/catch
+
+    } //commitConfigValues()
 
 }

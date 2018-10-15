@@ -1,12 +1,14 @@
 package org.gobiiproject.gobiimodel.config;
 
 
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.dto.rest.RestResourceProfile;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
 
 import java.util.Collection;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,49 +32,51 @@ public class GobiiCropConfig {
     private boolean isActive;
 
     @ElementMap(required = false)
-    private Map<GobiiServerType, ServerBase> serversByServerType = new HashMap<>();
+    private Map<ServerType, ServerConfig> serversByServerType = new HashMap<>();
 
     public GobiiCropConfig() {
     }
 
-    public void addServer(GobiiServerType gobiiServerType,
+    public void addServer(ServerType serverType,
                           String host,
                           String contextPath,
                           Integer port,
                           String userName,
                           String password,
-                          boolean decrypt) {
+                          boolean decrypt,
+                          EnumMap<RestResourceId, RestResourceProfile> callProfilesByRestRequestId) {
 
         
-        ServerBase serverBase = this.serversByServerType.get(gobiiServerType);
-        if (serverBase == null) {
+        ServerConfig serverConfig = this.serversByServerType.get(serverType);
+        if (serverConfig == null) {
 
-            serverBase = new ServerBase();
-            this.serversByServerType.put(gobiiServerType, serverBase);
+            serverConfig = new ServerConfig();
+            this.serversByServerType.put(serverType, serverConfig);
 
         }
 
-        serverBase
-                .setGobiiServerType(gobiiServerType)
+        serverConfig
+                .setServerType(serverType)
                 .setHost(host)
                 .setContextPath(contextPath)
                 .setPort(port)
                 .setUserName(userName)
                 .setPassword(password)
-                .setDecrypt(decrypt);
+                .setDecrypt(decrypt)
+        .setResourceProfilesByRestRequestId(callProfilesByRestRequestId);
     }
 
-    public GobiiCropConfig setServersByServerType(Map<GobiiServerType, ServerBase> serversByServerType) {
+    public GobiiCropConfig setServersByServerType(Map<ServerType, ServerConfig> serversByServerType) {
         this.serversByServerType = serversByServerType;
         return this;
     }
 
-    public ServerBase getServer(GobiiServerType gobiiServerType) {
-        ServerBase returnVal = this.serversByServerType.get(gobiiServerType);
+    public ServerConfig getServer(ServerType serverType) {
+        ServerConfig returnVal = this.serversByServerType.get(serverType);
         return returnVal;
     } // getServer()
 
-    public Collection<ServerBase> getServers() {
+    public Collection<ServerConfig> getServers() {
         return this.serversByServerType.values();
     }
 

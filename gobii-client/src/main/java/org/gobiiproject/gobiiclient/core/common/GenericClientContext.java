@@ -2,7 +2,7 @@ package org.gobiiproject.gobiiclient.core.common;
 
 import org.apache.http.HttpStatus;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiimodel.config.ServerBase;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,9 +16,9 @@ public class GenericClientContext {
 
     private HttpCore httpCore;
 
-    public GenericClientContext(ServerBase serverBase) {
+    public GenericClientContext(ServerConfig serverConfig) {
 
-        this.httpCore = new HttpCore(serverBase.getHost(), serverBase.getPort());
+        this.httpCore = new HttpCore(serverConfig.getHost(), serverConfig.getPort());
     }
 
     private void validateResult(HttpMethodResult httpMethodResult, RestUri restUri) throws Exception {

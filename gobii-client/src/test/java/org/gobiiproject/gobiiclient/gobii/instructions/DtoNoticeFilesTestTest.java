@@ -11,8 +11,7 @@ import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
-import org.gobiiproject.gobiiclient.gobii.Helpers.TestUtils;
-import org.gobiiproject.gobiimodel.config.ServerConfig;
+import org.gobiiproject.gobiimodel.config.ServerConfigItem;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -135,12 +134,12 @@ public class DtoNoticeFilesTestTest {
         GobiiClientContext.resetConfiguration();
         Assert.assertTrue(GobiiClientContextAuth.authenticate());
 
-        ServerConfig serverConfigNoNotice = GobiiClientContext
+        ServerConfigItem serverConfigItemNoNotice = GobiiClientContext
                 .getInstance(null, false)
                 .getServerConfig(testCrop);
 
         Assert.assertTrue("There should not be a confidentiality notice for crop" + testCrop,
-                StringUtils.isEmpty(serverConfigNoNotice.getConfidentialityNotice()));
+                StringUtils.isEmpty(serverConfigItemNoNotice.getConfidentialityNotice()));
 
 
         //*************************************************************
@@ -164,16 +163,16 @@ public class DtoNoticeFilesTestTest {
 
 
         //*****************************************************************
-        // CHECK THAT WE GET THE NOTICE VIA THE WEB SERVICE
+        // CHECK THAT WE GET THE NOTICE VIA THE GOBII_WEB SERVICE
         GobiiClientContext.resetConfiguration();
         Assert.assertTrue(GobiiClientContextAuth.authenticate());
 
-        ServerConfig serverConfigHasNotice = GobiiClientContext
+        ServerConfigItem serverConfigItemHasNotice = GobiiClientContext
                 .getInstance(null, false)
                 .getServerConfig(testCrop);
 
         Assert.assertFalse("There should be a confidentiality notice for crop" + testCrop,
-                serverConfigHasNotice.getConfidentialityNotice().isEmpty());
+                serverConfigItemHasNotice.getConfidentialityNotice().isEmpty());
 
 
         StringBuilder lines = new StringBuilder();
@@ -181,7 +180,7 @@ public class DtoNoticeFilesTestTest {
         String uploadedContent = lines.toString();
 
         Assert.assertEquals("The uplaoded file content differs from the one in the serverConfig",
-                uploadedContent, serverConfigHasNotice.getConfidentialityNotice());
+                uploadedContent, serverConfigItemHasNotice.getConfidentialityNotice());
 
         //*************************************************************
         // ****************** Remove the file we uplaoded

@@ -24,22 +24,15 @@ import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.gobiiproject.gobiiapimodel.restresources.common.ResourceParam;
-import org.gobiiproject.gobiimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.MediaType;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -335,7 +328,7 @@ public class HttpCore {
 
     }
 
-    private void logRequest(RestMethodTypes restMethodType,
+    private void logRequest(RestMethodType restMethodType,
                             RestUri restUri,
                             String body,
                             HttpMethodResult httpMethodResult) throws Exception {
@@ -367,7 +360,7 @@ public class HttpCore {
     public HttpMethodResult get(RestUri restUri) throws Exception {
 
         HttpMethodResult returnVal = this.submitHttpMethod(new HttpGet(), restUri);
-        this.logRequest(RestMethodTypes.GET, restUri, null, returnVal);
+        this.logRequest(RestMethodType.GET, restUri, null, returnVal);
         return returnVal;
 
     }
@@ -380,7 +373,7 @@ public class HttpCore {
         HttpPost httpPost = new HttpPost();
         this.setHttpBody(httpPost, body);
         returnVal = this.submitHttpMethod(httpPost, restUri);
-        this.logRequest(RestMethodTypes.POST, restUri, body, returnVal);
+        this.logRequest(RestMethodType.POST, restUri, body, returnVal);
 
         return returnVal;
     }
@@ -411,7 +404,7 @@ public class HttpCore {
         httpPost.setEntity(multipart);
 
         returnVal = this.submitHttpMethod(httpPost, restUri);
-        this.logRequest(RestMethodTypes.POST, restUri, file.getAbsolutePath(), returnVal);
+        this.logRequest(RestMethodType.POST, restUri, file.getAbsolutePath(), returnVal);
 
         return returnVal;
     }
@@ -423,7 +416,7 @@ public class HttpCore {
         HttpPut httpPut = new HttpPut();
         this.setHttpBody(httpPut, body);
         returnVal = this.submitHttpMethod(httpPut, restUri);
-        this.logRequest(RestMethodTypes.PUT, restUri, body, returnVal);
+        this.logRequest(RestMethodType.PUT, restUri, body, returnVal);
         return returnVal;
     }
 

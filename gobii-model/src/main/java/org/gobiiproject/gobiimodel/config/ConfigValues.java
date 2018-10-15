@@ -1,11 +1,13 @@
 package org.gobiiproject.gobiimodel.config;
 
+import org.gobiiproject.gobiimodel.dto.rest.RestResourceProfile;
 import org.gobiiproject.gobiimodel.security.Decrypter;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementMap;
@@ -52,11 +54,55 @@ ConfigValues {
 //    }
 
     public ConfigValues() {
-        this.globalServersByServerType.put(GobiiServerType.KDC,
-                new ServerBase(GobiiServerType.KDC, "", "", null, true, "", "", false)
+
+
+        // Define global server types along with any a particular server's resource profiles
+        EnumMap<RestResourceId, RestResourceProfile> kdcCallProfiles = new EnumMap<>(RestResourceId.class);
+        kdcCallProfiles.put(RestResourceId.KDC_START,
+                new RestResourceProfile(
+                        RestResourceId.KDC_START,
+                        false));
+
+        kdcCallProfiles.put(RestResourceId.KDC_STATUS,
+                new RestResourceProfile(
+                        RestResourceId.KDC_STATUS,
+                        false));
+
+
+        kdcCallProfiles.put(RestResourceId.KDC_DOWNLOAD,
+                new RestResourceProfile(
+                        RestResourceId.KDC_DOWNLOAD,
+                        false));
+
+        kdcCallProfiles.put(RestResourceId.KDC_PURGE,
+                new RestResourceProfile(
+                        RestResourceId.KDC_PURGE,
+                        false));
+
+
+        this.globalServersByServerType.put(ServerType.KDC,
+                new ServerConfig(
+                        ServerType.KDC,
+                        "",
+                        "",
+                        null,
+                        true,
+                        "",
+                        "",
+                        false,
+                        kdcCallProfiles)
         );
-        this.globalServersByServerType.put(GobiiServerType.OWN_CLOUD,
-                new ServerBase(GobiiServerType.OWN_CLOUD, "", "", null, true, "", "", false)
+
+        this.globalServersByServerType.put(ServerType.OWN_CLOUD,
+                new ServerConfig(ServerType.OWN_CLOUD,
+                        "",
+                        "",
+                        null,
+                        true,
+                        "",
+                        "",
+                        false,
+                        null)
         );
     } // ctor
 
@@ -64,7 +110,7 @@ ConfigValues {
     private TestExecConfig testExecConfig = new TestExecConfig();
 
     @ElementMap(required = false)
-    private Map<GobiiServerType, ServerBase> globalServersByServerType = new HashMap<>();
+    private Map<ServerType, ServerConfig> globalServersByServerType = new HashMap<>();
 
     @ElementMap(required = false)
     private Map<GobiiFileNoticeType, String> noticeFileNames = new EnumMap<GobiiFileNoticeType, String>(GobiiFileNoticeType.class) {{
@@ -171,13 +217,13 @@ ConfigValues {
         return testExecConfig;
     }
 
-    public ServerBase getGlobalServer(GobiiServerType gobiiServerType) throws Exception {
+    public ServerConfig getGlobalServer(ServerType serverType) throws Exception {
 
-        ServerBase returnVal = null;
+        ServerConfig returnVal = null;
 
-        if (this.globalServersByServerType.containsKey(gobiiServerType)) {
+        if (this.globalServersByServerType.containsKey(serverType)) {
 
-            returnVal = this.globalServersByServerType.get(gobiiServerType);
+            returnVal = this.globalServersByServerType.get(serverType);
         }
 
         return returnVal;
@@ -336,6 +382,46 @@ ConfigValues {
         }
     }
 
+    /***
+     * Define call profiles for the gobii web server
+     * @return
+     */
+    private EnumMap<RestResourceId, RestResourceProfile> makeGobiiCallProfiles() {
+
+        EnumMap<RestResourceId, RestResourceProfile> returnVal = new EnumMap<>(RestResourceId.class);
+
+        // GOBII_NAMES in particular has many template parameters
+        returnVal.put(RestResourceId.GOBII_NAMES,
+                new RestResourceProfile(RestResourceId.GOBII_NAMES,true)
+                        // MARKERS
+                        .setMethodLimit(RestMethodType.POST ,
+                                GobiiEntityNameType.MARKER.toString(),
+                                2000)
+                        .setMethodLimit(RestMethodType.GET,
+                                GobiiEntityNameType.MARKER.toString(),
+                                2000)
+                        // SAMPLES
+                        .setMethodLimit(RestMethodType.POST ,
+                                GobiiEntityNameType.DNA_SAMPLE.toString(),
+                                2000)
+                        .setMethodLimit(RestMethodType.GET,
+                                GobiiEntityNameType.DNA_SAMPLE.toString(),
+                                2000)
+                        .setMethodLimit(RestMethodType.GET,
+                                GobiiEntityNameType.ANALYSIS.toString(),
+                                2000)
+                        .setMethodLimit(RestMethodType.POST,
+                                GobiiEntityNameType.ANALYSIS.toString(),
+                                2000)
+                        .setMethodLimit(RestMethodType.PUT,
+                                GobiiEntityNameType.ANALYSIS.toString(),
+                                2000)
+        );
+
+
+        return returnVal;
+    }
+
     public void setCrop(String gobiiCropType,
                         boolean isActive,
                         String serviceDomain,
@@ -355,13 +441,14 @@ ConfigValues {
         gobiiCropConfig
                 .setGobiiCropType(gobiiCropType)
                 .setActive(isActive)
-                .addServer(GobiiServerType.WEB,
+                .addServer(ServerType.GOBII_WEB,
                         serviceDomain,
                         serviceAppRoot,
                         servicePort,
                         null,
                         null,
-                        false);
+                        false,
+                        makeGobiiCallProfiles());
     }
 
     public void removeCrop(String cropId) throws Exception {
@@ -577,13 +664,13 @@ ConfigValues {
 
         for (GobiiCropConfig currentGobiiCropConfig : this.cropConfigs.values()) {
 
-            for (ServerBase currentServerBase : currentGobiiCropConfig.getServers()) {
-                currentServerBase.setDecrypt(isDecrypt);
+            for (ServerConfig currentServerConfig : currentGobiiCropConfig.getServers()) {
+                currentServerConfig.setDecrypt(isDecrypt);
             }
         }
 
-        for( ServerBase currentServerBase : this.globalServersByServerType.values() ) {
-            currentServerBase.setDecrypt(isDecrypt);
+        for (ServerConfig currentServerConfig : this.globalServersByServerType.values()) {
+            currentServerConfig.setDecrypt(isDecrypt);
         }
     }
 
@@ -645,11 +732,11 @@ ConfigValues {
         isProvidesBackend = providesBackend;
     }
 
-    public Map<GobiiServerType, ServerBase> getGlobalServersByServerType() {
+    public Map<ServerType, ServerConfig> getGlobalServersByServerType() {
         return globalServersByServerType;
     }
 
-    public void setGlobalServersByServerType(Map<GobiiServerType, ServerBase> globalServersByServerType) {
+    public void setGlobalServersByServerType(Map<ServerType, ServerConfig> globalServersByServerType) {
         this.globalServersByServerType = globalServersByServerType;
     }
 }

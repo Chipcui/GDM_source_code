@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiprocess;
 
-import org.gobiiproject.gobiimodel.config.ServerBase;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 
@@ -11,12 +11,12 @@ import java.sql.*;
  */
 public class SimplePostgresConnector {
 
-    public SimplePostgresConnector(ServerBase config){
+    public SimplePostgresConnector(ServerConfig config){
         this.dbConn=getDataSource(config);
     }
 
     private Connection dbConn=null;
-    public static Connection getDataSource(ServerBase config){
+    public static Connection getDataSource(ServerConfig config){
         Connection conn = null;
         try{
             String jdbcUrl = HelperFunctions.getJdbcConnectionString(config);

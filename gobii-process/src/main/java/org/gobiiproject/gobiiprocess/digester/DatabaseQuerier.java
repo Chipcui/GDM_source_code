@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiprocess.digester;
 
-import org.gobiiproject.gobiimodel.config.ServerBase;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 import org.gobiiproject.gobiiprocess.SimplePostgresConnector;
 
@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class DatabaseQuerier {
     SimplePostgresConnector connector;
-    public DatabaseQuerier(ServerBase conf){
+    public DatabaseQuerier(ServerConfig conf){
         connector=new SimplePostgresConnector(conf);
     }
     public boolean checkMarkerExistence(File markerFile){

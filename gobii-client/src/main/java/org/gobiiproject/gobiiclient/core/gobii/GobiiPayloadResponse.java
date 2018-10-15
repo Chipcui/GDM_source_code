@@ -3,7 +3,7 @@ package org.gobiiproject.gobiiclient.core.gobii;
 import org.apache.http.HttpStatus;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
@@ -39,7 +39,7 @@ public class GobiiPayloadResponse<T> {
     }
 
     public PayloadEnvelope<T> getPayloadFromResponse(Class<T> dtoType,
-                                                     RestMethodTypes restMethodType,
+                                                     RestMethodType restMethodType,
                                                      int httpSuccessCode,
                                                      HttpMethodResult httpMethodResult) throws Exception {
 

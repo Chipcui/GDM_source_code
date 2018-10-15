@@ -8,7 +8,7 @@ import org.gobiiproject.gobiiclient.core.common.HttpCore;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 
-import org.gobiiproject.gobiimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,13 +27,13 @@ import java.io.File;
  * would be consumed by this class and a similar new class for the non-GOBII
  * payloads.
  */
-public class GobiiEnvelopeRestResource<T> {
+public class GobiiEnvelopeRestResource<T_REQUEST_BODY_TYPE, T_RESPONSE_BODY_TYPE> {
 
     Logger LOGGER = LoggerFactory.getLogger(GobiiEnvelopeRestResource.class);
 
     private RestUri restUri;
     private ObjectMapper objectMapper = new ObjectMapper();
-    private GobiiPayloadResponse<T> gobiiPayloadResponse = null;
+    private GobiiPayloadResponse<T_RESPONSE_BODY_TYPE> gobiiPayloadResponse = null;
 
     public GobiiEnvelopeRestResource(RestUri restUri) {
         this.restUri = restUri;
@@ -56,7 +56,7 @@ public class GobiiEnvelopeRestResource<T> {
     }
 
 
-    private String makeHttpBody(PayloadEnvelope<T> payloadEnvelope) throws Exception {
+    private String makeHttpBody(PayloadEnvelope<T_REQUEST_BODY_TYPE> payloadEnvelope) throws Exception {
 
         String returnVal = null;
 
@@ -68,16 +68,16 @@ public class GobiiEnvelopeRestResource<T> {
     }
 
 
-    public PayloadEnvelope<T> get(Class<T> dtoType) throws Exception {
+    public PayloadEnvelope<T_RESPONSE_BODY_TYPE> get(Class<T_RESPONSE_BODY_TYPE> dtoResponseBodyType) throws Exception {
 
-        PayloadEnvelope<T> returnVal;
+        PayloadEnvelope<T_RESPONSE_BODY_TYPE> returnVal;
 
         HttpMethodResult httpMethodResult =
                 getHttp()
                         .get(this.restUri);
 
-        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoType,
-                RestMethodTypes.GET,
+        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoResponseBodyType,
+                RestMethodType.GET,
                 HttpStatus.SC_OK,
                 httpMethodResult);
 
@@ -85,10 +85,10 @@ public class GobiiEnvelopeRestResource<T> {
     }
 
 
-    public PayloadEnvelope<T> post(Class<T> dtoType,
-                                   PayloadEnvelope<T> requestPayload) throws Exception {
+    public PayloadEnvelope<T_RESPONSE_BODY_TYPE> post(Class<T_RESPONSE_BODY_TYPE> dtoResponseBodyType,
+                                                     PayloadEnvelope<T_REQUEST_BODY_TYPE> requestPayload) throws Exception {
 
-        PayloadEnvelope<T> returnVal;
+        PayloadEnvelope<T_RESPONSE_BODY_TYPE> returnVal;
 
         String postBody = this.makeHttpBody(requestPayload);
         HttpMethodResult httpMethodResult =
@@ -96,8 +96,8 @@ public class GobiiEnvelopeRestResource<T> {
                         .post(this.restUri,
                                 postBody);
 
-        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoType,
-                RestMethodTypes.POST,
+        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoResponseBodyType,
+                RestMethodType.POST,
                 HttpStatus.SC_CREATED,
                 httpMethodResult);
 
@@ -114,10 +114,10 @@ public class GobiiEnvelopeRestResource<T> {
         return returnVal;
     }
 
-    public PayloadEnvelope<T> put(Class<T> dtoType,
-                                  PayloadEnvelope<T> requestPayload) throws Exception {
+    public PayloadEnvelope<T_RESPONSE_BODY_TYPE> put(Class<T_RESPONSE_BODY_TYPE> dtoResponseBodyType,
+                                                    PayloadEnvelope<T_REQUEST_BODY_TYPE> requestPayload) throws Exception {
 
-        PayloadEnvelope<T> returnVal;
+        PayloadEnvelope<T_RESPONSE_BODY_TYPE> returnVal;
 
         String putBody = this.makeHttpBody(requestPayload);
         HttpMethodResult httpMethodResult =
@@ -125,8 +125,8 @@ public class GobiiEnvelopeRestResource<T> {
                         .put(this.restUri,
                                 putBody);
 
-        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoType,
-                RestMethodTypes.PUT,
+        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoResponseBodyType,
+                RestMethodType.PUT,
                 HttpStatus.SC_OK,
                 httpMethodResult);
 
@@ -135,10 +135,10 @@ public class GobiiEnvelopeRestResource<T> {
     }
 
 
-    public PayloadEnvelope<T> patch(Class<T> dtoType,
-                                    PayloadEnvelope<T> requestPayload) throws Exception {
+    public PayloadEnvelope<T_RESPONSE_BODY_TYPE> patch(Class<T_RESPONSE_BODY_TYPE> dtoResponseBodyType,
+                                                      PayloadEnvelope<T_REQUEST_BODY_TYPE> requestPayload) throws Exception {
 
-        PayloadEnvelope<T> returnVal = new PayloadEnvelope<>();
+        PayloadEnvelope<T_RESPONSE_BODY_TYPE> returnVal = new PayloadEnvelope<>();
 
         returnVal.getHeader().getStatus().addStatusMessage(GobiiStatusLevel.ERROR, "Method not implemented");
 
@@ -147,26 +147,26 @@ public class GobiiEnvelopeRestResource<T> {
 
     }
 
-    public PayloadEnvelope<T> delete(Class<T> dtoType) throws Exception {
+    public PayloadEnvelope<T_RESPONSE_BODY_TYPE> delete(Class<T_RESPONSE_BODY_TYPE> dtoResponseBodyType) throws Exception {
 
-        PayloadEnvelope<T> returnVal;
+        PayloadEnvelope<T_RESPONSE_BODY_TYPE> returnVal;
 
         HttpMethodResult httpMethodResult =
                 getHttp()
                         .delete(this.restUri);
 
-        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoType,
-                RestMethodTypes.DELETE,
+        returnVal = this.gobiiPayloadResponse.getPayloadFromResponse(dtoResponseBodyType,
+                RestMethodType.DELETE,
                 HttpStatus.SC_OK,
                 httpMethodResult);
 
         return returnVal;
     }
 
-    public PayloadEnvelope<T> options(Class<T> dtoType,
-                                      PayloadEnvelope<T> requestPayload) throws Exception {
+    public PayloadEnvelope<T_RESPONSE_BODY_TYPE> options(Class<T_RESPONSE_BODY_TYPE> dtoResponseBodyType,
+                                                        PayloadEnvelope<T_REQUEST_BODY_TYPE> requestPayload) throws Exception {
 
-        PayloadEnvelope<T> returnVal = new PayloadEnvelope<>();
+        PayloadEnvelope<T_RESPONSE_BODY_TYPE> returnVal = new PayloadEnvelope<>();
 
         returnVal.getHeader().getStatus().addStatusMessage(GobiiStatusLevel.ERROR, "Method not implemented");
 

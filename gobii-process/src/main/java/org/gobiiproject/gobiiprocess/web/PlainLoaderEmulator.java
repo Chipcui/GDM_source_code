@@ -2,7 +2,7 @@ package org.gobiiproject.gobiiprocess.web;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.types.GobiiServerType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 
 /**
  * Simple process class for example of reading configuration files.
@@ -16,7 +16,7 @@ public class PlainLoaderEmulator {
 
             ConfigSettings configSettings = new ConfigSettings("C:\\gobii-config\\gobii-web.properties");
             for(GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs() ) {
-                System.out.println(currentGobiiCropConfig.getServer(GobiiServerType.WEB).getHost());
+                System.out.println(currentGobiiCropConfig.getServer(ServerType.GOBII_WEB).getHost());
             }
 
 
