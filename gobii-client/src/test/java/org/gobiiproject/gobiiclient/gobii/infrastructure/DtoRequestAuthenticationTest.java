@@ -178,7 +178,7 @@ public class DtoRequestAuthenticationTest {
 
             // do contacts request with crop two context root
             restUriContactServerTwo.setParamValue("id", "6");
-            GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceServerTwo = new GobiiEnvelopeRestResource<>(restUriContactServerTwo);
+            GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceServerTwo = new GobiiEnvelopeRestResource<>(restUriContactServerTwo);
             PayloadEnvelope<ContactDTO> resultEnvelope = gobiiEnvelopeRestResourceServerTwo
                     .get(ContactDTO.class);
             Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelope.getHeader()));
@@ -187,7 +187,7 @@ public class DtoRequestAuthenticationTest {
             // now set current root to crop onej -- this will cause an error because the
             // gobiiUriFactory still has crop two's context root.
             restUriContactServerOne.setParamValue("id", "6");
-            GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceServerOne = new GobiiEnvelopeRestResource<>(restUriContactServerOne);
+            GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceServerOne = new GobiiEnvelopeRestResource<>(restUriContactServerOne);
             resultEnvelope = gobiiEnvelopeRestResourceServerOne
                     .get(ContactDTO.class);
 
@@ -286,7 +286,7 @@ public class DtoRequestAuthenticationTest {
                 .getUriFactory()
                 .contactsByQueryParams();
         restUriContactSearch.setParamValue("userName", testLoginUser);
-        GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceForGet = new GobiiEnvelopeRestResource<>(restUriContactSearch);
+        GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceForGet = new GobiiEnvelopeRestResource<>(restUriContactSearch);
         PayloadEnvelope<ContactDTO> resultEnvelope = gobiiEnvelopeRestResourceForGet
                 .get(ContactDTO.class);
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelope.getHeader()));
@@ -300,7 +300,7 @@ public class DtoRequestAuthenticationTest {
                 .addUriParam("id")
                 .setParamValue("id", contactDTOFromGet.getContactId().toString());
 
-        GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceForPut = new GobiiEnvelopeRestResource<>(restUriContactUpdate);
+        GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceForPut = new GobiiEnvelopeRestResource<>(restUriContactUpdate);
         PayloadEnvelope<ContactDTO> payloadEnvelopeForPut = new PayloadEnvelope<>(contactDTOFromGet, GobiiProcessType.UPDATE);
         PayloadEnvelope<ContactDTO> contactDTOPayloadEnvelope = gobiiEnvelopeRestResourceForPut.put(ContactDTO.class, payloadEnvelopeForPut);
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(contactDTOPayloadEnvelope.getHeader()));
@@ -355,7 +355,7 @@ public class DtoRequestAuthenticationTest {
                 RestUri restUriContactForAll = GobiiClientContext.getInstance(null, false)
                         .getUriFactory()
                         .resourceColl(GobiiServiceRequestId.URL_CONTACTS);
-                GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceGetAll = new GobiiEnvelopeRestResource<>(restUriContactForAll);
+                GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceGetAll = new GobiiEnvelopeRestResource<>(restUriContactForAll);
                 PayloadEnvelope<ContactDTO> resultEnvelopeAll = gobiiEnvelopeRestResourceGetAll
                         .get(ContactDTO.class);
                 Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeAll.getHeader()));
@@ -376,7 +376,7 @@ public class DtoRequestAuthenticationTest {
                             .getUriFactory()
                             .resourceByUriIdParam(GobiiServiceRequestId.URL_CONTACTS)
                             .setParamValue("id", contactId.toString());
-                    GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceGetForUpdate = new GobiiEnvelopeRestResource<>(restUriContactForUpdate);
+                    GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceGetForUpdate = new GobiiEnvelopeRestResource<>(restUriContactForUpdate);
                     PayloadEnvelope<ContactDTO> resultEnvelope = gobiiEnvelopeRestResourceGetForUpdate
                             .get(ContactDTO.class);
                     Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelope.getHeader()));
@@ -385,7 +385,7 @@ public class DtoRequestAuthenticationTest {
 
                     contactDTO.setUserName(knownRunAsBackendUserName);
 
-                    GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceContactById = new GobiiEnvelopeRestResource<>(restUriContactForUpdate);
+                    GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceContactById = new GobiiEnvelopeRestResource<>(restUriContactForUpdate);
                     PayloadEnvelope<ContactDTO> gobiiEnvelopeRestResourceUpdate = gobiiEnvelopeRestResourceContactById
                             .put(ContactDTO.class, resultEnvelope);
 
@@ -422,7 +422,7 @@ public class DtoRequestAuthenticationTest {
                         .getUriFactory()
                         .resourceByUriIdParam(GobiiServiceRequestId.URL_CONTACTS)
                         .setParamValue("id", contactId.toString());
-                GobiiEnvelopeRestResource<ContactDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriContactForGet);
+                GobiiEnvelopeRestResource<ContactDTO,ContactDTO> gobiiEnvelopeRestResourceGet = new GobiiEnvelopeRestResource<>(restUriContactForGet);
                 PayloadEnvelope<ContactDTO> resultEnvelopePostRunAsAuthentication = gobiiEnvelopeRestResourceGet
                         .get(ContactDTO.class);
                 Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopePostRunAsAuthentication.getHeader()));

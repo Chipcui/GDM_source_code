@@ -61,7 +61,7 @@ public class DtoRequestMultiDbTest {
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_CONFIGSETTINGS);
 
-        GobiiEnvelopeRestResource<ConfigSettingsDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(confgSettingsUri);
+        GobiiEnvelopeRestResource<ConfigSettingsDTO,ConfigSettingsDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(confgSettingsUri);
         PayloadEnvelope<ConfigSettingsDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(ConfigSettingsDTO.class);
 
@@ -80,7 +80,7 @@ public class DtoRequestMultiDbTest {
 
 
             //DtoRequestPing dtoRequestPing = new DtoRequestPing();
-            GobiiEnvelopeRestResource<PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+            GobiiEnvelopeRestResource<PingDTO,PingDTO> gobiiEnvelopeRestResourcePingDTO = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
                     .resourceColl(GobiiServiceRequestId.URL_PING));
 
@@ -132,7 +132,7 @@ public class DtoRequestMultiDbTest {
             currentCvDtoRequest.setDefinition("Destination DB should be: " + currentCropType.toString());
 
             PayloadEnvelope<CvDTO> payloadEnvelope = new PayloadEnvelope<>(currentCvDtoRequest, GobiiProcessType.CREATE);
-            GobiiEnvelopeRestResource<CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+            GobiiEnvelopeRestResource<CvDTO,CvDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
                     .resourceColl(GobiiServiceRequestId.URL_CV));
             PayloadEnvelope<CvDTO> cvDTOResponseEnvelope = gobiiEnvelopeRestResource.post(CvDTO.class,
@@ -151,7 +151,7 @@ public class DtoRequestMultiDbTest {
                     .getUriFactory()
                     .resourceByUriIdParam(GobiiServiceRequestId.URL_CV);
             restUriCvForGetById.setParamValue("id", cvDTOResponse.getCvId().toString());
-            GobiiEnvelopeRestResource<CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
+            GobiiEnvelopeRestResource<CvDTO,CvDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriCvForGetById);
             PayloadEnvelope<CvDTO> resultEnvelopeForGetByID = restResourceForGetById
                     .get(CvDTO.class);
             Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetByID.getHeader()));

@@ -39,7 +39,7 @@ public class DtoRequestDataSetTypeTest {
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_DATASETTYPES);
 
-        GobiiEnvelopeRestResource<NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUri);
+        GobiiEnvelopeRestResource<NameIdDTO,NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(restUri);
         PayloadEnvelope<NameIdDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(NameIdDTO.class);
 

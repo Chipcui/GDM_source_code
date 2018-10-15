@@ -46,7 +46,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
                 .makePopulatedProtocolDTO(GobiiProcessType.CREATE, 1);
 
         PayloadEnvelope<ProtocolDTO> payloadEnvelope = new PayloadEnvelope<>(newProtocolDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<ProtocolDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PROTOCOL));
         PayloadEnvelope<ProtocolDTO> protocolDTOResponseEnvelope = gobiiEnvelopeRestResource.post(ProtocolDTO.class,
@@ -65,7 +65,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PROTOCOL);
         restUriProtocolForGetById.setParamValue("id", protocolDTOResponse.getProtocolId().toString());
-        GobiiEnvelopeRestResource<ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
         PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetByID = restResourceForGetById
                 .get(ProtocolDTO.class);
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForGetByID.getHeader()));
@@ -85,7 +85,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
                 .makePopulatedProtocolDTO(GobiiProcessType.CREATE, 1);
 
         PayloadEnvelope<ProtocolDTO> payloadEnvelope = new PayloadEnvelope<>(newProtocolDto, GobiiProcessType.CREATE);
-        GobiiEnvelopeRestResource<ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PROTOCOL));
         PayloadEnvelope<ProtocolDTO> protocolDTOResponseEnvelope = restResource.post(ProtocolDTO.class,
@@ -98,7 +98,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PROTOCOL);
         restUriProtocolForGetById.setParamValue("id", newProtocolDTOResponse.getProtocolId().toString());
-        GobiiEnvelopeRestResource<ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
         PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetByID = restResourceForGetById
                 .get(ProtocolDTO.class);
 
@@ -138,7 +138,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
         RestUri restUriProtocol = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PROTOCOL);
-        GobiiEnvelopeRestResource<ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(restUriProtocol);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(restUriProtocol);
         PayloadEnvelope<ProtocolDTO> resultEnvelope = restResource
                 .get(ProtocolDTO.class);
 
@@ -154,7 +154,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
                 .getUriFactory()
                 .resourceByUriIdParam(GobiiServiceRequestId.URL_PROTOCOL);
         restUriProtocolForGetById.setParamValue("id", protocolId.toString());
-        GobiiEnvelopeRestResource<ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
         PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetByID = restResourceForGetById
                 .get(ProtocolDTO.class);
 
@@ -194,7 +194,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
         RestUri restUriProtocol = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .resourceColl(GobiiServiceRequestId.URL_PROTOCOL);
-        GobiiEnvelopeRestResource<ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(restUriProtocol);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(restUriProtocol);
         PayloadEnvelope<ProtocolDTO> resultEnvelope = restResource
                 .get(ProtocolDTO.class);
         Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelope.getHeader()));
@@ -225,7 +225,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
             RestUri restUriProtocolForGetById = GobiiClientContext.getInstance(null, false)
                     .getUriFactory()
                     .RestUriFromUri(currentLink.getHref());
-            GobiiEnvelopeRestResource<ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
+            GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
             PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetByID = restResourceForGetById
                     .get(ProtocolDTO.class);
             Assert.assertNotNull(resultEnvelopeForGetByID);
@@ -243,7 +243,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
                 .setParamValue("id", "1")
                 .appendSegment(GobiiServiceRequestId.URL_PROTOCOL);
 
-        GobiiEnvelopeRestResource<ProtocolDTO> restResourceProtocolForGetDetailsByExperimentId = new GobiiEnvelopeRestResource<>(restUriProtocolsForGetDetailsByExperimentId);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResourceProtocolForGetDetailsByExperimentId = new GobiiEnvelopeRestResource<>(restUriProtocolsForGetDetailsByExperimentId);
         PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetDetailsByExperimentId = restResourceProtocolForGetDetailsByExperimentId
                 .get(ProtocolDTO.class);
 
@@ -262,7 +262,7 @@ public class DtoCrudRequestProtocolTest implements DtoCrudRequestTest{
         RestUri restUriProtocolForGetById = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
                 .RestUriFromUri(currentLink.getHref());
-        GobiiEnvelopeRestResource<ProtocolDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
+        GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> gobiiEnvelopeRestResourceForGetById = new GobiiEnvelopeRestResource<>(restUriProtocolForGetById);
         PayloadEnvelope<ProtocolDTO> resultEnvelopeForGetByID = gobiiEnvelopeRestResourceForGetById
                 .get(ProtocolDTO.class);
         Assert.assertNotNull(resultEnvelopeForGetByID);

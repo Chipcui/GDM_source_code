@@ -5,7 +5,7 @@
     <parent>
         <artifactId>parent</artifactId>
         <groupId>org.gobiiproject</groupId>
-        <version>2.0_2018-09-25</version>
+        <version>GP1-1885_Epic_SampleSubmission</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
