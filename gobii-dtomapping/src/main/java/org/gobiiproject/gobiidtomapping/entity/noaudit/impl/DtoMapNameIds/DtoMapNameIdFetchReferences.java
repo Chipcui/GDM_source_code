@@ -66,44 +66,22 @@ public class DtoMapNameIdFetchReferences implements DtoMapNameIdFetch {
 
     private List<NameIdDTO> getReferencesByNameList(List<NameIdDTO> nameIdDTOList) {
 
-        List<NameIdDTO> returnVal = new ArrayList<>();
-
         try {
-
-            List<String> nameArray = new ArrayList<>();
-
-            for (NameIdDTO currentNameIdDTO : nameIdDTOList) {
-
-                nameArray.add(currentNameIdDTO.getName());
-                currentNameIdDTO.setId(0);
-                returnVal.add(currentNameIdDTO);
-
-            }
 
             ResultSet resultSet = dtoListQueryColl.getResultSet(ListSqlId.QUERY_ID_REFERENCE_BY_LIST,
                     new HashMap<String, Object>(){{
                     }}, new HashMap<String, Object>(){{
-                        put("nameArray", nameArray);
+                        put("nameArray", nameIdDTOList);
                     }});
 
-            for (NameIdDTO currentNameIdDTO : returnVal) {
 
-                while (resultSet.next()) {
-
-                    if (currentNameIdDTO.getName().equals(resultSet.getString("name"))) {
-
-                        currentNameIdDTO.setId(resultSet.getInt("reference_id"));
-                        break;
-
-                    }
-                }
-            }
+            Integer resultSize = DtoMapNameIdUtil.getIdFromResultSet(nameIdDTOList, resultSet, "name", "reference_id");
 
         } catch (Exception e) {
             throw new GobiiDaoException(e);
         }
 
-        return returnVal;
+        return nameIdDTOList;
     }
 
 

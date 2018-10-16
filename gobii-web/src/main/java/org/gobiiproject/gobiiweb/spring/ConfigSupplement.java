@@ -2,12 +2,13 @@ package org.gobiiproject.gobiiweb.spring;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
+import org.gobiiproject.gobiimodel.types.ServerType;
+import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.gobiiproject.gobiiweb.DataSourceSelector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,26 +36,15 @@ public class ConfigSupplement {
         Map<Object,Object> targetDataSources = new HashMap<>();
         for (GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs()) {
 
+            ServerConfig currentPostGresConfig = currentGobiiCropConfig.getServer(ServerType.GOBII_PGSQL);
             DriverManagerDataSource currentDataSource = new DriverManagerDataSource();
 
             currentDataSource.setDriverClassName("org.postgresql.Driver");
 
-            currentDataSource.setUrl(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
-                    .getConnectionString());
-
-            currentDataSource.setUsername(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
-                    .getUserName());
-
-            currentDataSource.setUsername(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
-                    .getUserName());
-
-
-            currentDataSource.setPassword(currentGobiiCropConfig
-                    .getCropDbConfig(GobiiDbType.POSTGRESQL)
-                    .getPassword());
+            String url = HelperFunctions.getJdbcConnectionString(currentPostGresConfig);
+            currentDataSource.setUrl(url);
+            currentDataSource.setUsername(currentPostGresConfig.getUserName());
+            currentDataSource.setPassword(currentPostGresConfig.getPassword());
 
             targetDataSources.put(currentGobiiCropConfig.getGobiiCropType(),currentDataSource);
 

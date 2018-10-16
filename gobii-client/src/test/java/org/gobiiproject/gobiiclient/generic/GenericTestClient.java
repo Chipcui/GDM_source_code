@@ -16,17 +16,16 @@ import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiTestConfiguration;
 import org.gobiiproject.gobiiclient.generic.model.GenericTestValues;
 import org.gobiiproject.gobiiclient.generic.model.Person;
-import org.gobiiproject.gobiimodel.config.ServerBase;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.config.TestExecConfig;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
-import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.ws.rs.core.MediaType;
 import java.io.File;
@@ -40,7 +39,7 @@ public class GenericTestClient {
     private static Logger LOGGER = LoggerFactory.getLogger(GenericTestClient.class);
 
     private static Server server = null;
-    private static ServerBase serverBase = null;
+    private static ServerConfig serverConfig = null;
     private static GenericClientContext genericClientContext = null;
     private static TestExecConfig testExecConfig = null;
     private ObjectMapper objectMapper = new ObjectMapper();
@@ -55,9 +54,11 @@ public class GenericTestClient {
         // By setting the packages() to one of the service implementation classes,
         // we tell the resource to scan that package for all classes having the Jersey
         // annotations. So we don't need to to manually create the context classes here.
-        serverBase = new ServerBase("localhost",
+        serverConfig = new ServerConfig(ServerType.GENERIC,
+                "localhost",
                 GenericTestPaths.GENERIC_CONTEXT_ONE,
                 8099,
+                true,
                 true);
 
 
@@ -67,7 +68,7 @@ public class GenericTestClient {
         resourceConfig.register(SerializationFeature.INDENT_OUTPUT);
         ServletContainer servletContainer = new ServletContainer(resourceConfig);
         ServletHolder sh = new ServletHolder(servletContainer);
-        server = new Server(serverBase.getPort());
+        server = new Server(serverConfig.getPort());
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
@@ -75,7 +76,7 @@ public class GenericTestClient {
         server.setHandler(context);
 
 
-        genericClientContext = new GenericClientContext(serverBase);
+        genericClientContext = new GenericClientContext(serverConfig);
 
         //System.out.print(server.dump());
         server.start();

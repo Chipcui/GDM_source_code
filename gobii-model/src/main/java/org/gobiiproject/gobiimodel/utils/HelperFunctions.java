@@ -14,9 +14,9 @@ import javax.mail.internet.MimeMessage;
 
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiimodel.config.GobiiCropDbConfig;
+import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.*;
-import org.gobiiproject.gobiimodel.types.GobiiDbType;
+import org.gobiiproject.gobiimodel.types.ServerType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
@@ -24,412 +24,537 @@ import org.gobiiproject.gobiimodel.utils.error.ErrorLogger;
 //import com.sun.jna.Native;
 
 public class HelperFunctions {
-	private static boolean showTempFiles=true;
 
-	/**
-	 * Takes a string <i>in</i> and filters it. Returns the part of in from the end of <i>from</i>
-	 * to the beginning of <i>to</i>, exclusive.
-	 * @param in string to be filtered
-	 * @param from first match in substring is beginning of filtered string
-	 * @param to last match in substring is end of filtered string
-	 * @return filtered string, from the character after the end of from to the character before the beginning of to
-	 */
-	public static String filter(String in,String from, String to, String find, String replace){
-		if(in==null)return null;
-		String result = "";
-		if(from==null)from="";
-		if(to==null)to="";
-		int startIndex,endIndex;
-		if(in.contains(from)){
-			startIndex=in.indexOf(from)+from.length();
-		}else{
-			startIndex=0;
-		}
-		String from_in = in.substring(startIndex);
-		if(from_in.contains(to) && !to.equals("")){ // If to is null or blank, read to the end
-			endIndex = startIndex + from_in.indexOf(to);
-		}
-		else{
-			endIndex=in.length();
-		}
-		result = in.substring(startIndex, endIndex);
-		
-		if(find != null && replace != null){
-			result = result.replaceAll(find, replace);
-		}
-		
-		return result;
-		//Too clever by a half- if from and too are null, returns substring(0,-1);
-	}
-	
-	
-	
-	
-	/*
-	 *	Prints file to know that the job is done.
-	 *	File contains table <tab> output file
-	 *	@param path of the instruction file
-	 *	@author v.calaminos
-	 */
-	
-	public static void printDoneFile(String filePath) throws IOException{
-		FileWriter writer = new FileWriter(filePath+".load", false);
-		boolean first=true;
-		List<GobiiLoaderInstruction> list= parseInstructionFile(filePath);
-		if(list==null){
-			writer.close();
-			return;
-		}
-			for (GobiiLoaderInstruction inst : list){
-				if(inst==null)break;
-				if(!first)writer.write("\r\n");
-				first=false;
-				GobiiFile fileParams = inst.getGobiiFile(); 
-				writer.write(inst.getTable());
-				writer.write("\t");
-				writer.write(getDestinationFile(inst));
-			}
-			writer.close();
-		}
-	public static String[] getDoneFileAsArray(String instructionFilePath){
-		List<GobiiLoaderInstruction> list= parseInstructionFile(instructionFilePath);
-		if(list==null || list.isEmpty())return null;
-		String[] args = new String[list.size()];
-		int i=0;
-		for (GobiiLoaderInstruction inst : list){
-			if(inst==null)break;
-			args[i++]=inst.getTable()+"\t"+getDestinationFile(inst);
-		}
-		return args;
-	}
-	
+    private static final String PARAM_CTCN_USR = "{username}";
+    private static final String PARAM_CTCN_PWD = "{password}";
 
-	
-	
-	
-	public static void main(String[] args) throws  IOException{
-		System.out.println("Tests filter");
-		System.out.println(filter("banana","a","a",null,null));
-		System.out.println(filter("banana","b","","a","denden"));
-		System.out.println(filter("banana",null,"n", "a", null));
-	}
-	
-	public static List<GobiiLoaderInstruction> parseInstructionFile(String filename){
-		  ObjectMapper objectMapper = new ObjectMapper();
-		 GobiiLoaderInstruction[] file = null;
-		 
-		try {
-			file = objectMapper.readValue(new FileInputStream(filename), GobiiLoaderInstruction[].class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if(file==null)return null;
-		 return Arrays.asList(file);
-	}
-	
-	
-/**
- * Helper method which executes a string as a command line argument, and waits for it to complete using Runtime.getRuntime.exec.
- * @return true if successful
- */
-	public static boolean tryExec(String toExec){
-		return tryExec(toExec,null,null);
-	}
+    private static boolean showTempFiles = true;
 
-	
-	public static boolean tryExec(String execString,String outputFile, String errorFile){
-		return tryExec(execString,outputFile,errorFile,null);
-	}
-	
-	/**
-	 * Like TryExec, but tries an "External Function Call"
-	 */
-	public static void tryFunc(ExternalFunctionCall efc,String outputFile,String errorFile){
-		boolean success=tryExec(efc.getCommand(),outputFile,errorFile);
-		if(!success){
-			try {
-				ErrorLogger.logError(efc.functionName, "Non-zero exit code", errorFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	public static void tryFunc(ExternalFunctionCall efc,String errorFile){
-		tryFunc(efc,null,errorFile);
-	}
-	
-	//Null outputFIle to get output to standard out.
-	public static boolean tryExec(String execString,String outputFile, String errorFile, String inputFile){
-		String[] exec=execString.split(" ");
-		String executedProcName=exec[0];
-		if(executedProcName.equals("python")){
-			executedProcName=exec[1];
-		}
-        ProcessBuilder builder = new ProcessBuilder(exec);
-        if(outputFile!=null)builder.redirectOutput(new File(outputFile));
-        if(errorFile!=null)builder.redirectError(new File(errorFile));
-        if(inputFile!=null)builder.redirectInput(new File(inputFile));
+    /**
+     * Takes a string <i>in</i> and filters it. Returns the part of in from the end of <i>from</i>
+     * to the beginning of <i>to</i>, exclusive.
+     *
+     * @param in   string to be filtered
+     * @param from first match in substring is beginning of filtered string
+     * @param to   last match in substring is end of filtered string
+     * @return filtered string, from the character after the end of from to the character before the beginning of to
+     */
+    public static String filter(String in, String from, String to, String find, String replace) {
+        if (in == null) return null;
+        String result = "";
+        if (from == null) from = "";
+        if (to == null) to = "";
+        int startIndex, endIndex;
+        if (in.contains(from)) {
+            startIndex = in.indexOf(from) + from.length();
+        } else {
+            startIndex = 0;
+        }
+        String from_in = in.substring(startIndex);
+        if (from_in.contains(to) && !to.equals("")) { // If to is null or blank, read to the end
+            endIndex = startIndex + from_in.indexOf(to);
+        } else {
+            endIndex = in.length();
+        }
+        result = in.substring(startIndex, endIndex);
+
+        if (find != null && replace != null) {
+            result = result.replaceAll(find, replace);
+        }
+
+        return result;
+        //Too clever by a half- if from and too are null, returns substring(0,-1);
+    }
+
+
+
+
+    /*
+     *	Prints file to know that the job is done.
+     *	File contains table <tab> output file
+     *	@param path of the instruction file
+     *	@author v.calaminos
+     */
+
+    public static void printDoneFile(String filePath) throws IOException {
+        FileWriter writer = new FileWriter(filePath + ".load", false);
+        boolean first = true;
+        List<GobiiLoaderInstruction> list = parseInstructionFile(filePath);
+        if (list == null) {
+            writer.close();
+            return;
+        }
+        for (GobiiLoaderInstruction inst : list) {
+            if (inst == null) break;
+            if (!first) writer.write("\r\n");
+            first = false;
+            GobiiFile fileParams = inst.getGobiiFile();
+            writer.write(inst.getTable());
+            writer.write("\t");
+            writer.write(getDestinationFile(inst));
+        }
+        writer.close();
+    }
+
+    public static String[] getDoneFileAsArray(String instructionFilePath) {
+        List<GobiiLoaderInstruction> list = parseInstructionFile(instructionFilePath);
+        if (list == null || list.isEmpty()) return null;
+        String[] args = new String[list.size()];
+        int i = 0;
+        for (GobiiLoaderInstruction inst : list) {
+            if (inst == null) break;
+            args[i++] = inst.getTable() + "\t" + getDestinationFile(inst);
+        }
+        return args;
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("Tests filter");
+        System.out.println(filter("banana", "a", "a", null, null));
+        System.out.println(filter("banana", "b", "", "a", "denden"));
+        System.out.println(filter("banana", null, "n", "a", null));
+    }
+
+    public static List<GobiiLoaderInstruction> parseInstructionFile(String filename) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        GobiiLoaderInstruction[] file = null;
+
+        try {
+            file = objectMapper.readValue(new FileInputStream(filename), GobiiLoaderInstruction[].class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (file == null) return null;
+        return Arrays.asList(file);
+    }
+
+
+    /**
+     * Helper method which executes a string as a command line argument, and waits for it to complete using Runtime.getRuntime.exec.
+     *
+     * @return true if successful
+     */
+    public static boolean tryExec(String toExec) {
+        return tryExec(toExec, null, null);
+    }
+
+
+    public static boolean tryExec(String execString, String outputFile, String errorFile) {
+        return tryExec(execString, outputFile, errorFile, null);
+    }
+
+    /**
+     * Like TryExec, but tries an "External Function Call"
+     */
+    public static void tryFunc(ExternalFunctionCall efc, String outputFile, String errorFile) {
+        boolean success = tryExec(efc.getCommand(), outputFile, errorFile);
+        if (!success) {
+            try {
+                ErrorLogger.logError(efc.functionName, "Non-zero exit code", errorFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void tryFunc(ExternalFunctionCall efc, String errorFile) {
+        tryFunc(efc, null, errorFile);
+    }
+
+
+    public static Process initProcecess(String[] execCommand,
+                                        String outputFile,
+                                        String errorFile,
+                                        String inputFile,
+                                        Integer waitSeconds) {
+
+        Process returnVal = null;
+        String execCommandProcName = execCommand[0];
+
+        ProcessBuilder builder = new ProcessBuilder(execCommand);
+        if (outputFile != null) builder.redirectOutput(new File(outputFile));
+        if (errorFile != null) builder.redirectError(new File(errorFile));
+        if (inputFile != null) builder.redirectInput(new File(inputFile));
+
+        try {
+            returnVal = builder.start();
+            if (waitSeconds != null) {
+                returnVal.waitFor(waitSeconds, TimeUnit.SECONDS);
+            } else {
+                returnVal.waitFor();
+            }
+        } catch (Exception e) {
+            ErrorLogger.logError(execCommandProcName, "Exception in process", e);
+            ErrorLogger.logError(execCommandProcName, "Error File Contents", errorFile);
+        }
+
+        return returnVal;
+    }
+
+    public static String[] makeExecString(String execString) {
+
+        String[] returnVal;
+
+        returnVal = execString.split(" ");
+
+        return returnVal;
+
+    }
+
+    public static String makeProcName(String[] execString) {
+
+        String returnVal = execString[0];
+
+        if (returnVal.equals("python")) {
+            returnVal = execString[1];
+        }
+
+        return returnVal;
+    }
+
+    //Null outputFIle to get output to standard out.
+    public static boolean tryExec(String execString, String outputFile, String errorFile, String inputFile) {
+
+        String[] execArray = makeExecString(execString);
+        String executedProcName = makeProcName(execArray);
+
+        Process p = initProcecess(execArray, outputFile, errorFile, inputFile, null);
+
+        if (p.exitValue() != 0) {
+            if (executedProcName.equals("rm")) { //TODO: Temporary removal of 'RM' errors as 'ERROR' type
+                ErrorLogger.logDebug(executedProcName, "Unable to rm " + execArray[1]);
+                return false;
+            }
+            if (executedProcName.contains("gobii_ifl.py")) {
+                String textToReturn = "";
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(errorFile));
+                    while (br.ready()) {
+                        textToReturn += br.readLine() + "\n";
+                    }
+                } catch (Exception e) {
+                    //meh
+                }
+                ErrorLogger.logError(executedProcName, textToReturn, errorFile);
+            } else {
+                ErrorLogger.logError(executedProcName, "Exit code " + p.exitValue(), errorFile);
+            }
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * Returns a string from the output of a process
+     *
+     * @param execString
+     * @param errorFile
+     * @return
+     */
+    public static int iExec(String execString, String errorFile) {
+        ProcessBuilder builder = new ProcessBuilder(execString.split(" "));
+        if (errorFile != null) builder.redirectError(new File(errorFile));
         Process p;
-		try {
-			p = builder.start();
-		    p.waitFor();
-		} catch (Exception e) {
-			ErrorLogger.logError(executedProcName,"Exception in process",e);
-			ErrorLogger.logError(executedProcName,"Error File Contents",errorFile);
-			return false;
-		}
-		if(p.exitValue()!=0){
-			if(executedProcName.equals("rm")){ //TODO: Temporary removal of 'RM' errors as 'ERROR' type
-				ErrorLogger.logDebug(executedProcName,"Unable to rm "+ exec[1]);
-				return false;
-			}
-			if(executedProcName.contains("gobii_ifl.py")){
-				String textToReturn="";
-				try {
-					BufferedReader br = new BufferedReader(new FileReader(errorFile));
-					while(br.ready()){
-						textToReturn+=br.readLine()+"\n";
-					}
-				}catch(Exception e){
-					//meh
-				}
-				ErrorLogger.logError(executedProcName,textToReturn,errorFile);
-			}
-			else{
-				ErrorLogger.logError(executedProcName,"Exit code " + p.exitValue(),errorFile);
-			}
-			return false;
-		}
-		return true;
-	}
+        BufferedReader reader = null;
+        try {
+            p = builder.start();
+            reader = new BufferedReader(new InputStreamReader(p.getInputStream()));//What terrible person makes 'InputStream' the type of the output of a process
+            p.waitFor();
+            if (p.exitValue() != 0) {
+                ErrorLogger.logError(execString.substring(0, execString.indexOf(" ")), "Exit code " + p.exitValue(), errorFile);
+                return -1;
+            }
+            return Integer.parseInt(reader.readLine().split(" ")[0]);
+        } catch (Exception e) {
+            ErrorLogger.logError(execString.substring(0, execString.indexOf(" ")), e.getMessage(), e);
+            return -1;
+        }
+    }
 
-	/**
-	 * Returns a string from the output of a process
-	 * @param execString
-	 * @param errorFile
-	 * @return
-	 */
-	public static int iExec(String execString, String errorFile){
-		ProcessBuilder builder = new ProcessBuilder(execString.split(" "));
-		if(errorFile!=null)builder.redirectError(new File(errorFile));
-		Process p;
-		BufferedReader reader=null;
-		try {
-			p = builder.start();
-			reader = new BufferedReader(new InputStreamReader(p.getInputStream()));//What terrible person makes 'InputStream' the type of the output of a process
-			p.waitFor();
-			if(p.exitValue()!=0){
-				ErrorLogger.logError(execString.substring(0,execString.indexOf(" ")),"Exit code " + p.exitValue(),errorFile);
-				return -1;
-			}
-			return Integer.parseInt(reader.readLine().split(" ")[0]);
-		} catch (Exception e) {
-			ErrorLogger.logError(execString.substring(0,execString.indexOf(" ")),e.getMessage(),e);
-			return -1;
-		}
-	}
+    //For a folder destination, returns /digest.<tablename>
+    public static String getDestinationFile(GobiiLoaderInstruction instruction) {
+        String destination = instruction.getGobiiFile().getDestination();
+        char last = destination.charAt(destination.length() - 1);
+        if (last == '\\' || last == '/') {
+            return destination + "digest." + instruction.getTable();
+        } else return destination + "/" + "digest." + instruction.getTable();
+    }
 
-	//For a folder destination, returns /digest.<tablename>
- public static String getDestinationFile(GobiiLoaderInstruction instruction){
-	 String destination=instruction.getGobiiFile().getDestination();
-	 char last = destination.charAt(destination.length()-1);
-	 if(last == '\\' || last =='/'){
-		 return destination+"digest."+instruction.getTable();
-	 }
-	 else return destination+"/"+"digest."+instruction.getTable();
- }
-	public static String getPostgresConnectionString(GobiiCropConfig config){
-	 GobiiCropDbConfig crop=config.getCropDbConfig(GobiiDbType.POSTGRESQL);
-	 String ret = "postgresql://"
-	 		+ crop.getUserName()
-	 		+ ":"
-	 		+ crop.getPassword()
-	 		+ "@"
-	 		+ crop.getHost()
-	 		+ ":"
-	 		+ crop.getPort()
-	 		+ "/"
-	 		+ crop.getContextPath();
-	 return ret;
- }
+    /***
+     * Returns a valid postgres connection string, including username and password
+     * in the clear
+     * @param config the config object for the crop
+     * @return The connection string
+     */
+    public static String getPostgresConnectionString(GobiiCropConfig config) {
+        ServerConfig postGresConfig = config.getServer(ServerType.GOBII_PGSQL);
+        String ret = "postgresql://"
+                + postGresConfig.getUserName()
+                + ":"
+                + postGresConfig.getPassword()
+                + "@"
+                + postGresConfig.getHost()
+                + ":"
+                + postGresConfig.getPort()
+                + "/"
+                + postGresConfig.getContextPath();
+        return ret;
+    }
 
-	public static boolean sendEmail(String jobName, String fileLocation,boolean success,String errorLogLoc, ConfigSettings config, String recipientAddress){
-		return sendEmail(jobName,fileLocation,success,errorLogLoc,config,recipientAddress,null);
-	}
-	public static boolean sendEmail(String jobName, String fileLocation,boolean success,String errorLogLoc, ConfigSettings config, String recipientAddress,String[] digestTempFiles){
-		String host=config.getEmailSvrDomain();
-		String port=config.getEmailServerPort().toString();
-		config.getEmailSvrHashType();//ignore
-		String password=config.getEmailSvrPassword();
-		String protocol=config.getEmailSvrType().toLowerCase();
-		String fromUser=config.getEmailSvrUser();
-		String emailAddress=recipientAddress;
-		String user=fromUser;
-		try{
-			sendEmail(jobName,fileLocation,success,errorLogLoc,host,port,emailAddress,fromUser,password,user,protocol,digestTempFiles);
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-	/**
-	 *
-	 * @param jobName
-	 * @param fileLocation
-	 * @param success
-	 * @param host smtp.cornell.edu
-	 * @param port 587
-	 * @param emailAddress
-	 * @param fromUser
-	 * @param password
-	 * @param username
-	 * @param protocol "smtp"
-	 * @throws Exception
-	 */
-	private static void sendEmail(String jobName, String fileLocation,boolean success,String errorLogLoc, String host,String port, String emailAddress,String fromUser,String password,String username, String protocol,String[] digestTempFiles) throws Exception{
-		if(emailAddress==null || emailAddress.equals(""))return;
-		Properties props = new Properties();
-		props.setProperty("mail.smtp.auth", "true");
-		props.setProperty("mail.smtp.starttls.enable", "true");
-		props.setProperty("mail.smtp.starttls.required", "true");
-		props.setProperty("mail.transport.protocol", protocol);
-		props.setProperty("mail.smtp.host", host);
-		props.setProperty("mail.smtp.port", port);
-		props.setProperty("mail.host", host);
-		props.setProperty("mail.port", port);
-		props.setProperty("mail.user", username);
-		props.setProperty("mail.password", password);
+    public static String getJdbcConnectionString(ServerConfig postGresConfig) {
 
-		Session mailSession = Session.getInstance(props,
-				new javax.mail.Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(username, password);
-					}
-			});
-		Transport transport = mailSession.getTransport(protocol);
+//        String contextPath = postGresConfig.getContextPath();
+//        Integer idxOfFinalFwdSlash = contextPath.lastIndexOf('/');
+//        if (idxOfFinalFwdSlash > -1) {
+//            contextPath = contextPath.substring(0, idxOfFinalFwdSlash);
+//        }
+//
 
-		MimeMessage message = new MimeMessage(mailSession);
-		message.setFrom(new InternetAddress(fromUser));
-		String subject=jobName+(success?" Completed Successfully":" Failed");
-		message.setSubject(subject);
-		String content=subject+"\n";
-		if(success && fileLocation!=null)content+="Your file is available at "+fileLocation;
-		if(success && showTempFiles){
-			if(digestTempFiles != null) {
-				for (String file : digestTempFiles) {
-					if (checkFileExistence(file.substring(file.indexOf('\t') + 1, file.length()))) {
-						content += "\nThe loader has created digest file: " + file;
-					}
-				}
-			}
-		}
-		if(!success){
-			content+="\nAn unexpected error occurred when processing your request.";
-			if(digestTempFiles != null){
-				for(String file:digestTempFiles){
-					if(checkFileExistence(file.substring(file.indexOf('\t')+1,file.length()))){
-						content+="\nThe loader has created digest file: "+file;
-					}
-				}
-			}
-		}
-		message.setContent(content, "text/plain");
-		message.addRecipient(Message.RecipientType.TO,
-				new InternetAddress(emailAddress));
-		transport.connect(username,password);
-		transport.sendMessage(message,
-				message.getRecipients(Message.RecipientType.TO));
-		transport.close();
-	}
+        String ret = "jdbc:postgresql://"
+                + postGresConfig.getHost()
+                + ":"
+                + postGresConfig.getPort()
+                + "/"
+                + postGresConfig.getContextPath(false);
 
-	/**
-	 * Moves an instruction file from it's current folder to the 'done' folder
-	 * @param instructionFile Fully qualified path to the instruction file
-	 */
-	public static void completeInstruction(String instructionFile, String doneFolder){
-		//Move instruction file
-		FileSystemInterface.mv(instructionFile,doneFolder);
-	}
+        return ret;
+    }
 
-	/**
-	 * Checks if a file exists AND is non-empty.
-	 * @param fileLocation String representation of the file's location (absolute or relative).
-	 * @return true if non-empty file exists
-	 */
-	public static boolean checkFileExistence(String fileLocation) {
-		if(fileLocation==null)return false;
-		File f = new File(fileLocation);
-		return f.exists() && f.getTotalSpace()!=0;
-	}
+    public static String getJdbcConnectionString(GobiiCropConfig config) {
+
+        ServerConfig postGresConfig = config.getServer(ServerType.GOBII_PGSQL);
+        String ret = getJdbcConnectionString(postGresConfig);
+        return ret;
+    }
 
 
-	/**
-	 * convert file size in to human readable format
-	 * @param bytes
-	 * @return String
-	 */
-	public static String sizeToReadable(long bytes) {
-		int unit = 1024;
-		if (bytes < unit) return bytes + " B";
-		int exp = (int) (Math.log(bytes) / Math.log(unit));
-		String pre = ("KMGTPE").charAt(exp-1) + "i";
-		return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
-	}
+    /***
+     * Returns a valid postgres connection string, but username and password
+     * are "parameterized" so that the string can be safely logged or used in
+     * error messages. This string can then be made useful for actual connections
+     * using the replacePostgressCredentials() method
+     * @param config the config object for the crop
+     * @return The safe connection string
+     */
+    public static String getSecurePostgresConnectionString(GobiiCropConfig config) {
+        ServerConfig postGresConfig = config.getServer(ServerType.GOBII_PGSQL);
+        String ret = "postgresql://"
+                + PARAM_CTCN_USR
+                + ":"
+                + PARAM_CTCN_PWD
+                + "@"
+                + postGresConfig.getHost()
+                + ":"
+                + postGresConfig.getPort()
+                + "/"
+                + postGresConfig.getContextPath();
+        return ret;
+    }
 
-	/**
-	 * Convert String's first character into uppercase
-	 * @param original
-	 * @return
-	 */
-	public static String uppercaseFirstLetter(String original) {
-		if (original == null || original.length() == 0) {
-			return original;
-		}
-		return original.substring(0, 1).toUpperCase() + original.substring(1);
-	}
+    /***
+     * Given a connection string created with getSecurePostgresConnectionString(),
+     * returns a new string that contains the real username and password for use in a
+     * real connection.
+     * @param secureString The connection string that was created with getSecurePostgresConnectionString()
+     * @param config the config object for the crop
+     * @return The safe connection string
+     */
+    public static String replacePostgressCredentials(String secureString, GobiiCropConfig config) {
 
-	/**
-	 * Convert miliseconds to human readable time format : 00 days 00 hrs 00 minutes 00 secs
-	 * @param millis
-	 * @return
-	 */
-	public static String getDurationReadable(long millis) {
-		if(millis < 0) {
-			throw new IllegalArgumentException("Duration must be greater than zero!");
-		}
+        ServerConfig postGresConfig = config.getServer(ServerType.GOBII_PGSQL);
+        String ret = secureString
+                .replace(PARAM_CTCN_USR, postGresConfig.getUserName())
+                .replace(PARAM_CTCN_PWD, postGresConfig.getPassword());
 
-		long days = TimeUnit.MILLISECONDS.toDays(millis);
-		millis -= TimeUnit.DAYS.toMillis(days);
-		long hours = TimeUnit.MILLISECONDS.toHours(millis);
-		millis -= TimeUnit.HOURS.toMillis(hours);
-		long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
-		millis -= TimeUnit.MINUTES.toMillis(minutes);
-		long seconds = TimeUnit.MILLISECONDS.toSeconds(millis);
+        return ret;
 
-		StringBuilder sb = new StringBuilder(64);
-		sb.append(days);
-		sb.append(" Days ");
-		sb.append(hours);
-		sb.append(" Hours ");
-		sb.append(minutes);
-		sb.append(" Minutes ");
-		sb.append(seconds);
-		sb.append(" Seconds");
+    }
 
-		return sb.toString();
-	}
+    public static boolean sendEmail(String jobName, String fileLocation, boolean success, String errorLogLoc, ConfigSettings config, String recipientAddress) {
+        return sendEmail(jobName, fileLocation, success, errorLogLoc, config, recipientAddress, null);
+    }
 
-	/**
-	 * Wizardry.
-	 * Uses C Library to (On Unix systems) get the PID of the current process.
-	 * @return Process ID
-	 *
-	public static int getPID(){
-	 return CLibrary.Instance.getpid();
- }
-	private interface CLibrary extends Library{
-	CLibrary Instance = (CLibrary) Native.loadLibrary("c",CLibrary.class);
-	int getpid();
-	}*/
+    public static boolean sendEmail(String jobName, String fileLocation, boolean success, String errorLogLoc, ConfigSettings config, String recipientAddress, String[] digestTempFiles) {
+        String host = config.getEmailSvrDomain();
+        String port = config.getEmailServerPort().toString();
+        config.getEmailSvrHashType();//ignore
+        String password = config.getEmailSvrPassword();
+        String protocol = config.getEmailSvrType().toLowerCase();
+        String fromUser = config.getEmailSvrUser();
+        String emailAddress = recipientAddress;
+        String user = fromUser;
+        try {
+            sendEmail(jobName, fileLocation, success, errorLogLoc, host, port, emailAddress, fromUser, password, user, protocol, digestTempFiles);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param jobName
+     * @param fileLocation
+     * @param success
+     * @param host         smtp.cornell.edu
+     * @param port         587
+     * @param emailAddress
+     * @param fromUser
+     * @param password
+     * @param username
+     * @param protocol     "smtp"
+     * @throws Exception
+     */
+    private static void sendEmail(String jobName, String fileLocation, boolean success, String errorLogLoc, String host, String port, String emailAddress, String fromUser, String password, String username, String protocol, String[] digestTempFiles) throws Exception {
+        if (emailAddress == null || emailAddress.equals("")) return;
+        Properties props = new Properties();
+        props.setProperty("mail.smtp.auth", "true");
+        props.setProperty("mail.smtp.starttls.enable", "true");
+        props.setProperty("mail.smtp.starttls.required", "true");
+        props.setProperty("mail.transport.protocol", protocol);
+        props.setProperty("mail.smtp.host", host);
+        props.setProperty("mail.smtp.port", port);
+        props.setProperty("mail.host", host);
+        props.setProperty("mail.port", port);
+        props.setProperty("mail.user", username);
+        props.setProperty("mail.password", password);
+
+        Session mailSession = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        Transport transport = mailSession.getTransport(protocol);
+
+        MimeMessage message = new MimeMessage(mailSession);
+        message.setFrom(new InternetAddress(fromUser));
+        String subject = jobName + (success ? " Completed Successfully" : " Failed");
+        message.setSubject(subject);
+        String content = subject + "\n";
+        if (success && fileLocation != null) content += "Your file is available at " + fileLocation;
+        if (success && showTempFiles) {
+            if (digestTempFiles != null) {
+                for (String file : digestTempFiles) {
+                    if (checkFileExistence(file.substring(file.indexOf('\t') + 1, file.length()))) {
+                        content += "\nThe loader has created digest file: " + file;
+                    }
+                }
+            }
+        }
+        if (!success) {
+            content += "\nAn unexpected error occurred when processing your request.";
+            if (digestTempFiles != null) {
+                for (String file : digestTempFiles) {
+                    if (checkFileExistence(file.substring(file.indexOf('\t') + 1, file.length()))) {
+                        content += "\nThe loader has created digest file: " + file;
+                    }
+                }
+            }
+        }
+        message.setContent(content, "text/plain");
+        message.addRecipient(Message.RecipientType.TO,
+                new InternetAddress(emailAddress));
+        transport.connect(username, password);
+        transport.sendMessage(message,
+                message.getRecipients(Message.RecipientType.TO));
+        transport.close();
+    }
+
+    /**
+     * Moves an instruction file from it's current folder to the 'done' folder
+     *
+     * @param instructionFile Fully qualified path to the instruction file
+     */
+    public static void completeInstruction(String instructionFile, String doneFolder) {
+        //Move instruction file
+        FileSystemInterface.mv(instructionFile, doneFolder);
+    }
+
+    /**
+     * Checks if a file exists AND is non-empty.
+     *
+     * @param fileLocation String representation of the file's location (absolute or relative).
+     * @return true if non-empty file exists
+     */
+    public static boolean checkFileExistence(String fileLocation) {
+        if (fileLocation == null) return false;
+        File f = new File(fileLocation);
+        return f.exists() && f.getTotalSpace() != 0;
+    }
+
+
+    /**
+     * convert file size in to human readable format
+     *
+     * @param bytes
+     * @return String
+     */
+    public static String sizeToReadable(long bytes) {
+        int unit = 1024;
+        if (bytes < unit) return bytes + " B";
+        int exp = (int) (Math.log(bytes) / Math.log(unit));
+        String pre = ("KMGTPE").charAt(exp - 1) + "i";
+        return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
+    }
+
+    /**
+     * Convert String's first character into uppercase
+     *
+     * @param original
+     * @return
+     */
+    public static String uppercaseFirstLetter(String original) {
+        if (original == null || original.length() == 0) {
+            return original;
+        }
+        return original.substring(0, 1).toUpperCase() + original.substring(1);
+    }
+
+    /**
+     * Convert miliseconds to human readable time format : 00 days 00 hrs 00 minutes 00 secs
+     *
+     * @param millis
+     * @return
+     */
+    public static String getDurationReadable(long millis) {
+        if (millis < 0) {
+            throw new IllegalArgumentException("Duration must be greater than zero!");
+        }
+
+        long days = TimeUnit.MILLISECONDS.toDays(millis);
+        millis -= TimeUnit.DAYS.toMillis(days);
+        long hours = TimeUnit.MILLISECONDS.toHours(millis);
+        millis -= TimeUnit.HOURS.toMillis(hours);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
+        millis -= TimeUnit.MINUTES.toMillis(minutes);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(millis);
+
+        StringBuilder sb = new StringBuilder(64);
+        sb.append(days);
+        sb.append(" Days ");
+        sb.append(hours);
+        sb.append(" Hours ");
+        sb.append(minutes);
+        sb.append(" Minutes ");
+        sb.append(seconds);
+        sb.append(" Seconds");
+
+        return sb.toString();
+    }
+
+    /**
+     * Wizardry.
+     * Uses C Library to (On Unix systems) get the PID of the current process.
+     * @return Process ID
+     *
+    public static int getPID(){
+    return CLibrary.Instance.getpid();
+    }
+    private interface CLibrary extends Library{
+    CLibrary Instance = (CLibrary) Native.loadLibrary("c",CLibrary.class);
+    int getpid();
+    }*/
 }

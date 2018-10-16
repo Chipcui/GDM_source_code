@@ -1,6 +1,9 @@
 package org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds;
 
+import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiidao.resultset.access.RsPlatformDao;
+import org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQueryColl;
+import org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId;
 import org.gobiiproject.gobiidtomapping.core.GobiiDtoMappingException;
 import org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIdFetch;
 import org.gobiiproject.gobiimodel.config.GobiiException;
@@ -16,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,6 +30,8 @@ public class DtoMapNameIdFetchPlatforms implements DtoMapNameIdFetch {
     @Autowired
     private RsPlatformDao rsPlatformDao = null;
 
+    @Autowired
+    private DtoListQueryColl dtoListQueryColl;
 
     Logger LOGGER = LoggerFactory.getLogger(DtoMapNameIdFetchPlatforms.class);
 
@@ -92,6 +98,24 @@ public class DtoMapNameIdFetchPlatforms implements DtoMapNameIdFetch {
         return returnVal;
     }
 
+    private List<NameIdDTO> getPlatformNamesByNameList(List<NameIdDTO> nameIdDTOList) {
+
+        try {
+
+            ResultSet resultSet = dtoListQueryColl.getResultSet(ListSqlId.QUERY_ID_PLATFORM_NAMES_BYLIST,
+                    new HashMap<String, Object>(){{
+                    }}, new HashMap<String, Object>(){{
+                        put("nameArray", nameIdDTOList);
+                    }});
+
+            Integer resultSize = DtoMapNameIdUtil.getIdFromResultSet(nameIdDTOList, resultSet, "name", "platform_id");
+
+        } catch (Exception e) {
+            throw new GobiiDaoException(e);
+        }
+
+        return nameIdDTOList;
+    }
 
     @Override
     public List<NameIdDTO> getNameIds(DtoMapNameIdParams dtoMapNameIdParams) throws GobiiException {
@@ -106,7 +130,12 @@ public class DtoMapNameIdFetchPlatforms implements DtoMapNameIdFetch {
 
                 returnVal = this.getPlatformNamesByTypeId(dtoMapNameIdParams.getFilterValueAsInteger());
 
-            } else {
+            } else if (GobiiFilterType.NAMES_BY_NAME_LIST == dtoMapNameIdParams.getGobiiFilterType()) {
+
+                returnVal = this.getPlatformNamesByNameList(dtoMapNameIdParams.getNameIdDTOList());
+            }
+
+            else {
 
                 throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                         GobiiValidationStatusType.NONE,

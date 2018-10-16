@@ -93,7 +93,12 @@ public class GobiiAdlTest {
             copyFilesToLocalDir(fileFromRepo, tempDir);
 
             adlEncapsulator.setInputDirectory(tempDir.getAbsolutePath());
-            Assert.assertTrue(adlEncapsulator.getErrorMsg(), adlEncapsulator.executeBatchGobiiADL());
+
+            boolean isADLSuccessful = adlEncapsulator.executeBatchGobiiADL();
+
+
+            Assert.assertTrue(adlEncapsulator.getErrorMsg(), isADLSuccessful);
+
 
         }
     }

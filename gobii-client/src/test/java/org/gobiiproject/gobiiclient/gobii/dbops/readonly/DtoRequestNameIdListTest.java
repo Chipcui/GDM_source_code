@@ -10,7 +10,7 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
@@ -31,7 +31,6 @@ import org.gobiiproject.gobiimodel.types.GobiiFilterType;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class DtoRequestNameIdListTest {
         Assert.assertTrue(GobiiClientContextAuth.deAuthenticate());
     }
 
-    private void testNameRetrieval(GobiiEntityNameType gobiiEntityNameType,
+    public static PayloadEnvelope<NameIdDTO> testNameRetrieval(GobiiEntityNameType gobiiEntityNameType,
                                    GobiiFilterType gobiiFilterType,
                                    String filterValue) throws Exception {
         RestUri namesUri = GobiiClientContext.getInstance(null, false)
@@ -92,26 +91,28 @@ public class DtoRequestNameIdListTest {
         Assert.assertFalse(assertionErrorStem,
                 TestUtils.checkAndPrintHeaderMessages(resultEnvelope.getHeader()));
 
-        List<NameIdDTO> NameIdDTOList = resultEnvelope.getPayload().getData();
+        List<NameIdDTO> nameIdDTOList = resultEnvelope.getPayload().getData();
         Assert.assertNotNull(assertionErrorStem
                         + "null name id list",
-                NameIdDTOList);
+                nameIdDTOList);
 
         Assert.assertTrue(assertionErrorStem
                         + "empty name id list",
-                NameIdDTOList.size() > 0);
+                nameIdDTOList.size() > 0);
 
         Assert.assertNotNull(assertionErrorStem
                         + "null name",
-                NameIdDTOList.get(0).getName());
+                nameIdDTOList.get(0).getName());
 
         Assert.assertNotNull(assertionErrorStem
                         + "null ",
-                NameIdDTOList.get(0).getId());
+                nameIdDTOList.get(0).getId());
 
         Assert.assertTrue(assertionErrorStem
                         + "id <= 0",
-                NameIdDTOList.get(0).getId() > 0);
+                nameIdDTOList.get(0).getId() > 0);
+
+        return resultEnvelope;
 
     }
 
@@ -455,7 +456,7 @@ public class DtoRequestNameIdListTest {
 
         RestUri restUriProtocol = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_PROTOCOL);
+                .resourceColl(RestResourceId.GOBII_PROTOCOL);
         GobiiEnvelopeRestResource<ProtocolDTO,ProtocolDTO> restResource = new GobiiEnvelopeRestResource<>(restUriProtocol);
         PayloadEnvelope<ProtocolDTO> resultEnvelope = restResource
                 .get(ProtocolDTO.class);

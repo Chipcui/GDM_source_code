@@ -3,7 +3,7 @@ package org.gobiiproject.gobiiclient.gobii.Helpers;
 
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -64,7 +64,7 @@ public class TestUtils {
 
         RestUri confgSettingsUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_CONFIGSETTINGS);
+                .resourceColl(RestResourceId.GOBII_CONFIGSETTINGS);
         GobiiEnvelopeRestResource<ConfigSettingsDTO,ConfigSettingsDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(confgSettingsUri);
         PayloadEnvelope<ConfigSettingsDTO> resultEnvelope = gobiiEnvelopeRestResource
                 .get(ConfigSettingsDTO.class);
