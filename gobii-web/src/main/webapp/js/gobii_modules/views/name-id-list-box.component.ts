@@ -12,30 +12,38 @@ import {FileItemService} from "../services/core/file-item-service";
 
 @Component({
     selector: 'name-id-list-box',
-    inputs: ['gobiiExtractFilterType','filterParamName'],
+    inputs: ['gobiiExtractFilterType', 'filterParamName'],
     outputs: [],
-    template: `<select class="nameIdListBox" (change)="handleFileItemSelected($event)" >
-        <option *ngFor="let fileItem of fileItems$ | async"
-                [value]="fileItem.getFileItemUniqueId()"
-                [selected]="fileItem.getSelected()"
-                title="{{fileItem.getItemName()}}">
-            {{fileItem.getItemName().length < 34 ? fileItem.getItemName() : fileItem.getItemName().substr(0,30).concat(" . . .")}}
-            
-        </option>
-    </select>
+    template: `
+        <div id="{{filterParamName}}">
+            <select class="nameIdListBox" 
+                    (change)="handleFileItemSelected($event)"
+                    id="{{filterParamName}}">
+                <option *ngFor="let fileItem of fileItems$ | async"
+                        [value]="fileItem.getFileItemUniqueId()"
+                        [selected]="fileItem.getSelected()"
+                        title="{{fileItem.getItemName()}}">
+                    {{fileItem.getItemName().length < 34 ? fileItem.getItemName() : fileItem.getItemName().substr(0, 30).concat(" . . .")}}
+
+                </option>
+            </select>
+        </div>
     ` // end template
 
 })
-export class NameIdListBoxComponent  {
+export class NameIdListBoxComponent {
 
 
+    public foo:string = "a foo id";
     public fileItems$: Observable<GobiiFileItem[]>;
 
     private gobiiExtractFilterType: GobiiExtractFilterType;
 
-    private filterParamName:FilterParamNames;
+    public filterParamName: FilterParamNames;
+
     constructor(private store: Store<fromRoot.State>,
-                private fileItemService:FileItemService) {
+                private fileItemService: FileItemService) {
+
 
 
     } // ctor
@@ -52,7 +60,7 @@ export class NameIdListBoxComponent  {
                         this.previousSelectedItemId = items[0].getFileItemUniqueId()
                     }
 
-                 },
+                },
                 error => {
                     this.store.dispatch(new historyAction.AddStatusMessageAction(error))
                 });
@@ -63,7 +71,7 @@ export class NameIdListBoxComponent  {
 
     public handleFileItemSelected(arg) {
 
-        if( ! this.gobiiExtractFilterType ) {
+        if (!this.gobiiExtractFilterType) {
             this.store.dispatch(new historyAction.AddStatusMessageAction("The gobiiExtractFilterType property is not set"))
         }
 

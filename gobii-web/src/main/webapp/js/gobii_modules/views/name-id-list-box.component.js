@@ -34,6 +34,7 @@ System.register(["@angular/core", "@ngrx/store", "../store/actions/fileitem-acti
                 function NameIdListBoxComponent(store, fileItemService) {
                     this.store = store;
                     this.fileItemService = fileItemService;
+                    this.foo = "a foo id";
                     this.previousSelectedItemId = null;
                 } // ctor
                 NameIdListBoxComponent.prototype.ngOnInit = function () {
@@ -68,7 +69,7 @@ System.register(["@angular/core", "@ngrx/store", "../store/actions/fileitem-acti
                         selector: 'name-id-list-box',
                         inputs: ['gobiiExtractFilterType', 'filterParamName'],
                         outputs: [],
-                        template: "<select class=\"nameIdListBox\" (change)=\"handleFileItemSelected($event)\" >\n        <option *ngFor=\"let fileItem of fileItems$ | async\"\n                [value]=\"fileItem.getFileItemUniqueId()\"\n                [selected]=\"fileItem.getSelected()\"\n                title=\"{{fileItem.getItemName()}}\">\n            {{fileItem.getItemName().length < 34 ? fileItem.getItemName() : fileItem.getItemName().substr(0,30).concat(\" . . .\")}}\n            \n        </option>\n    </select>\n    " // end template
+                        template: "\n        <div id=\"{{filterParamName}}\">\n            <select class=\"nameIdListBox\" \n                    (change)=\"handleFileItemSelected($event)\"\n                    id=\"{{filterParamName}}\">\n                <option *ngFor=\"let fileItem of fileItems$ | async\"\n                        [value]=\"fileItem.getFileItemUniqueId()\"\n                        [selected]=\"fileItem.getSelected()\"\n                        title=\"{{fileItem.getItemName()}}\">\n                    {{fileItem.getItemName().length < 34 ? fileItem.getItemName() : fileItem.getItemName().substr(0, 30).concat(\" . . .\")}}\n\n                </option>\n            </select>\n        </div>\n    " // end template
                     }),
                     __metadata("design:paramtypes", [store_1.Store,
                         file_item_service_1.FileItemService])
