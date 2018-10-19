@@ -299,7 +299,7 @@ public class HelperFunctions {
                 + ":"
                 + postGresConfig.getPort()
                 + "/"
-                + postGresConfig.getContextPath();
+                + postGresConfig.getContextPath(false);
         return ret;
     }
 
