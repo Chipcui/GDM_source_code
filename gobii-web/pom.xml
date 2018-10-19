@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.gobiiproject</groupId>
         <artifactId>parent</artifactId>
-        <version>GP1-1527_2018-10-15</version>
+        <version>GR-98-flexquery-01</version>
     </parent>
 
     <groupId>org.gobiiproject</groupId>
