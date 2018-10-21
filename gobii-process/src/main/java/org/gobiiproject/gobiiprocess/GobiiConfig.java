@@ -1432,13 +1432,13 @@ public class GobiiConfig {
                         returnVal = returnVal && verifyDbConfig(postGresConfig);
                     }
 
-                    ServerConfig computeNodeConfig = currentGobiiCropConfig.getServer(ServerType.GOBII_COMPUTE);
-                    if (computeNodeConfig == null) {
-                        messages.add("The compute node for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
-                        returnVal = false;
-                    } else {
-                        returnVal = returnVal && verifyDbConfig(computeNodeConfig);
-                    }
+//                    ServerConfig computeNodeConfig = currentGobiiCropConfig.getServer(ServerType.GOBII_COMPUTE);
+//                    if (computeNodeConfig == null) {
+//                        messages.add("The compute node for the crop (" + currentGobiiCropConfig.getGobiiCropType() + ") is not defined");
+//                        returnVal = false;
+//                    } else {
+//                        returnVal = returnVal && verifyDbConfig(computeNodeConfig);
+//                    }
                 }
 
 
