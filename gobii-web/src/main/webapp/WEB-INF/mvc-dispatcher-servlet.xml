@@ -88,6 +88,13 @@
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/modules/**" location="/modules/" />
 
+
+    <mvc:resources order="1" location="/swagger/"
+                   mapping="/swagger/**" />
+    <mvc:resources mapping="swagger-ui.html"
+                   location="classpath:/META-INF/resources/" />
+    <mvc:resources mapping="/webjars/**"
+                   location="classpath:/META-INF/resources/webjars/" />
     <!-- Configure to plugin JSON as request and response in method handler -->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
         <!--<property name="messageConverters">-->
@@ -100,6 +107,11 @@
     <!-- Configure bean to convert JSON to POJO and vice versa -->
     <!--<bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
     <!--</bean>-->
+
+    <bean name="/applicationSwaggerConfig" class="springfoxdemo.xml.swagger.ApplicationSwaggerConfig"/>
+    <bean id="swagger2Config"
+          class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration">
+    </bean>
 
 </beans>
 
