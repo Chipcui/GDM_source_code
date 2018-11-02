@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.gobiiproject.gobiimodel.types.GobiiAuthenticationType;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
+import org.gobiiproject.gobiimodel.types.ServerType;
 import org.gobiiproject.gobiimodel.types.ServerCapabilityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,20 +23,18 @@ import org.slf4j.LoggerFactory;
  * for this functionality, it delegates most of its functionality to component classes. In particular,
  * it consumes:
  * * A ConfigValues instance, which contains the actual configuration data;
- * * A ConfigValuesFactory, which knows how to create a ConfigValues instance.
+ * * A ConfigValuesReader, which knows how to create a ConfigValues instance.
  * This form of organization enables this class to function as a dependency firewall between the actual
  * format of the data and the rest of the system.
  */
 public class ConfigSettings {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ConfigSettings.class);
-
-
     private String configFileFqpn;
 
     public ConfigSettings() {
         try {
-            configValues = ConfigValuesFactory.read(null);
+            configValues = ConfigValuesReader.read(null);
         } catch (Exception e) {
             LOGGER.error("Error instancing ConfigValues with null fqpn", e);
         }
@@ -46,7 +45,7 @@ public class ConfigSettings {
     public ConfigSettings(String configFileWebPath) {
 
         try {
-            configValues = ConfigValuesFactory.read(configFileWebPath);
+            configValues = ConfigValuesReader.read(configFileWebPath);
             this.configFileFqpn = configFileWebPath;
         } catch (Exception e) {
             LOGGER.error("Error instancing ConfigValues with fqpn: " + configFileWebPath, e);
@@ -62,7 +61,7 @@ public class ConfigSettings {
 
         ConfigSettings returnVal = null;
 
-        ConfigValues configValues = ConfigValuesFactory.makeNew(userFqpn);
+        ConfigValues configValues = ConfigValuesReader.makeNew(userFqpn);
         if (configValues != null) {
             returnVal = new ConfigSettings(configValues);
             returnVal.configFileFqpn = userFqpn;
@@ -76,7 +75,7 @@ public class ConfigSettings {
 
         ConfigSettings returnVal = null;
 
-        ConfigValues configValues = ConfigValuesFactory.read(userFqpn);
+        ConfigValues configValues = ConfigValuesReader.read(userFqpn);
         if (configValues != null) {
             returnVal = new ConfigSettings(configValues);
             returnVal.configFileFqpn = userFqpn;
@@ -93,12 +92,12 @@ public class ConfigSettings {
      * However, that would have resulted in reduntant values.
      * @return
      */
-    public Map<ServerCapabilityType, Boolean> getServerCapabilities() {
+    public Map<ServerCapabilityType, Boolean> getServerCapabilities() throws Exception {
 
         Map<ServerCapabilityType, Boolean> returnVal = new HashMap<>();
 
-        if (this.configValues.getKDCConfig() != null) {
-            returnVal.put(ServerCapabilityType.KDC, this.configValues.getKDCConfig().isActive());
+        if (this.configValues.getGlobalServer(ServerType.KDC) != null) {
+            returnVal.put(ServerCapabilityType.KDC, this.configValues.getGlobalServer(ServerType.KDC).isActive());
         } else {
             returnVal.put(ServerCapabilityType.KDC, false);
         }
@@ -112,8 +111,23 @@ public class ConfigSettings {
     }
 
 
+    public void commit(boolean getFqpnFromJndi) throws Exception {
+
+        String fqpn;
+
+        if (getFqpnFromJndi) {
+            fqpn = ConfigValuesReader.getFqpnFromTomcat();
+        } else {
+            fqpn = this.configFileFqpn;
+        }
+
+        ConfigValuesReader.commitConfigValues(this.configValues, fqpn);
+    }
+
     public void commit() throws Exception {
-        ConfigValuesFactory.commitConfigValues(this.configValues, this.configFileFqpn);
+        // In the case where we are committing, we need to make sure that
+        // we already have the fqpn of the config file
+        this.commit(false);
     }
 
     public String getProcessingPath(String cropType, GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
@@ -142,6 +156,10 @@ public class ConfigSettings {
         return this.configValues.isCropDefined(gobiiCropType);
     }
 
+    public ServerConfig getGlobalServer(ServerType serverType) throws Exception {
+        return this.configValues.getGlobalServer(serverType);
+    }
+
     public GobiiCropConfig getCropConfig(String gobiiCropType) throws Exception {
 
         return (this.configValues.getCropConfig(gobiiCropType));
@@ -167,12 +185,6 @@ public class ConfigSettings {
     public void setTestExecConfig(TestExecConfig testExecConfig) {
         this.configValues.setTestExecConfig(testExecConfig);
     }
-
-    public ServerConfigKDC getKDCConfig() {
-
-        return this.configValues.getKDCConfig();
-    }
-
 
     public List<String> getActiveCropTypes() throws Exception {
         return this
@@ -369,6 +381,7 @@ public class ConfigSettings {
     public void setMaxUploadSizeMbytes(Integer maxUploadSizeMbytes) {
         this.configValues.setMaxUploadSizeMbytes(maxUploadSizeMbytes);
     }
+
     public boolean isProvidesBackend() {
         return this.configValues.isProvidesBackend();
     }

@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiimodel.dto.system;
 
-import org.gobiiproject.gobiimodel.config.ServerConfig;
+import org.gobiiproject.gobiimodel.config.ServerConfigItem;
 import org.gobiiproject.gobiimodel.dto.base.DTOBase;
 import org.gobiiproject.gobiimodel.types.ServerCapabilityType;
 
@@ -25,13 +25,13 @@ public class ConfigSettingsDTO extends DTOBase {
 
     }
 
-    private Map<String, ServerConfig> serverConfigs = new LinkedHashMap<>();
+    private Map<String, ServerConfigItem> serverConfigs = new LinkedHashMap<>();
 
-    public Map<String, ServerConfig> getServerConfigs() {
+    public Map<String, ServerConfigItem> getServerConfigs() {
         return serverConfigs;
     }
 
-    public void setServerConfigs(Map<String, ServerConfig> serverConfigs) {
+    public void setServerConfigs(Map<String, ServerConfigItem> serverConfigs) {
         this.serverConfigs = serverConfigs;
     }
 

@@ -5,7 +5,7 @@ import org.gobiiproject.gobiidtomapping.core.GobiiDtoMappingException;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.config.GobiiException;
-import org.gobiiproject.gobiimodel.config.ServerConfig;
+import org.gobiiproject.gobiimodel.config.ServerConfigItem;
 import org.gobiiproject.gobiimodel.dto.system.ConfigSettingsDTO;
 import org.gobiiproject.gobiimodel.types.GobiiFileNoticeType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
@@ -34,7 +34,7 @@ public class DtoMapConfigSettingsImpl implements DtoMapConfigSettings {
 
             for (GobiiCropConfig currentGobiiCropConfig : configSettings.getActiveCropConfigs()) {
 
-                ServerConfig currentServerConfig = new ServerConfig(currentGobiiCropConfig,
+                ServerConfigItem currentServerConfigItem = new ServerConfigItem(currentGobiiCropConfig,
                         configSettings.getProcessingPath(currentGobiiCropConfig.getGobiiCropType(),
                                 GobiiFileProcessDir.EXTRACTOR_INSTRUCTIONS),
                         configSettings.getProcessingPath(currentGobiiCropConfig.getGobiiCropType(),
@@ -48,7 +48,7 @@ public class DtoMapConfigSettingsImpl implements DtoMapConfigSettings {
 
 
                 returnVal.getServerConfigs().put(currentGobiiCropConfig.getGobiiCropType(),
-                        currentServerConfig);
+                        currentServerConfigItem);
             }
 
         } catch (Exception e) {

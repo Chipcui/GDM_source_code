@@ -2,7 +2,7 @@ package org.gobiiproject.gobiibrapi.calls.calls;
 
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiibrapi.types.BrapiDataTypes;
-import org.gobiiproject.gobiimodel.types.RestMethodTypes;
+import org.gobiiproject.gobiimodel.types.RestMethodType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,14 @@ public class BrapiResponseCallsItem {
 
     public BrapiResponseCallsItem() {}
 
-    public BrapiResponseCallsItem(RestUri restUri, List<RestMethodTypes> methods, List<BrapiDataTypes> dataTypes) throws Exception {
+    public BrapiResponseCallsItem(RestUri restUri, List<RestMethodType> methods, List<BrapiDataTypes> dataTypes) throws Exception {
         this.call = restUri.getResource();
         this.methods = methods;
         this.datatypes = dataTypes;
     }
 
     private String call;
-    private List<RestMethodTypes> methods = new ArrayList<>();
+    private List<RestMethodType> methods = new ArrayList<>();
     private List<BrapiDataTypes> datatypes = new ArrayList<>();
 
 
@@ -34,11 +34,11 @@ public class BrapiResponseCallsItem {
         this.call = call;
     }
 
-    public List<RestMethodTypes> getMethods() {
+    public List<RestMethodType> getMethods() {
         return methods;
     }
 
-    public void setMethods(List<RestMethodTypes> methods) {
+    public void setMethods(List<RestMethodType> methods) {
         this.methods = methods;
     }
 

@@ -8,7 +8,7 @@ package org.gobiiproject.gobiiclient.gobii.dbops.crud;
 
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiapimodel.types.GobiiServiceRequestId;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
@@ -49,9 +49,9 @@ public class DtoCrudRequestMarkerTest implements DtoCrudRequestTest {
 
         RestUri projectsUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceByUriIdParam(GobiiServiceRequestId.URL_MARKERS);
+                .resourceByUriIdParam(RestResourceId.GOBII_MARKERS);
         projectsUri.setParamValue("id", markerId.toString());
-        GobiiEnvelopeRestResource<MarkerDTO> gobiiEnvelopeRestResourceForProjects = new GobiiEnvelopeRestResource<>(projectsUri);
+        GobiiEnvelopeRestResource<MarkerDTO,MarkerDTO> gobiiEnvelopeRestResourceForProjects = new GobiiEnvelopeRestResource<>(projectsUri);
         PayloadEnvelope<MarkerDTO> resultEnvelope = gobiiEnvelopeRestResourceForProjects
                 .get(MarkerDTO.class);
 
@@ -81,7 +81,7 @@ public class DtoCrudRequestMarkerTest implements DtoCrudRequestTest {
     public void testEmptyResult() throws Exception {
 
         DtoRestRequestUtils<MarkerDTO> dtoDtoRestRequestUtils =
-                new DtoRestRequestUtils<>(MarkerDTO.class, GobiiServiceRequestId.URL_MARKERS);
+                new DtoRestRequestUtils<>(MarkerDTO.class, RestResourceId.GOBII_MARKERS);
         Integer maxId = dtoDtoRestRequestUtils.getMaxPkVal();
         Integer nonExistentId = maxId + 1;
 
@@ -109,8 +109,8 @@ public class DtoCrudRequestMarkerTest implements DtoCrudRequestTest {
 
         RestUri markerCollUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
-                .resourceColl(GobiiServiceRequestId.URL_MARKERS);
-        GobiiEnvelopeRestResource<MarkerDTO> gobiiEnvelopeRestResourceForMarkerPost = new GobiiEnvelopeRestResource<>(markerCollUri);
+                .resourceColl(RestResourceId.GOBII_MARKERS);
+        GobiiEnvelopeRestResource<MarkerDTO,MarkerDTO> gobiiEnvelopeRestResourceForMarkerPost = new GobiiEnvelopeRestResource<>(markerCollUri);
         PayloadEnvelope<MarkerDTO> resultEnvelope = gobiiEnvelopeRestResourceForMarkerPost
                 .post(MarkerDTO.class, new PayloadEnvelope<>(markerDTORequest, GobiiProcessType.CREATE));
 
@@ -137,7 +137,7 @@ public class DtoCrudRequestMarkerTest implements DtoCrudRequestTest {
                 .markerssByQueryParams();
         restUriContact.setParamValue("name", arbitaryMarkerName);
 
-        GobiiEnvelopeRestResource<MarkerDTO> gobiiEnvelopeRestResourceForProjects = new GobiiEnvelopeRestResource<>(restUriContact);
+        GobiiEnvelopeRestResource<MarkerDTO,MarkerDTO> gobiiEnvelopeRestResourceForProjects = new GobiiEnvelopeRestResource<>(restUriContact);
         PayloadEnvelope<MarkerDTO> resultEnvelope = gobiiEnvelopeRestResourceForProjects
                 .get(MarkerDTO.class);
 

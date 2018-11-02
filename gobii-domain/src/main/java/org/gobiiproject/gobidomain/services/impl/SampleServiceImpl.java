@@ -4,7 +4,7 @@ import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.services.SampleService;
 import org.gobiiproject.gobiidtomapping.DtoMapSample;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.DataSetDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.SampleDTO;
+import org.gobiiproject.gobiimodel.headerlesscontainer.DnaSampleDTO;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
@@ -27,9 +27,9 @@ public class SampleServiceImpl implements SampleService {
 
 
     @Override
-    public SampleDTO getSampleDetailsByExternalCode(String externalCode) throws GobiiDomainException {
+    public DnaSampleDTO getSampleDetailsByExternalCode(String externalCode) throws GobiiDomainException {
 
-        SampleDTO returnVal;
+        DnaSampleDTO returnVal;
 
         try {
             returnVal = dtoMapSample.getSampleDetailsByExternalCode(externalCode);

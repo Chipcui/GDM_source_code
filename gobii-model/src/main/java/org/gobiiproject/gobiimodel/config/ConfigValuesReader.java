@@ -1,6 +1,7 @@
 package org.gobiiproject.gobiimodel.config;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.jndi.JndiTemplate;
@@ -10,27 +11,14 @@ import java.io.File;
 
 /**
  * This class is responsible for reading and writing the GOBII configuration file. It knows
- * how to retrieve the name of the configuraiton file from the web context. It also knows
+ * how to retrieve the name of the configuration file from the web context. It also knows
  * how to convert a legacy .properties file to a new XML format file.
  */
-class ConfigValuesFactory {
+class ConfigValuesReader {
 
-    private static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ConfigValuesFactory.class);
+    private static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ConfigValuesReader.class);
 
 
-    /**
-     * This method renames a legacy .properties file by changing its extension so that it will no longer be
-     * found and read by the configuration framework
-     *
-     * @param fqpn The Fully-qualified path name of the GOBII configuration to be renamed
-     */
-    private static void renamePropsFile(String fqpn) {
-        File propsFile = new File(fqpn);
-        if (propsFile.exists()) {
-            File newPropsFile = new File(fqpn + ".unused");
-            propsFile.renameTo(newPropsFile);
-        }
-    }
 
     /**
      * Creates a new and empty configuration file. If {@code fqpn} is null, fully-qualified pathname of the configuation
@@ -81,7 +69,7 @@ class ConfigValuesFactory {
 //                }
 
             } else {
-                throw new Exception("");
+                throw new Exception("The input file name does not have the xml extension: " + "xml");
             }
 
         } else {
@@ -138,48 +126,7 @@ class ConfigValuesFactory {
                 }
             }
 
-            ConfigFileReaderXml configFileReaderXml = new ConfigFileReaderXml();
-            String extension = FilenameUtils.getExtension(fqpn);
-            if (extension.equals("properties")) {
-
-                String fileNameStem = FilenameUtils.getFullPath(fqpn)
-                        + FilenameUtils.getBaseName(fqpn);
-
-                String xmlFileEquivalent = fileNameStem + ".xml";
-                File xmlFile = new File(xmlFileEquivalent);
-                if (xmlFile.exists()) {
-
-                    //Since we've got  an XML file, that will now be used going forward
-                    //mark the properties file unused
-
-                    renamePropsFile(fqpn);
-                    // now read our xml
-                    returnVal = configFileReaderXml.read(xmlFileEquivalent);
-
-                } else {
-
-                    File propsFile = new File(fqpn);
-                    if (propsFile.exists()) {
-
-                        ConfigFileReaderProps configFileReaderProps = new ConfigFileReaderProps(fqpn);
-                        ConfigValues configValues = configFileReaderProps.makeConfigValues();
-                        configFileReaderXml.write(configValues, xmlFileEquivalent);
-                        returnVal = configFileReaderXml.read(xmlFileEquivalent);
-
-                    } else {
-                        throw (new Exception("File does not exist: " + fqpn));
-                    }
-
-
-                }
-
-                LOGGER.error("JNDI specifies the configuration file as " + fqpn + "; this file has been re-written to " + xmlFileEquivalent);
-
-            } else {
-
-                returnVal = configFileReaderXml.read(fqpn);
-
-            } // if else the file we got has ".properties" as extension
+            returnVal = new ConfigFileReaderXml().read(fqpn);
 
         } catch (Exception e) {
             LOGGER.error("Error creating configuration POJO", e);
@@ -191,11 +138,23 @@ class ConfigValuesFactory {
 
     } // make()
 
-    public static void commitConfigValues(ConfigValues configValues, String fqpn) throws Exception {
+    public static void commitConfigValues(ConfigValues configValues, String fqpn) throws GobiiException {
 
-        ConfigFileReaderXml configFileReaderXml = new ConfigFileReaderXml();
-        configFileReaderXml.write(configValues, fqpn);
+        if(LineUtils.isNullOrEmpty(fqpn)) {
+            throw new GobiiException("Cannot write config file without fqpn");
+        }
 
-    }
+        try {
+            ConfigFileReaderXml configFileReaderXml = new ConfigFileReaderXml();
+            configFileReaderXml.write(configValues, fqpn);
+
+        } catch (Exception e) {
+
+            throw new GobiiException("Error writing config file: " +
+                    e.getMessage()
+                    + ": " + e.getStackTrace());
+        } // try/catch
+
+    } //commitConfigValues()
 
 }
