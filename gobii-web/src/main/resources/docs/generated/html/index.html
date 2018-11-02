@@ -486,7 +486,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_payloadconfigsettingsdto">PayloadConfigSettingsDTO</a></li>
 <li><a href="#_payloadenvelopeanalysisdto">AnalysisDTO</a></li>
 <li><a href="#_payloadenvelopeconfigsettingsdto">ConfigSettingsDTO</a></li>
-<li><a href="#_serverconfig">ServerConfig</a></li>
+<li><a href="#_serverconfigitem">ServerConfigItem</a></li>
 <li><a href="#_status">Status</a></li>
 </ul>
 </li>
@@ -924,7 +924,7 @@ NOTE: if no such record is found, the error will be 403: Forbidden: Missing cont
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>entityNameType</strong><br></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UNKNOWN, ANALYSIS, CONTACT, DATASET, CV, CVGROUP, PROJECT, ORGANIZATION, PLATFORM, MANIFEST, MAPSET, MARKER_GROUP, EXPERIMENT, REFERENCE, ROLE, DISPLAY, MARKER, PROTOCOL, VENDOR_PROTOCOL)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UNKNOWN, ANALYSIS, CONTACT, DATASET, CV, CVGROUP, PROJECT, ORGANIZATION, PLATFORM, MANIFEST, MAPSET, MARKER_GROUP, EXPERIMENT, REFERENCE, ROLE, DISPLAY, MARKER, PROTOCOL, VENDOR_PROTOCOL, DNASAMPLE, LINKAGE_GROUP, DNARUN)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br></p></td>
@@ -1028,7 +1028,7 @@ NOTE: if no such record is found, the error will be 403: Forbidden: Missing cont
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>serverConfigs</strong><br></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string, <a href="#_serverconfig">ServerConfig</a> &gt; map</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string, <a href="#_serverconfigitem">ServerConfigItem</a> &gt; map</p></td>
 </tr>
 </tbody>
 </table>
@@ -1107,6 +1107,21 @@ NOTE: if no such record is found, the error will be 403: Forbidden: Missing cont
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>gobiiVersion</strong><br></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>maxGet</strong><br></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer(int32)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>maxPost</strong><br></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer(int32)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>maxPut</strong><br></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer(int32)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pagination</strong><br></p></td>
@@ -1418,7 +1433,7 @@ NOTE: if no such record is found, the error will be 403: Forbidden: Missing cont
 </table>
 </div>
 <div class="sect2">
-<h3 id="_serverconfig">ServerConfig</h3>
+<h3 id="_serverconfigitem">ServerConfigItem</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -1505,7 +1520,7 @@ NOTE: if no such record is found, the error will be 403: Forbidden: Missing cont
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-29 12:28:37 EDT
+Last updated 2018-11-02 10:07:36 EDT
 </div>
 </div>
 </body>

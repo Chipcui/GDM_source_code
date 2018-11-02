@@ -94,7 +94,7 @@
         },
         "entityNameType" : {
           "type" : "string",
-          "enum" : [ "UNKNOWN", "ANALYSIS", "CONTACT", "DATASET", "CV", "CVGROUP", "PROJECT", "ORGANIZATION", "PLATFORM", "MANIFEST", "MAPSET", "MARKER_GROUP", "EXPERIMENT", "REFERENCE", "ROLE", "DISPLAY", "MARKER", "PROTOCOL", "VENDOR_PROTOCOL" ]
+          "enum" : [ "UNKNOWN", "ANALYSIS", "CONTACT", "DATASET", "CV", "CVGROUP", "PROJECT", "ORGANIZATION", "PLATFORM", "MANIFEST", "MAPSET", "MARKER_GROUP", "EXPERIMENT", "REFERENCE", "ROLE", "DISPLAY", "MARKER", "PROTOCOL", "VENDOR_PROTOCOL", "DNASAMPLE", "LINKAGE_GROUP", "DNARUN" ]
         },
         "createdBy" : {
           "type" : "integer",
@@ -182,7 +182,7 @@
         "serverConfigs" : {
           "type" : "object",
           "additionalProperties" : {
-            "$ref" : "#/definitions/ServerConfig"
+            "$ref" : "#/definitions/ServerConfigItem"
           }
         },
         "serverCapabilities" : {
@@ -235,6 +235,18 @@
         },
         "pagination" : {
           "$ref" : "#/definitions/Pagination"
+        },
+        "maxGet" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxPost" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxPut" : {
+          "type" : "integer",
+          "format" : "int32"
         },
         "gobiiVersion" : {
           "type" : "string"
@@ -390,7 +402,7 @@
         }
       }
     },
-    "ServerConfig" : {
+    "ServerConfigItem" : {
       "type" : "object",
       "properties" : {
         "port" : {

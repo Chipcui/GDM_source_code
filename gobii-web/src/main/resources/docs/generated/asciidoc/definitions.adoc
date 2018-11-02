@@ -25,7 +25,7 @@
 |*createdDate* +
 ||string(date-time)
 |*entityNameType* +
-||enum (UNKNOWN, ANALYSIS, CONTACT, DATASET, CV, CVGROUP, PROJECT, ORGANIZATION, PLATFORM, MANIFEST, MAPSET, MARKER_GROUP, EXPERIMENT, REFERENCE, ROLE, DISPLAY, MARKER, PROTOCOL, VENDOR_PROTOCOL)
+||enum (UNKNOWN, ANALYSIS, CONTACT, DATASET, CV, CVGROUP, PROJECT, ORGANIZATION, PLATFORM, MANIFEST, MAPSET, MARKER_GROUP, EXPERIMENT, REFERENCE, ROLE, DISPLAY, MARKER, PROTOCOL, VENDOR_PROTOCOL, DNASAMPLE, LINKAGE_GROUP, DNARUN)
 |*id* +
 ||integer(int32)
 |*modifiedBy* +
@@ -68,7 +68,7 @@
 |*serverCapabilities* +
 ||< string, boolean > map
 |*serverConfigs* +
-||< string, <<_serverconfig,ServerConfig>> > map
+||< string, <<_serverconfigitem,ServerConfigItem>> > map
 |===
 
 
@@ -103,6 +103,12 @@
 ||enum (CREATE, READ, UPDATE, DELETE, NONE)
 |*gobiiVersion* +
 ||string
+|*maxGet* +
+||integer(int32)
+|*maxPost* +
+||integer(int32)
+|*maxPut* +
+||integer(int32)
 |*pagination* +
 ||<<_pagination,Pagination>>
 |*status* +
@@ -241,8 +247,8 @@
 |===
 
 
-[[_serverconfig]]
-=== ServerConfig
+[[_serverconfigitem]]
+=== ServerConfigItem
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
