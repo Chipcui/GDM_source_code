@@ -1,0 +1,85 @@
+
+[[_paths]]
+== Paths
+
+[[_createanalysis]]
+=== /analyses
+....
+POST /gobii/v1/analyses
+....
+
+
+==== Description
+Creates an analysis entity. Consult the <<_requestresponsestructure,Request/Response Section>> before attempting to use this call.
+
+
+==== Parameters
+
+[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|*Body*|*body* +
+||<<_payloadenvelopeanalysisdto,AnalysisDTO>>|
+|===
+
+
+==== Responses
+
+[options="header", cols=".^1,.^15,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|<<_payloadenvelopeanalysisdto,AnalysisDTO>>
+|===
+
+
+[[_authenticate]]
+=== /auth
+....
+POST /gobii/v1/auth
+....
+
+
+==== Description
+The user credentials are specified in the request headers; the response and the response headers incldue the token, which can which the client will include in the request headers for subsequent requests.
+
+
+==== Parameters
+
+[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|*Body*|*body* +
+||string|
+|===
+
+
+==== Responses
+
+[options="header", cols=".^1,.^15,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|string
+|===
+
+
+[[_getconfigsettings]]
+=== /configsettings
+....
+GET /gobii/v1/configsettings
+....
+
+
+==== Description
+Provides generic configuration information about the GOBii instance
+
+
+==== Responses
+
+[options="header", cols=".^1,.^15,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|<<_payloadenvelopeconfigsettingsdto,ConfigSettingsDTO>>
+|===
+
+
+

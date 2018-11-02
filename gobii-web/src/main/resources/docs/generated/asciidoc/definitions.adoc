@@ -1,0 +1,280 @@
+
+[[_definitions]]
+== Definitions
+
+[[_analysisdto]]
+=== AnalysisDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*algorithm* +
+||string
+|*allowedProcessTypes* +
+||< enum (CREATE, READ, UPDATE, DELETE, NONE) > array
+|*analysisDescription* +
+||string
+|*analysisId* +
+||integer(int32)
+|*analysisName* +
+||string
+|*anlaysisTypeId* +
+||integer(int32)
+|*createdBy* +
+||integer(int32)
+|*createdDate* +
+||string(date-time)
+|*entityNameType* +
+||enum (UNKNOWN, ANALYSIS, CONTACT, DATASET, CV, CVGROUP, PROJECT, ORGANIZATION, PLATFORM, MANIFEST, MAPSET, MARKER_GROUP, EXPERIMENT, REFERENCE, ROLE, DISPLAY, MARKER, PROTOCOL, VENDOR_PROTOCOL)
+|*id* +
+||integer(int32)
+|*modifiedBy* +
+||integer(int32)
+|*modifiedDate* +
+||string(date-time)
+|*parameters* +
+||< <<_entitypropertydto,EntityPropertyDTO>> > array
+|*program* +
+||string
+|*programVersion* +
+||string
+|*referenceId* +
+||integer(int32)
+|*sourceName* +
+||string
+|*sourceUri* +
+||string
+|*sourceVersion* +
+||string
+|*statusId* +
+||integer(int32)
+|*timeExecuted* +
+||string(date-time)
+|===
+
+
+[[_configsettingsdto]]
+=== ConfigSettingsDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*allowedProcessTypes* +
+||< enum (CREATE, READ, UPDATE, DELETE, NONE) > array
+|*id* +
+||integer(int32)
+|*maxUploadSizeMbytes* +
+||integer(int32)
+|*serverCapabilities* +
+||< string, boolean > map
+|*serverConfigs* +
+||< string, <<_serverconfig,ServerConfig>> > map
+|===
+
+
+[[_entitypropertydto]]
+=== EntityPropertyDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*entityIdId* +
+||integer(int32)
+|*propertyId* +
+||integer(int32)
+|*propertyName* +
+||string
+|*propertyValue* +
+||string
+|===
+
+
+[[_header]]
+=== Header
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*cropType* +
+||string
+|*dtoHeaderAuth* +
+||<<_headerauth,HeaderAuth>>
+|*gobiiProcessType* +
+||enum (CREATE, READ, UPDATE, DELETE, NONE)
+|*gobiiVersion* +
+||string
+|*pagination* +
+||<<_pagination,Pagination>>
+|*status* +
+||<<_status,Status>>
+|===
+
+
+[[_headerauth]]
+=== HeaderAuth
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*gobiiCropType* +
+||string
+|*password* +
+||string
+|*token* +
+||string
+|*userName* +
+||string
+|===
+
+
+[[_headerstatusmessage]]
+=== HeaderStatusMessage
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*gobiiStatusLevel* +
+||enum (ERROR, VALIDATION, WARNING, INFO, OK)
+|*gobiiValidationStatusType* +
+||enum (NONE, UNKNOWN, VALIDATION_COMPOUND_UNIQUE, VALIDATION_NOT_UNIQUE, NONEXISTENT_FK_ENTITY, BAD_REQUEST, MISSING_REQUIRED_VALUE, ENTITY_DOES_NOT_EXIST, ENTITY_ALREADY_EXISTS, UNKNOWN_ENUM_VALUE)
+|*message* +
+||string
+|===
+
+
+[[_link]]
+=== Link
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*description* +
+||string
+|*href* +
+||string
+|*methods* +
+||< enum (GET, POST, PUT, PATCH, DELETE, OPTIONS) > array
+|===
+
+
+[[_linkcollection]]
+=== LinkCollection
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*exploreLinksPerDataItem* +
+||< < <<_link,Link>> > array > array
+|*linksPerDataItem* +
+||< <<_link,Link>> > array
+|===
+
+
+[[_pagination]]
+=== Pagination
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*currentPage* +
+||integer(int32)
+|*pageSize* +
+||integer(int32)
+|*pagedQueryId* +
+||string
+|*queryTime* +
+||string(date-time)
+|*totalPages* +
+||integer(int32)
+|===
+
+
+[[_payloadanalysisdto]]
+=== PayloadAnalysisDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*data* +
+||< <<_analysisdto,AnalysisDTO>> > array
+|*linkCollection* +
+||<<_linkcollection,LinkCollection>>
+|===
+
+
+[[_payloadconfigsettingsdto]]
+=== PayloadConfigSettingsDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*data* +
+||< <<_configsettingsdto,ConfigSettingsDTO>> > array
+|*linkCollection* +
+||<<_linkcollection,LinkCollection>>
+|===
+
+
+[[_payloadenvelopeanalysisdto]]
+=== AnalysisDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*header* +
+||<<_header,Header>>
+|*payload* +
+||<<_payloadanalysisdto,PayloadAnalysisDTO>>
+|===
+
+
+[[_payloadenvelopeconfigsettingsdto]]
+=== ConfigSettingsDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*header* +
+||<<_header,Header>>
+|*payload* +
+||<<_payloadconfigsettingsdto,PayloadConfigSettingsDTO>>
+|===
+
+
+[[_serverconfig]]
+=== ServerConfig
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*confidentialityNotice* +
+||string
+|*contextRoot* +
+||string
+|*domain* +
+||string
+|*fileLocations* +
+||< string, string > map
+|*gobiiCropType* +
+||string
+|*port* +
+||integer(int32)
+|===
+
+
+[[_status]]
+=== Status
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*statusMessages* +
+||< <<_headerstatusmessage,HeaderStatusMessage>> > array
+|*statusMessagesByCode* +
+||< string, string > map
+|*succeeded* +
+|*Default* : `false`|boolean
+|===
+
+
+

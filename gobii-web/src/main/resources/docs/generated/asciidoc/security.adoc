@@ -1,0 +1,11 @@
+
+[[_securityscheme]]
+== Security
+
+[[_basicauth]]
+=== basicAuth
+[%hardbreaks]
+_Type_ : basic
+
+
+

@@ -1,0 +1,116 @@
+== System Architecture
+	
+=== DTO Models
+Content TBD
+
+=== Data Access 
+Content TBD
+
+=== DTO Maping
+Content TBD
+
+=== Services
+Content TBD
+
+=== The Web Controller
+Content TBD
+
+== Web Service Operations
+
+[[_requestresponsestructure]]
+=== Request/Response Structure
+
+The http body structure is the same for all responses as well as for the body of POST and PUT requests. Here is a high level schematic of the body structure:
+
+[source,json]
+----
+	{
+	   "payload":{
+		  "linkCollection":{
+			 "linksPerDataItem":[
+
+			 ],
+			 "exploreLinksPerDataItem":[
+
+			 ]
+		  },
+		  "data":[
+
+		  ]
+	   },
+	   "header":{
+		  "gobiiProcessType":"",
+		  "dtoHeaderAuth":{
+			 "userName":null,
+			 "password":null,
+			 "token":"",
+			 "gobiiCropType":""
+		  },
+		  "status":{
+			 "succeeded":true,
+			 "statusMessages":[
+
+			 ],
+			 "statusMessagesByCode":{
+
+			 }
+		  },
+		  "pagination":null,
+		  "gobiiVersion":"2.0_2018-07-31",
+		  "cropType":""
+	   }
+	}
+----
+
+For requests, the following keys can be omitted:
+
+* payload.linkCollection
+* header
+
+The content of the "data" array will vary depending on the type of the call. For example, for a POST to the the /project resource, it will contain a project object.
+
+After a successful POST to the /auth resource, the "token" key in "dtoHeaderAuth" contains the token value, which should be used to set the X-Auth-Token header for subsequent requests.
+
+
+=== Authentication
+A valid token may be acquired by doing a POST to the /auth resource with an empty body and the following request headers set:
+
+X-Username
+X-Password
+
+The username and password depend on how the destination GOBii server is configured (per the gobii-web.xml file):
+
+If gobiiAuthenticationType of the server is TEST, the username and password are hard-coded to USER_READER and reader, respectively.
+If the server is configured for LDAP authentication:
+The username/password must be provisioned in the configured LDAP server (if it is not, the error from the server will be 401: Unauthorized)
+There must be an entry for the user in contact table, where the username value matches the ldap user name;
+NOTE: if no such record is found, the error will be 403: Forbidden: Missing contact info for user <user-name> in crop database <crop-db>; a contact record must have username = <user-name>
+
+When authentication succeeds, the response headers will contain a X-Auth-Token key whose value is a valid token. For subsequent requests, it is sufficient to supply X-Auth-Token in the request headers with the token that was received from the /auth POST. Some browsers prevent the client code from reading custom response headers. In this case, the token can also be retrieved from the meta data portion of the response body (see below).
+
+=== Error Handling
+
+Errors internal to GOBii are reported in the "header" key accompanying the response. An example of how to retrieve error data is provided in the following code fragment.
+
+[source,java]
+----
+if (!header.getStatus().isSucceeded() ||
+        header
+                .getStatus()
+                .getStatusMessages()
+                .stream()
+                .filter(headerStatusMessage -> headerStatusMessage.getGobiiStatusLevel().equals(GobiiStatusLevel.VALIDATION))
+                .count() > 0) {
+    returnVal = true;
+    System.out.println();
+    System.out.println("*** Header errors: ");
+    for (HeaderStatusMessage currentStatusMesage : header.getStatus().getStatusMessages()) {
+        System.out.println(currentStatusMesage.getMessage());
+    }
+}
+----
+
+== Documentation Tools
+The toolchain used to produce this documentation is swagger compatible. It is
+
+

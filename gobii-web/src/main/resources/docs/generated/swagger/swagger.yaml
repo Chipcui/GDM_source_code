@@ -1,0 +1,365 @@
+---
+swagger: "2.0"
+info:
+  description: "The GOBii web service API provides a comprehensive set of RESTful\
+    \ methods for accomplishing the following core tasks in the GOBii Genomic Data\
+    \ Management (GDM) system. This manual explains the GOBii web architecture and\
+    \ its web service operations.\r\n\r\n"
+  version: "1.0"
+  title: "GOBii API"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8081"
+basePath: "/api"
+schemes:
+- "http"
+- null
+paths:
+  /gobii/v1/analyses:
+    post:
+      summary: "/analyses"
+      description: "Creates an analysis entity. $RequestResponseStructure$"
+      operationId: "createAnalysis"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/PayloadEnvelopeAnalysisDTO"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PayloadEnvelopeAnalysisDTO"
+  /gobii/v1/auth:
+    post:
+      summary: "/auth"
+      description: "The user credentials are specified in the request headers; the\
+        \ response and the response headers incldue the token, which can which the\
+        \ client will include in the request headers for subsequent requests. "
+      operationId: "authenticate"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /gobii/v1/configsettings:
+    get:
+      summary: "/configsettings"
+      description: "Provides generic configuration information about the GOBii instance"
+      operationId: "getConfigSettings"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PayloadEnvelopeConfigSettingsDTO"
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+definitions:
+  AnalysisDTO:
+    type: "object"
+    properties:
+      allowedProcessTypes:
+        type: "array"
+        uniqueItems: true
+        items:
+          type: "string"
+          enum:
+          - "CREATE"
+          - "READ"
+          - "UPDATE"
+          - "DELETE"
+          - "NONE"
+      entityNameType:
+        type: "string"
+        enum:
+        - "UNKNOWN"
+        - "ANALYSIS"
+        - "CONTACT"
+        - "DATASET"
+        - "CV"
+        - "CVGROUP"
+        - "PROJECT"
+        - "ORGANIZATION"
+        - "PLATFORM"
+        - "MANIFEST"
+        - "MAPSET"
+        - "MARKER_GROUP"
+        - "EXPERIMENT"
+        - "REFERENCE"
+        - "ROLE"
+        - "DISPLAY"
+        - "MARKER"
+        - "PROTOCOL"
+        - "VENDOR_PROTOCOL"
+      createdBy:
+        type: "integer"
+        format: "int32"
+      createdDate:
+        type: "string"
+        format: "date-time"
+      modifiedBy:
+        type: "integer"
+        format: "int32"
+      modifiedDate:
+        type: "string"
+        format: "date-time"
+      analysisId:
+        type: "integer"
+        format: "int32"
+      analysisName:
+        type: "string"
+      analysisDescription:
+        type: "string"
+      anlaysisTypeId:
+        type: "integer"
+        format: "int32"
+      program:
+        type: "string"
+      programVersion:
+        type: "string"
+      algorithm:
+        type: "string"
+      sourceName:
+        type: "string"
+      sourceVersion:
+        type: "string"
+      sourceUri:
+        type: "string"
+      referenceId:
+        type: "integer"
+        format: "int32"
+      timeExecuted:
+        type: "string"
+        format: "date-time"
+      statusId:
+        type: "integer"
+        format: "int32"
+      parameters:
+        type: "array"
+        items:
+          $ref: "#/definitions/EntityPropertyDTO"
+      id:
+        type: "integer"
+        format: "int32"
+  ConfigSettingsDTO:
+    type: "object"
+    properties:
+      allowedProcessTypes:
+        type: "array"
+        uniqueItems: true
+        items:
+          type: "string"
+          enum:
+          - "CREATE"
+          - "READ"
+          - "UPDATE"
+          - "DELETE"
+          - "NONE"
+      serverConfigs:
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/ServerConfig"
+      serverCapabilities:
+        type: "object"
+        additionalProperties:
+          type: "boolean"
+      maxUploadSizeMbytes:
+        type: "integer"
+        format: "int32"
+      id:
+        type: "integer"
+        format: "int32"
+  EntityPropertyDTO:
+    type: "object"
+    properties:
+      entityIdId:
+        type: "integer"
+        format: "int32"
+      propertyId:
+        type: "integer"
+        format: "int32"
+      propertyName:
+        type: "string"
+      propertyValue:
+        type: "string"
+  Header:
+    type: "object"
+    properties:
+      gobiiProcessType:
+        type: "string"
+        enum:
+        - "CREATE"
+        - "READ"
+        - "UPDATE"
+        - "DELETE"
+        - "NONE"
+      dtoHeaderAuth:
+        $ref: "#/definitions/HeaderAuth"
+      status:
+        $ref: "#/definitions/Status"
+      pagination:
+        $ref: "#/definitions/Pagination"
+      gobiiVersion:
+        type: "string"
+      cropType:
+        type: "string"
+  HeaderAuth:
+    type: "object"
+    properties:
+      userName:
+        type: "string"
+      password:
+        type: "string"
+      token:
+        type: "string"
+      gobiiCropType:
+        type: "string"
+  HeaderStatusMessage:
+    type: "object"
+    properties:
+      gobiiStatusLevel:
+        type: "string"
+        enum:
+        - "ERROR"
+        - "VALIDATION"
+        - "WARNING"
+        - "INFO"
+        - "OK"
+      gobiiValidationStatusType:
+        type: "string"
+        enum:
+        - "NONE"
+        - "UNKNOWN"
+        - "VALIDATION_COMPOUND_UNIQUE"
+        - "VALIDATION_NOT_UNIQUE"
+        - "NONEXISTENT_FK_ENTITY"
+        - "BAD_REQUEST"
+        - "MISSING_REQUIRED_VALUE"
+        - "ENTITY_DOES_NOT_EXIST"
+        - "ENTITY_ALREADY_EXISTS"
+        - "UNKNOWN_ENUM_VALUE"
+      message:
+        type: "string"
+  Link:
+    type: "object"
+    properties:
+      href:
+        type: "string"
+      description:
+        type: "string"
+      methods:
+        type: "array"
+        uniqueItems: true
+        items:
+          type: "string"
+          enum:
+          - "GET"
+          - "POST"
+          - "PUT"
+          - "PATCH"
+          - "DELETE"
+          - "OPTIONS"
+  LinkCollection:
+    type: "object"
+    properties:
+      linksPerDataItem:
+        type: "array"
+        items:
+          $ref: "#/definitions/Link"
+      exploreLinksPerDataItem:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            $ref: "#/definitions/Link"
+  Pagination:
+    type: "object"
+    properties:
+      pagedQueryId:
+        type: "string"
+      queryTime:
+        type: "string"
+        format: "date-time"
+      pageSize:
+        type: "integer"
+        format: "int32"
+      totalPages:
+        type: "integer"
+        format: "int32"
+      currentPage:
+        type: "integer"
+        format: "int32"
+  PayloadAnalysisDTO:
+    type: "object"
+    properties:
+      linkCollection:
+        $ref: "#/definitions/LinkCollection"
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/AnalysisDTO"
+  PayloadConfigSettingsDTO:
+    type: "object"
+    properties:
+      linkCollection:
+        $ref: "#/definitions/LinkCollection"
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/ConfigSettingsDTO"
+  PayloadEnvelopeAnalysisDTO:
+    type: "object"
+    properties:
+      payload:
+        $ref: "#/definitions/PayloadAnalysisDTO"
+      header:
+        $ref: "#/definitions/Header"
+  PayloadEnvelopeConfigSettingsDTO:
+    type: "object"
+    properties:
+      payload:
+        $ref: "#/definitions/PayloadConfigSettingsDTO"
+      header:
+        $ref: "#/definitions/Header"
+  ServerConfig:
+    type: "object"
+    properties:
+      port:
+        type: "integer"
+        format: "int32"
+      domain:
+        type: "string"
+      contextRoot:
+        type: "string"
+      gobiiCropType:
+        type: "string"
+      confidentialityNotice:
+        type: "string"
+      fileLocations:
+        type: "object"
+        additionalProperties:
+          type: "string"
+  Status:
+    type: "object"
+    properties:
+      succeeded:
+        type: "boolean"
+        default: false
+      statusMessages:
+        type: "array"
+        items:
+          $ref: "#/definitions/HeaderStatusMessage"
+      statusMessagesByCode:
+        type: "object"
+        additionalProperties:
+          type: "string"

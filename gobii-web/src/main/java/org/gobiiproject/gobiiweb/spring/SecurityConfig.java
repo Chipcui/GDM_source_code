@@ -59,7 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/index.html",
                 "/css/**",
                 "/images/**",
-                "/js/**");
+                "/js/**"
+             //   ,"/docs/**"
+        );
 
         if (!CONFIG_SETTINGS.isAuthenticateBrapi()) {
             String allBrapiUrls = GobiiControllerType.BRAPI.getControllerPath() + "**";
