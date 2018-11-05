@@ -286,7 +286,7 @@
 
 
 [[_payloadconfigsettingsdto]]
-=== ConfigSettingsDTO
+=== PayloadConfigSettingsDTO
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -299,7 +299,7 @@
 
 
 [[_payloadenvelopeanalysisdto]]
-=== AnalysisDTO
+=== PayloadEnvelopeAnalysisDTO
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -312,7 +312,7 @@
 
 
 [[_payloadenvelopeconfigsettingsdto]]
-=== ConfigSettingsDTO
+=== PayloadEnvelopeConfigSettingsDTO
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -320,12 +320,12 @@
 |*header* +
 ||<<_header,Header>>
 |*payload* +
-||<<_payloadconfigsettingsdto,ConfigSettingsDTO>>
+||<<_payloadconfigsettingsdto,PayloadConfigSettingsDTO>>
 |===
 
 
 [[_payloadenvelopejobdto]]
-=== JobDTO
+=== PayloadEnvelopeJobDTO
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -338,7 +338,7 @@
 
 
 [[_payloadenvelopematrixdto]]
-=== MatrixDTO
+=== PayloadEnvelopeMatrixDTO
 
 [options="header", cols=".^3,.^11,.^4"]
 |===

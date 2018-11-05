@@ -1,12 +1,5 @@
 
-# adoc
-# mis-parsed class substitutions
-PayloadEnvelopeAnalysisDTO=AnalysisDTO
-PayloadEnvelopeConfigSettingsDTO=ConfigSettingsDTO
-PayloadConfigSettingsDTO=ConfigSettingsDTO
-PayloadEnvelopeMatrixDTO=MatrixDTO
-PayloadEnvelopeJobDTO=JobDTO
-
+# ASCIIDOC edits
 
 # adding the swagger markup to get these to come out properly would take a lot of effort
 _optional_=

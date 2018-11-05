@@ -19,7 +19,7 @@ Creates an analysis entity. The request and response bodies are wrapped in a Pay
 |===
 |Type|Name|Description|Schema|Default
 |*Body*|*body* +
-||<<_payloadenvelopeanalysisdto,AnalysisDTO>>|
+||<<_payloadenvelopeanalysisdto,PayloadEnvelopeAnalysisDTO>>|
 |===
 
 
@@ -28,7 +28,7 @@ Creates an analysis entity. The request and response bodies are wrapped in a Pay
 [options="header", cols=".^1,.^15,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|successful operation|<<_payloadenvelopeanalysisdto,AnalysisDTO>>
+|*200*|successful operation|<<_payloadenvelopeanalysisdto,PayloadEnvelopeAnalysisDTO>>
 |===
 
 
@@ -78,7 +78,7 @@ Provides generic configuration information about the GOBii instance
 [options="header", cols=".^1,.^15,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|successful operation|<<_payloadenvelopeconfigsettingsdto,ConfigSettingsDTO>>
+|*200*|successful operation|<<_payloadenvelopeconfigsettingsdto,PayloadEnvelopeConfigSettingsDTO>>
 |===
 
 
@@ -101,7 +101,7 @@ Initiates a genomic matrix load for the specified jobName. The keys for the urls
 |*Path*|*jobName* +
 ||string|
 |*Body*|*body* +
-||<<_payloadenvelopematrixdto,MatrixDTO>>|
+||<<_payloadenvelopematrixdto,PayloadEnvelopeMatrixDTO>>|
 |===
 
 
@@ -110,7 +110,7 @@ Initiates a genomic matrix load for the specified jobName. The keys for the urls
 [options="header", cols=".^1,.^15,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|successful operation|<<_payloadenvelopejobdto,JobDTO>>
+|*200*|successful operation|<<_payloadenvelopejobdto,PayloadEnvelopeJobDTO>>
 |===
 
 
