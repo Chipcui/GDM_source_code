@@ -10,7 +10,10 @@ package org.gobiiproject.gobiimodel.cvnames;
 public enum JobPayloadType {
 
     CV_PAYLOADTYPE_SAMPLES ("samples"),
+    CV_PAYLOADTYPE_SAMPLE_KEYS ("samplekeys"),
     CV_PAYLOADTYPE_MARKERS ("markers"),
+    CV_PAYLOADTYPE_MARKERMAP ("markermap"),
+    CV_PAYLOADTYPE_MARKER_KEYS ("markerkeys"),
     CV_PAYLOADTYPE_MATRIX ("matrix"),
     CV_PAYLOADTYPE_MARKERSAMPLES ("marker_samples"),
     CV_PAYLOADTYPE_ALLMETA ("all_meta");

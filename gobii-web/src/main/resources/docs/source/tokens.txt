@@ -1,17 +1,11 @@
 
-#json specific
-#"required" : true,=
-#"required" : false,=
-
-#yaml specific
-#required: true=
-#required: false=
-
 # adoc
 # mis-parsed class substitutions
 PayloadEnvelopeAnalysisDTO=AnalysisDTO
 PayloadEnvelopeConfigSettingsDTO=ConfigSettingsDTO
-
+PayloadConfigSettingsDTO=ConfigSettingsDTO
+PayloadEnvelopeMatrixDTO=MatrixDTO
+PayloadEnvelopeJobDTO=JobDTO
 
 
 # adding the swagger markup to get these to come out properly would take a lot of effort
@@ -19,4 +13,4 @@ _optional_=
 _required_=
 
 # cross-reference insertions
-$RequestResponseStructure$=Consult the <<_requestresponsestructure,Request/Response Section>> before attempting to use this call.
+$RequestResponseStructure$=The request and response bodies are wrapped in a PayloadEnvelopeDTO. Consult the <<_requestresponsestructure,Request/Response Section>> for further details.

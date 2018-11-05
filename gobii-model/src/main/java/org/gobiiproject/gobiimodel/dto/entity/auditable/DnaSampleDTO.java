@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiimodel.headerlesscontainer;
+package org.gobiiproject.gobiimodel.dto.entity.auditable;
 // Generated Mar 31, 2016 1:44:38 PM by Hibernate Tools 3.2.2.GA
 
 

@@ -73,6 +73,34 @@
           }
         }
       }
+    },
+    "/gobii/v1/jobs/matrices/{jobName}" : {
+      "post" : {
+        "summary" : "/jobs/matrices/{jobName}",
+        "description" : "Initiates a genomic matrix load for the specified jobName.  The keys for the urlsByPayloadType in the POST body are constrained to  \"CV_PAYLOADTYPE_SAMPLES\",  \"CV_PAYLOADTYPE_SAMPLE_KEYS\",  \"CV_PAYLOADTYPE_MARKERS\",  \"CV_PAYLOADTYPE_MARKERMAP\", \"CV_PAYLOADTYPE_MARKER_KEYS\", \"CV_PAYLOADTYPE_MATRIX\", \"CV_PAYLOADTYPE_MARKERSAMPLES\", \"CV_PAYLOADTYPE_ALLMETA\" $RequestResponseStructure$",
+        "operationId" : "submitMatrixWithAllMetaData",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/PayloadEnvelopeMatrixDTO"
+          }
+        }, {
+          "name" : "jobName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PayloadEnvelopeJobDTO"
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions" : {
@@ -289,6 +317,57 @@
         }
       }
     },
+    "JobDTO" : {
+      "type" : "object",
+      "properties" : {
+        "allowedProcessTypes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string",
+            "enum" : [ "CREATE", "READ", "UPDATE", "DELETE", "NONE" ]
+          }
+        },
+        "jobId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "jobName" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "payloadType" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "submittedBy" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "submittedDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "datasetIds" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
     "Link" : {
       "type" : "object",
       "properties" : {
@@ -325,6 +404,73 @@
               "$ref" : "#/definitions/Link"
             }
           }
+        }
+      }
+    },
+    "MatrixDTO" : {
+      "type" : "object",
+      "properties" : {
+        "allowedProcessTypes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string",
+            "enum" : [ "CREATE", "READ", "UPDATE", "DELETE", "NONE" ]
+          }
+        },
+        "urlsByPayloadType" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "$ref" : "#/definitions/MatrixUrlDTO"
+          }
+        },
+        "vendorName" : {
+          "type" : "string"
+        },
+        "protocolName" : {
+          "type" : "string"
+        },
+        "projectName" : {
+          "type" : "string"
+        },
+        "experimentName" : {
+          "type" : "string"
+        },
+        "datasetName" : {
+          "type" : "string"
+        },
+        "referenceGenomeName" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "MatrixUrlDTO" : {
+      "type" : "object",
+      "properties" : {
+        "allowedProcessTypes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string",
+            "enum" : [ "CREATE", "READ", "UPDATE", "DELETE", "NONE" ]
+          }
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "fileName" : {
+          "type" : "string"
+        },
+        "md5Sum" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
         }
       }
     },
@@ -399,6 +545,56 @@
         },
         "header" : {
           "$ref" : "#/definitions/Header"
+        }
+      }
+    },
+    "PayloadEnvelopeJobDTO" : {
+      "type" : "object",
+      "properties" : {
+        "payload" : {
+          "$ref" : "#/definitions/PayloadJobDTO"
+        },
+        "header" : {
+          "$ref" : "#/definitions/Header"
+        }
+      }
+    },
+    "PayloadEnvelopeMatrixDTO" : {
+      "type" : "object",
+      "properties" : {
+        "payload" : {
+          "$ref" : "#/definitions/PayloadMatrixDTO"
+        },
+        "header" : {
+          "$ref" : "#/definitions/Header"
+        }
+      }
+    },
+    "PayloadJobDTO" : {
+      "type" : "object",
+      "properties" : {
+        "linkCollection" : {
+          "$ref" : "#/definitions/LinkCollection"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/JobDTO"
+          }
+        }
+      }
+    },
+    "PayloadMatrixDTO" : {
+      "type" : "object",
+      "properties" : {
+        "linkCollection" : {
+          "$ref" : "#/definitions/LinkCollection"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MatrixDTO"
+          }
         }
       }
     },

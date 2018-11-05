@@ -7,21 +7,10 @@ package org.gobiiproject.gobiiweb.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Contact;
-import io.swagger.annotations.ExternalDocs;
-import io.swagger.annotations.Info;
-import io.swagger.annotations.License;
-import io.swagger.annotations.SwaggerDefinition;
-import io.swagger.annotations.Tag;
 import org.apache.commons.lang.math.NumberUtils;
 import org.gobiiproject.gobidomain.services.*;
-import org.gobiiproject.gobiiapimodel.payload.Payload;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiEntityNameConverter;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
@@ -48,6 +37,7 @@ import org.gobiiproject.gobiimodel.dto.entity.noaudit.CvDTO;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.CvGroupDTO;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.JobDTO;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.MarkerDTO;
+import org.gobiiproject.gobiimodel.dto.instructions.loader.MatrixDTO;
 import org.gobiiproject.gobiimodel.dto.rest.RestProfileDTO;
 import org.gobiiproject.gobiimodel.dto.system.AuthDTO;
 import org.gobiiproject.gobiimodel.dto.system.ConfigSettingsDTO;
@@ -58,7 +48,7 @@ import org.gobiiproject.gobiimodel.dto.system.EntityStatsDTO;
 import org.gobiiproject.gobiimodel.dto.system.PagedList;
 import org.gobiiproject.gobiimodel.dto.system.PingDTO;
 import org.gobiiproject.gobiiapimodel.payload.HeaderAuth;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DnaSampleDTO;
+import org.gobiiproject.gobiimodel.dto.entity.auditable.DnaSampleDTO;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiFilterType;
@@ -4343,6 +4333,40 @@ public class GOBIIControllerV1 {
     }
 
 
+    @ApiOperation(value = "/jobs/matrices/{jobName}",
+            notes = "Initiates a genomic matrix load for the specified jobName. " +
+                    " The keys for the urlsByPayloadType in the POST body are constrained to " +
+                    " \"CV_PAYLOADTYPE_SAMPLES\",  \"CV_PAYLOADTYPE_SAMPLE_KEYS\",  \"CV_PAYLOADTYPE_MARKERS\",  \"CV_PAYLOADTYPE_MARKERMAP\", \"CV_PAYLOADTYPE_MARKER_KEYS\", \"CV_PAYLOADTYPE_MATRIX\", \"CV_PAYLOADTYPE_MARKERSAMPLES\", \"CV_PAYLOADTYPE_ALLMETA\" " +
+                    "$RequestResponseStructure$")
+    @RequestMapping(value = "/jobs/matrices/{jobName}", method = RequestMethod.POST)
+    @ResponseBody
+    public PayloadEnvelope<JobDTO> submitMatrixWithAllMetaData(@RequestBody PayloadEnvelope<MatrixDTO> payloadEnvelope,
+                                                             @PathVariable("jobName") String jobName,
+                                                             HttpServletRequest request,
+                                                             HttpServletResponse response) {
+
+        PayloadEnvelope<JobDTO> returnVal = new PayloadEnvelope<>();
+
+        try {
+
+
+
+        } catch (GobiiException e) {
+            returnVal.getHeader().getStatus().addException(e);
+        } catch (Exception e) {
+            returnVal.getHeader().getStatus().addException(e);
+        }
+
+
+        ControllerUtils.setHeaderResponse(returnVal.getHeader(),
+                response,
+                HttpStatus.CREATED,
+                HttpStatus.INTERNAL_SERVER_ERROR);
+
+
+        return (returnVal);
+
+    }
 
     // *********************************************
     // *************************** ENTITY STATS METHODS

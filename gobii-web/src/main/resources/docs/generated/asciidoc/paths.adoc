@@ -10,7 +10,7 @@ POST /gobii/v1/analyses
 
 
 ==== Description
-Creates an analysis entity. Consult the <<_requestresponsestructure,Request/Response Section>> before attempting to use this call.
+Creates an analysis entity. The request and response bodies are wrapped in a PayloadEnvelopeDTO. Consult the <<_requestresponsestructure,Request/Response Section>> for further details.
 
 
 ==== Parameters
@@ -79,6 +79,38 @@ Provides generic configuration information about the GOBii instance
 |===
 |HTTP Code|Description|Schema
 |*200*|successful operation|<<_payloadenvelopeconfigsettingsdto,ConfigSettingsDTO>>
+|===
+
+
+[[_submitmatrixwithallmetadata]]
+=== /jobs/matrices/{jobName}
+....
+POST /gobii/v1/jobs/matrices/{jobName}
+....
+
+
+==== Description
+Initiates a genomic matrix load for the specified jobName. The keys for the urlsByPayloadType in the POST body are constrained to "CV_PAYLOADTYPE_SAMPLES", "CV_PAYLOADTYPE_SAMPLE_KEYS", "CV_PAYLOADTYPE_MARKERS", "CV_PAYLOADTYPE_MARKERMAP", "CV_PAYLOADTYPE_MARKER_KEYS", "CV_PAYLOADTYPE_MATRIX", "CV_PAYLOADTYPE_MARKERSAMPLES", "CV_PAYLOADTYPE_ALLMETA" The request and response bodies are wrapped in a PayloadEnvelopeDTO. Consult the <<_requestresponsestructure,Request/Response Section>> for further details.
+
+
+==== Parameters
+
+[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|*Path*|*jobName* +
+||string|
+|*Body*|*body* +
+||<<_payloadenvelopematrixdto,MatrixDTO>>|
+|===
+
+
+==== Responses
+
+[options="header", cols=".^1,.^15,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|<<_payloadenvelopejobdto,JobDTO>>
 |===
 
 

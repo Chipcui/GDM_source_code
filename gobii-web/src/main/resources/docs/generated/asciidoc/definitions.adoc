@@ -148,6 +148,37 @@
 |===
 
 
+[[_jobdto]]
+=== JobDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*allowedProcessTypes* +
+||< enum (CREATE, READ, UPDATE, DELETE, NONE) > array
+|*datasetIds* +
+||< integer(int32) > array
+|*id* +
+||integer(int32)
+|*jobId* +
+||integer(int32)
+|*jobName* +
+||string
+|*message* +
+||string
+|*payloadType* +
+||string
+|*status* +
+||string
+|*submittedBy* +
+||integer(int32)
+|*submittedDate* +
+||string(date-time)
+|*type* +
+||string
+|===
+
+
 [[_link]]
 === Link
 
@@ -173,6 +204,52 @@
 ||< < <<_link,Link>> > array > array
 |*linksPerDataItem* +
 ||< <<_link,Link>> > array
+|===
+
+
+[[_matrixdto]]
+=== MatrixDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*allowedProcessTypes* +
+||< enum (CREATE, READ, UPDATE, DELETE, NONE) > array
+|*datasetName* +
+||string
+|*experimentName* +
+||string
+|*id* +
+||integer(int32)
+|*projectName* +
+||string
+|*protocolName* +
+||string
+|*referenceGenomeName* +
+||string
+|*urlsByPayloadType* +
+||< string, <<_matrixurldto,MatrixUrlDTO>> > map
+|*vendorName* +
+||string
+|===
+
+
+[[_matrixurldto]]
+=== MatrixUrlDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*allowedProcessTypes* +
+||< enum (CREATE, READ, UPDATE, DELETE, NONE) > array
+|*fileName* +
+||string
+|*id* +
+||integer(int32)
+|*md5Sum* +
+||string
+|*url* +
+||string
 |===
 
 
@@ -209,7 +286,7 @@
 
 
 [[_payloadconfigsettingsdto]]
-=== PayloadConfigSettingsDTO
+=== ConfigSettingsDTO
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -243,7 +320,59 @@
 |*header* +
 ||<<_header,Header>>
 |*payload* +
-||<<_payloadconfigsettingsdto,PayloadConfigSettingsDTO>>
+||<<_payloadconfigsettingsdto,ConfigSettingsDTO>>
+|===
+
+
+[[_payloadenvelopejobdto]]
+=== JobDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*header* +
+||<<_header,Header>>
+|*payload* +
+||<<_payloadjobdto,PayloadJobDTO>>
+|===
+
+
+[[_payloadenvelopematrixdto]]
+=== MatrixDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*header* +
+||<<_header,Header>>
+|*payload* +
+||<<_payloadmatrixdto,PayloadMatrixDTO>>
+|===
+
+
+[[_payloadjobdto]]
+=== PayloadJobDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*data* +
+||< <<_jobdto,JobDTO>> > array
+|*linkCollection* +
+||<<_linkcollection,LinkCollection>>
+|===
+
+
+[[_payloadmatrixdto]]
+=== PayloadMatrixDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*data* +
+||< <<_matrixdto,MatrixDTO>> > array
+|*linkCollection* +
+||<<_linkcollection,LinkCollection>>
 |===
 
 

@@ -3,7 +3,7 @@ package org.gobiiproject.gobiidtomapping;
 import org.gobiiproject.gobiidtomapping.core.GobiiDtoMappingException;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.DataSetDTO;
 import org.gobiiproject.gobiimodel.dto.entity.noaudit.JobDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DnaSampleDTO;
+import org.gobiiproject.gobiimodel.dto.entity.auditable.DnaSampleDTO;
 
 import java.util.List;
 
