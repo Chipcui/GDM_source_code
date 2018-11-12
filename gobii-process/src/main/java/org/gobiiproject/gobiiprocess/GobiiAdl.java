@@ -473,6 +473,7 @@ public class GobiiAdl {
         }
         newContactDTO.setCreatedBy(1);
         newContactDTO.setModifiedBy(1);
+        newContactDTO.setCode(newContactDTO.getLastName() + "_" + newContactDTO.getFirstName());
 
         System.out.println("\nChecking if " + entityName + " (" + dbPkeysurrogateValue + ") already exists in the database...\n");
 
