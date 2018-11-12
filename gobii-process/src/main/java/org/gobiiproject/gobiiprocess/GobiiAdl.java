@@ -436,24 +436,7 @@ public class GobiiAdl {
     private static Integer createContact(Element parentElement, String entityName, NodeList fkeys, String dbPkeysurrogateValue,
                                          XPath xPath, Document document, NodeList propKeyList) throws Exception {
 
-        System.out.println("\nChecking if " + entityName + " (" + dbPkeysurrogateValue + ") already exists in the database...\n");
-
-        /* check if entity already exist in the database */
-        PayloadEnvelope<ContactDTO> resultEnvelope = getContactByEmail(dbPkeysurrogateValue);
-
-        if (resultEnvelope.getPayload().getData().size() > 0) {
-            ContactDTO currentContactDTO = resultEnvelope.getPayload().getData().get(0);
-            System.out.println("\n" + entityName + "(" + dbPkeysurrogateValue + ") already exists in the database. Return current entity ID.\n");
-
-            /* set fkey dbpkey for entity */
-            setFKeyDbPKeyForExistingEntity(fkeys, ContactDTO.class, currentContactDTO);
-            return currentContactDTO.getId();
-        }
-
-        System.out.println("\n" + entityName + "(" + dbPkeysurrogateValue + ") doesn't exist in the database.\nCreating new record...\n");
         ContactDTO newContactDTO = new ContactDTO();
-        System.out.println("Populating " + entityName + "DTO with attributes from XML file...");
-
         // get roles
         RestUri rolesUri = GobiiClientContext.getInstance(null, false)
                 .getUriFactory()
@@ -490,6 +473,28 @@ public class GobiiAdl {
         }
         newContactDTO.setCreatedBy(1);
         newContactDTO.setModifiedBy(1);
+
+        System.out.println("\nChecking if " + entityName + " (" + dbPkeysurrogateValue + ") already exists in the database...\n");
+
+        /* check if entity already exist in the database */
+        PayloadEnvelope<ContactDTO> resultEnvelope = getContactByEmail(dbPkeysurrogateValue);
+
+        if (resultEnvelope.getPayload().getData().size() > 0) {
+            ContactDTO currentContactDTO = resultEnvelope.getPayload().getData().get(0);
+
+            // check if username is the same
+            if (newContactDTO.getUserName().equals(currentContactDTO.getUserName())) {
+
+                System.out.println("\n" + entityName + "(" + dbPkeysurrogateValue + ") already exists in the database. Return current entity ID.\n");
+
+                /* set fkey dbpkey for entity */
+                setFKeyDbPKeyForExistingEntity(fkeys, ContactDTO.class, currentContactDTO);
+                return currentContactDTO.getId();
+            }
+        }
+
+        System.out.println("\n" + entityName + "(" + dbPkeysurrogateValue + ") doesn't exist in the database.\nCreating new record...\n");
+        System.out.println("Populating " + entityName + "DTO with attributes from XML file...");
 
         /* check roles */
         if (newContactDTO.getRoles().size() <= 0) {
