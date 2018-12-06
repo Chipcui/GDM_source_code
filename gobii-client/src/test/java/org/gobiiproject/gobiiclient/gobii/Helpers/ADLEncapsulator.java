@@ -151,4 +151,31 @@ public class ADLEncapsulator {
         return returnVal;
 
     } // func()
+
+
+    public void copyFilesToLocalDir(File sourceDir, File destinationDir) throws Exception {
+
+        if (sourceDir.exists() && sourceDir.isDirectory() && sourceDir.list().length > 0) {
+
+            for (File currentFile : sourceDir.listFiles()) {
+
+                if (currentFile.isDirectory()) {
+
+                    if (!new File(destinationDir.getAbsoluteFile() + "/" + currentFile.getName()).exists()) {
+                        File newDir = new File(destinationDir.getAbsoluteFile() + "/" + currentFile.getName());
+                        newDir.mkdir();
+
+                        copyFilesToLocalDir(currentFile, newDir);
+                    }
+
+                } else {
+
+                    FileUtils.copyFile(currentFile, new File(destinationDir.getAbsoluteFile() + "/" + currentFile.getName()));
+                }
+            }
+
+        }
+
+
+    }
 }

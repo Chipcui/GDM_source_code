@@ -28,6 +28,8 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
 import {EntityFileItemService} from "../services/core/entity-file-item-service";
 import {FilterService} from "../services/core/filter-service";
 import {FlexQueryService} from "../services/core/flex-query-service";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
+import {TypeControl} from "../services/core/type-control";
 
 // import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 
@@ -79,7 +81,8 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                 <!--<p-tabView [style]="{'border': '1px solid #336699', 'padding-left': '5px'}">-->
                                 <p-tabView
                                         (onChange)="handleTabPanelChange($event)"
-                                        styleClass="ui-tabview-panels">
+                                        styleClass="ui-tabview-panels"
+                                [id]="viewIdGeneratorService.makeStandardId(typeControl.NAVIGATION_TABS)">
                                     <p-tabPanel header="By Dataset">
                                         <ng-template pTemplate="content"> <!-- lazy-load controls -->
                                             <div class="container-fluid">
@@ -347,7 +350,7 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                   (onHide)="onHideMessageDialog($event)"
                                   [contentStyle]="{'width': '400px'}">
                             <div class="panel panel-primary">
-                                <div class="panel-body">
+                                <div class="panel-body" [id]="viewIdGeneratorService.makeStandardId(typeControl.SYSTEM_STATUS_MESSAGE_BODY)">
                                     {{currentStatusMessage}}
                                     <!--<status-display [messages$]="messages$"></status-display>-->
                                 </div> <!-- panel body -->
@@ -396,7 +399,8 @@ import {FlexQueryService} from "../services/core/flex-query-service";
                                     <button type="submit"
                                             [class]="submitButtonStyle"
                                             [disabled]="submitButtonStyle === buttonStyleSubmitNotReady"
-                                            (click)="handleExtractSubmission()">Submit
+                                            (click)="handleExtractSubmission()"
+                                            [id]="viewIdGeneratorService.makeStandardId(typeControl.SUBMIT_BUTTON_EXTRACT)">Submit
                                     </button>
 
                                     <button type="clear"
@@ -431,6 +435,7 @@ export class ExtractorRoot implements OnInit {
     nameIdFilterParamTypes: any = Object.assign({}, FilterParamNames);
     gobiiExtractFilterTypes: any = Object.assign({}, GobiiExtractFilterType);
     gobiiEntityTypes: any = Object.assign({}, EntityType);
+    public typeControl:any = TypeControl;
 
     selectedExtractFormat$: Observable<GobiiFileItem> = this.store.select(fromRoot.getSelectedFileFormat);
 
@@ -452,9 +457,10 @@ export class ExtractorRoot implements OnInit {
                 private nameIdFileItemService: NameIdFileItemService,
                 private entityFileItemService: EntityFileItemService,
                 private instructionSubmissionService: InstructionSubmissionService,
-                private changeDetectorRef: ChangeDetectorRef,
                 private filterService: FilterService,
-                private flexQueryService: FlexQueryService) {
+                private flexQueryService: FlexQueryService,
+                private changeDetectorRef: ChangeDetectorRef,
+                public viewIdGeneratorService: ViewIdGeneratorService) {
 
         this.messages$.subscribe(
             messages => {

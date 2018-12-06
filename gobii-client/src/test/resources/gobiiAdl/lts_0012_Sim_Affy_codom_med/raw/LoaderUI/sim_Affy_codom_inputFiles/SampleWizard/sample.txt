@@ -1,0 +1,101 @@
+germplasm_specie	germplasm_name	external_code	germplasm_subsp	germplasm_type	dnasample_name	dnasample_num	dnasample_platename	dnasample_ref_sample	dnasample_trial_name	dnarun_name
+Triticum turgidum subsp. dicoccon	sim_Triticum:9564	sim_GID_Triticum:9564	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_Triticum:9564	num_0	barcode_0.144366392428		trial_13	sim_run_Triticum:9564
+Triticum turgidum subsp. dicoccon	sim_Triticum:771	sim_GID_Triticum:771	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_Triticum:771	num_1	barcode_0.649345167056		trial_11	sim_run_Triticum:771
+Triticum turgidum subsp. dicoccon	sim_Triticum:2031	sim_GID_Triticum:2031	Undetermined	Inbred_line	sim_sample_Triticum:2031	num_2	barcode_0.0950983332058	REF	trial_13	sim_run_Triticum:2031
+Triticum turgidum subsp. dicoccon	sim_Triticum:3972	sim_GID_Triticum:3972	Undetermined spp.	F1_hybrid	sim_sample_Triticum:3972	num_3	barcode_0.240855166834		trial_13	sim_run_Triticum:3972
+Triticum turgidum subsp. dicoccon	sim_Triticum:6022	sim_GID_Triticum:6022	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_Triticum:6022	num_4	barcode_0.229122585383	REF	trial_12	sim_run_Triticum:6022
+Triticum turgidum subsp. dicoccon	sim_Triticum:6608	sim_GID_Triticum:6608	Zea diploperennis		sim_sample_Triticum:6608	num_5	barcode_0.20412887375	REF	trial_12	sim_run_Triticum:6608
+Triticum turgidum subsp. dicoccon	sim_Triticum:8661	sim_GID_Triticum:8661	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_Triticum:8661	num_6	barcode_0.142169371292		trial_13	sim_run_Triticum:8661
+Triticum turgidum subsp. dicoccon	sim_Triticum:3361	sim_GID_Triticum:3361		BC1F1	sim_sample_Triticum:3361	num_7	barcode_0.899992056426		trial_11	sim_run_Triticum:3361
+Triticum turgidum subsp. dicoccon	sim_Triticum:8640	sim_GID_Triticum:8640	Undetermined	F1_hybrid	sim_sample_Triticum:8640	num_8	barcode_0.104744735195		trial_12	sim_run_Triticum:8640
+Triticum turgidum subsp. dicoccon	sim_Triticum:6850	sim_GID_Triticum:6850	Zea mays subsp. mexicana	F1_hybrid	sim_sample_Triticum:6850	num_9	barcode_0.64998907047		trial_11	sim_run_Triticum:6850
+Triticum turgidum subsp. dicoccon	sim_Triticum:6691	sim_GID_Triticum:6691	Zea mays subsp. parviglumis	Inbred_line	sim_sample_Triticum:6691	num_10	barcode_0.133206425151		trial_11	sim_run_Triticum:6691
+Triticum turgidum subsp. dicoccon	sim_Triticum:2123	sim_GID_Triticum:2123	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_Triticum:2123	num_11	barcode_0.37041164048		trial_12	sim_run_Triticum:2123
+Triticum turgidum subsp. dicoccon	sim_Triticum:3850	sim_GID_Triticum:3850	Zea diploperennis	F2	sim_sample_Triticum:3850	num_12	barcode_0.459337696159		trial_13	sim_run_Triticum:3850
+Triticum turgidum subsp. dicoccon	sim_Triticum:2207	sim_GID_Triticum:2207	Zea mays subsp. parviglumis	Inbred_line	sim_sample_Triticum:2207	num_13	barcode_0.614719773886		trial_12	sim_run_Triticum:2207
+Triticum turgidum subsp. dicoccon	sim_Triticum:1843	sim_GID_Triticum:1843	Undetermined	Inbred_line	sim_sample_Triticum:1843	num_14	barcode_0.10249000999		trial_12	sim_run_Triticum:1843
+Triticum turgidum subsp. dicoccon	sim_Triticum:1535	sim_GID_Triticum:1535	Triticum zhukovskyi	F2	sim_sample_Triticum:1535	num_15	barcode_0.259378840543		trial_11	sim_run_Triticum:1535
+Triticum turgidum subsp. dicoccon	sim_Triticum:8135	sim_GID_Triticum:8135	Triticum turgidum subsp. turgidum		sim_sample_Triticum:8135	num_16	barcode_0.164498593775	REF	trial_13	sim_run_Triticum:8135
+Triticum turgidum subsp. dicoccon	sim_Triticum:4913	sim_GID_Triticum:4913	Undetermined	F1_hybrid	sim_sample_Triticum:4913	num_17	barcode_0.858095310364	REF	trial_12	sim_run_Triticum:4913
+Triticum turgidum subsp. dicoccon	sim_Triticum:8751	sim_GID_Triticum:8751	Undetermined spp.	Inbred_line	sim_sample_Triticum:8751	num_18	barcode_0.533886044698	REF	trial_13	sim_run_Triticum:8751
+Triticum turgidum subsp. dicoccon	sim_Triticum:1438	sim_GID_Triticum:1438	Unknown	Inbred_line	sim_sample_Triticum:1438	num_19	barcode_0.656651025955		trial_13	sim_run_Triticum:1438
+Triticum turgidum subsp. dicoccon	sim_Triticum:7470	sim_GID_Triticum:7470	Triticum zhukovskyi	BC1F1	sim_sample_Triticum:7470	num_20	barcode_0.38180237126	REF	trial_11	sim_run_Triticum:7470
+Triticum turgidum subsp. dicoccon	sim_Triticum:2428	sim_GID_Triticum:2428	Triticum turgidum subsp. durum	Inbred_line	sim_sample_Triticum:2428	num_21	barcode_0.775376903505	REF	trial_13	sim_run_Triticum:2428
+Triticum turgidum subsp. dicoccon	sim_Triticum:915	sim_GID_Triticum:915	Unknown	F1_hybrid	sim_sample_Triticum:915	num_22	barcode_0.820001106979	REF	trial_13	sim_run_Triticum:915
+Triticum turgidum subsp. dicoccon	sim_Triticum:3288	sim_GID_Triticum:3288	Zea mays subsp. parviglumis		sim_sample_Triticum:3288	num_23	barcode_0.629016508127		trial_13	sim_run_Triticum:3288
+Triticum turgidum subsp. dicoccon	sim_Triticum:2312	sim_GID_Triticum:2312	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_Triticum:2312	num_24	barcode_0.452927548517	REF	trial_11	sim_run_Triticum:2312
+Triticum turgidum subsp. dicoccon	sim_Triticum:1904	sim_GID_Triticum:1904	Zea diploperennis		sim_sample_Triticum:1904	num_25	barcode_0.384786779401		trial_11	sim_run_Triticum:1904
+Triticum turgidum subsp. dicoccon	sim_Triticum:8971	sim_GID_Triticum:8971	Zea mays subsp. parviglumis	BC1F1	sim_sample_Triticum:8971	num_26	barcode_0.223651675626		trial_13	sim_run_Triticum:8971
+Triticum turgidum subsp. dicoccon	sim_Triticum:1860	sim_GID_Triticum:1860	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_Triticum:1860	num_27	barcode_0.270068037336		trial_12	sim_run_Triticum:1860
+Triticum turgidum subsp. dicoccon	sim_Triticum:2386	sim_GID_Triticum:2386	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_Triticum:2386	num_28	barcode_0.749392566466	REF	trial_12	sim_run_Triticum:2386
+Triticum turgidum subsp. dicoccon	sim_Triticum:4127	sim_GID_Triticum:4127		BC1F1	sim_sample_Triticum:4127	num_29	barcode_0.692999469055	REF	trial_11	sim_run_Triticum:4127
+Triticum turgidum subsp. dicoccon	sim_Triticum:685	sim_GID_Triticum:685	Zea mays subsp. huehuetenangensis		sim_sample_Triticum:685	num_30	barcode_0.801319448526	REF	trial_13	sim_run_Triticum:685
+Triticum turgidum subsp. dicoccon	sim_Triticum:6616	sim_GID_Triticum:6616	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_Triticum:6616	num_31	barcode_0.347691893676	REF	trial_11	sim_run_Triticum:6616
+Triticum turgidum subsp. dicoccon	sim_Triticum:9804	sim_GID_Triticum:9804	Triticum vavilovii var. vavilovii		sim_sample_Triticum:9804	num_32	barcode_0.914944972885	REF	trial_13	sim_run_Triticum:9804
+Triticum turgidum subsp. dicoccon	sim_Triticum:4576	sim_GID_Triticum:4576	Undetermined	F1_hybrid	sim_sample_Triticum:4576	num_33	barcode_0.805332209529		trial_11	sim_run_Triticum:4576
+Triticum turgidum subsp. dicoccon	sim_Triticum:953	sim_GID_Triticum:953	Triticum turgidum subsp. paleocolchicum		sim_sample_Triticum:953	num_34	barcode_0.659825736684		trial_12	sim_run_Triticum:953
+Triticum turgidum subsp. dicoccon	sim_Triticum:2688	sim_GID_Triticum:2688	Zea mays subsp. parviglumis	BC1F1	sim_sample_Triticum:2688	num_35	barcode_0.672994948182	REF	trial_11	sim_run_Triticum:2688
+Triticum turgidum subsp. dicoccon	sim_Triticum:5385	sim_GID_Triticum:5385	Undetermined	Inbred_line	sim_sample_Triticum:5385	num_36	barcode_0.913062913966	REF	trial_12	sim_run_Triticum:5385
+Triticum turgidum subsp. dicoccon	sim_Triticum:9002	sim_GID_Triticum:9002	Zea mays subsp. mexicana	BC1F1	sim_sample_Triticum:9002	num_37	barcode_0.388040096574	REF	trial_12	sim_run_Triticum:9002
+Triticum turgidum subsp. dicoccon	sim_Triticum:9486	sim_GID_Triticum:9486	Triticum zhukovskyi		sim_sample_Triticum:9486	num_38	barcode_0.409887338292		trial_12	sim_run_Triticum:9486
+Triticum turgidum subsp. dicoccon	sim_Triticum:8533	sim_GID_Triticum:8533	Triticum vavilovii var. vavilovii	F2	sim_sample_Triticum:8533	num_39	barcode_0.595839169733		trial_12	sim_run_Triticum:8533
+Triticum turgidum subsp. dicoccon	sim_Triticum:3139	sim_GID_Triticum:3139	Triticum turgidum subsp. paleocolchicum		sim_sample_Triticum:3139	num_40	barcode_0.224687702881		trial_12	sim_run_Triticum:3139
+Triticum turgidum subsp. dicoccon	sim_Triticum:8738	sim_GID_Triticum:8738	Unknown	F2	sim_sample_Triticum:8738	num_41	barcode_0.70489690688	REF	trial_13	sim_run_Triticum:8738
+Triticum turgidum subsp. dicoccon	sim_Triticum:7013	sim_GID_Triticum:7013	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_Triticum:7013	num_42	barcode_0.865485957253		trial_11	sim_run_Triticum:7013
+Triticum turgidum subsp. dicoccon	sim_Triticum:5830	sim_GID_Triticum:5830	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_Triticum:5830	num_43	barcode_0.286312524347	REF	trial_12	sim_run_Triticum:5830
+Triticum turgidum subsp. dicoccon	sim_Triticum:3889	sim_GID_Triticum:3889		BC1F1	sim_sample_Triticum:3889	num_44	barcode_0.0889100501655		trial_11	sim_run_Triticum:3889
+Triticum turgidum subsp. dicoccon	sim_Triticum:4292	sim_GID_Triticum:4292	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_Triticum:4292	num_45	barcode_0.594369618285		trial_11	sim_run_Triticum:4292
+Triticum turgidum subsp. dicoccon	sim_Triticum:458	sim_GID_Triticum:458		Inbred_line	sim_sample_Triticum:458	num_46	barcode_0.00250348738602	REF	trial_13	sim_run_Triticum:458
+Triticum turgidum subsp. dicoccon	sim_Triticum:3900	sim_GID_Triticum:3900	Undetermined spp.	F1_hybrid	sim_sample_Triticum:3900	num_47	barcode_0.284484368221	REF	trial_12	sim_run_Triticum:3900
+Triticum turgidum subsp. dicoccon	sim_Triticum:8065	sim_GID_Triticum:8065	Zea mays subsp. huehuetenangensis	F2	sim_sample_Triticum:8065	num_48	barcode_0.732842097819	REF	trial_11	sim_run_Triticum:8065
+Triticum turgidum subsp. dicoccon	sim_Triticum:4608	sim_GID_Triticum:4608	Undetermined spp.	F2	sim_sample_Triticum:4608	num_49	barcode_0.6799988422	REF	trial_12	sim_run_Triticum:4608
+Triticum turgidum subsp. dicoccon	sim_Triticum:8692	sim_GID_Triticum:8692	Zea diploperennis	F1_hybrid	sim_sample_Triticum:8692	num_50	barcode_0.343045180468		trial_13	sim_run_Triticum:8692
+Triticum turgidum subsp. dicoccon	sim_Triticum:1958	sim_GID_Triticum:1958		BC1F1	sim_sample_Triticum:1958	num_51	barcode_0.204709284149		trial_12	sim_run_Triticum:1958
+Triticum turgidum subsp. dicoccon	sim_Triticum:7839	sim_GID_Triticum:7839	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_Triticum:7839	num_52	barcode_0.399797658075		trial_11	sim_run_Triticum:7839
+Triticum turgidum subsp. dicoccon	sim_Triticum:7287	sim_GID_Triticum:7287	Triticum urartu	BC1F1	sim_sample_Triticum:7287	num_53	barcode_0.418096231383	REF	trial_11	sim_run_Triticum:7287
+Triticum turgidum subsp. dicoccon	sim_Triticum:478	sim_GID_Triticum:478	Zea mays subsp. mexicana	F1_hybrid	sim_sample_Triticum:478	num_54	barcode_0.0208612193896		trial_12	sim_run_Triticum:478
+Triticum turgidum subsp. dicoccon	sim_Triticum:5388	sim_GID_Triticum:5388	Undetermined spp.	F2	sim_sample_Triticum:5388	num_55	barcode_0.315429904358	REF	trial_12	sim_run_Triticum:5388
+Triticum turgidum subsp. dicoccon	sim_Triticum:9131	sim_GID_Triticum:9131	Unknown	F2	sim_sample_Triticum:9131	num_56	barcode_0.52314503084	REF	trial_12	sim_run_Triticum:9131
+Triticum turgidum subsp. dicoccon	sim_Triticum:5621	sim_GID_Triticum:5621	Undetermined	BC1F1	sim_sample_Triticum:5621	num_57	barcode_0.828356395014		trial_13	sim_run_Triticum:5621
+Triticum turgidum subsp. dicoccon	sim_Triticum:8332	sim_GID_Triticum:8332	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_Triticum:8332	num_58	barcode_0.341252429277	REF	trial_11	sim_run_Triticum:8332
+Triticum turgidum subsp. dicoccon	sim_Triticum:5983	sim_GID_Triticum:5983	Undetermined		sim_sample_Triticum:5983	num_59	barcode_0.346736062241		trial_13	sim_run_Triticum:5983
+Triticum turgidum subsp. dicoccon	sim_Triticum:9257	sim_GID_Triticum:9257	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_Triticum:9257	num_60	barcode_0.615302275374		trial_12	sim_run_Triticum:9257
+Triticum turgidum subsp. dicoccon	sim_Triticum:8376	sim_GID_Triticum:8376	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_Triticum:8376	num_61	barcode_0.268139270032		trial_11	sim_run_Triticum:8376
+Triticum turgidum subsp. dicoccon	sim_Triticum:1265	sim_GID_Triticum:1265	Unknown	F1_hybrid	sim_sample_Triticum:1265	num_62	barcode_0.397631210666		trial_13	sim_run_Triticum:1265
+Triticum turgidum subsp. dicoccon	sim_Triticum:5453	sim_GID_Triticum:5453	Zea mays subsp. mexicana	Inbred_line	sim_sample_Triticum:5453	num_63	barcode_0.138449605924	REF	trial_11	sim_run_Triticum:5453
+Triticum turgidum subsp. dicoccon	sim_Triticum:2795	sim_GID_Triticum:2795	Triticum urartu	F2	sim_sample_Triticum:2795	num_64	barcode_0.991004694252		trial_12	sim_run_Triticum:2795
+Triticum turgidum subsp. dicoccon	sim_Triticum:7526	sim_GID_Triticum:7526	Triticum turgidum subsp. dicoccon		sim_sample_Triticum:7526	num_65	barcode_0.751138495433	REF	trial_11	sim_run_Triticum:7526
+Triticum turgidum subsp. dicoccon	sim_Triticum:2200	sim_GID_Triticum:2200	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_Triticum:2200	num_66	barcode_0.874332738233		trial_11	sim_run_Triticum:2200
+Triticum turgidum subsp. dicoccon	sim_Triticum:7385	sim_GID_Triticum:7385	Zea diploperennis		sim_sample_Triticum:7385	num_67	barcode_0.413877748807	REF	trial_12	sim_run_Triticum:7385
+Triticum turgidum subsp. dicoccon	sim_Triticum:3737	sim_GID_Triticum:3737	Triticum turgidum subsp. dicoccon		sim_sample_Triticum:3737	num_68	barcode_0.302737678265	REF	trial_11	sim_run_Triticum:3737
+Triticum turgidum subsp. dicoccon	sim_Triticum:5384	sim_GID_Triticum:5384	Undetermined	Inbred_line	sim_sample_Triticum:5384	num_69	barcode_0.522757205026		trial_11	sim_run_Triticum:5384
+Triticum turgidum subsp. dicoccon	sim_Triticum:7637	sim_GID_Triticum:7637	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_Triticum:7637	num_70	barcode_0.66909142012	REF	trial_13	sim_run_Triticum:7637
+Triticum turgidum subsp. dicoccon	sim_Triticum:2285	sim_GID_Triticum:2285	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_Triticum:2285	num_71	barcode_0.692935077923		trial_12	sim_run_Triticum:2285
+Triticum turgidum subsp. dicoccon	sim_Triticum:6808	sim_GID_Triticum:6808	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_Triticum:6808	num_72	barcode_0.267446060128		trial_13	sim_run_Triticum:6808
+Triticum turgidum subsp. dicoccon	sim_Triticum:9057	sim_GID_Triticum:9057		BC1F1	sim_sample_Triticum:9057	num_73	barcode_0.462619760393		trial_12	sim_run_Triticum:9057
+Triticum turgidum subsp. dicoccon	sim_Triticum:565	sim_GID_Triticum:565	Triticum turgidum subsp. polonicum		sim_sample_Triticum:565	num_74	barcode_0.878837134354	REF	trial_11	sim_run_Triticum:565
+Triticum turgidum subsp. dicoccon	sim_Triticum:234	sim_GID_Triticum:234	Undetermined spp.	F2	sim_sample_Triticum:234	num_75	barcode_0.508900173727	REF	trial_12	sim_run_Triticum:234
+Triticum turgidum subsp. dicoccon	sim_Triticum:9214	sim_GID_Triticum:9214	Undetermined	Inbred_line	sim_sample_Triticum:9214	num_76	barcode_0.593146672428		trial_11	sim_run_Triticum:9214
+Triticum turgidum subsp. dicoccon	sim_Triticum:4519	sim_GID_Triticum:4519	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_Triticum:4519	num_77	barcode_0.804708482783		trial_12	sim_run_Triticum:4519
+Triticum turgidum subsp. dicoccon	sim_Triticum:3250	sim_GID_Triticum:3250	Triticum turgidum subsp. turgidum	F2	sim_sample_Triticum:3250	num_78	barcode_0.382010390033		trial_11	sim_run_Triticum:3250
+Triticum turgidum subsp. dicoccon	sim_Triticum:473	sim_GID_Triticum:473	Zea mays subsp. parviglumis		sim_sample_Triticum:473	num_79	barcode_0.135690927922	REF	trial_11	sim_run_Triticum:473
+Triticum turgidum subsp. dicoccon	sim_Triticum:4275	sim_GID_Triticum:4275	Triticum zhukovskyi		sim_sample_Triticum:4275	num_80	barcode_0.177082902224		trial_12	sim_run_Triticum:4275
+Triticum turgidum subsp. dicoccon	sim_Triticum:6994	sim_GID_Triticum:6994	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_Triticum:6994	num_81	barcode_0.848711356102		trial_11	sim_run_Triticum:6994
+Triticum turgidum subsp. dicoccon	sim_Triticum:8443	sim_GID_Triticum:8443	Undetermined spp.	BC1F1	sim_sample_Triticum:8443	num_82	barcode_0.503697331912		trial_11	sim_run_Triticum:8443
+Triticum turgidum subsp. dicoccon	sim_Triticum:7185	sim_GID_Triticum:7185	Zea mays subsp. mexicana	F2	sim_sample_Triticum:7185	num_83	barcode_0.745087092759		trial_13	sim_run_Triticum:7185
+Triticum turgidum subsp. dicoccon	sim_Triticum:5642	sim_GID_Triticum:5642	Zea diploperennis	Inbred_line	sim_sample_Triticum:5642	num_84	barcode_0.67833142757		trial_12	sim_run_Triticum:5642
+Triticum turgidum subsp. dicoccon	sim_Triticum:8886	sim_GID_Triticum:8886	Triticum zhukovskyi	F2	sim_sample_Triticum:8886	num_85	barcode_0.797741323083	REF	trial_11	sim_run_Triticum:8886
+Triticum turgidum subsp. dicoccon	sim_Triticum:2592	sim_GID_Triticum:2592	Triticum turgidum subsp. turgidum		sim_sample_Triticum:2592	num_86	barcode_0.466410235935	REF	trial_11	sim_run_Triticum:2592
+Triticum turgidum subsp. dicoccon	sim_Triticum:3836	sim_GID_Triticum:3836	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_Triticum:3836	num_87	barcode_0.368673159797		trial_13	sim_run_Triticum:3836
+Triticum turgidum subsp. dicoccon	sim_Triticum:6774	sim_GID_Triticum:6774	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_Triticum:6774	num_88	barcode_0.186018707926	REF	trial_12	sim_run_Triticum:6774
+Triticum turgidum subsp. dicoccon	sim_Triticum:9796	sim_GID_Triticum:9796	Undetermined	BC1F1	sim_sample_Triticum:9796	num_89	barcode_0.833872347145		trial_12	sim_run_Triticum:9796
+Triticum turgidum subsp. dicoccon	sim_Triticum:227	sim_GID_Triticum:227	Zea mays subsp. parviglumis	BC1F1	sim_sample_Triticum:227	num_90	barcode_0.71242731499	REF	trial_12	sim_run_Triticum:227
+Triticum turgidum subsp. dicoccon	sim_Triticum:9396	sim_GID_Triticum:9396	Zea diploperennis		sim_sample_Triticum:9396	num_91	barcode_0.355449907767		trial_13	sim_run_Triticum:9396
+Triticum turgidum subsp. dicoccon	sim_Triticum:4668	sim_GID_Triticum:4668	Triticum urartu	BC1F1	sim_sample_Triticum:4668	num_92	barcode_0.174727450998		trial_13	sim_run_Triticum:4668
+Triticum turgidum subsp. dicoccon	sim_Triticum:2780	sim_GID_Triticum:2780	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_Triticum:2780	num_93	barcode_0.430915176438	REF	trial_11	sim_run_Triticum:2780
+Triticum turgidum subsp. dicoccon	sim_Triticum:7958	sim_GID_Triticum:7958	Undetermined	F1_hybrid	sim_sample_Triticum:7958	num_94	barcode_0.0461593712713		trial_11	sim_run_Triticum:7958
+Triticum turgidum subsp. dicoccon	sim_Triticum:930	sim_GID_Triticum:930	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_Triticum:930	num_95	barcode_0.935059385359	REF	trial_12	sim_run_Triticum:930
+Triticum turgidum subsp. dicoccon	sim_Triticum:448	sim_GID_Triticum:448	Undetermined		sim_sample_Triticum:448	num_96	barcode_0.864986676103		trial_13	sim_run_Triticum:448
+Triticum turgidum subsp. dicoccon	sim_Triticum:6420	sim_GID_Triticum:6420	Unknown	F1_hybrid	sim_sample_Triticum:6420	num_97	barcode_0.174162522623	REF	trial_13	sim_run_Triticum:6420
+Triticum turgidum subsp. dicoccon	sim_Triticum:6273	sim_GID_Triticum:6273	Zea mays subsp. mexicana	Inbred_line	sim_sample_Triticum:6273	num_98	barcode_0.919339717169		trial_12	sim_run_Triticum:6273
+Triticum turgidum subsp. dicoccon	sim_Triticum:2948	sim_GID_Triticum:2948	Zea mays subsp. mexicana	F1_hybrid	sim_sample_Triticum:2948	num_99	barcode_0.00526294391211	REF	trial_13	sim_run_Triticum:2948

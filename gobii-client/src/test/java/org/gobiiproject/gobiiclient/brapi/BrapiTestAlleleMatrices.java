@@ -6,7 +6,9 @@ import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
 import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrices.BrapiResponseAlleleMatrices;
 import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelopeMasterDetail;
+import org.gobiiproject.gobiiclient.core.brapi.BrapiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.brapi.BrapiEnvelopeRestResource;
+import org.gobiiproject.gobiiclient.core.common.HttpCore;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiTestConfiguration;
@@ -28,11 +30,20 @@ public class BrapiTestAlleleMatrices {
 
     private static TestExecConfig testExecConfig = null;
 
+    private static HttpCore httpCore = null;
 
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        // you have to set up the GobiiClient because some native GOBII calls
+        // are made to set up data
         Assert.assertTrue(GobiiClientContextAuth.authenticate());
+
+        // but for the BRAPI calls we use the raw httpCore
+        httpCore = BrapiClientContextAuth.authenticate();
+        Assert.assertNotNull("Could not create http core component",
+                httpCore);
+
         testExecConfig = new GobiiTestConfiguration().getConfigSettings().getTestExecConfig();
 
 
@@ -57,7 +68,8 @@ public class BrapiTestAlleleMatrices {
                 new BrapiEnvelopeRestResource<>(alleleMatrices,
                         ObjectUtils.Null.class,
                         ObjectUtils.Null.class,
-                        BrapiResponseAlleleMatrices.class);
+                        BrapiResponseAlleleMatrices.class,
+                        this.httpCore);
 
         BrapiResponseEnvelopeMasterDetail<BrapiResponseAlleleMatrices> matricesResult = brapiEnvelopeRestResource.getFromListResource();
         BrapiTestResponseStructure.validatateBrapiResponseStructure(matricesResult.getBrapiMetaData());

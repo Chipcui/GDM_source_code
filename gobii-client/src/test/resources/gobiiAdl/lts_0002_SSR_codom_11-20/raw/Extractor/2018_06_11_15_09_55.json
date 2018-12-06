@@ -1,0 +1,29 @@
+[ {
+  "dataSetExtracts" : [ {
+    "gobiiFileType" : "HAPMAP",
+    "accolate" : false,
+    "gobiiJobStatus" : null,
+    "extractDestinationDirectory" : "/data/gobii_bundle/crops/dev/extractor/output/daw279/hapmap/whole_dataset/2018_06_11_15_09_55",
+    "gobiiExtractFilterType" : "WHOLE_DATASET",
+    "markerList" : null,
+    "sampleList" : null,
+    "listFileName" : null,
+    "gobiiDatasetType" : null,
+    "principleInvestigator" : null,
+    "project" : null,
+    "dataSet" : {
+      "id" : 48,
+      "name" : "Deb_Proj1_Exp1_SSR_FQ_codom_11-20_DS2"
+    },
+    "platforms" : [ ],
+    "gobiiSampleListType" : null,
+    "markerGroups" : null,
+    "extractedFiles" : [ ],
+    "logMessage" : null
+  } ],
+  "mapsetIds" : [ ],
+  "contactId" : 19,
+  "contactEmail" : "daw279@cornell.edu",
+  "gobiiCropType" : "dev",
+  "qcCheck" : false
+} ]

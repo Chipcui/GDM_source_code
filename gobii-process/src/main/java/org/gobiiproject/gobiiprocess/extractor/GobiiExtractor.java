@@ -19,11 +19,12 @@ import org.gobiiproject.gobiiapimodel.payload.HeaderStatusMessage;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiiapimodel.restresources.gobii.GobiiUriFactory;
-import org.gobiiproject.gobiimodel.config.RestResourceId;
+import org.gobiiproject.gobiiapimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiiclient.core.common.GenericClientContext;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
+import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiimodel.config.ServerConfig;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
@@ -221,6 +222,10 @@ public class GobiiExtractor {
 					String sampleFile = extractDir + "sample.file";
 					String projectFile = extractDir + "project.file";
 					String extractSummaryFile = extractDir+"summary.file";
+					if(inst.isQcCheck()){//FIXES ERROR - KDC EXPECTS PROJECT SUMMARY IN SUMMARY.FILE
+						projectFile = extractDir + "summary.file"; //HACK, NEED FIX AND REMOVE LATER FOR CONSISTENCY
+						extractSummaryFile = extractDir+"project_summary.file";
+					}
 					String chrLengthFile = markerFile + ".chr";
 					Path mdePath = FileSystems.getDefault().getPath(extractorScriptPath + "postgres/gobii_mde/gobii_mde.py");
 					if (!mdePath.toFile().isFile()) {
@@ -245,9 +250,9 @@ public class GobiiExtractor {
 					}
 
 					//Common terms
-					String platformTerm, mapIdTerm, markerListLocation, sampleListLocation, verboseTerm;
+					String platformTerm, mapIdTerm, markerListTerm, sampleListTerm, verboseTerm;
 					String samplePosFile;//Location of sample position indices (see markerList for an example
-					platformTerm = mapIdTerm = markerListLocation = sampleListLocation = verboseTerm = "";
+					platformTerm = mapIdTerm = markerListTerm = sampleListTerm = verboseTerm = "";
 					List<Integer> platforms = extract
 							.getPlatforms()
 							.stream()
@@ -272,8 +277,7 @@ public class GobiiExtractor {
 						datasetName = datasetPropNameId.getName();
 					}
 
-					String sampleListFile=null;
-
+					String markerListFileLocation = null,sampleListFileLocation = null;//Generally list file location, populated as needed
 					switch (filterType) {
 						case WHOLE_DATASET:
 							extractType="Extract by Dataset";
@@ -292,19 +296,23 @@ public class GobiiExtractor {
 
 							break;
 						case BY_MARKER:
+
 							extractType="Extract by Marker";
 							//List takes extra work, as it might be a <List> or a <File>
 							//Create a file out of the List if non-null, else use the <File>
 							List<String> markerList = extract.getMarkerList();
 							if (markerList != null && !markerList.isEmpty()) {
-								markerListLocation = " -X " + createTempFileForMarkerList(extractDir, markerList);
+								markerListFileLocation= createTempListFile(extractDir, markerList);
 							} else if (extract.getMarkerListFileName() != null) {
-								markerListLocation = " -X " + extract.getMarkerListFileName();
+								markerListFileLocation = " -X " + extract.getMarkerListFileName();
+							}
+							if(markerListFileLocation!=null){
+								markerListTerm = " -X " + markerListFileLocation;
 							}
 							//else if file is null and list is empty or null - > no term
 
 							if (markerListOverrideLocation != null)
-								markerListLocation = " -x " + markerListOverrideLocation;
+								markerListTerm = " -x " + markerListOverrideLocation;
 
 							String markerGroupTerm="";
 							if(extract.getMarkerGroups()!=null && !extract.getMarkerGroups().isEmpty()){
@@ -321,7 +329,7 @@ public class GobiiExtractor {
 									" -s " + sampleFile +
 									" -p " + projectFile +
 									markerGroupTerm +
-									markerListLocation +
+									markerListTerm +
 									" --datasetType " + extract.getGobiiDatasetType().getId() +
 									mapIdTerm +
 									platformTerm +
@@ -335,12 +343,12 @@ public class GobiiExtractor {
 							//Create a file out of the List if non-null, else use the <File>
                             List<String> sampleList = extract.getSampleList();
                             if (sampleList != null && !sampleList.isEmpty()) {
-                                sampleListFile = createTempFileForMarkerList(extractDir, sampleList, "sampleList");
-                            } else if (extract.getMarkerListFileName() != null) {
-                                sampleListFile = extract.getMarkerListFileName();
+                                sampleListFileLocation = createTempListFile(extractDir, sampleList, "sampleList");
+                            } else if (extract.getSampleListFileName() != null) {
+								sampleListFileLocation = extract.getSampleListFileName();
                             }
-                            if (sampleListFile != null) {
-                                sampleListLocation = " -Y " + sampleListFile;
+                            if (sampleListFileLocation != null) {
+                                sampleListTerm = " -Y " + sampleListFileLocation;
                             }
 
 							GobiiSampleListType type = extract.getGobiiSampleListType();
@@ -364,7 +372,7 @@ public class GobiiExtractor {
 									" -b " + mapsetFile +
 									" -s " + sampleFile +
 									" -p " + projectFile +
-									sampleListLocation +
+									sampleListTerm +
 									sampleListTypeTerm +
 									PITerm +
 									projectTerm +
@@ -433,27 +441,20 @@ public class GobiiExtractor {
 						listFileName=new File(extract.getMarkerListFileName()).getName();
 					}
 
+
 					//Marker List or List File (see above for selection logic)
-					if(extract.getMarkerList() != null && !extract.getMarkerList().isEmpty()) {
-						pm.addCriteria("Marker List", String.join("<BR>", extract.getMarkerList()));
-						esw.addItem("Marker List",extract.getMarkerList());
-					}
-					else if(filterType==BY_MARKER && listFileName != null){
-						pm.addCriteria("Marker List", listFileName);
-						esw.addItem("Marker File",listFileName);
+					if((extract.getMarkerList() != null && !extract.getMarkerList().isEmpty()) || (filterType==BY_MARKER && markerListFileLocation != null)) {
+						pm.addCriteria("Marker List", markerListFileLocation);
+						esw.addItem("Marker List", markerListFileLocation);
 					}
 
 					if(type!=null){
 						pm.addCriteria("Sample List Type", uppercaseFirstLetter(type.toString().toLowerCase()));
 					}
 
-					//Sample List or Sample List File (See above for selection logic)
-					if(extract.getSampleList() != null && !extract.getSampleList().isEmpty()){
-						pm.addCriteria("Sample List", String.join("<BR>", extract.getSampleList()));
-						esw.addItem("Sample List",extract.getSampleList());
-					}else if(filterType==BY_SAMPLE && listFileName != null){
-						pm.addCriteria("Sample List", listFileName);
-						esw.addItem("Sample File",listFileName);
+					if( (extract.getSampleList() != null && !extract.getSampleList().isEmpty()) || (filterType==BY_SAMPLE && sampleListFileLocation != null)){
+						pm.addCriteria("Sample List", sampleListFileLocation);
+						esw.addItem("Sample File",sampleListFileLocation);
 					}
 
 					List<Integer> mapsetIds=inst.getMapsetIds();
@@ -561,7 +562,7 @@ public class GobiiExtractor {
 						jobStatus.setError("Unsuccessful Data Extract");
 						if(!inst.isQcCheck())mailInterface.send(pm);
                     }
-
+					boolean overallSuccess=ErrorLogger.success(); //quick and dirty way to make sure errors past the 'end' of processing don't affect output
                     //Clean Temporary Files
 					rmIfExist(genoFile);
                     rmIfExist(chrLengthFile);
@@ -570,17 +571,16 @@ public class GobiiExtractor {
 					rmIfExist(extractDir + "mdeOut");//remove mde output file
 					rmIfExist("position.file");
 
-					mv(extract.getMarkerListFileName(),extractDir); //Move the list file to the extract directory
 
 					ErrorLogger.logDebug("Extractor", "DataSet " + datasetName + " Created");
 
 					/*Perform QC if the instruction is QC-based AND we are a successful extract*/
 					if (inst.isQcCheck()) {
-						if (ErrorLogger.success()) {//QC - Subsection #1 of 1
+						if (overallSuccess) {//QC - Subsection #1 of 1
 							ErrorLogger.logInfo("Extractor", "qcCheck detected");
 							ErrorLogger.logInfo("Extractor", "Entering into the QC Subsection #1 of 1...");
 							jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_QCPROCESSING.getCvName(),"Processing QC Job");
-							performQC(configuration, inst, crop, datasetId, extractDir, mailInterface, extractType);
+							performQC(configuration, inst, crop, datasetName, datasetId, extractDir, mailInterface, extractType);
 							jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_COMPLETED.getCvName(),"QC Job Complete");
 						}
 						//inst.isQcCheck has supressed the email output, we wnat to *unsupress* it if there was a problem with file generation
@@ -651,13 +651,14 @@ public class GobiiExtractor {
 	 * @param configSettings configuration object for system
 	 * @param inst instruction being processed
 	 * @param crop name of crop being processed (unused
+	 * @param datasetName Name of the dataset corresponding to the dataset ID.
 	 * @param datasetId ID of the dataset being used
 	 * @param extractDir directory of the extract to be called on the load
 	 * @param mailInterface the email interface object
 	 * @param extractType type of extract being performed
      * @throws Exception when an exception has occurred (all of them)
      */
-    private static void performQC(ConfigSettings configSettings, GobiiExtractorInstruction inst, String crop, Integer datasetId, String extractDir, MailInterface mailInterface, String extractType) throws Exception {
+    private static void performQC(ConfigSettings configSettings, GobiiExtractorInstruction inst, String crop, String datasetName, Integer datasetId, String extractDir, MailInterface mailInterface, String extractType) throws Exception {
         if (configSettings.getGlobalServer(ServerType.KDC).getHost() == null) {
             ErrorLogger.logInfo("QC", "Unable to continue QC with the KDC host name being null");
             return;
@@ -721,8 +722,8 @@ public class GobiiExtractor {
 					ProcessMessage qcStartPm = new ProcessMessage();
 					qcStartPm.setUser(inst.getContactEmail());
 					qcStartPm.setSubject("new QC Job #"+qcJobID);
-					qcStartPm.addIdentifier("QC Job Identifier", String.valueOf(qcJobID), String.valueOf(qcJobID));
-					qcStartPm.addIdentifier("Dataset Identifier", String.valueOf(datasetId), String.valueOf(qcJobID));
+					qcStartPm.addIdentifier("QC Job Identifier", "", String.valueOf(qcJobID));
+					qcStartPm.addIdentifier("Dataset Identifier", datasetName, String.valueOf(datasetId));
 					qcStartPm.addPath("Output Extraction/QC Directory", extractDir);
 					qcStartPm.setBody("new QC Job #"+qcJobID,"QC",0,"",true,"");
 					//mailInterface.send(qcStartPm);
@@ -767,8 +768,8 @@ public class GobiiExtractor {
 					ProcessMessage qcStatusPm = new ProcessMessage();
 						qcStatusPm.setUser(inst.getContactEmail());
 						qcStatusPm.setSubject(new StringBuilder("QC Job #").append(qcJobID).append(" status").toString());
-						qcStatusPm.addIdentifier("QC Job Identifier", String.valueOf(qcJobID), String.valueOf(qcJobID));
-						qcStatusPm.addIdentifier("Dataset Identifier", String.valueOf(datasetId), String.valueOf(qcJobID));
+						qcStatusPm.addIdentifier("QC Job Identifier", "", String.valueOf(qcJobID));
+						qcStatusPm.addIdentifier("Dataset Identifier", datasetName, String.valueOf(datasetId));
 
 						int qcDuration=0;
 					if (jsonPayload == null) {
@@ -935,12 +936,13 @@ public class GobiiExtractor {
 	/**
 	 * Turns a list into a newline delimited file.
      *
-	 * @param tmpDir File path - will append 'markerList.tmp' and return
+	 * @param tmpDir File path - will append the file name and return
 	 * @param markerList List to go into file, newline delimited
+	 * @param tmpFilename filename to use, will append ".list" after name as filetype, and use with directory for location of output.
 	 * @return location of new file.
 	 */
-	private static String createTempFileForMarkerList(String tmpDir,List<String> markerList,String tmpFilename){
-		String tempFileLocation=tmpDir+tmpFilename+".tmp";
+	private static String createTempListFile(String tmpDir, List<String> markerList, String tmpFilename){
+		String tempFileLocation=tmpDir+tmpFilename+".list";
 		try {
 			FileWriter f = new FileWriter(tempFileLocation);
 			for(String marker:markerList){
@@ -954,8 +956,8 @@ public class GobiiExtractor {
 		return tempFileLocation;
 	}
 
-	private static String createTempFileForMarkerList(String tmpDir,List<String> markerList){
-		return createTempFileForMarkerList(tmpDir,markerList,"markerList");
+	private static String createTempListFile(String tmpDir, List<String> markerList){
+		return createTempListFile(tmpDir,markerList,"markerList");
 	}
 
 

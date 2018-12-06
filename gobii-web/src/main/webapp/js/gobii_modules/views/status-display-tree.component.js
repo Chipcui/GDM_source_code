@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extractor-filter", "../store/reducers", "@ngrx/store"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/type-extractor-filter", "../store/reducers", "@ngrx/store", "../services/core/view-id-generator-service", "../services/core/type-control"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/re
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extractor_filter_1, fromRoot, store_1, StatusDisplayTreeComponent;
+    var core_1, type_extractor_filter_1, fromRoot, store_1, view_id_generator_service_1, type_control_1, StatusDisplayTreeComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -24,12 +24,20 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/re
             },
             function (store_1_1) {
                 store_1 = store_1_1;
+            },
+            function (view_id_generator_service_1_1) {
+                view_id_generator_service_1 = view_id_generator_service_1_1;
+            },
+            function (type_control_1_1) {
+                type_control_1 = type_control_1_1;
             }
         ],
         execute: function () {
             StatusDisplayTreeComponent = (function () {
-                function StatusDisplayTreeComponent(store) {
+                function StatusDisplayTreeComponent(store, viewIdGeneratorService) {
                     this.store = store;
+                    this.viewIdGeneratorService = viewIdGeneratorService;
+                    this.typeControl = type_control_1.TypeControl;
                     this.containerCollapseThreshold = 10;
                     this.onAddMessage = new core_1.EventEmitter();
                     this.onTreeReady = new core_1.EventEmitter();
@@ -171,9 +179,10 @@ System.register(["@angular/core", "../model/type-extractor-filter", "../store/re
                         selector: 'status-display-tree',
                         inputs: ['fileItemEventChange', 'gobiiExtractFilterTypeEvent'],
                         outputs: ['onItemSelected', 'onItemChecked', 'onAddMessage', 'onTreeReady'],
-                        template: "\n        <p-tree [value]=\"gobiiTreeNodesFromStore$ | async\"\n                selectionMode=\"checkbox\"\n                propagateSelectionUp=\"false\"\n                propagateSelectionDown=\"false\"\n                [selection]=\"gobiiSelectedNodesFromStore$ | async\"\n                (onNodeUnselect)=\"nodeUnselect($event)\"\n                (onNodeSelect)=\"nodeSelect($event)\"\n                (onNodeExpand)=\"nodeExpand($event)\"\n                (onNodeCollapse)=\"nodeCollapse($event)\"\n                [style]=\"{'width':'100%'}\"\n                styleClass=\"criteria-tree\"></p-tree>\n        <!--<p-tree [value]=\"demoTreeNodes\" selectionMode=\"checkbox\" [(selection)]=\"selectedDemoNodes\"></p-tree>-->\n        <!--<div>Selected Nodes: <span *ngFor=\"let file of selectedFiles2\">{{file.label}} </span></div>-->\n    "
+                        template: "\n        <p-tree [value]=\"gobiiTreeNodesFromStore$ | async\"\n                selectionMode=\"checkbox\"\n                propagateSelectionUp=\"false\"\n                propagateSelectionDown=\"false\"\n                [selection]=\"gobiiSelectedNodesFromStore$ | async\"\n                (onNodeUnselect)=\"nodeUnselect($event)\"\n                (onNodeSelect)=\"nodeSelect($event)\"\n                (onNodeExpand)=\"nodeExpand($event)\"\n                (onNodeCollapse)=\"nodeCollapse($event)\"\n                [style]=\"{'width':'100%'}\"\n                styleClass=\"criteria-tree\"\n                [id]=\"viewIdGeneratorService.makeStandardId(typeControl.CRITERIA_TREE)\"></p-tree>\n        <!--<p-tree [value]=\"demoTreeNodes\" selectionMode=\"checkbox\" [(selection)]=\"selectedDemoNodes\"></p-tree>-->\n        <!--<div>Selected Nodes: <span *ngFor=\"let file of selectedFiles2\">{{file.label}} </span></div>-->\n    "
                     }),
-                    __metadata("design:paramtypes", [store_1.Store])
+                    __metadata("design:paramtypes", [store_1.Store,
+                        view_id_generator_service_1.ViewIdGeneratorService])
                 ], StatusDisplayTreeComponent);
                 return StatusDisplayTreeComponent;
             }());

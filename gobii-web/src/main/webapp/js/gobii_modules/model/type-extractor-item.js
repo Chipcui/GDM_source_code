@@ -16,12 +16,13 @@ System.register([], function (exports_1, context_1) {
                 ExtractorItemType[ExtractorItemType["CROP_TYPE"] = 7] = "CROP_TYPE";
                 ExtractorItemType[ExtractorItemType["JOB_ID"] = 8] = "JOB_ID";
                 ExtractorItemType[ExtractorItemType["SAMPLE_LIST_TYPE"] = 9] = "SAMPLE_LIST_TYPE";
-                ExtractorItemType[ExtractorItemType["TREE_STRUCTURE"] = 10] = "TREE_STRUCTURE";
-                ExtractorItemType[ExtractorItemType["VERTEX"] = 11] = "VERTEX";
-                ExtractorItemType[ExtractorItemType["VERTEX_VALUE"] = 12] = "VERTEX_VALUE";
-                ExtractorItemType[ExtractorItemType["ITEM_COUNT"] = 13] = "ITEM_COUNT";
-                ExtractorItemType[ExtractorItemType["MARKER_RESULT_FILE"] = 14] = "MARKER_RESULT_FILE";
-                ExtractorItemType[ExtractorItemType["SAMPLE_RESULT_FILE"] = 15] = "SAMPLE_RESULT_FILE";
+                ExtractorItemType[ExtractorItemType["LABEL"] = 10] = "LABEL";
+                ExtractorItemType[ExtractorItemType["TREE_STRUCTURE"] = 11] = "TREE_STRUCTURE";
+                ExtractorItemType[ExtractorItemType["VERTEX"] = 12] = "VERTEX";
+                ExtractorItemType[ExtractorItemType["VERTEX_VALUE"] = 13] = "VERTEX_VALUE";
+                ExtractorItemType[ExtractorItemType["ITEM_COUNT"] = 14] = "ITEM_COUNT";
+                ExtractorItemType[ExtractorItemType["MARKER_RESULT_FILE"] = 15] = "MARKER_RESULT_FILE";
+                ExtractorItemType[ExtractorItemType["SAMPLE_RESULT_FILE"] = 16] = "SAMPLE_RESULT_FILE";
             })(ExtractorItemType || (ExtractorItemType = {}));
             exports_1("ExtractorItemType", ExtractorItemType);
         }

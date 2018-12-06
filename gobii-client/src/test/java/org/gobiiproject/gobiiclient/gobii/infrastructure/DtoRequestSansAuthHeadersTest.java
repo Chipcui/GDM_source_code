@@ -9,7 +9,7 @@ import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
 
-import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
+import org.gobiiproject.gobiiapimodel.types.GobiiHttpHeaderNames;
 import org.junit.Assert;
 import org.junit.Test;
 

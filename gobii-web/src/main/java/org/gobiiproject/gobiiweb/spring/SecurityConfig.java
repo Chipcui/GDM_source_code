@@ -63,10 +63,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         if (!CONFIG_SETTINGS.isAuthenticateBrapi()) {
             String allBrapiUrls = GobiiControllerType.BRAPI.getControllerPath() + "**";
-            String gobiiFIlesUrl = RestResourceId.GOBII_FILES.getRequestUrl(null, GobiiControllerType.GOBII.getControllerPath()) + "/**";;
+            String gobiiFIlesUrl = RestResourceId.GOBII_FILES.getRequestUrl(null, GobiiControllerType.GOBII.getControllerPath()) + "/**";
+            ;
             web.ignoring().antMatchers(allBrapiUrls, gobiiFIlesUrl);
 
         }
+
+        // the calling the calls call does not require authentication
+        String brapiCallsUrl = RestResourceId.BRAPI_CALLS.getRequestUrl(null, GobiiControllerType.BRAPI.getControllerPath());
+        String gobiiFIlesUrl = RestResourceId.GOBII_FILES.getRequestUrl(null, GobiiControllerType.GOBII.getControllerPath()) + "/**";
+
+        web.ignoring()
+                .antMatchers(brapiCallsUrl);
+//                .antMatchers(gobiiFIlesUrl);
     }
 
 

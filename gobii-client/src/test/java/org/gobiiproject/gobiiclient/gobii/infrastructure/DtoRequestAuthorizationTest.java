@@ -16,7 +16,7 @@ import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
 import org.gobiiproject.gobiimodel.config.RestResourceId;
 
 import org.gobiiproject.gobiiapimodel.payload.HeaderAuth;
-import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
+import org.gobiiproject.gobiiapimodel.types.GobiiHttpHeaderNames;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;

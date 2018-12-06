@@ -33,13 +33,13 @@ public class ListStatementDnaSampleNamesByList implements ListStatement {
 
         // parse array into csv
 
-        String parsedNameList = ListStatementUtil.generateParsedNameList(nameArray);
+        String parsedNameList = ListStatementUtil.generateParsedNameListForDnaSamples(nameArray);
 
         ParameterizedSql parameterizedSql =
                 new ParameterizedSql("select dnasample_id, name " +
                         "from dnasample " +
-                        "where name in (" + PARAM_NAME_NAME_LIST + ") " +
-                        "and project_id::varchar = ?",
+                        "where project_id::varchar = ?" +
+                        "and ("+ PARAM_NAME_NAME_LIST+ ")",
                         new HashMap<String, String>(){
                             {
                                 put(PARAM_NAME_NAME_LIST, null);

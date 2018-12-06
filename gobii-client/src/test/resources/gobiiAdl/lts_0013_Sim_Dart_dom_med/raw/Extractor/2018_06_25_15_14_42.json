@@ -1,0 +1,29 @@
+[ {
+  "dataSetExtracts" : [ {
+    "gobiiFileType" : "FLAPJACK",
+    "accolate" : false,
+    "gobiiJobStatus" : null,
+    "extractDestinationDirectory" : "/data/gobii_bundle/crops/dev/extractor/output/daw279/flapjack/whole_dataset/2018_06_25_15_14_42",
+    "gobiiExtractFilterType" : "WHOLE_DATASET",
+    "markerList" : null,
+    "sampleList" : null,
+    "listFileName" : null,
+    "gobiiDatasetType" : null,
+    "principleInvestigator" : null,
+    "project" : null,
+    "dataSet" : {
+      "id" : 77,
+      "name" : "Deb_Sim_Proj2_Exp1_Dart_dom_DS2"
+    },
+    "platforms" : [ ],
+    "gobiiSampleListType" : null,
+    "markerGroups" : null,
+    "extractedFiles" : [ ],
+    "logMessage" : null
+  } ],
+  "mapsetIds" : [ ],
+  "contactId" : 19,
+  "contactEmail" : "daw279@cornell.edu",
+  "gobiiCropType" : "dev",
+  "qcCheck" : false
+} ]

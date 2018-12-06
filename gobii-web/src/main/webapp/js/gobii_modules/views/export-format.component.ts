@@ -9,6 +9,8 @@ import * as fromRoot from '../store/reducers';
 import {Store} from "@ngrx/store";
 import {NameIdFileItemService} from "../services/core/nameid-file-item-service";
 import {Observable} from "rxjs/Observable";
+import {EntityFileItemService} from "../services/core/entity-file-item-service";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
 
 
 @Component({
@@ -30,7 +32,8 @@ import {Observable} from "rxjs/Observable";
                             [ngModel]="(fileFormat$  | async).getItemId()"
                             name="fileFormat"
                             value="HAPMAP"
-                            label="Hapmap">
+                            label="Hapmap"
+                            [id]="viewIdGeneratorService.makeExportFormatRadioButtonId(gobiiExtractFormat.HAPMAP)">
                     </p-radioButton>
                 </div>
                 <div class="ui-g-12" style="height:30px">
@@ -39,7 +42,8 @@ import {Observable} from "rxjs/Observable";
                             [ngModel]="(fileFormat$  | async).getItemId()"
                             name="fileFormat"
                             label="Flapjack"
-                            value="FLAPJACK">
+                            value="FLAPJACK"
+                            [id]="viewIdGeneratorService.makeExportFormatRadioButtonId(gobiiExtractFormat.FLAPJACK)">
                     </p-radioButton>
                 </div>
                 <div class="ui-g-12" style="height:30px">
@@ -48,7 +52,8 @@ import {Observable} from "rxjs/Observable";
                             [ngModel]="(fileFormat$  | async).getItemId()"
                             name="fileFormat"
                             label="Sample Metadata"
-                            value="META_DATA_ONLY">
+                            value="META_DATA_ONLY"
+                            [id]="viewIdGeneratorService.makeExportFormatRadioButtonId(gobiiExtractFormat.META_DATA_ONLY)">
                     </p-radioButton>
                 </div>
             </div>
@@ -71,7 +76,8 @@ import {Observable} from "rxjs/Observable";
 export class ExportFormatComponent implements OnInit, OnChanges {
 
     constructor(private store: Store<fromRoot.State>,
-                private fileItemService: NameIdFileItemService) {
+                private fileItemService: NameIdFileItemService,
+                public viewIdGeneratorService: ViewIdGeneratorService) {
 
 
     } // ctor
@@ -82,6 +88,8 @@ export class ExportFormatComponent implements OnInit, OnChanges {
 
     }
 
+
+    public gobiiExtractFormat: any = GobiiExtractFormat;
 
     @Input()
     public fileFormat$: Observable<GobiiFileItem>;
