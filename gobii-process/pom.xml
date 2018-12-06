@@ -234,6 +234,23 @@
 
                     </execution>
 
+                    <execution>
+                        <configuration>
+                            <finalName>ConfigSettingReader</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>org.gobiiproject.gobiimodel.config.ConfigSettingsReader</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                        <id>make-reader</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+
 
                 </executions>
             </plugin>
