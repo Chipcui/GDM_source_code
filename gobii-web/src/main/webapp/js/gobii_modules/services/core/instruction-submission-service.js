@@ -220,6 +220,11 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                     } //observer lambda
                     ); // Observable.crate
                 }; // function()
+                InstructionSubmissionService.prototype.expurgateZero = function (nameId) {
+                    if (nameId && nameId.id === "0") {
+                        nameId.id = undefined;
+                    }
+                };
                 InstructionSubmissionService.prototype.submit = function (gobiiExtractFilterType) {
                     var _this = this;
                     return Observable_1.Observable.create(function (observer) {
@@ -297,11 +302,13 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                                     && item.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR;
                             });
                             var principleInvestigator = principleInvestigatorFileItem != null ? new name_id_1.NameId(principleInvestigatorFileItem.getItemId(), null, principleInvestigatorFileItem.getItemName(), type_entity_1.EntityType.CONTACT, null, null) : null;
+                            _this.expurgateZero(principleInvestigator);
                             // ******** PROJECT
                             var projectFileItem = fileItems.find(function (item) {
                                 return item.getEntityType() === type_entity_1.EntityType.PROJECT;
                             });
                             var project = projectFileItem != null ? new name_id_1.NameId(projectFileItem.getItemId(), null, projectFileItem.getItemName(), type_entity_1.EntityType.PROJECT, null, null) : null;
+                            _this.expurgateZero(project);
                             // ******** PLATFORM
                             var platformFileItems = fileItems.filter(function (item) {
                                 return item.getEntityType() === type_entity_1.EntityType.PLATFORM;

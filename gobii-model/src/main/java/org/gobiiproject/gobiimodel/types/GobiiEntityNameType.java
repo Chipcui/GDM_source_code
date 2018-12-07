@@ -25,5 +25,6 @@ public enum GobiiEntityNameType {
     VENDOR_PROTOCOL,
     DNASAMPLE,
     LINKAGE_GROUP,
-    DNARUN
+    DNARUN,
+    GERMPLASM
 }

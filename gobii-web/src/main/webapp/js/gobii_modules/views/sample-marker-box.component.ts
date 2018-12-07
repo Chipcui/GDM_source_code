@@ -13,6 +13,7 @@ import {Observable} from "rxjs/Observable";
 import {StatusLevel} from "../model/type-status-level";
 import * as historyAction from "../store/actions/history-action";
 import {EntityType} from "../model/type-entity";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
 
 
 @Component({
@@ -32,21 +33,24 @@ import {EntityType} from "../model/type-entity";
                         (click)="handleOnClickBrowse($event)"
                         name="listType"
                         value="ITEM_FILE_TYPE"
-                        [(ngModel)]="selectedListType">
+                        [(ngModel)]="selectedListType"
+                        [id]="viewIdGeneratorService.makeMarkerSampleListModeRadioButtonId(makeLabel(ITEM_FILE_TYPE))">
                 </p-radioButton>
                 <label class="the-legend">File&nbsp;</label>
                 <p-radioButton
                         (click)="handleTextBoxChanged($event)"
                         name="listType"
                         value="ITEM_LIST_TYPE"
-                        [(ngModel)]="selectedListType">
+                        [(ngModel)]="selectedListType"
+                        [id]="viewIdGeneratorService.makeMarkerSampleListModeRadioButtonId(makeLabel(ITEM_LIST_TYPE))">
                 </p-radioButton>
                 <label class="the-legend">List&nbsp;</label>
                 <p-radioButton *ngIf="displayMarkerGroupRadio"
                                (click)="handleMarkerGroupChanged($event)"
                                name="listType"
                                value="MARKER_GROUP_TYPE"
-                               [(ngModel)]="selectedListType">
+                               [(ngModel)]="selectedListType"
+                               [id]="viewIdGeneratorService.makeMarkerSampleListModeRadioButtonId(makeLabel(MARKER_GROUP_TYPE))">
                 </p-radioButton>
                 <label *ngIf="displayMarkerGroupRadio"
                        class="the-legend">Marker Groups&nbsp;</label>
@@ -106,13 +110,15 @@ import {EntityType} from "../model/type-entity";
 export class SampleMarkerBoxComponent implements OnInit, OnChanges {
 
     public constructor(private store: Store<fromRoot.State>,
-                       private fileItemService: FileItemService) {
+                       private fileItemService: FileItemService,
+                       public viewIdGeneratorService: ViewIdGeneratorService) {
 
     }
 
     public nameIdFilterParamTypesMarkerGroup: FilterParamNames = FilterParamNames.MARKER_GROUPS;
 
 
+    public readonly extractorItemType: any = ExtractorItemType;
     public readonly ITEM_FILE_TYPE = "ITEM_FILE_TYPE";
     public readonly ITEM_LIST_TYPE = "ITEM_LIST_TYPE";
     public readonly MARKER_GROUP_TYPE = "MARKER_GROUP_TYPE";

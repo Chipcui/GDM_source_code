@@ -1,0 +1,1001 @@
+germplasm_specie	germplasm_name	external_code	germplasm_subsp	germplasm_type	dnasample_name	dnasample_num	dnasample_platename	dnasample_ref_sample	dnasample_trial_name	dnarun_name
+Triticum zhukovskyi	sim_zhukovskyi:520515	sim_GID_zhukovskyi:520515	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:520515	num_0	barcode_0.403041758593	REF	trial_23	sim_run_zhukovskyi:520515
+Triticum zhukovskyi	sim_zhukovskyi:203761	sim_GID_zhukovskyi:203761		F1_hybrid	sim_sample_zhukovskyi:203761	num_1	barcode_0.613404475299	REF	trial_23	sim_run_zhukovskyi:203761
+Triticum zhukovskyi	sim_zhukovskyi:69028	sim_GID_zhukovskyi:69028	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:69028	num_2	barcode_0.486259154139	REF	trial_24	sim_run_zhukovskyi:69028
+Triticum zhukovskyi	sim_zhukovskyi:616644	sim_GID_zhukovskyi:616644	Unknown		sim_sample_zhukovskyi:616644	num_3	barcode_0.801141024825		trial_23	sim_run_zhukovskyi:616644
+Triticum zhukovskyi	sim_zhukovskyi:937960	sim_GID_zhukovskyi:937960	Undetermined	BC1F1	sim_sample_zhukovskyi:937960	num_4	barcode_0.44347211065		trial_25	sim_run_zhukovskyi:937960
+Triticum zhukovskyi	sim_zhukovskyi:738238	sim_GID_zhukovskyi:738238	Undetermined	Inbred_line	sim_sample_zhukovskyi:738238	num_5	barcode_0.32046004018		trial_24	sim_run_zhukovskyi:738238
+Triticum zhukovskyi	sim_zhukovskyi:788155	sim_GID_zhukovskyi:788155	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:788155	num_6	barcode_0.167863741485	REF	trial_23	sim_run_zhukovskyi:788155
+Triticum zhukovskyi	sim_zhukovskyi:896598	sim_GID_zhukovskyi:896598	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:896598	num_7	barcode_0.610673703185	REF	trial_25	sim_run_zhukovskyi:896598
+Triticum zhukovskyi	sim_zhukovskyi:318174	sim_GID_zhukovskyi:318174	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:318174	num_8	barcode_0.894823873675	REF	trial_25	sim_run_zhukovskyi:318174
+Triticum zhukovskyi	sim_zhukovskyi:634953	sim_GID_zhukovskyi:634953	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:634953	num_9	barcode_0.119941970812	REF	trial_23	sim_run_zhukovskyi:634953
+Triticum zhukovskyi	sim_zhukovskyi:177259	sim_GID_zhukovskyi:177259	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:177259	num_10	barcode_0.0796796173148	REF	trial_23	sim_run_zhukovskyi:177259
+Triticum zhukovskyi	sim_zhukovskyi:317391	sim_GID_zhukovskyi:317391	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:317391	num_11	barcode_0.0829765301183	REF	trial_24	sim_run_zhukovskyi:317391
+Triticum zhukovskyi	sim_zhukovskyi:950810	sim_GID_zhukovskyi:950810	Unknown	Inbred_line	sim_sample_zhukovskyi:950810	num_12	barcode_0.785547802445	REF	trial_24	sim_run_zhukovskyi:950810
+Triticum zhukovskyi	sim_zhukovskyi:412677	sim_GID_zhukovskyi:412677	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:412677	num_13	barcode_0.695844300508		trial_24	sim_run_zhukovskyi:412677
+Triticum zhukovskyi	sim_zhukovskyi:494329	sim_GID_zhukovskyi:494329	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:494329	num_14	barcode_0.546593552319	REF	trial_25	sim_run_zhukovskyi:494329
+Triticum zhukovskyi	sim_zhukovskyi:401266	sim_GID_zhukovskyi:401266	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:401266	num_15	barcode_0.273279296141	REF	trial_25	sim_run_zhukovskyi:401266
+Triticum zhukovskyi	sim_zhukovskyi:605295	sim_GID_zhukovskyi:605295	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:605295	num_16	barcode_0.585971851509		trial_24	sim_run_zhukovskyi:605295
+Triticum zhukovskyi	sim_zhukovskyi:236508	sim_GID_zhukovskyi:236508	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:236508	num_17	barcode_0.795693156789		trial_24	sim_run_zhukovskyi:236508
+Triticum zhukovskyi	sim_zhukovskyi:14035	sim_GID_zhukovskyi:14035	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:14035	num_18	barcode_0.18273299205	REF	trial_23	sim_run_zhukovskyi:14035
+Triticum zhukovskyi	sim_zhukovskyi:487171	sim_GID_zhukovskyi:487171	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:487171	num_19	barcode_0.791403879245		trial_24	sim_run_zhukovskyi:487171
+Triticum zhukovskyi	sim_zhukovskyi:369766	sim_GID_zhukovskyi:369766	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:369766	num_20	barcode_0.176250189868	REF	trial_23	sim_run_zhukovskyi:369766
+Triticum zhukovskyi	sim_zhukovskyi:829262	sim_GID_zhukovskyi:829262	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:829262	num_21	barcode_0.316824016721	REF	trial_23	sim_run_zhukovskyi:829262
+Triticum zhukovskyi	sim_zhukovskyi:201497	sim_GID_zhukovskyi:201497	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:201497	num_22	barcode_0.456170181071	REF	trial_24	sim_run_zhukovskyi:201497
+Triticum zhukovskyi	sim_zhukovskyi:797342	sim_GID_zhukovskyi:797342	Unknown	F2	sim_sample_zhukovskyi:797342	num_23	barcode_0.163079189103	REF	trial_25	sim_run_zhukovskyi:797342
+Triticum zhukovskyi	sim_zhukovskyi:285284	sim_GID_zhukovskyi:285284	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:285284	num_24	barcode_0.704351878582		trial_25	sim_run_zhukovskyi:285284
+Triticum zhukovskyi	sim_zhukovskyi:919397	sim_GID_zhukovskyi:919397	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:919397	num_25	barcode_0.135558576342	REF	trial_25	sim_run_zhukovskyi:919397
+Triticum zhukovskyi	sim_zhukovskyi:176283	sim_GID_zhukovskyi:176283	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:176283	num_26	barcode_0.384966220176	REF	trial_23	sim_run_zhukovskyi:176283
+Triticum zhukovskyi	sim_zhukovskyi:316404	sim_GID_zhukovskyi:316404	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:316404	num_27	barcode_0.439581066393		trial_24	sim_run_zhukovskyi:316404
+Triticum zhukovskyi	sim_zhukovskyi:426349	sim_GID_zhukovskyi:426349	Unknown	F1_hybrid	sim_sample_zhukovskyi:426349	num_28	barcode_0.732118804259		trial_24	sim_run_zhukovskyi:426349
+Triticum zhukovskyi	sim_zhukovskyi:706413	sim_GID_zhukovskyi:706413	Undetermined	F2	sim_sample_zhukovskyi:706413	num_29	barcode_0.259971523062		trial_25	sim_run_zhukovskyi:706413
+Triticum zhukovskyi	sim_zhukovskyi:907432	sim_GID_zhukovskyi:907432	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:907432	num_30	barcode_0.620006636085		trial_24	sim_run_zhukovskyi:907432
+Triticum zhukovskyi	sim_zhukovskyi:624245	sim_GID_zhukovskyi:624245	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:624245	num_31	barcode_0.914358504191	REF	trial_23	sim_run_zhukovskyi:624245
+Triticum zhukovskyi	sim_zhukovskyi:641750	sim_GID_zhukovskyi:641750	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:641750	num_32	barcode_0.991031345543		trial_23	sim_run_zhukovskyi:641750
+Triticum zhukovskyi	sim_zhukovskyi:15113	sim_GID_zhukovskyi:15113	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:15113	num_33	barcode_0.832760223187		trial_24	sim_run_zhukovskyi:15113
+Triticum zhukovskyi	sim_zhukovskyi:447750	sim_GID_zhukovskyi:447750	Undetermined	BC1F1	sim_sample_zhukovskyi:447750	num_34	barcode_0.928442355081	REF	trial_25	sim_run_zhukovskyi:447750
+Triticum zhukovskyi	sim_zhukovskyi:995198	sim_GID_zhukovskyi:995198	Undetermined spp.		sim_sample_zhukovskyi:995198	num_35	barcode_0.191278001532		trial_25	sim_run_zhukovskyi:995198
+Triticum zhukovskyi	sim_zhukovskyi:901572	sim_GID_zhukovskyi:901572	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:901572	num_36	barcode_0.982647595779		trial_24	sim_run_zhukovskyi:901572
+Triticum zhukovskyi	sim_zhukovskyi:782366	sim_GID_zhukovskyi:782366	Unknown	F1_hybrid	sim_sample_zhukovskyi:782366	num_37	barcode_0.858897166758	REF	trial_25	sim_run_zhukovskyi:782366
+Triticum zhukovskyi	sim_zhukovskyi:281487	sim_GID_zhukovskyi:281487	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:281487	num_38	barcode_0.23913144551		trial_25	sim_run_zhukovskyi:281487
+Triticum zhukovskyi	sim_zhukovskyi:691594	sim_GID_zhukovskyi:691594	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:691594	num_39	barcode_0.556800897156		trial_25	sim_run_zhukovskyi:691594
+Triticum zhukovskyi	sim_zhukovskyi:381514	sim_GID_zhukovskyi:381514	Triticum zhukovskyi		sim_sample_zhukovskyi:381514	num_40	barcode_0.727995487313	REF	trial_23	sim_run_zhukovskyi:381514
+Triticum zhukovskyi	sim_zhukovskyi:95144	sim_GID_zhukovskyi:95144	Undetermined	F1_hybrid	sim_sample_zhukovskyi:95144	num_41	barcode_0.199522958825	REF	trial_24	sim_run_zhukovskyi:95144
+Triticum zhukovskyi	sim_zhukovskyi:919731	sim_GID_zhukovskyi:919731	Undetermined	BC1F1	sim_sample_zhukovskyi:919731	num_42	barcode_0.96453025669		trial_24	sim_run_zhukovskyi:919731
+Triticum zhukovskyi	sim_zhukovskyi:293090	sim_GID_zhukovskyi:293090	Zea diploperennis	F2	sim_sample_zhukovskyi:293090	num_43	barcode_0.0674960818531	REF	trial_24	sim_run_zhukovskyi:293090
+Triticum zhukovskyi	sim_zhukovskyi:352010	sim_GID_zhukovskyi:352010		F1_hybrid	sim_sample_zhukovskyi:352010	num_44	barcode_0.00297685211334		trial_25	sim_run_zhukovskyi:352010
+Triticum zhukovskyi	sim_zhukovskyi:252429	sim_GID_zhukovskyi:252429	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:252429	num_45	barcode_0.67043907307	REF	trial_23	sim_run_zhukovskyi:252429
+Triticum zhukovskyi	sim_zhukovskyi:35664	sim_GID_zhukovskyi:35664	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:35664	num_46	barcode_0.959192397868	REF	trial_25	sim_run_zhukovskyi:35664
+Triticum zhukovskyi	sim_zhukovskyi:410484	sim_GID_zhukovskyi:410484	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:410484	num_47	barcode_0.820356869611	REF	trial_23	sim_run_zhukovskyi:410484
+Triticum zhukovskyi	sim_zhukovskyi:788649	sim_GID_zhukovskyi:788649	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:788649	num_48	barcode_0.896989874537		trial_25	sim_run_zhukovskyi:788649
+Triticum zhukovskyi	sim_zhukovskyi:643852	sim_GID_zhukovskyi:643852	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:643852	num_49	barcode_0.311378847844		trial_25	sim_run_zhukovskyi:643852
+Triticum zhukovskyi	sim_zhukovskyi:739941	sim_GID_zhukovskyi:739941	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:739941	num_50	barcode_0.135921433809		trial_25	sim_run_zhukovskyi:739941
+Triticum zhukovskyi	sim_zhukovskyi:139284	sim_GID_zhukovskyi:139284	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:139284	num_51	barcode_0.0497655203027	REF	trial_25	sim_run_zhukovskyi:139284
+Triticum zhukovskyi	sim_zhukovskyi:452693	sim_GID_zhukovskyi:452693	Unknown	BC1F1	sim_sample_zhukovskyi:452693	num_52	barcode_0.0830671258455		trial_24	sim_run_zhukovskyi:452693
+Triticum zhukovskyi	sim_zhukovskyi:9423	sim_GID_zhukovskyi:9423	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:9423	num_53	barcode_0.396823891265		trial_25	sim_run_zhukovskyi:9423
+Triticum zhukovskyi	sim_zhukovskyi:515798	sim_GID_zhukovskyi:515798	Undetermined	BC1F1	sim_sample_zhukovskyi:515798	num_54	barcode_0.480335670613		trial_24	sim_run_zhukovskyi:515798
+Triticum zhukovskyi	sim_zhukovskyi:228783	sim_GID_zhukovskyi:228783	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:228783	num_55	barcode_0.776493420848	REF	trial_25	sim_run_zhukovskyi:228783
+Triticum zhukovskyi	sim_zhukovskyi:620363	sim_GID_zhukovskyi:620363		F1_hybrid	sim_sample_zhukovskyi:620363	num_56	barcode_0.340222964419	REF	trial_23	sim_run_zhukovskyi:620363
+Triticum zhukovskyi	sim_zhukovskyi:870623	sim_GID_zhukovskyi:870623	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:870623	num_57	barcode_0.209585092406	REF	trial_23	sim_run_zhukovskyi:870623
+Triticum zhukovskyi	sim_zhukovskyi:20193	sim_GID_zhukovskyi:20193	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:20193	num_58	barcode_0.476413641158		trial_24	sim_run_zhukovskyi:20193
+Triticum zhukovskyi	sim_zhukovskyi:10374	sim_GID_zhukovskyi:10374	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:10374	num_59	barcode_0.262188873716		trial_23	sim_run_zhukovskyi:10374
+Triticum zhukovskyi	sim_zhukovskyi:137878	sim_GID_zhukovskyi:137878	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:137878	num_60	barcode_0.177811925459		trial_23	sim_run_zhukovskyi:137878
+Triticum zhukovskyi	sim_zhukovskyi:308791	sim_GID_zhukovskyi:308791	Undetermined	F1_hybrid	sim_sample_zhukovskyi:308791	num_61	barcode_0.15945937399		trial_23	sim_run_zhukovskyi:308791
+Triticum zhukovskyi	sim_zhukovskyi:573067	sim_GID_zhukovskyi:573067	Triticum vavilovii var. vavilovii		sim_sample_zhukovskyi:573067	num_62	barcode_0.394560308309	REF	trial_24	sim_run_zhukovskyi:573067
+Triticum zhukovskyi	sim_zhukovskyi:315465	sim_GID_zhukovskyi:315465	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:315465	num_63	barcode_0.390376843841		trial_24	sim_run_zhukovskyi:315465
+Triticum zhukovskyi	sim_zhukovskyi:139486	sim_GID_zhukovskyi:139486	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:139486	num_64	barcode_0.740028900199	REF	trial_24	sim_run_zhukovskyi:139486
+Triticum zhukovskyi	sim_zhukovskyi:379818	sim_GID_zhukovskyi:379818	Zea mays subsp. mays		sim_sample_zhukovskyi:379818	num_65	barcode_0.292731047136		trial_25	sim_run_zhukovskyi:379818
+Triticum zhukovskyi	sim_zhukovskyi:161585	sim_GID_zhukovskyi:161585	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:161585	num_66	barcode_0.442629677988		trial_23	sim_run_zhukovskyi:161585
+Triticum zhukovskyi	sim_zhukovskyi:896915	sim_GID_zhukovskyi:896915	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:896915	num_67	barcode_0.524531405709		trial_23	sim_run_zhukovskyi:896915
+Triticum zhukovskyi	sim_zhukovskyi:3510	sim_GID_zhukovskyi:3510	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:3510	num_68	barcode_0.274820705818	REF	trial_24	sim_run_zhukovskyi:3510
+Triticum zhukovskyi	sim_zhukovskyi:930854	sim_GID_zhukovskyi:930854	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:930854	num_69	barcode_0.995545330697		trial_24	sim_run_zhukovskyi:930854
+Triticum zhukovskyi	sim_zhukovskyi:671629	sim_GID_zhukovskyi:671629	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:671629	num_70	barcode_0.0888806024877	REF	trial_23	sim_run_zhukovskyi:671629
+Triticum zhukovskyi	sim_zhukovskyi:548063	sim_GID_zhukovskyi:548063	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:548063	num_71	barcode_0.408939994289		trial_25	sim_run_zhukovskyi:548063
+Triticum zhukovskyi	sim_zhukovskyi:238886	sim_GID_zhukovskyi:238886	Unknown		sim_sample_zhukovskyi:238886	num_72	barcode_0.485711846193	REF	trial_24	sim_run_zhukovskyi:238886
+Triticum zhukovskyi	sim_zhukovskyi:75014	sim_GID_zhukovskyi:75014	Unknown	F2	sim_sample_zhukovskyi:75014	num_73	barcode_0.668238376987		trial_23	sim_run_zhukovskyi:75014
+Triticum zhukovskyi	sim_zhukovskyi:505081	sim_GID_zhukovskyi:505081	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:505081	num_74	barcode_0.296248250409	REF	trial_25	sim_run_zhukovskyi:505081
+Triticum zhukovskyi	sim_zhukovskyi:64566	sim_GID_zhukovskyi:64566	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:64566	num_75	barcode_0.0830215896259		trial_24	sim_run_zhukovskyi:64566
+Triticum zhukovskyi	sim_zhukovskyi:335653	sim_GID_zhukovskyi:335653	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:335653	num_76	barcode_0.594997893867		trial_25	sim_run_zhukovskyi:335653
+Triticum zhukovskyi	sim_zhukovskyi:625557	sim_GID_zhukovskyi:625557	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:625557	num_77	barcode_0.431052080982		trial_23	sim_run_zhukovskyi:625557
+Triticum zhukovskyi	sim_zhukovskyi:971582	sim_GID_zhukovskyi:971582	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:971582	num_78	barcode_0.91530134238		trial_23	sim_run_zhukovskyi:971582
+Triticum zhukovskyi	sim_zhukovskyi:297460	sim_GID_zhukovskyi:297460	Unknown		sim_sample_zhukovskyi:297460	num_79	barcode_0.131032147731	REF	trial_24	sim_run_zhukovskyi:297460
+Triticum zhukovskyi	sim_zhukovskyi:360245	sim_GID_zhukovskyi:360245	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_zhukovskyi:360245	num_80	barcode_0.970236008743	REF	trial_23	sim_run_zhukovskyi:360245
+Triticum zhukovskyi	sim_zhukovskyi:541010	sim_GID_zhukovskyi:541010	Triticum urartu		sim_sample_zhukovskyi:541010	num_81	barcode_0.340845082201		trial_25	sim_run_zhukovskyi:541010
+Triticum zhukovskyi	sim_zhukovskyi:403993	sim_GID_zhukovskyi:403993	Triticum urartu	BC1F1	sim_sample_zhukovskyi:403993	num_82	barcode_0.809773842482	REF	trial_25	sim_run_zhukovskyi:403993
+Triticum zhukovskyi	sim_zhukovskyi:230444	sim_GID_zhukovskyi:230444		F1_hybrid	sim_sample_zhukovskyi:230444	num_83	barcode_0.172370944436		trial_23	sim_run_zhukovskyi:230444
+Triticum zhukovskyi	sim_zhukovskyi:657455	sim_GID_zhukovskyi:657455	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:657455	num_84	barcode_0.604619711743		trial_24	sim_run_zhukovskyi:657455
+Triticum zhukovskyi	sim_zhukovskyi:685322	sim_GID_zhukovskyi:685322	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:685322	num_85	barcode_0.305893947868	REF	trial_24	sim_run_zhukovskyi:685322
+Triticum zhukovskyi	sim_zhukovskyi:423993	sim_GID_zhukovskyi:423993	Undetermined	BC1F1	sim_sample_zhukovskyi:423993	num_86	barcode_0.0455145599411	REF	trial_24	sim_run_zhukovskyi:423993
+Triticum zhukovskyi	sim_zhukovskyi:182703	sim_GID_zhukovskyi:182703	Undetermined	F2	sim_sample_zhukovskyi:182703	num_87	barcode_0.74125107387	REF	trial_25	sim_run_zhukovskyi:182703
+Triticum zhukovskyi	sim_zhukovskyi:892185	sim_GID_zhukovskyi:892185	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:892185	num_88	barcode_0.873527806148		trial_24	sim_run_zhukovskyi:892185
+Triticum zhukovskyi	sim_zhukovskyi:872086	sim_GID_zhukovskyi:872086	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:872086	num_89	barcode_0.747393815805		trial_25	sim_run_zhukovskyi:872086
+Triticum zhukovskyi	sim_zhukovskyi:367656	sim_GID_zhukovskyi:367656	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:367656	num_90	barcode_0.571205142462		trial_24	sim_run_zhukovskyi:367656
+Triticum zhukovskyi	sim_zhukovskyi:897372	sim_GID_zhukovskyi:897372	Zea mays subsp. mays	F1_hybrid	sim_sample_zhukovskyi:897372	num_91	barcode_0.758417323381	REF	trial_25	sim_run_zhukovskyi:897372
+Triticum zhukovskyi	sim_zhukovskyi:435942	sim_GID_zhukovskyi:435942	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:435942	num_92	barcode_0.00634376958615	REF	trial_23	sim_run_zhukovskyi:435942
+Triticum zhukovskyi	sim_zhukovskyi:337885	sim_GID_zhukovskyi:337885	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:337885	num_93	barcode_0.773680937744	REF	trial_24	sim_run_zhukovskyi:337885
+Triticum zhukovskyi	sim_zhukovskyi:512146	sim_GID_zhukovskyi:512146	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:512146	num_94	barcode_0.950624691506		trial_24	sim_run_zhukovskyi:512146
+Triticum zhukovskyi	sim_zhukovskyi:184726	sim_GID_zhukovskyi:184726	Triticum urartu		sim_sample_zhukovskyi:184726	num_95	barcode_0.929743821489		trial_23	sim_run_zhukovskyi:184726
+Triticum zhukovskyi	sim_zhukovskyi:362476	sim_GID_zhukovskyi:362476	Triticum urartu		sim_sample_zhukovskyi:362476	num_96	barcode_0.159376248136		trial_24	sim_run_zhukovskyi:362476
+Triticum zhukovskyi	sim_zhukovskyi:179726	sim_GID_zhukovskyi:179726	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:179726	num_97	barcode_0.774735202708	REF	trial_24	sim_run_zhukovskyi:179726
+Triticum zhukovskyi	sim_zhukovskyi:577770	sim_GID_zhukovskyi:577770	Zea mays subsp. mexicana		sim_sample_zhukovskyi:577770	num_98	barcode_0.595045156914		trial_25	sim_run_zhukovskyi:577770
+Triticum zhukovskyi	sim_zhukovskyi:411060	sim_GID_zhukovskyi:411060	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:411060	num_99	barcode_0.875644275492		trial_24	sim_run_zhukovskyi:411060
+Triticum zhukovskyi	sim_zhukovskyi:193460	sim_GID_zhukovskyi:193460	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:193460	num_100	barcode_0.150507435483	REF	trial_23	sim_run_zhukovskyi:193460
+Triticum zhukovskyi	sim_zhukovskyi:941362	sim_GID_zhukovskyi:941362	Triticum turgidum subsp. dicoccon		sim_sample_zhukovskyi:941362	num_101	barcode_0.159235469257	REF	trial_23	sim_run_zhukovskyi:941362
+Triticum zhukovskyi	sim_zhukovskyi:360570	sim_GID_zhukovskyi:360570	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:360570	num_102	barcode_0.847676020894		trial_25	sim_run_zhukovskyi:360570
+Triticum zhukovskyi	sim_zhukovskyi:746147	sim_GID_zhukovskyi:746147	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:746147	num_103	barcode_0.132524167688	REF	trial_24	sim_run_zhukovskyi:746147
+Triticum zhukovskyi	sim_zhukovskyi:224983	sim_GID_zhukovskyi:224983	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:224983	num_104	barcode_0.190550174614		trial_24	sim_run_zhukovskyi:224983
+Triticum zhukovskyi	sim_zhukovskyi:883640	sim_GID_zhukovskyi:883640	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:883640	num_105	barcode_0.541618465396		trial_23	sim_run_zhukovskyi:883640
+Triticum zhukovskyi	sim_zhukovskyi:755488	sim_GID_zhukovskyi:755488	Triticum urartu		sim_sample_zhukovskyi:755488	num_106	barcode_0.513899888493		trial_23	sim_run_zhukovskyi:755488
+Triticum zhukovskyi	sim_zhukovskyi:860603	sim_GID_zhukovskyi:860603	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:860603	num_107	barcode_0.442924707386		trial_23	sim_run_zhukovskyi:860603
+Triticum zhukovskyi	sim_zhukovskyi:296447	sim_GID_zhukovskyi:296447	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:296447	num_108	barcode_0.297263478657		trial_23	sim_run_zhukovskyi:296447
+Triticum zhukovskyi	sim_zhukovskyi:806728	sim_GID_zhukovskyi:806728	Triticum zhukovskyi	Inbred_line	sim_sample_zhukovskyi:806728	num_109	barcode_0.875849722574		trial_25	sim_run_zhukovskyi:806728
+Triticum zhukovskyi	sim_zhukovskyi:156904	sim_GID_zhukovskyi:156904	Zea mays subsp. mexicana		sim_sample_zhukovskyi:156904	num_110	barcode_0.988387665235		trial_25	sim_run_zhukovskyi:156904
+Triticum zhukovskyi	sim_zhukovskyi:262720	sim_GID_zhukovskyi:262720	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:262720	num_111	barcode_0.255167434951		trial_24	sim_run_zhukovskyi:262720
+Triticum zhukovskyi	sim_zhukovskyi:23175	sim_GID_zhukovskyi:23175	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:23175	num_112	barcode_0.228288551354	REF	trial_23	sim_run_zhukovskyi:23175
+Triticum zhukovskyi	sim_zhukovskyi:64527	sim_GID_zhukovskyi:64527	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:64527	num_113	barcode_0.775421824489	REF	trial_25	sim_run_zhukovskyi:64527
+Triticum zhukovskyi	sim_zhukovskyi:896972	sim_GID_zhukovskyi:896972	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:896972	num_114	barcode_0.298461795969		trial_25	sim_run_zhukovskyi:896972
+Triticum zhukovskyi	sim_zhukovskyi:298538	sim_GID_zhukovskyi:298538	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:298538	num_115	barcode_0.105079752257		trial_24	sim_run_zhukovskyi:298538
+Triticum zhukovskyi	sim_zhukovskyi:568959	sim_GID_zhukovskyi:568959		F2	sim_sample_zhukovskyi:568959	num_116	barcode_0.626788287142	REF	trial_24	sim_run_zhukovskyi:568959
+Triticum zhukovskyi	sim_zhukovskyi:967826	sim_GID_zhukovskyi:967826	Unknown	F1_hybrid	sim_sample_zhukovskyi:967826	num_117	barcode_0.309643483294		trial_23	sim_run_zhukovskyi:967826
+Triticum zhukovskyi	sim_zhukovskyi:98551	sim_GID_zhukovskyi:98551	Zea diploperennis	F2	sim_sample_zhukovskyi:98551	num_118	barcode_0.432346886872		trial_24	sim_run_zhukovskyi:98551
+Triticum zhukovskyi	sim_zhukovskyi:278511	sim_GID_zhukovskyi:278511	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:278511	num_119	barcode_0.845069048894		trial_24	sim_run_zhukovskyi:278511
+Triticum zhukovskyi	sim_zhukovskyi:535160	sim_GID_zhukovskyi:535160	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:535160	num_120	barcode_0.989338713333		trial_25	sim_run_zhukovskyi:535160
+Triticum zhukovskyi	sim_zhukovskyi:382681	sim_GID_zhukovskyi:382681	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:382681	num_121	barcode_0.621572912922		trial_23	sim_run_zhukovskyi:382681
+Triticum zhukovskyi	sim_zhukovskyi:364858	sim_GID_zhukovskyi:364858	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:364858	num_122	barcode_0.782744324979	REF	trial_23	sim_run_zhukovskyi:364858
+Triticum zhukovskyi	sim_zhukovskyi:797375	sim_GID_zhukovskyi:797375	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:797375	num_123	barcode_0.449672425947	REF	trial_24	sim_run_zhukovskyi:797375
+Triticum zhukovskyi	sim_zhukovskyi:512903	sim_GID_zhukovskyi:512903	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:512903	num_124	barcode_0.123322662506	REF	trial_25	sim_run_zhukovskyi:512903
+Triticum zhukovskyi	sim_zhukovskyi:896257	sim_GID_zhukovskyi:896257	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:896257	num_125	barcode_0.619194919811		trial_25	sim_run_zhukovskyi:896257
+Triticum zhukovskyi	sim_zhukovskyi:663565	sim_GID_zhukovskyi:663565	Zea mays subsp. mexicana		sim_sample_zhukovskyi:663565	num_126	barcode_0.312892577483	REF	trial_25	sim_run_zhukovskyi:663565
+Triticum zhukovskyi	sim_zhukovskyi:73594	sim_GID_zhukovskyi:73594	Unknown	F1_hybrid	sim_sample_zhukovskyi:73594	num_127	barcode_0.248551858813	REF	trial_24	sim_run_zhukovskyi:73594
+Triticum zhukovskyi	sim_zhukovskyi:351892	sim_GID_zhukovskyi:351892	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:351892	num_128	barcode_0.43628650252	REF	trial_25	sim_run_zhukovskyi:351892
+Triticum zhukovskyi	sim_zhukovskyi:11573	sim_GID_zhukovskyi:11573	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:11573	num_129	barcode_0.47422622782	REF	trial_24	sim_run_zhukovskyi:11573
+Triticum zhukovskyi	sim_zhukovskyi:322067	sim_GID_zhukovskyi:322067	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:322067	num_130	barcode_0.32218459305	REF	trial_23	sim_run_zhukovskyi:322067
+Triticum zhukovskyi	sim_zhukovskyi:223984	sim_GID_zhukovskyi:223984	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:223984	num_131	barcode_0.844947870515	REF	trial_23	sim_run_zhukovskyi:223984
+Triticum zhukovskyi	sim_zhukovskyi:930409	sim_GID_zhukovskyi:930409	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:930409	num_132	barcode_0.689642232644	REF	trial_23	sim_run_zhukovskyi:930409
+Triticum zhukovskyi	sim_zhukovskyi:954651	sim_GID_zhukovskyi:954651	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:954651	num_133	barcode_0.571517034422		trial_24	sim_run_zhukovskyi:954651
+Triticum zhukovskyi	sim_zhukovskyi:590192	sim_GID_zhukovskyi:590192	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:590192	num_134	barcode_0.579306138135	REF	trial_23	sim_run_zhukovskyi:590192
+Triticum zhukovskyi	sim_zhukovskyi:12098	sim_GID_zhukovskyi:12098	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:12098	num_135	barcode_0.587971020874	REF	trial_23	sim_run_zhukovskyi:12098
+Triticum zhukovskyi	sim_zhukovskyi:47479	sim_GID_zhukovskyi:47479	Zea mays subsp. parviglumis	BC1F1	sim_sample_zhukovskyi:47479	num_136	barcode_0.887529203269	REF	trial_24	sim_run_zhukovskyi:47479
+Triticum zhukovskyi	sim_zhukovskyi:677256	sim_GID_zhukovskyi:677256	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:677256	num_137	barcode_0.393937247054	REF	trial_23	sim_run_zhukovskyi:677256
+Triticum zhukovskyi	sim_zhukovskyi:737431	sim_GID_zhukovskyi:737431	Zea mays subsp. mays		sim_sample_zhukovskyi:737431	num_138	barcode_0.223930441646		trial_25	sim_run_zhukovskyi:737431
+Triticum zhukovskyi	sim_zhukovskyi:879999	sim_GID_zhukovskyi:879999	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:879999	num_139	barcode_0.885768813313		trial_25	sim_run_zhukovskyi:879999
+Triticum zhukovskyi	sim_zhukovskyi:32240	sim_GID_zhukovskyi:32240	Zea mays subsp. mays		sim_sample_zhukovskyi:32240	num_140	barcode_0.47110067172	REF	trial_24	sim_run_zhukovskyi:32240
+Triticum zhukovskyi	sim_zhukovskyi:909148	sim_GID_zhukovskyi:909148	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:909148	num_141	barcode_0.467747148959	REF	trial_24	sim_run_zhukovskyi:909148
+Triticum zhukovskyi	sim_zhukovskyi:189283	sim_GID_zhukovskyi:189283	Unknown	BC1F1	sim_sample_zhukovskyi:189283	num_142	barcode_0.910588924183	REF	trial_23	sim_run_zhukovskyi:189283
+Triticum zhukovskyi	sim_zhukovskyi:789173	sim_GID_zhukovskyi:789173	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:789173	num_143	barcode_0.836757589625	REF	trial_25	sim_run_zhukovskyi:789173
+Triticum zhukovskyi	sim_zhukovskyi:642953	sim_GID_zhukovskyi:642953	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:642953	num_144	barcode_0.680147244871		trial_23	sim_run_zhukovskyi:642953
+Triticum zhukovskyi	sim_zhukovskyi:913302	sim_GID_zhukovskyi:913302	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:913302	num_145	barcode_0.865069558438	REF	trial_24	sim_run_zhukovskyi:913302
+Triticum zhukovskyi	sim_zhukovskyi:122635	sim_GID_zhukovskyi:122635	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:122635	num_146	barcode_0.149096771406	REF	trial_23	sim_run_zhukovskyi:122635
+Triticum zhukovskyi	sim_zhukovskyi:978219	sim_GID_zhukovskyi:978219	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:978219	num_147	barcode_0.798662810665		trial_23	sim_run_zhukovskyi:978219
+Triticum zhukovskyi	sim_zhukovskyi:666017	sim_GID_zhukovskyi:666017	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:666017	num_148	barcode_0.259361567116	REF	trial_24	sim_run_zhukovskyi:666017
+Triticum zhukovskyi	sim_zhukovskyi:939325	sim_GID_zhukovskyi:939325	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_zhukovskyi:939325	num_149	barcode_0.47716592739		trial_25	sim_run_zhukovskyi:939325
+Triticum zhukovskyi	sim_zhukovskyi:918635	sim_GID_zhukovskyi:918635	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:918635	num_150	barcode_0.0562350234882		trial_23	sim_run_zhukovskyi:918635
+Triticum zhukovskyi	sim_zhukovskyi:160064	sim_GID_zhukovskyi:160064	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:160064	num_151	barcode_0.839674745346		trial_25	sim_run_zhukovskyi:160064
+Triticum zhukovskyi	sim_zhukovskyi:346909	sim_GID_zhukovskyi:346909	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:346909	num_152	barcode_0.54338008559		trial_23	sim_run_zhukovskyi:346909
+Triticum zhukovskyi	sim_zhukovskyi:571261	sim_GID_zhukovskyi:571261	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:571261	num_153	barcode_0.311954954833	REF	trial_25	sim_run_zhukovskyi:571261
+Triticum zhukovskyi	sim_zhukovskyi:266817	sim_GID_zhukovskyi:266817	Zea mays subsp. mexicana		sim_sample_zhukovskyi:266817	num_154	barcode_0.735842497151		trial_25	sim_run_zhukovskyi:266817
+Triticum zhukovskyi	sim_zhukovskyi:246217	sim_GID_zhukovskyi:246217	Unknown		sim_sample_zhukovskyi:246217	num_155	barcode_0.455038654035	REF	trial_25	sim_run_zhukovskyi:246217
+Triticum zhukovskyi	sim_zhukovskyi:894204	sim_GID_zhukovskyi:894204	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:894204	num_156	barcode_0.458652400292		trial_24	sim_run_zhukovskyi:894204
+Triticum zhukovskyi	sim_zhukovskyi:409869	sim_GID_zhukovskyi:409869	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:409869	num_157	barcode_0.393915809432	REF	trial_23	sim_run_zhukovskyi:409869
+Triticum zhukovskyi	sim_zhukovskyi:297588	sim_GID_zhukovskyi:297588	Undetermined spp.	F2	sim_sample_zhukovskyi:297588	num_158	barcode_0.802729679815		trial_24	sim_run_zhukovskyi:297588
+Triticum zhukovskyi	sim_zhukovskyi:558545	sim_GID_zhukovskyi:558545	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:558545	num_159	barcode_0.725330461308		trial_24	sim_run_zhukovskyi:558545
+Triticum zhukovskyi	sim_zhukovskyi:560527	sim_GID_zhukovskyi:560527	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:560527	num_160	barcode_0.124792216532		trial_24	sim_run_zhukovskyi:560527
+Triticum zhukovskyi	sim_zhukovskyi:670687	sim_GID_zhukovskyi:670687	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:670687	num_161	barcode_0.71437240137		trial_23	sim_run_zhukovskyi:670687
+Triticum zhukovskyi	sim_zhukovskyi:507147	sim_GID_zhukovskyi:507147	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:507147	num_162	barcode_0.140185236345	REF	trial_25	sim_run_zhukovskyi:507147
+Triticum zhukovskyi	sim_zhukovskyi:30095	sim_GID_zhukovskyi:30095		F1_hybrid	sim_sample_zhukovskyi:30095	num_163	barcode_0.487794230375	REF	trial_24	sim_run_zhukovskyi:30095
+Triticum zhukovskyi	sim_zhukovskyi:96422	sim_GID_zhukovskyi:96422	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:96422	num_164	barcode_0.469033419358	REF	trial_24	sim_run_zhukovskyi:96422
+Triticum zhukovskyi	sim_zhukovskyi:470914	sim_GID_zhukovskyi:470914	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:470914	num_165	barcode_0.139676391628	REF	trial_25	sim_run_zhukovskyi:470914
+Triticum zhukovskyi	sim_zhukovskyi:448501	sim_GID_zhukovskyi:448501	Undetermined	F2	sim_sample_zhukovskyi:448501	num_166	barcode_0.641302078723	REF	trial_24	sim_run_zhukovskyi:448501
+Triticum zhukovskyi	sim_zhukovskyi:759194	sim_GID_zhukovskyi:759194	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:759194	num_167	barcode_0.289533378214		trial_23	sim_run_zhukovskyi:759194
+Triticum zhukovskyi	sim_zhukovskyi:756804	sim_GID_zhukovskyi:756804	Triticum urartu	BC1F1	sim_sample_zhukovskyi:756804	num_168	barcode_0.0591815516257	REF	trial_24	sim_run_zhukovskyi:756804
+Triticum zhukovskyi	sim_zhukovskyi:762809	sim_GID_zhukovskyi:762809	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:762809	num_169	barcode_0.311132836836		trial_24	sim_run_zhukovskyi:762809
+Triticum zhukovskyi	sim_zhukovskyi:662145	sim_GID_zhukovskyi:662145	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:662145	num_170	barcode_0.238358393138		trial_25	sim_run_zhukovskyi:662145
+Triticum zhukovskyi	sim_zhukovskyi:108991	sim_GID_zhukovskyi:108991	Undetermined		sim_sample_zhukovskyi:108991	num_171	barcode_0.163066776221	REF	trial_25	sim_run_zhukovskyi:108991
+Triticum zhukovskyi	sim_zhukovskyi:207747	sim_GID_zhukovskyi:207747	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:207747	num_172	barcode_0.419513236956	REF	trial_23	sim_run_zhukovskyi:207747
+Triticum zhukovskyi	sim_zhukovskyi:497874	sim_GID_zhukovskyi:497874	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_zhukovskyi:497874	num_173	barcode_0.24554608303		trial_25	sim_run_zhukovskyi:497874
+Triticum zhukovskyi	sim_zhukovskyi:668911	sim_GID_zhukovskyi:668911	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:668911	num_174	barcode_0.0558521030518		trial_23	sim_run_zhukovskyi:668911
+Triticum zhukovskyi	sim_zhukovskyi:600125	sim_GID_zhukovskyi:600125	Zea mays subsp. mexicana		sim_sample_zhukovskyi:600125	num_175	barcode_0.872718598156		trial_23	sim_run_zhukovskyi:600125
+Triticum zhukovskyi	sim_zhukovskyi:511541	sim_GID_zhukovskyi:511541	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:511541	num_176	barcode_0.424206264712	REF	trial_24	sim_run_zhukovskyi:511541
+Triticum zhukovskyi	sim_zhukovskyi:228819	sim_GID_zhukovskyi:228819	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:228819	num_177	barcode_0.0994995512663		trial_23	sim_run_zhukovskyi:228819
+Triticum zhukovskyi	sim_zhukovskyi:723905	sim_GID_zhukovskyi:723905	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:723905	num_178	barcode_0.592293138506	REF	trial_24	sim_run_zhukovskyi:723905
+Triticum zhukovskyi	sim_zhukovskyi:74750	sim_GID_zhukovskyi:74750	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:74750	num_179	barcode_0.97093795686	REF	trial_25	sim_run_zhukovskyi:74750
+Triticum zhukovskyi	sim_zhukovskyi:583385	sim_GID_zhukovskyi:583385	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:583385	num_180	barcode_0.644375562038	REF	trial_23	sim_run_zhukovskyi:583385
+Triticum zhukovskyi	sim_zhukovskyi:107751	sim_GID_zhukovskyi:107751	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:107751	num_181	barcode_0.324788387681		trial_23	sim_run_zhukovskyi:107751
+Triticum zhukovskyi	sim_zhukovskyi:838406	sim_GID_zhukovskyi:838406	Triticum urartu	BC1F1	sim_sample_zhukovskyi:838406	num_182	barcode_0.648116288543		trial_25	sim_run_zhukovskyi:838406
+Triticum zhukovskyi	sim_zhukovskyi:586465	sim_GID_zhukovskyi:586465	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:586465	num_183	barcode_0.952881137139		trial_23	sim_run_zhukovskyi:586465
+Triticum zhukovskyi	sim_zhukovskyi:680900	sim_GID_zhukovskyi:680900		Inbred_line	sim_sample_zhukovskyi:680900	num_184	barcode_0.095208101565	REF	trial_23	sim_run_zhukovskyi:680900
+Triticum zhukovskyi	sim_zhukovskyi:629584	sim_GID_zhukovskyi:629584	Unknown	BC1F1	sim_sample_zhukovskyi:629584	num_185	barcode_0.37027352426	REF	trial_24	sim_run_zhukovskyi:629584
+Triticum zhukovskyi	sim_zhukovskyi:788490	sim_GID_zhukovskyi:788490	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:788490	num_186	barcode_0.349009479477		trial_24	sim_run_zhukovskyi:788490
+Triticum zhukovskyi	sim_zhukovskyi:592961	sim_GID_zhukovskyi:592961	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:592961	num_187	barcode_0.682526149916	REF	trial_25	sim_run_zhukovskyi:592961
+Triticum zhukovskyi	sim_zhukovskyi:478459	sim_GID_zhukovskyi:478459	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:478459	num_188	barcode_0.993742622635		trial_24	sim_run_zhukovskyi:478459
+Triticum zhukovskyi	sim_zhukovskyi:587522	sim_GID_zhukovskyi:587522			sim_sample_zhukovskyi:587522	num_189	barcode_0.982740827182	REF	trial_25	sim_run_zhukovskyi:587522
+Triticum zhukovskyi	sim_zhukovskyi:129944	sim_GID_zhukovskyi:129944	Unknown		sim_sample_zhukovskyi:129944	num_190	barcode_0.897276303788		trial_23	sim_run_zhukovskyi:129944
+Triticum zhukovskyi	sim_zhukovskyi:991109	sim_GID_zhukovskyi:991109		Inbred_line	sim_sample_zhukovskyi:991109	num_191	barcode_0.930163377331	REF	trial_24	sim_run_zhukovskyi:991109
+Triticum zhukovskyi	sim_zhukovskyi:843518	sim_GID_zhukovskyi:843518	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:843518	num_192	barcode_0.866934023235		trial_24	sim_run_zhukovskyi:843518
+Triticum zhukovskyi	sim_zhukovskyi:916642	sim_GID_zhukovskyi:916642	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:916642	num_193	barcode_0.169133975075		trial_23	sim_run_zhukovskyi:916642
+Triticum zhukovskyi	sim_zhukovskyi:333217	sim_GID_zhukovskyi:333217	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:333217	num_194	barcode_0.303431034372		trial_24	sim_run_zhukovskyi:333217
+Triticum zhukovskyi	sim_zhukovskyi:890831	sim_GID_zhukovskyi:890831	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:890831	num_195	barcode_0.522834745554	REF	trial_25	sim_run_zhukovskyi:890831
+Triticum zhukovskyi	sim_zhukovskyi:343261	sim_GID_zhukovskyi:343261	Zea diploperennis		sim_sample_zhukovskyi:343261	num_196	barcode_0.191648796554		trial_25	sim_run_zhukovskyi:343261
+Triticum zhukovskyi	sim_zhukovskyi:613705	sim_GID_zhukovskyi:613705	Unknown	F1_hybrid	sim_sample_zhukovskyi:613705	num_197	barcode_0.649113357568		trial_23	sim_run_zhukovskyi:613705
+Triticum zhukovskyi	sim_zhukovskyi:469379	sim_GID_zhukovskyi:469379	Zea mays subsp. mays		sim_sample_zhukovskyi:469379	num_198	barcode_0.251085602346		trial_23	sim_run_zhukovskyi:469379
+Triticum zhukovskyi	sim_zhukovskyi:584300	sim_GID_zhukovskyi:584300	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:584300	num_199	barcode_0.409913124433		trial_23	sim_run_zhukovskyi:584300
+Triticum zhukovskyi	sim_zhukovskyi:113022	sim_GID_zhukovskyi:113022	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:113022	num_200	barcode_0.346017321613	REF	trial_23	sim_run_zhukovskyi:113022
+Triticum zhukovskyi	sim_zhukovskyi:108797	sim_GID_zhukovskyi:108797	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:108797	num_201	barcode_0.979873655677	REF	trial_25	sim_run_zhukovskyi:108797
+Triticum zhukovskyi	sim_zhukovskyi:643405	sim_GID_zhukovskyi:643405	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:643405	num_202	barcode_0.633264671738	REF	trial_25	sim_run_zhukovskyi:643405
+Triticum zhukovskyi	sim_zhukovskyi:8	sim_GID_zhukovskyi:8	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:8	num_203	barcode_0.72608552898		trial_25	sim_run_zhukovskyi:8
+Triticum zhukovskyi	sim_zhukovskyi:764050	sim_GID_zhukovskyi:764050	Zea mays subsp. mexicana		sim_sample_zhukovskyi:764050	num_204	barcode_0.674380234181	REF	trial_24	sim_run_zhukovskyi:764050
+Triticum zhukovskyi	sim_zhukovskyi:163709	sim_GID_zhukovskyi:163709	Zea mays subsp. mays	F1_hybrid	sim_sample_zhukovskyi:163709	num_205	barcode_0.154640793823	REF	trial_24	sim_run_zhukovskyi:163709
+Triticum zhukovskyi	sim_zhukovskyi:771869	sim_GID_zhukovskyi:771869	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:771869	num_206	barcode_0.700573604475	REF	trial_24	sim_run_zhukovskyi:771869
+Triticum zhukovskyi	sim_zhukovskyi:17191	sim_GID_zhukovskyi:17191	Zea mays subsp. mexicana		sim_sample_zhukovskyi:17191	num_207	barcode_0.113860638839	REF	trial_24	sim_run_zhukovskyi:17191
+Triticum zhukovskyi	sim_zhukovskyi:76481	sim_GID_zhukovskyi:76481	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:76481	num_208	barcode_0.707362228133		trial_25	sim_run_zhukovskyi:76481
+Triticum zhukovskyi	sim_zhukovskyi:264581	sim_GID_zhukovskyi:264581	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:264581	num_209	barcode_0.853066098134		trial_25	sim_run_zhukovskyi:264581
+Triticum zhukovskyi	sim_zhukovskyi:134329	sim_GID_zhukovskyi:134329	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:134329	num_210	barcode_0.916302325858	REF	trial_24	sim_run_zhukovskyi:134329
+Triticum zhukovskyi	sim_zhukovskyi:984716	sim_GID_zhukovskyi:984716	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:984716	num_211	barcode_0.692749015984	REF	trial_25	sim_run_zhukovskyi:984716
+Triticum zhukovskyi	sim_zhukovskyi:249378	sim_GID_zhukovskyi:249378	Undetermined	BC1F1	sim_sample_zhukovskyi:249378	num_212	barcode_0.343825043429	REF	trial_25	sim_run_zhukovskyi:249378
+Triticum zhukovskyi	sim_zhukovskyi:492769	sim_GID_zhukovskyi:492769	Triticum zhukovskyi		sim_sample_zhukovskyi:492769	num_213	barcode_0.305293956827	REF	trial_24	sim_run_zhukovskyi:492769
+Triticum zhukovskyi	sim_zhukovskyi:273295	sim_GID_zhukovskyi:273295	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:273295	num_214	barcode_0.501376266412		trial_25	sim_run_zhukovskyi:273295
+Triticum zhukovskyi	sim_zhukovskyi:738031	sim_GID_zhukovskyi:738031	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:738031	num_215	barcode_0.044932391598	REF	trial_24	sim_run_zhukovskyi:738031
+Triticum zhukovskyi	sim_zhukovskyi:341643	sim_GID_zhukovskyi:341643	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:341643	num_216	barcode_0.0190092888256		trial_24	sim_run_zhukovskyi:341643
+Triticum zhukovskyi	sim_zhukovskyi:10704	sim_GID_zhukovskyi:10704	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:10704	num_217	barcode_0.943998197524	REF	trial_23	sim_run_zhukovskyi:10704
+Triticum zhukovskyi	sim_zhukovskyi:282549	sim_GID_zhukovskyi:282549	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:282549	num_218	barcode_0.640168867552	REF	trial_23	sim_run_zhukovskyi:282549
+Triticum zhukovskyi	sim_zhukovskyi:493054	sim_GID_zhukovskyi:493054	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:493054	num_219	barcode_0.123185649197	REF	trial_24	sim_run_zhukovskyi:493054
+Triticum zhukovskyi	sim_zhukovskyi:687289	sim_GID_zhukovskyi:687289	Unknown	F1_hybrid	sim_sample_zhukovskyi:687289	num_220	barcode_0.109371191285		trial_23	sim_run_zhukovskyi:687289
+Triticum zhukovskyi	sim_zhukovskyi:601509	sim_GID_zhukovskyi:601509	Unknown	F1_hybrid	sim_sample_zhukovskyi:601509	num_221	barcode_0.368240534841	REF	trial_25	sim_run_zhukovskyi:601509
+Triticum zhukovskyi	sim_zhukovskyi:958125	sim_GID_zhukovskyi:958125	Undetermined		sim_sample_zhukovskyi:958125	num_222	barcode_0.334418503062		trial_23	sim_run_zhukovskyi:958125
+Triticum zhukovskyi	sim_zhukovskyi:769531	sim_GID_zhukovskyi:769531	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:769531	num_223	barcode_0.805559000073	REF	trial_24	sim_run_zhukovskyi:769531
+Triticum zhukovskyi	sim_zhukovskyi:227857	sim_GID_zhukovskyi:227857	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:227857	num_224	barcode_0.739744588599	REF	trial_23	sim_run_zhukovskyi:227857
+Triticum zhukovskyi	sim_zhukovskyi:770846	sim_GID_zhukovskyi:770846	Unknown	F1_hybrid	sim_sample_zhukovskyi:770846	num_225	barcode_0.327477235379		trial_25	sim_run_zhukovskyi:770846
+Triticum zhukovskyi	sim_zhukovskyi:910168	sim_GID_zhukovskyi:910168	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:910168	num_226	barcode_0.850099626466	REF	trial_23	sim_run_zhukovskyi:910168
+Triticum zhukovskyi	sim_zhukovskyi:176761	sim_GID_zhukovskyi:176761	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:176761	num_227	barcode_0.105216798579	REF	trial_25	sim_run_zhukovskyi:176761
+Triticum zhukovskyi	sim_zhukovskyi:146473	sim_GID_zhukovskyi:146473	Undetermined	Inbred_line	sim_sample_zhukovskyi:146473	num_228	barcode_0.557878842671		trial_24	sim_run_zhukovskyi:146473
+Triticum zhukovskyi	sim_zhukovskyi:472292	sim_GID_zhukovskyi:472292		F2	sim_sample_zhukovskyi:472292	num_229	barcode_0.720862085393	REF	trial_25	sim_run_zhukovskyi:472292
+Triticum zhukovskyi	sim_zhukovskyi:788570	sim_GID_zhukovskyi:788570	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:788570	num_230	barcode_0.314653637765	REF	trial_23	sim_run_zhukovskyi:788570
+Triticum zhukovskyi	sim_zhukovskyi:815194	sim_GID_zhukovskyi:815194	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:815194	num_231	barcode_0.348375477872	REF	trial_25	sim_run_zhukovskyi:815194
+Triticum zhukovskyi	sim_zhukovskyi:848078	sim_GID_zhukovskyi:848078	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:848078	num_232	barcode_0.771373937908	REF	trial_25	sim_run_zhukovskyi:848078
+Triticum zhukovskyi	sim_zhukovskyi:906473	sim_GID_zhukovskyi:906473	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:906473	num_233	barcode_0.72940561361	REF	trial_25	sim_run_zhukovskyi:906473
+Triticum zhukovskyi	sim_zhukovskyi:413166	sim_GID_zhukovskyi:413166			sim_sample_zhukovskyi:413166	num_234	barcode_0.303302447546		trial_25	sim_run_zhukovskyi:413166
+Triticum zhukovskyi	sim_zhukovskyi:927003	sim_GID_zhukovskyi:927003	Undetermined		sim_sample_zhukovskyi:927003	num_235	barcode_0.525451193171		trial_23	sim_run_zhukovskyi:927003
+Triticum zhukovskyi	sim_zhukovskyi:250646	sim_GID_zhukovskyi:250646	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:250646	num_236	barcode_0.700094995971	REF	trial_23	sim_run_zhukovskyi:250646
+Triticum zhukovskyi	sim_zhukovskyi:939040	sim_GID_zhukovskyi:939040	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:939040	num_237	barcode_0.482604287335	REF	trial_25	sim_run_zhukovskyi:939040
+Triticum zhukovskyi	sim_zhukovskyi:908866	sim_GID_zhukovskyi:908866	Triticum vavilovii var. vavilovii		sim_sample_zhukovskyi:908866	num_238	barcode_0.571238176776		trial_25	sim_run_zhukovskyi:908866
+Triticum zhukovskyi	sim_zhukovskyi:216515	sim_GID_zhukovskyi:216515	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:216515	num_239	barcode_0.930238468247		trial_24	sim_run_zhukovskyi:216515
+Triticum zhukovskyi	sim_zhukovskyi:966000	sim_GID_zhukovskyi:966000	Zea mays subsp. mexicana		sim_sample_zhukovskyi:966000	num_240	barcode_0.638653911734		trial_24	sim_run_zhukovskyi:966000
+Triticum zhukovskyi	sim_zhukovskyi:442005	sim_GID_zhukovskyi:442005	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:442005	num_241	barcode_0.287228444419	REF	trial_24	sim_run_zhukovskyi:442005
+Triticum zhukovskyi	sim_zhukovskyi:529186	sim_GID_zhukovskyi:529186	Triticum urartu	BC1F1	sim_sample_zhukovskyi:529186	num_242	barcode_0.294350533733		trial_25	sim_run_zhukovskyi:529186
+Triticum zhukovskyi	sim_zhukovskyi:196027	sim_GID_zhukovskyi:196027	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:196027	num_243	barcode_0.911222823139		trial_24	sim_run_zhukovskyi:196027
+Triticum zhukovskyi	sim_zhukovskyi:978481	sim_GID_zhukovskyi:978481	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:978481	num_244	barcode_0.957215802865		trial_23	sim_run_zhukovskyi:978481
+Triticum zhukovskyi	sim_zhukovskyi:257938	sim_GID_zhukovskyi:257938	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:257938	num_245	barcode_0.112486624444		trial_24	sim_run_zhukovskyi:257938
+Triticum zhukovskyi	sim_zhukovskyi:979203	sim_GID_zhukovskyi:979203	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:979203	num_246	barcode_0.774354752078	REF	trial_25	sim_run_zhukovskyi:979203
+Triticum zhukovskyi	sim_zhukovskyi:439060	sim_GID_zhukovskyi:439060	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:439060	num_247	barcode_0.622942638573	REF	trial_25	sim_run_zhukovskyi:439060
+Triticum zhukovskyi	sim_zhukovskyi:478125	sim_GID_zhukovskyi:478125	Triticum turgidum subsp. dicoccon		sim_sample_zhukovskyi:478125	num_248	barcode_0.680697528371	REF	trial_24	sim_run_zhukovskyi:478125
+Triticum zhukovskyi	sim_zhukovskyi:973253	sim_GID_zhukovskyi:973253	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:973253	num_249	barcode_0.44863509567	REF	trial_25	sim_run_zhukovskyi:973253
+Triticum zhukovskyi	sim_zhukovskyi:542844	sim_GID_zhukovskyi:542844	Triticum turgidum subsp. dicoccon		sim_sample_zhukovskyi:542844	num_250	barcode_0.899178304672		trial_23	sim_run_zhukovskyi:542844
+Triticum zhukovskyi	sim_zhukovskyi:828800	sim_GID_zhukovskyi:828800	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:828800	num_251	barcode_0.0492446811805	REF	trial_25	sim_run_zhukovskyi:828800
+Triticum zhukovskyi	sim_zhukovskyi:76960	sim_GID_zhukovskyi:76960	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:76960	num_252	barcode_0.618629787904	REF	trial_25	sim_run_zhukovskyi:76960
+Triticum zhukovskyi	sim_zhukovskyi:250608	sim_GID_zhukovskyi:250608	Undetermined	BC1F1	sim_sample_zhukovskyi:250608	num_253	barcode_0.65670806705		trial_25	sim_run_zhukovskyi:250608
+Triticum zhukovskyi	sim_zhukovskyi:712164	sim_GID_zhukovskyi:712164	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_zhukovskyi:712164	num_254	barcode_0.250289344043	REF	trial_24	sim_run_zhukovskyi:712164
+Triticum zhukovskyi	sim_zhukovskyi:970426	sim_GID_zhukovskyi:970426	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:970426	num_255	barcode_0.864867450911	REF	trial_24	sim_run_zhukovskyi:970426
+Triticum zhukovskyi	sim_zhukovskyi:876695	sim_GID_zhukovskyi:876695	Unknown	Inbred_line	sim_sample_zhukovskyi:876695	num_256	barcode_0.495644904019		trial_24	sim_run_zhukovskyi:876695
+Triticum zhukovskyi	sim_zhukovskyi:920575	sim_GID_zhukovskyi:920575	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:920575	num_257	barcode_0.248718162883		trial_23	sim_run_zhukovskyi:920575
+Triticum zhukovskyi	sim_zhukovskyi:98754	sim_GID_zhukovskyi:98754	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:98754	num_258	barcode_0.438739668616		trial_23	sim_run_zhukovskyi:98754
+Triticum zhukovskyi	sim_zhukovskyi:556330	sim_GID_zhukovskyi:556330	Undetermined spp.		sim_sample_zhukovskyi:556330	num_259	barcode_0.371283242357		trial_25	sim_run_zhukovskyi:556330
+Triticum zhukovskyi	sim_zhukovskyi:819921	sim_GID_zhukovskyi:819921	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:819921	num_260	barcode_0.316431692813		trial_24	sim_run_zhukovskyi:819921
+Triticum zhukovskyi	sim_zhukovskyi:637508	sim_GID_zhukovskyi:637508	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_zhukovskyi:637508	num_261	barcode_0.667123297607	REF	trial_24	sim_run_zhukovskyi:637508
+Triticum zhukovskyi	sim_zhukovskyi:169858	sim_GID_zhukovskyi:169858	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:169858	num_262	barcode_0.248110581744	REF	trial_24	sim_run_zhukovskyi:169858
+Triticum zhukovskyi	sim_zhukovskyi:728937	sim_GID_zhukovskyi:728937	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_zhukovskyi:728937	num_263	barcode_0.753454371732	REF	trial_24	sim_run_zhukovskyi:728937
+Triticum zhukovskyi	sim_zhukovskyi:742867	sim_GID_zhukovskyi:742867		BC1F1	sim_sample_zhukovskyi:742867	num_264	barcode_0.172589658087		trial_23	sim_run_zhukovskyi:742867
+Triticum zhukovskyi	sim_zhukovskyi:502904	sim_GID_zhukovskyi:502904	Zea mays subsp. mexicana		sim_sample_zhukovskyi:502904	num_265	barcode_0.843024288639		trial_23	sim_run_zhukovskyi:502904
+Triticum zhukovskyi	sim_zhukovskyi:432162	sim_GID_zhukovskyi:432162	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:432162	num_266	barcode_0.0647124463567		trial_23	sim_run_zhukovskyi:432162
+Triticum zhukovskyi	sim_zhukovskyi:130284	sim_GID_zhukovskyi:130284	Triticum urartu	F2	sim_sample_zhukovskyi:130284	num_267	barcode_0.347433687254	REF	trial_25	sim_run_zhukovskyi:130284
+Triticum zhukovskyi	sim_zhukovskyi:562589	sim_GID_zhukovskyi:562589		Inbred_line	sim_sample_zhukovskyi:562589	num_268	barcode_0.229030589534		trial_23	sim_run_zhukovskyi:562589
+Triticum zhukovskyi	sim_zhukovskyi:842117	sim_GID_zhukovskyi:842117	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:842117	num_269	barcode_0.302348105257		trial_25	sim_run_zhukovskyi:842117
+Triticum zhukovskyi	sim_zhukovskyi:384047	sim_GID_zhukovskyi:384047	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:384047	num_270	barcode_0.740551019874	REF	trial_23	sim_run_zhukovskyi:384047
+Triticum zhukovskyi	sim_zhukovskyi:297103	sim_GID_zhukovskyi:297103	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:297103	num_271	barcode_0.349439661374	REF	trial_25	sim_run_zhukovskyi:297103
+Triticum zhukovskyi	sim_zhukovskyi:335412	sim_GID_zhukovskyi:335412	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:335412	num_272	barcode_0.718976543941		trial_25	sim_run_zhukovskyi:335412
+Triticum zhukovskyi	sim_zhukovskyi:30545	sim_GID_zhukovskyi:30545	Triticum vavilovii var. vavilovii		sim_sample_zhukovskyi:30545	num_273	barcode_0.638665429197		trial_25	sim_run_zhukovskyi:30545
+Triticum zhukovskyi	sim_zhukovskyi:594675	sim_GID_zhukovskyi:594675	Undetermined	BC1F1	sim_sample_zhukovskyi:594675	num_274	barcode_0.215591735254	REF	trial_24	sim_run_zhukovskyi:594675
+Triticum zhukovskyi	sim_zhukovskyi:491165	sim_GID_zhukovskyi:491165	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:491165	num_275	barcode_0.57574501649	REF	trial_23	sim_run_zhukovskyi:491165
+Triticum zhukovskyi	sim_zhukovskyi:162913	sim_GID_zhukovskyi:162913	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:162913	num_276	barcode_0.323976248569		trial_25	sim_run_zhukovskyi:162913
+Triticum zhukovskyi	sim_zhukovskyi:580616	sim_GID_zhukovskyi:580616	Triticum urartu	BC1F1	sim_sample_zhukovskyi:580616	num_277	barcode_0.0878460397112	REF	trial_23	sim_run_zhukovskyi:580616
+Triticum zhukovskyi	sim_zhukovskyi:770827	sim_GID_zhukovskyi:770827	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:770827	num_278	barcode_0.035971204096		trial_25	sim_run_zhukovskyi:770827
+Triticum zhukovskyi	sim_zhukovskyi:162368	sim_GID_zhukovskyi:162368	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:162368	num_279	barcode_0.725491370734		trial_24	sim_run_zhukovskyi:162368
+Triticum zhukovskyi	sim_zhukovskyi:504664	sim_GID_zhukovskyi:504664	Triticum zhukovskyi		sim_sample_zhukovskyi:504664	num_280	barcode_0.24803351285	REF	trial_23	sim_run_zhukovskyi:504664
+Triticum zhukovskyi	sim_zhukovskyi:792547	sim_GID_zhukovskyi:792547			sim_sample_zhukovskyi:792547	num_281	barcode_0.727482543062		trial_25	sim_run_zhukovskyi:792547
+Triticum zhukovskyi	sim_zhukovskyi:4739	sim_GID_zhukovskyi:4739	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:4739	num_282	barcode_0.624221799356		trial_25	sim_run_zhukovskyi:4739
+Triticum zhukovskyi	sim_zhukovskyi:790602	sim_GID_zhukovskyi:790602	Unknown	F1_hybrid	sim_sample_zhukovskyi:790602	num_283	barcode_0.13670153461		trial_24	sim_run_zhukovskyi:790602
+Triticum zhukovskyi	sim_zhukovskyi:290247	sim_GID_zhukovskyi:290247	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:290247	num_284	barcode_0.0294640808255		trial_24	sim_run_zhukovskyi:290247
+Triticum zhukovskyi	sim_zhukovskyi:660567	sim_GID_zhukovskyi:660567	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:660567	num_285	barcode_0.851595731925		trial_23	sim_run_zhukovskyi:660567
+Triticum zhukovskyi	sim_zhukovskyi:980402	sim_GID_zhukovskyi:980402	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:980402	num_286	barcode_0.610770062249	REF	trial_23	sim_run_zhukovskyi:980402
+Triticum zhukovskyi	sim_zhukovskyi:798947	sim_GID_zhukovskyi:798947	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:798947	num_287	barcode_0.913603463574		trial_24	sim_run_zhukovskyi:798947
+Triticum zhukovskyi	sim_zhukovskyi:67684	sim_GID_zhukovskyi:67684	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:67684	num_288	barcode_0.704094529188	REF	trial_23	sim_run_zhukovskyi:67684
+Triticum zhukovskyi	sim_zhukovskyi:45124	sim_GID_zhukovskyi:45124	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:45124	num_289	barcode_0.268281027608		trial_24	sim_run_zhukovskyi:45124
+Triticum zhukovskyi	sim_zhukovskyi:475190	sim_GID_zhukovskyi:475190	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:475190	num_290	barcode_0.876471308376		trial_23	sim_run_zhukovskyi:475190
+Triticum zhukovskyi	sim_zhukovskyi:125843	sim_GID_zhukovskyi:125843	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:125843	num_291	barcode_0.105626818292		trial_24	sim_run_zhukovskyi:125843
+Triticum zhukovskyi	sim_zhukovskyi:774655	sim_GID_zhukovskyi:774655	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:774655	num_292	barcode_0.0953351394126		trial_25	sim_run_zhukovskyi:774655
+Triticum zhukovskyi	sim_zhukovskyi:885182	sim_GID_zhukovskyi:885182	Triticum zhukovskyi		sim_sample_zhukovskyi:885182	num_293	barcode_0.634930389901	REF	trial_24	sim_run_zhukovskyi:885182
+Triticum zhukovskyi	sim_zhukovskyi:653894	sim_GID_zhukovskyi:653894	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:653894	num_294	barcode_0.720685496565	REF	trial_23	sim_run_zhukovskyi:653894
+Triticum zhukovskyi	sim_zhukovskyi:272679	sim_GID_zhukovskyi:272679		BC1F1	sim_sample_zhukovskyi:272679	num_295	barcode_0.276940686318	REF	trial_24	sim_run_zhukovskyi:272679
+Triticum zhukovskyi	sim_zhukovskyi:781039	sim_GID_zhukovskyi:781039	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:781039	num_296	barcode_0.868091716917	REF	trial_24	sim_run_zhukovskyi:781039
+Triticum zhukovskyi	sim_zhukovskyi:287719	sim_GID_zhukovskyi:287719	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:287719	num_297	barcode_0.299833753032	REF	trial_25	sim_run_zhukovskyi:287719
+Triticum zhukovskyi	sim_zhukovskyi:608440	sim_GID_zhukovskyi:608440	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:608440	num_298	barcode_0.157978461166	REF	trial_23	sim_run_zhukovskyi:608440
+Triticum zhukovskyi	sim_zhukovskyi:934456	sim_GID_zhukovskyi:934456	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:934456	num_299	barcode_0.600876018353	REF	trial_23	sim_run_zhukovskyi:934456
+Triticum zhukovskyi	sim_zhukovskyi:724174	sim_GID_zhukovskyi:724174	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:724174	num_300	barcode_0.774138041552	REF	trial_24	sim_run_zhukovskyi:724174
+Triticum zhukovskyi	sim_zhukovskyi:132348	sim_GID_zhukovskyi:132348	Triticum urartu	BC1F1	sim_sample_zhukovskyi:132348	num_301	barcode_0.00170201862722		trial_25	sim_run_zhukovskyi:132348
+Triticum zhukovskyi	sim_zhukovskyi:518425	sim_GID_zhukovskyi:518425	Triticum urartu		sim_sample_zhukovskyi:518425	num_302	barcode_0.0424810620531	REF	trial_25	sim_run_zhukovskyi:518425
+Triticum zhukovskyi	sim_zhukovskyi:152622	sim_GID_zhukovskyi:152622	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:152622	num_303	barcode_0.693256293031		trial_24	sim_run_zhukovskyi:152622
+Triticum zhukovskyi	sim_zhukovskyi:606692	sim_GID_zhukovskyi:606692	Undetermined	F2	sim_sample_zhukovskyi:606692	num_304	barcode_0.398358792267	REF	trial_23	sim_run_zhukovskyi:606692
+Triticum zhukovskyi	sim_zhukovskyi:136678	sim_GID_zhukovskyi:136678	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_zhukovskyi:136678	num_305	barcode_0.383678131931		trial_24	sim_run_zhukovskyi:136678
+Triticum zhukovskyi	sim_zhukovskyi:641330	sim_GID_zhukovskyi:641330	Unknown	F1_hybrid	sim_sample_zhukovskyi:641330	num_306	barcode_0.280652136547	REF	trial_23	sim_run_zhukovskyi:641330
+Triticum zhukovskyi	sim_zhukovskyi:837745	sim_GID_zhukovskyi:837745	Triticum turgidum subsp. dicoccon		sim_sample_zhukovskyi:837745	num_307	barcode_0.154980596781	REF	trial_23	sim_run_zhukovskyi:837745
+Triticum zhukovskyi	sim_zhukovskyi:683960	sim_GID_zhukovskyi:683960	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:683960	num_308	barcode_0.153311265999		trial_25	sim_run_zhukovskyi:683960
+Triticum zhukovskyi	sim_zhukovskyi:894772	sim_GID_zhukovskyi:894772	Zea diploperennis		sim_sample_zhukovskyi:894772	num_309	barcode_0.86998278538		trial_24	sim_run_zhukovskyi:894772
+Triticum zhukovskyi	sim_zhukovskyi:295581	sim_GID_zhukovskyi:295581	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:295581	num_310	barcode_0.723964544085		trial_23	sim_run_zhukovskyi:295581
+Triticum zhukovskyi	sim_zhukovskyi:734907	sim_GID_zhukovskyi:734907	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:734907	num_311	barcode_0.943334389731	REF	trial_23	sim_run_zhukovskyi:734907
+Triticum zhukovskyi	sim_zhukovskyi:974815	sim_GID_zhukovskyi:974815			sim_sample_zhukovskyi:974815	num_312	barcode_0.103740594484		trial_23	sim_run_zhukovskyi:974815
+Triticum zhukovskyi	sim_zhukovskyi:896353	sim_GID_zhukovskyi:896353	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:896353	num_313	barcode_0.737178883216		trial_25	sim_run_zhukovskyi:896353
+Triticum zhukovskyi	sim_zhukovskyi:356485	sim_GID_zhukovskyi:356485	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:356485	num_314	barcode_0.213827475884	REF	trial_23	sim_run_zhukovskyi:356485
+Triticum zhukovskyi	sim_zhukovskyi:608880	sim_GID_zhukovskyi:608880	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:608880	num_315	barcode_0.3149129101		trial_23	sim_run_zhukovskyi:608880
+Triticum zhukovskyi	sim_zhukovskyi:584478	sim_GID_zhukovskyi:584478	Zea mays subsp. mays		sim_sample_zhukovskyi:584478	num_316	barcode_0.763654443445		trial_25	sim_run_zhukovskyi:584478
+Triticum zhukovskyi	sim_zhukovskyi:336015	sim_GID_zhukovskyi:336015	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:336015	num_317	barcode_0.3081412886		trial_24	sim_run_zhukovskyi:336015
+Triticum zhukovskyi	sim_zhukovskyi:365481	sim_GID_zhukovskyi:365481	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:365481	num_318	barcode_0.701154143603	REF	trial_23	sim_run_zhukovskyi:365481
+Triticum zhukovskyi	sim_zhukovskyi:190585	sim_GID_zhukovskyi:190585	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:190585	num_319	barcode_0.0166126872658		trial_24	sim_run_zhukovskyi:190585
+Triticum zhukovskyi	sim_zhukovskyi:187480	sim_GID_zhukovskyi:187480	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:187480	num_320	barcode_0.969124777023	REF	trial_25	sim_run_zhukovskyi:187480
+Triticum zhukovskyi	sim_zhukovskyi:863040	sim_GID_zhukovskyi:863040	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:863040	num_321	barcode_0.911297113135	REF	trial_23	sim_run_zhukovskyi:863040
+Triticum zhukovskyi	sim_zhukovskyi:113512	sim_GID_zhukovskyi:113512	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:113512	num_322	barcode_0.814995446585		trial_24	sim_run_zhukovskyi:113512
+Triticum zhukovskyi	sim_zhukovskyi:936149	sim_GID_zhukovskyi:936149	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:936149	num_323	barcode_0.135055976715	REF	trial_24	sim_run_zhukovskyi:936149
+Triticum zhukovskyi	sim_zhukovskyi:742045	sim_GID_zhukovskyi:742045	Zea diploperennis	F2	sim_sample_zhukovskyi:742045	num_324	barcode_0.941130119821	REF	trial_23	sim_run_zhukovskyi:742045
+Triticum zhukovskyi	sim_zhukovskyi:283351	sim_GID_zhukovskyi:283351	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:283351	num_325	barcode_0.146262230106	REF	trial_23	sim_run_zhukovskyi:283351
+Triticum zhukovskyi	sim_zhukovskyi:372721	sim_GID_zhukovskyi:372721	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:372721	num_326	barcode_0.0836393812529	REF	trial_23	sim_run_zhukovskyi:372721
+Triticum zhukovskyi	sim_zhukovskyi:329425	sim_GID_zhukovskyi:329425	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:329425	num_327	barcode_0.293777849844	REF	trial_23	sim_run_zhukovskyi:329425
+Triticum zhukovskyi	sim_zhukovskyi:769323	sim_GID_zhukovskyi:769323	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:769323	num_328	barcode_0.997896879396	REF	trial_24	sim_run_zhukovskyi:769323
+Triticum zhukovskyi	sim_zhukovskyi:812123	sim_GID_zhukovskyi:812123	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:812123	num_329	barcode_0.948157460378	REF	trial_25	sim_run_zhukovskyi:812123
+Triticum zhukovskyi	sim_zhukovskyi:154698	sim_GID_zhukovskyi:154698	Undetermined spp.	F2	sim_sample_zhukovskyi:154698	num_330	barcode_0.0181146341521	REF	trial_23	sim_run_zhukovskyi:154698
+Triticum zhukovskyi	sim_zhukovskyi:203707	sim_GID_zhukovskyi:203707	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:203707	num_331	barcode_0.314854989568	REF	trial_23	sim_run_zhukovskyi:203707
+Triticum zhukovskyi	sim_zhukovskyi:502568	sim_GID_zhukovskyi:502568	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:502568	num_332	barcode_0.203206480926	REF	trial_25	sim_run_zhukovskyi:502568
+Triticum zhukovskyi	sim_zhukovskyi:555255	sim_GID_zhukovskyi:555255	Triticum urartu	BC1F1	sim_sample_zhukovskyi:555255	num_333	barcode_0.752017926478		trial_23	sim_run_zhukovskyi:555255
+Triticum zhukovskyi	sim_zhukovskyi:989759	sim_GID_zhukovskyi:989759	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:989759	num_334	barcode_0.958908708797	REF	trial_25	sim_run_zhukovskyi:989759
+Triticum zhukovskyi	sim_zhukovskyi:366247	sim_GID_zhukovskyi:366247	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:366247	num_335	barcode_0.453898669016	REF	trial_24	sim_run_zhukovskyi:366247
+Triticum zhukovskyi	sim_zhukovskyi:92128	sim_GID_zhukovskyi:92128	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:92128	num_336	barcode_0.0513032805393	REF	trial_25	sim_run_zhukovskyi:92128
+Triticum zhukovskyi	sim_zhukovskyi:589983	sim_GID_zhukovskyi:589983	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:589983	num_337	barcode_0.520783422918		trial_23	sim_run_zhukovskyi:589983
+Triticum zhukovskyi	sim_zhukovskyi:752478	sim_GID_zhukovskyi:752478	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:752478	num_338	barcode_0.0161128112081		trial_23	sim_run_zhukovskyi:752478
+Triticum zhukovskyi	sim_zhukovskyi:310020	sim_GID_zhukovskyi:310020	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:310020	num_339	barcode_0.12324765054		trial_24	sim_run_zhukovskyi:310020
+Triticum zhukovskyi	sim_zhukovskyi:896775	sim_GID_zhukovskyi:896775	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:896775	num_340	barcode_0.863720054845		trial_24	sim_run_zhukovskyi:896775
+Triticum zhukovskyi	sim_zhukovskyi:539980	sim_GID_zhukovskyi:539980	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:539980	num_341	barcode_0.18546300041		trial_25	sim_run_zhukovskyi:539980
+Triticum zhukovskyi	sim_zhukovskyi:543737	sim_GID_zhukovskyi:543737	Zea diploperennis	F2	sim_sample_zhukovskyi:543737	num_342	barcode_0.327583078204		trial_24	sim_run_zhukovskyi:543737
+Triticum zhukovskyi	sim_zhukovskyi:396154	sim_GID_zhukovskyi:396154	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:396154	num_343	barcode_0.408307430902		trial_24	sim_run_zhukovskyi:396154
+Triticum zhukovskyi	sim_zhukovskyi:363674	sim_GID_zhukovskyi:363674	Undetermined	Inbred_line	sim_sample_zhukovskyi:363674	num_344	barcode_0.0023322061701		trial_24	sim_run_zhukovskyi:363674
+Triticum zhukovskyi	sim_zhukovskyi:190054	sim_GID_zhukovskyi:190054	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:190054	num_345	barcode_0.844472091848	REF	trial_25	sim_run_zhukovskyi:190054
+Triticum zhukovskyi	sim_zhukovskyi:335598	sim_GID_zhukovskyi:335598	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:335598	num_346	barcode_0.1090325441		trial_24	sim_run_zhukovskyi:335598
+Triticum zhukovskyi	sim_zhukovskyi:991542	sim_GID_zhukovskyi:991542	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:991542	num_347	barcode_0.828240172834	REF	trial_25	sim_run_zhukovskyi:991542
+Triticum zhukovskyi	sim_zhukovskyi:994913	sim_GID_zhukovskyi:994913	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:994913	num_348	barcode_0.506853327352	REF	trial_25	sim_run_zhukovskyi:994913
+Triticum zhukovskyi	sim_zhukovskyi:700440	sim_GID_zhukovskyi:700440	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:700440	num_349	barcode_0.623030942297		trial_24	sim_run_zhukovskyi:700440
+Triticum zhukovskyi	sim_zhukovskyi:702400	sim_GID_zhukovskyi:702400	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:702400	num_350	barcode_0.0570762110973		trial_25	sim_run_zhukovskyi:702400
+Triticum zhukovskyi	sim_zhukovskyi:419441	sim_GID_zhukovskyi:419441	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:419441	num_351	barcode_0.163229554064	REF	trial_24	sim_run_zhukovskyi:419441
+Triticum zhukovskyi	sim_zhukovskyi:484187	sim_GID_zhukovskyi:484187	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:484187	num_352	barcode_0.0699398887454		trial_24	sim_run_zhukovskyi:484187
+Triticum zhukovskyi	sim_zhukovskyi:661264	sim_GID_zhukovskyi:661264	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:661264	num_353	barcode_0.494817990317	REF	trial_23	sim_run_zhukovskyi:661264
+Triticum zhukovskyi	sim_zhukovskyi:749302	sim_GID_zhukovskyi:749302	Undetermined spp.		sim_sample_zhukovskyi:749302	num_354	barcode_0.425245467906		trial_23	sim_run_zhukovskyi:749302
+Triticum zhukovskyi	sim_zhukovskyi:140810	sim_GID_zhukovskyi:140810	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:140810	num_355	barcode_0.483909466518		trial_25	sim_run_zhukovskyi:140810
+Triticum zhukovskyi	sim_zhukovskyi:977465	sim_GID_zhukovskyi:977465	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:977465	num_356	barcode_0.407946256183		trial_23	sim_run_zhukovskyi:977465
+Triticum zhukovskyi	sim_zhukovskyi:355762	sim_GID_zhukovskyi:355762	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:355762	num_357	barcode_0.364385789705	REF	trial_23	sim_run_zhukovskyi:355762
+Triticum zhukovskyi	sim_zhukovskyi:766900	sim_GID_zhukovskyi:766900	Unknown	Inbred_line	sim_sample_zhukovskyi:766900	num_358	barcode_0.056673575266		trial_24	sim_run_zhukovskyi:766900
+Triticum zhukovskyi	sim_zhukovskyi:486069	sim_GID_zhukovskyi:486069	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:486069	num_359	barcode_0.440764749819		trial_25	sim_run_zhukovskyi:486069
+Triticum zhukovskyi	sim_zhukovskyi:251326	sim_GID_zhukovskyi:251326	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:251326	num_360	barcode_0.833507534381		trial_25	sim_run_zhukovskyi:251326
+Triticum zhukovskyi	sim_zhukovskyi:702784	sim_GID_zhukovskyi:702784	Zea mays subsp. mexicana		sim_sample_zhukovskyi:702784	num_361	barcode_0.674791030033	REF	trial_24	sim_run_zhukovskyi:702784
+Triticum zhukovskyi	sim_zhukovskyi:652352	sim_GID_zhukovskyi:652352	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:652352	num_362	barcode_0.0452162243003		trial_25	sim_run_zhukovskyi:652352
+Triticum zhukovskyi	sim_zhukovskyi:783353	sim_GID_zhukovskyi:783353	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:783353	num_363	barcode_0.238143707599	REF	trial_24	sim_run_zhukovskyi:783353
+Triticum zhukovskyi	sim_zhukovskyi:419690	sim_GID_zhukovskyi:419690	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:419690	num_364	barcode_0.426546433496		trial_24	sim_run_zhukovskyi:419690
+Triticum zhukovskyi	sim_zhukovskyi:638390	sim_GID_zhukovskyi:638390	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:638390	num_365	barcode_0.965802377769	REF	trial_24	sim_run_zhukovskyi:638390
+Triticum zhukovskyi	sim_zhukovskyi:67460	sim_GID_zhukovskyi:67460	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:67460	num_366	barcode_0.322760335999	REF	trial_24	sim_run_zhukovskyi:67460
+Triticum zhukovskyi	sim_zhukovskyi:585516	sim_GID_zhukovskyi:585516	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:585516	num_367	barcode_0.502991912291		trial_24	sim_run_zhukovskyi:585516
+Triticum zhukovskyi	sim_zhukovskyi:257590	sim_GID_zhukovskyi:257590	Zea diploperennis	F2	sim_sample_zhukovskyi:257590	num_368	barcode_0.639738756645		trial_25	sim_run_zhukovskyi:257590
+Triticum zhukovskyi	sim_zhukovskyi:517800	sim_GID_zhukovskyi:517800		F1_hybrid	sim_sample_zhukovskyi:517800	num_369	barcode_0.567051719687		trial_24	sim_run_zhukovskyi:517800
+Triticum zhukovskyi	sim_zhukovskyi:30775	sim_GID_zhukovskyi:30775	Undetermined	F1_hybrid	sim_sample_zhukovskyi:30775	num_370	barcode_0.153663903613		trial_23	sim_run_zhukovskyi:30775
+Triticum zhukovskyi	sim_zhukovskyi:457442	sim_GID_zhukovskyi:457442	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:457442	num_371	barcode_0.0600533874328	REF	trial_25	sim_run_zhukovskyi:457442
+Triticum zhukovskyi	sim_zhukovskyi:785733	sim_GID_zhukovskyi:785733	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:785733	num_372	barcode_0.750334120705	REF	trial_25	sim_run_zhukovskyi:785733
+Triticum zhukovskyi	sim_zhukovskyi:930101	sim_GID_zhukovskyi:930101	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:930101	num_373	barcode_0.162583317033		trial_24	sim_run_zhukovskyi:930101
+Triticum zhukovskyi	sim_zhukovskyi:309161	sim_GID_zhukovskyi:309161	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:309161	num_374	barcode_0.718310504444	REF	trial_23	sim_run_zhukovskyi:309161
+Triticum zhukovskyi	sim_zhukovskyi:442008	sim_GID_zhukovskyi:442008	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:442008	num_375	barcode_0.0599053554982	REF	trial_23	sim_run_zhukovskyi:442008
+Triticum zhukovskyi	sim_zhukovskyi:367959	sim_GID_zhukovskyi:367959	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:367959	num_376	barcode_0.223240802947	REF	trial_25	sim_run_zhukovskyi:367959
+Triticum zhukovskyi	sim_zhukovskyi:326188	sim_GID_zhukovskyi:326188	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:326188	num_377	barcode_0.0342071030642		trial_25	sim_run_zhukovskyi:326188
+Triticum zhukovskyi	sim_zhukovskyi:38281	sim_GID_zhukovskyi:38281	Triticum urartu		sim_sample_zhukovskyi:38281	num_378	barcode_0.521673249895	REF	trial_24	sim_run_zhukovskyi:38281
+Triticum zhukovskyi	sim_zhukovskyi:42708	sim_GID_zhukovskyi:42708	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:42708	num_379	barcode_0.316551385243		trial_23	sim_run_zhukovskyi:42708
+Triticum zhukovskyi	sim_zhukovskyi:717984	sim_GID_zhukovskyi:717984	Undetermined	F2	sim_sample_zhukovskyi:717984	num_380	barcode_0.023736937233		trial_24	sim_run_zhukovskyi:717984
+Triticum zhukovskyi	sim_zhukovskyi:199696	sim_GID_zhukovskyi:199696	Triticum urartu	F2	sim_sample_zhukovskyi:199696	num_381	barcode_0.444703116167	REF	trial_24	sim_run_zhukovskyi:199696
+Triticum zhukovskyi	sim_zhukovskyi:710690	sim_GID_zhukovskyi:710690	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:710690	num_382	barcode_0.665528860676		trial_24	sim_run_zhukovskyi:710690
+Triticum zhukovskyi	sim_zhukovskyi:607376	sim_GID_zhukovskyi:607376	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:607376	num_383	barcode_0.722179972401	REF	trial_23	sim_run_zhukovskyi:607376
+Triticum zhukovskyi	sim_zhukovskyi:247505	sim_GID_zhukovskyi:247505	Triticum turgidum subsp. paleocolchicum		sim_sample_zhukovskyi:247505	num_384	barcode_0.257191278007	REF	trial_24	sim_run_zhukovskyi:247505
+Triticum zhukovskyi	sim_zhukovskyi:46496	sim_GID_zhukovskyi:46496	Undetermined spp.	F2	sim_sample_zhukovskyi:46496	num_385	barcode_0.912556289293	REF	trial_23	sim_run_zhukovskyi:46496
+Triticum zhukovskyi	sim_zhukovskyi:905610	sim_GID_zhukovskyi:905610	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:905610	num_386	barcode_0.977530378609		trial_23	sim_run_zhukovskyi:905610
+Triticum zhukovskyi	sim_zhukovskyi:220760	sim_GID_zhukovskyi:220760			sim_sample_zhukovskyi:220760	num_387	barcode_0.369721182527		trial_24	sim_run_zhukovskyi:220760
+Triticum zhukovskyi	sim_zhukovskyi:384421	sim_GID_zhukovskyi:384421	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:384421	num_388	barcode_0.414459977092	REF	trial_24	sim_run_zhukovskyi:384421
+Triticum zhukovskyi	sim_zhukovskyi:936013	sim_GID_zhukovskyi:936013	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:936013	num_389	barcode_0.0761634884668		trial_25	sim_run_zhukovskyi:936013
+Triticum zhukovskyi	sim_zhukovskyi:367227	sim_GID_zhukovskyi:367227	Unknown	F1_hybrid	sim_sample_zhukovskyi:367227	num_390	barcode_0.708601430076	REF	trial_23	sim_run_zhukovskyi:367227
+Triticum zhukovskyi	sim_zhukovskyi:244258	sim_GID_zhukovskyi:244258	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:244258	num_391	barcode_0.935563999014	REF	trial_24	sim_run_zhukovskyi:244258
+Triticum zhukovskyi	sim_zhukovskyi:256469	sim_GID_zhukovskyi:256469	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:256469	num_392	barcode_0.690055985925		trial_24	sim_run_zhukovskyi:256469
+Triticum zhukovskyi	sim_zhukovskyi:12328	sim_GID_zhukovskyi:12328	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:12328	num_393	barcode_0.561743887956		trial_23	sim_run_zhukovskyi:12328
+Triticum zhukovskyi	sim_zhukovskyi:936584	sim_GID_zhukovskyi:936584	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:936584	num_394	barcode_0.233596376476		trial_23	sim_run_zhukovskyi:936584
+Triticum zhukovskyi	sim_zhukovskyi:107808	sim_GID_zhukovskyi:107808	Triticum urartu		sim_sample_zhukovskyi:107808	num_395	barcode_0.0485901934769	REF	trial_23	sim_run_zhukovskyi:107808
+Triticum zhukovskyi	sim_zhukovskyi:619834	sim_GID_zhukovskyi:619834	Zea mays subsp. mays		sim_sample_zhukovskyi:619834	num_396	barcode_0.170185658495	REF	trial_25	sim_run_zhukovskyi:619834
+Triticum zhukovskyi	sim_zhukovskyi:259468	sim_GID_zhukovskyi:259468	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:259468	num_397	barcode_0.200498498674	REF	trial_24	sim_run_zhukovskyi:259468
+Triticum zhukovskyi	sim_zhukovskyi:214136	sim_GID_zhukovskyi:214136	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:214136	num_398	barcode_0.231879178929	REF	trial_25	sim_run_zhukovskyi:214136
+Triticum zhukovskyi	sim_zhukovskyi:507903	sim_GID_zhukovskyi:507903	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:507903	num_399	barcode_0.60482361405		trial_25	sim_run_zhukovskyi:507903
+Triticum zhukovskyi	sim_zhukovskyi:822844	sim_GID_zhukovskyi:822844	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:822844	num_400	barcode_0.46663106324	REF	trial_25	sim_run_zhukovskyi:822844
+Triticum zhukovskyi	sim_zhukovskyi:399618	sim_GID_zhukovskyi:399618	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:399618	num_401	barcode_0.731297698482	REF	trial_25	sim_run_zhukovskyi:399618
+Triticum zhukovskyi	sim_zhukovskyi:502062	sim_GID_zhukovskyi:502062	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:502062	num_402	barcode_0.0928325200356	REF	trial_24	sim_run_zhukovskyi:502062
+Triticum zhukovskyi	sim_zhukovskyi:947990	sim_GID_zhukovskyi:947990	Triticum vavilovii var. vavilovii		sim_sample_zhukovskyi:947990	num_403	barcode_0.955110748384	REF	trial_24	sim_run_zhukovskyi:947990
+Triticum zhukovskyi	sim_zhukovskyi:779645	sim_GID_zhukovskyi:779645	Zea diploperennis		sim_sample_zhukovskyi:779645	num_404	barcode_0.161033656818		trial_24	sim_run_zhukovskyi:779645
+Triticum zhukovskyi	sim_zhukovskyi:813482	sim_GID_zhukovskyi:813482	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:813482	num_405	barcode_0.805132944697		trial_25	sim_run_zhukovskyi:813482
+Triticum zhukovskyi	sim_zhukovskyi:531368	sim_GID_zhukovskyi:531368	Unknown		sim_sample_zhukovskyi:531368	num_406	barcode_0.828763655789		trial_25	sim_run_zhukovskyi:531368
+Triticum zhukovskyi	sim_zhukovskyi:736972	sim_GID_zhukovskyi:736972	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:736972	num_407	barcode_0.192353510066	REF	trial_24	sim_run_zhukovskyi:736972
+Triticum zhukovskyi	sim_zhukovskyi:280595	sim_GID_zhukovskyi:280595	Undetermined	BC1F1	sim_sample_zhukovskyi:280595	num_408	barcode_0.716864077774	REF	trial_24	sim_run_zhukovskyi:280595
+Triticum zhukovskyi	sim_zhukovskyi:493093	sim_GID_zhukovskyi:493093	Undetermined spp.		sim_sample_zhukovskyi:493093	num_409	barcode_0.923522625063		trial_25	sim_run_zhukovskyi:493093
+Triticum zhukovskyi	sim_zhukovskyi:3928	sim_GID_zhukovskyi:3928	Undetermined spp.	F2	sim_sample_zhukovskyi:3928	num_410	barcode_0.563258244326		trial_24	sim_run_zhukovskyi:3928
+Triticum zhukovskyi	sim_zhukovskyi:940631	sim_GID_zhukovskyi:940631	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:940631	num_411	barcode_0.0240241736667	REF	trial_23	sim_run_zhukovskyi:940631
+Triticum zhukovskyi	sim_zhukovskyi:713178	sim_GID_zhukovskyi:713178	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:713178	num_412	barcode_0.466534602416		trial_24	sim_run_zhukovskyi:713178
+Triticum zhukovskyi	sim_zhukovskyi:537054	sim_GID_zhukovskyi:537054	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:537054	num_413	barcode_0.00869369747395	REF	trial_24	sim_run_zhukovskyi:537054
+Triticum zhukovskyi	sim_zhukovskyi:337859	sim_GID_zhukovskyi:337859	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:337859	num_414	barcode_0.37073164267	REF	trial_23	sim_run_zhukovskyi:337859
+Triticum zhukovskyi	sim_zhukovskyi:544725	sim_GID_zhukovskyi:544725	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:544725	num_415	barcode_0.346760897941		trial_24	sim_run_zhukovskyi:544725
+Triticum zhukovskyi	sim_zhukovskyi:290178	sim_GID_zhukovskyi:290178	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:290178	num_416	barcode_0.128664460527		trial_25	sim_run_zhukovskyi:290178
+Triticum zhukovskyi	sim_zhukovskyi:942550	sim_GID_zhukovskyi:942550	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:942550	num_417	barcode_0.00427313982721		trial_25	sim_run_zhukovskyi:942550
+Triticum zhukovskyi	sim_zhukovskyi:702081	sim_GID_zhukovskyi:702081	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:702081	num_418	barcode_0.659130882978		trial_25	sim_run_zhukovskyi:702081
+Triticum zhukovskyi	sim_zhukovskyi:931749	sim_GID_zhukovskyi:931749	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:931749	num_419	barcode_0.43828282365		trial_25	sim_run_zhukovskyi:931749
+Triticum zhukovskyi	sim_zhukovskyi:598137	sim_GID_zhukovskyi:598137	Undetermined spp.	F2	sim_sample_zhukovskyi:598137	num_420	barcode_0.800482967897		trial_23	sim_run_zhukovskyi:598137
+Triticum zhukovskyi	sim_zhukovskyi:826077	sim_GID_zhukovskyi:826077	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:826077	num_421	barcode_0.637944151096		trial_25	sim_run_zhukovskyi:826077
+Triticum zhukovskyi	sim_zhukovskyi:250426	sim_GID_zhukovskyi:250426	Triticum turgidum subsp. paleocolchicum		sim_sample_zhukovskyi:250426	num_422	barcode_0.800943467823	REF	trial_23	sim_run_zhukovskyi:250426
+Triticum zhukovskyi	sim_zhukovskyi:539446	sim_GID_zhukovskyi:539446	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:539446	num_423	barcode_0.860151779949		trial_24	sim_run_zhukovskyi:539446
+Triticum zhukovskyi	sim_zhukovskyi:496516	sim_GID_zhukovskyi:496516	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:496516	num_424	barcode_0.88650939005	REF	trial_25	sim_run_zhukovskyi:496516
+Triticum zhukovskyi	sim_zhukovskyi:270295	sim_GID_zhukovskyi:270295	Unknown	Inbred_line	sim_sample_zhukovskyi:270295	num_425	barcode_0.00522894912619	REF	trial_24	sim_run_zhukovskyi:270295
+Triticum zhukovskyi	sim_zhukovskyi:207938	sim_GID_zhukovskyi:207938	Triticum urartu		sim_sample_zhukovskyi:207938	num_426	barcode_0.580784800821		trial_24	sim_run_zhukovskyi:207938
+Triticum zhukovskyi	sim_zhukovskyi:481428	sim_GID_zhukovskyi:481428	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:481428	num_427	barcode_0.682072782059		trial_24	sim_run_zhukovskyi:481428
+Triticum zhukovskyi	sim_zhukovskyi:435900	sim_GID_zhukovskyi:435900	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:435900	num_428	barcode_0.476913961777		trial_23	sim_run_zhukovskyi:435900
+Triticum zhukovskyi	sim_zhukovskyi:929830	sim_GID_zhukovskyi:929830	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:929830	num_429	barcode_0.18045318205		trial_23	sim_run_zhukovskyi:929830
+Triticum zhukovskyi	sim_zhukovskyi:121327	sim_GID_zhukovskyi:121327	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:121327	num_430	barcode_0.546000374377		trial_24	sim_run_zhukovskyi:121327
+Triticum zhukovskyi	sim_zhukovskyi:488699	sim_GID_zhukovskyi:488699	Unknown	BC1F1	sim_sample_zhukovskyi:488699	num_431	barcode_0.346947411533	REF	trial_24	sim_run_zhukovskyi:488699
+Triticum zhukovskyi	sim_zhukovskyi:355221	sim_GID_zhukovskyi:355221	Triticum urartu	BC1F1	sim_sample_zhukovskyi:355221	num_432	barcode_0.988996786094	REF	trial_23	sim_run_zhukovskyi:355221
+Triticum zhukovskyi	sim_zhukovskyi:159257	sim_GID_zhukovskyi:159257	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:159257	num_433	barcode_0.0225090267144		trial_23	sim_run_zhukovskyi:159257
+Triticum zhukovskyi	sim_zhukovskyi:585995	sim_GID_zhukovskyi:585995	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:585995	num_434	barcode_0.497008026704	REF	trial_23	sim_run_zhukovskyi:585995
+Triticum zhukovskyi	sim_zhukovskyi:21948	sim_GID_zhukovskyi:21948	Undetermined spp.	F2	sim_sample_zhukovskyi:21948	num_435	barcode_0.680549389846	REF	trial_24	sim_run_zhukovskyi:21948
+Triticum zhukovskyi	sim_zhukovskyi:709828	sim_GID_zhukovskyi:709828	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:709828	num_436	barcode_0.481598695061	REF	trial_25	sim_run_zhukovskyi:709828
+Triticum zhukovskyi	sim_zhukovskyi:633953	sim_GID_zhukovskyi:633953	Unknown		sim_sample_zhukovskyi:633953	num_437	barcode_0.54089797066	REF	trial_24	sim_run_zhukovskyi:633953
+Triticum zhukovskyi	sim_zhukovskyi:648873	sim_GID_zhukovskyi:648873	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:648873	num_438	barcode_0.684411499173	REF	trial_24	sim_run_zhukovskyi:648873
+Triticum zhukovskyi	sim_zhukovskyi:10118	sim_GID_zhukovskyi:10118	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:10118	num_439	barcode_0.101460862208	REF	trial_23	sim_run_zhukovskyi:10118
+Triticum zhukovskyi	sim_zhukovskyi:529475	sim_GID_zhukovskyi:529475	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:529475	num_440	barcode_0.310601418283	REF	trial_25	sim_run_zhukovskyi:529475
+Triticum zhukovskyi	sim_zhukovskyi:854950	sim_GID_zhukovskyi:854950			sim_sample_zhukovskyi:854950	num_441	barcode_0.790395748402		trial_25	sim_run_zhukovskyi:854950
+Triticum zhukovskyi	sim_zhukovskyi:788767	sim_GID_zhukovskyi:788767	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:788767	num_442	barcode_0.527377286201	REF	trial_25	sim_run_zhukovskyi:788767
+Triticum zhukovskyi	sim_zhukovskyi:970773	sim_GID_zhukovskyi:970773	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:970773	num_443	barcode_0.68870985635	REF	trial_25	sim_run_zhukovskyi:970773
+Triticum zhukovskyi	sim_zhukovskyi:820574	sim_GID_zhukovskyi:820574		F2	sim_sample_zhukovskyi:820574	num_444	barcode_0.674210495439	REF	trial_24	sim_run_zhukovskyi:820574
+Triticum zhukovskyi	sim_zhukovskyi:246546	sim_GID_zhukovskyi:246546	Undetermined	BC1F1	sim_sample_zhukovskyi:246546	num_445	barcode_0.899908911335	REF	trial_24	sim_run_zhukovskyi:246546
+Triticum zhukovskyi	sim_zhukovskyi:799897	sim_GID_zhukovskyi:799897	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:799897	num_446	barcode_0.446404608934		trial_23	sim_run_zhukovskyi:799897
+Triticum zhukovskyi	sim_zhukovskyi:710953	sim_GID_zhukovskyi:710953	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:710953	num_447	barcode_0.119170635965	REF	trial_24	sim_run_zhukovskyi:710953
+Triticum zhukovskyi	sim_zhukovskyi:243762	sim_GID_zhukovskyi:243762	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:243762	num_448	barcode_0.0742703126091		trial_25	sim_run_zhukovskyi:243762
+Triticum zhukovskyi	sim_zhukovskyi:231307	sim_GID_zhukovskyi:231307	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:231307	num_449	barcode_0.48383888129	REF	trial_24	sim_run_zhukovskyi:231307
+Triticum zhukovskyi	sim_zhukovskyi:39840	sim_GID_zhukovskyi:39840	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:39840	num_450	barcode_0.53086296469		trial_24	sim_run_zhukovskyi:39840
+Triticum zhukovskyi	sim_zhukovskyi:878501	sim_GID_zhukovskyi:878501	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:878501	num_451	barcode_0.43912894641		trial_23	sim_run_zhukovskyi:878501
+Triticum zhukovskyi	sim_zhukovskyi:872857	sim_GID_zhukovskyi:872857	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:872857	num_452	barcode_0.0182519582113		trial_23	sim_run_zhukovskyi:872857
+Triticum zhukovskyi	sim_zhukovskyi:474160	sim_GID_zhukovskyi:474160	Zea diploperennis	F2	sim_sample_zhukovskyi:474160	num_453	barcode_0.158859911977	REF	trial_24	sim_run_zhukovskyi:474160
+Triticum zhukovskyi	sim_zhukovskyi:428442	sim_GID_zhukovskyi:428442	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:428442	num_454	barcode_0.40215801775		trial_25	sim_run_zhukovskyi:428442
+Triticum zhukovskyi	sim_zhukovskyi:224759	sim_GID_zhukovskyi:224759	Undetermined	Inbred_line	sim_sample_zhukovskyi:224759	num_455	barcode_0.53955184338	REF	trial_24	sim_run_zhukovskyi:224759
+Triticum zhukovskyi	sim_zhukovskyi:426153	sim_GID_zhukovskyi:426153	Zea diploperennis		sim_sample_zhukovskyi:426153	num_456	barcode_0.453719051284		trial_23	sim_run_zhukovskyi:426153
+Triticum zhukovskyi	sim_zhukovskyi:470549	sim_GID_zhukovskyi:470549			sim_sample_zhukovskyi:470549	num_457	barcode_0.642697809083	REF	trial_23	sim_run_zhukovskyi:470549
+Triticum zhukovskyi	sim_zhukovskyi:34540	sim_GID_zhukovskyi:34540	Undetermined	BC1F1	sim_sample_zhukovskyi:34540	num_458	barcode_0.191241656918	REF	trial_23	sim_run_zhukovskyi:34540
+Triticum zhukovskyi	sim_zhukovskyi:464383	sim_GID_zhukovskyi:464383	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:464383	num_459	barcode_0.708641201054	REF	trial_23	sim_run_zhukovskyi:464383
+Triticum zhukovskyi	sim_zhukovskyi:856616	sim_GID_zhukovskyi:856616	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:856616	num_460	barcode_0.844739095942		trial_25	sim_run_zhukovskyi:856616
+Triticum zhukovskyi	sim_zhukovskyi:820623	sim_GID_zhukovskyi:820623	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:820623	num_461	barcode_0.932545852434	REF	trial_24	sim_run_zhukovskyi:820623
+Triticum zhukovskyi	sim_zhukovskyi:592043	sim_GID_zhukovskyi:592043	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:592043	num_462	barcode_0.413510434411	REF	trial_25	sim_run_zhukovskyi:592043
+Triticum zhukovskyi	sim_zhukovskyi:122118	sim_GID_zhukovskyi:122118		F2	sim_sample_zhukovskyi:122118	num_463	barcode_0.915961802511	REF	trial_25	sim_run_zhukovskyi:122118
+Triticum zhukovskyi	sim_zhukovskyi:939230	sim_GID_zhukovskyi:939230	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:939230	num_464	barcode_0.299547399228		trial_25	sim_run_zhukovskyi:939230
+Triticum zhukovskyi	sim_zhukovskyi:753425	sim_GID_zhukovskyi:753425	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:753425	num_465	barcode_0.705823119265		trial_24	sim_run_zhukovskyi:753425
+Triticum zhukovskyi	sim_zhukovskyi:353883	sim_GID_zhukovskyi:353883	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:353883	num_466	barcode_0.262230183077		trial_25	sim_run_zhukovskyi:353883
+Triticum zhukovskyi	sim_zhukovskyi:842157	sim_GID_zhukovskyi:842157	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:842157	num_467	barcode_0.0124989772876		trial_25	sim_run_zhukovskyi:842157
+Triticum zhukovskyi	sim_zhukovskyi:882011	sim_GID_zhukovskyi:882011	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:882011	num_468	barcode_0.276264593566	REF	trial_23	sim_run_zhukovskyi:882011
+Triticum zhukovskyi	sim_zhukovskyi:536126	sim_GID_zhukovskyi:536126	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:536126	num_469	barcode_0.796328029909	REF	trial_25	sim_run_zhukovskyi:536126
+Triticum zhukovskyi	sim_zhukovskyi:928541	sim_GID_zhukovskyi:928541	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:928541	num_470	barcode_0.519062456077		trial_23	sim_run_zhukovskyi:928541
+Triticum zhukovskyi	sim_zhukovskyi:21753	sim_GID_zhukovskyi:21753	Undetermined	BC1F1	sim_sample_zhukovskyi:21753	num_471	barcode_0.527738310225	REF	trial_25	sim_run_zhukovskyi:21753
+Triticum zhukovskyi	sim_zhukovskyi:874575	sim_GID_zhukovskyi:874575	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:874575	num_472	barcode_0.471266155702	REF	trial_25	sim_run_zhukovskyi:874575
+Triticum zhukovskyi	sim_zhukovskyi:877037	sim_GID_zhukovskyi:877037	Undetermined		sim_sample_zhukovskyi:877037	num_473	barcode_0.140519585377	REF	trial_23	sim_run_zhukovskyi:877037
+Triticum zhukovskyi	sim_zhukovskyi:359813	sim_GID_zhukovskyi:359813	Zea mays subsp. mexicana		sim_sample_zhukovskyi:359813	num_474	barcode_0.976520310268	REF	trial_25	sim_run_zhukovskyi:359813
+Triticum zhukovskyi	sim_zhukovskyi:162926	sim_GID_zhukovskyi:162926	Triticum vavilovii var. vavilovii		sim_sample_zhukovskyi:162926	num_475	barcode_0.807129304529	REF	trial_23	sim_run_zhukovskyi:162926
+Triticum zhukovskyi	sim_zhukovskyi:866165	sim_GID_zhukovskyi:866165	Zea diploperennis	F2	sim_sample_zhukovskyi:866165	num_476	barcode_0.67670875108		trial_23	sim_run_zhukovskyi:866165
+Triticum zhukovskyi	sim_zhukovskyi:443316	sim_GID_zhukovskyi:443316	Undetermined spp.	F2	sim_sample_zhukovskyi:443316	num_477	barcode_0.250313631181		trial_25	sim_run_zhukovskyi:443316
+Triticum zhukovskyi	sim_zhukovskyi:438247	sim_GID_zhukovskyi:438247	Triticum urartu		sim_sample_zhukovskyi:438247	num_478	barcode_0.046692056233		trial_25	sim_run_zhukovskyi:438247
+Triticum zhukovskyi	sim_zhukovskyi:775834	sim_GID_zhukovskyi:775834	Triticum zhukovskyi		sim_sample_zhukovskyi:775834	num_479	barcode_0.0290650096265		trial_25	sim_run_zhukovskyi:775834
+Triticum zhukovskyi	sim_zhukovskyi:766971	sim_GID_zhukovskyi:766971	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:766971	num_480	barcode_0.288420449862		trial_24	sim_run_zhukovskyi:766971
+Triticum zhukovskyi	sim_zhukovskyi:982689	sim_GID_zhukovskyi:982689	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:982689	num_481	barcode_0.268244297358	REF	trial_23	sim_run_zhukovskyi:982689
+Triticum zhukovskyi	sim_zhukovskyi:615438	sim_GID_zhukovskyi:615438	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:615438	num_482	barcode_0.785851627157		trial_24	sim_run_zhukovskyi:615438
+Triticum zhukovskyi	sim_zhukovskyi:162983	sim_GID_zhukovskyi:162983	Undetermined spp.	F2	sim_sample_zhukovskyi:162983	num_483	barcode_0.726077532931	REF	trial_23	sim_run_zhukovskyi:162983
+Triticum zhukovskyi	sim_zhukovskyi:317436	sim_GID_zhukovskyi:317436	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:317436	num_484	barcode_0.689917101892	REF	trial_23	sim_run_zhukovskyi:317436
+Triticum zhukovskyi	sim_zhukovskyi:604932	sim_GID_zhukovskyi:604932	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:604932	num_485	barcode_0.35752623603	REF	trial_23	sim_run_zhukovskyi:604932
+Triticum zhukovskyi	sim_zhukovskyi:843186	sim_GID_zhukovskyi:843186	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:843186	num_486	barcode_0.924523346975		trial_25	sim_run_zhukovskyi:843186
+Triticum zhukovskyi	sim_zhukovskyi:261802	sim_GID_zhukovskyi:261802	Zea mays subsp. mexicana		sim_sample_zhukovskyi:261802	num_487	barcode_0.373142523203		trial_25	sim_run_zhukovskyi:261802
+Triticum zhukovskyi	sim_zhukovskyi:150768	sim_GID_zhukovskyi:150768	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:150768	num_488	barcode_0.706995045136		trial_24	sim_run_zhukovskyi:150768
+Triticum zhukovskyi	sim_zhukovskyi:293478	sim_GID_zhukovskyi:293478	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:293478	num_489	barcode_0.930040288175		trial_23	sim_run_zhukovskyi:293478
+Triticum zhukovskyi	sim_zhukovskyi:117491	sim_GID_zhukovskyi:117491	Triticum zhukovskyi	Inbred_line	sim_sample_zhukovskyi:117491	num_490	barcode_0.836993475863	REF	trial_24	sim_run_zhukovskyi:117491
+Triticum zhukovskyi	sim_zhukovskyi:772567	sim_GID_zhukovskyi:772567	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:772567	num_491	barcode_0.332907915422		trial_23	sim_run_zhukovskyi:772567
+Triticum zhukovskyi	sim_zhukovskyi:247827	sim_GID_zhukovskyi:247827	Triticum zhukovskyi		sim_sample_zhukovskyi:247827	num_492	barcode_0.71846960943		trial_25	sim_run_zhukovskyi:247827
+Triticum zhukovskyi	sim_zhukovskyi:998575	sim_GID_zhukovskyi:998575	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:998575	num_493	barcode_0.618928913304		trial_25	sim_run_zhukovskyi:998575
+Triticum zhukovskyi	sim_zhukovskyi:945136	sim_GID_zhukovskyi:945136	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:945136	num_494	barcode_0.286696138087	REF	trial_23	sim_run_zhukovskyi:945136
+Triticum zhukovskyi	sim_zhukovskyi:512117	sim_GID_zhukovskyi:512117	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:512117	num_495	barcode_0.108923859489	REF	trial_24	sim_run_zhukovskyi:512117
+Triticum zhukovskyi	sim_zhukovskyi:681286	sim_GID_zhukovskyi:681286	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:681286	num_496	barcode_0.0832007840723		trial_24	sim_run_zhukovskyi:681286
+Triticum zhukovskyi	sim_zhukovskyi:844708	sim_GID_zhukovskyi:844708	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:844708	num_497	barcode_0.894496548708	REF	trial_24	sim_run_zhukovskyi:844708
+Triticum zhukovskyi	sim_zhukovskyi:966611	sim_GID_zhukovskyi:966611	Undetermined	F2	sim_sample_zhukovskyi:966611	num_498	barcode_0.669479286673		trial_24	sim_run_zhukovskyi:966611
+Triticum zhukovskyi	sim_zhukovskyi:203187	sim_GID_zhukovskyi:203187	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:203187	num_499	barcode_0.173351028501	REF	trial_23	sim_run_zhukovskyi:203187
+Triticum zhukovskyi	sim_zhukovskyi:608142	sim_GID_zhukovskyi:608142	Unknown	F2	sim_sample_zhukovskyi:608142	num_500	barcode_0.680962177299	REF	trial_24	sim_run_zhukovskyi:608142
+Triticum zhukovskyi	sim_zhukovskyi:597422	sim_GID_zhukovskyi:597422	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:597422	num_501	barcode_0.259708889241	REF	trial_25	sim_run_zhukovskyi:597422
+Triticum zhukovskyi	sim_zhukovskyi:135141	sim_GID_zhukovskyi:135141	Triticum turgidum subsp. dicoccon		sim_sample_zhukovskyi:135141	num_502	barcode_0.43728092019		trial_24	sim_run_zhukovskyi:135141
+Triticum zhukovskyi	sim_zhukovskyi:538551	sim_GID_zhukovskyi:538551	Undetermined spp.	F2	sim_sample_zhukovskyi:538551	num_503	barcode_0.553982549646		trial_25	sim_run_zhukovskyi:538551
+Triticum zhukovskyi	sim_zhukovskyi:974986	sim_GID_zhukovskyi:974986	Unknown	F1_hybrid	sim_sample_zhukovskyi:974986	num_504	barcode_0.903697185729	REF	trial_25	sim_run_zhukovskyi:974986
+Triticum zhukovskyi	sim_zhukovskyi:645774	sim_GID_zhukovskyi:645774	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:645774	num_505	barcode_0.627111422965	REF	trial_23	sim_run_zhukovskyi:645774
+Triticum zhukovskyi	sim_zhukovskyi:623713	sim_GID_zhukovskyi:623713	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:623713	num_506	barcode_0.755081887271	REF	trial_23	sim_run_zhukovskyi:623713
+Triticum zhukovskyi	sim_zhukovskyi:115245	sim_GID_zhukovskyi:115245	Triticum zhukovskyi	Inbred_line	sim_sample_zhukovskyi:115245	num_507	barcode_0.0181693009351		trial_23	sim_run_zhukovskyi:115245
+Triticum zhukovskyi	sim_zhukovskyi:846321	sim_GID_zhukovskyi:846321	Undetermined	BC1F1	sim_sample_zhukovskyi:846321	num_508	barcode_0.632597629746		trial_24	sim_run_zhukovskyi:846321
+Triticum zhukovskyi	sim_zhukovskyi:954177	sim_GID_zhukovskyi:954177	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:954177	num_509	barcode_0.256808731309		trial_24	sim_run_zhukovskyi:954177
+Triticum zhukovskyi	sim_zhukovskyi:295941	sim_GID_zhukovskyi:295941	Triticum zhukovskyi	Inbred_line	sim_sample_zhukovskyi:295941	num_510	barcode_0.665312766056	REF	trial_24	sim_run_zhukovskyi:295941
+Triticum zhukovskyi	sim_zhukovskyi:423619	sim_GID_zhukovskyi:423619	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:423619	num_511	barcode_0.288487901671		trial_24	sim_run_zhukovskyi:423619
+Triticum zhukovskyi	sim_zhukovskyi:124008	sim_GID_zhukovskyi:124008	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:124008	num_512	barcode_0.666276358525		trial_23	sim_run_zhukovskyi:124008
+Triticum zhukovskyi	sim_zhukovskyi:480195	sim_GID_zhukovskyi:480195	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:480195	num_513	barcode_0.609526682151	REF	trial_25	sim_run_zhukovskyi:480195
+Triticum zhukovskyi	sim_zhukovskyi:730641	sim_GID_zhukovskyi:730641			sim_sample_zhukovskyi:730641	num_514	barcode_0.334346297605	REF	trial_25	sim_run_zhukovskyi:730641
+Triticum zhukovskyi	sim_zhukovskyi:354067	sim_GID_zhukovskyi:354067	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:354067	num_515	barcode_0.810199505545		trial_25	sim_run_zhukovskyi:354067
+Triticum zhukovskyi	sim_zhukovskyi:541230	sim_GID_zhukovskyi:541230	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_zhukovskyi:541230	num_516	barcode_0.734970332254	REF	trial_24	sim_run_zhukovskyi:541230
+Triticum zhukovskyi	sim_zhukovskyi:228011	sim_GID_zhukovskyi:228011	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:228011	num_517	barcode_0.332702920264		trial_23	sim_run_zhukovskyi:228011
+Triticum zhukovskyi	sim_zhukovskyi:22615	sim_GID_zhukovskyi:22615	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:22615	num_518	barcode_0.868408897229	REF	trial_25	sim_run_zhukovskyi:22615
+Triticum zhukovskyi	sim_zhukovskyi:993790	sim_GID_zhukovskyi:993790	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:993790	num_519	barcode_0.602220053688	REF	trial_23	sim_run_zhukovskyi:993790
+Triticum zhukovskyi	sim_zhukovskyi:933641	sim_GID_zhukovskyi:933641	Triticum urartu		sim_sample_zhukovskyi:933641	num_520	barcode_0.183498944687	REF	trial_23	sim_run_zhukovskyi:933641
+Triticum zhukovskyi	sim_zhukovskyi:52818	sim_GID_zhukovskyi:52818	Unknown		sim_sample_zhukovskyi:52818	num_521	barcode_0.275685368698		trial_25	sim_run_zhukovskyi:52818
+Triticum zhukovskyi	sim_zhukovskyi:486022	sim_GID_zhukovskyi:486022	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:486022	num_522	barcode_0.281017211325	REF	trial_24	sim_run_zhukovskyi:486022
+Triticum zhukovskyi	sim_zhukovskyi:357109	sim_GID_zhukovskyi:357109	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:357109	num_523	barcode_0.33192748867	REF	trial_23	sim_run_zhukovskyi:357109
+Triticum zhukovskyi	sim_zhukovskyi:892762	sim_GID_zhukovskyi:892762	Unknown	Inbred_line	sim_sample_zhukovskyi:892762	num_524	barcode_0.624127766051	REF	trial_24	sim_run_zhukovskyi:892762
+Triticum zhukovskyi	sim_zhukovskyi:399117	sim_GID_zhukovskyi:399117	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:399117	num_525	barcode_0.858109648446		trial_23	sim_run_zhukovskyi:399117
+Triticum zhukovskyi	sim_zhukovskyi:428474	sim_GID_zhukovskyi:428474	Unknown		sim_sample_zhukovskyi:428474	num_526	barcode_0.56650008125	REF	trial_25	sim_run_zhukovskyi:428474
+Triticum zhukovskyi	sim_zhukovskyi:515202	sim_GID_zhukovskyi:515202	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:515202	num_527	barcode_0.444550259374		trial_24	sim_run_zhukovskyi:515202
+Triticum zhukovskyi	sim_zhukovskyi:186934	sim_GID_zhukovskyi:186934	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:186934	num_528	barcode_0.55891169132	REF	trial_24	sim_run_zhukovskyi:186934
+Triticum zhukovskyi	sim_zhukovskyi:704108	sim_GID_zhukovskyi:704108	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:704108	num_529	barcode_0.224616902934		trial_24	sim_run_zhukovskyi:704108
+Triticum zhukovskyi	sim_zhukovskyi:69196	sim_GID_zhukovskyi:69196	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:69196	num_530	barcode_0.248234467407	REF	trial_23	sim_run_zhukovskyi:69196
+Triticum zhukovskyi	sim_zhukovskyi:497694	sim_GID_zhukovskyi:497694	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:497694	num_531	barcode_0.79690084389	REF	trial_25	sim_run_zhukovskyi:497694
+Triticum zhukovskyi	sim_zhukovskyi:782136	sim_GID_zhukovskyi:782136	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:782136	num_532	barcode_0.102656934312		trial_23	sim_run_zhukovskyi:782136
+Triticum zhukovskyi	sim_zhukovskyi:614646	sim_GID_zhukovskyi:614646	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:614646	num_533	barcode_0.391652496326	REF	trial_24	sim_run_zhukovskyi:614646
+Triticum zhukovskyi	sim_zhukovskyi:831663	sim_GID_zhukovskyi:831663	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:831663	num_534	barcode_0.156196903593	REF	trial_23	sim_run_zhukovskyi:831663
+Triticum zhukovskyi	sim_zhukovskyi:138386	sim_GID_zhukovskyi:138386	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:138386	num_535	barcode_0.272983638852		trial_24	sim_run_zhukovskyi:138386
+Triticum zhukovskyi	sim_zhukovskyi:317363	sim_GID_zhukovskyi:317363	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:317363	num_536	barcode_0.509179709115		trial_23	sim_run_zhukovskyi:317363
+Triticum zhukovskyi	sim_zhukovskyi:449537	sim_GID_zhukovskyi:449537	Undetermined spp.	F2	sim_sample_zhukovskyi:449537	num_537	barcode_0.314925735091		trial_23	sim_run_zhukovskyi:449537
+Triticum zhukovskyi	sim_zhukovskyi:185986	sim_GID_zhukovskyi:185986	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:185986	num_538	barcode_0.274312802621	REF	trial_25	sim_run_zhukovskyi:185986
+Triticum zhukovskyi	sim_zhukovskyi:607733	sim_GID_zhukovskyi:607733	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:607733	num_539	barcode_0.416747839734		trial_24	sim_run_zhukovskyi:607733
+Triticum zhukovskyi	sim_zhukovskyi:553537	sim_GID_zhukovskyi:553537	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:553537	num_540	barcode_0.54885132894	REF	trial_23	sim_run_zhukovskyi:553537
+Triticum zhukovskyi	sim_zhukovskyi:221899	sim_GID_zhukovskyi:221899	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:221899	num_541	barcode_0.831559472314		trial_24	sim_run_zhukovskyi:221899
+Triticum zhukovskyi	sim_zhukovskyi:507563	sim_GID_zhukovskyi:507563	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:507563	num_542	barcode_0.653349081895		trial_24	sim_run_zhukovskyi:507563
+Triticum zhukovskyi	sim_zhukovskyi:775970	sim_GID_zhukovskyi:775970	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:775970	num_543	barcode_0.0463447310049	REF	trial_23	sim_run_zhukovskyi:775970
+Triticum zhukovskyi	sim_zhukovskyi:467527	sim_GID_zhukovskyi:467527	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:467527	num_544	barcode_0.827436294639		trial_23	sim_run_zhukovskyi:467527
+Triticum zhukovskyi	sim_zhukovskyi:165445	sim_GID_zhukovskyi:165445	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:165445	num_545	barcode_0.0222477255394	REF	trial_24	sim_run_zhukovskyi:165445
+Triticum zhukovskyi	sim_zhukovskyi:256310	sim_GID_zhukovskyi:256310	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:256310	num_546	barcode_0.511785526429	REF	trial_25	sim_run_zhukovskyi:256310
+Triticum zhukovskyi	sim_zhukovskyi:350915	sim_GID_zhukovskyi:350915	Undetermined	F1_hybrid	sim_sample_zhukovskyi:350915	num_547	barcode_0.225275747654		trial_23	sim_run_zhukovskyi:350915
+Triticum zhukovskyi	sim_zhukovskyi:413449	sim_GID_zhukovskyi:413449	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:413449	num_548	barcode_0.809889520839	REF	trial_23	sim_run_zhukovskyi:413449
+Triticum zhukovskyi	sim_zhukovskyi:576569	sim_GID_zhukovskyi:576569	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:576569	num_549	barcode_0.522536393502	REF	trial_25	sim_run_zhukovskyi:576569
+Triticum zhukovskyi	sim_zhukovskyi:548891	sim_GID_zhukovskyi:548891	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:548891	num_550	barcode_0.173133867288	REF	trial_23	sim_run_zhukovskyi:548891
+Triticum zhukovskyi	sim_zhukovskyi:603500	sim_GID_zhukovskyi:603500	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:603500	num_551	barcode_0.822067135619	REF	trial_24	sim_run_zhukovskyi:603500
+Triticum zhukovskyi	sim_zhukovskyi:391478	sim_GID_zhukovskyi:391478		Inbred_line	sim_sample_zhukovskyi:391478	num_552	barcode_0.732989257092	REF	trial_23	sim_run_zhukovskyi:391478
+Triticum zhukovskyi	sim_zhukovskyi:429790	sim_GID_zhukovskyi:429790	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:429790	num_553	barcode_0.984820333284	REF	trial_23	sim_run_zhukovskyi:429790
+Triticum zhukovskyi	sim_zhukovskyi:703859	sim_GID_zhukovskyi:703859	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:703859	num_554	barcode_0.387167573155	REF	trial_23	sim_run_zhukovskyi:703859
+Triticum zhukovskyi	sim_zhukovskyi:840897	sim_GID_zhukovskyi:840897	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:840897	num_555	barcode_0.454687393997		trial_25	sim_run_zhukovskyi:840897
+Triticum zhukovskyi	sim_zhukovskyi:272252	sim_GID_zhukovskyi:272252	Zea mays subsp. mays	F1_hybrid	sim_sample_zhukovskyi:272252	num_556	barcode_0.404187660301		trial_23	sim_run_zhukovskyi:272252
+Triticum zhukovskyi	sim_zhukovskyi:359190	sim_GID_zhukovskyi:359190	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:359190	num_557	barcode_0.066327109819		trial_24	sim_run_zhukovskyi:359190
+Triticum zhukovskyi	sim_zhukovskyi:694171	sim_GID_zhukovskyi:694171	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:694171	num_558	barcode_0.462674292679		trial_25	sim_run_zhukovskyi:694171
+Triticum zhukovskyi	sim_zhukovskyi:594795	sim_GID_zhukovskyi:594795	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:594795	num_559	barcode_0.00555665426322		trial_24	sim_run_zhukovskyi:594795
+Triticum zhukovskyi	sim_zhukovskyi:723791	sim_GID_zhukovskyi:723791	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:723791	num_560	barcode_0.0237889115193		trial_24	sim_run_zhukovskyi:723791
+Triticum zhukovskyi	sim_zhukovskyi:827757	sim_GID_zhukovskyi:827757	Zea diploperennis	F2	sim_sample_zhukovskyi:827757	num_561	barcode_0.517500866773		trial_23	sim_run_zhukovskyi:827757
+Triticum zhukovskyi	sim_zhukovskyi:273090	sim_GID_zhukovskyi:273090	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:273090	num_562	barcode_0.543276451413	REF	trial_24	sim_run_zhukovskyi:273090
+Triticum zhukovskyi	sim_zhukovskyi:819653	sim_GID_zhukovskyi:819653	Undetermined spp.		sim_sample_zhukovskyi:819653	num_563	barcode_0.117465437851	REF	trial_23	sim_run_zhukovskyi:819653
+Triticum zhukovskyi	sim_zhukovskyi:167676	sim_GID_zhukovskyi:167676	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:167676	num_564	barcode_0.978265780516		trial_24	sim_run_zhukovskyi:167676
+Triticum zhukovskyi	sim_zhukovskyi:284773	sim_GID_zhukovskyi:284773	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:284773	num_565	barcode_0.043133187333	REF	trial_25	sim_run_zhukovskyi:284773
+Triticum zhukovskyi	sim_zhukovskyi:344317	sim_GID_zhukovskyi:344317	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:344317	num_566	barcode_0.977014548439	REF	trial_24	sim_run_zhukovskyi:344317
+Triticum zhukovskyi	sim_zhukovskyi:67381	sim_GID_zhukovskyi:67381	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:67381	num_567	barcode_0.240001832858		trial_24	sim_run_zhukovskyi:67381
+Triticum zhukovskyi	sim_zhukovskyi:135031	sim_GID_zhukovskyi:135031	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:135031	num_568	barcode_0.443043882313		trial_25	sim_run_zhukovskyi:135031
+Triticum zhukovskyi	sim_zhukovskyi:55117	sim_GID_zhukovskyi:55117	Unknown	Inbred_line	sim_sample_zhukovskyi:55117	num_569	barcode_0.171880742675	REF	trial_24	sim_run_zhukovskyi:55117
+Triticum zhukovskyi	sim_zhukovskyi:231090	sim_GID_zhukovskyi:231090	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:231090	num_570	barcode_0.544832722645		trial_24	sim_run_zhukovskyi:231090
+Triticum zhukovskyi	sim_zhukovskyi:287453	sim_GID_zhukovskyi:287453	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:287453	num_571	barcode_0.301785392143		trial_23	sim_run_zhukovskyi:287453
+Triticum zhukovskyi	sim_zhukovskyi:917867	sim_GID_zhukovskyi:917867	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:917867	num_572	barcode_0.794261644463		trial_23	sim_run_zhukovskyi:917867
+Triticum zhukovskyi	sim_zhukovskyi:972751	sim_GID_zhukovskyi:972751	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:972751	num_573	barcode_0.710337194174	REF	trial_25	sim_run_zhukovskyi:972751
+Triticum zhukovskyi	sim_zhukovskyi:632811	sim_GID_zhukovskyi:632811	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:632811	num_574	barcode_0.340640701437	REF	trial_23	sim_run_zhukovskyi:632811
+Triticum zhukovskyi	sim_zhukovskyi:685303	sim_GID_zhukovskyi:685303	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:685303	num_575	barcode_0.408235296493		trial_23	sim_run_zhukovskyi:685303
+Triticum zhukovskyi	sim_zhukovskyi:713379	sim_GID_zhukovskyi:713379	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:713379	num_576	barcode_0.0287752689106	REF	trial_24	sim_run_zhukovskyi:713379
+Triticum zhukovskyi	sim_zhukovskyi:218657	sim_GID_zhukovskyi:218657	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:218657	num_577	barcode_0.469469255517	REF	trial_23	sim_run_zhukovskyi:218657
+Triticum zhukovskyi	sim_zhukovskyi:176879	sim_GID_zhukovskyi:176879	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:176879	num_578	barcode_0.94058437702	REF	trial_25	sim_run_zhukovskyi:176879
+Triticum zhukovskyi	sim_zhukovskyi:962795	sim_GID_zhukovskyi:962795	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:962795	num_579	barcode_0.271400053296	REF	trial_25	sim_run_zhukovskyi:962795
+Triticum zhukovskyi	sim_zhukovskyi:49563	sim_GID_zhukovskyi:49563	Triticum turgidum subsp. durum	F2	sim_sample_zhukovskyi:49563	num_580	barcode_0.920369932635		trial_24	sim_run_zhukovskyi:49563
+Triticum zhukovskyi	sim_zhukovskyi:90753	sim_GID_zhukovskyi:90753	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:90753	num_581	barcode_0.179567741129		trial_25	sim_run_zhukovskyi:90753
+Triticum zhukovskyi	sim_zhukovskyi:504569	sim_GID_zhukovskyi:504569	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:504569	num_582	barcode_0.437242036673	REF	trial_24	sim_run_zhukovskyi:504569
+Triticum zhukovskyi	sim_zhukovskyi:973037	sim_GID_zhukovskyi:973037	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:973037	num_583	barcode_0.09187291852		trial_23	sim_run_zhukovskyi:973037
+Triticum zhukovskyi	sim_zhukovskyi:139842	sim_GID_zhukovskyi:139842	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:139842	num_584	barcode_0.292798061096	REF	trial_25	sim_run_zhukovskyi:139842
+Triticum zhukovskyi	sim_zhukovskyi:341573	sim_GID_zhukovskyi:341573	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:341573	num_585	barcode_0.637126799013		trial_24	sim_run_zhukovskyi:341573
+Triticum zhukovskyi	sim_zhukovskyi:444400	sim_GID_zhukovskyi:444400	Undetermined	Inbred_line	sim_sample_zhukovskyi:444400	num_586	barcode_0.203885521872		trial_24	sim_run_zhukovskyi:444400
+Triticum zhukovskyi	sim_zhukovskyi:528609	sim_GID_zhukovskyi:528609	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:528609	num_587	barcode_0.0904476845764	REF	trial_24	sim_run_zhukovskyi:528609
+Triticum zhukovskyi	sim_zhukovskyi:351034	sim_GID_zhukovskyi:351034	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:351034	num_588	barcode_0.622632831425	REF	trial_24	sim_run_zhukovskyi:351034
+Triticum zhukovskyi	sim_zhukovskyi:24063	sim_GID_zhukovskyi:24063	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:24063	num_589	barcode_0.849494639374	REF	trial_24	sim_run_zhukovskyi:24063
+Triticum zhukovskyi	sim_zhukovskyi:239465	sim_GID_zhukovskyi:239465	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:239465	num_590	barcode_0.108494177696	REF	trial_23	sim_run_zhukovskyi:239465
+Triticum zhukovskyi	sim_zhukovskyi:492382	sim_GID_zhukovskyi:492382	Zea mays subsp. mays	F1_hybrid	sim_sample_zhukovskyi:492382	num_591	barcode_0.041075752612	REF	trial_24	sim_run_zhukovskyi:492382
+Triticum zhukovskyi	sim_zhukovskyi:515044	sim_GID_zhukovskyi:515044	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:515044	num_592	barcode_0.66467913717		trial_25	sim_run_zhukovskyi:515044
+Triticum zhukovskyi	sim_zhukovskyi:698615	sim_GID_zhukovskyi:698615	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:698615	num_593	barcode_0.445607417759	REF	trial_24	sim_run_zhukovskyi:698615
+Triticum zhukovskyi	sim_zhukovskyi:451426	sim_GID_zhukovskyi:451426	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:451426	num_594	barcode_0.848955188238	REF	trial_24	sim_run_zhukovskyi:451426
+Triticum zhukovskyi	sim_zhukovskyi:879703	sim_GID_zhukovskyi:879703	Undetermined spp.		sim_sample_zhukovskyi:879703	num_595	barcode_0.561422593548		trial_23	sim_run_zhukovskyi:879703
+Triticum zhukovskyi	sim_zhukovskyi:334183	sim_GID_zhukovskyi:334183	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:334183	num_596	barcode_0.431858538513		trial_23	sim_run_zhukovskyi:334183
+Triticum zhukovskyi	sim_zhukovskyi:788189	sim_GID_zhukovskyi:788189	Zea diploperennis	F2	sim_sample_zhukovskyi:788189	num_597	barcode_0.303561309597	REF	trial_24	sim_run_zhukovskyi:788189
+Triticum zhukovskyi	sim_zhukovskyi:102820	sim_GID_zhukovskyi:102820	Unknown	F2	sim_sample_zhukovskyi:102820	num_598	barcode_0.211779563068		trial_24	sim_run_zhukovskyi:102820
+Triticum zhukovskyi	sim_zhukovskyi:848866	sim_GID_zhukovskyi:848866	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:848866	num_599	barcode_0.846467918144		trial_25	sim_run_zhukovskyi:848866
+Triticum zhukovskyi	sim_zhukovskyi:381143	sim_GID_zhukovskyi:381143	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:381143	num_600	barcode_0.251843649826	REF	trial_25	sim_run_zhukovskyi:381143
+Triticum zhukovskyi	sim_zhukovskyi:74100	sim_GID_zhukovskyi:74100	Triticum zhukovskyi		sim_sample_zhukovskyi:74100	num_601	barcode_0.754645184866		trial_24	sim_run_zhukovskyi:74100
+Triticum zhukovskyi	sim_zhukovskyi:66399	sim_GID_zhukovskyi:66399	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:66399	num_602	barcode_0.358332825678	REF	trial_24	sim_run_zhukovskyi:66399
+Triticum zhukovskyi	sim_zhukovskyi:844747	sim_GID_zhukovskyi:844747	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:844747	num_603	barcode_0.753284611042	REF	trial_23	sim_run_zhukovskyi:844747
+Triticum zhukovskyi	sim_zhukovskyi:128536	sim_GID_zhukovskyi:128536		F1_hybrid	sim_sample_zhukovskyi:128536	num_604	barcode_0.629373370342		trial_23	sim_run_zhukovskyi:128536
+Triticum zhukovskyi	sim_zhukovskyi:716044	sim_GID_zhukovskyi:716044	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:716044	num_605	barcode_0.840557806793	REF	trial_23	sim_run_zhukovskyi:716044
+Triticum zhukovskyi	sim_zhukovskyi:852863	sim_GID_zhukovskyi:852863	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:852863	num_606	barcode_0.0506663851144	REF	trial_24	sim_run_zhukovskyi:852863
+Triticum zhukovskyi	sim_zhukovskyi:539426	sim_GID_zhukovskyi:539426	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:539426	num_607	barcode_0.0636464093688		trial_23	sim_run_zhukovskyi:539426
+Triticum zhukovskyi	sim_zhukovskyi:715715	sim_GID_zhukovskyi:715715		F1_hybrid	sim_sample_zhukovskyi:715715	num_608	barcode_0.862275943027	REF	trial_25	sim_run_zhukovskyi:715715
+Triticum zhukovskyi	sim_zhukovskyi:298031	sim_GID_zhukovskyi:298031	Zea mays subsp. mays	F1_hybrid	sim_sample_zhukovskyi:298031	num_609	barcode_0.482606043322	REF	trial_25	sim_run_zhukovskyi:298031
+Triticum zhukovskyi	sim_zhukovskyi:540624	sim_GID_zhukovskyi:540624	Undetermined	F2	sim_sample_zhukovskyi:540624	num_610	barcode_0.0793981252821	REF	trial_25	sim_run_zhukovskyi:540624
+Triticum zhukovskyi	sim_zhukovskyi:135451	sim_GID_zhukovskyi:135451	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:135451	num_611	barcode_0.407052574517	REF	trial_24	sim_run_zhukovskyi:135451
+Triticum zhukovskyi	sim_zhukovskyi:819928	sim_GID_zhukovskyi:819928	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:819928	num_612	barcode_0.889347360873		trial_24	sim_run_zhukovskyi:819928
+Triticum zhukovskyi	sim_zhukovskyi:43837	sim_GID_zhukovskyi:43837	Unknown	BC1F1	sim_sample_zhukovskyi:43837	num_613	barcode_0.641973781011		trial_25	sim_run_zhukovskyi:43837
+Triticum zhukovskyi	sim_zhukovskyi:99630	sim_GID_zhukovskyi:99630	Unknown		sim_sample_zhukovskyi:99630	num_614	barcode_0.668962571352	REF	trial_24	sim_run_zhukovskyi:99630
+Triticum zhukovskyi	sim_zhukovskyi:415087	sim_GID_zhukovskyi:415087	Undetermined spp.		sim_sample_zhukovskyi:415087	num_615	barcode_0.851128986871		trial_24	sim_run_zhukovskyi:415087
+Triticum zhukovskyi	sim_zhukovskyi:683601	sim_GID_zhukovskyi:683601	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:683601	num_616	barcode_0.168772002813		trial_25	sim_run_zhukovskyi:683601
+Triticum zhukovskyi	sim_zhukovskyi:379472	sim_GID_zhukovskyi:379472	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:379472	num_617	barcode_0.520843034811	REF	trial_23	sim_run_zhukovskyi:379472
+Triticum zhukovskyi	sim_zhukovskyi:361968	sim_GID_zhukovskyi:361968	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:361968	num_618	barcode_0.772303913249		trial_25	sim_run_zhukovskyi:361968
+Triticum zhukovskyi	sim_zhukovskyi:214984	sim_GID_zhukovskyi:214984	Undetermined		sim_sample_zhukovskyi:214984	num_619	barcode_0.373629492259	REF	trial_24	sim_run_zhukovskyi:214984
+Triticum zhukovskyi	sim_zhukovskyi:963853	sim_GID_zhukovskyi:963853	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_zhukovskyi:963853	num_620	barcode_0.537787442283		trial_25	sim_run_zhukovskyi:963853
+Triticum zhukovskyi	sim_zhukovskyi:261838	sim_GID_zhukovskyi:261838	Triticum urartu		sim_sample_zhukovskyi:261838	num_621	barcode_0.498585535569	REF	trial_24	sim_run_zhukovskyi:261838
+Triticum zhukovskyi	sim_zhukovskyi:878244	sim_GID_zhukovskyi:878244	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:878244	num_622	barcode_0.374317983036		trial_23	sim_run_zhukovskyi:878244
+Triticum zhukovskyi	sim_zhukovskyi:174029	sim_GID_zhukovskyi:174029	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:174029	num_623	barcode_0.034120210477		trial_23	sim_run_zhukovskyi:174029
+Triticum zhukovskyi	sim_zhukovskyi:848785	sim_GID_zhukovskyi:848785	Triticum zhukovskyi		sim_sample_zhukovskyi:848785	num_624	barcode_0.176941712494		trial_23	sim_run_zhukovskyi:848785
+Triticum zhukovskyi	sim_zhukovskyi:271928	sim_GID_zhukovskyi:271928	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:271928	num_625	barcode_0.994184840489		trial_23	sim_run_zhukovskyi:271928
+Triticum zhukovskyi	sim_zhukovskyi:474366	sim_GID_zhukovskyi:474366	Undetermined spp.		sim_sample_zhukovskyi:474366	num_626	barcode_0.325685384251	REF	trial_25	sim_run_zhukovskyi:474366
+Triticum zhukovskyi	sim_zhukovskyi:133606	sim_GID_zhukovskyi:133606	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:133606	num_627	barcode_0.291576121923		trial_25	sim_run_zhukovskyi:133606
+Triticum zhukovskyi	sim_zhukovskyi:886033	sim_GID_zhukovskyi:886033	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:886033	num_628	barcode_0.943346619318		trial_24	sim_run_zhukovskyi:886033
+Triticum zhukovskyi	sim_zhukovskyi:502489	sim_GID_zhukovskyi:502489	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:502489	num_629	barcode_0.86758755183	REF	trial_24	sim_run_zhukovskyi:502489
+Triticum zhukovskyi	sim_zhukovskyi:308689	sim_GID_zhukovskyi:308689	Undetermined spp.	F2	sim_sample_zhukovskyi:308689	num_630	barcode_0.860384104325	REF	trial_24	sim_run_zhukovskyi:308689
+Triticum zhukovskyi	sim_zhukovskyi:364923	sim_GID_zhukovskyi:364923	Zea mays subsp. mays		sim_sample_zhukovskyi:364923	num_631	barcode_0.0605272506346		trial_25	sim_run_zhukovskyi:364923
+Triticum zhukovskyi	sim_zhukovskyi:285290	sim_GID_zhukovskyi:285290	Zea diploperennis	F2	sim_sample_zhukovskyi:285290	num_632	barcode_0.10940361462		trial_24	sim_run_zhukovskyi:285290
+Triticum zhukovskyi	sim_zhukovskyi:889319	sim_GID_zhukovskyi:889319	Unknown		sim_sample_zhukovskyi:889319	num_633	barcode_0.147392160644	REF	trial_23	sim_run_zhukovskyi:889319
+Triticum zhukovskyi	sim_zhukovskyi:677809	sim_GID_zhukovskyi:677809	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:677809	num_634	barcode_0.592935884766	REF	trial_23	sim_run_zhukovskyi:677809
+Triticum zhukovskyi	sim_zhukovskyi:502161	sim_GID_zhukovskyi:502161	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:502161	num_635	barcode_0.0131060665422		trial_23	sim_run_zhukovskyi:502161
+Triticum zhukovskyi	sim_zhukovskyi:956366	sim_GID_zhukovskyi:956366	Unknown	F1_hybrid	sim_sample_zhukovskyi:956366	num_636	barcode_0.30028727787		trial_25	sim_run_zhukovskyi:956366
+Triticum zhukovskyi	sim_zhukovskyi:484938	sim_GID_zhukovskyi:484938	Undetermined	F1_hybrid	sim_sample_zhukovskyi:484938	num_637	barcode_0.0303055263738		trial_24	sim_run_zhukovskyi:484938
+Triticum zhukovskyi	sim_zhukovskyi:995226	sim_GID_zhukovskyi:995226	Triticum urartu	F2	sim_sample_zhukovskyi:995226	num_638	barcode_0.953173247964		trial_25	sim_run_zhukovskyi:995226
+Triticum zhukovskyi	sim_zhukovskyi:691716	sim_GID_zhukovskyi:691716	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:691716	num_639	barcode_0.869232086279		trial_23	sim_run_zhukovskyi:691716
+Triticum zhukovskyi	sim_zhukovskyi:446616	sim_GID_zhukovskyi:446616	Triticum zhukovskyi		sim_sample_zhukovskyi:446616	num_640	barcode_0.390687261183		trial_25	sim_run_zhukovskyi:446616
+Triticum zhukovskyi	sim_zhukovskyi:827602	sim_GID_zhukovskyi:827602	Triticum turgidum subsp. paleocolchicum		sim_sample_zhukovskyi:827602	num_641	barcode_0.783224366683	REF	trial_24	sim_run_zhukovskyi:827602
+Triticum zhukovskyi	sim_zhukovskyi:553739	sim_GID_zhukovskyi:553739	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:553739	num_642	barcode_0.657585013645	REF	trial_24	sim_run_zhukovskyi:553739
+Triticum zhukovskyi	sim_zhukovskyi:258567	sim_GID_zhukovskyi:258567	Triticum urartu		sim_sample_zhukovskyi:258567	num_643	barcode_0.493877770727		trial_25	sim_run_zhukovskyi:258567
+Triticum zhukovskyi	sim_zhukovskyi:217974	sim_GID_zhukovskyi:217974	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:217974	num_644	barcode_0.057519241924	REF	trial_25	sim_run_zhukovskyi:217974
+Triticum zhukovskyi	sim_zhukovskyi:162358	sim_GID_zhukovskyi:162358	Unknown	F2	sim_sample_zhukovskyi:162358	num_645	barcode_0.328465660927		trial_23	sim_run_zhukovskyi:162358
+Triticum zhukovskyi	sim_zhukovskyi:792201	sim_GID_zhukovskyi:792201	Zea diploperennis	F2	sim_sample_zhukovskyi:792201	num_646	barcode_0.144039945328	REF	trial_25	sim_run_zhukovskyi:792201
+Triticum zhukovskyi	sim_zhukovskyi:738102	sim_GID_zhukovskyi:738102	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:738102	num_647	barcode_0.837080499358	REF	trial_24	sim_run_zhukovskyi:738102
+Triticum zhukovskyi	sim_zhukovskyi:331749	sim_GID_zhukovskyi:331749	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:331749	num_648	barcode_0.968660602824		trial_25	sim_run_zhukovskyi:331749
+Triticum zhukovskyi	sim_zhukovskyi:623374	sim_GID_zhukovskyi:623374	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:623374	num_649	barcode_0.940933539329	REF	trial_25	sim_run_zhukovskyi:623374
+Triticum zhukovskyi	sim_zhukovskyi:502519	sim_GID_zhukovskyi:502519	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:502519	num_650	barcode_0.421372866941	REF	trial_24	sim_run_zhukovskyi:502519
+Triticum zhukovskyi	sim_zhukovskyi:516981	sim_GID_zhukovskyi:516981	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:516981	num_651	barcode_0.778719678281	REF	trial_25	sim_run_zhukovskyi:516981
+Triticum zhukovskyi	sim_zhukovskyi:131959	sim_GID_zhukovskyi:131959			sim_sample_zhukovskyi:131959	num_652	barcode_0.96255404568	REF	trial_23	sim_run_zhukovskyi:131959
+Triticum zhukovskyi	sim_zhukovskyi:405939	sim_GID_zhukovskyi:405939	Zea mays subsp. parviglumis	BC1F1	sim_sample_zhukovskyi:405939	num_653	barcode_0.648714129882		trial_24	sim_run_zhukovskyi:405939
+Triticum zhukovskyi	sim_zhukovskyi:187688	sim_GID_zhukovskyi:187688	Undetermined	F2	sim_sample_zhukovskyi:187688	num_654	barcode_0.145166617324		trial_24	sim_run_zhukovskyi:187688
+Triticum zhukovskyi	sim_zhukovskyi:736830	sim_GID_zhukovskyi:736830	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:736830	num_655	barcode_0.942396740239	REF	trial_25	sim_run_zhukovskyi:736830
+Triticum zhukovskyi	sim_zhukovskyi:875762	sim_GID_zhukovskyi:875762	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:875762	num_656	barcode_0.765994890359	REF	trial_24	sim_run_zhukovskyi:875762
+Triticum zhukovskyi	sim_zhukovskyi:62701	sim_GID_zhukovskyi:62701	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:62701	num_657	barcode_0.106972578321	REF	trial_23	sim_run_zhukovskyi:62701
+Triticum zhukovskyi	sim_zhukovskyi:162820	sim_GID_zhukovskyi:162820	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:162820	num_658	barcode_0.178781210081	REF	trial_24	sim_run_zhukovskyi:162820
+Triticum zhukovskyi	sim_zhukovskyi:628951	sim_GID_zhukovskyi:628951	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:628951	num_659	barcode_0.773043016568	REF	trial_25	sim_run_zhukovskyi:628951
+Triticum zhukovskyi	sim_zhukovskyi:53238	sim_GID_zhukovskyi:53238		BC1F1	sim_sample_zhukovskyi:53238	num_660	barcode_0.468854928281		trial_25	sim_run_zhukovskyi:53238
+Triticum zhukovskyi	sim_zhukovskyi:280481	sim_GID_zhukovskyi:280481			sim_sample_zhukovskyi:280481	num_661	barcode_0.146513295382		trial_25	sim_run_zhukovskyi:280481
+Triticum zhukovskyi	sim_zhukovskyi:753419	sim_GID_zhukovskyi:753419	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:753419	num_662	barcode_0.431524898744		trial_24	sim_run_zhukovskyi:753419
+Triticum zhukovskyi	sim_zhukovskyi:614023	sim_GID_zhukovskyi:614023	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:614023	num_663	barcode_0.516662718089		trial_25	sim_run_zhukovskyi:614023
+Triticum zhukovskyi	sim_zhukovskyi:23438	sim_GID_zhukovskyi:23438	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:23438	num_664	barcode_0.0560451596965		trial_25	sim_run_zhukovskyi:23438
+Triticum zhukovskyi	sim_zhukovskyi:111642	sim_GID_zhukovskyi:111642	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:111642	num_665	barcode_0.941360041379	REF	trial_23	sim_run_zhukovskyi:111642
+Triticum zhukovskyi	sim_zhukovskyi:625969	sim_GID_zhukovskyi:625969	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:625969	num_666	barcode_0.351317719989		trial_23	sim_run_zhukovskyi:625969
+Triticum zhukovskyi	sim_zhukovskyi:452271	sim_GID_zhukovskyi:452271	Zea diploperennis		sim_sample_zhukovskyi:452271	num_667	barcode_0.77866666986		trial_24	sim_run_zhukovskyi:452271
+Triticum zhukovskyi	sim_zhukovskyi:88446	sim_GID_zhukovskyi:88446	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:88446	num_668	barcode_0.045228379511		trial_23	sim_run_zhukovskyi:88446
+Triticum zhukovskyi	sim_zhukovskyi:942264	sim_GID_zhukovskyi:942264	Undetermined	BC1F1	sim_sample_zhukovskyi:942264	num_669	barcode_0.487097816113	REF	trial_24	sim_run_zhukovskyi:942264
+Triticum zhukovskyi	sim_zhukovskyi:782557	sim_GID_zhukovskyi:782557	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:782557	num_670	barcode_0.685281987586		trial_25	sim_run_zhukovskyi:782557
+Triticum zhukovskyi	sim_zhukovskyi:974247	sim_GID_zhukovskyi:974247	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:974247	num_671	barcode_0.249173718494		trial_23	sim_run_zhukovskyi:974247
+Triticum zhukovskyi	sim_zhukovskyi:32340	sim_GID_zhukovskyi:32340	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:32340	num_672	barcode_0.749900226177	REF	trial_24	sim_run_zhukovskyi:32340
+Triticum zhukovskyi	sim_zhukovskyi:65136	sim_GID_zhukovskyi:65136	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:65136	num_673	barcode_0.0949661352699		trial_24	sim_run_zhukovskyi:65136
+Triticum zhukovskyi	sim_zhukovskyi:767525	sim_GID_zhukovskyi:767525	Unknown	Inbred_line	sim_sample_zhukovskyi:767525	num_674	barcode_0.966269022483	REF	trial_25	sim_run_zhukovskyi:767525
+Triticum zhukovskyi	sim_zhukovskyi:222549	sim_GID_zhukovskyi:222549	Triticum zhukovskyi	Inbred_line	sim_sample_zhukovskyi:222549	num_675	barcode_0.819719725565		trial_23	sim_run_zhukovskyi:222549
+Triticum zhukovskyi	sim_zhukovskyi:273540	sim_GID_zhukovskyi:273540	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:273540	num_676	barcode_0.567487775495	REF	trial_24	sim_run_zhukovskyi:273540
+Triticum zhukovskyi	sim_zhukovskyi:209110	sim_GID_zhukovskyi:209110	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:209110	num_677	barcode_0.464876839123		trial_24	sim_run_zhukovskyi:209110
+Triticum zhukovskyi	sim_zhukovskyi:74035	sim_GID_zhukovskyi:74035	Undetermined	F1_hybrid	sim_sample_zhukovskyi:74035	num_678	barcode_0.140194670421	REF	trial_25	sim_run_zhukovskyi:74035
+Triticum zhukovskyi	sim_zhukovskyi:426527	sim_GID_zhukovskyi:426527	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:426527	num_679	barcode_0.234611353499		trial_25	sim_run_zhukovskyi:426527
+Triticum zhukovskyi	sim_zhukovskyi:774809	sim_GID_zhukovskyi:774809	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:774809	num_680	barcode_0.25758991915		trial_25	sim_run_zhukovskyi:774809
+Triticum zhukovskyi	sim_zhukovskyi:200166	sim_GID_zhukovskyi:200166	Zea mays subsp. mays	F1_hybrid	sim_sample_zhukovskyi:200166	num_681	barcode_0.261528464299		trial_25	sim_run_zhukovskyi:200166
+Triticum zhukovskyi	sim_zhukovskyi:641396	sim_GID_zhukovskyi:641396	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:641396	num_682	barcode_0.173750876147	REF	trial_23	sim_run_zhukovskyi:641396
+Triticum zhukovskyi	sim_zhukovskyi:279171	sim_GID_zhukovskyi:279171	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:279171	num_683	barcode_0.371083140091		trial_24	sim_run_zhukovskyi:279171
+Triticum zhukovskyi	sim_zhukovskyi:160466	sim_GID_zhukovskyi:160466		F1_hybrid	sim_sample_zhukovskyi:160466	num_684	barcode_0.271598821717		trial_24	sim_run_zhukovskyi:160466
+Triticum zhukovskyi	sim_zhukovskyi:300679	sim_GID_zhukovskyi:300679	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_zhukovskyi:300679	num_685	barcode_0.864090601423		trial_25	sim_run_zhukovskyi:300679
+Triticum zhukovskyi	sim_zhukovskyi:61928	sim_GID_zhukovskyi:61928	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:61928	num_686	barcode_0.214995593334	REF	trial_25	sim_run_zhukovskyi:61928
+Triticum zhukovskyi	sim_zhukovskyi:634857	sim_GID_zhukovskyi:634857	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:634857	num_687	barcode_0.446217666408	REF	trial_24	sim_run_zhukovskyi:634857
+Triticum zhukovskyi	sim_zhukovskyi:921246	sim_GID_zhukovskyi:921246	Unknown	F1_hybrid	sim_sample_zhukovskyi:921246	num_688	barcode_0.503762477663		trial_23	sim_run_zhukovskyi:921246
+Triticum zhukovskyi	sim_zhukovskyi:269115	sim_GID_zhukovskyi:269115	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:269115	num_689	barcode_0.438310689976		trial_25	sim_run_zhukovskyi:269115
+Triticum zhukovskyi	sim_zhukovskyi:939685	sim_GID_zhukovskyi:939685	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:939685	num_690	barcode_0.129818749429		trial_23	sim_run_zhukovskyi:939685
+Triticum zhukovskyi	sim_zhukovskyi:158851	sim_GID_zhukovskyi:158851	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:158851	num_691	barcode_0.0375508152046		trial_24	sim_run_zhukovskyi:158851
+Triticum zhukovskyi	sim_zhukovskyi:813243	sim_GID_zhukovskyi:813243	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:813243	num_692	barcode_0.661085803166		trial_23	sim_run_zhukovskyi:813243
+Triticum zhukovskyi	sim_zhukovskyi:255681	sim_GID_zhukovskyi:255681	Triticum zhukovskyi		sim_sample_zhukovskyi:255681	num_693	barcode_0.272779735461	REF	trial_25	sim_run_zhukovskyi:255681
+Triticum zhukovskyi	sim_zhukovskyi:93991	sim_GID_zhukovskyi:93991	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:93991	num_694	barcode_0.983107305944	REF	trial_24	sim_run_zhukovskyi:93991
+Triticum zhukovskyi	sim_zhukovskyi:258110	sim_GID_zhukovskyi:258110	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:258110	num_695	barcode_0.299749360836	REF	trial_23	sim_run_zhukovskyi:258110
+Triticum zhukovskyi	sim_zhukovskyi:220099	sim_GID_zhukovskyi:220099	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:220099	num_696	barcode_0.95760528999	REF	trial_25	sim_run_zhukovskyi:220099
+Triticum zhukovskyi	sim_zhukovskyi:259780	sim_GID_zhukovskyi:259780		F1_hybrid	sim_sample_zhukovskyi:259780	num_697	barcode_0.273811744847	REF	trial_24	sim_run_zhukovskyi:259780
+Triticum zhukovskyi	sim_zhukovskyi:647226	sim_GID_zhukovskyi:647226	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:647226	num_698	barcode_0.934803857084	REF	trial_25	sim_run_zhukovskyi:647226
+Triticum zhukovskyi	sim_zhukovskyi:125898	sim_GID_zhukovskyi:125898	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_zhukovskyi:125898	num_699	barcode_0.744047305755		trial_23	sim_run_zhukovskyi:125898
+Triticum zhukovskyi	sim_zhukovskyi:844750	sim_GID_zhukovskyi:844750	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_zhukovskyi:844750	num_700	barcode_0.59614240009	REF	trial_25	sim_run_zhukovskyi:844750
+Triticum zhukovskyi	sim_zhukovskyi:769004	sim_GID_zhukovskyi:769004	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:769004	num_701	barcode_0.733225179539	REF	trial_24	sim_run_zhukovskyi:769004
+Triticum zhukovskyi	sim_zhukovskyi:73792	sim_GID_zhukovskyi:73792	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:73792	num_702	barcode_0.619877759527	REF	trial_24	sim_run_zhukovskyi:73792
+Triticum zhukovskyi	sim_zhukovskyi:488230	sim_GID_zhukovskyi:488230	Triticum zhukovskyi	Inbred_line	sim_sample_zhukovskyi:488230	num_703	barcode_0.599227868095		trial_25	sim_run_zhukovskyi:488230
+Triticum zhukovskyi	sim_zhukovskyi:867282	sim_GID_zhukovskyi:867282	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:867282	num_704	barcode_0.691284213879	REF	trial_24	sim_run_zhukovskyi:867282
+Triticum zhukovskyi	sim_zhukovskyi:394650	sim_GID_zhukovskyi:394650	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:394650	num_705	barcode_0.354247384148	REF	trial_23	sim_run_zhukovskyi:394650
+Triticum zhukovskyi	sim_zhukovskyi:904836	sim_GID_zhukovskyi:904836	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:904836	num_706	barcode_0.921607262744	REF	trial_24	sim_run_zhukovskyi:904836
+Triticum zhukovskyi	sim_zhukovskyi:791760	sim_GID_zhukovskyi:791760	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:791760	num_707	barcode_0.0949649445953	REF	trial_25	sim_run_zhukovskyi:791760
+Triticum zhukovskyi	sim_zhukovskyi:822571	sim_GID_zhukovskyi:822571	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:822571	num_708	barcode_0.555062215525		trial_23	sim_run_zhukovskyi:822571
+Triticum zhukovskyi	sim_zhukovskyi:431147	sim_GID_zhukovskyi:431147	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:431147	num_709	barcode_0.931568585592	REF	trial_25	sim_run_zhukovskyi:431147
+Triticum zhukovskyi	sim_zhukovskyi:132738	sim_GID_zhukovskyi:132738	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:132738	num_710	barcode_0.589709360273	REF	trial_23	sim_run_zhukovskyi:132738
+Triticum zhukovskyi	sim_zhukovskyi:653102	sim_GID_zhukovskyi:653102	Zea mays subsp. parviglumis	Inbred_line	sim_sample_zhukovskyi:653102	num_711	barcode_0.379341422107	REF	trial_23	sim_run_zhukovskyi:653102
+Triticum zhukovskyi	sim_zhukovskyi:94161	sim_GID_zhukovskyi:94161	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:94161	num_712	barcode_0.456097560687		trial_25	sim_run_zhukovskyi:94161
+Triticum zhukovskyi	sim_zhukovskyi:58831	sim_GID_zhukovskyi:58831	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:58831	num_713	barcode_0.887457947591	REF	trial_25	sim_run_zhukovskyi:58831
+Triticum zhukovskyi	sim_zhukovskyi:730534	sim_GID_zhukovskyi:730534	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:730534	num_714	barcode_0.184188552453	REF	trial_25	sim_run_zhukovskyi:730534
+Triticum zhukovskyi	sim_zhukovskyi:357855	sim_GID_zhukovskyi:357855		Inbred_line	sim_sample_zhukovskyi:357855	num_715	barcode_0.950039404562	REF	trial_25	sim_run_zhukovskyi:357855
+Triticum zhukovskyi	sim_zhukovskyi:734381	sim_GID_zhukovskyi:734381	Unknown	F2	sim_sample_zhukovskyi:734381	num_716	barcode_0.449950619402		trial_23	sim_run_zhukovskyi:734381
+Triticum zhukovskyi	sim_zhukovskyi:536922	sim_GID_zhukovskyi:536922	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:536922	num_717	barcode_0.167414583958	REF	trial_25	sim_run_zhukovskyi:536922
+Triticum zhukovskyi	sim_zhukovskyi:732614	sim_GID_zhukovskyi:732614	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:732614	num_718	barcode_0.679748736996	REF	trial_23	sim_run_zhukovskyi:732614
+Triticum zhukovskyi	sim_zhukovskyi:345951	sim_GID_zhukovskyi:345951	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_zhukovskyi:345951	num_719	barcode_0.955687671222	REF	trial_25	sim_run_zhukovskyi:345951
+Triticum zhukovskyi	sim_zhukovskyi:173208	sim_GID_zhukovskyi:173208	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:173208	num_720	barcode_0.205314749868	REF	trial_23	sim_run_zhukovskyi:173208
+Triticum zhukovskyi	sim_zhukovskyi:37116	sim_GID_zhukovskyi:37116	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:37116	num_721	barcode_0.278457144386	REF	trial_23	sim_run_zhukovskyi:37116
+Triticum zhukovskyi	sim_zhukovskyi:101515	sim_GID_zhukovskyi:101515		BC1F1	sim_sample_zhukovskyi:101515	num_722	barcode_0.539852330568	REF	trial_25	sim_run_zhukovskyi:101515
+Triticum zhukovskyi	sim_zhukovskyi:358243	sim_GID_zhukovskyi:358243	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:358243	num_723	barcode_0.05468657503	REF	trial_24	sim_run_zhukovskyi:358243
+Triticum zhukovskyi	sim_zhukovskyi:265554	sim_GID_zhukovskyi:265554	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:265554	num_724	barcode_0.659878777114		trial_24	sim_run_zhukovskyi:265554
+Triticum zhukovskyi	sim_zhukovskyi:338710	sim_GID_zhukovskyi:338710	Zea mays subsp. parviglumis	BC1F1	sim_sample_zhukovskyi:338710	num_725	barcode_0.00805218719024		trial_25	sim_run_zhukovskyi:338710
+Triticum zhukovskyi	sim_zhukovskyi:963738	sim_GID_zhukovskyi:963738	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:963738	num_726	barcode_0.0130461612118		trial_25	sim_run_zhukovskyi:963738
+Triticum zhukovskyi	sim_zhukovskyi:809523	sim_GID_zhukovskyi:809523	Zea mays subsp. mays		sim_sample_zhukovskyi:809523	num_727	barcode_0.82758935971		trial_23	sim_run_zhukovskyi:809523
+Triticum zhukovskyi	sim_zhukovskyi:696142	sim_GID_zhukovskyi:696142	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:696142	num_728	barcode_0.136002235273		trial_23	sim_run_zhukovskyi:696142
+Triticum zhukovskyi	sim_zhukovskyi:958301	sim_GID_zhukovskyi:958301	Unknown	F2	sim_sample_zhukovskyi:958301	num_729	barcode_0.993214031642		trial_25	sim_run_zhukovskyi:958301
+Triticum zhukovskyi	sim_zhukovskyi:637743	sim_GID_zhukovskyi:637743	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:637743	num_730	barcode_0.80669502303	REF	trial_24	sim_run_zhukovskyi:637743
+Triticum zhukovskyi	sim_zhukovskyi:58948	sim_GID_zhukovskyi:58948	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:58948	num_731	barcode_0.693658449923		trial_23	sim_run_zhukovskyi:58948
+Triticum zhukovskyi	sim_zhukovskyi:357089	sim_GID_zhukovskyi:357089	Undetermined	Inbred_line	sim_sample_zhukovskyi:357089	num_732	barcode_0.464100724308		trial_23	sim_run_zhukovskyi:357089
+Triticum zhukovskyi	sim_zhukovskyi:980386	sim_GID_zhukovskyi:980386	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:980386	num_733	barcode_0.84096423513	REF	trial_23	sim_run_zhukovskyi:980386
+Triticum zhukovskyi	sim_zhukovskyi:515128	sim_GID_zhukovskyi:515128	Zea diploperennis	F2	sim_sample_zhukovskyi:515128	num_734	barcode_0.789700625084		trial_25	sim_run_zhukovskyi:515128
+Triticum zhukovskyi	sim_zhukovskyi:739500	sim_GID_zhukovskyi:739500	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:739500	num_735	barcode_0.800498747204		trial_23	sim_run_zhukovskyi:739500
+Triticum zhukovskyi	sim_zhukovskyi:767780	sim_GID_zhukovskyi:767780	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:767780	num_736	barcode_0.257932481334		trial_23	sim_run_zhukovskyi:767780
+Triticum zhukovskyi	sim_zhukovskyi:777567	sim_GID_zhukovskyi:777567	Triticum vavilovii var. vavilovii		sim_sample_zhukovskyi:777567	num_737	barcode_0.841955013614	REF	trial_24	sim_run_zhukovskyi:777567
+Triticum zhukovskyi	sim_zhukovskyi:966850	sim_GID_zhukovskyi:966850	Undetermined	F2	sim_sample_zhukovskyi:966850	num_738	barcode_0.0246190280747	REF	trial_24	sim_run_zhukovskyi:966850
+Triticum zhukovskyi	sim_zhukovskyi:863683	sim_GID_zhukovskyi:863683	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:863683	num_739	barcode_0.0410610856204	REF	trial_25	sim_run_zhukovskyi:863683
+Triticum zhukovskyi	sim_zhukovskyi:448738	sim_GID_zhukovskyi:448738	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:448738	num_740	barcode_0.416264638891	REF	trial_23	sim_run_zhukovskyi:448738
+Triticum zhukovskyi	sim_zhukovskyi:652816	sim_GID_zhukovskyi:652816	Zea diploperennis		sim_sample_zhukovskyi:652816	num_741	barcode_0.295456479763	REF	trial_25	sim_run_zhukovskyi:652816
+Triticum zhukovskyi	sim_zhukovskyi:409359	sim_GID_zhukovskyi:409359	Triticum vavilovii var. vavilovii		sim_sample_zhukovskyi:409359	num_742	barcode_0.158990359241		trial_23	sim_run_zhukovskyi:409359
+Triticum zhukovskyi	sim_zhukovskyi:26731	sim_GID_zhukovskyi:26731	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:26731	num_743	barcode_0.812013694232	REF	trial_23	sim_run_zhukovskyi:26731
+Triticum zhukovskyi	sim_zhukovskyi:370326	sim_GID_zhukovskyi:370326	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:370326	num_744	barcode_0.98845357069		trial_25	sim_run_zhukovskyi:370326
+Triticum zhukovskyi	sim_zhukovskyi:531001	sim_GID_zhukovskyi:531001	Undetermined	BC1F1	sim_sample_zhukovskyi:531001	num_745	barcode_0.0782469088444		trial_23	sim_run_zhukovskyi:531001
+Triticum zhukovskyi	sim_zhukovskyi:992301	sim_GID_zhukovskyi:992301	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_zhukovskyi:992301	num_746	barcode_0.051105048842	REF	trial_25	sim_run_zhukovskyi:992301
+Triticum zhukovskyi	sim_zhukovskyi:933137	sim_GID_zhukovskyi:933137	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_zhukovskyi:933137	num_747	barcode_0.511764304385		trial_24	sim_run_zhukovskyi:933137
+Triticum zhukovskyi	sim_zhukovskyi:636801	sim_GID_zhukovskyi:636801		BC1F1	sim_sample_zhukovskyi:636801	num_748	barcode_0.799531387581	REF	trial_24	sim_run_zhukovskyi:636801
+Triticum zhukovskyi	sim_zhukovskyi:40030	sim_GID_zhukovskyi:40030	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:40030	num_749	barcode_0.448689767219		trial_24	sim_run_zhukovskyi:40030
+Triticum zhukovskyi	sim_zhukovskyi:557235	sim_GID_zhukovskyi:557235	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:557235	num_750	barcode_0.375721049842	REF	trial_25	sim_run_zhukovskyi:557235
+Triticum zhukovskyi	sim_zhukovskyi:580646	sim_GID_zhukovskyi:580646	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:580646	num_751	barcode_0.528321373546		trial_24	sim_run_zhukovskyi:580646
+Triticum zhukovskyi	sim_zhukovskyi:556103	sim_GID_zhukovskyi:556103	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:556103	num_752	barcode_0.480414309635		trial_23	sim_run_zhukovskyi:556103
+Triticum zhukovskyi	sim_zhukovskyi:615649	sim_GID_zhukovskyi:615649	Unknown		sim_sample_zhukovskyi:615649	num_753	barcode_0.346852553941		trial_25	sim_run_zhukovskyi:615649
+Triticum zhukovskyi	sim_zhukovskyi:980607	sim_GID_zhukovskyi:980607	Zea mays subsp. mays	F1_hybrid	sim_sample_zhukovskyi:980607	num_754	barcode_0.307762196243		trial_24	sim_run_zhukovskyi:980607
+Triticum zhukovskyi	sim_zhukovskyi:462237	sim_GID_zhukovskyi:462237	Zea mays subsp. parviglumis	F2	sim_sample_zhukovskyi:462237	num_755	barcode_0.179360470342		trial_24	sim_run_zhukovskyi:462237
+Triticum zhukovskyi	sim_zhukovskyi:998065	sim_GID_zhukovskyi:998065	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:998065	num_756	barcode_0.613645486157		trial_23	sim_run_zhukovskyi:998065
+Triticum zhukovskyi	sim_zhukovskyi:529725	sim_GID_zhukovskyi:529725	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:529725	num_757	barcode_0.220881313361		trial_23	sim_run_zhukovskyi:529725
+Triticum zhukovskyi	sim_zhukovskyi:662231	sim_GID_zhukovskyi:662231	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:662231	num_758	barcode_0.464931833291	REF	trial_24	sim_run_zhukovskyi:662231
+Triticum zhukovskyi	sim_zhukovskyi:71882	sim_GID_zhukovskyi:71882	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:71882	num_759	barcode_0.440063624741		trial_23	sim_run_zhukovskyi:71882
+Triticum zhukovskyi	sim_zhukovskyi:236539	sim_GID_zhukovskyi:236539	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:236539	num_760	barcode_0.305044968391	REF	trial_24	sim_run_zhukovskyi:236539
+Triticum zhukovskyi	sim_zhukovskyi:464123	sim_GID_zhukovskyi:464123	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:464123	num_761	barcode_0.818414333794		trial_23	sim_run_zhukovskyi:464123
+Triticum zhukovskyi	sim_zhukovskyi:869217	sim_GID_zhukovskyi:869217	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:869217	num_762	barcode_0.730265533415	REF	trial_23	sim_run_zhukovskyi:869217
+Triticum zhukovskyi	sim_zhukovskyi:570601	sim_GID_zhukovskyi:570601	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:570601	num_763	barcode_0.144511887177	REF	trial_25	sim_run_zhukovskyi:570601
+Triticum zhukovskyi	sim_zhukovskyi:748332	sim_GID_zhukovskyi:748332	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:748332	num_764	barcode_0.678057000672	REF	trial_23	sim_run_zhukovskyi:748332
+Triticum zhukovskyi	sim_zhukovskyi:202890	sim_GID_zhukovskyi:202890	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:202890	num_765	barcode_0.298942201102		trial_24	sim_run_zhukovskyi:202890
+Triticum zhukovskyi	sim_zhukovskyi:254955	sim_GID_zhukovskyi:254955	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:254955	num_766	barcode_0.576702290034		trial_23	sim_run_zhukovskyi:254955
+Triticum zhukovskyi	sim_zhukovskyi:329538	sim_GID_zhukovskyi:329538	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:329538	num_767	barcode_0.102861567101	REF	trial_25	sim_run_zhukovskyi:329538
+Triticum zhukovskyi	sim_zhukovskyi:72455	sim_GID_zhukovskyi:72455	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:72455	num_768	barcode_0.820105892934		trial_25	sim_run_zhukovskyi:72455
+Triticum zhukovskyi	sim_zhukovskyi:464463	sim_GID_zhukovskyi:464463	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:464463	num_769	barcode_0.230793658919		trial_23	sim_run_zhukovskyi:464463
+Triticum zhukovskyi	sim_zhukovskyi:761131	sim_GID_zhukovskyi:761131	Unknown	F2	sim_sample_zhukovskyi:761131	num_770	barcode_0.796188902244	REF	trial_23	sim_run_zhukovskyi:761131
+Triticum zhukovskyi	sim_zhukovskyi:209785	sim_GID_zhukovskyi:209785	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:209785	num_771	barcode_0.121992172415		trial_24	sim_run_zhukovskyi:209785
+Triticum zhukovskyi	sim_zhukovskyi:255780	sim_GID_zhukovskyi:255780	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:255780	num_772	barcode_0.291997620417		trial_24	sim_run_zhukovskyi:255780
+Triticum zhukovskyi	sim_zhukovskyi:120498	sim_GID_zhukovskyi:120498	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:120498	num_773	barcode_0.0125762964275	REF	trial_23	sim_run_zhukovskyi:120498
+Triticum zhukovskyi	sim_zhukovskyi:77628	sim_GID_zhukovskyi:77628	Zea diploperennis		sim_sample_zhukovskyi:77628	num_774	barcode_0.937838277069	REF	trial_25	sim_run_zhukovskyi:77628
+Triticum zhukovskyi	sim_zhukovskyi:486317	sim_GID_zhukovskyi:486317	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:486317	num_775	barcode_0.0310318871924		trial_24	sim_run_zhukovskyi:486317
+Triticum zhukovskyi	sim_zhukovskyi:617820	sim_GID_zhukovskyi:617820	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:617820	num_776	barcode_0.778041093376	REF	trial_23	sim_run_zhukovskyi:617820
+Triticum zhukovskyi	sim_zhukovskyi:814914	sim_GID_zhukovskyi:814914	Triticum turgidum subsp. dicoccon		sim_sample_zhukovskyi:814914	num_777	barcode_0.907193303877	REF	trial_25	sim_run_zhukovskyi:814914
+Triticum zhukovskyi	sim_zhukovskyi:982577	sim_GID_zhukovskyi:982577	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:982577	num_778	barcode_0.0453123846026	REF	trial_24	sim_run_zhukovskyi:982577
+Triticum zhukovskyi	sim_zhukovskyi:700267	sim_GID_zhukovskyi:700267	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:700267	num_779	barcode_0.983215480773		trial_24	sim_run_zhukovskyi:700267
+Triticum zhukovskyi	sim_zhukovskyi:178064	sim_GID_zhukovskyi:178064	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:178064	num_780	barcode_0.786009928843		trial_23	sim_run_zhukovskyi:178064
+Triticum zhukovskyi	sim_zhukovskyi:245238	sim_GID_zhukovskyi:245238	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:245238	num_781	barcode_0.592314679626	REF	trial_24	sim_run_zhukovskyi:245238
+Triticum zhukovskyi	sim_zhukovskyi:158935	sim_GID_zhukovskyi:158935	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:158935	num_782	barcode_0.793760350899	REF	trial_23	sim_run_zhukovskyi:158935
+Triticum zhukovskyi	sim_zhukovskyi:267004	sim_GID_zhukovskyi:267004	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:267004	num_783	barcode_0.795756709483		trial_25	sim_run_zhukovskyi:267004
+Triticum zhukovskyi	sim_zhukovskyi:107150	sim_GID_zhukovskyi:107150	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:107150	num_784	barcode_0.484193621986		trial_25	sim_run_zhukovskyi:107150
+Triticum zhukovskyi	sim_zhukovskyi:667563	sim_GID_zhukovskyi:667563	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:667563	num_785	barcode_0.165460495601		trial_24	sim_run_zhukovskyi:667563
+Triticum zhukovskyi	sim_zhukovskyi:430277	sim_GID_zhukovskyi:430277	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:430277	num_786	barcode_0.331320425284		trial_24	sim_run_zhukovskyi:430277
+Triticum zhukovskyi	sim_zhukovskyi:139912	sim_GID_zhukovskyi:139912	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:139912	num_787	barcode_0.716144324208		trial_24	sim_run_zhukovskyi:139912
+Triticum zhukovskyi	sim_zhukovskyi:161756	sim_GID_zhukovskyi:161756	Unknown		sim_sample_zhukovskyi:161756	num_788	barcode_0.600813230723	REF	trial_23	sim_run_zhukovskyi:161756
+Triticum zhukovskyi	sim_zhukovskyi:640442	sim_GID_zhukovskyi:640442	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:640442	num_789	barcode_0.447950228469		trial_24	sim_run_zhukovskyi:640442
+Triticum zhukovskyi	sim_zhukovskyi:445683	sim_GID_zhukovskyi:445683	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:445683	num_790	barcode_0.0143160272124	REF	trial_23	sim_run_zhukovskyi:445683
+Triticum zhukovskyi	sim_zhukovskyi:990887	sim_GID_zhukovskyi:990887	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:990887	num_791	barcode_0.49208223811	REF	trial_23	sim_run_zhukovskyi:990887
+Triticum zhukovskyi	sim_zhukovskyi:532760	sim_GID_zhukovskyi:532760	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_zhukovskyi:532760	num_792	barcode_0.785892979849	REF	trial_23	sim_run_zhukovskyi:532760
+Triticum zhukovskyi	sim_zhukovskyi:241122	sim_GID_zhukovskyi:241122	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:241122	num_793	barcode_0.991425380684		trial_24	sim_run_zhukovskyi:241122
+Triticum zhukovskyi	sim_zhukovskyi:804801	sim_GID_zhukovskyi:804801	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:804801	num_794	barcode_0.41406753378		trial_25	sim_run_zhukovskyi:804801
+Triticum zhukovskyi	sim_zhukovskyi:82707	sim_GID_zhukovskyi:82707	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:82707	num_795	barcode_0.953475781293	REF	trial_25	sim_run_zhukovskyi:82707
+Triticum zhukovskyi	sim_zhukovskyi:653570	sim_GID_zhukovskyi:653570	Undetermined spp.		sim_sample_zhukovskyi:653570	num_796	barcode_0.688345116281	REF	trial_25	sim_run_zhukovskyi:653570
+Triticum zhukovskyi	sim_zhukovskyi:76874	sim_GID_zhukovskyi:76874	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:76874	num_797	barcode_0.956104066946		trial_24	sim_run_zhukovskyi:76874
+Triticum zhukovskyi	sim_zhukovskyi:197470	sim_GID_zhukovskyi:197470	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:197470	num_798	barcode_0.526483154701	REF	trial_25	sim_run_zhukovskyi:197470
+Triticum zhukovskyi	sim_zhukovskyi:534021	sim_GID_zhukovskyi:534021	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:534021	num_799	barcode_0.16384714918	REF	trial_23	sim_run_zhukovskyi:534021
+Triticum zhukovskyi	sim_zhukovskyi:553637	sim_GID_zhukovskyi:553637			sim_sample_zhukovskyi:553637	num_800	barcode_0.607780856249		trial_25	sim_run_zhukovskyi:553637
+Triticum zhukovskyi	sim_zhukovskyi:437525	sim_GID_zhukovskyi:437525		BC1F1	sim_sample_zhukovskyi:437525	num_801	barcode_0.750423935246		trial_23	sim_run_zhukovskyi:437525
+Triticum zhukovskyi	sim_zhukovskyi:373875	sim_GID_zhukovskyi:373875	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:373875	num_802	barcode_0.215188923189		trial_23	sim_run_zhukovskyi:373875
+Triticum zhukovskyi	sim_zhukovskyi:757056	sim_GID_zhukovskyi:757056	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:757056	num_803	barcode_0.744821102702	REF	trial_24	sim_run_zhukovskyi:757056
+Triticum zhukovskyi	sim_zhukovskyi:87236	sim_GID_zhukovskyi:87236	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_zhukovskyi:87236	num_804	barcode_0.404726495203		trial_25	sim_run_zhukovskyi:87236
+Triticum zhukovskyi	sim_zhukovskyi:131200	sim_GID_zhukovskyi:131200	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:131200	num_805	barcode_0.324093919337	REF	trial_25	sim_run_zhukovskyi:131200
+Triticum zhukovskyi	sim_zhukovskyi:394845	sim_GID_zhukovskyi:394845	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:394845	num_806	barcode_0.98329301579		trial_24	sim_run_zhukovskyi:394845
+Triticum zhukovskyi	sim_zhukovskyi:895890	sim_GID_zhukovskyi:895890	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:895890	num_807	barcode_0.562244649838		trial_24	sim_run_zhukovskyi:895890
+Triticum zhukovskyi	sim_zhukovskyi:799266	sim_GID_zhukovskyi:799266	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_zhukovskyi:799266	num_808	barcode_0.708433373858		trial_24	sim_run_zhukovskyi:799266
+Triticum zhukovskyi	sim_zhukovskyi:350924	sim_GID_zhukovskyi:350924	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:350924	num_809	barcode_0.401437369772	REF	trial_25	sim_run_zhukovskyi:350924
+Triticum zhukovskyi	sim_zhukovskyi:358754	sim_GID_zhukovskyi:358754	Unknown	F2	sim_sample_zhukovskyi:358754	num_810	barcode_0.500844541201	REF	trial_25	sim_run_zhukovskyi:358754
+Triticum zhukovskyi	sim_zhukovskyi:784779	sim_GID_zhukovskyi:784779	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:784779	num_811	barcode_0.0608476109574	REF	trial_24	sim_run_zhukovskyi:784779
+Triticum zhukovskyi	sim_zhukovskyi:560743	sim_GID_zhukovskyi:560743	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:560743	num_812	barcode_0.705995557935		trial_23	sim_run_zhukovskyi:560743
+Triticum zhukovskyi	sim_zhukovskyi:287631	sim_GID_zhukovskyi:287631	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:287631	num_813	barcode_0.403675407701		trial_24	sim_run_zhukovskyi:287631
+Triticum zhukovskyi	sim_zhukovskyi:8895	sim_GID_zhukovskyi:8895	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:8895	num_814	barcode_0.0640154143583		trial_24	sim_run_zhukovskyi:8895
+Triticum zhukovskyi	sim_zhukovskyi:659614	sim_GID_zhukovskyi:659614	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:659614	num_815	barcode_0.88621862773	REF	trial_24	sim_run_zhukovskyi:659614
+Triticum zhukovskyi	sim_zhukovskyi:10240	sim_GID_zhukovskyi:10240	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_zhukovskyi:10240	num_816	barcode_0.770981346305		trial_23	sim_run_zhukovskyi:10240
+Triticum zhukovskyi	sim_zhukovskyi:843790	sim_GID_zhukovskyi:843790	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:843790	num_817	barcode_0.338847860492	REF	trial_23	sim_run_zhukovskyi:843790
+Triticum zhukovskyi	sim_zhukovskyi:479383	sim_GID_zhukovskyi:479383	Triticum zhukovskyi	F1_hybrid	sim_sample_zhukovskyi:479383	num_818	barcode_0.190786333178	REF	trial_25	sim_run_zhukovskyi:479383
+Triticum zhukovskyi	sim_zhukovskyi:559781	sim_GID_zhukovskyi:559781	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:559781	num_819	barcode_0.547970679782		trial_23	sim_run_zhukovskyi:559781
+Triticum zhukovskyi	sim_zhukovskyi:378730	sim_GID_zhukovskyi:378730	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:378730	num_820	barcode_0.12254858076		trial_24	sim_run_zhukovskyi:378730
+Triticum zhukovskyi	sim_zhukovskyi:707058	sim_GID_zhukovskyi:707058	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:707058	num_821	barcode_0.687788667933		trial_23	sim_run_zhukovskyi:707058
+Triticum zhukovskyi	sim_zhukovskyi:847656	sim_GID_zhukovskyi:847656	Undetermined		sim_sample_zhukovskyi:847656	num_822	barcode_0.318056405692		trial_25	sim_run_zhukovskyi:847656
+Triticum zhukovskyi	sim_zhukovskyi:713049	sim_GID_zhukovskyi:713049	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:713049	num_823	barcode_0.608263867734	REF	trial_23	sim_run_zhukovskyi:713049
+Triticum zhukovskyi	sim_zhukovskyi:854202	sim_GID_zhukovskyi:854202	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:854202	num_824	barcode_0.344390840366		trial_25	sim_run_zhukovskyi:854202
+Triticum zhukovskyi	sim_zhukovskyi:77509	sim_GID_zhukovskyi:77509	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:77509	num_825	barcode_0.508613142267		trial_23	sim_run_zhukovskyi:77509
+Triticum zhukovskyi	sim_zhukovskyi:492859	sim_GID_zhukovskyi:492859	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:492859	num_826	barcode_0.609228908805	REF	trial_24	sim_run_zhukovskyi:492859
+Triticum zhukovskyi	sim_zhukovskyi:179709	sim_GID_zhukovskyi:179709	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:179709	num_827	barcode_0.211573537352	REF	trial_25	sim_run_zhukovskyi:179709
+Triticum zhukovskyi	sim_zhukovskyi:649466	sim_GID_zhukovskyi:649466	Unknown	F1_hybrid	sim_sample_zhukovskyi:649466	num_828	barcode_0.607922208683	REF	trial_23	sim_run_zhukovskyi:649466
+Triticum zhukovskyi	sim_zhukovskyi:190261	sim_GID_zhukovskyi:190261	Zea diploperennis	F2	sim_sample_zhukovskyi:190261	num_829	barcode_0.150792303986	REF	trial_25	sim_run_zhukovskyi:190261
+Triticum zhukovskyi	sim_zhukovskyi:728159	sim_GID_zhukovskyi:728159	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:728159	num_830	barcode_0.526382741968		trial_24	sim_run_zhukovskyi:728159
+Triticum zhukovskyi	sim_zhukovskyi:355950	sim_GID_zhukovskyi:355950	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_zhukovskyi:355950	num_831	barcode_0.0379772229486		trial_24	sim_run_zhukovskyi:355950
+Triticum zhukovskyi	sim_zhukovskyi:373389	sim_GID_zhukovskyi:373389	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:373389	num_832	barcode_0.276618654045	REF	trial_25	sim_run_zhukovskyi:373389
+Triticum zhukovskyi	sim_zhukovskyi:588342	sim_GID_zhukovskyi:588342	Triticum turgidum subsp. durum		sim_sample_zhukovskyi:588342	num_833	barcode_0.752904637215		trial_24	sim_run_zhukovskyi:588342
+Triticum zhukovskyi	sim_zhukovskyi:119215	sim_GID_zhukovskyi:119215	Undetermined spp.	F1_hybrid	sim_sample_zhukovskyi:119215	num_834	barcode_0.693947716268		trial_25	sim_run_zhukovskyi:119215
+Triticum zhukovskyi	sim_zhukovskyi:499772	sim_GID_zhukovskyi:499772	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:499772	num_835	barcode_0.0551785468827	REF	trial_23	sim_run_zhukovskyi:499772
+Triticum zhukovskyi	sim_zhukovskyi:252544	sim_GID_zhukovskyi:252544	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_zhukovskyi:252544	num_836	barcode_0.675690486551		trial_24	sim_run_zhukovskyi:252544
+Triticum zhukovskyi	sim_zhukovskyi:507583	sim_GID_zhukovskyi:507583	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:507583	num_837	barcode_0.55649981596		trial_24	sim_run_zhukovskyi:507583
+Triticum zhukovskyi	sim_zhukovskyi:201013	sim_GID_zhukovskyi:201013		Inbred_line	sim_sample_zhukovskyi:201013	num_838	barcode_0.695284905655	REF	trial_25	sim_run_zhukovskyi:201013
+Triticum zhukovskyi	sim_zhukovskyi:273113	sim_GID_zhukovskyi:273113	Unknown	BC1F1	sim_sample_zhukovskyi:273113	num_839	barcode_0.825825614453	REF	trial_24	sim_run_zhukovskyi:273113
+Triticum zhukovskyi	sim_zhukovskyi:304048	sim_GID_zhukovskyi:304048	Zea diploperennis	F1_hybrid	sim_sample_zhukovskyi:304048	num_840	barcode_0.931247259994		trial_23	sim_run_zhukovskyi:304048
+Triticum zhukovskyi	sim_zhukovskyi:960716	sim_GID_zhukovskyi:960716	Zea mays subsp. mays		sim_sample_zhukovskyi:960716	num_841	barcode_0.164467673224		trial_25	sim_run_zhukovskyi:960716
+Triticum zhukovskyi	sim_zhukovskyi:261834	sim_GID_zhukovskyi:261834	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:261834	num_842	barcode_0.355032641674	REF	trial_24	sim_run_zhukovskyi:261834
+Triticum zhukovskyi	sim_zhukovskyi:988594	sim_GID_zhukovskyi:988594	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_zhukovskyi:988594	num_843	barcode_0.831961279799	REF	trial_23	sim_run_zhukovskyi:988594
+Triticum zhukovskyi	sim_zhukovskyi:79123	sim_GID_zhukovskyi:79123	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:79123	num_844	barcode_0.342668598974		trial_24	sim_run_zhukovskyi:79123
+Triticum zhukovskyi	sim_zhukovskyi:258819	sim_GID_zhukovskyi:258819	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:258819	num_845	barcode_0.263112053812	REF	trial_23	sim_run_zhukovskyi:258819
+Triticum zhukovskyi	sim_zhukovskyi:322463	sim_GID_zhukovskyi:322463	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:322463	num_846	barcode_0.0207742408311		trial_23	sim_run_zhukovskyi:322463
+Triticum zhukovskyi	sim_zhukovskyi:853933	sim_GID_zhukovskyi:853933	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:853933	num_847	barcode_0.799297672471	REF	trial_23	sim_run_zhukovskyi:853933
+Triticum zhukovskyi	sim_zhukovskyi:391285	sim_GID_zhukovskyi:391285	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:391285	num_848	barcode_0.303372237938	REF	trial_24	sim_run_zhukovskyi:391285
+Triticum zhukovskyi	sim_zhukovskyi:890357	sim_GID_zhukovskyi:890357	Zea diploperennis		sim_sample_zhukovskyi:890357	num_849	barcode_0.930598727922	REF	trial_25	sim_run_zhukovskyi:890357
+Triticum zhukovskyi	sim_zhukovskyi:903900	sim_GID_zhukovskyi:903900	Undetermined	Inbred_line	sim_sample_zhukovskyi:903900	num_850	barcode_0.981107867	REF	trial_24	sim_run_zhukovskyi:903900
+Triticum zhukovskyi	sim_zhukovskyi:283580	sim_GID_zhukovskyi:283580	Zea diploperennis		sim_sample_zhukovskyi:283580	num_851	barcode_0.830075629861	REF	trial_23	sim_run_zhukovskyi:283580
+Triticum zhukovskyi	sim_zhukovskyi:944826	sim_GID_zhukovskyi:944826			sim_sample_zhukovskyi:944826	num_852	barcode_0.0288007616884		trial_23	sim_run_zhukovskyi:944826
+Triticum zhukovskyi	sim_zhukovskyi:463573	sim_GID_zhukovskyi:463573	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:463573	num_853	barcode_0.75811718341	REF	trial_24	sim_run_zhukovskyi:463573
+Triticum zhukovskyi	sim_zhukovskyi:431852	sim_GID_zhukovskyi:431852		F1_hybrid	sim_sample_zhukovskyi:431852	num_854	barcode_0.926102588937	REF	trial_23	sim_run_zhukovskyi:431852
+Triticum zhukovskyi	sim_zhukovskyi:443165	sim_GID_zhukovskyi:443165	Unknown	Inbred_line	sim_sample_zhukovskyi:443165	num_855	barcode_0.196427965643	REF	trial_23	sim_run_zhukovskyi:443165
+Triticum zhukovskyi	sim_zhukovskyi:782367	sim_GID_zhukovskyi:782367	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:782367	num_856	barcode_0.48964920968		trial_23	sim_run_zhukovskyi:782367
+Triticum zhukovskyi	sim_zhukovskyi:97112	sim_GID_zhukovskyi:97112	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:97112	num_857	barcode_0.121035860521	REF	trial_25	sim_run_zhukovskyi:97112
+Triticum zhukovskyi	sim_zhukovskyi:999400	sim_GID_zhukovskyi:999400	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:999400	num_858	barcode_0.583546145326	REF	trial_23	sim_run_zhukovskyi:999400
+Triticum zhukovskyi	sim_zhukovskyi:390968	sim_GID_zhukovskyi:390968	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:390968	num_859	barcode_0.0470321919621	REF	trial_23	sim_run_zhukovskyi:390968
+Triticum zhukovskyi	sim_zhukovskyi:187772	sim_GID_zhukovskyi:187772	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:187772	num_860	barcode_0.0366685357981		trial_24	sim_run_zhukovskyi:187772
+Triticum zhukovskyi	sim_zhukovskyi:473073	sim_GID_zhukovskyi:473073	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:473073	num_861	barcode_0.00643981368305		trial_23	sim_run_zhukovskyi:473073
+Triticum zhukovskyi	sim_zhukovskyi:666547	sim_GID_zhukovskyi:666547	Unknown	F1_hybrid	sim_sample_zhukovskyi:666547	num_862	barcode_0.355704533148		trial_25	sim_run_zhukovskyi:666547
+Triticum zhukovskyi	sim_zhukovskyi:297721	sim_GID_zhukovskyi:297721	Zea mays subsp. parviglumis		sim_sample_zhukovskyi:297721	num_863	barcode_0.407599532419		trial_23	sim_run_zhukovskyi:297721
+Triticum zhukovskyi	sim_zhukovskyi:740662	sim_GID_zhukovskyi:740662	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:740662	num_864	barcode_0.758801864613	REF	trial_24	sim_run_zhukovskyi:740662
+Triticum zhukovskyi	sim_zhukovskyi:120623	sim_GID_zhukovskyi:120623	Triticum urartu	F2	sim_sample_zhukovskyi:120623	num_865	barcode_0.793885057016		trial_23	sim_run_zhukovskyi:120623
+Triticum zhukovskyi	sim_zhukovskyi:635973	sim_GID_zhukovskyi:635973	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:635973	num_866	barcode_0.820084549736	REF	trial_25	sim_run_zhukovskyi:635973
+Triticum zhukovskyi	sim_zhukovskyi:895628	sim_GID_zhukovskyi:895628	Undetermined	F1_hybrid	sim_sample_zhukovskyi:895628	num_867	barcode_0.357949998343		trial_23	sim_run_zhukovskyi:895628
+Triticum zhukovskyi	sim_zhukovskyi:921615	sim_GID_zhukovskyi:921615	Triticum turgidum subsp. durum	Inbred_line	sim_sample_zhukovskyi:921615	num_868	barcode_0.153646329086		trial_24	sim_run_zhukovskyi:921615
+Triticum zhukovskyi	sim_zhukovskyi:930608	sim_GID_zhukovskyi:930608	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_zhukovskyi:930608	num_869	barcode_0.776748684241	REF	trial_23	sim_run_zhukovskyi:930608
+Triticum zhukovskyi	sim_zhukovskyi:264329	sim_GID_zhukovskyi:264329	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_zhukovskyi:264329	num_870	barcode_0.985180965047	REF	trial_23	sim_run_zhukovskyi:264329
+Triticum zhukovskyi	sim_zhukovskyi:394834	sim_GID_zhukovskyi:394834	Unknown	Inbred_line	sim_sample_zhukovskyi:394834	num_871	barcode_0.873090460051		trial_24	sim_run_zhukovskyi:394834
+Triticum zhukovskyi	sim_zhukovskyi:629840	sim_GID_zhukovskyi:629840	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:629840	num_872	barcode_0.151181049688		trial_24	sim_run_zhukovskyi:629840
+Triticum zhukovskyi	sim_zhukovskyi:953378	sim_GID_zhukovskyi:953378	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:953378	num_873	barcode_0.288875824123	REF	trial_25	sim_run_zhukovskyi:953378
+Triticum zhukovskyi	sim_zhukovskyi:70456	sim_GID_zhukovskyi:70456	Unknown	F1_hybrid	sim_sample_zhukovskyi:70456	num_874	barcode_0.527126957464	REF	trial_23	sim_run_zhukovskyi:70456
+Triticum zhukovskyi	sim_zhukovskyi:262915	sim_GID_zhukovskyi:262915	Undetermined	Inbred_line	sim_sample_zhukovskyi:262915	num_875	barcode_0.585232447613		trial_25	sim_run_zhukovskyi:262915
+Triticum zhukovskyi	sim_zhukovskyi:979866	sim_GID_zhukovskyi:979866	Zea mays subsp. mays		sim_sample_zhukovskyi:979866	num_876	barcode_0.659599921343		trial_23	sim_run_zhukovskyi:979866
+Triticum zhukovskyi	sim_zhukovskyi:381678	sim_GID_zhukovskyi:381678	Zea mays subsp. huehuetenangensis	F2	sim_sample_zhukovskyi:381678	num_877	barcode_0.971967033928	REF	trial_23	sim_run_zhukovskyi:381678
+Triticum zhukovskyi	sim_zhukovskyi:671690	sim_GID_zhukovskyi:671690	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:671690	num_878	barcode_0.625465377614	REF	trial_24	sim_run_zhukovskyi:671690
+Triticum zhukovskyi	sim_zhukovskyi:445297	sim_GID_zhukovskyi:445297	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:445297	num_879	barcode_0.230056908854		trial_25	sim_run_zhukovskyi:445297
+Triticum zhukovskyi	sim_zhukovskyi:499124	sim_GID_zhukovskyi:499124	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:499124	num_880	barcode_0.97889829467		trial_25	sim_run_zhukovskyi:499124
+Triticum zhukovskyi	sim_zhukovskyi:560003	sim_GID_zhukovskyi:560003		F1_hybrid	sim_sample_zhukovskyi:560003	num_881	barcode_0.821867782942		trial_23	sim_run_zhukovskyi:560003
+Triticum zhukovskyi	sim_zhukovskyi:883615	sim_GID_zhukovskyi:883615	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:883615	num_882	barcode_0.482456986928	REF	trial_25	sim_run_zhukovskyi:883615
+Triticum zhukovskyi	sim_zhukovskyi:144929	sim_GID_zhukovskyi:144929	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:144929	num_883	barcode_0.690338043826	REF	trial_23	sim_run_zhukovskyi:144929
+Triticum zhukovskyi	sim_zhukovskyi:367794	sim_GID_zhukovskyi:367794	Triticum turgidum subsp. paleocolchicum		sim_sample_zhukovskyi:367794	num_884	barcode_0.425328505402		trial_23	sim_run_zhukovskyi:367794
+Triticum zhukovskyi	sim_zhukovskyi:603411	sim_GID_zhukovskyi:603411	Undetermined	Inbred_line	sim_sample_zhukovskyi:603411	num_885	barcode_0.169703852532		trial_23	sim_run_zhukovskyi:603411
+Triticum zhukovskyi	sim_zhukovskyi:132769	sim_GID_zhukovskyi:132769	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_zhukovskyi:132769	num_886	barcode_0.651186666683		trial_25	sim_run_zhukovskyi:132769
+Triticum zhukovskyi	sim_zhukovskyi:105280	sim_GID_zhukovskyi:105280	Zea diploperennis	Inbred_line	sim_sample_zhukovskyi:105280	num_887	barcode_0.124705600884		trial_25	sim_run_zhukovskyi:105280
+Triticum zhukovskyi	sim_zhukovskyi:528327	sim_GID_zhukovskyi:528327	Undetermined spp.	BC1F1	sim_sample_zhukovskyi:528327	num_888	barcode_0.974419569026	REF	trial_23	sim_run_zhukovskyi:528327
+Triticum zhukovskyi	sim_zhukovskyi:958768	sim_GID_zhukovskyi:958768	Triticum urartu	F2	sim_sample_zhukovskyi:958768	num_889	barcode_0.992177281074		trial_25	sim_run_zhukovskyi:958768
+Triticum zhukovskyi	sim_zhukovskyi:195678	sim_GID_zhukovskyi:195678	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:195678	num_890	barcode_0.113268549836		trial_25	sim_run_zhukovskyi:195678
+Triticum zhukovskyi	sim_zhukovskyi:164416	sim_GID_zhukovskyi:164416	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:164416	num_891	barcode_0.353595512775	REF	trial_25	sim_run_zhukovskyi:164416
+Triticum zhukovskyi	sim_zhukovskyi:155327	sim_GID_zhukovskyi:155327	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:155327	num_892	barcode_0.47174492274		trial_25	sim_run_zhukovskyi:155327
+Triticum zhukovskyi	sim_zhukovskyi:334983	sim_GID_zhukovskyi:334983	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:334983	num_893	barcode_0.555431883973		trial_24	sim_run_zhukovskyi:334983
+Triticum zhukovskyi	sim_zhukovskyi:167948	sim_GID_zhukovskyi:167948	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:167948	num_894	barcode_0.427035050253	REF	trial_24	sim_run_zhukovskyi:167948
+Triticum zhukovskyi	sim_zhukovskyi:203748	sim_GID_zhukovskyi:203748		F2	sim_sample_zhukovskyi:203748	num_895	barcode_0.173497411424		trial_23	sim_run_zhukovskyi:203748
+Triticum zhukovskyi	sim_zhukovskyi:961754	sim_GID_zhukovskyi:961754	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:961754	num_896	barcode_0.0121768010136	REF	trial_24	sim_run_zhukovskyi:961754
+Triticum zhukovskyi	sim_zhukovskyi:316943	sim_GID_zhukovskyi:316943	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:316943	num_897	barcode_0.549422039709		trial_24	sim_run_zhukovskyi:316943
+Triticum zhukovskyi	sim_zhukovskyi:27401	sim_GID_zhukovskyi:27401	Undetermined spp.		sim_sample_zhukovskyi:27401	num_898	barcode_0.707899623785	REF	trial_23	sim_run_zhukovskyi:27401
+Triticum zhukovskyi	sim_zhukovskyi:55474	sim_GID_zhukovskyi:55474	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:55474	num_899	barcode_0.907708942741		trial_24	sim_run_zhukovskyi:55474
+Triticum zhukovskyi	sim_zhukovskyi:43365	sim_GID_zhukovskyi:43365	Unknown	BC1F1	sim_sample_zhukovskyi:43365	num_900	barcode_0.240061949174	REF	trial_24	sim_run_zhukovskyi:43365
+Triticum zhukovskyi	sim_zhukovskyi:292024	sim_GID_zhukovskyi:292024	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:292024	num_901	barcode_0.188318501778	REF	trial_24	sim_run_zhukovskyi:292024
+Triticum zhukovskyi	sim_zhukovskyi:771465	sim_GID_zhukovskyi:771465	Triticum turgidum subsp. paleocolchicum		sim_sample_zhukovskyi:771465	num_902	barcode_0.849362255356	REF	trial_24	sim_run_zhukovskyi:771465
+Triticum zhukovskyi	sim_zhukovskyi:968357	sim_GID_zhukovskyi:968357	Triticum turgidum subsp. turgidum	F2	sim_sample_zhukovskyi:968357	num_903	barcode_0.722166835252	REF	trial_23	sim_run_zhukovskyi:968357
+Triticum zhukovskyi	sim_zhukovskyi:874814	sim_GID_zhukovskyi:874814	Undetermined	Inbred_line	sim_sample_zhukovskyi:874814	num_904	barcode_0.112975839392	REF	trial_25	sim_run_zhukovskyi:874814
+Triticum zhukovskyi	sim_zhukovskyi:400807	sim_GID_zhukovskyi:400807	Triticum urartu	F2	sim_sample_zhukovskyi:400807	num_905	barcode_0.500574768057		trial_23	sim_run_zhukovskyi:400807
+Triticum zhukovskyi	sim_zhukovskyi:240045	sim_GID_zhukovskyi:240045	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:240045	num_906	barcode_0.0463940327431	REF	trial_24	sim_run_zhukovskyi:240045
+Triticum zhukovskyi	sim_zhukovskyi:247789	sim_GID_zhukovskyi:247789	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:247789	num_907	barcode_0.562487497815		trial_24	sim_run_zhukovskyi:247789
+Triticum zhukovskyi	sim_zhukovskyi:686385	sim_GID_zhukovskyi:686385	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:686385	num_908	barcode_0.0658901326361	REF	trial_24	sim_run_zhukovskyi:686385
+Triticum zhukovskyi	sim_zhukovskyi:292341	sim_GID_zhukovskyi:292341	Unknown	F2	sim_sample_zhukovskyi:292341	num_909	barcode_0.95468630551	REF	trial_25	sim_run_zhukovskyi:292341
+Triticum zhukovskyi	sim_zhukovskyi:587205	sim_GID_zhukovskyi:587205	Zea mays subsp. mexicana		sim_sample_zhukovskyi:587205	num_910	barcode_0.566926843459		trial_23	sim_run_zhukovskyi:587205
+Triticum zhukovskyi	sim_zhukovskyi:11911	sim_GID_zhukovskyi:11911			sim_sample_zhukovskyi:11911	num_911	barcode_0.413387524389	REF	trial_25	sim_run_zhukovskyi:11911
+Triticum zhukovskyi	sim_zhukovskyi:876681	sim_GID_zhukovskyi:876681	Undetermined		sim_sample_zhukovskyi:876681	num_912	barcode_0.46837742261		trial_23	sim_run_zhukovskyi:876681
+Triticum zhukovskyi	sim_zhukovskyi:508262	sim_GID_zhukovskyi:508262	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:508262	num_913	barcode_0.184882300404	REF	trial_25	sim_run_zhukovskyi:508262
+Triticum zhukovskyi	sim_zhukovskyi:531398	sim_GID_zhukovskyi:531398	Undetermined	F1_hybrid	sim_sample_zhukovskyi:531398	num_914	barcode_0.806756686633	REF	trial_25	sim_run_zhukovskyi:531398
+Triticum zhukovskyi	sim_zhukovskyi:883459	sim_GID_zhukovskyi:883459	Triticum zhukovskyi	F2	sim_sample_zhukovskyi:883459	num_915	barcode_0.0305835259828	REF	trial_24	sim_run_zhukovskyi:883459
+Triticum zhukovskyi	sim_zhukovskyi:666077	sim_GID_zhukovskyi:666077	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_zhukovskyi:666077	num_916	barcode_0.134843481298		trial_23	sim_run_zhukovskyi:666077
+Triticum zhukovskyi	sim_zhukovskyi:451492	sim_GID_zhukovskyi:451492	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:451492	num_917	barcode_0.85490154845		trial_25	sim_run_zhukovskyi:451492
+Triticum zhukovskyi	sim_zhukovskyi:727636	sim_GID_zhukovskyi:727636	Triticum turgidum subsp. dicoccon		sim_sample_zhukovskyi:727636	num_918	barcode_0.473620371537		trial_24	sim_run_zhukovskyi:727636
+Triticum zhukovskyi	sim_zhukovskyi:321741	sim_GID_zhukovskyi:321741	Zea mays subsp. mexicana		sim_sample_zhukovskyi:321741	num_919	barcode_0.214863418323		trial_24	sim_run_zhukovskyi:321741
+Triticum zhukovskyi	sim_zhukovskyi:873280	sim_GID_zhukovskyi:873280	Triticum zhukovskyi		sim_sample_zhukovskyi:873280	num_920	barcode_0.315242881096	REF	trial_24	sim_run_zhukovskyi:873280
+Triticum zhukovskyi	sim_zhukovskyi:287717	sim_GID_zhukovskyi:287717	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:287717	num_921	barcode_0.105821345072		trial_25	sim_run_zhukovskyi:287717
+Triticum zhukovskyi	sim_zhukovskyi:986099	sim_GID_zhukovskyi:986099	Triticum zhukovskyi	BC1F1	sim_sample_zhukovskyi:986099	num_922	barcode_0.480280751951	REF	trial_24	sim_run_zhukovskyi:986099
+Triticum zhukovskyi	sim_zhukovskyi:558598	sim_GID_zhukovskyi:558598	Triticum turgidum subsp. paleocolchicum		sim_sample_zhukovskyi:558598	num_923	barcode_0.488996521997		trial_25	sim_run_zhukovskyi:558598
+Triticum zhukovskyi	sim_zhukovskyi:373093	sim_GID_zhukovskyi:373093	Zea mays subsp. huehuetenangensis		sim_sample_zhukovskyi:373093	num_924	barcode_0.215827096371		trial_24	sim_run_zhukovskyi:373093
+Triticum zhukovskyi	sim_zhukovskyi:522897	sim_GID_zhukovskyi:522897	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:522897	num_925	barcode_0.918237834492	REF	trial_24	sim_run_zhukovskyi:522897
+Triticum zhukovskyi	sim_zhukovskyi:280847	sim_GID_zhukovskyi:280847	Triticum zhukovskyi	Inbred_line	sim_sample_zhukovskyi:280847	num_926	barcode_0.74705332714		trial_24	sim_run_zhukovskyi:280847
+Triticum zhukovskyi	sim_zhukovskyi:421493	sim_GID_zhukovskyi:421493	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_zhukovskyi:421493	num_927	barcode_0.969817559525		trial_23	sim_run_zhukovskyi:421493
+Triticum zhukovskyi	sim_zhukovskyi:454812	sim_GID_zhukovskyi:454812	Zea diploperennis		sim_sample_zhukovskyi:454812	num_928	barcode_0.0799509604383	REF	trial_24	sim_run_zhukovskyi:454812
+Triticum zhukovskyi	sim_zhukovskyi:125477	sim_GID_zhukovskyi:125477	Triticum urartu	F2	sim_sample_zhukovskyi:125477	num_929	barcode_0.366603124033	REF	trial_23	sim_run_zhukovskyi:125477
+Triticum zhukovskyi	sim_zhukovskyi:712109	sim_GID_zhukovskyi:712109	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:712109	num_930	barcode_0.573208616641	REF	trial_23	sim_run_zhukovskyi:712109
+Triticum zhukovskyi	sim_zhukovskyi:314175	sim_GID_zhukovskyi:314175	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:314175	num_931	barcode_0.171617109672	REF	trial_24	sim_run_zhukovskyi:314175
+Triticum zhukovskyi	sim_zhukovskyi:818169	sim_GID_zhukovskyi:818169		BC1F1	sim_sample_zhukovskyi:818169	num_932	barcode_0.964548073035		trial_25	sim_run_zhukovskyi:818169
+Triticum zhukovskyi	sim_zhukovskyi:861615	sim_GID_zhukovskyi:861615	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:861615	num_933	barcode_0.513332808877		trial_24	sim_run_zhukovskyi:861615
+Triticum zhukovskyi	sim_zhukovskyi:155636	sim_GID_zhukovskyi:155636	Zea mays subsp. mays		sim_sample_zhukovskyi:155636	num_934	barcode_0.52447220846	REF	trial_23	sim_run_zhukovskyi:155636
+Triticum zhukovskyi	sim_zhukovskyi:179657	sim_GID_zhukovskyi:179657	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:179657	num_935	barcode_0.275558979853		trial_24	sim_run_zhukovskyi:179657
+Triticum zhukovskyi	sim_zhukovskyi:850804	sim_GID_zhukovskyi:850804	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:850804	num_936	barcode_0.963946642133	REF	trial_23	sim_run_zhukovskyi:850804
+Triticum zhukovskyi	sim_zhukovskyi:457421	sim_GID_zhukovskyi:457421	Undetermined		sim_sample_zhukovskyi:457421	num_937	barcode_0.724445043396	REF	trial_23	sim_run_zhukovskyi:457421
+Triticum zhukovskyi	sim_zhukovskyi:587197	sim_GID_zhukovskyi:587197	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:587197	num_938	barcode_0.76734338416		trial_24	sim_run_zhukovskyi:587197
+Triticum zhukovskyi	sim_zhukovskyi:259341	sim_GID_zhukovskyi:259341	Undetermined	F1_hybrid	sim_sample_zhukovskyi:259341	num_939	barcode_0.677625635518	REF	trial_23	sim_run_zhukovskyi:259341
+Triticum zhukovskyi	sim_zhukovskyi:873092	sim_GID_zhukovskyi:873092	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:873092	num_940	barcode_0.295536739824	REF	trial_25	sim_run_zhukovskyi:873092
+Triticum zhukovskyi	sim_zhukovskyi:374166	sim_GID_zhukovskyi:374166	Triticum turgidum subsp. polonicum	F2	sim_sample_zhukovskyi:374166	num_941	barcode_0.289084551439	REF	trial_23	sim_run_zhukovskyi:374166
+Triticum zhukovskyi	sim_zhukovskyi:829483	sim_GID_zhukovskyi:829483	Unknown	Inbred_line	sim_sample_zhukovskyi:829483	num_942	barcode_0.487618198875		trial_25	sim_run_zhukovskyi:829483
+Triticum zhukovskyi	sim_zhukovskyi:80576	sim_GID_zhukovskyi:80576	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_zhukovskyi:80576	num_943	barcode_0.137250716777	REF	trial_24	sim_run_zhukovskyi:80576
+Triticum zhukovskyi	sim_zhukovskyi:725403	sim_GID_zhukovskyi:725403	Undetermined	F1_hybrid	sim_sample_zhukovskyi:725403	num_944	barcode_0.00113406190384		trial_24	sim_run_zhukovskyi:725403
+Triticum zhukovskyi	sim_zhukovskyi:503324	sim_GID_zhukovskyi:503324	Triticum turgidum subsp. turgidum		sim_sample_zhukovskyi:503324	num_945	barcode_0.589236473199	REF	trial_25	sim_run_zhukovskyi:503324
+Triticum zhukovskyi	sim_zhukovskyi:457444	sim_GID_zhukovskyi:457444	Zea mays subsp. mexicana	Inbred_line	sim_sample_zhukovskyi:457444	num_946	barcode_0.79951955326	REF	trial_23	sim_run_zhukovskyi:457444
+Triticum zhukovskyi	sim_zhukovskyi:506807	sim_GID_zhukovskyi:506807	Zea mays subsp. mexicana	F1_hybrid	sim_sample_zhukovskyi:506807	num_947	barcode_0.395258016823		trial_23	sim_run_zhukovskyi:506807
+Triticum zhukovskyi	sim_zhukovskyi:715155	sim_GID_zhukovskyi:715155	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:715155	num_948	barcode_0.307552249183	REF	trial_23	sim_run_zhukovskyi:715155
+Triticum zhukovskyi	sim_zhukovskyi:642130	sim_GID_zhukovskyi:642130	Triticum turgidum subsp. turanicum	F2	sim_sample_zhukovskyi:642130	num_949	barcode_0.417210801165	REF	trial_23	sim_run_zhukovskyi:642130
+Triticum zhukovskyi	sim_zhukovskyi:530928	sim_GID_zhukovskyi:530928	Zea mays subsp. mays	Inbred_line	sim_sample_zhukovskyi:530928	num_950	barcode_0.99975985099		trial_24	sim_run_zhukovskyi:530928
+Triticum zhukovskyi	sim_zhukovskyi:713806	sim_GID_zhukovskyi:713806	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:713806	num_951	barcode_0.294906938115	REF	trial_23	sim_run_zhukovskyi:713806
+Triticum zhukovskyi	sim_zhukovskyi:625432	sim_GID_zhukovskyi:625432	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_zhukovskyi:625432	num_952	barcode_0.199655208765	REF	trial_23	sim_run_zhukovskyi:625432
+Triticum zhukovskyi	sim_zhukovskyi:322782	sim_GID_zhukovskyi:322782	Undetermined	BC1F1	sim_sample_zhukovskyi:322782	num_953	barcode_0.845837775156		trial_23	sim_run_zhukovskyi:322782
+Triticum zhukovskyi	sim_zhukovskyi:265550	sim_GID_zhukovskyi:265550	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:265550	num_954	barcode_0.566462200301	REF	trial_23	sim_run_zhukovskyi:265550
+Triticum zhukovskyi	sim_zhukovskyi:161256	sim_GID_zhukovskyi:161256	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_zhukovskyi:161256	num_955	barcode_0.939531875707	REF	trial_23	sim_run_zhukovskyi:161256
+Triticum zhukovskyi	sim_zhukovskyi:608463	sim_GID_zhukovskyi:608463		F2	sim_sample_zhukovskyi:608463	num_956	barcode_0.544844843077		trial_23	sim_run_zhukovskyi:608463
+Triticum zhukovskyi	sim_zhukovskyi:74206	sim_GID_zhukovskyi:74206	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_zhukovskyi:74206	num_957	barcode_0.687569725399	REF	trial_25	sim_run_zhukovskyi:74206
+Triticum zhukovskyi	sim_zhukovskyi:413469	sim_GID_zhukovskyi:413469	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_zhukovskyi:413469	num_958	barcode_0.620586579482		trial_24	sim_run_zhukovskyi:413469
+Triticum zhukovskyi	sim_zhukovskyi:705329	sim_GID_zhukovskyi:705329	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:705329	num_959	barcode_0.827615892596		trial_24	sim_run_zhukovskyi:705329
+Triticum zhukovskyi	sim_zhukovskyi:376204	sim_GID_zhukovskyi:376204	Undetermined spp.	F2	sim_sample_zhukovskyi:376204	num_960	barcode_0.751055225529		trial_23	sim_run_zhukovskyi:376204
+Triticum zhukovskyi	sim_zhukovskyi:326927	sim_GID_zhukovskyi:326927	Undetermined	BC1F1	sim_sample_zhukovskyi:326927	num_961	barcode_0.174602499346		trial_25	sim_run_zhukovskyi:326927
+Triticum zhukovskyi	sim_zhukovskyi:13610	sim_GID_zhukovskyi:13610		BC1F1	sim_sample_zhukovskyi:13610	num_962	barcode_0.786394063309		trial_24	sim_run_zhukovskyi:13610
+Triticum zhukovskyi	sim_zhukovskyi:340620	sim_GID_zhukovskyi:340620	Triticum turgidum subsp. turanicum		sim_sample_zhukovskyi:340620	num_963	barcode_0.42434134845		trial_24	sim_run_zhukovskyi:340620
+Triticum zhukovskyi	sim_zhukovskyi:245915	sim_GID_zhukovskyi:245915	Zea mays subsp. mays	F2	sim_sample_zhukovskyi:245915	num_964	barcode_0.630984863784		trial_23	sim_run_zhukovskyi:245915
+Triticum zhukovskyi	sim_zhukovskyi:566479	sim_GID_zhukovskyi:566479	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:566479	num_965	barcode_0.340131915595	REF	trial_25	sim_run_zhukovskyi:566479
+Triticum zhukovskyi	sim_zhukovskyi:11529	sim_GID_zhukovskyi:11529	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_zhukovskyi:11529	num_966	barcode_0.646486752733		trial_24	sim_run_zhukovskyi:11529
+Triticum zhukovskyi	sim_zhukovskyi:20732	sim_GID_zhukovskyi:20732	Unknown	F2	sim_sample_zhukovskyi:20732	num_967	barcode_0.0607429035567	REF	trial_24	sim_run_zhukovskyi:20732
+Triticum zhukovskyi	sim_zhukovskyi:131875	sim_GID_zhukovskyi:131875	Zea mays subsp. mexicana	BC1F1	sim_sample_zhukovskyi:131875	num_968	barcode_0.281797590622		trial_24	sim_run_zhukovskyi:131875
+Triticum zhukovskyi	sim_zhukovskyi:581803	sim_GID_zhukovskyi:581803	Undetermined spp.	Inbred_line	sim_sample_zhukovskyi:581803	num_969	barcode_0.100164250455		trial_24	sim_run_zhukovskyi:581803
+Triticum zhukovskyi	sim_zhukovskyi:625232	sim_GID_zhukovskyi:625232	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:625232	num_970	barcode_0.999736101485		trial_25	sim_run_zhukovskyi:625232
+Triticum zhukovskyi	sim_zhukovskyi:70331	sim_GID_zhukovskyi:70331	Triticum turgidum subsp. polonicum		sim_sample_zhukovskyi:70331	num_971	barcode_0.622580229771		trial_25	sim_run_zhukovskyi:70331
+Triticum zhukovskyi	sim_zhukovskyi:665216	sim_GID_zhukovskyi:665216	Zea diploperennis	F2	sim_sample_zhukovskyi:665216	num_972	barcode_0.383215541709	REF	trial_25	sim_run_zhukovskyi:665216
+Triticum zhukovskyi	sim_zhukovskyi:897523	sim_GID_zhukovskyi:897523	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_zhukovskyi:897523	num_973	barcode_0.966982044559		trial_25	sim_run_zhukovskyi:897523
+Triticum zhukovskyi	sim_zhukovskyi:964904	sim_GID_zhukovskyi:964904		BC1F1	sim_sample_zhukovskyi:964904	num_974	barcode_0.56785883188	REF	trial_24	sim_run_zhukovskyi:964904
+Triticum zhukovskyi	sim_zhukovskyi:862927	sim_GID_zhukovskyi:862927	Triticum vavilovii var. vavilovii	F2	sim_sample_zhukovskyi:862927	num_975	barcode_0.492557286558	REF	trial_25	sim_run_zhukovskyi:862927
+Triticum zhukovskyi	sim_zhukovskyi:941814	sim_GID_zhukovskyi:941814	Zea mays subsp. mexicana		sim_sample_zhukovskyi:941814	num_976	barcode_0.586933717906		trial_25	sim_run_zhukovskyi:941814
+Triticum zhukovskyi	sim_zhukovskyi:155282	sim_GID_zhukovskyi:155282	Unknown	F1_hybrid	sim_sample_zhukovskyi:155282	num_977	barcode_0.350219417699	REF	trial_25	sim_run_zhukovskyi:155282
+Triticum zhukovskyi	sim_zhukovskyi:384171	sim_GID_zhukovskyi:384171	Undetermined		sim_sample_zhukovskyi:384171	num_978	barcode_0.854966778912		trial_25	sim_run_zhukovskyi:384171
+Triticum zhukovskyi	sim_zhukovskyi:194736	sim_GID_zhukovskyi:194736	Zea diploperennis	BC1F1	sim_sample_zhukovskyi:194736	num_979	barcode_0.0285291259315	REF	trial_24	sim_run_zhukovskyi:194736
+Triticum zhukovskyi	sim_zhukovskyi:886378	sim_GID_zhukovskyi:886378	Triticum urartu	Inbred_line	sim_sample_zhukovskyi:886378	num_980	barcode_0.307123776816	REF	trial_23	sim_run_zhukovskyi:886378
+Triticum zhukovskyi	sim_zhukovskyi:200100	sim_GID_zhukovskyi:200100			sim_sample_zhukovskyi:200100	num_981	barcode_0.981558386627	REF	trial_24	sim_run_zhukovskyi:200100
+Triticum zhukovskyi	sim_zhukovskyi:197867	sim_GID_zhukovskyi:197867	Triticum turgidum subsp. durum	BC1F1	sim_sample_zhukovskyi:197867	num_982	barcode_0.193610281164		trial_23	sim_run_zhukovskyi:197867
+Triticum zhukovskyi	sim_zhukovskyi:703003	sim_GID_zhukovskyi:703003	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_zhukovskyi:703003	num_983	barcode_0.951714701537	REF	trial_23	sim_run_zhukovskyi:703003
+Triticum zhukovskyi	sim_zhukovskyi:532618	sim_GID_zhukovskyi:532618	Triticum zhukovskyi		sim_sample_zhukovskyi:532618	num_984	barcode_0.0885535185014		trial_23	sim_run_zhukovskyi:532618
+Triticum zhukovskyi	sim_zhukovskyi:153540	sim_GID_zhukovskyi:153540	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_zhukovskyi:153540	num_985	barcode_0.934960682416	REF	trial_24	sim_run_zhukovskyi:153540
+Triticum zhukovskyi	sim_zhukovskyi:316130	sim_GID_zhukovskyi:316130	Undetermined	F2	sim_sample_zhukovskyi:316130	num_986	barcode_0.859619744331	REF	trial_25	sim_run_zhukovskyi:316130
+Triticum zhukovskyi	sim_zhukovskyi:28461	sim_GID_zhukovskyi:28461	Undetermined	Inbred_line	sim_sample_zhukovskyi:28461	num_987	barcode_0.246898261357	REF	trial_25	sim_run_zhukovskyi:28461
+Triticum zhukovskyi	sim_zhukovskyi:4984	sim_GID_zhukovskyi:4984	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:4984	num_988	barcode_0.889240565224	REF	trial_23	sim_run_zhukovskyi:4984
+Triticum zhukovskyi	sim_zhukovskyi:624149	sim_GID_zhukovskyi:624149	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_zhukovskyi:624149	num_989	barcode_0.341296959536	REF	trial_24	sim_run_zhukovskyi:624149
+Triticum zhukovskyi	sim_zhukovskyi:815864	sim_GID_zhukovskyi:815864	Unknown	F1_hybrid	sim_sample_zhukovskyi:815864	num_990	barcode_0.0768112536426	REF	trial_25	sim_run_zhukovskyi:815864
+Triticum zhukovskyi	sim_zhukovskyi:630518	sim_GID_zhukovskyi:630518	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_zhukovskyi:630518	num_991	barcode_0.982436690838	REF	trial_25	sim_run_zhukovskyi:630518
+Triticum zhukovskyi	sim_zhukovskyi:716170	sim_GID_zhukovskyi:716170	Triticum urartu	F2	sim_sample_zhukovskyi:716170	num_992	barcode_0.356375837911		trial_23	sim_run_zhukovskyi:716170
+Triticum zhukovskyi	sim_zhukovskyi:313540	sim_GID_zhukovskyi:313540	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:313540	num_993	barcode_0.13661093553		trial_25	sim_run_zhukovskyi:313540
+Triticum zhukovskyi	sim_zhukovskyi:296145	sim_GID_zhukovskyi:296145	Triticum turgidum subsp. dicoccon	F2	sim_sample_zhukovskyi:296145	num_994	barcode_0.402165413955	REF	trial_25	sim_run_zhukovskyi:296145
+Triticum zhukovskyi	sim_zhukovskyi:516695	sim_GID_zhukovskyi:516695	Triticum urartu	F1_hybrid	sim_sample_zhukovskyi:516695	num_995	barcode_0.287728747202		trial_24	sim_run_zhukovskyi:516695
+Triticum zhukovskyi	sim_zhukovskyi:796392	sim_GID_zhukovskyi:796392	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_zhukovskyi:796392	num_996	barcode_0.810184149941	REF	trial_23	sim_run_zhukovskyi:796392
+Triticum zhukovskyi	sim_zhukovskyi:531480	sim_GID_zhukovskyi:531480	Zea mays subsp. mexicana	F2	sim_sample_zhukovskyi:531480	num_997	barcode_0.0893976690087	REF	trial_23	sim_run_zhukovskyi:531480
+Triticum zhukovskyi	sim_zhukovskyi:779887	sim_GID_zhukovskyi:779887	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_zhukovskyi:779887	num_998	barcode_0.0965244031552	REF	trial_24	sim_run_zhukovskyi:779887
+Triticum zhukovskyi	sim_zhukovskyi:586896	sim_GID_zhukovskyi:586896	Zea mays subsp. mays	BC1F1	sim_sample_zhukovskyi:586896	num_999	barcode_0.637815485042	REF	trial_23	sim_run_zhukovskyi:586896

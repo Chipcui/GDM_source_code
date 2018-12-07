@@ -7,6 +7,8 @@ import {HeaderStatusMessage} from "../model/dto-header-status-message";
 import * as fromRoot from '../store/reducers';
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs/Observable";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
+import {TypeControl} from "../services/core/type-control";
 
 
 //Documentation of p-tree: http://www.primefaces.org/primeng/#/tree
@@ -26,7 +28,8 @@ import {Observable} from "rxjs/Observable";
                 (onNodeExpand)="nodeExpand($event)"
                 (onNodeCollapse)="nodeCollapse($event)"
                 [style]="{'width':'100%'}"
-                styleClass="criteria-tree"></p-tree>
+                styleClass="criteria-tree"
+                [id]="viewIdGeneratorService.makeStandardId(typeControl.CRITERIA_TREE)"></p-tree>
         <!--<p-tree [value]="demoTreeNodes" selectionMode="checkbox" [(selection)]="selectedDemoNodes"></p-tree>-->
         <!--<div>Selected Nodes: <span *ngFor="let file of selectedFiles2">{{file.label}} </span></div>-->
     `
@@ -34,6 +37,7 @@ import {Observable} from "rxjs/Observable";
 export class StatusDisplayTreeComponent implements OnInit, OnChanges {
 
 
+    public typeControl: any = TypeControl;
     private containerCollapseThreshold = 10;
     private onAddMessage: EventEmitter<HeaderStatusMessage> = new EventEmitter();
     private onTreeReady: EventEmitter<HeaderStatusMessage> = new EventEmitter();
@@ -41,7 +45,8 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
     gobiiTreeNodesFromStore$: Observable<GobiiTreeNode[]>;
     gobiiSelectedNodesFromStore$: Observable<GobiiTreeNode[]>;
 
-    constructor(private store: Store<fromRoot.State>) {
+    constructor(private store: Store<fromRoot.State>,
+                public viewIdGeneratorService: ViewIdGeneratorService) {
 
         this.gobiiTreeNodesFromStore$ = store
             .select(fromRoot.getGobiiTreeNodesForExtractFilter);
@@ -72,7 +77,6 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
 
         // for now the selectable property on nodes is set to false by default, so we aren't using this yet
     }
-
 
 
     nodeUnselect(event) {
@@ -122,7 +126,6 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
 // ********************* CHECKBOX/TREE NODE CONVERSION FUNCTIONS
 
 
-
 // ********************************************************************************
 // ********************* CHECKBOX (GOBII-SPECIFIC)  NODE DATA STRUCTURES AND EVENTS
 
@@ -141,8 +144,8 @@ export class StatusDisplayTreeComponent implements OnInit, OnChanges {
         if (changes['fileItemEventChange'] && changes['fileItemEventChange'].currentValue) {
 
         } else if (changes['gobiiExtractFilterTypeEvent']
-            && ( changes['gobiiExtractFilterTypeEvent'].currentValue != null )
-            && ( changes['gobiiExtractFilterTypeEvent'].currentValue != undefined )) {
+            && (changes['gobiiExtractFilterTypeEvent'].currentValue != null)
+            && (changes['gobiiExtractFilterTypeEvent'].currentValue != undefined)) {
 
 
         }

@@ -43,7 +43,7 @@ public class DtoMapNameIdFetchLinkageGroup implements DtoMapNameIdFetch {
                         put("nameArray", nameIdDTOList);
                     }});
 
-            Integer resultSize = DtoMapNameIdUtil.getIdFromResultSet(nameIdDTOList, resultSet, "name", "linkage_group_id");
+            Integer resultSize = DtoMapNameIdUtil.getIdsFromResultSet(nameIdDTOList, resultSet, "name", "linkage_group_id");
 
         } catch (Exception e) {
             throw new GobiiDaoException(e);

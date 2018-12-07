@@ -13,6 +13,9 @@ System.register([], function (exports_1, context_1) {
                 // are treated in the components and services
                 function FilterParamNames() {
                 }
+                // WARNING: If you change the value of one of these variables, you will
+                // seriously break the Selenium unit tests: any changes to these values
+                // will have to be cascaded to the unit tests!!!
                 FilterParamNames.UNKNOWN = "UNKNOWN";
                 FilterParamNames.CONTACT_PI_HIERARCHY_ROOT = "Contact-PI-Hierarchy-Root";
                 FilterParamNames.EXPERIMENTS = "Experiments";

@@ -5,8 +5,6 @@ import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ExportFormatComponent} from "../views/export-format.component";
 import {StatusDisplayComponent} from "../views/status-display-box.component";
-import {CropsListBoxComponent} from "../views/crops-list-box.component";
-import {ExportTypeComponent} from "../views/export-type.component";
 import {CheckListBoxComponent} from "../views/checklist-box.component";
 import {SampleMarkerBoxComponent} from "../views/sample-marker-box.component";
 import {FileDropDirective, FileSelectDirective} from "ng2-file-upload";
@@ -41,6 +39,7 @@ import {FileItemService} from "../services/core/file-item-service";
 import {InstructionSubmissionService} from "../services/core/instruction-submission-service";
 import {DatasetDatatableComponent} from "../views/dataset-datatable.component";
 import {FilterParamsColl} from "../services/core/filter-params-coll";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
 
 
 @NgModule({
@@ -75,8 +74,6 @@ import {FilterParamsColl} from "../services/core/filter-params-coll";
         LoginComponent,
         ExportFormatComponent,
         StatusDisplayComponent,
-        CropsListBoxComponent,
-        ExportTypeComponent,
         CheckListBoxComponent,
         SampleMarkerBoxComponent,
         FileSelectDirective,
@@ -95,6 +92,7 @@ import {FilterParamsColl} from "../services/core/filter-params-coll";
         NameIdService,
         TreeStructureService,
         FileItemService,
+        ViewIdGeneratorService,
         InstructionSubmissionService,
         FilterParamsColl,
         {provide: APP_BASE_HREF, useValue: './'}],

@@ -75,7 +75,7 @@ public class DtoMapNameIdFetchReferences implements DtoMapNameIdFetch {
                     }});
 
 
-            Integer resultSize = DtoMapNameIdUtil.getIdFromResultSet(nameIdDTOList, resultSet, "name", "reference_id");
+            Integer resultSize = DtoMapNameIdUtil.getIdsFromResultSet(nameIdDTOList, resultSet, "name", "reference_id");
 
         } catch (Exception e) {
             throw new GobiiDaoException(e);

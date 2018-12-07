@@ -25,7 +25,6 @@
                 <Properties>
                     <LastName>Load User</LastName>
                     <FirstName>GOBii</FirstName>
-                    <Code>gobii_load_user</Code>
                     <Email>gobii.dev@gmail.com</Email>
                     <UserName>load_user</UserName>
                     <Roles>

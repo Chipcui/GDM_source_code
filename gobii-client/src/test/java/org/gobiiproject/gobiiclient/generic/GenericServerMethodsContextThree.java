@@ -2,7 +2,6 @@
 package org.gobiiproject.gobiiclient.generic;
 
 import org.gobiiproject.gobiiclient.generic.model.GenericTestValues;
-import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
@@ -16,7 +15,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 

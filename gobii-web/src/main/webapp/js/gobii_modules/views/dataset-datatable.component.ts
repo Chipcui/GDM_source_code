@@ -26,6 +26,7 @@ import {Pagination} from "../model/payload/pagination";
 import {Subject} from "rxjs/Subject";
 import 'rxjs/add/operator/withLatestFrom'
 import {PayloadFilter} from "../store/actions/action-payload-filter";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
 
 @Component({
     selector: 'dataset-datatable',
@@ -67,7 +68,8 @@ import {PayloadFilter} from "../store/actions/action-payload-filter";
                         <p-checkbox binary="true"
                                     [ngModel]="fi.getSelected()"
                                     (onChange)="handleRowChecked($event, fi)"
-                                    [hidden]="fi.getEntity().jobStatusName !== 'completed'">
+                                    [hidden]="fi.getEntity().jobStatusName !== 'completed'"
+                                    [id]="viewIdGeneratorService.makeDatasetRowCheckboxId(fi._entity.datasetName)">
                         </p-checkbox>
 
                     </ng-template>
@@ -159,7 +161,8 @@ import {PayloadFilter} from "../store/actions/action-payload-filter";
 
                         <tr>
                             <td><b>Loaded Date</b></td>
-                            <td>{{ selectedDatasetDetailEntity ? ( selectedDatasetDetailEntity.loadedDate | date:'yyyy-MM-dd' ): null}} 
+                            <td>
+                                {{ selectedDatasetDetailEntity ? (selectedDatasetDetailEntity.loadedDate | date:'yyyy-MM-dd') : null}}
                             </td>
                         </tr>
 
@@ -261,12 +264,14 @@ import {PayloadFilter} from "../store/actions/action-payload-filter";
 export class DatasetDatatableComponent implements OnInit, OnChanges {
 
 
+    public foo:string = "foo";
     public onClickForNextPage$ = new Subject<Pagination>();
 
     constructor(private store: Store<fromRoot.State>,
                 private fileItemService: FileItemService,
                 private filterParamsColl: FilterParamsColl,
-                private fileItemRequestService: DtoRequestService<GobiiFileItem[]>) {
+                private fileItemRequestService: DtoRequestService<GobiiFileItem[]>,
+                public viewIdGeneratorService:ViewIdGeneratorService) {
 
         if (this.doPaging) {
             this.datasetsFileItems$ = this.store.select(fromRoot.getDatsetEntitiesPaged);

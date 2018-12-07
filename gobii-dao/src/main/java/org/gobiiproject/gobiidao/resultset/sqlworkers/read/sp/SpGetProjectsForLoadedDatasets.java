@@ -23,6 +23,7 @@ public class SpGetProjectsForLoadedDatasets implements Work {
     public void execute(Connection dbConnection) throws SQLException {
 
         String sql = "select\n" +
+                "distinct on (p.name)\n" +
                 "p.*\n" +
                 "from\n" +
                 "project p,\n" +
@@ -38,7 +39,8 @@ public class SpGetProjectsForLoadedDatasets implements Work {
                 "and (\n" +
                 "(j.type_id::text = (select cvid::text from getcvid('load', 'job_type', 1)) and j.status::text = (select cvid::text from getcvid('completed', 'job_status', 1)))\n" +
                 "or (j.type_id::text = (select cvid::text from getcvid('extract', 'job_type', 1)) and j.status::text <> (select cvid::text from getcvid('failed', 'job_status', 1)))\n" +
-                ")";
+                ")\n" +
+                "order by p.name";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
 
