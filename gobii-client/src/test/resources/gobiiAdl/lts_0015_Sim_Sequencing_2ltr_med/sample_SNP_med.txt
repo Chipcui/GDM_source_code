@@ -1,0 +1,101 @@
+germplasm_specie	germplasm_name	external_code	germplasm_subsp	germplasm_type	dnasample_name	dnasample_num	dnasample_platename	dnasample_ref_sample	dnasample_trial_name	dnarun_name
+Zea diploperennis	sim_diploperennis:3369	sim_GID_diploperennis:3369	Unknown	F2	sim_sample_diploperennis:3369	num_0	barcode_0.443374826122		trial_21	sim_run_diploperennis:3369
+Zea diploperennis	sim_diploperennis:2851	sim_GID_diploperennis:2851	Zea mays subsp. mexicana	F1_hybrid	sim_sample_diploperennis:2851	num_1	barcode_0.247620239341		trial_20	sim_run_diploperennis:2851
+Zea diploperennis	sim_diploperennis:7277	sim_GID_diploperennis:7277	Triticum turgidum subsp. turanicum		sim_sample_diploperennis:7277	num_2	barcode_0.869881684325	REF	trial_22	sim_run_diploperennis:7277
+Zea diploperennis	sim_diploperennis:776	sim_GID_diploperennis:776	Undetermined spp.		sim_sample_diploperennis:776	num_3	barcode_0.0799458892494	REF	trial_21	sim_run_diploperennis:776
+Zea diploperennis	sim_diploperennis:2635	sim_GID_diploperennis:2635	Unknown	F2	sim_sample_diploperennis:2635	num_4	barcode_0.469707451233		trial_22	sim_run_diploperennis:2635
+Zea diploperennis	sim_diploperennis:736	sim_GID_diploperennis:736	Undetermined		sim_sample_diploperennis:736	num_5	barcode_0.72062182325	REF	trial_20	sim_run_diploperennis:736
+Zea diploperennis	sim_diploperennis:1858	sim_GID_diploperennis:1858	Zea mays subsp. parviglumis	F2	sim_sample_diploperennis:1858	num_6	barcode_0.870029161447		trial_22	sim_run_diploperennis:1858
+Zea diploperennis	sim_diploperennis:620	sim_GID_diploperennis:620	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_diploperennis:620	num_7	barcode_0.640768483306		trial_20	sim_run_diploperennis:620
+Zea diploperennis	sim_diploperennis:4811	sim_GID_diploperennis:4811	Triticum turgidum subsp. turanicum	F2	sim_sample_diploperennis:4811	num_8	barcode_0.640026208637		trial_22	sim_run_diploperennis:4811
+Zea diploperennis	sim_diploperennis:4685	sim_GID_diploperennis:4685	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_diploperennis:4685	num_9	barcode_0.977063591514		trial_21	sim_run_diploperennis:4685
+Zea diploperennis	sim_diploperennis:3478	sim_GID_diploperennis:3478	Triticum turgidum subsp. dicoccon		sim_sample_diploperennis:3478	num_10	barcode_0.875121139824		trial_22	sim_run_diploperennis:3478
+Zea diploperennis	sim_diploperennis:9262	sim_GID_diploperennis:9262	Undetermined spp.	BC1F1	sim_sample_diploperennis:9262	num_11	barcode_0.758177271002	REF	trial_22	sim_run_diploperennis:9262
+Zea diploperennis	sim_diploperennis:292	sim_GID_diploperennis:292	Zea diploperennis	Inbred_line	sim_sample_diploperennis:292	num_12	barcode_0.95451403239	REF	trial_20	sim_run_diploperennis:292
+Zea diploperennis	sim_diploperennis:8285	sim_GID_diploperennis:8285			sim_sample_diploperennis:8285	num_13	barcode_0.322908316223		trial_21	sim_run_diploperennis:8285
+Zea diploperennis	sim_diploperennis:5015	sim_GID_diploperennis:5015	Zea mays subsp. mexicana	BC1F1	sim_sample_diploperennis:5015	num_14	barcode_0.39396671547		trial_22	sim_run_diploperennis:5015
+Zea diploperennis	sim_diploperennis:9184	sim_GID_diploperennis:9184	Triticum urartu	F1_hybrid	sim_sample_diploperennis:9184	num_15	barcode_0.0377211899011	REF	trial_21	sim_run_diploperennis:9184
+Zea diploperennis	sim_diploperennis:3655	sim_GID_diploperennis:3655	Zea mays subsp. parviglumis	BC1F1	sim_sample_diploperennis:3655	num_16	barcode_0.396428509359		trial_20	sim_run_diploperennis:3655
+Zea diploperennis	sim_diploperennis:3029	sim_GID_diploperennis:3029	Zea mays subsp. parviglumis	Inbred_line	sim_sample_diploperennis:3029	num_17	barcode_0.480944308067		trial_20	sim_run_diploperennis:3029
+Zea diploperennis	sim_diploperennis:8059	sim_GID_diploperennis:8059	Triticum turgidum subsp. paleocolchicum		sim_sample_diploperennis:8059	num_18	barcode_0.44651184906	REF	trial_22	sim_run_diploperennis:8059
+Zea diploperennis	sim_diploperennis:5886	sim_GID_diploperennis:5886	Undetermined spp.		sim_sample_diploperennis:5886	num_19	barcode_0.00577113842256		trial_20	sim_run_diploperennis:5886
+Zea diploperennis	sim_diploperennis:6128	sim_GID_diploperennis:6128	Zea mays subsp. mays		sim_sample_diploperennis:6128	num_20	barcode_0.644180494148		trial_21	sim_run_diploperennis:6128
+Zea diploperennis	sim_diploperennis:4891	sim_GID_diploperennis:4891	Triticum vavilovii var. vavilovii		sim_sample_diploperennis:4891	num_21	barcode_0.0612290750536		trial_22	sim_run_diploperennis:4891
+Zea diploperennis	sim_diploperennis:1808	sim_GID_diploperennis:1808	Zea mays subsp. mexicana	BC1F1	sim_sample_diploperennis:1808	num_22	barcode_0.0947485100335		trial_20	sim_run_diploperennis:1808
+Zea diploperennis	sim_diploperennis:8914	sim_GID_diploperennis:8914			sim_sample_diploperennis:8914	num_23	barcode_0.0131410332692		trial_22	sim_run_diploperennis:8914
+Zea diploperennis	sim_diploperennis:5380	sim_GID_diploperennis:5380	Triticum zhukovskyi		sim_sample_diploperennis:5380	num_24	barcode_0.0703220589663	REF	trial_22	sim_run_diploperennis:5380
+Zea diploperennis	sim_diploperennis:4626	sim_GID_diploperennis:4626	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_diploperennis:4626	num_25	barcode_0.432207241789		trial_21	sim_run_diploperennis:4626
+Zea diploperennis	sim_diploperennis:6877	sim_GID_diploperennis:6877	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_diploperennis:6877	num_26	barcode_0.236522484878	REF	trial_21	sim_run_diploperennis:6877
+Zea diploperennis	sim_diploperennis:2760	sim_GID_diploperennis:2760	Triticum turgidum subsp. dicoccon		sim_sample_diploperennis:2760	num_27	barcode_0.674216540452		trial_20	sim_run_diploperennis:2760
+Zea diploperennis	sim_diploperennis:2348	sim_GID_diploperennis:2348	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_diploperennis:2348	num_28	barcode_0.302699155458	REF	trial_20	sim_run_diploperennis:2348
+Zea diploperennis	sim_diploperennis:9297	sim_GID_diploperennis:9297	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_diploperennis:9297	num_29	barcode_0.566358389132		trial_20	sim_run_diploperennis:9297
+Zea diploperennis	sim_diploperennis:1543	sim_GID_diploperennis:1543	Zea mays subsp. parviglumis	BC1F1	sim_sample_diploperennis:1543	num_30	barcode_0.405754936709	REF	trial_21	sim_run_diploperennis:1543
+Zea diploperennis	sim_diploperennis:9712	sim_GID_diploperennis:9712	Undetermined	BC1F1	sim_sample_diploperennis:9712	num_31	barcode_0.900351837336		trial_21	sim_run_diploperennis:9712
+Zea diploperennis	sim_diploperennis:3003	sim_GID_diploperennis:3003	Zea diploperennis	F2	sim_sample_diploperennis:3003	num_32	barcode_0.766253457357		trial_21	sim_run_diploperennis:3003
+Zea diploperennis	sim_diploperennis:4340	sim_GID_diploperennis:4340	Undetermined spp.	F1_hybrid	sim_sample_diploperennis:4340	num_33	barcode_0.804940665606		trial_22	sim_run_diploperennis:4340
+Zea diploperennis	sim_diploperennis:9406	sim_GID_diploperennis:9406	Zea mays subsp. mays	F2	sim_sample_diploperennis:9406	num_34	barcode_0.0518886480804	REF	trial_22	sim_run_diploperennis:9406
+Zea diploperennis	sim_diploperennis:4896	sim_GID_diploperennis:4896	Undetermined spp.	F1_hybrid	sim_sample_diploperennis:4896	num_35	barcode_0.814700523074		trial_22	sim_run_diploperennis:4896
+Zea diploperennis	sim_diploperennis:4467	sim_GID_diploperennis:4467	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_diploperennis:4467	num_36	barcode_0.524709541897		trial_21	sim_run_diploperennis:4467
+Zea diploperennis	sim_diploperennis:6354	sim_GID_diploperennis:6354	Triticum zhukovskyi	F1_hybrid	sim_sample_diploperennis:6354	num_37	barcode_0.279510076376		trial_21	sim_run_diploperennis:6354
+Zea diploperennis	sim_diploperennis:3620	sim_GID_diploperennis:3620	Triticum turgidum subsp. dicoccon	F2	sim_sample_diploperennis:3620	num_38	barcode_0.89871892259		trial_20	sim_run_diploperennis:3620
+Zea diploperennis	sim_diploperennis:8994	sim_GID_diploperennis:8994	Undetermined	BC1F1	sim_sample_diploperennis:8994	num_39	barcode_0.14068806286		trial_21	sim_run_diploperennis:8994
+Zea diploperennis	sim_diploperennis:1938	sim_GID_diploperennis:1938	Unknown		sim_sample_diploperennis:1938	num_40	barcode_0.0620718859901	REF	trial_21	sim_run_diploperennis:1938
+Zea diploperennis	sim_diploperennis:7661	sim_GID_diploperennis:7661	Triticum turgidum subsp. polonicum		sim_sample_diploperennis:7661	num_41	barcode_0.695949919009		trial_20	sim_run_diploperennis:7661
+Zea diploperennis	sim_diploperennis:4555	sim_GID_diploperennis:4555	Triticum turgidum subsp. durum	BC1F1	sim_sample_diploperennis:4555	num_42	barcode_0.411124202008	REF	trial_22	sim_run_diploperennis:4555
+Zea diploperennis	sim_diploperennis:39	sim_GID_diploperennis:39	Triticum urartu	F2	sim_sample_diploperennis:39	num_43	barcode_0.0945057959441	REF	trial_21	sim_run_diploperennis:39
+Zea diploperennis	sim_diploperennis:2399	sim_GID_diploperennis:2399	Triticum vavilovii var. vavilovii	F2	sim_sample_diploperennis:2399	num_44	barcode_0.841363991223		trial_20	sim_run_diploperennis:2399
+Zea diploperennis	sim_diploperennis:5795	sim_GID_diploperennis:5795	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_diploperennis:5795	num_45	barcode_0.918146367011		trial_22	sim_run_diploperennis:5795
+Zea diploperennis	sim_diploperennis:5067	sim_GID_diploperennis:5067	Triticum zhukovskyi	Inbred_line	sim_sample_diploperennis:5067	num_46	barcode_0.210197098147	REF	trial_22	sim_run_diploperennis:5067
+Zea diploperennis	sim_diploperennis:6146	sim_GID_diploperennis:6146	Zea mays subsp. parviglumis		sim_sample_diploperennis:6146	num_47	barcode_0.567074500073		trial_21	sim_run_diploperennis:6146
+Zea diploperennis	sim_diploperennis:8005	sim_GID_diploperennis:8005		Inbred_line	sim_sample_diploperennis:8005	num_48	barcode_0.514141115668		trial_20	sim_run_diploperennis:8005
+Zea diploperennis	sim_diploperennis:7408	sim_GID_diploperennis:7408	Triticum zhukovskyi	Inbred_line	sim_sample_diploperennis:7408	num_49	barcode_0.0378134316148		trial_22	sim_run_diploperennis:7408
+Zea diploperennis	sim_diploperennis:3176	sim_GID_diploperennis:3176	Triticum turgidum subsp. polonicum	F2	sim_sample_diploperennis:3176	num_50	barcode_0.296045272262	REF	trial_20	sim_run_diploperennis:3176
+Zea diploperennis	sim_diploperennis:1609	sim_GID_diploperennis:1609	Undetermined	F2	sim_sample_diploperennis:1609	num_51	barcode_0.961847359485	REF	trial_20	sim_run_diploperennis:1609
+Zea diploperennis	sim_diploperennis:8774	sim_GID_diploperennis:8774	Triticum vavilovii var. vavilovii		sim_sample_diploperennis:8774	num_52	barcode_0.157724339787	REF	trial_22	sim_run_diploperennis:8774
+Zea diploperennis	sim_diploperennis:3959	sim_GID_diploperennis:3959		BC1F1	sim_sample_diploperennis:3959	num_53	barcode_0.966730785955	REF	trial_21	sim_run_diploperennis:3959
+Zea diploperennis	sim_diploperennis:8722	sim_GID_diploperennis:8722	Triticum turgidum subsp. durum	F2	sim_sample_diploperennis:8722	num_54	barcode_0.898339131179		trial_20	sim_run_diploperennis:8722
+Zea diploperennis	sim_diploperennis:2058	sim_GID_diploperennis:2058	Triticum urartu		sim_sample_diploperennis:2058	num_55	barcode_0.592606763544		trial_21	sim_run_diploperennis:2058
+Zea diploperennis	sim_diploperennis:4504	sim_GID_diploperennis:4504	Undetermined	BC1F1	sim_sample_diploperennis:4504	num_56	barcode_0.840177235151		trial_20	sim_run_diploperennis:4504
+Zea diploperennis	sim_diploperennis:6838	sim_GID_diploperennis:6838	Zea mays subsp. mexicana		sim_sample_diploperennis:6838	num_57	barcode_0.434660670446		trial_21	sim_run_diploperennis:6838
+Zea diploperennis	sim_diploperennis:5600	sim_GID_diploperennis:5600	Zea mays subsp. mexicana	BC1F1	sim_sample_diploperennis:5600	num_58	barcode_0.150037547505	REF	trial_22	sim_run_diploperennis:5600
+Zea diploperennis	sim_diploperennis:5686	sim_GID_diploperennis:5686	Zea diploperennis	F1_hybrid	sim_sample_diploperennis:5686	num_59	barcode_0.909828335701	REF	trial_22	sim_run_diploperennis:5686
+Zea diploperennis	sim_diploperennis:4852	sim_GID_diploperennis:4852	Triticum zhukovskyi	F2	sim_sample_diploperennis:4852	num_60	barcode_0.804301496974	REF	trial_22	sim_run_diploperennis:4852
+Zea diploperennis	sim_diploperennis:9686	sim_GID_diploperennis:9686	Undetermined spp.	BC1F1	sim_sample_diploperennis:9686	num_61	barcode_0.951942445467	REF	trial_22	sim_run_diploperennis:9686
+Zea diploperennis	sim_diploperennis:9857	sim_GID_diploperennis:9857	Zea diploperennis	F2	sim_sample_diploperennis:9857	num_62	barcode_0.746723375762		trial_20	sim_run_diploperennis:9857
+Zea diploperennis	sim_diploperennis:9221	sim_GID_diploperennis:9221	Zea mays subsp. mexicana	F1_hybrid	sim_sample_diploperennis:9221	num_63	barcode_0.165587994109	REF	trial_20	sim_run_diploperennis:9221
+Zea diploperennis	sim_diploperennis:6211	sim_GID_diploperennis:6211	Zea mays subsp. mexicana	F2	sim_sample_diploperennis:6211	num_64	barcode_0.89030061545		trial_22	sim_run_diploperennis:6211
+Zea diploperennis	sim_diploperennis:9401	sim_GID_diploperennis:9401	Triticum vavilovii var. vavilovii	F2	sim_sample_diploperennis:9401	num_65	barcode_0.21592893839		trial_22	sim_run_diploperennis:9401
+Zea diploperennis	sim_diploperennis:3165	sim_GID_diploperennis:3165	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_diploperennis:3165	num_66	barcode_0.879793563477	REF	trial_22	sim_run_diploperennis:3165
+Zea diploperennis	sim_diploperennis:329	sim_GID_diploperennis:329	Unknown		sim_sample_diploperennis:329	num_67	barcode_0.158868506508		trial_22	sim_run_diploperennis:329
+Zea diploperennis	sim_diploperennis:2280	sim_GID_diploperennis:2280	Undetermined	Inbred_line	sim_sample_diploperennis:2280	num_68	barcode_0.489582109663	REF	trial_20	sim_run_diploperennis:2280
+Zea diploperennis	sim_diploperennis:4875	sim_GID_diploperennis:4875	Zea mays subsp. parviglumis	Inbred_line	sim_sample_diploperennis:4875	num_69	barcode_0.146937357741	REF	trial_22	sim_run_diploperennis:4875
+Zea diploperennis	sim_diploperennis:6818	sim_GID_diploperennis:6818	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_diploperennis:6818	num_70	barcode_0.565823838549		trial_22	sim_run_diploperennis:6818
+Zea diploperennis	sim_diploperennis:1602	sim_GID_diploperennis:1602	Triticum turgidum subsp. turgidum		sim_sample_diploperennis:1602	num_71	barcode_0.861380822559	REF	trial_22	sim_run_diploperennis:1602
+Zea diploperennis	sim_diploperennis:5595	sim_GID_diploperennis:5595	Triticum turgidum subsp. polonicum		sim_sample_diploperennis:5595	num_72	barcode_0.53551723309		trial_22	sim_run_diploperennis:5595
+Zea diploperennis	sim_diploperennis:4919	sim_GID_diploperennis:4919	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_diploperennis:4919	num_73	barcode_0.663088058696		trial_20	sim_run_diploperennis:4919
+Zea diploperennis	sim_diploperennis:3789	sim_GID_diploperennis:3789	Zea mays subsp. mexicana	BC1F1	sim_sample_diploperennis:3789	num_74	barcode_0.175905305267		trial_20	sim_run_diploperennis:3789
+Zea diploperennis	sim_diploperennis:4969	sim_GID_diploperennis:4969	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_diploperennis:4969	num_75	barcode_0.612939243812	REF	trial_21	sim_run_diploperennis:4969
+Zea diploperennis	sim_diploperennis:9046	sim_GID_diploperennis:9046	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_diploperennis:9046	num_76	barcode_0.472190708642		trial_21	sim_run_diploperennis:9046
+Zea diploperennis	sim_diploperennis:8067	sim_GID_diploperennis:8067	Triticum urartu		sim_sample_diploperennis:8067	num_77	barcode_0.302378423889		trial_20	sim_run_diploperennis:8067
+Zea diploperennis	sim_diploperennis:7828	sim_GID_diploperennis:7828	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_diploperennis:7828	num_78	barcode_0.386245448112	REF	trial_21	sim_run_diploperennis:7828
+Zea diploperennis	sim_diploperennis:8179	sim_GID_diploperennis:8179	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_diploperennis:8179	num_79	barcode_0.26446998637		trial_21	sim_run_diploperennis:8179
+Zea diploperennis	sim_diploperennis:3936	sim_GID_diploperennis:3936	Triticum turgidum subsp. turgidum	F2	sim_sample_diploperennis:3936	num_80	barcode_0.859067719232		trial_20	sim_run_diploperennis:3936
+Zea diploperennis	sim_diploperennis:4686	sim_GID_diploperennis:4686	Zea mays subsp. huehuetenangensis		sim_sample_diploperennis:4686	num_81	barcode_0.514454078685	REF	trial_21	sim_run_diploperennis:4686
+Zea diploperennis	sim_diploperennis:607	sim_GID_diploperennis:607		Inbred_line	sim_sample_diploperennis:607	num_82	barcode_0.878361895352	REF	trial_22	sim_run_diploperennis:607
+Zea diploperennis	sim_diploperennis:1004	sim_GID_diploperennis:1004	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_diploperennis:1004	num_83	barcode_0.2981743637		trial_20	sim_run_diploperennis:1004
+Zea diploperennis	sim_diploperennis:7794	sim_GID_diploperennis:7794	Zea mays subsp. huehuetenangensis	F2	sim_sample_diploperennis:7794	num_84	barcode_0.282332239772	REF	trial_21	sim_run_diploperennis:7794
+Zea diploperennis	sim_diploperennis:694	sim_GID_diploperennis:694		F2	sim_sample_diploperennis:694	num_85	barcode_0.0137286007692	REF	trial_21	sim_run_diploperennis:694
+Zea diploperennis	sim_diploperennis:6342	sim_GID_diploperennis:6342	Undetermined	Inbred_line	sim_sample_diploperennis:6342	num_86	barcode_0.44091516549		trial_21	sim_run_diploperennis:6342
+Zea diploperennis	sim_diploperennis:1266	sim_GID_diploperennis:1266	Zea mays subsp. mays	BC1F1	sim_sample_diploperennis:1266	num_87	barcode_0.676211918453	REF	trial_21	sim_run_diploperennis:1266
+Zea diploperennis	sim_diploperennis:7923	sim_GID_diploperennis:7923	Zea mays subsp. mays	Inbred_line	sim_sample_diploperennis:7923	num_88	barcode_0.821943232074	REF	trial_21	sim_run_diploperennis:7923
+Zea diploperennis	sim_diploperennis:339	sim_GID_diploperennis:339	Zea mays subsp. parviglumis	Inbred_line	sim_sample_diploperennis:339	num_89	barcode_0.0319497929609		trial_20	sim_run_diploperennis:339
+Zea diploperennis	sim_diploperennis:3194	sim_GID_diploperennis:3194	Zea mays subsp. huehuetenangensis		sim_sample_diploperennis:3194	num_90	barcode_0.124578495445		trial_21	sim_run_diploperennis:3194
+Zea diploperennis	sim_diploperennis:5812	sim_GID_diploperennis:5812	Triticum urartu	F1_hybrid	sim_sample_diploperennis:5812	num_91	barcode_0.87891026475	REF	trial_21	sim_run_diploperennis:5812
+Zea diploperennis	sim_diploperennis:7666	sim_GID_diploperennis:7666	Zea mays subsp. parviglumis	Inbred_line	sim_sample_diploperennis:7666	num_92	barcode_0.221486320765		trial_21	sim_run_diploperennis:7666
+Zea diploperennis	sim_diploperennis:7159	sim_GID_diploperennis:7159	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_diploperennis:7159	num_93	barcode_0.296166195912		trial_21	sim_run_diploperennis:7159
+Zea diploperennis	sim_diploperennis:1755	sim_GID_diploperennis:1755	Zea diploperennis	BC1F1	sim_sample_diploperennis:1755	num_94	barcode_0.319483742721	REF	trial_22	sim_run_diploperennis:1755
+Zea diploperennis	sim_diploperennis:8441	sim_GID_diploperennis:8441	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_diploperennis:8441	num_95	barcode_0.977110763033	REF	trial_22	sim_run_diploperennis:8441
+Zea diploperennis	sim_diploperennis:6007	sim_GID_diploperennis:6007	Triticum turgidum subsp. durum	Inbred_line	sim_sample_diploperennis:6007	num_96	barcode_0.897838796203	REF	trial_22	sim_run_diploperennis:6007
+Zea diploperennis	sim_diploperennis:4087	sim_GID_diploperennis:4087	Zea mays subsp. parviglumis		sim_sample_diploperennis:4087	num_97	barcode_0.000356051268495		trial_20	sim_run_diploperennis:4087
+Zea diploperennis	sim_diploperennis:3350	sim_GID_diploperennis:3350	Zea mays subsp. mays	F1_hybrid	sim_sample_diploperennis:3350	num_98	barcode_0.11137859166		trial_20	sim_run_diploperennis:3350
+Zea diploperennis	sim_diploperennis:6357	sim_GID_diploperennis:6357	Zea mays subsp. mays	BC1F1	sim_sample_diploperennis:6357	num_99	barcode_0.616170300418		trial_22	sim_run_diploperennis:6357

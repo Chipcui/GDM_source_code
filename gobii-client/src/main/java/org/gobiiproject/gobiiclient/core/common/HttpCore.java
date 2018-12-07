@@ -24,8 +24,9 @@ import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.gobiiproject.gobiiapimodel.restresources.common.ResourceParam;
+import org.gobiiproject.gobiibrapi.types.BRAPIHttpHeaderNames;
+import org.gobiiproject.gobiiapimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiimodel.types.RestMethodType;
-import org.gobiiproject.gobiimodel.types.GobiiHttpHeaderNames;
 import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,9 @@ import java.util.Map;
  */
 public class HttpCore {
 
+    public enum TokenType {GOBII,BEARER}
+
+    private TokenType tokenType = TokenType.GOBII;
     private String host = null;
     private Integer port = null;
     private boolean logJson = false;
@@ -74,6 +78,11 @@ public class HttpCore {
 
     public String setToken(String token) {
         return this.token = token;
+    }
+
+
+    public void setTokenType(TokenType tokenType) {
+        this.tokenType = tokenType;
     }
 
     URIBuilder getBaseBuilder() throws Exception {
@@ -116,8 +125,11 @@ public class HttpCore {
 
     private void setTokenHeader(HttpUriRequest httpUriRequest) {
 
-        httpUriRequest.addHeader(GobiiHttpHeaderNames.HEADER_NAME_TOKEN, this.token);
-
+        if( this.tokenType == TokenType.GOBII) {
+            httpUriRequest.addHeader(GobiiHttpHeaderNames.HEADER_NAME_TOKEN, this.token);
+        } else {
+            httpUriRequest.addHeader(BRAPIHttpHeaderNames.HEADER_NAME_TOKEN, "Bearer " +  this.token);
+        }
     }
 
     private HttpResponse submitUriRequest(HttpUriRequest httpUriRequest, Map<String, String> headers) throws Exception {

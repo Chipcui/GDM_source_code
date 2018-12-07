@@ -9,7 +9,7 @@ export enum ExtractorItemType {
     CROP_TYPE,
     JOB_ID,
     SAMPLE_LIST_TYPE,
-    TREE_STRUCTURE,
+    LABEL,    TREE_STRUCTURE,
     VERTEX,
     VERTEX_VALUE,
     ITEM_COUNT,

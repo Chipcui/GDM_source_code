@@ -8,10 +8,7 @@ import org.gobiiproject.gobiidao.resultset.core.StoredProcExec;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsAnalysis;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsAnalysisParameters;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdAnalysis;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetAnalysisDetailsByAnalysisId;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetAnalysisNames;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetAnalysisNamesByTypeId;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetPropertiesForAnalysis;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.*;
 import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,6 +84,32 @@ public class RsAnalysisDaoImpl implements RsAnalysisDao {
         return returnVal;
 
     } // getAnalysisNames
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public ResultSet getNameIdsForAnalysisNames(Integer callLimit) {
+
+        ResultSet returnVal = null;
+
+        try {
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("callLimit", callLimit);
+
+            SpGetNameIdsForAnalysisNames spGetNameIdsForAnalysisNames = new SpGetNameIdsForAnalysisNames(parameters);
+            storedProcExec.doWithConnection(spGetNameIdsForAnalysisNames);
+            returnVal = spGetNameIdsForAnalysisNames.getResultSet();
+
+        } catch (SQLGrammarException e) {
+
+            LOGGER.error("Error retrieving analysis names", e.getSQL(), e.getSQLException());
+            throw (new GobiiDaoException(e.getSQLException()));
+
+        }
+
+        return returnVal;
+
+    }
 
     @Transactional
     @Override

@@ -154,6 +154,9 @@
     <bean id="dtoMapNameIdFetchDnaRun"
           class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds.DtoMapNameIdFetchDnaRun"/>
 
+    <bean id="dtoMapNameIdFetchGermplasm"
+          class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds.DtoMapNameIdFetchGermplasm"/>
+
     <bean id="dtoMapNameIdList"
           class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIdListImpl">
         <property name="dtoMapNameIdFetchMap">
@@ -223,7 +226,7 @@
                     <bean class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds.DtoMapNameIdFetchVendorProtocols"/>
                 </entry>
                 <!-- DNA SAMPLE NAMES -->
-                <entry key="#{T(org.gobiiproject.gobiimodel.types.GobiiEntityNameType).DNA_SAMPLE}">
+                <entry key="#{T(org.gobiiproject.gobiimodel.types.GobiiEntityNameType).DNASAMPLE}">
                     <bean class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds.DtoMapNameIdFetchDnaSampleNames"/>
                 </entry>
                 <!-- MARKER NAMES -->
@@ -235,8 +238,12 @@
                     <bean class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds.DtoMapNameIdFetchLinkageGroup"/>
                 </entry>
                 <!-- DNA RUN NAMES -->
-                <entry key="#{T(org.gobiiproject.gobiimodel.types.GobiiEntityNameType).DNA_RUN}">
+                <entry key="#{T(org.gobiiproject.gobiimodel.types.GobiiEntityNameType).DNARUN}">
                     <bean class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds.DtoMapNameIdFetchDnaRun"/>
+                </entry>
+                <!-- GERMPLASM NAMES -->
+                <entry key="#{T(org.gobiiproject.gobiimodel.types.GobiiEntityNameType).GERMPLASM}">
+                    <bean class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapNameIds.DtoMapNameIdFetchGermplasm"/>
                 </entry>
             </map>
         </property>
@@ -448,12 +455,18 @@
           class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementJobByJobName"/>
     <bean id="listStatementDnaSampleNamesByList"
           class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementDnaSampleNamesByList"/>
+    <bean id="listStatementDnaSampleNamesAll"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementDnaSampleNamesAll"/>
     <bean id="listStatementMarkerNamesByList"
           class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementMarkerNamesByList"/>
     <bean id="listStatementLinkageGroupByList"
           class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementLinkageGroupNamesByList"/>
     <bean id="listStatementDnaRunNamesByList"
           class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementDnaRunNamesByList"/>
+    <bean id="listStatementGermplasmByList"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementGermplasmNamesByList"/>
+    <bean id="listStatementMarkerNamesAll"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementMarkerNamesAll"/>
 
     <!-- **** ListStatement queries paged *************************************** -->
     <bean id="listStatementDatasetAllPaged"
@@ -652,6 +665,26 @@
                         <constructor-arg name="listStatementPaged"><null/></constructor-arg>
                     </bean>
                 </entry>
+                <!-- DNA SAMPLES ALL -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_DNASAMPLE_NAMES_ALL}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.system.EntityStatsDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementDnaSampleNamesAll"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
+                <!-- MARKER NAMES ALL -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_MARKER_NAMES_ALL}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.system.EntityStatsDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementMarkerNamesAll"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
                 <!-- MARKER NAMES BY LIST -->
                 <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_MARKER_NAMES_BYLIST}">
                     <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
@@ -679,6 +712,16 @@
                         <constructor-arg value="org.gobiiproject.gobiimodel.dto.system.EntityStatsDTO"/>
                         <constructor-arg ref="pageFramesTrackingCache"/>
                         <constructor-arg ref="listStatementDnaRunNamesByList"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
+                <!-- GERMPLASM NAMES BY LIST -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_GERMPLASM_BYLIST}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.system.EntityStatsDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementGermplasmByList"/>
                         <constructor-arg name="listStatementPaged"><null/></constructor-arg>
                     </bean>
                 </entry>

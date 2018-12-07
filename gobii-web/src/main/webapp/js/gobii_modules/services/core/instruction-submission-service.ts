@@ -374,6 +374,12 @@ export class InstructionSubmissionService {
 
     } // function()
 
+    private expurgateZero(nameId: NameId) {
+        if (nameId && nameId.id === "0") {
+            nameId.id = undefined;
+        }
+    }
+
     public submit(gobiiExtractFilterType: GobiiExtractFilterType): Observable<GobiiExtractorInstruction> {
 
         return Observable.create(observer => {
@@ -481,6 +487,7 @@ export class InstructionSubmissionService {
                             let principleInvestigator: NameId = principleInvestigatorFileItem != null ? new NameId(principleInvestigatorFileItem.getItemId(), null,
                                 principleInvestigatorFileItem.getItemName(), EntityType.CONTACT, null, null) : null;
 
+                            this.expurgateZero(principleInvestigator);
 
                             // ******** PROJECT
                             let projectFileItem: GobiiFileItem = fileItems.find(item => {
@@ -506,6 +513,7 @@ export class InstructionSubmissionService {
                             let markerGroups: NameId[] = markerGroupItems.map(item => {
                                 return new NameId(item.getItemId(), null, item.getItemName(), EntityType.MARKER_GROUP, null, null)
                             });
+
 
                             // ******** MARKERS
                             let markerListItems: GobiiFileItem[] =

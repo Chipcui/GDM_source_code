@@ -1,0 +1,1001 @@
+germplasm_specie	germplasm_name	external_code	germplasm_subsp	germplasm_type	dnasample_name	dnasample_num	dnasample_platename	dnasample_ref_sample	dnasample_trial_name	dnarun_name
+Zea mays subsp. mexicana	sim_mays_664389	sim_GID_mays_664389	Undetermined spp.		sim_sample_mays_664389	num_0	barcode_0.188064507231	REF	trial_3	sim_run_mays_664389
+Zea mays subsp. mexicana	sim_mays_715113	sim_GID_mays_715113	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_715113	num_1	barcode_0.172621722295		trial_4	sim_run_mays_715113
+Zea mays subsp. mexicana	sim_mays_552486	sim_GID_mays_552486	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_552486	num_2	barcode_0.268642914127	REF	trial_4	sim_run_mays_552486
+Zea mays subsp. mexicana	sim_mays_879301	sim_GID_mays_879301			sim_sample_mays_879301	num_3	barcode_0.978669103341	REF	trial_4	sim_run_mays_879301
+Zea mays subsp. mexicana	sim_mays_349692	sim_GID_mays_349692	Unknown	BC1F1	sim_sample_mays_349692	num_4	barcode_0.490207307688		trial_4	sim_run_mays_349692
+Zea mays subsp. mexicana	sim_mays_68462	sim_GID_mays_68462	Triticum urartu	F1_hybrid	sim_sample_mays_68462	num_5	barcode_0.644484067108		trial_4	sim_run_mays_68462
+Zea mays subsp. mexicana	sim_mays_250474	sim_GID_mays_250474	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_250474	num_6	barcode_0.81937074062		trial_4	sim_run_mays_250474
+Zea mays subsp. mexicana	sim_mays_887493	sim_GID_mays_887493	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_887493	num_7	barcode_0.738151688338		trial_3	sim_run_mays_887493
+Zea mays subsp. mexicana	sim_mays_723082	sim_GID_mays_723082	Undetermined		sim_sample_mays_723082	num_8	barcode_0.515297873232		trial_4	sim_run_mays_723082
+Zea mays subsp. mexicana	sim_mays_579180	sim_GID_mays_579180	Triticum urartu	F2	sim_sample_mays_579180	num_9	barcode_0.373099728614		trial_3	sim_run_mays_579180
+Zea mays subsp. mexicana	sim_mays_802339	sim_GID_mays_802339	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_802339	num_10	barcode_0.483735118263	REF	trial_3	sim_run_mays_802339
+Zea mays subsp. mexicana	sim_mays_91602	sim_GID_mays_91602	Triticum turgidum subsp. turanicum		sim_sample_mays_91602	num_11	barcode_0.175805473746	REF	trial_4	sim_run_mays_91602
+Zea mays subsp. mexicana	sim_mays_486420	sim_GID_mays_486420	Triticum turgidum subsp. polonicum		sim_sample_mays_486420	num_12	barcode_0.670313154983		trial_3	sim_run_mays_486420
+Zea mays subsp. mexicana	sim_mays_822024	sim_GID_mays_822024	Zea mays subsp. huehuetenangensis		sim_sample_mays_822024	num_13	barcode_0.00291752136601	REF	trial_4	sim_run_mays_822024
+Zea mays subsp. mexicana	sim_mays_360480	sim_GID_mays_360480	Zea diploperennis	Inbred_line	sim_sample_mays_360480	num_14	barcode_0.885055313779	REF	trial_3	sim_run_mays_360480
+Zea mays subsp. mexicana	sim_mays_737866	sim_GID_mays_737866	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_737866	num_15	barcode_0.770979459469	REF	trial_3	sim_run_mays_737866
+Zea mays subsp. mexicana	sim_mays_553530	sim_GID_mays_553530	Undetermined	Inbred_line	sim_sample_mays_553530	num_16	barcode_0.503928242153	REF	trial_4	sim_run_mays_553530
+Zea mays subsp. mexicana	sim_mays_103511	sim_GID_mays_103511	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_103511	num_17	barcode_0.328463273926		trial_3	sim_run_mays_103511
+Zea mays subsp. mexicana	sim_mays_798667	sim_GID_mays_798667	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_798667	num_18	barcode_0.233691099896	REF	trial_4	sim_run_mays_798667
+Zea mays subsp. mexicana	sim_mays_963934	sim_GID_mays_963934	Unknown	Inbred_line	sim_sample_mays_963934	num_19	barcode_0.717921079043		trial_3	sim_run_mays_963934
+Zea mays subsp. mexicana	sim_mays_523599	sim_GID_mays_523599	Triticum turgidum subsp. durum		sim_sample_mays_523599	num_20	barcode_0.570424878673		trial_4	sim_run_mays_523599
+Zea mays subsp. mexicana	sim_mays_721064	sim_GID_mays_721064	Zea diploperennis	Inbred_line	sim_sample_mays_721064	num_21	barcode_0.299949861689		trial_3	sim_run_mays_721064
+Zea mays subsp. mexicana	sim_mays_881186	sim_GID_mays_881186	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_881186	num_22	barcode_0.512960605795		trial_4	sim_run_mays_881186
+Zea mays subsp. mexicana	sim_mays_306448	sim_GID_mays_306448	Triticum urartu	Inbred_line	sim_sample_mays_306448	num_23	barcode_0.228267270157	REF	trial_4	sim_run_mays_306448
+Zea mays subsp. mexicana	sim_mays_756457	sim_GID_mays_756457	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_756457	num_24	barcode_0.688435875017	REF	trial_3	sim_run_mays_756457
+Zea mays subsp. mexicana	sim_mays_388478	sim_GID_mays_388478	Triticum zhukovskyi	BC1F1	sim_sample_mays_388478	num_25	barcode_0.455332133841		trial_4	sim_run_mays_388478
+Zea mays subsp. mexicana	sim_mays_222792	sim_GID_mays_222792	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_222792	num_26	barcode_0.650005409438	REF	trial_3	sim_run_mays_222792
+Zea mays subsp. mexicana	sim_mays_98551	sim_GID_mays_98551	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_98551	num_27	barcode_0.430515611036		trial_3	sim_run_mays_98551
+Zea mays subsp. mexicana	sim_mays_568770	sim_GID_mays_568770	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_568770	num_28	barcode_0.619154998595		trial_3	sim_run_mays_568770
+Zea mays subsp. mexicana	sim_mays_572002	sim_GID_mays_572002	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_572002	num_29	barcode_0.0170187745472		trial_3	sim_run_mays_572002
+Zea mays subsp. mexicana	sim_mays_766352	sim_GID_mays_766352	Triticum turgidum subsp. paleocolchicum		sim_sample_mays_766352	num_30	barcode_0.288691099196		trial_4	sim_run_mays_766352
+Zea mays subsp. mexicana	sim_mays_957311	sim_GID_mays_957311	Unknown	F1_hybrid	sim_sample_mays_957311	num_31	barcode_0.267048566083		trial_3	sim_run_mays_957311
+Zea mays subsp. mexicana	sim_mays_647968	sim_GID_mays_647968	Undetermined spp.	F1_hybrid	sim_sample_mays_647968	num_32	barcode_0.274665328731	REF	trial_3	sim_run_mays_647968
+Zea mays subsp. mexicana	sim_mays_561584	sim_GID_mays_561584	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_561584	num_33	barcode_0.904693905116		trial_4	sim_run_mays_561584
+Zea mays subsp. mexicana	sim_mays_181859	sim_GID_mays_181859	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_181859	num_34	barcode_0.905462456363	REF	trial_3	sim_run_mays_181859
+Zea mays subsp. mexicana	sim_mays_453683	sim_GID_mays_453683	Unknown	F2	sim_sample_mays_453683	num_35	barcode_0.370849297114	REF	trial_3	sim_run_mays_453683
+Zea mays subsp. mexicana	sim_mays_848398	sim_GID_mays_848398	Unknown	F2	sim_sample_mays_848398	num_36	barcode_0.588908985601	REF	trial_3	sim_run_mays_848398
+Zea mays subsp. mexicana	sim_mays_480554	sim_GID_mays_480554	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_480554	num_37	barcode_0.660246027912		trial_3	sim_run_mays_480554
+Zea mays subsp. mexicana	sim_mays_486535	sim_GID_mays_486535		BC1F1	sim_sample_mays_486535	num_38	barcode_0.44265914224		trial_4	sim_run_mays_486535
+Zea mays subsp. mexicana	sim_mays_997487	sim_GID_mays_997487	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_997487	num_39	barcode_0.121729524836	REF	trial_4	sim_run_mays_997487
+Zea mays subsp. mexicana	sim_mays_262698	sim_GID_mays_262698	Unknown	Inbred_line	sim_sample_mays_262698	num_40	barcode_0.668287748652	REF	trial_3	sim_run_mays_262698
+Zea mays subsp. mexicana	sim_mays_891681	sim_GID_mays_891681			sim_sample_mays_891681	num_41	barcode_0.172731899869		trial_4	sim_run_mays_891681
+Zea mays subsp. mexicana	sim_mays_915285	sim_GID_mays_915285	Triticum urartu	F1_hybrid	sim_sample_mays_915285	num_42	barcode_0.154898404916	REF	trial_3	sim_run_mays_915285
+Zea mays subsp. mexicana	sim_mays_866002	sim_GID_mays_866002	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_866002	num_43	barcode_0.978004339673		trial_4	sim_run_mays_866002
+Zea mays subsp. mexicana	sim_mays_817199	sim_GID_mays_817199	Undetermined		sim_sample_mays_817199	num_44	barcode_0.843236621364		trial_4	sim_run_mays_817199
+Zea mays subsp. mexicana	sim_mays_381665	sim_GID_mays_381665	Triticum turgidum subsp. paleocolchicum		sim_sample_mays_381665	num_45	barcode_0.507504968989	REF	trial_3	sim_run_mays_381665
+Zea mays subsp. mexicana	sim_mays_760598	sim_GID_mays_760598	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_760598	num_46	barcode_0.47112949665	REF	trial_3	sim_run_mays_760598
+Zea mays subsp. mexicana	sim_mays_788566	sim_GID_mays_788566	Zea diploperennis	Inbred_line	sim_sample_mays_788566	num_47	barcode_0.0657920818228	REF	trial_4	sim_run_mays_788566
+Zea mays subsp. mexicana	sim_mays_427506	sim_GID_mays_427506	Zea diploperennis	F1_hybrid	sim_sample_mays_427506	num_48	barcode_0.694758044236		trial_3	sim_run_mays_427506
+Zea mays subsp. mexicana	sim_mays_254183	sim_GID_mays_254183	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_254183	num_49	barcode_0.965967162016	REF	trial_3	sim_run_mays_254183
+Zea mays subsp. mexicana	sim_mays_429863	sim_GID_mays_429863	Zea diploperennis		sim_sample_mays_429863	num_50	barcode_0.533075346962	REF	trial_4	sim_run_mays_429863
+Zea mays subsp. mexicana	sim_mays_279419	sim_GID_mays_279419	Triticum turgidum subsp. turanicum		sim_sample_mays_279419	num_51	barcode_0.860202104115		trial_3	sim_run_mays_279419
+Zea mays subsp. mexicana	sim_mays_513091	sim_GID_mays_513091	Zea mays subsp. mexicana	F2	sim_sample_mays_513091	num_52	barcode_0.182783957118		trial_3	sim_run_mays_513091
+Zea mays subsp. mexicana	sim_mays_25099	sim_GID_mays_25099	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_25099	num_53	barcode_0.0477999041672	REF	trial_3	sim_run_mays_25099
+Zea mays subsp. mexicana	sim_mays_981637	sim_GID_mays_981637	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_981637	num_54	barcode_0.956613101998		trial_3	sim_run_mays_981637
+Zea mays subsp. mexicana	sim_mays_572615	sim_GID_mays_572615	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_572615	num_55	barcode_0.602796702301		trial_4	sim_run_mays_572615
+Zea mays subsp. mexicana	sim_mays_413799	sim_GID_mays_413799	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_413799	num_56	barcode_0.23672180734	REF	trial_4	sim_run_mays_413799
+Zea mays subsp. mexicana	sim_mays_565580	sim_GID_mays_565580	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_565580	num_57	barcode_0.732604703415	REF	trial_4	sim_run_mays_565580
+Zea mays subsp. mexicana	sim_mays_464438	sim_GID_mays_464438	Triticum turgidum subsp. polonicum		sim_sample_mays_464438	num_58	barcode_0.571172673844	REF	trial_4	sim_run_mays_464438
+Zea mays subsp. mexicana	sim_mays_859647	sim_GID_mays_859647	Triticum urartu	BC1F1	sim_sample_mays_859647	num_59	barcode_0.509706348564	REF	trial_4	sim_run_mays_859647
+Zea mays subsp. mexicana	sim_mays_436867	sim_GID_mays_436867	Zea mays subsp. mays	F2	sim_sample_mays_436867	num_60	barcode_0.417811898771	REF	trial_3	sim_run_mays_436867
+Zea mays subsp. mexicana	sim_mays_727938	sim_GID_mays_727938	Unknown	Inbred_line	sim_sample_mays_727938	num_61	barcode_0.567892380645	REF	trial_3	sim_run_mays_727938
+Zea mays subsp. mexicana	sim_mays_214115	sim_GID_mays_214115	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_214115	num_62	barcode_0.806193736569	REF	trial_3	sim_run_mays_214115
+Zea mays subsp. mexicana	sim_mays_590012	sim_GID_mays_590012	Triticum turgidum subsp. durum	F2	sim_sample_mays_590012	num_63	barcode_0.858064997621		trial_4	sim_run_mays_590012
+Zea mays subsp. mexicana	sim_mays_521893	sim_GID_mays_521893	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_521893	num_64	barcode_0.765175615552		trial_4	sim_run_mays_521893
+Zea mays subsp. mexicana	sim_mays_796816	sim_GID_mays_796816		F1_hybrid	sim_sample_mays_796816	num_65	barcode_0.832628903347		trial_4	sim_run_mays_796816
+Zea mays subsp. mexicana	sim_mays_994016	sim_GID_mays_994016	Triticum turgidum subsp. durum		sim_sample_mays_994016	num_66	barcode_0.846299409736		trial_3	sim_run_mays_994016
+Zea mays subsp. mexicana	sim_mays_40209	sim_GID_mays_40209	Zea mays subsp. huehuetenangensis	F2	sim_sample_mays_40209	num_67	barcode_0.933551183949		trial_4	sim_run_mays_40209
+Zea mays subsp. mexicana	sim_mays_904590	sim_GID_mays_904590	Zea mays subsp. mexicana		sim_sample_mays_904590	num_68	barcode_0.2815973222		trial_3	sim_run_mays_904590
+Zea mays subsp. mexicana	sim_mays_205507	sim_GID_mays_205507	Zea mays subsp. mexicana	F2	sim_sample_mays_205507	num_69	barcode_0.227373051145		trial_4	sim_run_mays_205507
+Zea mays subsp. mexicana	sim_mays_907570	sim_GID_mays_907570	Undetermined		sim_sample_mays_907570	num_70	barcode_0.791370158585	REF	trial_3	sim_run_mays_907570
+Zea mays subsp. mexicana	sim_mays_860480	sim_GID_mays_860480	Zea mays subsp. mays		sim_sample_mays_860480	num_71	barcode_0.8363769323		trial_3	sim_run_mays_860480
+Zea mays subsp. mexicana	sim_mays_415141	sim_GID_mays_415141	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_415141	num_72	barcode_0.882100614922		trial_3	sim_run_mays_415141
+Zea mays subsp. mexicana	sim_mays_965631	sim_GID_mays_965631	Unknown	Inbred_line	sim_sample_mays_965631	num_73	barcode_0.015762057564		trial_4	sim_run_mays_965631
+Zea mays subsp. mexicana	sim_mays_46376	sim_GID_mays_46376	Undetermined	F2	sim_sample_mays_46376	num_74	barcode_0.542196079916		trial_3	sim_run_mays_46376
+Zea mays subsp. mexicana	sim_mays_293990	sim_GID_mays_293990	Undetermined		sim_sample_mays_293990	num_75	barcode_0.973509079933	REF	trial_3	sim_run_mays_293990
+Zea mays subsp. mexicana	sim_mays_553264	sim_GID_mays_553264	Undetermined spp.	Inbred_line	sim_sample_mays_553264	num_76	barcode_0.478030940567	REF	trial_3	sim_run_mays_553264
+Zea mays subsp. mexicana	sim_mays_12638	sim_GID_mays_12638	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_12638	num_77	barcode_0.62347857308	REF	trial_4	sim_run_mays_12638
+Zea mays subsp. mexicana	sim_mays_755695	sim_GID_mays_755695	Undetermined		sim_sample_mays_755695	num_78	barcode_0.214665815153		trial_4	sim_run_mays_755695
+Zea mays subsp. mexicana	sim_mays_412063	sim_GID_mays_412063	Zea mays subsp. parviglumis	F2	sim_sample_mays_412063	num_79	barcode_0.461504633475	REF	trial_3	sim_run_mays_412063
+Zea mays subsp. mexicana	sim_mays_812769	sim_GID_mays_812769	Triticum zhukovskyi		sim_sample_mays_812769	num_80	barcode_0.347137834511	REF	trial_3	sim_run_mays_812769
+Zea mays subsp. mexicana	sim_mays_584301	sim_GID_mays_584301	Unknown	BC1F1	sim_sample_mays_584301	num_81	barcode_0.101778042788	REF	trial_4	sim_run_mays_584301
+Zea mays subsp. mexicana	sim_mays_278638	sim_GID_mays_278638	Triticum zhukovskyi	Inbred_line	sim_sample_mays_278638	num_82	barcode_0.989099226431		trial_4	sim_run_mays_278638
+Zea mays subsp. mexicana	sim_mays_936431	sim_GID_mays_936431	Triticum turgidum subsp. turgidum		sim_sample_mays_936431	num_83	barcode_0.957846021423	REF	trial_4	sim_run_mays_936431
+Zea mays subsp. mexicana	sim_mays_562703	sim_GID_mays_562703	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_562703	num_84	barcode_0.0302177389574	REF	trial_3	sim_run_mays_562703
+Zea mays subsp. mexicana	sim_mays_976293	sim_GID_mays_976293	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_976293	num_85	barcode_0.558017504557	REF	trial_4	sim_run_mays_976293
+Zea mays subsp. mexicana	sim_mays_750045	sim_GID_mays_750045	Triticum turgidum subsp. durum		sim_sample_mays_750045	num_86	barcode_0.416521261535	REF	trial_3	sim_run_mays_750045
+Zea mays subsp. mexicana	sim_mays_540955	sim_GID_mays_540955	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_540955	num_87	barcode_0.77763468546	REF	trial_3	sim_run_mays_540955
+Zea mays subsp. mexicana	sim_mays_495954	sim_GID_mays_495954	Triticum turgidum subsp. turanicum		sim_sample_mays_495954	num_88	barcode_0.845825323477	REF	trial_3	sim_run_mays_495954
+Zea mays subsp. mexicana	sim_mays_682043	sim_GID_mays_682043	Triticum urartu	Inbred_line	sim_sample_mays_682043	num_89	barcode_0.642795029422	REF	trial_4	sim_run_mays_682043
+Zea mays subsp. mexicana	sim_mays_909742	sim_GID_mays_909742		F1_hybrid	sim_sample_mays_909742	num_90	barcode_0.585001467184		trial_3	sim_run_mays_909742
+Zea mays subsp. mexicana	sim_mays_764271	sim_GID_mays_764271	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_764271	num_91	barcode_0.977592365128	REF	trial_3	sim_run_mays_764271
+Zea mays subsp. mexicana	sim_mays_94731	sim_GID_mays_94731	Triticum turgidum subsp. durum	F2	sim_sample_mays_94731	num_92	barcode_0.79957449903		trial_3	sim_run_mays_94731
+Zea mays subsp. mexicana	sim_mays_832609	sim_GID_mays_832609	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_832609	num_93	barcode_0.692264063943	REF	trial_4	sim_run_mays_832609
+Zea mays subsp. mexicana	sim_mays_915196	sim_GID_mays_915196	Unknown	F1_hybrid	sim_sample_mays_915196	num_94	barcode_0.682773492199		trial_3	sim_run_mays_915196
+Zea mays subsp. mexicana	sim_mays_535757	sim_GID_mays_535757	Zea mays subsp. parviglumis		sim_sample_mays_535757	num_95	barcode_0.179028178844		trial_4	sim_run_mays_535757
+Zea mays subsp. mexicana	sim_mays_649625	sim_GID_mays_649625	Undetermined	BC1F1	sim_sample_mays_649625	num_96	barcode_0.114891154592	REF	trial_3	sim_run_mays_649625
+Zea mays subsp. mexicana	sim_mays_944670	sim_GID_mays_944670	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_944670	num_97	barcode_0.652529886589	REF	trial_3	sim_run_mays_944670
+Zea mays subsp. mexicana	sim_mays_464841	sim_GID_mays_464841	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_464841	num_98	barcode_0.381245805773		trial_3	sim_run_mays_464841
+Zea mays subsp. mexicana	sim_mays_714717	sim_GID_mays_714717	Triticum urartu	F1_hybrid	sim_sample_mays_714717	num_99	barcode_0.447496200795		trial_4	sim_run_mays_714717
+Zea mays subsp. mexicana	sim_mays_590502	sim_GID_mays_590502			sim_sample_mays_590502	num_100	barcode_0.63004570198	REF	trial_4	sim_run_mays_590502
+Zea mays subsp. mexicana	sim_mays_305715	sim_GID_mays_305715	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_305715	num_101	barcode_0.299394123068		trial_3	sim_run_mays_305715
+Zea mays subsp. mexicana	sim_mays_593289	sim_GID_mays_593289	Zea mays subsp. mays	Inbred_line	sim_sample_mays_593289	num_102	barcode_0.812624204954		trial_4	sim_run_mays_593289
+Zea mays subsp. mexicana	sim_mays_162050	sim_GID_mays_162050	Triticum zhukovskyi		sim_sample_mays_162050	num_103	barcode_0.305270082292	REF	trial_4	sim_run_mays_162050
+Zea mays subsp. mexicana	sim_mays_962715	sim_GID_mays_962715	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_962715	num_104	barcode_0.0930219835043		trial_4	sim_run_mays_962715
+Zea mays subsp. mexicana	sim_mays_443305	sim_GID_mays_443305	Triticum zhukovskyi	Inbred_line	sim_sample_mays_443305	num_105	barcode_0.533702927696		trial_3	sim_run_mays_443305
+Zea mays subsp. mexicana	sim_mays_661469	sim_GID_mays_661469	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_mays_661469	num_106	barcode_0.369707824849		trial_3	sim_run_mays_661469
+Zea mays subsp. mexicana	sim_mays_193365	sim_GID_mays_193365	Unknown	Inbred_line	sim_sample_mays_193365	num_107	barcode_0.519948301984		trial_4	sim_run_mays_193365
+Zea mays subsp. mexicana	sim_mays_622373	sim_GID_mays_622373	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_622373	num_108	barcode_0.186874709855		trial_4	sim_run_mays_622373
+Zea mays subsp. mexicana	sim_mays_952982	sim_GID_mays_952982	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_952982	num_109	barcode_0.558797994901	REF	trial_4	sim_run_mays_952982
+Zea mays subsp. mexicana	sim_mays_657747	sim_GID_mays_657747	Undetermined spp.	F1_hybrid	sim_sample_mays_657747	num_110	barcode_0.654967066556	REF	trial_3	sim_run_mays_657747
+Zea mays subsp. mexicana	sim_mays_404691	sim_GID_mays_404691	Zea mays subsp. mays		sim_sample_mays_404691	num_111	barcode_0.400358090532		trial_3	sim_run_mays_404691
+Zea mays subsp. mexicana	sim_mays_487957	sim_GID_mays_487957	Triticum zhukovskyi	BC1F1	sim_sample_mays_487957	num_112	barcode_0.0821617087995	REF	trial_4	sim_run_mays_487957
+Zea mays subsp. mexicana	sim_mays_103658	sim_GID_mays_103658	Triticum urartu	BC1F1	sim_sample_mays_103658	num_113	barcode_0.762532560587		trial_4	sim_run_mays_103658
+Zea mays subsp. mexicana	sim_mays_806627	sim_GID_mays_806627	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_806627	num_114	barcode_0.450161313138	REF	trial_4	sim_run_mays_806627
+Zea mays subsp. mexicana	sim_mays_205455	sim_GID_mays_205455	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_205455	num_115	barcode_0.702191709726	REF	trial_3	sim_run_mays_205455
+Zea mays subsp. mexicana	sim_mays_616374	sim_GID_mays_616374	Triticum turgidum subsp. durum		sim_sample_mays_616374	num_116	barcode_0.934583327964	REF	trial_3	sim_run_mays_616374
+Zea mays subsp. mexicana	sim_mays_583964	sim_GID_mays_583964	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_583964	num_117	barcode_0.668703796436	REF	trial_4	sim_run_mays_583964
+Zea mays subsp. mexicana	sim_mays_299941	sim_GID_mays_299941	Triticum urartu	F2	sim_sample_mays_299941	num_118	barcode_0.840600946929	REF	trial_3	sim_run_mays_299941
+Zea mays subsp. mexicana	sim_mays_343171	sim_GID_mays_343171	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_mays_343171	num_119	barcode_0.656429933222	REF	trial_4	sim_run_mays_343171
+Zea mays subsp. mexicana	sim_mays_633275	sim_GID_mays_633275	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_mays_633275	num_120	barcode_0.589447168176	REF	trial_3	sim_run_mays_633275
+Zea mays subsp. mexicana	sim_mays_232145	sim_GID_mays_232145	Triticum turgidum subsp. turanicum		sim_sample_mays_232145	num_121	barcode_0.519548392005		trial_3	sim_run_mays_232145
+Zea mays subsp. mexicana	sim_mays_694770	sim_GID_mays_694770	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_694770	num_122	barcode_0.557128034989	REF	trial_4	sim_run_mays_694770
+Zea mays subsp. mexicana	sim_mays_498164	sim_GID_mays_498164	Triticum urartu	F2	sim_sample_mays_498164	num_123	barcode_0.816951288691	REF	trial_4	sim_run_mays_498164
+Zea mays subsp. mexicana	sim_mays_419324	sim_GID_mays_419324	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_419324	num_124	barcode_0.700221986093	REF	trial_4	sim_run_mays_419324
+Zea mays subsp. mexicana	sim_mays_473083	sim_GID_mays_473083	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_473083	num_125	barcode_0.0914005225096		trial_3	sim_run_mays_473083
+Zea mays subsp. mexicana	sim_mays_294585	sim_GID_mays_294585	Zea diploperennis		sim_sample_mays_294585	num_126	barcode_0.464417033076		trial_3	sim_run_mays_294585
+Zea mays subsp. mexicana	sim_mays_727312	sim_GID_mays_727312	Zea mays subsp. mays	BC1F1	sim_sample_mays_727312	num_127	barcode_0.465050155924	REF	trial_3	sim_run_mays_727312
+Zea mays subsp. mexicana	sim_mays_232179	sim_GID_mays_232179	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_232179	num_128	barcode_0.5291570613	REF	trial_4	sim_run_mays_232179
+Zea mays subsp. mexicana	sim_mays_538343	sim_GID_mays_538343	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_538343	num_129	barcode_0.759217266039		trial_4	sim_run_mays_538343
+Zea mays subsp. mexicana	sim_mays_344980	sim_GID_mays_344980	Triticum urartu	F1_hybrid	sim_sample_mays_344980	num_130	barcode_0.99154294998	REF	trial_4	sim_run_mays_344980
+Zea mays subsp. mexicana	sim_mays_610545	sim_GID_mays_610545		Inbred_line	sim_sample_mays_610545	num_131	barcode_0.300087356044		trial_4	sim_run_mays_610545
+Zea mays subsp. mexicana	sim_mays_794547	sim_GID_mays_794547	Unknown	Inbred_line	sim_sample_mays_794547	num_132	barcode_0.517671151222	REF	trial_4	sim_run_mays_794547
+Zea mays subsp. mexicana	sim_mays_361006	sim_GID_mays_361006	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_361006	num_133	barcode_0.320898188348		trial_3	sim_run_mays_361006
+Zea mays subsp. mexicana	sim_mays_848639	sim_GID_mays_848639	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_848639	num_134	barcode_0.746694208433		trial_4	sim_run_mays_848639
+Zea mays subsp. mexicana	sim_mays_550388	sim_GID_mays_550388	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_550388	num_135	barcode_0.951791357927		trial_3	sim_run_mays_550388
+Zea mays subsp. mexicana	sim_mays_308263	sim_GID_mays_308263	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_308263	num_136	barcode_0.532515400642	REF	trial_4	sim_run_mays_308263
+Zea mays subsp. mexicana	sim_mays_206909	sim_GID_mays_206909	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_206909	num_137	barcode_0.456316117062	REF	trial_4	sim_run_mays_206909
+Zea mays subsp. mexicana	sim_mays_255377	sim_GID_mays_255377	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_255377	num_138	barcode_0.405438820169		trial_4	sim_run_mays_255377
+Zea mays subsp. mexicana	sim_mays_479039	sim_GID_mays_479039	Undetermined	F1_hybrid	sim_sample_mays_479039	num_139	barcode_0.944858832804	REF	trial_4	sim_run_mays_479039
+Zea mays subsp. mexicana	sim_mays_193081	sim_GID_mays_193081	Triticum turgidum subsp. polonicum		sim_sample_mays_193081	num_140	barcode_0.974567616959	REF	trial_4	sim_run_mays_193081
+Zea mays subsp. mexicana	sim_mays_20518	sim_GID_mays_20518	Zea mays subsp. mexicana	F2	sim_sample_mays_20518	num_141	barcode_0.225974045228	REF	trial_4	sim_run_mays_20518
+Zea mays subsp. mexicana	sim_mays_417198	sim_GID_mays_417198	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_417198	num_142	barcode_0.0463249465342		trial_3	sim_run_mays_417198
+Zea mays subsp. mexicana	sim_mays_841560	sim_GID_mays_841560	Zea mays subsp. huehuetenangensis		sim_sample_mays_841560	num_143	barcode_0.0963449694169		trial_3	sim_run_mays_841560
+Zea mays subsp. mexicana	sim_mays_166602	sim_GID_mays_166602	Triticum zhukovskyi		sim_sample_mays_166602	num_144	barcode_0.485304246586	REF	trial_3	sim_run_mays_166602
+Zea mays subsp. mexicana	sim_mays_878064	sim_GID_mays_878064	Zea mays subsp. huehuetenangensis	F2	sim_sample_mays_878064	num_145	barcode_0.507098310622		trial_3	sim_run_mays_878064
+Zea mays subsp. mexicana	sim_mays_257320	sim_GID_mays_257320	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_257320	num_146	barcode_0.60801357588		trial_3	sim_run_mays_257320
+Zea mays subsp. mexicana	sim_mays_335147	sim_GID_mays_335147	Triticum turgidum subsp. turgidum		sim_sample_mays_335147	num_147	barcode_0.308457257734		trial_3	sim_run_mays_335147
+Zea mays subsp. mexicana	sim_mays_958702	sim_GID_mays_958702	Unknown	F2	sim_sample_mays_958702	num_148	barcode_0.650085295869		trial_4	sim_run_mays_958702
+Zea mays subsp. mexicana	sim_mays_575360	sim_GID_mays_575360	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_575360	num_149	barcode_0.663071674542		trial_4	sim_run_mays_575360
+Zea mays subsp. mexicana	sim_mays_425446	sim_GID_mays_425446	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_mays_425446	num_150	barcode_0.322993134949	REF	trial_3	sim_run_mays_425446
+Zea mays subsp. mexicana	sim_mays_202321	sim_GID_mays_202321	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_202321	num_151	barcode_0.990736988417		trial_3	sim_run_mays_202321
+Zea mays subsp. mexicana	sim_mays_443442	sim_GID_mays_443442	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_443442	num_152	barcode_0.339066028048		trial_4	sim_run_mays_443442
+Zea mays subsp. mexicana	sim_mays_810184	sim_GID_mays_810184	Zea mays subsp. mays	F2	sim_sample_mays_810184	num_153	barcode_0.0534528153466		trial_3	sim_run_mays_810184
+Zea mays subsp. mexicana	sim_mays_772062	sim_GID_mays_772062		Inbred_line	sim_sample_mays_772062	num_154	barcode_0.701439536672		trial_4	sim_run_mays_772062
+Zea mays subsp. mexicana	sim_mays_493235	sim_GID_mays_493235	Zea mays subsp. mexicana		sim_sample_mays_493235	num_155	barcode_0.894958911415		trial_4	sim_run_mays_493235
+Zea mays subsp. mexicana	sim_mays_287591	sim_GID_mays_287591	Triticum urartu	BC1F1	sim_sample_mays_287591	num_156	barcode_0.0400686313962	REF	trial_3	sim_run_mays_287591
+Zea mays subsp. mexicana	sim_mays_586977	sim_GID_mays_586977	Zea mays subsp. mexicana		sim_sample_mays_586977	num_157	barcode_0.65099965648		trial_4	sim_run_mays_586977
+Zea mays subsp. mexicana	sim_mays_998376	sim_GID_mays_998376	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_998376	num_158	barcode_0.446502361538		trial_3	sim_run_mays_998376
+Zea mays subsp. mexicana	sim_mays_204649	sim_GID_mays_204649	Triticum zhukovskyi	F2	sim_sample_mays_204649	num_159	barcode_0.650112868709		trial_3	sim_run_mays_204649
+Zea mays subsp. mexicana	sim_mays_405486	sim_GID_mays_405486	Triticum turgidum subsp. dicoccon		sim_sample_mays_405486	num_160	barcode_0.832122230749		trial_4	sim_run_mays_405486
+Zea mays subsp. mexicana	sim_mays_509965	sim_GID_mays_509965	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_509965	num_161	barcode_0.925401831413	REF	trial_4	sim_run_mays_509965
+Zea mays subsp. mexicana	sim_mays_405003	sim_GID_mays_405003	Triticum urartu	F2	sim_sample_mays_405003	num_162	barcode_0.53545045991		trial_3	sim_run_mays_405003
+Zea mays subsp. mexicana	sim_mays_137106	sim_GID_mays_137106	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_137106	num_163	barcode_0.271691302426	REF	trial_4	sim_run_mays_137106
+Zea mays subsp. mexicana	sim_mays_831748	sim_GID_mays_831748	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_mays_831748	num_164	barcode_0.271783442158	REF	trial_4	sim_run_mays_831748
+Zea mays subsp. mexicana	sim_mays_411964	sim_GID_mays_411964	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_411964	num_165	barcode_0.911635192323		trial_3	sim_run_mays_411964
+Zea mays subsp. mexicana	sim_mays_254813	sim_GID_mays_254813	Unknown	Inbred_line	sim_sample_mays_254813	num_166	barcode_0.425687692335	REF	trial_4	sim_run_mays_254813
+Zea mays subsp. mexicana	sim_mays_481880	sim_GID_mays_481880	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_481880	num_167	barcode_0.586465847924		trial_3	sim_run_mays_481880
+Zea mays subsp. mexicana	sim_mays_510560	sim_GID_mays_510560	Undetermined	BC1F1	sim_sample_mays_510560	num_168	barcode_0.0652402897185	REF	trial_4	sim_run_mays_510560
+Zea mays subsp. mexicana	sim_mays_285827	sim_GID_mays_285827	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_285827	num_169	barcode_0.510008477633		trial_3	sim_run_mays_285827
+Zea mays subsp. mexicana	sim_mays_194379	sim_GID_mays_194379	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_194379	num_170	barcode_0.614230872338	REF	trial_4	sim_run_mays_194379
+Zea mays subsp. mexicana	sim_mays_445404	sim_GID_mays_445404	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_445404	num_171	barcode_0.0729622691551		trial_4	sim_run_mays_445404
+Zea mays subsp. mexicana	sim_mays_700710	sim_GID_mays_700710	Triticum urartu	Inbred_line	sim_sample_mays_700710	num_172	barcode_0.223169430099	REF	trial_4	sim_run_mays_700710
+Zea mays subsp. mexicana	sim_mays_703658	sim_GID_mays_703658	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_703658	num_173	barcode_0.974231057089		trial_3	sim_run_mays_703658
+Zea mays subsp. mexicana	sim_mays_603391	sim_GID_mays_603391	Undetermined spp.	F1_hybrid	sim_sample_mays_603391	num_174	barcode_0.756259492622	REF	trial_3	sim_run_mays_603391
+Zea mays subsp. mexicana	sim_mays_194243	sim_GID_mays_194243	Triticum urartu		sim_sample_mays_194243	num_175	barcode_0.643500646049		trial_4	sim_run_mays_194243
+Zea mays subsp. mexicana	sim_mays_995615	sim_GID_mays_995615	Zea mays subsp. mays	BC1F1	sim_sample_mays_995615	num_176	barcode_0.674314516748		trial_3	sim_run_mays_995615
+Zea mays subsp. mexicana	sim_mays_996322	sim_GID_mays_996322	Triticum turgidum subsp. turanicum		sim_sample_mays_996322	num_177	barcode_0.408558617858		trial_3	sim_run_mays_996322
+Zea mays subsp. mexicana	sim_mays_402632	sim_GID_mays_402632	Undetermined spp.	BC1F1	sim_sample_mays_402632	num_178	barcode_0.763741626282		trial_4	sim_run_mays_402632
+Zea mays subsp. mexicana	sim_mays_784710	sim_GID_mays_784710	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_784710	num_179	barcode_0.00989131293808		trial_3	sim_run_mays_784710
+Zea mays subsp. mexicana	sim_mays_830858	sim_GID_mays_830858	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_830858	num_180	barcode_0.289323707374	REF	trial_3	sim_run_mays_830858
+Zea mays subsp. mexicana	sim_mays_190094	sim_GID_mays_190094	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_190094	num_181	barcode_0.248853492348	REF	trial_3	sim_run_mays_190094
+Zea mays subsp. mexicana	sim_mays_355697	sim_GID_mays_355697		BC1F1	sim_sample_mays_355697	num_182	barcode_0.608731236792		trial_4	sim_run_mays_355697
+Zea mays subsp. mexicana	sim_mays_699300	sim_GID_mays_699300	Triticum zhukovskyi	BC1F1	sim_sample_mays_699300	num_183	barcode_0.585067999432		trial_3	sim_run_mays_699300
+Zea mays subsp. mexicana	sim_mays_421316	sim_GID_mays_421316	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_mays_421316	num_184	barcode_0.449243663719		trial_4	sim_run_mays_421316
+Zea mays subsp. mexicana	sim_mays_67338	sim_GID_mays_67338	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_67338	num_185	barcode_0.479646451535		trial_4	sim_run_mays_67338
+Zea mays subsp. mexicana	sim_mays_707531	sim_GID_mays_707531	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_707531	num_186	barcode_0.0785733698723		trial_3	sim_run_mays_707531
+Zea mays subsp. mexicana	sim_mays_545403	sim_GID_mays_545403	Triticum urartu	Inbred_line	sim_sample_mays_545403	num_187	barcode_0.174970565589		trial_4	sim_run_mays_545403
+Zea mays subsp. mexicana	sim_mays_51196	sim_GID_mays_51196	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_51196	num_188	barcode_0.16802601903		trial_3	sim_run_mays_51196
+Zea mays subsp. mexicana	sim_mays_692204	sim_GID_mays_692204	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_692204	num_189	barcode_0.958898422327	REF	trial_4	sim_run_mays_692204
+Zea mays subsp. mexicana	sim_mays_594922	sim_GID_mays_594922		F2	sim_sample_mays_594922	num_190	barcode_0.440629656424	REF	trial_3	sim_run_mays_594922
+Zea mays subsp. mexicana	sim_mays_13582	sim_GID_mays_13582	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_13582	num_191	barcode_0.564649074102	REF	trial_4	sim_run_mays_13582
+Zea mays subsp. mexicana	sim_mays_651977	sim_GID_mays_651977	Triticum zhukovskyi	F2	sim_sample_mays_651977	num_192	barcode_0.857629122147	REF	trial_4	sim_run_mays_651977
+Zea mays subsp. mexicana	sim_mays_586159	sim_GID_mays_586159	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_586159	num_193	barcode_0.0968539925374		trial_3	sim_run_mays_586159
+Zea mays subsp. mexicana	sim_mays_689889	sim_GID_mays_689889	Undetermined	F1_hybrid	sim_sample_mays_689889	num_194	barcode_0.774106014264		trial_3	sim_run_mays_689889
+Zea mays subsp. mexicana	sim_mays_796803	sim_GID_mays_796803	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_796803	num_195	barcode_0.992336974545	REF	trial_3	sim_run_mays_796803
+Zea mays subsp. mexicana	sim_mays_460075	sim_GID_mays_460075	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_460075	num_196	barcode_0.883384855758		trial_4	sim_run_mays_460075
+Zea mays subsp. mexicana	sim_mays_791429	sim_GID_mays_791429	Zea mays subsp. parviglumis	F2	sim_sample_mays_791429	num_197	barcode_0.813981717525	REF	trial_3	sim_run_mays_791429
+Zea mays subsp. mexicana	sim_mays_785872	sim_GID_mays_785872	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_785872	num_198	barcode_0.547662101281		trial_4	sim_run_mays_785872
+Zea mays subsp. mexicana	sim_mays_118650	sim_GID_mays_118650	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_118650	num_199	barcode_0.412580210852		trial_3	sim_run_mays_118650
+Zea mays subsp. mexicana	sim_mays_106930	sim_GID_mays_106930	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_106930	num_200	barcode_0.198771670841	REF	trial_4	sim_run_mays_106930
+Zea mays subsp. mexicana	sim_mays_610397	sim_GID_mays_610397	Undetermined	F2	sim_sample_mays_610397	num_201	barcode_0.349406769497	REF	trial_3	sim_run_mays_610397
+Zea mays subsp. mexicana	sim_mays_855686	sim_GID_mays_855686	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_855686	num_202	barcode_0.62293719085		trial_4	sim_run_mays_855686
+Zea mays subsp. mexicana	sim_mays_65352	sim_GID_mays_65352	Triticum zhukovskyi	F2	sim_sample_mays_65352	num_203	barcode_0.107441146348		trial_3	sim_run_mays_65352
+Zea mays subsp. mexicana	sim_mays_639442	sim_GID_mays_639442		F1_hybrid	sim_sample_mays_639442	num_204	barcode_0.822578960713		trial_3	sim_run_mays_639442
+Zea mays subsp. mexicana	sim_mays_93259	sim_GID_mays_93259	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_93259	num_205	barcode_0.0792688314348	REF	trial_4	sim_run_mays_93259
+Zea mays subsp. mexicana	sim_mays_809900	sim_GID_mays_809900	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_809900	num_206	barcode_0.821276616645		trial_4	sim_run_mays_809900
+Zea mays subsp. mexicana	sim_mays_402030	sim_GID_mays_402030	Undetermined	BC1F1	sim_sample_mays_402030	num_207	barcode_0.892293343597	REF	trial_4	sim_run_mays_402030
+Zea mays subsp. mexicana	sim_mays_654219	sim_GID_mays_654219	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_654219	num_208	barcode_0.604295326614	REF	trial_3	sim_run_mays_654219
+Zea mays subsp. mexicana	sim_mays_379568	sim_GID_mays_379568	Undetermined	Inbred_line	sim_sample_mays_379568	num_209	barcode_0.060625429159		trial_3	sim_run_mays_379568
+Zea mays subsp. mexicana	sim_mays_891156	sim_GID_mays_891156		Inbred_line	sim_sample_mays_891156	num_210	barcode_0.682100423221		trial_4	sim_run_mays_891156
+Zea mays subsp. mexicana	sim_mays_447693	sim_GID_mays_447693		F1_hybrid	sim_sample_mays_447693	num_211	barcode_0.375146100166	REF	trial_3	sim_run_mays_447693
+Zea mays subsp. mexicana	sim_mays_709663	sim_GID_mays_709663	Undetermined	F2	sim_sample_mays_709663	num_212	barcode_0.466081790929		trial_4	sim_run_mays_709663
+Zea mays subsp. mexicana	sim_mays_270681	sim_GID_mays_270681	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_270681	num_213	barcode_0.938765569995		trial_4	sim_run_mays_270681
+Zea mays subsp. mexicana	sim_mays_994223	sim_GID_mays_994223	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_994223	num_214	barcode_0.367132953426	REF	trial_3	sim_run_mays_994223
+Zea mays subsp. mexicana	sim_mays_163592	sim_GID_mays_163592	Triticum vavilovii var. vavilovii		sim_sample_mays_163592	num_215	barcode_0.0835720889283		trial_4	sim_run_mays_163592
+Zea mays subsp. mexicana	sim_mays_82454	sim_GID_mays_82454	Triticum vavilovii var. vavilovii		sim_sample_mays_82454	num_216	barcode_0.101225630263		trial_4	sim_run_mays_82454
+Zea mays subsp. mexicana	sim_mays_556298	sim_GID_mays_556298	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_556298	num_217	barcode_0.116325884034	REF	trial_4	sim_run_mays_556298
+Zea mays subsp. mexicana	sim_mays_553497	sim_GID_mays_553497	Zea mays subsp. mexicana	F2	sim_sample_mays_553497	num_218	barcode_0.0924255457995	REF	trial_3	sim_run_mays_553497
+Zea mays subsp. mexicana	sim_mays_93405	sim_GID_mays_93405	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_93405	num_219	barcode_0.049377161237	REF	trial_3	sim_run_mays_93405
+Zea mays subsp. mexicana	sim_mays_207570	sim_GID_mays_207570	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_207570	num_220	barcode_0.909840525612		trial_4	sim_run_mays_207570
+Zea mays subsp. mexicana	sim_mays_776268	sim_GID_mays_776268	Zea mays subsp. mexicana	F2	sim_sample_mays_776268	num_221	barcode_0.15772199182	REF	trial_3	sim_run_mays_776268
+Zea mays subsp. mexicana	sim_mays_488703	sim_GID_mays_488703	Unknown	BC1F1	sim_sample_mays_488703	num_222	barcode_0.387407735671		trial_4	sim_run_mays_488703
+Zea mays subsp. mexicana	sim_mays_786147	sim_GID_mays_786147	Triticum turgidum subsp. polonicum		sim_sample_mays_786147	num_223	barcode_0.614060639662	REF	trial_3	sim_run_mays_786147
+Zea mays subsp. mexicana	sim_mays_633397	sim_GID_mays_633397	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_633397	num_224	barcode_0.585777812748		trial_3	sim_run_mays_633397
+Zea mays subsp. mexicana	sim_mays_356341	sim_GID_mays_356341	Unknown	F1_hybrid	sim_sample_mays_356341	num_225	barcode_0.719953611775	REF	trial_4	sim_run_mays_356341
+Zea mays subsp. mexicana	sim_mays_382653	sim_GID_mays_382653	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_382653	num_226	barcode_0.203087985705		trial_3	sim_run_mays_382653
+Zea mays subsp. mexicana	sim_mays_178938	sim_GID_mays_178938	Zea mays subsp. mexicana	F2	sim_sample_mays_178938	num_227	barcode_0.619404827238	REF	trial_3	sim_run_mays_178938
+Zea mays subsp. mexicana	sim_mays_974698	sim_GID_mays_974698		F2	sim_sample_mays_974698	num_228	barcode_0.474946031086		trial_4	sim_run_mays_974698
+Zea mays subsp. mexicana	sim_mays_25538	sim_GID_mays_25538	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_25538	num_229	barcode_0.535521972949		trial_4	sim_run_mays_25538
+Zea mays subsp. mexicana	sim_mays_56791	sim_GID_mays_56791	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_56791	num_230	barcode_0.874620373335		trial_3	sim_run_mays_56791
+Zea mays subsp. mexicana	sim_mays_975847	sim_GID_mays_975847	Undetermined spp.	BC1F1	sim_sample_mays_975847	num_231	barcode_0.324116392302		trial_3	sim_run_mays_975847
+Zea mays subsp. mexicana	sim_mays_53331	sim_GID_mays_53331	Zea mays subsp. mexicana		sim_sample_mays_53331	num_232	barcode_0.501290568667		trial_4	sim_run_mays_53331
+Zea mays subsp. mexicana	sim_mays_290278	sim_GID_mays_290278	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_290278	num_233	barcode_0.557253882587		trial_3	sim_run_mays_290278
+Zea mays subsp. mexicana	sim_mays_686400	sim_GID_mays_686400	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_686400	num_234	barcode_0.573488219071	REF	trial_3	sim_run_mays_686400
+Zea mays subsp. mexicana	sim_mays_61328	sim_GID_mays_61328	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_61328	num_235	barcode_0.619580941351		trial_4	sim_run_mays_61328
+Zea mays subsp. mexicana	sim_mays_265898	sim_GID_mays_265898	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_265898	num_236	barcode_0.358463674124	REF	trial_3	sim_run_mays_265898
+Zea mays subsp. mexicana	sim_mays_618540	sim_GID_mays_618540	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_618540	num_237	barcode_0.263756305339		trial_3	sim_run_mays_618540
+Zea mays subsp. mexicana	sim_mays_436044	sim_GID_mays_436044	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_436044	num_238	barcode_0.399070475236		trial_4	sim_run_mays_436044
+Zea mays subsp. mexicana	sim_mays_818995	sim_GID_mays_818995	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_818995	num_239	barcode_0.455052499897	REF	trial_4	sim_run_mays_818995
+Zea mays subsp. mexicana	sim_mays_374707	sim_GID_mays_374707	Triticum urartu	Inbred_line	sim_sample_mays_374707	num_240	barcode_0.310873826595		trial_3	sim_run_mays_374707
+Zea mays subsp. mexicana	sim_mays_725872	sim_GID_mays_725872	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_725872	num_241	barcode_0.299352783896	REF	trial_4	sim_run_mays_725872
+Zea mays subsp. mexicana	sim_mays_559928	sim_GID_mays_559928	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_559928	num_242	barcode_0.808135121821		trial_4	sim_run_mays_559928
+Zea mays subsp. mexicana	sim_mays_692897	sim_GID_mays_692897	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_692897	num_243	barcode_0.642437864823		trial_4	sim_run_mays_692897
+Zea mays subsp. mexicana	sim_mays_618941	sim_GID_mays_618941	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_618941	num_244	barcode_0.715331669		trial_3	sim_run_mays_618941
+Zea mays subsp. mexicana	sim_mays_687772	sim_GID_mays_687772	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_687772	num_245	barcode_0.833335283457		trial_3	sim_run_mays_687772
+Zea mays subsp. mexicana	sim_mays_105265	sim_GID_mays_105265	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_105265	num_246	barcode_0.854941699186		trial_3	sim_run_mays_105265
+Zea mays subsp. mexicana	sim_mays_914160	sim_GID_mays_914160	Triticum zhukovskyi	F2	sim_sample_mays_914160	num_247	barcode_0.460499424599		trial_3	sim_run_mays_914160
+Zea mays subsp. mexicana	sim_mays_166263	sim_GID_mays_166263	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_166263	num_248	barcode_0.239590227128		trial_4	sim_run_mays_166263
+Zea mays subsp. mexicana	sim_mays_720884	sim_GID_mays_720884	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_720884	num_249	barcode_0.173539535261	REF	trial_3	sim_run_mays_720884
+Zea mays subsp. mexicana	sim_mays_619628	sim_GID_mays_619628	Triticum urartu	F2	sim_sample_mays_619628	num_250	barcode_0.725847925307		trial_3	sim_run_mays_619628
+Zea mays subsp. mexicana	sim_mays_130027	sim_GID_mays_130027		BC1F1	sim_sample_mays_130027	num_251	barcode_0.551393199121		trial_3	sim_run_mays_130027
+Zea mays subsp. mexicana	sim_mays_905094	sim_GID_mays_905094	Zea mays subsp. mays		sim_sample_mays_905094	num_252	barcode_0.351209142457		trial_3	sim_run_mays_905094
+Zea mays subsp. mexicana	sim_mays_492798	sim_GID_mays_492798	Triticum turgidum subsp. turanicum		sim_sample_mays_492798	num_253	barcode_0.686892794572		trial_3	sim_run_mays_492798
+Zea mays subsp. mexicana	sim_mays_935409	sim_GID_mays_935409	Undetermined	F1_hybrid	sim_sample_mays_935409	num_254	barcode_0.478965902252		trial_4	sim_run_mays_935409
+Zea mays subsp. mexicana	sim_mays_682366	sim_GID_mays_682366	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_682366	num_255	barcode_0.232637906169	REF	trial_4	sim_run_mays_682366
+Zea mays subsp. mexicana	sim_mays_708895	sim_GID_mays_708895	Triticum vavilovii var. vavilovii		sim_sample_mays_708895	num_256	barcode_0.122130714478	REF	trial_3	sim_run_mays_708895
+Zea mays subsp. mexicana	sim_mays_231726	sim_GID_mays_231726	Triticum turgidum subsp. turgidum		sim_sample_mays_231726	num_257	barcode_0.426001481189	REF	trial_4	sim_run_mays_231726
+Zea mays subsp. mexicana	sim_mays_661606	sim_GID_mays_661606	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_661606	num_258	barcode_0.00395767212405	REF	trial_3	sim_run_mays_661606
+Zea mays subsp. mexicana	sim_mays_849619	sim_GID_mays_849619	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_849619	num_259	barcode_0.275216582559	REF	trial_3	sim_run_mays_849619
+Zea mays subsp. mexicana	sim_mays_430241	sim_GID_mays_430241		F2	sim_sample_mays_430241	num_260	barcode_0.477532799222		trial_3	sim_run_mays_430241
+Zea mays subsp. mexicana	sim_mays_119183	sim_GID_mays_119183	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_119183	num_261	barcode_0.316026647645		trial_3	sim_run_mays_119183
+Zea mays subsp. mexicana	sim_mays_749787	sim_GID_mays_749787	Undetermined	F1_hybrid	sim_sample_mays_749787	num_262	barcode_0.01018582171	REF	trial_4	sim_run_mays_749787
+Zea mays subsp. mexicana	sim_mays_697070	sim_GID_mays_697070	Undetermined	F1_hybrid	sim_sample_mays_697070	num_263	barcode_0.90648568354		trial_3	sim_run_mays_697070
+Zea mays subsp. mexicana	sim_mays_962711	sim_GID_mays_962711	Undetermined spp.	Inbred_line	sim_sample_mays_962711	num_264	barcode_0.198002092393	REF	trial_4	sim_run_mays_962711
+Zea mays subsp. mexicana	sim_mays_681971	sim_GID_mays_681971	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_681971	num_265	barcode_0.215251209182		trial_3	sim_run_mays_681971
+Zea mays subsp. mexicana	sim_mays_241153	sim_GID_mays_241153	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_241153	num_266	barcode_0.42289380988		trial_3	sim_run_mays_241153
+Zea mays subsp. mexicana	sim_mays_28541	sim_GID_mays_28541	Triticum vavilovii var. vavilovii		sim_sample_mays_28541	num_267	barcode_0.942896872702	REF	trial_3	sim_run_mays_28541
+Zea mays subsp. mexicana	sim_mays_989168	sim_GID_mays_989168	Triticum turgidum subsp. dicoccon		sim_sample_mays_989168	num_268	barcode_0.169018168415	REF	trial_4	sim_run_mays_989168
+Zea mays subsp. mexicana	sim_mays_964212	sim_GID_mays_964212	Undetermined spp.	F2	sim_sample_mays_964212	num_269	barcode_0.982737462008		trial_4	sim_run_mays_964212
+Zea mays subsp. mexicana	sim_mays_448498	sim_GID_mays_448498		Inbred_line	sim_sample_mays_448498	num_270	barcode_0.108456015839		trial_3	sim_run_mays_448498
+Zea mays subsp. mexicana	sim_mays_838330	sim_GID_mays_838330	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_838330	num_271	barcode_0.0680875536135		trial_3	sim_run_mays_838330
+Zea mays subsp. mexicana	sim_mays_722758	sim_GID_mays_722758	Triticum urartu	Inbred_line	sim_sample_mays_722758	num_272	barcode_0.824527440007	REF	trial_3	sim_run_mays_722758
+Zea mays subsp. mexicana	sim_mays_510640	sim_GID_mays_510640	Triticum urartu		sim_sample_mays_510640	num_273	barcode_0.0736433742471		trial_4	sim_run_mays_510640
+Zea mays subsp. mexicana	sim_mays_864543	sim_GID_mays_864543	Undetermined spp.	BC1F1	sim_sample_mays_864543	num_274	barcode_0.495580160582		trial_4	sim_run_mays_864543
+Zea mays subsp. mexicana	sim_mays_826905	sim_GID_mays_826905	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_826905	num_275	barcode_0.0259162824805		trial_4	sim_run_mays_826905
+Zea mays subsp. mexicana	sim_mays_254306	sim_GID_mays_254306	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_254306	num_276	barcode_0.861233762896		trial_4	sim_run_mays_254306
+Zea mays subsp. mexicana	sim_mays_233427	sim_GID_mays_233427	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_233427	num_277	barcode_0.039869630571	REF	trial_4	sim_run_mays_233427
+Zea mays subsp. mexicana	sim_mays_376543	sim_GID_mays_376543	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_376543	num_278	barcode_0.450471517513		trial_3	sim_run_mays_376543
+Zea mays subsp. mexicana	sim_mays_188287	sim_GID_mays_188287	Undetermined spp.		sim_sample_mays_188287	num_279	barcode_0.877631328236		trial_3	sim_run_mays_188287
+Zea mays subsp. mexicana	sim_mays_207846	sim_GID_mays_207846	Zea diploperennis	F1_hybrid	sim_sample_mays_207846	num_280	barcode_0.977275836205		trial_3	sim_run_mays_207846
+Zea mays subsp. mexicana	sim_mays_118722	sim_GID_mays_118722	Zea mays subsp. mays	F2	sim_sample_mays_118722	num_281	barcode_0.28100024812	REF	trial_4	sim_run_mays_118722
+Zea mays subsp. mexicana	sim_mays_442054	sim_GID_mays_442054	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_442054	num_282	barcode_0.438523935016	REF	trial_4	sim_run_mays_442054
+Zea mays subsp. mexicana	sim_mays_81844	sim_GID_mays_81844	Zea diploperennis	BC1F1	sim_sample_mays_81844	num_283	barcode_0.986054044255		trial_4	sim_run_mays_81844
+Zea mays subsp. mexicana	sim_mays_418917	sim_GID_mays_418917	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_418917	num_284	barcode_0.581601425356		trial_3	sim_run_mays_418917
+Zea mays subsp. mexicana	sim_mays_204093	sim_GID_mays_204093	Triticum turgidum subsp. polonicum		sim_sample_mays_204093	num_285	barcode_0.456573244124	REF	trial_4	sim_run_mays_204093
+Zea mays subsp. mexicana	sim_mays_464112	sim_GID_mays_464112	Triticum zhukovskyi	F2	sim_sample_mays_464112	num_286	barcode_0.63102625168	REF	trial_4	sim_run_mays_464112
+Zea mays subsp. mexicana	sim_mays_20439	sim_GID_mays_20439	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_20439	num_287	barcode_0.759584581195		trial_3	sim_run_mays_20439
+Zea mays subsp. mexicana	sim_mays_162061	sim_GID_mays_162061	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_162061	num_288	barcode_0.877561332231		trial_4	sim_run_mays_162061
+Zea mays subsp. mexicana	sim_mays_570693	sim_GID_mays_570693	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_570693	num_289	barcode_0.699280182083		trial_3	sim_run_mays_570693
+Zea mays subsp. mexicana	sim_mays_871575	sim_GID_mays_871575	Zea diploperennis	F1_hybrid	sim_sample_mays_871575	num_290	barcode_0.359666988491		trial_3	sim_run_mays_871575
+Zea mays subsp. mexicana	sim_mays_3211	sim_GID_mays_3211	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_3211	num_291	barcode_0.954704773322		trial_4	sim_run_mays_3211
+Zea mays subsp. mexicana	sim_mays_357829	sim_GID_mays_357829	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_357829	num_292	barcode_0.453738552024		trial_3	sim_run_mays_357829
+Zea mays subsp. mexicana	sim_mays_879730	sim_GID_mays_879730	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_879730	num_293	barcode_0.704648647691	REF	trial_4	sim_run_mays_879730
+Zea mays subsp. mexicana	sim_mays_65235	sim_GID_mays_65235	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_65235	num_294	barcode_0.504537965686		trial_4	sim_run_mays_65235
+Zea mays subsp. mexicana	sim_mays_783128	sim_GID_mays_783128	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_783128	num_295	barcode_0.467412667571	REF	trial_3	sim_run_mays_783128
+Zea mays subsp. mexicana	sim_mays_71795	sim_GID_mays_71795	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_71795	num_296	barcode_0.624038306144		trial_3	sim_run_mays_71795
+Zea mays subsp. mexicana	sim_mays_830072	sim_GID_mays_830072	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_830072	num_297	barcode_0.651296128265		trial_4	sim_run_mays_830072
+Zea mays subsp. mexicana	sim_mays_172100	sim_GID_mays_172100	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_172100	num_298	barcode_0.155699987023		trial_4	sim_run_mays_172100
+Zea mays subsp. mexicana	sim_mays_376579	sim_GID_mays_376579	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_376579	num_299	barcode_0.514932047684	REF	trial_3	sim_run_mays_376579
+Zea mays subsp. mexicana	sim_mays_922335	sim_GID_mays_922335	Zea mays subsp. mays		sim_sample_mays_922335	num_300	barcode_0.604687584882	REF	trial_4	sim_run_mays_922335
+Zea mays subsp. mexicana	sim_mays_885431	sim_GID_mays_885431	Zea mays subsp. huehuetenangensis		sim_sample_mays_885431	num_301	barcode_0.276423670292	REF	trial_3	sim_run_mays_885431
+Zea mays subsp. mexicana	sim_mays_104307	sim_GID_mays_104307	Unknown		sim_sample_mays_104307	num_302	barcode_0.348359861347	REF	trial_3	sim_run_mays_104307
+Zea mays subsp. mexicana	sim_mays_692445	sim_GID_mays_692445	Triticum zhukovskyi		sim_sample_mays_692445	num_303	barcode_0.615761248441		trial_4	sim_run_mays_692445
+Zea mays subsp. mexicana	sim_mays_563406	sim_GID_mays_563406	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_563406	num_304	barcode_0.958591644948	REF	trial_3	sim_run_mays_563406
+Zea mays subsp. mexicana	sim_mays_142479	sim_GID_mays_142479	Triticum zhukovskyi	BC1F1	sim_sample_mays_142479	num_305	barcode_0.885729546308		trial_4	sim_run_mays_142479
+Zea mays subsp. mexicana	sim_mays_963092	sim_GID_mays_963092	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_963092	num_306	barcode_0.859467377904	REF	trial_4	sim_run_mays_963092
+Zea mays subsp. mexicana	sim_mays_369973	sim_GID_mays_369973	Undetermined spp.	BC1F1	sim_sample_mays_369973	num_307	barcode_0.561259994785	REF	trial_4	sim_run_mays_369973
+Zea mays subsp. mexicana	sim_mays_655711	sim_GID_mays_655711	Undetermined spp.		sim_sample_mays_655711	num_308	barcode_0.143409966503	REF	trial_4	sim_run_mays_655711
+Zea mays subsp. mexicana	sim_mays_932616	sim_GID_mays_932616	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_932616	num_309	barcode_0.728112359843	REF	trial_3	sim_run_mays_932616
+Zea mays subsp. mexicana	sim_mays_985313	sim_GID_mays_985313		F2	sim_sample_mays_985313	num_310	barcode_0.925497218575	REF	trial_4	sim_run_mays_985313
+Zea mays subsp. mexicana	sim_mays_229467	sim_GID_mays_229467	Undetermined	F1_hybrid	sim_sample_mays_229467	num_311	barcode_0.577640472881	REF	trial_3	sim_run_mays_229467
+Zea mays subsp. mexicana	sim_mays_448654	sim_GID_mays_448654	Zea diploperennis		sim_sample_mays_448654	num_312	barcode_0.515560263533		trial_4	sim_run_mays_448654
+Zea mays subsp. mexicana	sim_mays_203114	sim_GID_mays_203114	Zea diploperennis	F1_hybrid	sim_sample_mays_203114	num_313	barcode_0.082883240764		trial_4	sim_run_mays_203114
+Zea mays subsp. mexicana	sim_mays_770193	sim_GID_mays_770193	Triticum urartu	Inbred_line	sim_sample_mays_770193	num_314	barcode_0.322273663384	REF	trial_3	sim_run_mays_770193
+Zea mays subsp. mexicana	sim_mays_564360	sim_GID_mays_564360	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_564360	num_315	barcode_0.994265188953	REF	trial_4	sim_run_mays_564360
+Zea mays subsp. mexicana	sim_mays_975207	sim_GID_mays_975207	Triticum zhukovskyi	BC1F1	sim_sample_mays_975207	num_316	barcode_0.149337735967		trial_4	sim_run_mays_975207
+Zea mays subsp. mexicana	sim_mays_180896	sim_GID_mays_180896	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_180896	num_317	barcode_0.523572724665	REF	trial_3	sim_run_mays_180896
+Zea mays subsp. mexicana	sim_mays_414746	sim_GID_mays_414746	Triticum urartu		sim_sample_mays_414746	num_318	barcode_0.858993973268		trial_4	sim_run_mays_414746
+Zea mays subsp. mexicana	sim_mays_247852	sim_GID_mays_247852	Undetermined spp.	BC1F1	sim_sample_mays_247852	num_319	barcode_0.463902541496	REF	trial_4	sim_run_mays_247852
+Zea mays subsp. mexicana	sim_mays_491465	sim_GID_mays_491465	Zea diploperennis	F1_hybrid	sim_sample_mays_491465	num_320	barcode_0.0362150265336	REF	trial_3	sim_run_mays_491465
+Zea mays subsp. mexicana	sim_mays_908145	sim_GID_mays_908145	Zea diploperennis		sim_sample_mays_908145	num_321	barcode_0.654557028874		trial_3	sim_run_mays_908145
+Zea mays subsp. mexicana	sim_mays_405419	sim_GID_mays_405419	Triticum turgidum subsp. turanicum		sim_sample_mays_405419	num_322	barcode_0.269936907435		trial_4	sim_run_mays_405419
+Zea mays subsp. mexicana	sim_mays_323008	sim_GID_mays_323008	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_323008	num_323	barcode_0.925347781477	REF	trial_3	sim_run_mays_323008
+Zea mays subsp. mexicana	sim_mays_378517	sim_GID_mays_378517	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_378517	num_324	barcode_0.516685448102	REF	trial_3	sim_run_mays_378517
+Zea mays subsp. mexicana	sim_mays_258813	sim_GID_mays_258813	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_258813	num_325	barcode_0.789151738406		trial_3	sim_run_mays_258813
+Zea mays subsp. mexicana	sim_mays_589041	sim_GID_mays_589041	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_589041	num_326	barcode_0.891318275034		trial_4	sim_run_mays_589041
+Zea mays subsp. mexicana	sim_mays_207949	sim_GID_mays_207949	Triticum vavilovii var. vavilovii		sim_sample_mays_207949	num_327	barcode_0.826433576763		trial_4	sim_run_mays_207949
+Zea mays subsp. mexicana	sim_mays_197710	sim_GID_mays_197710	Triticum turgidum subsp. dicoccon		sim_sample_mays_197710	num_328	barcode_0.777167243853	REF	trial_4	sim_run_mays_197710
+Zea mays subsp. mexicana	sim_mays_361726	sim_GID_mays_361726	Undetermined spp.		sim_sample_mays_361726	num_329	barcode_0.712250229223		trial_4	sim_run_mays_361726
+Zea mays subsp. mexicana	sim_mays_725084	sim_GID_mays_725084	Triticum urartu	F1_hybrid	sim_sample_mays_725084	num_330	barcode_0.0677958918537		trial_4	sim_run_mays_725084
+Zea mays subsp. mexicana	sim_mays_30447	sim_GID_mays_30447	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_30447	num_331	barcode_0.752692717497		trial_4	sim_run_mays_30447
+Zea mays subsp. mexicana	sim_mays_945207	sim_GID_mays_945207	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_945207	num_332	barcode_0.429301655533	REF	trial_3	sim_run_mays_945207
+Zea mays subsp. mexicana	sim_mays_647491	sim_GID_mays_647491	Undetermined spp.	BC1F1	sim_sample_mays_647491	num_333	barcode_0.305974988676		trial_3	sim_run_mays_647491
+Zea mays subsp. mexicana	sim_mays_171192	sim_GID_mays_171192			sim_sample_mays_171192	num_334	barcode_0.142600913846	REF	trial_3	sim_run_mays_171192
+Zea mays subsp. mexicana	sim_mays_9652	sim_GID_mays_9652	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_9652	num_335	barcode_0.540213089914	REF	trial_4	sim_run_mays_9652
+Zea mays subsp. mexicana	sim_mays_664093	sim_GID_mays_664093	Undetermined	BC1F1	sim_sample_mays_664093	num_336	barcode_0.325100536294		trial_3	sim_run_mays_664093
+Zea mays subsp. mexicana	sim_mays_656002	sim_GID_mays_656002	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_656002	num_337	barcode_0.982033147492		trial_4	sim_run_mays_656002
+Zea mays subsp. mexicana	sim_mays_515770	sim_GID_mays_515770		F2	sim_sample_mays_515770	num_338	barcode_0.789119269398	REF	trial_4	sim_run_mays_515770
+Zea mays subsp. mexicana	sim_mays_584948	sim_GID_mays_584948	Zea mays subsp. mays	BC1F1	sim_sample_mays_584948	num_339	barcode_0.832381342148		trial_3	sim_run_mays_584948
+Zea mays subsp. mexicana	sim_mays_400829	sim_GID_mays_400829	Triticum urartu		sim_sample_mays_400829	num_340	barcode_0.233523155074	REF	trial_3	sim_run_mays_400829
+Zea mays subsp. mexicana	sim_mays_985926	sim_GID_mays_985926	Triticum urartu	F1_hybrid	sim_sample_mays_985926	num_341	barcode_0.044852178504	REF	trial_4	sim_run_mays_985926
+Zea mays subsp. mexicana	sim_mays_419996	sim_GID_mays_419996	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_419996	num_342	barcode_0.266465065891	REF	trial_4	sim_run_mays_419996
+Zea mays subsp. mexicana	sim_mays_568138	sim_GID_mays_568138	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_568138	num_343	barcode_0.53700849032		trial_3	sim_run_mays_568138
+Zea mays subsp. mexicana	sim_mays_102383	sim_GID_mays_102383	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_102383	num_344	barcode_0.485860586187		trial_4	sim_run_mays_102383
+Zea mays subsp. mexicana	sim_mays_502448	sim_GID_mays_502448	Undetermined spp.	BC1F1	sim_sample_mays_502448	num_345	barcode_0.195327703065		trial_4	sim_run_mays_502448
+Zea mays subsp. mexicana	sim_mays_847455	sim_GID_mays_847455	Zea mays subsp. mays	F2	sim_sample_mays_847455	num_346	barcode_0.171962842594		trial_4	sim_run_mays_847455
+Zea mays subsp. mexicana	sim_mays_96751	sim_GID_mays_96751	Triticum urartu		sim_sample_mays_96751	num_347	barcode_0.00672238589195	REF	trial_4	sim_run_mays_96751
+Zea mays subsp. mexicana	sim_mays_983840	sim_GID_mays_983840	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_983840	num_348	barcode_0.0492184729466	REF	trial_4	sim_run_mays_983840
+Zea mays subsp. mexicana	sim_mays_836601	sim_GID_mays_836601	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_836601	num_349	barcode_0.309108283697	REF	trial_3	sim_run_mays_836601
+Zea mays subsp. mexicana	sim_mays_375576	sim_GID_mays_375576	Undetermined	F1_hybrid	sim_sample_mays_375576	num_350	barcode_0.855591967122	REF	trial_4	sim_run_mays_375576
+Zea mays subsp. mexicana	sim_mays_360866	sim_GID_mays_360866	Triticum zhukovskyi		sim_sample_mays_360866	num_351	barcode_0.406476854604		trial_4	sim_run_mays_360866
+Zea mays subsp. mexicana	sim_mays_903232	sim_GID_mays_903232	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_903232	num_352	barcode_0.468624816313	REF	trial_3	sim_run_mays_903232
+Zea mays subsp. mexicana	sim_mays_607133	sim_GID_mays_607133	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_607133	num_353	barcode_0.537923051634		trial_4	sim_run_mays_607133
+Zea mays subsp. mexicana	sim_mays_681500	sim_GID_mays_681500	Undetermined	Inbred_line	sim_sample_mays_681500	num_354	barcode_0.809548490361	REF	trial_3	sim_run_mays_681500
+Zea mays subsp. mexicana	sim_mays_67713	sim_GID_mays_67713	Triticum turgidum subsp. turgidum		sim_sample_mays_67713	num_355	barcode_0.612991916855		trial_4	sim_run_mays_67713
+Zea mays subsp. mexicana	sim_mays_654307	sim_GID_mays_654307	Undetermined		sim_sample_mays_654307	num_356	barcode_0.795856833283	REF	trial_3	sim_run_mays_654307
+Zea mays subsp. mexicana	sim_mays_916579	sim_GID_mays_916579	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_916579	num_357	barcode_0.0621300131785		trial_4	sim_run_mays_916579
+Zea mays subsp. mexicana	sim_mays_927216	sim_GID_mays_927216	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_927216	num_358	barcode_0.793098609456		trial_4	sim_run_mays_927216
+Zea mays subsp. mexicana	sim_mays_273698	sim_GID_mays_273698	Triticum turgidum subsp. turanicum		sim_sample_mays_273698	num_359	barcode_0.914778764953		trial_3	sim_run_mays_273698
+Zea mays subsp. mexicana	sim_mays_938913	sim_GID_mays_938913	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_938913	num_360	barcode_0.237387580346	REF	trial_3	sim_run_mays_938913
+Zea mays subsp. mexicana	sim_mays_436109	sim_GID_mays_436109	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_436109	num_361	barcode_0.985719536669		trial_4	sim_run_mays_436109
+Zea mays subsp. mexicana	sim_mays_326877	sim_GID_mays_326877	Triticum turgidum subsp. durum	F2	sim_sample_mays_326877	num_362	barcode_0.819639617679	REF	trial_4	sim_run_mays_326877
+Zea mays subsp. mexicana	sim_mays_263831	sim_GID_mays_263831	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_263831	num_363	barcode_0.946270934442	REF	trial_4	sim_run_mays_263831
+Zea mays subsp. mexicana	sim_mays_614180	sim_GID_mays_614180	Undetermined spp.	BC1F1	sim_sample_mays_614180	num_364	barcode_0.0573187664324		trial_3	sim_run_mays_614180
+Zea mays subsp. mexicana	sim_mays_119394	sim_GID_mays_119394	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_119394	num_365	barcode_0.960800062559	REF	trial_4	sim_run_mays_119394
+Zea mays subsp. mexicana	sim_mays_314345	sim_GID_mays_314345	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_314345	num_366	barcode_0.878125762648		trial_3	sim_run_mays_314345
+Zea mays subsp. mexicana	sim_mays_822501	sim_GID_mays_822501	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_822501	num_367	barcode_0.657541964129		trial_3	sim_run_mays_822501
+Zea mays subsp. mexicana	sim_mays_684239	sim_GID_mays_684239	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_684239	num_368	barcode_0.417098214998		trial_3	sim_run_mays_684239
+Zea mays subsp. mexicana	sim_mays_543376	sim_GID_mays_543376	Zea mays subsp. mexicana		sim_sample_mays_543376	num_369	barcode_0.796201772022		trial_3	sim_run_mays_543376
+Zea mays subsp. mexicana	sim_mays_709273	sim_GID_mays_709273	Unknown	BC1F1	sim_sample_mays_709273	num_370	barcode_0.232996917857		trial_3	sim_run_mays_709273
+Zea mays subsp. mexicana	sim_mays_685694	sim_GID_mays_685694	Triticum urartu		sim_sample_mays_685694	num_371	barcode_0.243056256074		trial_4	sim_run_mays_685694
+Zea mays subsp. mexicana	sim_mays_819543	sim_GID_mays_819543	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_819543	num_372	barcode_0.207790380034	REF	trial_3	sim_run_mays_819543
+Zea mays subsp. mexicana	sim_mays_661555	sim_GID_mays_661555	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_661555	num_373	barcode_0.73319869017		trial_4	sim_run_mays_661555
+Zea mays subsp. mexicana	sim_mays_462688	sim_GID_mays_462688	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_462688	num_374	barcode_0.858592491791		trial_4	sim_run_mays_462688
+Zea mays subsp. mexicana	sim_mays_744943	sim_GID_mays_744943	Undetermined		sim_sample_mays_744943	num_375	barcode_0.616370207531	REF	trial_3	sim_run_mays_744943
+Zea mays subsp. mexicana	sim_mays_427425	sim_GID_mays_427425	Triticum zhukovskyi	F2	sim_sample_mays_427425	num_376	barcode_0.969347930421	REF	trial_3	sim_run_mays_427425
+Zea mays subsp. mexicana	sim_mays_128974	sim_GID_mays_128974	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_128974	num_377	barcode_0.37127594647		trial_3	sim_run_mays_128974
+Zea mays subsp. mexicana	sim_mays_304092	sim_GID_mays_304092	Zea mays subsp. parviglumis	F2	sim_sample_mays_304092	num_378	barcode_0.214617891486	REF	trial_3	sim_run_mays_304092
+Zea mays subsp. mexicana	sim_mays_987807	sim_GID_mays_987807		F2	sim_sample_mays_987807	num_379	barcode_0.676752655859	REF	trial_4	sim_run_mays_987807
+Zea mays subsp. mexicana	sim_mays_107937	sim_GID_mays_107937	Undetermined	BC1F1	sim_sample_mays_107937	num_380	barcode_0.851404952213		trial_3	sim_run_mays_107937
+Zea mays subsp. mexicana	sim_mays_946764	sim_GID_mays_946764	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_946764	num_381	barcode_0.350394338328		trial_3	sim_run_mays_946764
+Zea mays subsp. mexicana	sim_mays_710748	sim_GID_mays_710748	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_710748	num_382	barcode_0.459779437344	REF	trial_3	sim_run_mays_710748
+Zea mays subsp. mexicana	sim_mays_324263	sim_GID_mays_324263	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_324263	num_383	barcode_0.597294374674		trial_3	sim_run_mays_324263
+Zea mays subsp. mexicana	sim_mays_496321	sim_GID_mays_496321	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_496321	num_384	barcode_0.664641218046		trial_3	sim_run_mays_496321
+Zea mays subsp. mexicana	sim_mays_59413	sim_GID_mays_59413	Undetermined spp.	Inbred_line	sim_sample_mays_59413	num_385	barcode_0.242719604366		trial_3	sim_run_mays_59413
+Zea mays subsp. mexicana	sim_mays_645880	sim_GID_mays_645880	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_645880	num_386	barcode_0.86386647218		trial_3	sim_run_mays_645880
+Zea mays subsp. mexicana	sim_mays_64595	sim_GID_mays_64595	Zea mays subsp. parviglumis	F2	sim_sample_mays_64595	num_387	barcode_0.237511216281	REF	trial_4	sim_run_mays_64595
+Zea mays subsp. mexicana	sim_mays_35571	sim_GID_mays_35571	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_35571	num_388	barcode_0.155380239576		trial_3	sim_run_mays_35571
+Zea mays subsp. mexicana	sim_mays_332683	sim_GID_mays_332683	Zea mays subsp. mays	F2	sim_sample_mays_332683	num_389	barcode_0.132573292462		trial_4	sim_run_mays_332683
+Zea mays subsp. mexicana	sim_mays_20260	sim_GID_mays_20260	Undetermined	F2	sim_sample_mays_20260	num_390	barcode_0.571752629807	REF	trial_4	sim_run_mays_20260
+Zea mays subsp. mexicana	sim_mays_47187	sim_GID_mays_47187	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_47187	num_391	barcode_0.0111965987217	REF	trial_3	sim_run_mays_47187
+Zea mays subsp. mexicana	sim_mays_297132	sim_GID_mays_297132	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_297132	num_392	barcode_0.622115104806		trial_4	sim_run_mays_297132
+Zea mays subsp. mexicana	sim_mays_697466	sim_GID_mays_697466	Zea diploperennis	F2	sim_sample_mays_697466	num_393	barcode_0.135618633084	REF	trial_3	sim_run_mays_697466
+Zea mays subsp. mexicana	sim_mays_823840	sim_GID_mays_823840	Undetermined	F1_hybrid	sim_sample_mays_823840	num_394	barcode_0.16002135372		trial_4	sim_run_mays_823840
+Zea mays subsp. mexicana	sim_mays_169005	sim_GID_mays_169005	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_169005	num_395	barcode_0.469440691877		trial_3	sim_run_mays_169005
+Zea mays subsp. mexicana	sim_mays_780549	sim_GID_mays_780549	Unknown		sim_sample_mays_780549	num_396	barcode_0.694019407003		trial_4	sim_run_mays_780549
+Zea mays subsp. mexicana	sim_mays_374486	sim_GID_mays_374486	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_374486	num_397	barcode_0.173910479765		trial_4	sim_run_mays_374486
+Zea mays subsp. mexicana	sim_mays_552284	sim_GID_mays_552284	Triticum turgidum subsp. polonicum		sim_sample_mays_552284	num_398	barcode_0.233289436477	REF	trial_4	sim_run_mays_552284
+Zea mays subsp. mexicana	sim_mays_898644	sim_GID_mays_898644	Triticum turgidum subsp. durum		sim_sample_mays_898644	num_399	barcode_0.591705269788	REF	trial_3	sim_run_mays_898644
+Zea mays subsp. mexicana	sim_mays_452866	sim_GID_mays_452866	Zea mays subsp. mexicana		sim_sample_mays_452866	num_400	barcode_0.927543989257	REF	trial_3	sim_run_mays_452866
+Zea mays subsp. mexicana	sim_mays_796476	sim_GID_mays_796476	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_796476	num_401	barcode_0.770705944316		trial_4	sim_run_mays_796476
+Zea mays subsp. mexicana	sim_mays_494109	sim_GID_mays_494109	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_494109	num_402	barcode_0.628058366083		trial_4	sim_run_mays_494109
+Zea mays subsp. mexicana	sim_mays_478828	sim_GID_mays_478828			sim_sample_mays_478828	num_403	barcode_0.0989980001298		trial_3	sim_run_mays_478828
+Zea mays subsp. mexicana	sim_mays_313186	sim_GID_mays_313186	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_313186	num_404	barcode_0.796247211582	REF	trial_4	sim_run_mays_313186
+Zea mays subsp. mexicana	sim_mays_392693	sim_GID_mays_392693	Undetermined spp.		sim_sample_mays_392693	num_405	barcode_0.528038408759	REF	trial_3	sim_run_mays_392693
+Zea mays subsp. mexicana	sim_mays_882860	sim_GID_mays_882860	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_882860	num_406	barcode_0.220554376522		trial_3	sim_run_mays_882860
+Zea mays subsp. mexicana	sim_mays_820658	sim_GID_mays_820658	Undetermined	BC1F1	sim_sample_mays_820658	num_407	barcode_0.104011191577	REF	trial_4	sim_run_mays_820658
+Zea mays subsp. mexicana	sim_mays_460438	sim_GID_mays_460438	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_460438	num_408	barcode_0.305145189275	REF	trial_4	sim_run_mays_460438
+Zea mays subsp. mexicana	sim_mays_195340	sim_GID_mays_195340	Zea diploperennis	Inbred_line	sim_sample_mays_195340	num_409	barcode_0.412421196147		trial_3	sim_run_mays_195340
+Zea mays subsp. mexicana	sim_mays_605225	sim_GID_mays_605225	Undetermined spp.	Inbred_line	sim_sample_mays_605225	num_410	barcode_0.595818289195		trial_3	sim_run_mays_605225
+Zea mays subsp. mexicana	sim_mays_529514	sim_GID_mays_529514	Undetermined	F1_hybrid	sim_sample_mays_529514	num_411	barcode_0.531272033667	REF	trial_3	sim_run_mays_529514
+Zea mays subsp. mexicana	sim_mays_342315	sim_GID_mays_342315	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_342315	num_412	barcode_0.777219991893		trial_4	sim_run_mays_342315
+Zea mays subsp. mexicana	sim_mays_36026	sim_GID_mays_36026	Zea diploperennis	Inbred_line	sim_sample_mays_36026	num_413	barcode_0.117676694519		trial_3	sim_run_mays_36026
+Zea mays subsp. mexicana	sim_mays_950330	sim_GID_mays_950330	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_950330	num_414	barcode_0.696128420933		trial_3	sim_run_mays_950330
+Zea mays subsp. mexicana	sim_mays_332587	sim_GID_mays_332587	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_332587	num_415	barcode_0.418099147628	REF	trial_4	sim_run_mays_332587
+Zea mays subsp. mexicana	sim_mays_846491	sim_GID_mays_846491	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_846491	num_416	barcode_0.311882076542	REF	trial_3	sim_run_mays_846491
+Zea mays subsp. mexicana	sim_mays_227774	sim_GID_mays_227774	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_227774	num_417	barcode_0.113663696174	REF	trial_4	sim_run_mays_227774
+Zea mays subsp. mexicana	sim_mays_863864	sim_GID_mays_863864	Unknown		sim_sample_mays_863864	num_418	barcode_0.692551309504		trial_4	sim_run_mays_863864
+Zea mays subsp. mexicana	sim_mays_67115	sim_GID_mays_67115	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_67115	num_419	barcode_0.477045989103		trial_3	sim_run_mays_67115
+Zea mays subsp. mexicana	sim_mays_995669	sim_GID_mays_995669	Undetermined spp.	BC1F1	sim_sample_mays_995669	num_420	barcode_0.269008864211		trial_3	sim_run_mays_995669
+Zea mays subsp. mexicana	sim_mays_801772	sim_GID_mays_801772	Zea mays subsp. mexicana	F2	sim_sample_mays_801772	num_421	barcode_0.299451665934	REF	trial_4	sim_run_mays_801772
+Zea mays subsp. mexicana	sim_mays_231995	sim_GID_mays_231995	Undetermined	BC1F1	sim_sample_mays_231995	num_422	barcode_0.064930670405		trial_4	sim_run_mays_231995
+Zea mays subsp. mexicana	sim_mays_55019	sim_GID_mays_55019	Triticum zhukovskyi	Inbred_line	sim_sample_mays_55019	num_423	barcode_0.646260643093	REF	trial_4	sim_run_mays_55019
+Zea mays subsp. mexicana	sim_mays_792932	sim_GID_mays_792932	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_792932	num_424	barcode_0.868954229564		trial_3	sim_run_mays_792932
+Zea mays subsp. mexicana	sim_mays_683027	sim_GID_mays_683027	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_mays_683027	num_425	barcode_0.95936910122	REF	trial_3	sim_run_mays_683027
+Zea mays subsp. mexicana	sim_mays_112082	sim_GID_mays_112082	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_112082	num_426	barcode_0.350163783399		trial_4	sim_run_mays_112082
+Zea mays subsp. mexicana	sim_mays_329722	sim_GID_mays_329722	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_329722	num_427	barcode_0.559708190274	REF	trial_3	sim_run_mays_329722
+Zea mays subsp. mexicana	sim_mays_756792	sim_GID_mays_756792	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_mays_756792	num_428	barcode_0.658239031615		trial_3	sim_run_mays_756792
+Zea mays subsp. mexicana	sim_mays_423805	sim_GID_mays_423805	Unknown	F1_hybrid	sim_sample_mays_423805	num_429	barcode_0.85515487015	REF	trial_4	sim_run_mays_423805
+Zea mays subsp. mexicana	sim_mays_236266	sim_GID_mays_236266	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_236266	num_430	barcode_0.320436167457		trial_4	sim_run_mays_236266
+Zea mays subsp. mexicana	sim_mays_7380	sim_GID_mays_7380	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_7380	num_431	barcode_0.000879683596205		trial_4	sim_run_mays_7380
+Zea mays subsp. mexicana	sim_mays_47592	sim_GID_mays_47592	Unknown	F2	sim_sample_mays_47592	num_432	barcode_0.0448818183532		trial_4	sim_run_mays_47592
+Zea mays subsp. mexicana	sim_mays_741697	sim_GID_mays_741697	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_741697	num_433	barcode_0.67975645891		trial_4	sim_run_mays_741697
+Zea mays subsp. mexicana	sim_mays_624018	sim_GID_mays_624018			sim_sample_mays_624018	num_434	barcode_0.357903403464	REF	trial_4	sim_run_mays_624018
+Zea mays subsp. mexicana	sim_mays_315933	sim_GID_mays_315933	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_315933	num_435	barcode_0.916642757399	REF	trial_4	sim_run_mays_315933
+Zea mays subsp. mexicana	sim_mays_380400	sim_GID_mays_380400	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_380400	num_436	barcode_0.560431877697		trial_4	sim_run_mays_380400
+Zea mays subsp. mexicana	sim_mays_345840	sim_GID_mays_345840	Unknown	BC1F1	sim_sample_mays_345840	num_437	barcode_0.0737618741315	REF	trial_3	sim_run_mays_345840
+Zea mays subsp. mexicana	sim_mays_872542	sim_GID_mays_872542	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_872542	num_438	barcode_0.096348540518		trial_3	sim_run_mays_872542
+Zea mays subsp. mexicana	sim_mays_156041	sim_GID_mays_156041	Unknown	BC1F1	sim_sample_mays_156041	num_439	barcode_0.484092588692		trial_4	sim_run_mays_156041
+Zea mays subsp. mexicana	sim_mays_248722	sim_GID_mays_248722	Undetermined	Inbred_line	sim_sample_mays_248722	num_440	barcode_0.660618966447	REF	trial_3	sim_run_mays_248722
+Zea mays subsp. mexicana	sim_mays_191779	sim_GID_mays_191779	Unknown		sim_sample_mays_191779	num_441	barcode_0.413843341022		trial_4	sim_run_mays_191779
+Zea mays subsp. mexicana	sim_mays_261617	sim_GID_mays_261617	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_261617	num_442	barcode_0.674513824851	REF	trial_4	sim_run_mays_261617
+Zea mays subsp. mexicana	sim_mays_337017	sim_GID_mays_337017	Triticum urartu	F1_hybrid	sim_sample_mays_337017	num_443	barcode_0.920163923524		trial_4	sim_run_mays_337017
+Zea mays subsp. mexicana	sim_mays_77938	sim_GID_mays_77938	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_77938	num_444	barcode_0.772579785792		trial_3	sim_run_mays_77938
+Zea mays subsp. mexicana	sim_mays_641748	sim_GID_mays_641748	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_641748	num_445	barcode_0.784497241732	REF	trial_3	sim_run_mays_641748
+Zea mays subsp. mexicana	sim_mays_155747	sim_GID_mays_155747	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_155747	num_446	barcode_0.402219447269		trial_3	sim_run_mays_155747
+Zea mays subsp. mexicana	sim_mays_975074	sim_GID_mays_975074	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_975074	num_447	barcode_0.331024818912		trial_4	sim_run_mays_975074
+Zea mays subsp. mexicana	sim_mays_340604	sim_GID_mays_340604	Zea diploperennis	F1_hybrid	sim_sample_mays_340604	num_448	barcode_0.526483627537		trial_4	sim_run_mays_340604
+Zea mays subsp. mexicana	sim_mays_468061	sim_GID_mays_468061	Triticum turgidum subsp. durum		sim_sample_mays_468061	num_449	barcode_0.596657090809	REF	trial_3	sim_run_mays_468061
+Zea mays subsp. mexicana	sim_mays_965447	sim_GID_mays_965447	Triticum urartu		sim_sample_mays_965447	num_450	barcode_0.956458494316	REF	trial_4	sim_run_mays_965447
+Zea mays subsp. mexicana	sim_mays_724041	sim_GID_mays_724041	Triticum zhukovskyi	F2	sim_sample_mays_724041	num_451	barcode_0.236096828525	REF	trial_4	sim_run_mays_724041
+Zea mays subsp. mexicana	sim_mays_451097	sim_GID_mays_451097	Zea mays subsp. parviglumis		sim_sample_mays_451097	num_452	barcode_0.352586590136		trial_4	sim_run_mays_451097
+Zea mays subsp. mexicana	sim_mays_736945	sim_GID_mays_736945	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_736945	num_453	barcode_0.914839531372		trial_3	sim_run_mays_736945
+Zea mays subsp. mexicana	sim_mays_557085	sim_GID_mays_557085	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_557085	num_454	barcode_0.749394744586		trial_4	sim_run_mays_557085
+Zea mays subsp. mexicana	sim_mays_557216	sim_GID_mays_557216	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_557216	num_455	barcode_0.863859255356	REF	trial_4	sim_run_mays_557216
+Zea mays subsp. mexicana	sim_mays_107040	sim_GID_mays_107040	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_107040	num_456	barcode_0.310993778634		trial_4	sim_run_mays_107040
+Zea mays subsp. mexicana	sim_mays_449831	sim_GID_mays_449831	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_449831	num_457	barcode_0.934812946429		trial_3	sim_run_mays_449831
+Zea mays subsp. mexicana	sim_mays_824101	sim_GID_mays_824101	Zea mays subsp. huehuetenangensis	F2	sim_sample_mays_824101	num_458	barcode_0.373498655176	REF	trial_4	sim_run_mays_824101
+Zea mays subsp. mexicana	sim_mays_160024	sim_GID_mays_160024		F2	sim_sample_mays_160024	num_459	barcode_0.510014589178		trial_4	sim_run_mays_160024
+Zea mays subsp. mexicana	sim_mays_843218	sim_GID_mays_843218	Unknown	F2	sim_sample_mays_843218	num_460	barcode_0.198094759829	REF	trial_4	sim_run_mays_843218
+Zea mays subsp. mexicana	sim_mays_402877	sim_GID_mays_402877	Triticum turgidum subsp. durum	F2	sim_sample_mays_402877	num_461	barcode_0.810890718757		trial_4	sim_run_mays_402877
+Zea mays subsp. mexicana	sim_mays_139211	sim_GID_mays_139211	Zea diploperennis	BC1F1	sim_sample_mays_139211	num_462	barcode_0.0788582807694	REF	trial_4	sim_run_mays_139211
+Zea mays subsp. mexicana	sim_mays_331195	sim_GID_mays_331195	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_331195	num_463	barcode_0.464068886516	REF	trial_3	sim_run_mays_331195
+Zea mays subsp. mexicana	sim_mays_435334	sim_GID_mays_435334	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_435334	num_464	barcode_0.914564238872		trial_4	sim_run_mays_435334
+Zea mays subsp. mexicana	sim_mays_653168	sim_GID_mays_653168	Undetermined	F2	sim_sample_mays_653168	num_465	barcode_0.168334683049		trial_4	sim_run_mays_653168
+Zea mays subsp. mexicana	sim_mays_441199	sim_GID_mays_441199	Zea mays subsp. parviglumis		sim_sample_mays_441199	num_466	barcode_0.581495743639		trial_3	sim_run_mays_441199
+Zea mays subsp. mexicana	sim_mays_493407	sim_GID_mays_493407	Undetermined spp.	F1_hybrid	sim_sample_mays_493407	num_467	barcode_0.0396105341242		trial_3	sim_run_mays_493407
+Zea mays subsp. mexicana	sim_mays_672846	sim_GID_mays_672846	Triticum turgidum subsp. dicoccon		sim_sample_mays_672846	num_468	barcode_0.929551467498		trial_3	sim_run_mays_672846
+Zea mays subsp. mexicana	sim_mays_945796	sim_GID_mays_945796	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_945796	num_469	barcode_0.861129313552		trial_3	sim_run_mays_945796
+Zea mays subsp. mexicana	sim_mays_994001	sim_GID_mays_994001	Unknown	BC1F1	sim_sample_mays_994001	num_470	barcode_0.736916685869	REF	trial_3	sim_run_mays_994001
+Zea mays subsp. mexicana	sim_mays_777814	sim_GID_mays_777814	Triticum vavilovii var. vavilovii		sim_sample_mays_777814	num_471	barcode_0.59325232105	REF	trial_3	sim_run_mays_777814
+Zea mays subsp. mexicana	sim_mays_914589	sim_GID_mays_914589	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_914589	num_472	barcode_0.666070128595	REF	trial_3	sim_run_mays_914589
+Zea mays subsp. mexicana	sim_mays_909221	sim_GID_mays_909221	Undetermined	F1_hybrid	sim_sample_mays_909221	num_473	barcode_0.617142019461	REF	trial_3	sim_run_mays_909221
+Zea mays subsp. mexicana	sim_mays_972975	sim_GID_mays_972975	Triticum zhukovskyi		sim_sample_mays_972975	num_474	barcode_0.655815186838		trial_4	sim_run_mays_972975
+Zea mays subsp. mexicana	sim_mays_492062	sim_GID_mays_492062	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_492062	num_475	barcode_0.0074008631563		trial_4	sim_run_mays_492062
+Zea mays subsp. mexicana	sim_mays_198726	sim_GID_mays_198726			sim_sample_mays_198726	num_476	barcode_0.539329144627		trial_4	sim_run_mays_198726
+Zea mays subsp. mexicana	sim_mays_446733	sim_GID_mays_446733	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_446733	num_477	barcode_0.848381296188		trial_3	sim_run_mays_446733
+Zea mays subsp. mexicana	sim_mays_139489	sim_GID_mays_139489	Undetermined	Inbred_line	sim_sample_mays_139489	num_478	barcode_0.0801668790148		trial_3	sim_run_mays_139489
+Zea mays subsp. mexicana	sim_mays_959010	sim_GID_mays_959010	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_959010	num_479	barcode_0.0378737014728		trial_4	sim_run_mays_959010
+Zea mays subsp. mexicana	sim_mays_759359	sim_GID_mays_759359	Zea mays subsp. mays	F2	sim_sample_mays_759359	num_480	barcode_0.83706356782		trial_3	sim_run_mays_759359
+Zea mays subsp. mexicana	sim_mays_491656	sim_GID_mays_491656	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_491656	num_481	barcode_0.233041734188	REF	trial_4	sim_run_mays_491656
+Zea mays subsp. mexicana	sim_mays_552849	sim_GID_mays_552849	Zea diploperennis	F1_hybrid	sim_sample_mays_552849	num_482	barcode_0.469094937656		trial_3	sim_run_mays_552849
+Zea mays subsp. mexicana	sim_mays_155982	sim_GID_mays_155982	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_155982	num_483	barcode_0.239762876768	REF	trial_3	sim_run_mays_155982
+Zea mays subsp. mexicana	sim_mays_4028	sim_GID_mays_4028	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_mays_4028	num_484	barcode_0.319709567812		trial_4	sim_run_mays_4028
+Zea mays subsp. mexicana	sim_mays_950353	sim_GID_mays_950353	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_950353	num_485	barcode_0.269131882724		trial_4	sim_run_mays_950353
+Zea mays subsp. mexicana	sim_mays_349648	sim_GID_mays_349648	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_349648	num_486	barcode_0.0730091136147	REF	trial_3	sim_run_mays_349648
+Zea mays subsp. mexicana	sim_mays_392245	sim_GID_mays_392245	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_mays_392245	num_487	barcode_0.805363626848		trial_4	sim_run_mays_392245
+Zea mays subsp. mexicana	sim_mays_580364	sim_GID_mays_580364	Zea mays subsp. parviglumis	F2	sim_sample_mays_580364	num_488	barcode_0.864808160184	REF	trial_3	sim_run_mays_580364
+Zea mays subsp. mexicana	sim_mays_471380	sim_GID_mays_471380	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_471380	num_489	barcode_0.900392724517	REF	trial_4	sim_run_mays_471380
+Zea mays subsp. mexicana	sim_mays_741639	sim_GID_mays_741639	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_741639	num_490	barcode_0.943603257487	REF	trial_4	sim_run_mays_741639
+Zea mays subsp. mexicana	sim_mays_382957	sim_GID_mays_382957	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_382957	num_491	barcode_0.318375722636	REF	trial_3	sim_run_mays_382957
+Zea mays subsp. mexicana	sim_mays_586595	sim_GID_mays_586595	Triticum turgidum subsp. paleocolchicum		sim_sample_mays_586595	num_492	barcode_0.126307911453		trial_3	sim_run_mays_586595
+Zea mays subsp. mexicana	sim_mays_496679	sim_GID_mays_496679	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_496679	num_493	barcode_0.14768770504		trial_3	sim_run_mays_496679
+Zea mays subsp. mexicana	sim_mays_669308	sim_GID_mays_669308		F2	sim_sample_mays_669308	num_494	barcode_0.0066071224696	REF	trial_4	sim_run_mays_669308
+Zea mays subsp. mexicana	sim_mays_687258	sim_GID_mays_687258	Unknown	F2	sim_sample_mays_687258	num_495	barcode_0.617509110723	REF	trial_4	sim_run_mays_687258
+Zea mays subsp. mexicana	sim_mays_164766	sim_GID_mays_164766	Zea diploperennis	Inbred_line	sim_sample_mays_164766	num_496	barcode_0.887697142061		trial_3	sim_run_mays_164766
+Zea mays subsp. mexicana	sim_mays_566967	sim_GID_mays_566967	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_566967	num_497	barcode_0.141484573016		trial_4	sim_run_mays_566967
+Zea mays subsp. mexicana	sim_mays_677488	sim_GID_mays_677488	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_677488	num_498	barcode_0.885848381076	REF	trial_4	sim_run_mays_677488
+Zea mays subsp. mexicana	sim_mays_783112	sim_GID_mays_783112	Zea mays subsp. mays	Inbred_line	sim_sample_mays_783112	num_499	barcode_0.77657517811		trial_3	sim_run_mays_783112
+Zea mays subsp. mexicana	sim_mays_49526	sim_GID_mays_49526	Zea mays subsp. mays	Inbred_line	sim_sample_mays_49526	num_500	barcode_0.876283704797		trial_3	sim_run_mays_49526
+Zea mays subsp. mexicana	sim_mays_18412	sim_GID_mays_18412	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_18412	num_501	barcode_0.372864727984	REF	trial_4	sim_run_mays_18412
+Zea mays subsp. mexicana	sim_mays_406649	sim_GID_mays_406649	Undetermined spp.	Inbred_line	sim_sample_mays_406649	num_502	barcode_0.62298278492	REF	trial_3	sim_run_mays_406649
+Zea mays subsp. mexicana	sim_mays_627164	sim_GID_mays_627164	Undetermined spp.		sim_sample_mays_627164	num_503	barcode_0.822661329964		trial_4	sim_run_mays_627164
+Zea mays subsp. mexicana	sim_mays_258325	sim_GID_mays_258325	Zea mays subsp. parviglumis	F2	sim_sample_mays_258325	num_504	barcode_0.168513705911	REF	trial_4	sim_run_mays_258325
+Zea mays subsp. mexicana	sim_mays_393546	sim_GID_mays_393546	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_393546	num_505	barcode_0.0186906196939	REF	trial_3	sim_run_mays_393546
+Zea mays subsp. mexicana	sim_mays_864695	sim_GID_mays_864695	Triticum turgidum subsp. turanicum		sim_sample_mays_864695	num_506	barcode_0.11035336941	REF	trial_3	sim_run_mays_864695
+Zea mays subsp. mexicana	sim_mays_309686	sim_GID_mays_309686	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_309686	num_507	barcode_0.205289741538		trial_3	sim_run_mays_309686
+Zea mays subsp. mexicana	sim_mays_35892	sim_GID_mays_35892	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_35892	num_508	barcode_0.383876920259		trial_3	sim_run_mays_35892
+Zea mays subsp. mexicana	sim_mays_664166	sim_GID_mays_664166	Triticum turgidum subsp. durum		sim_sample_mays_664166	num_509	barcode_0.37996327525	REF	trial_3	sim_run_mays_664166
+Zea mays subsp. mexicana	sim_mays_963267	sim_GID_mays_963267	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_963267	num_510	barcode_0.781601396837		trial_3	sim_run_mays_963267
+Zea mays subsp. mexicana	sim_mays_676402	sim_GID_mays_676402	Zea mays subsp. mays	BC1F1	sim_sample_mays_676402	num_511	barcode_0.0238367693443		trial_4	sim_run_mays_676402
+Zea mays subsp. mexicana	sim_mays_143820	sim_GID_mays_143820	Zea mays subsp. parviglumis	F2	sim_sample_mays_143820	num_512	barcode_0.685171716229		trial_4	sim_run_mays_143820
+Zea mays subsp. mexicana	sim_mays_63394	sim_GID_mays_63394	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_63394	num_513	barcode_0.830941828191		trial_3	sim_run_mays_63394
+Zea mays subsp. mexicana	sim_mays_809432	sim_GID_mays_809432	Zea mays subsp. huehuetenangensis	F2	sim_sample_mays_809432	num_514	barcode_0.229125199082	REF	trial_4	sim_run_mays_809432
+Zea mays subsp. mexicana	sim_mays_689578	sim_GID_mays_689578	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_689578	num_515	barcode_0.961361181185		trial_4	sim_run_mays_689578
+Zea mays subsp. mexicana	sim_mays_774407	sim_GID_mays_774407	Zea mays subsp. mexicana		sim_sample_mays_774407	num_516	barcode_0.530402999046	REF	trial_4	sim_run_mays_774407
+Zea mays subsp. mexicana	sim_mays_943289	sim_GID_mays_943289	Triticum zhukovskyi	F2	sim_sample_mays_943289	num_517	barcode_0.11818150029		trial_4	sim_run_mays_943289
+Zea mays subsp. mexicana	sim_mays_530733	sim_GID_mays_530733	Triticum urartu	Inbred_line	sim_sample_mays_530733	num_518	barcode_0.611240215812	REF	trial_4	sim_run_mays_530733
+Zea mays subsp. mexicana	sim_mays_989274	sim_GID_mays_989274	Undetermined	BC1F1	sim_sample_mays_989274	num_519	barcode_0.677734329702	REF	trial_3	sim_run_mays_989274
+Zea mays subsp. mexicana	sim_mays_336823	sim_GID_mays_336823		F2	sim_sample_mays_336823	num_520	barcode_0.694775029079		trial_4	sim_run_mays_336823
+Zea mays subsp. mexicana	sim_mays_84362	sim_GID_mays_84362	Zea diploperennis	F2	sim_sample_mays_84362	num_521	barcode_0.395567278039	REF	trial_3	sim_run_mays_84362
+Zea mays subsp. mexicana	sim_mays_490402	sim_GID_mays_490402	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_490402	num_522	barcode_0.474592269765		trial_4	sim_run_mays_490402
+Zea mays subsp. mexicana	sim_mays_622581	sim_GID_mays_622581	Triticum turgidum subsp. durum	F2	sim_sample_mays_622581	num_523	barcode_0.977395224155		trial_3	sim_run_mays_622581
+Zea mays subsp. mexicana	sim_mays_729043	sim_GID_mays_729043	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_729043	num_524	barcode_0.330854670348		trial_3	sim_run_mays_729043
+Zea mays subsp. mexicana	sim_mays_441163	sim_GID_mays_441163	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_441163	num_525	barcode_0.984377598312	REF	trial_3	sim_run_mays_441163
+Zea mays subsp. mexicana	sim_mays_613472	sim_GID_mays_613472	Unknown	F2	sim_sample_mays_613472	num_526	barcode_0.720370882674	REF	trial_4	sim_run_mays_613472
+Zea mays subsp. mexicana	sim_mays_114213	sim_GID_mays_114213	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_mays_114213	num_527	barcode_0.940559663457	REF	trial_4	sim_run_mays_114213
+Zea mays subsp. mexicana	sim_mays_584820	sim_GID_mays_584820	Undetermined		sim_sample_mays_584820	num_528	barcode_0.853950583187		trial_4	sim_run_mays_584820
+Zea mays subsp. mexicana	sim_mays_869470	sim_GID_mays_869470	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_869470	num_529	barcode_0.861599278755	REF	trial_3	sim_run_mays_869470
+Zea mays subsp. mexicana	sim_mays_978587	sim_GID_mays_978587	Triticum zhukovskyi		sim_sample_mays_978587	num_530	barcode_0.325960472515	REF	trial_3	sim_run_mays_978587
+Zea mays subsp. mexicana	sim_mays_601131	sim_GID_mays_601131	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_601131	num_531	barcode_0.25961778577	REF	trial_4	sim_run_mays_601131
+Zea mays subsp. mexicana	sim_mays_139571	sim_GID_mays_139571	Zea mays subsp. mays		sim_sample_mays_139571	num_532	barcode_0.717643358901	REF	trial_4	sim_run_mays_139571
+Zea mays subsp. mexicana	sim_mays_316132	sim_GID_mays_316132	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_316132	num_533	barcode_0.0434597022901		trial_4	sim_run_mays_316132
+Zea mays subsp. mexicana	sim_mays_276162	sim_GID_mays_276162	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_mays_276162	num_534	barcode_0.0485218069276	REF	trial_3	sim_run_mays_276162
+Zea mays subsp. mexicana	sim_mays_38372	sim_GID_mays_38372	Triticum urartu	F1_hybrid	sim_sample_mays_38372	num_535	barcode_0.702900598338	REF	trial_4	sim_run_mays_38372
+Zea mays subsp. mexicana	sim_mays_700019	sim_GID_mays_700019	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_700019	num_536	barcode_0.575898484191		trial_3	sim_run_mays_700019
+Zea mays subsp. mexicana	sim_mays_476265	sim_GID_mays_476265	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_476265	num_537	barcode_0.842634558364		trial_4	sim_run_mays_476265
+Zea mays subsp. mexicana	sim_mays_239484	sim_GID_mays_239484	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_239484	num_538	barcode_0.399865685177		trial_3	sim_run_mays_239484
+Zea mays subsp. mexicana	sim_mays_923176	sim_GID_mays_923176	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_923176	num_539	barcode_0.756616068762	REF	trial_4	sim_run_mays_923176
+Zea mays subsp. mexicana	sim_mays_306312	sim_GID_mays_306312	Triticum urartu		sim_sample_mays_306312	num_540	barcode_0.317599262599		trial_3	sim_run_mays_306312
+Zea mays subsp. mexicana	sim_mays_170690	sim_GID_mays_170690	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_170690	num_541	barcode_0.721605029291		trial_4	sim_run_mays_170690
+Zea mays subsp. mexicana	sim_mays_915976	sim_GID_mays_915976			sim_sample_mays_915976	num_542	barcode_0.12180126194		trial_3	sim_run_mays_915976
+Zea mays subsp. mexicana	sim_mays_773056	sim_GID_mays_773056	Triticum zhukovskyi		sim_sample_mays_773056	num_543	barcode_0.616927045876		trial_4	sim_run_mays_773056
+Zea mays subsp. mexicana	sim_mays_115745	sim_GID_mays_115745		BC1F1	sim_sample_mays_115745	num_544	barcode_0.0695429280679	REF	trial_4	sim_run_mays_115745
+Zea mays subsp. mexicana	sim_mays_110743	sim_GID_mays_110743	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_110743	num_545	barcode_0.625853150543	REF	trial_4	sim_run_mays_110743
+Zea mays subsp. mexicana	sim_mays_815465	sim_GID_mays_815465	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_815465	num_546	barcode_0.712390123414		trial_3	sim_run_mays_815465
+Zea mays subsp. mexicana	sim_mays_325046	sim_GID_mays_325046	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_325046	num_547	barcode_0.474219452318		trial_4	sim_run_mays_325046
+Zea mays subsp. mexicana	sim_mays_373936	sim_GID_mays_373936	Triticum urartu		sim_sample_mays_373936	num_548	barcode_0.890845625496	REF	trial_3	sim_run_mays_373936
+Zea mays subsp. mexicana	sim_mays_217550	sim_GID_mays_217550	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_217550	num_549	barcode_0.405763821745		trial_4	sim_run_mays_217550
+Zea mays subsp. mexicana	sim_mays_803087	sim_GID_mays_803087	Zea mays subsp. mays	BC1F1	sim_sample_mays_803087	num_550	barcode_0.570182402651		trial_4	sim_run_mays_803087
+Zea mays subsp. mexicana	sim_mays_21334	sim_GID_mays_21334	Triticum zhukovskyi	Inbred_line	sim_sample_mays_21334	num_551	barcode_0.977107797281		trial_4	sim_run_mays_21334
+Zea mays subsp. mexicana	sim_mays_443410	sim_GID_mays_443410	Triticum urartu	F1_hybrid	sim_sample_mays_443410	num_552	barcode_0.550879647993		trial_4	sim_run_mays_443410
+Zea mays subsp. mexicana	sim_mays_565833	sim_GID_mays_565833		F2	sim_sample_mays_565833	num_553	barcode_0.391069935712		trial_4	sim_run_mays_565833
+Zea mays subsp. mexicana	sim_mays_445573	sim_GID_mays_445573	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_445573	num_554	barcode_0.909508508129	REF	trial_3	sim_run_mays_445573
+Zea mays subsp. mexicana	sim_mays_645828	sim_GID_mays_645828	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_645828	num_555	barcode_0.236534997439	REF	trial_3	sim_run_mays_645828
+Zea mays subsp. mexicana	sim_mays_295546	sim_GID_mays_295546	Triticum vavilovii var. vavilovii		sim_sample_mays_295546	num_556	barcode_0.0303179280446		trial_3	sim_run_mays_295546
+Zea mays subsp. mexicana	sim_mays_669663	sim_GID_mays_669663	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_669663	num_557	barcode_0.771670957382		trial_3	sim_run_mays_669663
+Zea mays subsp. mexicana	sim_mays_297953	sim_GID_mays_297953	Triticum zhukovskyi	F2	sim_sample_mays_297953	num_558	barcode_0.551151607591		trial_3	sim_run_mays_297953
+Zea mays subsp. mexicana	sim_mays_984831	sim_GID_mays_984831	Undetermined spp.	Inbred_line	sim_sample_mays_984831	num_559	barcode_0.546457688766	REF	trial_3	sim_run_mays_984831
+Zea mays subsp. mexicana	sim_mays_385002	sim_GID_mays_385002	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_385002	num_560	barcode_0.0342682528894	REF	trial_4	sim_run_mays_385002
+Zea mays subsp. mexicana	sim_mays_159535	sim_GID_mays_159535		F2	sim_sample_mays_159535	num_561	barcode_0.34488607709		trial_3	sim_run_mays_159535
+Zea mays subsp. mexicana	sim_mays_903452	sim_GID_mays_903452	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_903452	num_562	barcode_0.508749599888		trial_3	sim_run_mays_903452
+Zea mays subsp. mexicana	sim_mays_447905	sim_GID_mays_447905	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_447905	num_563	barcode_0.179155421655		trial_4	sim_run_mays_447905
+Zea mays subsp. mexicana	sim_mays_924005	sim_GID_mays_924005	Zea diploperennis		sim_sample_mays_924005	num_564	barcode_0.410437234079	REF	trial_3	sim_run_mays_924005
+Zea mays subsp. mexicana	sim_mays_832416	sim_GID_mays_832416	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_832416	num_565	barcode_0.602332875311		trial_4	sim_run_mays_832416
+Zea mays subsp. mexicana	sim_mays_365691	sim_GID_mays_365691	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_365691	num_566	barcode_0.808806917695		trial_3	sim_run_mays_365691
+Zea mays subsp. mexicana	sim_mays_738863	sim_GID_mays_738863	Undetermined spp.		sim_sample_mays_738863	num_567	barcode_0.375040477694		trial_3	sim_run_mays_738863
+Zea mays subsp. mexicana	sim_mays_201735	sim_GID_mays_201735	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_201735	num_568	barcode_0.356473065358	REF	trial_4	sim_run_mays_201735
+Zea mays subsp. mexicana	sim_mays_20025	sim_GID_mays_20025		BC1F1	sim_sample_mays_20025	num_569	barcode_0.48356955353	REF	trial_4	sim_run_mays_20025
+Zea mays subsp. mexicana	sim_mays_811364	sim_GID_mays_811364	Undetermined		sim_sample_mays_811364	num_570	barcode_0.988458341297	REF	trial_4	sim_run_mays_811364
+Zea mays subsp. mexicana	sim_mays_801190	sim_GID_mays_801190	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_801190	num_571	barcode_0.0672049224939	REF	trial_3	sim_run_mays_801190
+Zea mays subsp. mexicana	sim_mays_252802	sim_GID_mays_252802		BC1F1	sim_sample_mays_252802	num_572	barcode_0.577620030223	REF	trial_3	sim_run_mays_252802
+Zea mays subsp. mexicana	sim_mays_923759	sim_GID_mays_923759	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_923759	num_573	barcode_0.00177642524782		trial_4	sim_run_mays_923759
+Zea mays subsp. mexicana	sim_mays_171535	sim_GID_mays_171535	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_171535	num_574	barcode_0.061146170892		trial_4	sim_run_mays_171535
+Zea mays subsp. mexicana	sim_mays_555596	sim_GID_mays_555596		BC1F1	sim_sample_mays_555596	num_575	barcode_0.530129796375	REF	trial_3	sim_run_mays_555596
+Zea mays subsp. mexicana	sim_mays_448955	sim_GID_mays_448955	Unknown	F2	sim_sample_mays_448955	num_576	barcode_0.825511644452	REF	trial_3	sim_run_mays_448955
+Zea mays subsp. mexicana	sim_mays_56379	sim_GID_mays_56379	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_56379	num_577	barcode_0.225167192993	REF	trial_3	sim_run_mays_56379
+Zea mays subsp. mexicana	sim_mays_319643	sim_GID_mays_319643	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_319643	num_578	barcode_0.332750507052	REF	trial_3	sim_run_mays_319643
+Zea mays subsp. mexicana	sim_mays_939611	sim_GID_mays_939611	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_939611	num_579	barcode_0.360602746052		trial_3	sim_run_mays_939611
+Zea mays subsp. mexicana	sim_mays_402017	sim_GID_mays_402017	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_mays_402017	num_580	barcode_0.0657630738331		trial_4	sim_run_mays_402017
+Zea mays subsp. mexicana	sim_mays_204218	sim_GID_mays_204218	Zea mays subsp. parviglumis	F2	sim_sample_mays_204218	num_581	barcode_0.353010357444		trial_4	sim_run_mays_204218
+Zea mays subsp. mexicana	sim_mays_740304	sim_GID_mays_740304	Triticum urartu	Inbred_line	sim_sample_mays_740304	num_582	barcode_0.328679077612	REF	trial_4	sim_run_mays_740304
+Zea mays subsp. mexicana	sim_mays_216696	sim_GID_mays_216696	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_216696	num_583	barcode_0.67304746929	REF	trial_4	sim_run_mays_216696
+Zea mays subsp. mexicana	sim_mays_44166	sim_GID_mays_44166	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_44166	num_584	barcode_0.706080621356	REF	trial_4	sim_run_mays_44166
+Zea mays subsp. mexicana	sim_mays_7257	sim_GID_mays_7257	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_7257	num_585	barcode_0.825297754143		trial_4	sim_run_mays_7257
+Zea mays subsp. mexicana	sim_mays_827290	sim_GID_mays_827290	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_827290	num_586	barcode_0.858141724364	REF	trial_3	sim_run_mays_827290
+Zea mays subsp. mexicana	sim_mays_217171	sim_GID_mays_217171		BC1F1	sim_sample_mays_217171	num_587	barcode_0.27584120578		trial_4	sim_run_mays_217171
+Zea mays subsp. mexicana	sim_mays_857540	sim_GID_mays_857540	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_857540	num_588	barcode_0.262671838301	REF	trial_3	sim_run_mays_857540
+Zea mays subsp. mexicana	sim_mays_135644	sim_GID_mays_135644	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_135644	num_589	barcode_0.964084205893	REF	trial_3	sim_run_mays_135644
+Zea mays subsp. mexicana	sim_mays_193432	sim_GID_mays_193432	Zea mays subsp. parviglumis		sim_sample_mays_193432	num_590	barcode_0.291869149683	REF	trial_4	sim_run_mays_193432
+Zea mays subsp. mexicana	sim_mays_678790	sim_GID_mays_678790	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_678790	num_591	barcode_0.989669671982	REF	trial_4	sim_run_mays_678790
+Zea mays subsp. mexicana	sim_mays_448314	sim_GID_mays_448314	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_448314	num_592	barcode_0.805889104551		trial_4	sim_run_mays_448314
+Zea mays subsp. mexicana	sim_mays_594734	sim_GID_mays_594734	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_594734	num_593	barcode_0.527392994881		trial_4	sim_run_mays_594734
+Zea mays subsp. mexicana	sim_mays_553278	sim_GID_mays_553278	Undetermined	F2	sim_sample_mays_553278	num_594	barcode_0.0659154356192	REF	trial_4	sim_run_mays_553278
+Zea mays subsp. mexicana	sim_mays_805372	sim_GID_mays_805372	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_805372	num_595	barcode_0.527815906978		trial_4	sim_run_mays_805372
+Zea mays subsp. mexicana	sim_mays_23822	sim_GID_mays_23822	Triticum zhukovskyi	BC1F1	sim_sample_mays_23822	num_596	barcode_0.335916815321	REF	trial_3	sim_run_mays_23822
+Zea mays subsp. mexicana	sim_mays_920096	sim_GID_mays_920096	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_920096	num_597	barcode_0.891105012536	REF	trial_4	sim_run_mays_920096
+Zea mays subsp. mexicana	sim_mays_608949	sim_GID_mays_608949	Unknown		sim_sample_mays_608949	num_598	barcode_0.646945140269		trial_4	sim_run_mays_608949
+Zea mays subsp. mexicana	sim_mays_324469	sim_GID_mays_324469	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_324469	num_599	barcode_0.3938861948		trial_3	sim_run_mays_324469
+Zea mays subsp. mexicana	sim_mays_257901	sim_GID_mays_257901		BC1F1	sim_sample_mays_257901	num_600	barcode_0.292705480677		trial_4	sim_run_mays_257901
+Zea mays subsp. mexicana	sim_mays_937883	sim_GID_mays_937883		BC1F1	sim_sample_mays_937883	num_601	barcode_0.82314762369	REF	trial_4	sim_run_mays_937883
+Zea mays subsp. mexicana	sim_mays_48635	sim_GID_mays_48635	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_48635	num_602	barcode_0.869609596283		trial_3	sim_run_mays_48635
+Zea mays subsp. mexicana	sim_mays_739525	sim_GID_mays_739525	Zea mays subsp. parviglumis	F2	sim_sample_mays_739525	num_603	barcode_0.824663217798		trial_3	sim_run_mays_739525
+Zea mays subsp. mexicana	sim_mays_267874	sim_GID_mays_267874	Undetermined spp.	F1_hybrid	sim_sample_mays_267874	num_604	barcode_0.620868455758		trial_4	sim_run_mays_267874
+Zea mays subsp. mexicana	sim_mays_150794	sim_GID_mays_150794	Triticum zhukovskyi	Inbred_line	sim_sample_mays_150794	num_605	barcode_0.206968473355		trial_3	sim_run_mays_150794
+Zea mays subsp. mexicana	sim_mays_53544	sim_GID_mays_53544	Triticum zhukovskyi	Inbred_line	sim_sample_mays_53544	num_606	barcode_0.769718833466		trial_4	sim_run_mays_53544
+Zea mays subsp. mexicana	sim_mays_618396	sim_GID_mays_618396	Undetermined spp.	BC1F1	sim_sample_mays_618396	num_607	barcode_0.824548236538		trial_4	sim_run_mays_618396
+Zea mays subsp. mexicana	sim_mays_91547	sim_GID_mays_91547	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_91547	num_608	barcode_0.0282969891219		trial_3	sim_run_mays_91547
+Zea mays subsp. mexicana	sim_mays_728534	sim_GID_mays_728534	Zea diploperennis	BC1F1	sim_sample_mays_728534	num_609	barcode_0.603971602711		trial_3	sim_run_mays_728534
+Zea mays subsp. mexicana	sim_mays_812679	sim_GID_mays_812679	Zea diploperennis	F1_hybrid	sim_sample_mays_812679	num_610	barcode_0.582900943625	REF	trial_4	sim_run_mays_812679
+Zea mays subsp. mexicana	sim_mays_251119	sim_GID_mays_251119	Triticum zhukovskyi	F2	sim_sample_mays_251119	num_611	barcode_0.394652766204	REF	trial_4	sim_run_mays_251119
+Zea mays subsp. mexicana	sim_mays_974213	sim_GID_mays_974213	Undetermined spp.	F1_hybrid	sim_sample_mays_974213	num_612	barcode_0.474046070992	REF	trial_4	sim_run_mays_974213
+Zea mays subsp. mexicana	sim_mays_886993	sim_GID_mays_886993	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_886993	num_613	barcode_0.0793779718364		trial_4	sim_run_mays_886993
+Zea mays subsp. mexicana	sim_mays_641046	sim_GID_mays_641046	Zea mays subsp. mays	Inbred_line	sim_sample_mays_641046	num_614	barcode_0.366496459607		trial_3	sim_run_mays_641046
+Zea mays subsp. mexicana	sim_mays_646857	sim_GID_mays_646857	Zea diploperennis	F2	sim_sample_mays_646857	num_615	barcode_0.275573940895	REF	trial_4	sim_run_mays_646857
+Zea mays subsp. mexicana	sim_mays_450170	sim_GID_mays_450170	Undetermined	Inbred_line	sim_sample_mays_450170	num_616	barcode_0.671531708332		trial_3	sim_run_mays_450170
+Zea mays subsp. mexicana	sim_mays_924944	sim_GID_mays_924944	Triticum turgidum subsp. paleocolchicum		sim_sample_mays_924944	num_617	barcode_0.320959150516		trial_3	sim_run_mays_924944
+Zea mays subsp. mexicana	sim_mays_154184	sim_GID_mays_154184	Triticum turgidum subsp. polonicum		sim_sample_mays_154184	num_618	barcode_0.593848380859		trial_3	sim_run_mays_154184
+Zea mays subsp. mexicana	sim_mays_601224	sim_GID_mays_601224	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_601224	num_619	barcode_0.0998406406809	REF	trial_4	sim_run_mays_601224
+Zea mays subsp. mexicana	sim_mays_793173	sim_GID_mays_793173	Triticum turgidum subsp. paleocolchicum		sim_sample_mays_793173	num_620	barcode_0.213952403739	REF	trial_3	sim_run_mays_793173
+Zea mays subsp. mexicana	sim_mays_975135	sim_GID_mays_975135	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_975135	num_621	barcode_0.213713653904	REF	trial_3	sim_run_mays_975135
+Zea mays subsp. mexicana	sim_mays_416566	sim_GID_mays_416566	Undetermined spp.	F1_hybrid	sim_sample_mays_416566	num_622	barcode_0.551076960108		trial_4	sim_run_mays_416566
+Zea mays subsp. mexicana	sim_mays_352427	sim_GID_mays_352427	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_352427	num_623	barcode_0.0681428667892	REF	trial_3	sim_run_mays_352427
+Zea mays subsp. mexicana	sim_mays_652825	sim_GID_mays_652825	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_652825	num_624	barcode_0.794130921318	REF	trial_3	sim_run_mays_652825
+Zea mays subsp. mexicana	sim_mays_465676	sim_GID_mays_465676	Zea mays subsp. huehuetenangensis	F2	sim_sample_mays_465676	num_625	barcode_0.661591003728		trial_4	sim_run_mays_465676
+Zea mays subsp. mexicana	sim_mays_491859	sim_GID_mays_491859	Triticum turgidum subsp. turanicum		sim_sample_mays_491859	num_626	barcode_0.406622056833		trial_3	sim_run_mays_491859
+Zea mays subsp. mexicana	sim_mays_999941	sim_GID_mays_999941	Zea mays subsp. mays	F2	sim_sample_mays_999941	num_627	barcode_0.666797660362	REF	trial_3	sim_run_mays_999941
+Zea mays subsp. mexicana	sim_mays_555400	sim_GID_mays_555400	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_555400	num_628	barcode_0.2492753191		trial_3	sim_run_mays_555400
+Zea mays subsp. mexicana	sim_mays_4908	sim_GID_mays_4908	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_mays_4908	num_629	barcode_0.370637204401	REF	trial_3	sim_run_mays_4908
+Zea mays subsp. mexicana	sim_mays_855691	sim_GID_mays_855691	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_855691	num_630	barcode_0.474152719087		trial_3	sim_run_mays_855691
+Zea mays subsp. mexicana	sim_mays_830064	sim_GID_mays_830064	Zea mays subsp. mays	Inbred_line	sim_sample_mays_830064	num_631	barcode_0.933855272859		trial_4	sim_run_mays_830064
+Zea mays subsp. mexicana	sim_mays_592323	sim_GID_mays_592323	Zea mays subsp. mays	F2	sim_sample_mays_592323	num_632	barcode_0.428607259762	REF	trial_3	sim_run_mays_592323
+Zea mays subsp. mexicana	sim_mays_526518	sim_GID_mays_526518	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_526518	num_633	barcode_0.345708454888		trial_4	sim_run_mays_526518
+Zea mays subsp. mexicana	sim_mays_56335	sim_GID_mays_56335	Undetermined spp.	F1_hybrid	sim_sample_mays_56335	num_634	barcode_0.268104324778	REF	trial_4	sim_run_mays_56335
+Zea mays subsp. mexicana	sim_mays_18761	sim_GID_mays_18761		Inbred_line	sim_sample_mays_18761	num_635	barcode_0.91640163048		trial_3	sim_run_mays_18761
+Zea mays subsp. mexicana	sim_mays_684344	sim_GID_mays_684344	Zea mays subsp. parviglumis		sim_sample_mays_684344	num_636	barcode_0.0484475737684	REF	trial_4	sim_run_mays_684344
+Zea mays subsp. mexicana	sim_mays_412379	sim_GID_mays_412379	Zea mays subsp. huehuetenangensis		sim_sample_mays_412379	num_637	barcode_0.256317941442	REF	trial_4	sim_run_mays_412379
+Zea mays subsp. mexicana	sim_mays_219953	sim_GID_mays_219953	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_mays_219953	num_638	barcode_0.0229771594131	REF	trial_3	sim_run_mays_219953
+Zea mays subsp. mexicana	sim_mays_877677	sim_GID_mays_877677		F2	sim_sample_mays_877677	num_639	barcode_0.673381587143	REF	trial_3	sim_run_mays_877677
+Zea mays subsp. mexicana	sim_mays_336029	sim_GID_mays_336029	Zea mays subsp. huehuetenangensis		sim_sample_mays_336029	num_640	barcode_0.784661254581	REF	trial_4	sim_run_mays_336029
+Zea mays subsp. mexicana	sim_mays_959577	sim_GID_mays_959577	Triticum zhukovskyi	Inbred_line	sim_sample_mays_959577	num_641	barcode_0.409075434666	REF	trial_3	sim_run_mays_959577
+Zea mays subsp. mexicana	sim_mays_831968	sim_GID_mays_831968	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_831968	num_642	barcode_0.780812650936		trial_3	sim_run_mays_831968
+Zea mays subsp. mexicana	sim_mays_405020	sim_GID_mays_405020	Undetermined spp.	F2	sim_sample_mays_405020	num_643	barcode_0.356650828402	REF	trial_4	sim_run_mays_405020
+Zea mays subsp. mexicana	sim_mays_896563	sim_GID_mays_896563	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_896563	num_644	barcode_0.109907746131		trial_3	sim_run_mays_896563
+Zea mays subsp. mexicana	sim_mays_248853	sim_GID_mays_248853	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_248853	num_645	barcode_0.0158608805897	REF	trial_4	sim_run_mays_248853
+Zea mays subsp. mexicana	sim_mays_116015	sim_GID_mays_116015	Zea mays subsp. mexicana		sim_sample_mays_116015	num_646	barcode_0.91352268458		trial_4	sim_run_mays_116015
+Zea mays subsp. mexicana	sim_mays_52277	sim_GID_mays_52277	Undetermined spp.	Inbred_line	sim_sample_mays_52277	num_647	barcode_0.695217342185	REF	trial_4	sim_run_mays_52277
+Zea mays subsp. mexicana	sim_mays_9789	sim_GID_mays_9789	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_9789	num_648	barcode_0.270296861062	REF	trial_4	sim_run_mays_9789
+Zea mays subsp. mexicana	sim_mays_784538	sim_GID_mays_784538	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_784538	num_649	barcode_0.895377235895	REF	trial_4	sim_run_mays_784538
+Zea mays subsp. mexicana	sim_mays_721661	sim_GID_mays_721661	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_721661	num_650	barcode_0.282371923657	REF	trial_4	sim_run_mays_721661
+Zea mays subsp. mexicana	sim_mays_478450	sim_GID_mays_478450	Undetermined spp.	Inbred_line	sim_sample_mays_478450	num_651	barcode_0.0512354014937		trial_3	sim_run_mays_478450
+Zea mays subsp. mexicana	sim_mays_356268	sim_GID_mays_356268	Undetermined spp.	Inbred_line	sim_sample_mays_356268	num_652	barcode_0.479300889313	REF	trial_3	sim_run_mays_356268
+Zea mays subsp. mexicana	sim_mays_754476	sim_GID_mays_754476	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_754476	num_653	barcode_0.600400034044	REF	trial_3	sim_run_mays_754476
+Zea mays subsp. mexicana	sim_mays_744699	sim_GID_mays_744699	Zea mays subsp. mays		sim_sample_mays_744699	num_654	barcode_0.712816529648	REF	trial_4	sim_run_mays_744699
+Zea mays subsp. mexicana	sim_mays_47237	sim_GID_mays_47237	Unknown	F1_hybrid	sim_sample_mays_47237	num_655	barcode_0.817244550291		trial_4	sim_run_mays_47237
+Zea mays subsp. mexicana	sim_mays_209123	sim_GID_mays_209123	Undetermined spp.	Inbred_line	sim_sample_mays_209123	num_656	barcode_0.367491902994		trial_3	sim_run_mays_209123
+Zea mays subsp. mexicana	sim_mays_3226	sim_GID_mays_3226	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_3226	num_657	barcode_0.186247419088		trial_3	sim_run_mays_3226
+Zea mays subsp. mexicana	sim_mays_33238	sim_GID_mays_33238	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_33238	num_658	barcode_0.543406510386	REF	trial_4	sim_run_mays_33238
+Zea mays subsp. mexicana	sim_mays_389611	sim_GID_mays_389611	Zea mays subsp. parviglumis	F2	sim_sample_mays_389611	num_659	barcode_0.40814109514	REF	trial_4	sim_run_mays_389611
+Zea mays subsp. mexicana	sim_mays_253197	sim_GID_mays_253197	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_253197	num_660	barcode_0.675767907627		trial_3	sim_run_mays_253197
+Zea mays subsp. mexicana	sim_mays_474321	sim_GID_mays_474321	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_474321	num_661	barcode_0.753968030294	REF	trial_4	sim_run_mays_474321
+Zea mays subsp. mexicana	sim_mays_454962	sim_GID_mays_454962	Undetermined	Inbred_line	sim_sample_mays_454962	num_662	barcode_0.974306782284	REF	trial_3	sim_run_mays_454962
+Zea mays subsp. mexicana	sim_mays_842472	sim_GID_mays_842472	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_842472	num_663	barcode_0.560665605572		trial_3	sim_run_mays_842472
+Zea mays subsp. mexicana	sim_mays_271049	sim_GID_mays_271049	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_271049	num_664	barcode_0.487243890797		trial_3	sim_run_mays_271049
+Zea mays subsp. mexicana	sim_mays_170925	sim_GID_mays_170925	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_170925	num_665	barcode_0.923978173227	REF	trial_4	sim_run_mays_170925
+Zea mays subsp. mexicana	sim_mays_40570	sim_GID_mays_40570	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_40570	num_666	barcode_0.966250076562	REF	trial_4	sim_run_mays_40570
+Zea mays subsp. mexicana	sim_mays_485964	sim_GID_mays_485964	Zea mays subsp. mays	F2	sim_sample_mays_485964	num_667	barcode_0.0623712055694	REF	trial_4	sim_run_mays_485964
+Zea mays subsp. mexicana	sim_mays_640169	sim_GID_mays_640169	Triticum urartu	Inbred_line	sim_sample_mays_640169	num_668	barcode_0.0261401717777	REF	trial_3	sim_run_mays_640169
+Zea mays subsp. mexicana	sim_mays_111827	sim_GID_mays_111827	Undetermined	BC1F1	sim_sample_mays_111827	num_669	barcode_0.488583417155		trial_4	sim_run_mays_111827
+Zea mays subsp. mexicana	sim_mays_317457	sim_GID_mays_317457	Zea mays subsp. parviglumis		sim_sample_mays_317457	num_670	barcode_0.0772886403999	REF	trial_4	sim_run_mays_317457
+Zea mays subsp. mexicana	sim_mays_970026	sim_GID_mays_970026	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_970026	num_671	barcode_0.46812377191		trial_3	sim_run_mays_970026
+Zea mays subsp. mexicana	sim_mays_687612	sim_GID_mays_687612	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_687612	num_672	barcode_0.0788022512367		trial_4	sim_run_mays_687612
+Zea mays subsp. mexicana	sim_mays_330305	sim_GID_mays_330305	Undetermined spp.	F2	sim_sample_mays_330305	num_673	barcode_0.52007842543	REF	trial_4	sim_run_mays_330305
+Zea mays subsp. mexicana	sim_mays_319489	sim_GID_mays_319489	Triticum turgidum subsp. paleocolchicum		sim_sample_mays_319489	num_674	barcode_0.138179051205	REF	trial_3	sim_run_mays_319489
+Zea mays subsp. mexicana	sim_mays_491237	sim_GID_mays_491237	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_491237	num_675	barcode_0.678835869711	REF	trial_4	sim_run_mays_491237
+Zea mays subsp. mexicana	sim_mays_876317	sim_GID_mays_876317	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_876317	num_676	barcode_0.0654508878848		trial_3	sim_run_mays_876317
+Zea mays subsp. mexicana	sim_mays_485878	sim_GID_mays_485878	Unknown	F1_hybrid	sim_sample_mays_485878	num_677	barcode_0.96840246753		trial_4	sim_run_mays_485878
+Zea mays subsp. mexicana	sim_mays_506571	sim_GID_mays_506571	Zea diploperennis	Inbred_line	sim_sample_mays_506571	num_678	barcode_0.0840065563718		trial_4	sim_run_mays_506571
+Zea mays subsp. mexicana	sim_mays_316127	sim_GID_mays_316127	Zea diploperennis	BC1F1	sim_sample_mays_316127	num_679	barcode_0.76369866279	REF	trial_4	sim_run_mays_316127
+Zea mays subsp. mexicana	sim_mays_355003	sim_GID_mays_355003	Zea mays subsp. mays	BC1F1	sim_sample_mays_355003	num_680	barcode_0.647090818564		trial_4	sim_run_mays_355003
+Zea mays subsp. mexicana	sim_mays_659217	sim_GID_mays_659217	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_659217	num_681	barcode_0.554304819586		trial_4	sim_run_mays_659217
+Zea mays subsp. mexicana	sim_mays_194697	sim_GID_mays_194697	Zea diploperennis	Inbred_line	sim_sample_mays_194697	num_682	barcode_0.331900334528	REF	trial_4	sim_run_mays_194697
+Zea mays subsp. mexicana	sim_mays_660571	sim_GID_mays_660571	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_660571	num_683	barcode_0.514355163731	REF	trial_3	sim_run_mays_660571
+Zea mays subsp. mexicana	sim_mays_859460	sim_GID_mays_859460	Zea mays subsp. mexicana	F2	sim_sample_mays_859460	num_684	barcode_0.715908550017		trial_4	sim_run_mays_859460
+Zea mays subsp. mexicana	sim_mays_229975	sim_GID_mays_229975	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_229975	num_685	barcode_0.896951651704	REF	trial_4	sim_run_mays_229975
+Zea mays subsp. mexicana	sim_mays_790502	sim_GID_mays_790502	Triticum vavilovii var. vavilovii		sim_sample_mays_790502	num_686	barcode_0.382513569268		trial_4	sim_run_mays_790502
+Zea mays subsp. mexicana	sim_mays_414150	sim_GID_mays_414150	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_414150	num_687	barcode_0.596041896348		trial_3	sim_run_mays_414150
+Zea mays subsp. mexicana	sim_mays_63635	sim_GID_mays_63635	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_63635	num_688	barcode_0.77922168787	REF	trial_4	sim_run_mays_63635
+Zea mays subsp. mexicana	sim_mays_452635	sim_GID_mays_452635	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_452635	num_689	barcode_0.467296554358	REF	trial_4	sim_run_mays_452635
+Zea mays subsp. mexicana	sim_mays_785011	sim_GID_mays_785011	Zea mays subsp. mexicana		sim_sample_mays_785011	num_690	barcode_0.0834828821337		trial_3	sim_run_mays_785011
+Zea mays subsp. mexicana	sim_mays_563377	sim_GID_mays_563377	Triticum vavilovii var. vavilovii		sim_sample_mays_563377	num_691	barcode_0.788363030556		trial_4	sim_run_mays_563377
+Zea mays subsp. mexicana	sim_mays_319053	sim_GID_mays_319053	Triticum turgidum subsp. turgidum		sim_sample_mays_319053	num_692	barcode_0.596004364593		trial_3	sim_run_mays_319053
+Zea mays subsp. mexicana	sim_mays_451661	sim_GID_mays_451661	Undetermined spp.	Inbred_line	sim_sample_mays_451661	num_693	barcode_0.961073068705	REF	trial_3	sim_run_mays_451661
+Zea mays subsp. mexicana	sim_mays_324007	sim_GID_mays_324007	Zea diploperennis	F2	sim_sample_mays_324007	num_694	barcode_0.362927799876	REF	trial_3	sim_run_mays_324007
+Zea mays subsp. mexicana	sim_mays_832509	sim_GID_mays_832509	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_832509	num_695	barcode_0.0157517095507	REF	trial_4	sim_run_mays_832509
+Zea mays subsp. mexicana	sim_mays_923123	sim_GID_mays_923123	Triticum turgidum subsp. polonicum		sim_sample_mays_923123	num_696	barcode_0.293485647265		trial_3	sim_run_mays_923123
+Zea mays subsp. mexicana	sim_mays_26966	sim_GID_mays_26966	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_26966	num_697	barcode_0.00229850738394		trial_4	sim_run_mays_26966
+Zea mays subsp. mexicana	sim_mays_850761	sim_GID_mays_850761	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_850761	num_698	barcode_0.17482833433	REF	trial_4	sim_run_mays_850761
+Zea mays subsp. mexicana	sim_mays_364969	sim_GID_mays_364969	Undetermined	F1_hybrid	sim_sample_mays_364969	num_699	barcode_0.982915518565	REF	trial_4	sim_run_mays_364969
+Zea mays subsp. mexicana	sim_mays_825174	sim_GID_mays_825174	Zea diploperennis	Inbred_line	sim_sample_mays_825174	num_700	barcode_0.664975013674	REF	trial_4	sim_run_mays_825174
+Zea mays subsp. mexicana	sim_mays_577727	sim_GID_mays_577727	Undetermined		sim_sample_mays_577727	num_701	barcode_0.183678105472	REF	trial_3	sim_run_mays_577727
+Zea mays subsp. mexicana	sim_mays_410883	sim_GID_mays_410883	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_mays_410883	num_702	barcode_0.22590505752	REF	trial_4	sim_run_mays_410883
+Zea mays subsp. mexicana	sim_mays_749591	sim_GID_mays_749591	Unknown		sim_sample_mays_749591	num_703	barcode_0.856162269899	REF	trial_3	sim_run_mays_749591
+Zea mays subsp. mexicana	sim_mays_377811	sim_GID_mays_377811	Triticum turgidum subsp. durum	BC1F1	sim_sample_mays_377811	num_704	barcode_0.556741826149		trial_4	sim_run_mays_377811
+Zea mays subsp. mexicana	sim_mays_596703	sim_GID_mays_596703	Triticum turgidum subsp. turgidum		sim_sample_mays_596703	num_705	barcode_0.0390292320728	REF	trial_3	sim_run_mays_596703
+Zea mays subsp. mexicana	sim_mays_887688	sim_GID_mays_887688	Undetermined		sim_sample_mays_887688	num_706	barcode_0.997996224801	REF	trial_4	sim_run_mays_887688
+Zea mays subsp. mexicana	sim_mays_419726	sim_GID_mays_419726	Undetermined spp.	BC1F1	sim_sample_mays_419726	num_707	barcode_0.972807985066	REF	trial_3	sim_run_mays_419726
+Zea mays subsp. mexicana	sim_mays_289156	sim_GID_mays_289156	Triticum urartu	BC1F1	sim_sample_mays_289156	num_708	barcode_0.492986300834		trial_4	sim_run_mays_289156
+Zea mays subsp. mexicana	sim_mays_621756	sim_GID_mays_621756	Triticum urartu	Inbred_line	sim_sample_mays_621756	num_709	barcode_0.512105262032		trial_3	sim_run_mays_621756
+Zea mays subsp. mexicana	sim_mays_121977	sim_GID_mays_121977	Undetermined	Inbred_line	sim_sample_mays_121977	num_710	barcode_0.206988264232		trial_3	sim_run_mays_121977
+Zea mays subsp. mexicana	sim_mays_742901	sim_GID_mays_742901	Undetermined spp.	Inbred_line	sim_sample_mays_742901	num_711	barcode_0.498063539464	REF	trial_4	sim_run_mays_742901
+Zea mays subsp. mexicana	sim_mays_24678	sim_GID_mays_24678	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_24678	num_712	barcode_0.260594960647		trial_3	sim_run_mays_24678
+Zea mays subsp. mexicana	sim_mays_814488	sim_GID_mays_814488	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_814488	num_713	barcode_0.663303270446	REF	trial_4	sim_run_mays_814488
+Zea mays subsp. mexicana	sim_mays_616089	sim_GID_mays_616089	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_616089	num_714	barcode_0.805224572548		trial_4	sim_run_mays_616089
+Zea mays subsp. mexicana	sim_mays_579936	sim_GID_mays_579936	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_579936	num_715	barcode_0.650661927032	REF	trial_4	sim_run_mays_579936
+Zea mays subsp. mexicana	sim_mays_153263	sim_GID_mays_153263	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_153263	num_716	barcode_0.982837020381		trial_3	sim_run_mays_153263
+Zea mays subsp. mexicana	sim_mays_103228	sim_GID_mays_103228	Triticum turgidum subsp. turgidum		sim_sample_mays_103228	num_717	barcode_0.916561010704		trial_4	sim_run_mays_103228
+Zea mays subsp. mexicana	sim_mays_400987	sim_GID_mays_400987		F2	sim_sample_mays_400987	num_718	barcode_0.307717065353		trial_4	sim_run_mays_400987
+Zea mays subsp. mexicana	sim_mays_286643	sim_GID_mays_286643	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_286643	num_719	barcode_0.644133018292		trial_4	sim_run_mays_286643
+Zea mays subsp. mexicana	sim_mays_330213	sim_GID_mays_330213	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_330213	num_720	barcode_0.188235924772	REF	trial_4	sim_run_mays_330213
+Zea mays subsp. mexicana	sim_mays_473660	sim_GID_mays_473660	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_473660	num_721	barcode_0.0647562323264	REF	trial_3	sim_run_mays_473660
+Zea mays subsp. mexicana	sim_mays_193319	sim_GID_mays_193319			sim_sample_mays_193319	num_722	barcode_0.276026519681	REF	trial_4	sim_run_mays_193319
+Zea mays subsp. mexicana	sim_mays_566747	sim_GID_mays_566747			sim_sample_mays_566747	num_723	barcode_0.112645330598	REF	trial_3	sim_run_mays_566747
+Zea mays subsp. mexicana	sim_mays_33622	sim_GID_mays_33622	Triticum turgidum subsp. dicoccon		sim_sample_mays_33622	num_724	barcode_0.10624555979	REF	trial_4	sim_run_mays_33622
+Zea mays subsp. mexicana	sim_mays_442321	sim_GID_mays_442321	Undetermined spp.	BC1F1	sim_sample_mays_442321	num_725	barcode_0.320248224418		trial_4	sim_run_mays_442321
+Zea mays subsp. mexicana	sim_mays_871285	sim_GID_mays_871285	Triticum urartu	F1_hybrid	sim_sample_mays_871285	num_726	barcode_0.64785530449		trial_4	sim_run_mays_871285
+Zea mays subsp. mexicana	sim_mays_649010	sim_GID_mays_649010	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_649010	num_727	barcode_0.56419987772		trial_4	sim_run_mays_649010
+Zea mays subsp. mexicana	sim_mays_321880	sim_GID_mays_321880	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_321880	num_728	barcode_0.820438139211	REF	trial_4	sim_run_mays_321880
+Zea mays subsp. mexicana	sim_mays_150657	sim_GID_mays_150657	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_150657	num_729	barcode_0.428797931457		trial_4	sim_run_mays_150657
+Zea mays subsp. mexicana	sim_mays_152800	sim_GID_mays_152800	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_152800	num_730	barcode_0.350773144144	REF	trial_3	sim_run_mays_152800
+Zea mays subsp. mexicana	sim_mays_293339	sim_GID_mays_293339	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_293339	num_731	barcode_0.0426818701118		trial_4	sim_run_mays_293339
+Zea mays subsp. mexicana	sim_mays_422700	sim_GID_mays_422700	Zea mays subsp. parviglumis	F2	sim_sample_mays_422700	num_732	barcode_0.134565836871	REF	trial_4	sim_run_mays_422700
+Zea mays subsp. mexicana	sim_mays_583834	sim_GID_mays_583834		F2	sim_sample_mays_583834	num_733	barcode_0.0717222129863	REF	trial_3	sim_run_mays_583834
+Zea mays subsp. mexicana	sim_mays_678662	sim_GID_mays_678662	Zea mays subsp. mays	Inbred_line	sim_sample_mays_678662	num_734	barcode_0.712349179199	REF	trial_4	sim_run_mays_678662
+Zea mays subsp. mexicana	sim_mays_40645	sim_GID_mays_40645	Zea mays subsp. mays		sim_sample_mays_40645	num_735	barcode_0.713327109129		trial_4	sim_run_mays_40645
+Zea mays subsp. mexicana	sim_mays_512653	sim_GID_mays_512653	Triticum urartu	F2	sim_sample_mays_512653	num_736	barcode_0.653599269358		trial_4	sim_run_mays_512653
+Zea mays subsp. mexicana	sim_mays_242810	sim_GID_mays_242810	Triticum urartu	BC1F1	sim_sample_mays_242810	num_737	barcode_0.864232147934	REF	trial_4	sim_run_mays_242810
+Zea mays subsp. mexicana	sim_mays_141150	sim_GID_mays_141150	Triticum zhukovskyi		sim_sample_mays_141150	num_738	barcode_0.426255745237		trial_4	sim_run_mays_141150
+Zea mays subsp. mexicana	sim_mays_865290	sim_GID_mays_865290	Undetermined spp.	Inbred_line	sim_sample_mays_865290	num_739	barcode_0.389059298083	REF	trial_3	sim_run_mays_865290
+Zea mays subsp. mexicana	sim_mays_739476	sim_GID_mays_739476	Unknown	F2	sim_sample_mays_739476	num_740	barcode_0.244620166318	REF	trial_3	sim_run_mays_739476
+Zea mays subsp. mexicana	sim_mays_872341	sim_GID_mays_872341		F2	sim_sample_mays_872341	num_741	barcode_0.442486324732		trial_4	sim_run_mays_872341
+Zea mays subsp. mexicana	sim_mays_79613	sim_GID_mays_79613	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_79613	num_742	barcode_0.350267195551	REF	trial_4	sim_run_mays_79613
+Zea mays subsp. mexicana	sim_mays_40324	sim_GID_mays_40324	Zea mays subsp. mexicana		sim_sample_mays_40324	num_743	barcode_0.189949813272		trial_3	sim_run_mays_40324
+Zea mays subsp. mexicana	sim_mays_738160	sim_GID_mays_738160	Zea mays subsp. parviglumis	F2	sim_sample_mays_738160	num_744	barcode_0.704410283837	REF	trial_4	sim_run_mays_738160
+Zea mays subsp. mexicana	sim_mays_777968	sim_GID_mays_777968	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_777968	num_745	barcode_0.572181937337		trial_3	sim_run_mays_777968
+Zea mays subsp. mexicana	sim_mays_274005	sim_GID_mays_274005	Triticum turgidum subsp. durum		sim_sample_mays_274005	num_746	barcode_0.0189556500063		trial_4	sim_run_mays_274005
+Zea mays subsp. mexicana	sim_mays_185397	sim_GID_mays_185397	Zea mays subsp. mays	F2	sim_sample_mays_185397	num_747	barcode_0.198089009478		trial_4	sim_run_mays_185397
+Zea mays subsp. mexicana	sim_mays_588511	sim_GID_mays_588511	Triticum turgidum subsp. turgidum		sim_sample_mays_588511	num_748	barcode_0.641276020601		trial_3	sim_run_mays_588511
+Zea mays subsp. mexicana	sim_mays_668530	sim_GID_mays_668530	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_668530	num_749	barcode_0.673796491066		trial_3	sim_run_mays_668530
+Zea mays subsp. mexicana	sim_mays_681986	sim_GID_mays_681986	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_681986	num_750	barcode_0.143817146166		trial_4	sim_run_mays_681986
+Zea mays subsp. mexicana	sim_mays_639813	sim_GID_mays_639813	Triticum zhukovskyi	F2	sim_sample_mays_639813	num_751	barcode_0.196825203712	REF	trial_3	sim_run_mays_639813
+Zea mays subsp. mexicana	sim_mays_910755	sim_GID_mays_910755	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_910755	num_752	barcode_0.612092483571		trial_3	sim_run_mays_910755
+Zea mays subsp. mexicana	sim_mays_291157	sim_GID_mays_291157	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_291157	num_753	barcode_0.52188840715		trial_4	sim_run_mays_291157
+Zea mays subsp. mexicana	sim_mays_953748	sim_GID_mays_953748	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_953748	num_754	barcode_0.348554622753	REF	trial_3	sim_run_mays_953748
+Zea mays subsp. mexicana	sim_mays_62926	sim_GID_mays_62926			sim_sample_mays_62926	num_755	barcode_0.511203011517		trial_4	sim_run_mays_62926
+Zea mays subsp. mexicana	sim_mays_442489	sim_GID_mays_442489	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_442489	num_756	barcode_0.266154680717	REF	trial_4	sim_run_mays_442489
+Zea mays subsp. mexicana	sim_mays_198976	sim_GID_mays_198976	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_198976	num_757	barcode_0.00538312265425	REF	trial_3	sim_run_mays_198976
+Zea mays subsp. mexicana	sim_mays_326016	sim_GID_mays_326016	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_326016	num_758	barcode_0.463478764226		trial_4	sim_run_mays_326016
+Zea mays subsp. mexicana	sim_mays_191772	sim_GID_mays_191772	Zea mays subsp. mexicana		sim_sample_mays_191772	num_759	barcode_0.834897276192		trial_3	sim_run_mays_191772
+Zea mays subsp. mexicana	sim_mays_99814	sim_GID_mays_99814	Undetermined	F1_hybrid	sim_sample_mays_99814	num_760	barcode_0.339085170581		trial_4	sim_run_mays_99814
+Zea mays subsp. mexicana	sim_mays_83454	sim_GID_mays_83454	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_83454	num_761	barcode_0.0531298775012	REF	trial_4	sim_run_mays_83454
+Zea mays subsp. mexicana	sim_mays_315800	sim_GID_mays_315800	Triticum turgidum subsp. durum		sim_sample_mays_315800	num_762	barcode_0.742320713193		trial_3	sim_run_mays_315800
+Zea mays subsp. mexicana	sim_mays_248007	sim_GID_mays_248007	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_248007	num_763	barcode_0.0766944196885	REF	trial_4	sim_run_mays_248007
+Zea mays subsp. mexicana	sim_mays_627205	sim_GID_mays_627205	Triticum turgidum subsp. polonicum		sim_sample_mays_627205	num_764	barcode_0.457141223038		trial_4	sim_run_mays_627205
+Zea mays subsp. mexicana	sim_mays_843320	sim_GID_mays_843320	Undetermined	F1_hybrid	sim_sample_mays_843320	num_765	barcode_0.891589335129	REF	trial_4	sim_run_mays_843320
+Zea mays subsp. mexicana	sim_mays_14236	sim_GID_mays_14236	Triticum zhukovskyi	F2	sim_sample_mays_14236	num_766	barcode_0.69217881335		trial_4	sim_run_mays_14236
+Zea mays subsp. mexicana	sim_mays_265868	sim_GID_mays_265868	Zea mays subsp. huehuetenangensis		sim_sample_mays_265868	num_767	barcode_0.958672736033		trial_4	sim_run_mays_265868
+Zea mays subsp. mexicana	sim_mays_283257	sim_GID_mays_283257		F2	sim_sample_mays_283257	num_768	barcode_0.464903132189		trial_4	sim_run_mays_283257
+Zea mays subsp. mexicana	sim_mays_436999	sim_GID_mays_436999	Zea diploperennis	F2	sim_sample_mays_436999	num_769	barcode_0.0911331836408	REF	trial_3	sim_run_mays_436999
+Zea mays subsp. mexicana	sim_mays_376956	sim_GID_mays_376956	Zea diploperennis	Inbred_line	sim_sample_mays_376956	num_770	barcode_0.0435428386996	REF	trial_4	sim_run_mays_376956
+Zea mays subsp. mexicana	sim_mays_445880	sim_GID_mays_445880	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_445880	num_771	barcode_0.881536074316		trial_4	sim_run_mays_445880
+Zea mays subsp. mexicana	sim_mays_730360	sim_GID_mays_730360	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_730360	num_772	barcode_0.884452799441	REF	trial_4	sim_run_mays_730360
+Zea mays subsp. mexicana	sim_mays_858597	sim_GID_mays_858597	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_858597	num_773	barcode_0.214971933453	REF	trial_4	sim_run_mays_858597
+Zea mays subsp. mexicana	sim_mays_841401	sim_GID_mays_841401	Undetermined		sim_sample_mays_841401	num_774	barcode_0.664615217422	REF	trial_3	sim_run_mays_841401
+Zea mays subsp. mexicana	sim_mays_672382	sim_GID_mays_672382	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_672382	num_775	barcode_0.352552911787	REF	trial_4	sim_run_mays_672382
+Zea mays subsp. mexicana	sim_mays_449514	sim_GID_mays_449514	Triticum zhukovskyi	Inbred_line	sim_sample_mays_449514	num_776	barcode_0.586054068683	REF	trial_4	sim_run_mays_449514
+Zea mays subsp. mexicana	sim_mays_845646	sim_GID_mays_845646	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_845646	num_777	barcode_0.246250213126		trial_4	sim_run_mays_845646
+Zea mays subsp. mexicana	sim_mays_149968	sim_GID_mays_149968	Undetermined spp.	Inbred_line	sim_sample_mays_149968	num_778	barcode_0.224896182316		trial_4	sim_run_mays_149968
+Zea mays subsp. mexicana	sim_mays_828286	sim_GID_mays_828286	Unknown	F1_hybrid	sim_sample_mays_828286	num_779	barcode_0.00385611624815	REF	trial_4	sim_run_mays_828286
+Zea mays subsp. mexicana	sim_mays_929737	sim_GID_mays_929737	Undetermined	F2	sim_sample_mays_929737	num_780	barcode_0.4910179577	REF	trial_3	sim_run_mays_929737
+Zea mays subsp. mexicana	sim_mays_58076	sim_GID_mays_58076	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_58076	num_781	barcode_0.103592086069	REF	trial_3	sim_run_mays_58076
+Zea mays subsp. mexicana	sim_mays_72938	sim_GID_mays_72938	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_72938	num_782	barcode_0.54323492644		trial_3	sim_run_mays_72938
+Zea mays subsp. mexicana	sim_mays_27561	sim_GID_mays_27561	Triticum turgidum subsp. turanicum		sim_sample_mays_27561	num_783	barcode_0.599117755318		trial_4	sim_run_mays_27561
+Zea mays subsp. mexicana	sim_mays_562195	sim_GID_mays_562195	Undetermined spp.	F2	sim_sample_mays_562195	num_784	barcode_0.471747433591	REF	trial_4	sim_run_mays_562195
+Zea mays subsp. mexicana	sim_mays_461446	sim_GID_mays_461446	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_461446	num_785	barcode_0.66882736464		trial_4	sim_run_mays_461446
+Zea mays subsp. mexicana	sim_mays_974174	sim_GID_mays_974174	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_974174	num_786	barcode_0.953581894636	REF	trial_4	sim_run_mays_974174
+Zea mays subsp. mexicana	sim_mays_188004	sim_GID_mays_188004	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_188004	num_787	barcode_0.954440825076		trial_3	sim_run_mays_188004
+Zea mays subsp. mexicana	sim_mays_231674	sim_GID_mays_231674	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_231674	num_788	barcode_0.478778459597		trial_4	sim_run_mays_231674
+Zea mays subsp. mexicana	sim_mays_431434	sim_GID_mays_431434	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_mays_431434	num_789	barcode_0.313113436914	REF	trial_3	sim_run_mays_431434
+Zea mays subsp. mexicana	sim_mays_988411	sim_GID_mays_988411	Zea mays subsp. mays	BC1F1	sim_sample_mays_988411	num_790	barcode_0.808823127368	REF	trial_3	sim_run_mays_988411
+Zea mays subsp. mexicana	sim_mays_366219	sim_GID_mays_366219	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_366219	num_791	barcode_0.351027189882		trial_4	sim_run_mays_366219
+Zea mays subsp. mexicana	sim_mays_818279	sim_GID_mays_818279	Zea mays subsp. mays	BC1F1	sim_sample_mays_818279	num_792	barcode_0.174374034928	REF	trial_3	sim_run_mays_818279
+Zea mays subsp. mexicana	sim_mays_74101	sim_GID_mays_74101	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_74101	num_793	barcode_0.463750416886		trial_3	sim_run_mays_74101
+Zea mays subsp. mexicana	sim_mays_828741	sim_GID_mays_828741	Zea diploperennis	BC1F1	sim_sample_mays_828741	num_794	barcode_0.759269483914	REF	trial_3	sim_run_mays_828741
+Zea mays subsp. mexicana	sim_mays_778231	sim_GID_mays_778231	Zea mays subsp. mays	Inbred_line	sim_sample_mays_778231	num_795	barcode_0.944485413311	REF	trial_3	sim_run_mays_778231
+Zea mays subsp. mexicana	sim_mays_649830	sim_GID_mays_649830	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_649830	num_796	barcode_0.37714130632	REF	trial_4	sim_run_mays_649830
+Zea mays subsp. mexicana	sim_mays_75810	sim_GID_mays_75810	Triticum zhukovskyi		sim_sample_mays_75810	num_797	barcode_0.712373100219	REF	trial_3	sim_run_mays_75810
+Zea mays subsp. mexicana	sim_mays_138634	sim_GID_mays_138634	Triticum zhukovskyi		sim_sample_mays_138634	num_798	barcode_0.566184091939		trial_3	sim_run_mays_138634
+Zea mays subsp. mexicana	sim_mays_388260	sim_GID_mays_388260	Triticum vavilovii var. vavilovii		sim_sample_mays_388260	num_799	barcode_0.326165420119	REF	trial_3	sim_run_mays_388260
+Zea mays subsp. mexicana	sim_mays_932638	sim_GID_mays_932638	Undetermined	F1_hybrid	sim_sample_mays_932638	num_800	barcode_0.797799167513		trial_3	sim_run_mays_932638
+Zea mays subsp. mexicana	sim_mays_228417	sim_GID_mays_228417	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_228417	num_801	barcode_0.901887638917	REF	trial_3	sim_run_mays_228417
+Zea mays subsp. mexicana	sim_mays_477962	sim_GID_mays_477962	Zea mays subsp. mays	F2	sim_sample_mays_477962	num_802	barcode_0.483629645656	REF	trial_3	sim_run_mays_477962
+Zea mays subsp. mexicana	sim_mays_224120	sim_GID_mays_224120	Zea mays subsp. mexicana	F1_hybrid	sim_sample_mays_224120	num_803	barcode_0.416709493959	REF	trial_3	sim_run_mays_224120
+Zea mays subsp. mexicana	sim_mays_128161	sim_GID_mays_128161	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_128161	num_804	barcode_0.303368013911	REF	trial_4	sim_run_mays_128161
+Zea mays subsp. mexicana	sim_mays_123734	sim_GID_mays_123734	Unknown	Inbred_line	sim_sample_mays_123734	num_805	barcode_0.169397958217		trial_3	sim_run_mays_123734
+Zea mays subsp. mexicana	sim_mays_183624	sim_GID_mays_183624	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_183624	num_806	barcode_0.728288295545		trial_3	sim_run_mays_183624
+Zea mays subsp. mexicana	sim_mays_786269	sim_GID_mays_786269	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_786269	num_807	barcode_0.837570077875		trial_4	sim_run_mays_786269
+Zea mays subsp. mexicana	sim_mays_745849	sim_GID_mays_745849	Triticum zhukovskyi		sim_sample_mays_745849	num_808	barcode_0.388794389716		trial_3	sim_run_mays_745849
+Zea mays subsp. mexicana	sim_mays_33998	sim_GID_mays_33998	Triticum urartu	F2	sim_sample_mays_33998	num_809	barcode_0.575620532914		trial_4	sim_run_mays_33998
+Zea mays subsp. mexicana	sim_mays_955957	sim_GID_mays_955957	Unknown		sim_sample_mays_955957	num_810	barcode_0.913126776641		trial_3	sim_run_mays_955957
+Zea mays subsp. mexicana	sim_mays_623204	sim_GID_mays_623204	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_623204	num_811	barcode_0.381856500262	REF	trial_4	sim_run_mays_623204
+Zea mays subsp. mexicana	sim_mays_334524	sim_GID_mays_334524	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_334524	num_812	barcode_0.361029163025		trial_3	sim_run_mays_334524
+Zea mays subsp. mexicana	sim_mays_230729	sim_GID_mays_230729	Zea mays subsp. parviglumis		sim_sample_mays_230729	num_813	barcode_0.766335789415		trial_3	sim_run_mays_230729
+Zea mays subsp. mexicana	sim_mays_711222	sim_GID_mays_711222	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_711222	num_814	barcode_0.162576765532	REF	trial_3	sim_run_mays_711222
+Zea mays subsp. mexicana	sim_mays_502094	sim_GID_mays_502094	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_502094	num_815	barcode_0.711871244231	REF	trial_3	sim_run_mays_502094
+Zea mays subsp. mexicana	sim_mays_103724	sim_GID_mays_103724	Zea mays subsp. parviglumis	F2	sim_sample_mays_103724	num_816	barcode_0.816687196669	REF	trial_3	sim_run_mays_103724
+Zea mays subsp. mexicana	sim_mays_832783	sim_GID_mays_832783	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_832783	num_817	barcode_0.375959047853		trial_3	sim_run_mays_832783
+Zea mays subsp. mexicana	sim_mays_887976	sim_GID_mays_887976	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_mays_887976	num_818	barcode_0.387406118632		trial_4	sim_run_mays_887976
+Zea mays subsp. mexicana	sim_mays_659905	sim_GID_mays_659905	Zea mays subsp. mays		sim_sample_mays_659905	num_819	barcode_0.171319615491		trial_3	sim_run_mays_659905
+Zea mays subsp. mexicana	sim_mays_579383	sim_GID_mays_579383	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_579383	num_820	barcode_0.595285387687		trial_3	sim_run_mays_579383
+Zea mays subsp. mexicana	sim_mays_560239	sim_GID_mays_560239	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_560239	num_821	barcode_0.725374962324	REF	trial_3	sim_run_mays_560239
+Zea mays subsp. mexicana	sim_mays_25646	sim_GID_mays_25646	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_25646	num_822	barcode_0.876733947103		trial_3	sim_run_mays_25646
+Zea mays subsp. mexicana	sim_mays_311528	sim_GID_mays_311528	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_311528	num_823	barcode_0.190571578293		trial_3	sim_run_mays_311528
+Zea mays subsp. mexicana	sim_mays_798384	sim_GID_mays_798384	Triticum urartu	F2	sim_sample_mays_798384	num_824	barcode_0.459238836454		trial_3	sim_run_mays_798384
+Zea mays subsp. mexicana	sim_mays_608132	sim_GID_mays_608132	Undetermined	F1_hybrid	sim_sample_mays_608132	num_825	barcode_0.192523847542	REF	trial_4	sim_run_mays_608132
+Zea mays subsp. mexicana	sim_mays_15401	sim_GID_mays_15401	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_15401	num_826	barcode_0.567879818703	REF	trial_3	sim_run_mays_15401
+Zea mays subsp. mexicana	sim_mays_723361	sim_GID_mays_723361	Zea mays subsp. parviglumis	F2	sim_sample_mays_723361	num_827	barcode_0.187359500417		trial_4	sim_run_mays_723361
+Zea mays subsp. mexicana	sim_mays_781466	sim_GID_mays_781466	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_mays_781466	num_828	barcode_0.135278877086	REF	trial_4	sim_run_mays_781466
+Zea mays subsp. mexicana	sim_mays_178092	sim_GID_mays_178092	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_178092	num_829	barcode_0.831681829057		trial_4	sim_run_mays_178092
+Zea mays subsp. mexicana	sim_mays_860379	sim_GID_mays_860379	Unknown	F1_hybrid	sim_sample_mays_860379	num_830	barcode_0.138831082138	REF	trial_4	sim_run_mays_860379
+Zea mays subsp. mexicana	sim_mays_67558	sim_GID_mays_67558	Triticum zhukovskyi	BC1F1	sim_sample_mays_67558	num_831	barcode_0.861185696522		trial_4	sim_run_mays_67558
+Zea mays subsp. mexicana	sim_mays_874500	sim_GID_mays_874500			sim_sample_mays_874500	num_832	barcode_0.857943894003		trial_4	sim_run_mays_874500
+Zea mays subsp. mexicana	sim_mays_890965	sim_GID_mays_890965	Triticum turgidum subsp. turgidum		sim_sample_mays_890965	num_833	barcode_0.854151290891	REF	trial_3	sim_run_mays_890965
+Zea mays subsp. mexicana	sim_mays_777037	sim_GID_mays_777037		F2	sim_sample_mays_777037	num_834	barcode_0.809276097437	REF	trial_4	sim_run_mays_777037
+Zea mays subsp. mexicana	sim_mays_800001	sim_GID_mays_800001	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_800001	num_835	barcode_0.285436325198		trial_4	sim_run_mays_800001
+Zea mays subsp. mexicana	sim_mays_8248	sim_GID_mays_8248	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_8248	num_836	barcode_0.205790426693		trial_3	sim_run_mays_8248
+Zea mays subsp. mexicana	sim_mays_72568	sim_GID_mays_72568	Zea mays subsp. mays	Inbred_line	sim_sample_mays_72568	num_837	barcode_0.0212625408245		trial_3	sim_run_mays_72568
+Zea mays subsp. mexicana	sim_mays_24747	sim_GID_mays_24747	Triticum zhukovskyi		sim_sample_mays_24747	num_838	barcode_0.662240474574	REF	trial_4	sim_run_mays_24747
+Zea mays subsp. mexicana	sim_mays_381722	sim_GID_mays_381722	Triticum turgidum subsp. turgidum		sim_sample_mays_381722	num_839	barcode_0.223528819799	REF	trial_4	sim_run_mays_381722
+Zea mays subsp. mexicana	sim_mays_666746	sim_GID_mays_666746	Undetermined		sim_sample_mays_666746	num_840	barcode_0.47163675141	REF	trial_3	sim_run_mays_666746
+Zea mays subsp. mexicana	sim_mays_841172	sim_GID_mays_841172	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_mays_841172	num_841	barcode_0.711896894239	REF	trial_4	sim_run_mays_841172
+Zea mays subsp. mexicana	sim_mays_160393	sim_GID_mays_160393	Zea mays subsp. parviglumis		sim_sample_mays_160393	num_842	barcode_0.714815137258	REF	trial_4	sim_run_mays_160393
+Zea mays subsp. mexicana	sim_mays_561337	sim_GID_mays_561337	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_561337	num_843	barcode_0.802737517556	REF	trial_3	sim_run_mays_561337
+Zea mays subsp. mexicana	sim_mays_401316	sim_GID_mays_401316	Undetermined spp.	F2	sim_sample_mays_401316	num_844	barcode_0.322639532567		trial_3	sim_run_mays_401316
+Zea mays subsp. mexicana	sim_mays_207124	sim_GID_mays_207124	Triticum zhukovskyi	F2	sim_sample_mays_207124	num_845	barcode_0.584236071946	REF	trial_3	sim_run_mays_207124
+Zea mays subsp. mexicana	sim_mays_322194	sim_GID_mays_322194	Triticum zhukovskyi	F2	sim_sample_mays_322194	num_846	barcode_0.50545752371	REF	trial_4	sim_run_mays_322194
+Zea mays subsp. mexicana	sim_mays_961463	sim_GID_mays_961463	Triticum turgidum subsp. durum		sim_sample_mays_961463	num_847	barcode_0.128197068822	REF	trial_3	sim_run_mays_961463
+Zea mays subsp. mexicana	sim_mays_142381	sim_GID_mays_142381	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_142381	num_848	barcode_0.165973659133	REF	trial_4	sim_run_mays_142381
+Zea mays subsp. mexicana	sim_mays_598096	sim_GID_mays_598096	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_598096	num_849	barcode_0.055502337222		trial_3	sim_run_mays_598096
+Zea mays subsp. mexicana	sim_mays_582496	sim_GID_mays_582496	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_582496	num_850	barcode_0.964235643261		trial_4	sim_run_mays_582496
+Zea mays subsp. mexicana	sim_mays_444421	sim_GID_mays_444421	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_444421	num_851	barcode_0.519273742709		trial_3	sim_run_mays_444421
+Zea mays subsp. mexicana	sim_mays_155212	sim_GID_mays_155212	Zea mays subsp. parviglumis		sim_sample_mays_155212	num_852	barcode_0.84780604075		trial_3	sim_run_mays_155212
+Zea mays subsp. mexicana	sim_mays_296092	sim_GID_mays_296092	Zea mays subsp. mexicana	F2	sim_sample_mays_296092	num_853	barcode_0.509861075214	REF	trial_3	sim_run_mays_296092
+Zea mays subsp. mexicana	sim_mays_231636	sim_GID_mays_231636	Unknown	BC1F1	sim_sample_mays_231636	num_854	barcode_0.154756755229	REF	trial_3	sim_run_mays_231636
+Zea mays subsp. mexicana	sim_mays_50319	sim_GID_mays_50319	Triticum urartu	BC1F1	sim_sample_mays_50319	num_855	barcode_0.0878885175646	REF	trial_4	sim_run_mays_50319
+Zea mays subsp. mexicana	sim_mays_828794	sim_GID_mays_828794	Triticum zhukovskyi	F1_hybrid	sim_sample_mays_828794	num_856	barcode_0.995573803804		trial_4	sim_run_mays_828794
+Zea mays subsp. mexicana	sim_mays_464969	sim_GID_mays_464969	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_464969	num_857	barcode_0.796844276928		trial_4	sim_run_mays_464969
+Zea mays subsp. mexicana	sim_mays_426905	sim_GID_mays_426905	Zea diploperennis	F1_hybrid	sim_sample_mays_426905	num_858	barcode_0.109229356098		trial_3	sim_run_mays_426905
+Zea mays subsp. mexicana	sim_mays_519192	sim_GID_mays_519192	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_519192	num_859	barcode_0.177277750404	REF	trial_4	sim_run_mays_519192
+Zea mays subsp. mexicana	sim_mays_161486	sim_GID_mays_161486	Triticum zhukovskyi	F2	sim_sample_mays_161486	num_860	barcode_0.673525142368		trial_4	sim_run_mays_161486
+Zea mays subsp. mexicana	sim_mays_778503	sim_GID_mays_778503	Zea diploperennis	BC1F1	sim_sample_mays_778503	num_861	barcode_0.870800078005	REF	trial_4	sim_run_mays_778503
+Zea mays subsp. mexicana	sim_mays_108293	sim_GID_mays_108293	Triticum turgidum subsp. dicoccon		sim_sample_mays_108293	num_862	barcode_0.934983670769	REF	trial_4	sim_run_mays_108293
+Zea mays subsp. mexicana	sim_mays_524068	sim_GID_mays_524068	Unknown		sim_sample_mays_524068	num_863	barcode_0.881794067547		trial_4	sim_run_mays_524068
+Zea mays subsp. mexicana	sim_mays_775755	sim_GID_mays_775755	Zea mays subsp. parviglumis		sim_sample_mays_775755	num_864	barcode_0.736928025022		trial_3	sim_run_mays_775755
+Zea mays subsp. mexicana	sim_mays_925822	sim_GID_mays_925822	Zea diploperennis	BC1F1	sim_sample_mays_925822	num_865	barcode_0.103543191255		trial_4	sim_run_mays_925822
+Zea mays subsp. mexicana	sim_mays_709741	sim_GID_mays_709741	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_mays_709741	num_866	barcode_0.828404223584		trial_4	sim_run_mays_709741
+Zea mays subsp. mexicana	sim_mays_986311	sim_GID_mays_986311	Zea mays subsp. parviglumis	F2	sim_sample_mays_986311	num_867	barcode_0.497639030994		trial_3	sim_run_mays_986311
+Zea mays subsp. mexicana	sim_mays_746225	sim_GID_mays_746225	Zea mays subsp. mexicana	F2	sim_sample_mays_746225	num_868	barcode_0.652240522042		trial_3	sim_run_mays_746225
+Zea mays subsp. mexicana	sim_mays_344364	sim_GID_mays_344364	Zea diploperennis		sim_sample_mays_344364	num_869	barcode_0.143891387758	REF	trial_4	sim_run_mays_344364
+Zea mays subsp. mexicana	sim_mays_814294	sim_GID_mays_814294			sim_sample_mays_814294	num_870	barcode_0.858011647025	REF	trial_3	sim_run_mays_814294
+Zea mays subsp. mexicana	sim_mays_97810	sim_GID_mays_97810	Triticum urartu	F2	sim_sample_mays_97810	num_871	barcode_0.950857592773		trial_4	sim_run_mays_97810
+Zea mays subsp. mexicana	sim_mays_692150	sim_GID_mays_692150	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_692150	num_872	barcode_0.246248757739	REF	trial_3	sim_run_mays_692150
+Zea mays subsp. mexicana	sim_mays_830782	sim_GID_mays_830782	Triticum zhukovskyi	F2	sim_sample_mays_830782	num_873	barcode_0.422393712647		trial_4	sim_run_mays_830782
+Zea mays subsp. mexicana	sim_mays_572448	sim_GID_mays_572448	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_572448	num_874	barcode_0.755714565078	REF	trial_4	sim_run_mays_572448
+Zea mays subsp. mexicana	sim_mays_480209	sim_GID_mays_480209	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_480209	num_875	barcode_0.542035378695		trial_4	sim_run_mays_480209
+Zea mays subsp. mexicana	sim_mays_5255	sim_GID_mays_5255	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_5255	num_876	barcode_0.497285602293	REF	trial_3	sim_run_mays_5255
+Zea mays subsp. mexicana	sim_mays_684172	sim_GID_mays_684172	Zea mays subsp. huehuetenangensis	F2	sim_sample_mays_684172	num_877	barcode_0.902087556457		trial_4	sim_run_mays_684172
+Zea mays subsp. mexicana	sim_mays_397748	sim_GID_mays_397748	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_397748	num_878	barcode_0.979765787188	REF	trial_4	sim_run_mays_397748
+Zea mays subsp. mexicana	sim_mays_264544	sim_GID_mays_264544	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_mays_264544	num_879	barcode_0.628561193915		trial_3	sim_run_mays_264544
+Zea mays subsp. mexicana	sim_mays_214715	sim_GID_mays_214715	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_214715	num_880	barcode_0.789866729673	REF	trial_4	sim_run_mays_214715
+Zea mays subsp. mexicana	sim_mays_118135	sim_GID_mays_118135	Zea diploperennis	F1_hybrid	sim_sample_mays_118135	num_881	barcode_0.469624898585	REF	trial_3	sim_run_mays_118135
+Zea mays subsp. mexicana	sim_mays_442118	sim_GID_mays_442118	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_442118	num_882	barcode_0.443248935972	REF	trial_4	sim_run_mays_442118
+Zea mays subsp. mexicana	sim_mays_312099	sim_GID_mays_312099	Zea mays subsp. mays	Inbred_line	sim_sample_mays_312099	num_883	barcode_0.826786074285	REF	trial_3	sim_run_mays_312099
+Zea mays subsp. mexicana	sim_mays_635248	sim_GID_mays_635248	Zea mays subsp. mays	F2	sim_sample_mays_635248	num_884	barcode_0.142933181013		trial_4	sim_run_mays_635248
+Zea mays subsp. mexicana	sim_mays_176033	sim_GID_mays_176033	Undetermined	BC1F1	sim_sample_mays_176033	num_885	barcode_0.0568354118086		trial_3	sim_run_mays_176033
+Zea mays subsp. mexicana	sim_mays_490533	sim_GID_mays_490533	Triticum zhukovskyi	Inbred_line	sim_sample_mays_490533	num_886	barcode_0.607737797496		trial_3	sim_run_mays_490533
+Zea mays subsp. mexicana	sim_mays_103947	sim_GID_mays_103947	Triticum zhukovskyi	Inbred_line	sim_sample_mays_103947	num_887	barcode_0.584142177324		trial_4	sim_run_mays_103947
+Zea mays subsp. mexicana	sim_mays_133365	sim_GID_mays_133365	Zea mays subsp. mays	F2	sim_sample_mays_133365	num_888	barcode_0.417239466557		trial_3	sim_run_mays_133365
+Zea mays subsp. mexicana	sim_mays_661419	sim_GID_mays_661419	Zea diploperennis	Inbred_line	sim_sample_mays_661419	num_889	barcode_0.433549739463		trial_4	sim_run_mays_661419
+Zea mays subsp. mexicana	sim_mays_460523	sim_GID_mays_460523	Zea mays subsp. parviglumis	F2	sim_sample_mays_460523	num_890	barcode_0.675342369025	REF	trial_4	sim_run_mays_460523
+Zea mays subsp. mexicana	sim_mays_525852	sim_GID_mays_525852	Triticum turgidum subsp. turanicum	F2	sim_sample_mays_525852	num_891	barcode_0.709647173009		trial_4	sim_run_mays_525852
+Zea mays subsp. mexicana	sim_mays_109809	sim_GID_mays_109809	Undetermined spp.		sim_sample_mays_109809	num_892	barcode_0.953359567392		trial_4	sim_run_mays_109809
+Zea mays subsp. mexicana	sim_mays_528977	sim_GID_mays_528977	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_mays_528977	num_893	barcode_0.438146610425		trial_3	sim_run_mays_528977
+Zea mays subsp. mexicana	sim_mays_68246	sim_GID_mays_68246	Undetermined		sim_sample_mays_68246	num_894	barcode_0.741696499822	REF	trial_4	sim_run_mays_68246
+Zea mays subsp. mexicana	sim_mays_189447	sim_GID_mays_189447	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_189447	num_895	barcode_0.887757479138		trial_3	sim_run_mays_189447
+Zea mays subsp. mexicana	sim_mays_14067	sim_GID_mays_14067			sim_sample_mays_14067	num_896	barcode_0.335787031846	REF	trial_3	sim_run_mays_14067
+Zea mays subsp. mexicana	sim_mays_217905	sim_GID_mays_217905	Undetermined spp.	F1_hybrid	sim_sample_mays_217905	num_897	barcode_0.650016288676	REF	trial_4	sim_run_mays_217905
+Zea mays subsp. mexicana	sim_mays_276860	sim_GID_mays_276860	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_276860	num_898	barcode_0.764111016402		trial_4	sim_run_mays_276860
+Zea mays subsp. mexicana	sim_mays_612091	sim_GID_mays_612091		F2	sim_sample_mays_612091	num_899	barcode_0.817341487058	REF	trial_4	sim_run_mays_612091
+Zea mays subsp. mexicana	sim_mays_966776	sim_GID_mays_966776	Triticum turgidum subsp. turanicum	F1_hybrid	sim_sample_mays_966776	num_900	barcode_0.575733004567	REF	trial_4	sim_run_mays_966776
+Zea mays subsp. mexicana	sim_mays_18429	sim_GID_mays_18429	Zea mays subsp. huehuetenangensis		sim_sample_mays_18429	num_901	barcode_0.565399670536	REF	trial_3	sim_run_mays_18429
+Zea mays subsp. mexicana	sim_mays_108292	sim_GID_mays_108292	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_108292	num_902	barcode_0.305848107821		trial_3	sim_run_mays_108292
+Zea mays subsp. mexicana	sim_mays_914490	sim_GID_mays_914490	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_914490	num_903	barcode_0.735666882466	REF	trial_4	sim_run_mays_914490
+Zea mays subsp. mexicana	sim_mays_860025	sim_GID_mays_860025	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_860025	num_904	barcode_0.760591356964		trial_4	sim_run_mays_860025
+Zea mays subsp. mexicana	sim_mays_785667	sim_GID_mays_785667	Triticum turgidum subsp. dicoccon		sim_sample_mays_785667	num_905	barcode_0.172192670002	REF	trial_4	sim_run_mays_785667
+Zea mays subsp. mexicana	sim_mays_556548	sim_GID_mays_556548	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_556548	num_906	barcode_0.415608502291		trial_3	sim_run_mays_556548
+Zea mays subsp. mexicana	sim_mays_258891	sim_GID_mays_258891	Triticum zhukovskyi	Inbred_line	sim_sample_mays_258891	num_907	barcode_0.0375366421395	REF	trial_4	sim_run_mays_258891
+Zea mays subsp. mexicana	sim_mays_599487	sim_GID_mays_599487	Triticum turgidum subsp. turgidum	F2	sim_sample_mays_599487	num_908	barcode_0.706785450293	REF	trial_3	sim_run_mays_599487
+Zea mays subsp. mexicana	sim_mays_557885	sim_GID_mays_557885	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_557885	num_909	barcode_0.384483416854		trial_4	sim_run_mays_557885
+Zea mays subsp. mexicana	sim_mays_317114	sim_GID_mays_317114	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_317114	num_910	barcode_0.78218884013		trial_4	sim_run_mays_317114
+Zea mays subsp. mexicana	sim_mays_9778	sim_GID_mays_9778	Unknown	F1_hybrid	sim_sample_mays_9778	num_911	barcode_0.930569413218	REF	trial_4	sim_run_mays_9778
+Zea mays subsp. mexicana	sim_mays_955314	sim_GID_mays_955314	Undetermined	Inbred_line	sim_sample_mays_955314	num_912	barcode_0.445453985906		trial_4	sim_run_mays_955314
+Zea mays subsp. mexicana	sim_mays_966394	sim_GID_mays_966394	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_mays_966394	num_913	barcode_0.298691469777		trial_3	sim_run_mays_966394
+Zea mays subsp. mexicana	sim_mays_279775	sim_GID_mays_279775	Triticum zhukovskyi		sim_sample_mays_279775	num_914	barcode_0.181468326601	REF	trial_3	sim_run_mays_279775
+Zea mays subsp. mexicana	sim_mays_560049	sim_GID_mays_560049	Triticum turgidum subsp. polonicum	F2	sim_sample_mays_560049	num_915	barcode_0.265201690132		trial_3	sim_run_mays_560049
+Zea mays subsp. mexicana	sim_mays_101858	sim_GID_mays_101858	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_101858	num_916	barcode_0.904566234801	REF	trial_3	sim_run_mays_101858
+Zea mays subsp. mexicana	sim_mays_372511	sim_GID_mays_372511	Undetermined		sim_sample_mays_372511	num_917	barcode_0.0159230076695	REF	trial_3	sim_run_mays_372511
+Zea mays subsp. mexicana	sim_mays_925410	sim_GID_mays_925410	Zea mays subsp. mays	Inbred_line	sim_sample_mays_925410	num_918	barcode_0.64226925839		trial_3	sim_run_mays_925410
+Zea mays subsp. mexicana	sim_mays_685834	sim_GID_mays_685834	Triticum turgidum subsp. durum	F2	sim_sample_mays_685834	num_919	barcode_0.291236084901	REF	trial_3	sim_run_mays_685834
+Zea mays subsp. mexicana	sim_mays_400508	sim_GID_mays_400508	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_400508	num_920	barcode_0.915155673163	REF	trial_4	sim_run_mays_400508
+Zea mays subsp. mexicana	sim_mays_863692	sim_GID_mays_863692	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_863692	num_921	barcode_0.610765464974		trial_3	sim_run_mays_863692
+Zea mays subsp. mexicana	sim_mays_572859	sim_GID_mays_572859	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_572859	num_922	barcode_0.992679453627		trial_3	sim_run_mays_572859
+Zea mays subsp. mexicana	sim_mays_705826	sim_GID_mays_705826	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_705826	num_923	barcode_0.474110450481	REF	trial_3	sim_run_mays_705826
+Zea mays subsp. mexicana	sim_mays_988346	sim_GID_mays_988346	Triticum urartu	BC1F1	sim_sample_mays_988346	num_924	barcode_0.116246147212		trial_3	sim_run_mays_988346
+Zea mays subsp. mexicana	sim_mays_91095	sim_GID_mays_91095	Triticum zhukovskyi		sim_sample_mays_91095	num_925	barcode_0.22699387539		trial_3	sim_run_mays_91095
+Zea mays subsp. mexicana	sim_mays_294355	sim_GID_mays_294355	Triticum zhukovskyi	F2	sim_sample_mays_294355	num_926	barcode_0.522768344965	REF	trial_3	sim_run_mays_294355
+Zea mays subsp. mexicana	sim_mays_867404	sim_GID_mays_867404	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_867404	num_927	barcode_0.252533210376		trial_3	sim_run_mays_867404
+Zea mays subsp. mexicana	sim_mays_385539	sim_GID_mays_385539	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_mays_385539	num_928	barcode_0.695576990078		trial_3	sim_run_mays_385539
+Zea mays subsp. mexicana	sim_mays_726491	sim_GID_mays_726491	Triticum urartu		sim_sample_mays_726491	num_929	barcode_0.531941614442		trial_3	sim_run_mays_726491
+Zea mays subsp. mexicana	sim_mays_374563	sim_GID_mays_374563	Undetermined	F2	sim_sample_mays_374563	num_930	barcode_0.124156290005	REF	trial_3	sim_run_mays_374563
+Zea mays subsp. mexicana	sim_mays_99856	sim_GID_mays_99856	Triticum turgidum subsp. paleocolchicum	F1_hybrid	sim_sample_mays_99856	num_931	barcode_0.142735762037	REF	trial_3	sim_run_mays_99856
+Zea mays subsp. mexicana	sim_mays_231755	sim_GID_mays_231755	Zea mays subsp. mexicana	BC1F1	sim_sample_mays_231755	num_932	barcode_0.600550536917	REF	trial_4	sim_run_mays_231755
+Zea mays subsp. mexicana	sim_mays_741662	sim_GID_mays_741662	Zea mays subsp. mays		sim_sample_mays_741662	num_933	barcode_0.4940504699		trial_3	sim_run_mays_741662
+Zea mays subsp. mexicana	sim_mays_914182	sim_GID_mays_914182	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_914182	num_934	barcode_0.914791372766	REF	trial_3	sim_run_mays_914182
+Zea mays subsp. mexicana	sim_mays_419252	sim_GID_mays_419252	Triticum turgidum subsp. durum	Inbred_line	sim_sample_mays_419252	num_935	barcode_0.893981891197	REF	trial_3	sim_run_mays_419252
+Zea mays subsp. mexicana	sim_mays_625982	sim_GID_mays_625982	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_625982	num_936	barcode_0.299850916517	REF	trial_4	sim_run_mays_625982
+Zea mays subsp. mexicana	sim_mays_956619	sim_GID_mays_956619	Zea mays subsp. parviglumis		sim_sample_mays_956619	num_937	barcode_0.214751055178		trial_3	sim_run_mays_956619
+Zea mays subsp. mexicana	sim_mays_129678	sim_GID_mays_129678	Triticum zhukovskyi	BC1F1	sim_sample_mays_129678	num_938	barcode_0.549445626638		trial_4	sim_run_mays_129678
+Zea mays subsp. mexicana	sim_mays_673612	sim_GID_mays_673612	Triticum turgidum subsp. durum	F2	sim_sample_mays_673612	num_939	barcode_0.961038188091	REF	trial_4	sim_run_mays_673612
+Zea mays subsp. mexicana	sim_mays_268847	sim_GID_mays_268847	Undetermined		sim_sample_mays_268847	num_940	barcode_0.359207319533	REF	trial_3	sim_run_mays_268847
+Zea mays subsp. mexicana	sim_mays_746695	sim_GID_mays_746695	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_mays_746695	num_941	barcode_0.326657417522	REF	trial_3	sim_run_mays_746695
+Zea mays subsp. mexicana	sim_mays_8361	sim_GID_mays_8361		F1_hybrid	sim_sample_mays_8361	num_942	barcode_0.521998737893		trial_4	sim_run_mays_8361
+Zea mays subsp. mexicana	sim_mays_341975	sim_GID_mays_341975	Zea mays subsp. mays	F2	sim_sample_mays_341975	num_943	barcode_0.808233572654	REF	trial_3	sim_run_mays_341975
+Zea mays subsp. mexicana	sim_mays_619606	sim_GID_mays_619606	Zea diploperennis	F2	sim_sample_mays_619606	num_944	barcode_0.366289365252	REF	trial_4	sim_run_mays_619606
+Zea mays subsp. mexicana	sim_mays_90156	sim_GID_mays_90156	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_90156	num_945	barcode_0.025835675453		trial_3	sim_run_mays_90156
+Zea mays subsp. mexicana	sim_mays_12189	sim_GID_mays_12189		F2	sim_sample_mays_12189	num_946	barcode_0.477689108196	REF	trial_4	sim_run_mays_12189
+Zea mays subsp. mexicana	sim_mays_206836	sim_GID_mays_206836	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_mays_206836	num_947	barcode_0.37937841197	REF	trial_4	sim_run_mays_206836
+Zea mays subsp. mexicana	sim_mays_915165	sim_GID_mays_915165	Unknown	BC1F1	sim_sample_mays_915165	num_948	barcode_0.71750238042		trial_4	sim_run_mays_915165
+Zea mays subsp. mexicana	sim_mays_553883	sim_GID_mays_553883	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_553883	num_949	barcode_0.729668328871		trial_3	sim_run_mays_553883
+Zea mays subsp. mexicana	sim_mays_461977	sim_GID_mays_461977	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_461977	num_950	barcode_0.257357649084	REF	trial_4	sim_run_mays_461977
+Zea mays subsp. mexicana	sim_mays_93791	sim_GID_mays_93791	Undetermined	F2	sim_sample_mays_93791	num_951	barcode_0.653640494516		trial_4	sim_run_mays_93791
+Zea mays subsp. mexicana	sim_mays_112474	sim_GID_mays_112474	Zea mays subsp. parviglumis	F2	sim_sample_mays_112474	num_952	barcode_0.743276553482		trial_3	sim_run_mays_112474
+Zea mays subsp. mexicana	sim_mays_620907	sim_GID_mays_620907			sim_sample_mays_620907	num_953	barcode_0.126576397667	REF	trial_4	sim_run_mays_620907
+Zea mays subsp. mexicana	sim_mays_363043	sim_GID_mays_363043	Triticum urartu	BC1F1	sim_sample_mays_363043	num_954	barcode_0.138515140707		trial_3	sim_run_mays_363043
+Zea mays subsp. mexicana	sim_mays_820652	sim_GID_mays_820652	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_820652	num_955	barcode_0.0313467242593	REF	trial_4	sim_run_mays_820652
+Zea mays subsp. mexicana	sim_mays_842310	sim_GID_mays_842310	Zea mays subsp. mays	F1_hybrid	sim_sample_mays_842310	num_956	barcode_0.0373125379592	REF	trial_3	sim_run_mays_842310
+Zea mays subsp. mexicana	sim_mays_246015	sim_GID_mays_246015	Undetermined spp.	F1_hybrid	sim_sample_mays_246015	num_957	barcode_0.946460707017	REF	trial_3	sim_run_mays_246015
+Zea mays subsp. mexicana	sim_mays_538383	sim_GID_mays_538383	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_538383	num_958	barcode_0.442443157333	REF	trial_4	sim_run_mays_538383
+Zea mays subsp. mexicana	sim_mays_315376	sim_GID_mays_315376	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_mays_315376	num_959	barcode_0.852045991071		trial_3	sim_run_mays_315376
+Zea mays subsp. mexicana	sim_mays_34135	sim_GID_mays_34135	Triticum turgidum subsp. turanicum	BC1F1	sim_sample_mays_34135	num_960	barcode_0.275067065969	REF	trial_3	sim_run_mays_34135
+Zea mays subsp. mexicana	sim_mays_350987	sim_GID_mays_350987	Triticum turgidum subsp. paleocolchicum	F2	sim_sample_mays_350987	num_961	barcode_0.0118538214863	REF	trial_4	sim_run_mays_350987
+Zea mays subsp. mexicana	sim_mays_485556	sim_GID_mays_485556	Zea mays subsp. parviglumis	Inbred_line	sim_sample_mays_485556	num_962	barcode_0.202678452687	REF	trial_4	sim_run_mays_485556
+Zea mays subsp. mexicana	sim_mays_414547	sim_GID_mays_414547	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_mays_414547	num_963	barcode_0.390481144196		trial_4	sim_run_mays_414547
+Zea mays subsp. mexicana	sim_mays_367923	sim_GID_mays_367923	Zea mays subsp. mays	BC1F1	sim_sample_mays_367923	num_964	barcode_0.128817179999	REF	trial_4	sim_run_mays_367923
+Zea mays subsp. mexicana	sim_mays_203450	sim_GID_mays_203450	Triticum zhukovskyi	F2	sim_sample_mays_203450	num_965	barcode_0.59886400205		trial_4	sim_run_mays_203450
+Zea mays subsp. mexicana	sim_mays_115335	sim_GID_mays_115335	Triticum vavilovii var. vavilovii	BC1F1	sim_sample_mays_115335	num_966	barcode_0.624176190612	REF	trial_4	sim_run_mays_115335
+Zea mays subsp. mexicana	sim_mays_556658	sim_GID_mays_556658	Zea mays subsp. mays		sim_sample_mays_556658	num_967	barcode_0.727314219488		trial_4	sim_run_mays_556658
+Zea mays subsp. mexicana	sim_mays_222128	sim_GID_mays_222128	Unknown	BC1F1	sim_sample_mays_222128	num_968	barcode_0.721064326424	REF	trial_3	sim_run_mays_222128
+Zea mays subsp. mexicana	sim_mays_828338	sim_GID_mays_828338	Triticum zhukovskyi	Inbred_line	sim_sample_mays_828338	num_969	barcode_0.142574767793		trial_4	sim_run_mays_828338
+Zea mays subsp. mexicana	sim_mays_589884	sim_GID_mays_589884		F1_hybrid	sim_sample_mays_589884	num_970	barcode_0.765773945134	REF	trial_3	sim_run_mays_589884
+Zea mays subsp. mexicana	sim_mays_917517	sim_GID_mays_917517	Triticum turgidum subsp. dicoccon	F2	sim_sample_mays_917517	num_971	barcode_0.773745785292	REF	trial_4	sim_run_mays_917517
+Zea mays subsp. mexicana	sim_mays_243506	sim_GID_mays_243506	Triticum turgidum subsp. durum	F2	sim_sample_mays_243506	num_972	barcode_0.165104512961		trial_4	sim_run_mays_243506
+Zea mays subsp. mexicana	sim_mays_338763	sim_GID_mays_338763	Triticum turgidum subsp. turgidum		sim_sample_mays_338763	num_973	barcode_0.556573843835		trial_3	sim_run_mays_338763
+Zea mays subsp. mexicana	sim_mays_72450	sim_GID_mays_72450	Undetermined	F2	sim_sample_mays_72450	num_974	barcode_0.623514081065		trial_3	sim_run_mays_72450
+Zea mays subsp. mexicana	sim_mays_705965	sim_GID_mays_705965	Unknown	F1_hybrid	sim_sample_mays_705965	num_975	barcode_0.885979665502		trial_3	sim_run_mays_705965
+Zea mays subsp. mexicana	sim_mays_722360	sim_GID_mays_722360	Triticum turgidum subsp. polonicum		sim_sample_mays_722360	num_976	barcode_0.257578391283	REF	trial_4	sim_run_mays_722360
+Zea mays subsp. mexicana	sim_mays_502258	sim_GID_mays_502258	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_mays_502258	num_977	barcode_0.873792461564	REF	trial_3	sim_run_mays_502258
+Zea mays subsp. mexicana	sim_mays_963522	sim_GID_mays_963522	Zea diploperennis		sim_sample_mays_963522	num_978	barcode_0.886778813012	REF	trial_4	sim_run_mays_963522
+Zea mays subsp. mexicana	sim_mays_587493	sim_GID_mays_587493	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_mays_587493	num_979	barcode_0.542793195828	REF	trial_4	sim_run_mays_587493
+Zea mays subsp. mexicana	sim_mays_490203	sim_GID_mays_490203	Triticum turgidum subsp. polonicum	BC1F1	sim_sample_mays_490203	num_980	barcode_0.19015193836	REF	trial_4	sim_run_mays_490203
+Zea mays subsp. mexicana	sim_mays_826020	sim_GID_mays_826020	Zea mays subsp. mexicana		sim_sample_mays_826020	num_981	barcode_0.89653418915		trial_3	sim_run_mays_826020
+Zea mays subsp. mexicana	sim_mays_241453	sim_GID_mays_241453	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_241453	num_982	barcode_0.826064931235		trial_3	sim_run_mays_241453
+Zea mays subsp. mexicana	sim_mays_555200	sim_GID_mays_555200	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_mays_555200	num_983	barcode_0.327406142173	REF	trial_4	sim_run_mays_555200
+Zea mays subsp. mexicana	sim_mays_374350	sim_GID_mays_374350	Triticum turgidum subsp. dicoccon		sim_sample_mays_374350	num_984	barcode_0.193627130555	REF	trial_3	sim_run_mays_374350
+Zea mays subsp. mexicana	sim_mays_523696	sim_GID_mays_523696	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_523696	num_985	barcode_0.692354446677	REF	trial_4	sim_run_mays_523696
+Zea mays subsp. mexicana	sim_mays_53816	sim_GID_mays_53816		F1_hybrid	sim_sample_mays_53816	num_986	barcode_0.514506844664	REF	trial_3	sim_run_mays_53816
+Zea mays subsp. mexicana	sim_mays_415631	sim_GID_mays_415631	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_415631	num_987	barcode_0.924182785295	REF	trial_4	sim_run_mays_415631
+Zea mays subsp. mexicana	sim_mays_305273	sim_GID_mays_305273	Zea mays subsp. mexicana	Inbred_line	sim_sample_mays_305273	num_988	barcode_0.677250827495	REF	trial_4	sim_run_mays_305273
+Zea mays subsp. mexicana	sim_mays_327502	sim_GID_mays_327502	Zea diploperennis	BC1F1	sim_sample_mays_327502	num_989	barcode_0.866707518872		trial_3	sim_run_mays_327502
+Zea mays subsp. mexicana	sim_mays_588479	sim_GID_mays_588479	Triticum vavilovii var. vavilovii	F2	sim_sample_mays_588479	num_990	barcode_0.755281438025	REF	trial_3	sim_run_mays_588479
+Zea mays subsp. mexicana	sim_mays_26990	sim_GID_mays_26990	Triticum turgidum subsp. polonicum	Inbred_line	sim_sample_mays_26990	num_991	barcode_0.555294752835		trial_3	sim_run_mays_26990
+Zea mays subsp. mexicana	sim_mays_39548	sim_GID_mays_39548	Zea diploperennis	Inbred_line	sim_sample_mays_39548	num_992	barcode_0.582589118448		trial_4	sim_run_mays_39548
+Zea mays subsp. mexicana	sim_mays_277727	sim_GID_mays_277727	Triticum vavilovii var. vavilovii	Inbred_line	sim_sample_mays_277727	num_993	barcode_0.673276692044	REF	trial_3	sim_run_mays_277727
+Zea mays subsp. mexicana	sim_mays_540633	sim_GID_mays_540633	Zea mays subsp. mexicana		sim_sample_mays_540633	num_994	barcode_0.303092010009		trial_3	sim_run_mays_540633
+Zea mays subsp. mexicana	sim_mays_413619	sim_GID_mays_413619	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_mays_413619	num_995	barcode_0.0511801219249	REF	trial_4	sim_run_mays_413619
+Zea mays subsp. mexicana	sim_mays_876865	sim_GID_mays_876865	Zea mays subsp. parviglumis	BC1F1	sim_sample_mays_876865	num_996	barcode_0.913378403775	REF	trial_4	sim_run_mays_876865
+Zea mays subsp. mexicana	sim_mays_306794	sim_GID_mays_306794	Zea mays subsp. mays	BC1F1	sim_sample_mays_306794	num_997	barcode_0.16232619801	REF	trial_4	sim_run_mays_306794
+Zea mays subsp. mexicana	sim_mays_338791	sim_GID_mays_338791	Triticum turgidum subsp. paleocolchicum	Inbred_line	sim_sample_mays_338791	num_998	barcode_0.0396129419739		trial_4	sim_run_mays_338791
+Zea mays subsp. mexicana	sim_mays_116400	sim_GID_mays_116400	Zea mays subsp. mays	F2	sim_sample_mays_116400	num_999	barcode_0.933011307451	REF	trial_3	sim_run_mays_116400

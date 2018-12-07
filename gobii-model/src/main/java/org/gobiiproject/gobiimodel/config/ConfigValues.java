@@ -402,10 +402,10 @@ ConfigValues {
                                 2000)
                         // SAMPLES
                         .setMethodLimit(RestMethodType.POST ,
-                                GobiiEntityNameType.DNA_SAMPLE.toString(),
+                                GobiiEntityNameType.DNASAMPLE.toString(),
                                 2000)
                         .setMethodLimit(RestMethodType.GET,
-                                GobiiEntityNameType.DNA_SAMPLE.toString(),
+                                GobiiEntityNameType.DNASAMPLE.toString(),
                                 2000)
                         .setMethodLimit(RestMethodType.GET,
                                 GobiiEntityNameType.ANALYSIS.toString(),

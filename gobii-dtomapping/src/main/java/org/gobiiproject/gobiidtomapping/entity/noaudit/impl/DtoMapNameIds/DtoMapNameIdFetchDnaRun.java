@@ -30,7 +30,7 @@ public class DtoMapNameIdFetchDnaRun implements DtoMapNameIdFetch {
     Logger LOGGER = LoggerFactory.getLogger(DtoMapNameIdFetchDnaRun.class);
 
     @Override
-    public GobiiEntityNameType getEntityTypeName() { return GobiiEntityNameType.DNA_RUN; }
+    public GobiiEntityNameType getEntityTypeName() { return GobiiEntityNameType.DNARUN; }
 
 
     private List<NameIdDTO> getDnaRunNamesByNameList(List<NameIdDTO> nameIdDTOList, String experimentId) {
@@ -44,7 +44,7 @@ public class DtoMapNameIdFetchDnaRun implements DtoMapNameIdFetch {
                         put("nameArray", nameIdDTOList);
                     }});
 
-            Integer resultSize = DtoMapNameIdUtil.getIdFromResultSet(nameIdDTOList, resultSet, "name", "dnarun_id");
+            Integer resultSize = DtoMapNameIdUtil.getIdsFromResultSet(nameIdDTOList, resultSet, "name", "dnarun_id");
 
         } catch (Exception e){
             throw new GobiiDaoException(e);

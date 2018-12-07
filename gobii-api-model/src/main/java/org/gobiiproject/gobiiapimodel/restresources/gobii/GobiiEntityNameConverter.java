@@ -34,14 +34,14 @@ public class GobiiEntityNameConverter {
                             RestResourceId.GOBII_DATASETS);
                     break;
 
-                case DNA_SAMPLE:
+                case DNASAMPLE:
                     
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
                             RestResourceId.GOBII_DNASAMPLES);
 
                     break;
 
-                case DNA_RUN:
+                case DNARUN:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
                             RestResourceId.GOBII_DNARUN);
                     break;
@@ -49,6 +49,11 @@ public class GobiiEntityNameConverter {
                 case LINKAGE_GROUP:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
                             RestResourceId.GOBII_LINKAGEGROUP);
+                    break;
+
+                case GERMPLASM:
+                    returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
+                            RestResourceId.GOBII_GERMPLASM);
                     break;
 
                 case CV:

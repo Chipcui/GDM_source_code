@@ -8,12 +8,14 @@ package org.gobiiproject.gobiiweb.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.gobiiproject.gobidomain.services.PingService;
-import org.gobiiproject.gobiiapimodel.payload.Pagination;
 import org.gobiiproject.gobiiapimodel.types.GobiiControllerType;
 import org.gobiiproject.gobiibrapi.calls.calls.BrapiResponseCalls;
 import org.gobiiproject.gobiibrapi.calls.calls.BrapiResponseMapCalls;
 import org.gobiiproject.gobiibrapi.calls.germplasm.BrapiResponseGermplasmByDbId;
 import org.gobiiproject.gobiibrapi.calls.germplasm.BrapiResponseMapGermplasmByDbId;
+import org.gobiiproject.gobiibrapi.calls.login.BrapiRequestLogin;
+import org.gobiiproject.gobiibrapi.calls.login.BrapiResponseLogin;
+import org.gobiiproject.gobiibrapi.calls.login.BrapiResponseMapLogin;
 import org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrices.BrapiResponseAlleleMatrices;
 import org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrices.BrapiResponseMapAlleleMatrices;
 import org.gobiiproject.gobiibrapi.calls.markerprofiles.allelematrixsearch.BrapiResponseMapAlleleMatrixSearch;
@@ -184,6 +186,57 @@ public class BRAPIIControllerV1 {
 
         return returnVal;
     }
+
+
+    // *********************************************
+    // *************************** LOGIN (MASTER ONLY)
+    // *********************************************
+    @RequestMapping(value = "/token",
+            method = RequestMethod.POST,
+            produces = "application/json")
+    @ResponseBody
+    public String postLogin(@RequestBody String loginRequestBody,
+                            HttpServletRequest request,
+                            HttpServletResponse response) throws Exception {
+
+        String returnVal;
+
+
+        BrapiResponseLogin brapiResponseLogin = null;
+        try {
+
+            BrapiRequestReader<BrapiRequestLogin> brapiRequestReader = new BrapiRequestReader<>(BrapiRequestLogin.class);
+            BrapiRequestLogin brapiRequestLogin = brapiRequestReader.makeRequestObj(loginRequestBody);
+
+            BrapiResponseMapLogin brapiResponseMapLogin = new BrapiResponseMapLogin();
+            brapiResponseLogin = brapiResponseMapLogin.getLoginInfo(brapiRequestLogin, response);
+
+
+            brapiResponseLogin.getBrapiMetaData().setPagination(new BrapiPagination(
+                    1,
+                    1,
+                    1,
+                    0
+            ));
+
+        } catch (GobiiException e) {
+
+            String message = e.getMessage() + ": " + e.getCause() + ": " + e.getStackTrace().toString();
+
+            brapiResponseLogin.getBrapiMetaData().addStatusMessage("exception", message);
+
+        } catch (Exception e) {
+
+            String message = e.getMessage() + ": " + e.getCause() + ": " + e.getStackTrace().toString();
+
+            brapiResponseLogin.getBrapiMetaData().addStatusMessage("exception", message);
+        }
+
+        returnVal = objectMapper.writeValueAsString(brapiResponseLogin);
+
+        return returnVal;
+    }
+
 
     // *********************************************
     // *************************** STUDIES_SEARCH (DETAILS ONLY)
@@ -522,7 +575,7 @@ public class BRAPIIControllerV1 {
             method = {RequestMethod.GET, RequestMethod.POST},
             produces = "application/json")
     @ResponseBody
-    public String  getMarkerProfile(@RequestParam("germplasmDbId") String germplasmDbId,
+    public String getMarkerProfile(@RequestParam("germplasmDbId") String germplasmDbId,
                                    HttpServletRequest request,
                                    HttpServletResponse response) throws Exception {
 

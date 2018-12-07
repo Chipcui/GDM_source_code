@@ -1,0 +1,3 @@
+lts_0001_SSR_codom_1-10
+lts_0002_SSR_codom_11-20
+lts_0005_Seq_2ltr_1-10
