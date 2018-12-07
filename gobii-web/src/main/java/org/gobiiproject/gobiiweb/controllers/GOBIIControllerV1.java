@@ -7,6 +7,7 @@ package org.gobiiproject.gobiiweb.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.math.NumberUtils;
+import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.services.*;
 import org.gobiiproject.gobiiapimodel.payload.Payload;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
@@ -2320,7 +2321,7 @@ public class GOBIIControllerV1 {
 
             Integer callLimit = RestResourceLimits.getResourceLimit(RestResourceId.GOBII_NAMES, RestMethodType.POST, entity.toUpperCase());
 
-            if (callLimit == null || callLimit <= new Integer(nameIdDTOList.size())) {
+            if (callLimit == null || new Integer(nameIdDTOList.size()) <= callLimit) {
                 DtoMapNameIdParams dtoMapNameIdParams = new DtoMapNameIdParams(gobiiEntityNameType, gobiiFilterType, typedFilterValue, nameIdDTOList, callLimit);
 
                 List<NameIdDTO> nameIdList = nameIdListService.getNameIdList(dtoMapNameIdParams);
@@ -2343,13 +2344,16 @@ public class GOBIIControllerV1 {
                 }
             } else {
 
-                throw new GobiiException(
-                        "The POST to resource "
-                                + RestResourceId.GOBII_NAMES.getResourcePath()
-                                + "/"
-                                + entity
-                                + " exceeds the limit of "
-                                + callLimit.toString());
+                returnVal.getHeader().getStatus().addException(
+                        new GobiiDomainException(GobiiStatusLevel.VALIDATION,
+                                GobiiValidationStatusType.RESOURCE_LIMIT,
+                                "The POST to resource " +
+                                        RestResourceId.GOBII_NAMES.getResourcePath()
+                                        + "/"
+                                        + entity
+                                        + " exceeds the max POST limit of "
+                                        + callLimit.toString()));
+
             } // if-else the call exceeds the limit
 
 

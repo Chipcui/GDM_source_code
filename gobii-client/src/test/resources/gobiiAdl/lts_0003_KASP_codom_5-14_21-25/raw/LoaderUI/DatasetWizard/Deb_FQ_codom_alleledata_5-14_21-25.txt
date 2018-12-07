@@ -1,0 +1,16 @@
+	dnarunname_Deb_FQ_codom_5	dnarunname_Deb_FQ_codom_6	dnarunname_Deb_FQ_codom_7	dnarunname_Deb_FQ_codom_8	dnarunname_Deb_FQ_codom_9	dnarunname_Deb_FQ_codom_10	dnarunname_Deb_FQ_codom_11	dnarunname_Deb_FQ_codom_12	dnarunname_Deb_FQ_codom_13	dnarunname_Deb_FQ_codom_14	dnarunname_Deb_FQ_codom_21	dnarunname_Deb_FQ_codom_22	dnarunname_Deb_FQ_codom_23	dnarunname_Deb_FQ_codom_24	dnarunname_Deb_FQ_codom_25
+Deb_FQ_codom_m5	2	1	2	N	2	0	N	2	2	2	2	N	2	0	N
+Deb_FQ_codom_m6	2	1	2	2	2	2	N	2	0	2	2	2	2	2	N
+Deb_FQ_codom_m7	2	1	2	2	2	2	N	2	2	2	2	2	2	2	N
+Deb_FQ_codom_m8	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0
+Deb_FQ_codom_m9	0	1	0	0	0	2	2	0	2	0	0	0	0	2	2
+Deb_FQ_codom_m10	0	2	0	0	0	0	0	0	0	2	0	0	0	0	0
+Deb_FQ_codom_m11	N	1	0	0	0	0	0	0	0	0	0	0	0	0	0
+Deb_FQ_codom_m12	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
+Deb_FQ_codom_m13	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
+Deb_FQ_codom_m14	N	1	2	2	2	2	N	2	2	2	2	2	2	2	N
+Deb_FQ_codom_m21	N	1	0	0	0	0	0	0	0	0	0	0	0	0	0
+Deb_FQ_codom_m22	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
+Deb_FQ_codom_m23	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
+Deb_FQ_codom_m24	N	1	2	2	2	2	N	2	2	2	2	2	2	2	N
+Deb_FQ_codom_m25	2	1	2	N	2	0	N	2	2	2	2	N	2	0	N

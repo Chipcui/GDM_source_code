@@ -3,13 +3,13 @@ package org.gobiiproject.gobiiclient.core.brapi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
 import org.gobiiproject.gobiibrapi.core.common.BrapiMetaData;
-import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelope;
-import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseDataList;
-import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelopeMasterDetail;
-import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelopeMaster;
 import org.gobiiproject.gobiibrapi.core.json.BrapiJsonKeys;
+import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseDataList;
+import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelope;
+import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelopeMaster;
+import org.gobiiproject.gobiibrapi.core.responsemodel.BrapiResponseEnvelopeMasterDetail;
+import org.gobiiproject.gobiiclient.core.common.HttpCore;
 import org.gobiiproject.gobiiclient.core.common.HttpMethodResult;
-import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 
 /**
  * Created by Phil on 12/16/2016.
@@ -23,15 +23,20 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
     private Class<T_RESPONSE_TYPE_MASTER> brapiResponseTypeMaster;
     private Class<T_RESPONSE_TYPE_DETAIL> brapiResponseTypeDetail;
 
+
+    private HttpCore httpCore;
+
     public BrapiEnvelopeRestResource(RestUri restUri,
                                      Class<T_POST_OBJ_TYPE> brapiPostObjType,
                                      Class<T_RESPONSE_TYPE_MASTER> brapiResponseTypeMaster,
-                                     Class<T_RESPONSE_TYPE_DETAIL> brapiResponseTypeDetail) {
+                                     Class<T_RESPONSE_TYPE_DETAIL> brapiResponseTypeDetail,
+                                     HttpCore httpCore) {
 
         this.restUri = restUri;
         this.brapiPostObjType = brapiPostObjType;
         this.brapiResponseTypeMaster = brapiResponseTypeMaster;
         this.brapiResponseTypeDetail = brapiResponseTypeDetail;
+        this.httpCore = httpCore;
     }
 
     private BrapiResponseEnvelopeMasterDetail<T_RESPONSE_TYPE_DETAIL> getTypedListObjFromResult(HttpMethodResult httpMethodResult) throws Exception {
@@ -76,9 +81,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         BrapiResponseEnvelopeMasterDetail<T_RESPONSE_TYPE_DETAIL> returnVal;
 
         HttpMethodResult httpMethodResult =
-                GobiiClientContext.getInstance(null, false)
-                        .getHttp()
-                        .get(this.restUri);
+                httpCore.get(this.restUri);
 
 
         returnVal = this.getTypedListObjFromResult(httpMethodResult);
@@ -96,8 +99,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         String bodyAsString = objectMapper.writeValueAsString(bodyObj);
 
         HttpMethodResult httpMethodResult =
-                GobiiClientContext.getInstance(null, false).getHttp()
-                        .post(this.restUri,
+                httpCore.post(this.restUri,
                                 bodyAsString);
 
 
@@ -112,8 +114,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         BrapiResponseEnvelopeMaster<T_RESPONSE_TYPE_MASTER> returnVal;
 
         HttpMethodResult httpMethodResult =
-                GobiiClientContext.getInstance(null, false).getHttp()
-                        .get(this.restUri);
+                httpCore.get(this.restUri);
 
         returnVal = this.getMasterObjFromResult(httpMethodResult);
 
@@ -121,7 +122,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
     }
 
 
-    private BrapiMetaData getMetaDataFromResponse(HttpMethodResult httpMethodResult) throws Exception{
+    private BrapiMetaData getMetaDataFromResponse(HttpMethodResult httpMethodResult) throws Exception {
 
         String metaDataAsString = httpMethodResult.getJsonPayload().get(BrapiJsonKeys.METADATA).toString();
         BrapiMetaData returnVal = objectMapper.readValue(metaDataAsString, BrapiMetaData.class);
@@ -135,8 +136,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         BrapiResponseEnvelope returnVal = new BrapiResponseEnvelope();
 
         HttpMethodResult httpMethodResult =
-                GobiiClientContext.getInstance(null, false).getHttp()
-                        .get(this.restUri);
+                httpCore.get(this.restUri);
 
         BrapiMetaData brapiMetaData = this.getMetaDataFromResponse(httpMethodResult);
         returnVal.setBrapiMetaData(brapiMetaData);
@@ -150,8 +150,7 @@ public class BrapiEnvelopeRestResource<T_POST_OBJ_TYPE, T_RESPONSE_TYPE_MASTER, 
         BrapiResponseEnvelope returnVal = new BrapiResponseEnvelope();
 
         HttpMethodResult httpMethodResult =
-                GobiiClientContext.getInstance(null, false).getHttp()
-                        .post(this.restUri, null);
+                httpCore.post(this.restUri, null);
 
         BrapiMetaData brapiMetaData = this.getMetaDataFromResponse(httpMethodResult);
         returnVal.setBrapiMetaData(brapiMetaData);

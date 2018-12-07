@@ -21,7 +21,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Phil on 10/16/2016.
@@ -107,7 +106,7 @@ public class DtoMapNameIdFetchCvTerms implements DtoMapNameIdFetch {
                     }});
 
 
-            Integer resultSize = DtoMapNameIdUtil.getIdFromResultSet(nameIdDTOList, resultSet, "term", "cv_id");
+            Integer resultSize = DtoMapNameIdUtil.getIdsFromResultSet(nameIdDTOList, resultSet, "term", "cv_id");
 
         } catch (Exception e) {
             throw new GobiiDaoException(e);

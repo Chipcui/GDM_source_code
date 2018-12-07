@@ -7,10 +7,7 @@ export enum ExtractorItemType {
     SAMPLE_FILE,
     EXPORT_FORMAT,
     CROP_TYPE,
-    STATUS_DISPLAY_TREE_READY,
     JOB_ID,
     SAMPLE_LIST_TYPE,
     LABEL,
-    CLEAR_TREE,
-    MARKER_GROUP_LIST_ITEM,
     TREE_STRUCTURE}

@@ -26,6 +26,8 @@ import {FileItemService} from "../services/core/file-item-service";
 import {Observable} from "rxjs/Observable";
 import {InstructionSubmissionService} from "../services/core/instruction-submission-service";
 import {GobiiSampleListType} from "../model/type-extractor-sample-list";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
+import {TypeControl} from "../services/core/type-control";
 
 // import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 
@@ -77,7 +79,8 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
                                 <!--<p-tabView [style]="{'border': '1px solid #336699', 'padding-left': '5px'}">-->
                                 <p-tabView
                                         (onChange)="handleTabPanelChange($event)"
-                                        styleClass="ui-tabview-panels">
+                                        styleClass="ui-tabview-panels"
+                                [id]="viewIdGeneratorService.makeStandardId(typeControl.NAVIGATION_TABS)">
                                     <p-tabPanel header="By Dataset">
                                         <ng-template pTemplate="content"> <!-- lazy-load controls -->
                                             <div class="container-fluid">
@@ -250,7 +253,7 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
                                   (onHide)="onHideMessageDialog($event)"
                                   [contentStyle]="{'width': '400px'}">
                             <div class="panel panel-primary">
-                                <div class="panel-body">
+                                <div class="panel-body" [id]="viewIdGeneratorService.makeStandardId(typeControl.SYSTEM_STATUS_MESSAGE_BODY)">
                                     {{currentStatusMessage}}
                                     <!--<status-display [messages$]="messages$"></status-display>-->
                                 </div> <!-- panel body -->
@@ -299,7 +302,8 @@ import {GobiiSampleListType} from "../model/type-extractor-sample-list";
                                             [disabled]="submitButtonStyle === buttonStyleSubmitNotReady"
                                             (mouseenter)="handleOnMouseOverSubmit($event,true)"
                                             (mouseleave)="handleOnMouseOverSubmit($event,false)"
-                                            (click)="handleExtractSubmission()">Submit
+                                            (click)="handleExtractSubmission()"
+                                            [id]="viewIdGeneratorService.makeStandardId(typeControl.SUBMIT_BUTTON_EXTRACT)">Submit
                                     </button>
 
                                     <button type="clear"
@@ -331,6 +335,7 @@ export class ExtractorRoot implements OnInit {
     //
 
     nameIdFilterParamTypes: any = Object.assign({}, FilterParamNames);
+    public typeControl:any = TypeControl;
 
     selectedExtractFormat$: Observable<GobiiFileItem> = this.store.select(fromRoot.getSelectedFileFormat);
 
@@ -351,7 +356,8 @@ export class ExtractorRoot implements OnInit {
                 private store: Store<fromRoot.State>,
                 private fileItemService: FileItemService,
                 private instructionSubmissionService: InstructionSubmissionService,
-                private changeDetectorRef: ChangeDetectorRef) {
+                private changeDetectorRef: ChangeDetectorRef,
+                public viewIdGeneratorService: ViewIdGeneratorService) {
 
         this.messages$.subscribe(
             messages => {

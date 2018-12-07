@@ -34,11 +34,11 @@ public class DtoMapNameIdFetchAnalyses implements DtoMapNameIdFetch {
     }
 
 
-    private List<NameIdDTO> getAllNameIdsForAnalysis() throws GobiiException {
+    private List<NameIdDTO> getAllNameIdsForAnalysis(Integer callLimit) throws GobiiException {
 
         List<NameIdDTO> returnVal = new ArrayList<>();
 
-        ResultSet resultSet = rsAnalysisDao.getAnalysisNames();
+        ResultSet resultSet = rsAnalysisDao.getNameIdsForAnalysisNames(callLimit);
         List<NameIdDTO> listDTO = new ArrayList<>();
 
         try {
@@ -90,7 +90,13 @@ public class DtoMapNameIdFetchAnalyses implements DtoMapNameIdFetch {
         List<NameIdDTO> returnVal;
 
         if (GobiiFilterType.NONE == dtoMapNameIdParams.getGobiiFilterType()) {
-            returnVal = this.getAllNameIdsForAnalysis();
+
+            // check call limit
+            Integer callLimit = dtoMapNameIdParams.getCallLimit();
+
+            DtoMapNameIdUtil.checkCallLimit(callLimit, GobiiEntityNameType.ANALYSIS.toString());
+
+            returnVal = this.getAllNameIdsForAnalysis(callLimit);
         } else {
 
             if (GobiiFilterType.NAMES_BY_TYPEID == dtoMapNameIdParams.getGobiiFilterType()) {

@@ -13,6 +13,8 @@ import * as fromRoot from '../store/reducers';
 import {Observable} from "rxjs/Observable";
 import {FileItemService} from "../services/core/file-item-service";
 import * as historyAction from '../store/actions/history-action';
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
+import {TypeControl} from "../services/core/type-control";
 
 const URL = 'gobii/v1/files/{gobiiJobId}/EXTRACTOR_INSTRUCTIONS?fileName=';
 
@@ -75,12 +77,15 @@ const URL = 'gobii/v1/files/{gobiiJobId}/EXTRACTOR_INSTRUCTIONS?fileName=';
                            ng2FileSelect
                            [uploader]="uploader"
                            [disabled]="uploadComplete"
-                           (click)="handleClickBrowse($event)"/>
+                           (click)="handleClickBrowse($event)"
+                           [id]="viewIdGeneratorService.makeStandardId(typeControl.FILE_SELECTOR_MARKER_SAMPLE_LIST_UPLOAD)"
+                    />
                     <!--  IF YOU REINSTATE THE QUEUES BELOW THIS BUTTON WILL BE SUPERFLUOUS -->
                     <BR>
                     <button type="button" class="btn btn-success"
                             (click)="uploader.uploadAll()"
-                            [disabled]="!uploader.getNotUploadedItems().length">
+                            [disabled]="!uploader.getNotUploadedItems().length"
+                            [id]="viewIdGeneratorService.makeStandardId(typeControl.SUBMIT_BUTTON_UPLOAD_MARKER_SAMPLE_LIST)">
                         Upload
                     </button>
                 </div>
@@ -167,13 +172,15 @@ const URL = 'gobii/v1/files/{gobiiJobId}/EXTRACTOR_INSTRUCTIONS?fileName=';
 
 export class UploaderComponent implements OnInit {
 
+    public typeControl:any = TypeControl;
     private onUploaderError: EventEmitter<HeaderStatusMessage> = new EventEmitter();
     private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
     public uploadComplete = false;
 
     constructor(private _authenticationService: AuthenticationService,
                 private store: Store<fromRoot.State>,
-                private fileItemService: FileItemService,) {
+                private fileItemService: FileItemService,
+                public viewIdGeneratorService: ViewIdGeneratorService) {
 
 
     } // ctor

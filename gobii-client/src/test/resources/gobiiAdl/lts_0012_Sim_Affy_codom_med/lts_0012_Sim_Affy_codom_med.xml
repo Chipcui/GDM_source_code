@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?><GobiiTestData>
+    <Entities>
+        <Organizations DbPKeysurrogate="Name">
+            <Organization>
+                <Keys>
+                    <DbPKey>35</DbPKey>
+                </Keys>
+                <Properties>
+                    <Name>Cornell</Name>
+                    <Address>Ithaca</Address>
+                    <Website>cornell.edu</Website>
+                </Properties>
+            </Organization>
+        </Organizations>
+        <Contacts DbPKeysurrogate="Email">
+            <Contact>
+                <Keys>
+                    <DbPKey>67</DbPKey>
+                    <Fkey entity="Organization" fkproperty="organizationId">
+                        <DbPKeySurrogate>Cornell</DbPKeySurrogate>
+                        <DbPKey>34</DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <LastName>Load User</LastName>
+                    <FirstName>GOBii</FirstName>
+                    <Email>gobii.dev@gmail.com</Email>
+                    <UserName>load_user</UserName>
+                    <Roles>
+                        <Role>PI</Role>
+                        <Role>Curator</Role>
+                    </Roles>
+                </Properties>
+            </Contact>
+        </Contacts>
+        <Platforms DbPKeysurrogate="PlatformName">
+            <Platform>
+                <Keys>
+                    <DbPKey>6</DbPKey>
+                </Keys>
+                <Properties>
+                    <PlatformName>Affymetrix_Axiom</PlatformName>
+                    <PlatformCode>Affymetrix_Axiom</PlatformCode>
+                    <PlatformDescription>Affymetrix_Axiom</PlatformDescription>
+                    <StatusId>1</StatusId>
+                    <TypeId>Affymetrix_Axiom</TypeId>
+                    <Properties/>
+                </Properties>
+            </Platform>
+        </Platforms>
+        <Protocols DbPKeysurrogate="Name">
+            <Protocol>
+                <Keys>
+                    <DbPKey>9</DbPKey>
+                    <Fkey entity="Platform" fkproperty="platformId">
+                        <DbPKeySurrogate>Affymetrix_Axiom</DbPKeySurrogate>
+                        <DbPKey>6</DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <Name>Affymetrix_Axiom</Name>
+                    <Description>Affymetrix_Axiom</Description>
+                    <TypeId>1</TypeId>
+                    <Status>1</Status>
+                    <Props/>
+                    <VendorProtocols/>
+                </Properties>
+            </Protocol>
+        </Protocols>
+        <VendorProtocols DbPKeysurrogate="Name">
+            <VendorProtocol>
+                <Keys>
+                    <DbPKey>5</DbPKey>
+                    <Fkey entity="Organization" fkproperty="organizationId">
+                        <DbPKeySurrogate>Cornell</DbPKeySurrogate>
+                        <DbPKey>35</DbPKey>
+                    </Fkey>
+                    <Fkey entity="Protocol" fkproperty="protocolId">
+                        <DbPKeySurrogate>Affymetrix_Axiom</DbPKeySurrogate>
+                        <DbPKey>9</DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <Name>Cornell_Affymetrix_Axiom</Name>
+                    <Status>1</Status>
+                </Properties>
+            </VendorProtocol>
+        </VendorProtocols>
+        <Mapsets DbPKeysurrogate="Name">
+            <Mapset>
+                <Keys>
+                    <DbPKey>7</DbPKey>
+                </Keys>
+                <Properties>
+                    <Name>Sim_codominant</Name>
+                    <Code>Sim_codominant</Code>
+                    <Description>Sim_codominant</Description>
+                    <MapType>physical</MapType>
+                    <StatusId>1</StatusId>
+                    <Properties/>
+                </Properties>
+            </Mapset>
+        </Mapsets>
+        <Projects DbPKeysurrogate="ProjectName">
+            <Project>
+                <Keys>
+                    <DbPKey>9</DbPKey>
+                    <Fkey entity="Contact" fkproperty="piContact">
+                        <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                        <DbPKey>67</DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <ProjectName>sim_codominant_proj_02</ProjectName>
+                    <ProjectCode>sim_codominant_proj_02</ProjectCode>
+                    <ProjectDescription>sim_codominant_proj_02</ProjectDescription>
+                    <ProjectStatus>1</ProjectStatus>
+                    <CvProps>
+                        <CvProp>
+                            <CvTerm>date_sampled</CvTerm>
+                            <CvPropValue>06/25/2018</CvPropValue>
+                        </CvProp>
+                        <CvProp>
+                            <CvTerm>division</CvTerm>
+                            <CvPropValue>Sim_division_med</CvPropValue>
+                        </CvProp>
+                        <CvProp>
+                            <CvTerm>genotyping_purpose</CvTerm>
+                            <CvPropValue>Sim_genotyp_purp_med</CvPropValue>
+                        </CvProp>
+                        <CvProp>
+                            <CvTerm>study_name</CvTerm>
+                            <CvPropValue>Sim_study_name_med</CvPropValue>
+                        </CvProp>
+                    </CvProps>
+                </Properties>
+            </Project>
+        </Projects>
+        <Experiments DbPKeysurrogate="ExperimentName">
+            <Experiment>
+                <Keys>
+                    <DbPKey>14</DbPKey>
+                    <Fkey entity="Project" fkproperty="projectId">
+                        <DbPKeySurrogate>sim_codominant_proj_02</DbPKeySurrogate>
+                        <DbPKey>9</DbPKey>
+                    </Fkey>
+                    <Fkey entity="VendorProtocol" fkproperty="vendorProtocolId">
+                        <DbPKeySurrogate>Cornell_Affymetrix_Axiom</DbPKeySurrogate>
+                        <DbPKey>5</DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <ExperimentName>sim_codominant_exp_04</ExperimentName>
+                    <ExperimentCode>sim_codominant_exp_04</ExperimentCode>
+                    <StatusId>1</StatusId>
+                </Properties>
+            </Experiment>
+        </Experiments>
+        <Analyses DbPKeysurrogate="AnalysisName">
+            <Analysis>
+                <Keys>
+                    <DbPKey>4</DbPKey>
+                </Keys>
+                <Properties>
+                    <AnalysisName>Test_Calling</AnalysisName>
+                    <AnalysisDescription>Test_Calling</AnalysisDescription>
+                    <AnlaysisTypeId>Calling</AnlaysisTypeId>
+                    <Program>Test_Calling_program</Program>
+                    <ProgramVersion>Test_Calling_program_version</ProgramVersion>
+                    <Algorithm>Test_Calling_algorithm</Algorithm>
+                    <SourceName>Test_Calling_sourcename</SourceName>
+                    <SourceVersion>Test_Calling_sourceversion</SourceVersion>
+                    <SourceUri>Test_Calling_sourceuri</SourceUri>
+                    <StatusId>1</StatusId>
+                    <Parameters/>
+                </Properties>
+            </Analysis>
+            <Analysis>
+                <Keys>
+                    <DbPKey>5</DbPKey>
+                </Keys>
+                <Properties>
+                    <AnalysisName>Test_Allele_sorting</AnalysisName>
+                    <AnalysisDescription>Test_Allele_sorting</AnalysisDescription>
+                    <AnlaysisTypeId>Allele_sorting</AnlaysisTypeId>
+                    <Program>Test_Allele_sorting_program</Program>
+                    <ProgramVersion>Test_Allele_sorting_program_version</ProgramVersion>
+                    <Algorithm>Test_Allele_sorting_algorithm</Algorithm>
+                    <SourceName>Test_Allele_sorting_sourcename</SourceName>
+                    <SourceVersion>Test_Allele_sorting_sourceversion</SourceVersion>
+                    <SourceUri>Test_Allele_sorting_sourceuri</SourceUri>
+                    <StatusId>1</StatusId>
+                    <Parameters/>
+                </Properties>
+            </Analysis>
+            <Analysis>
+                <Keys>
+                    <DbPKey>3</DbPKey>
+                </Keys>
+                <Properties>
+                    <AnalysisName>Test_Imputation</AnalysisName>
+                    <AnalysisDescription>Test_Imputation</AnalysisDescription>
+                    <AnlaysisTypeId>Imputation</AnlaysisTypeId>
+                    <Program>Test_Imputation_program</Program>
+                    <ProgramVersion>Test_Imputation_program_version</ProgramVersion>
+                    <Algorithm>Test_Imputation_algorithm</Algorithm>
+                    <SourceName>Test_Imputation_sourcename</SourceName>
+                    <SourceVersion>Test_Imputation_sourceversion</SourceVersion>
+                    <SourceUri>Test_Imputation_sourceuri</SourceUri>
+                    <StatusId>1</StatusId>
+                    <Parameters/>
+                </Properties>
+            </Analysis>
+        </Analyses>
+        <Datasets DbPKeysurrogate="DatasetName">
+            <Dataset>
+                <Keys>
+                    <DbPKey>15</DbPKey>
+                    <Fkey entity="Experiment" fkproperty="experimentId">
+                        <DbPKeySurrogate>sim_codominant_exp_04</DbPKeySurrogate>
+                        <DbPKey>14</DbPKey>
+                    </Fkey>
+                    <Fkey entity="Analysis" fkproperty="callingAnalysisId">
+                        <DbPKeySurrogate>Test_Calling</DbPKeySurrogate>
+                        <DbPKey>4</DbPKey>
+                    </Fkey>
+                </Keys>
+                <Properties>
+                    <DatasetName>sim_codominant_ds_05</DatasetName>
+                    <DataTable>sim_codominant_ds_05_datatable</DataTable>
+                    <DataFile>sim_codominant_ds_05_datafile</DataFile>
+                    <QualityTable>sim_codominant_ds_05_qualitytable</QualityTable>
+                    <QualityFile>sim_codominant_ds_05_qualityfile</QualityFile>
+                    <StatusId>1</StatusId>
+                    <TypeId>CO_DOMINANT_NON_NUCLEOTIDE</TypeId>
+                    <AnalysesIds>
+                        <AnalysisId>Test_Allele_sorting</AnalysisId>
+                        <AnalysisId>Test_Imputation</AnalysisId>
+                    </AnalysesIds>
+                    <Scores/>
+                </Properties>
+            </Dataset>
+        </Datasets>
+    </Entities>
+
+    <Scenarios>
+
+        <Load>
+
+            <Scenario>
+                <Name>sim_codominant_proj_02_marker</Name>
+                <Files>
+                    <Instruction>data_20180625_145344_daw279.json</Instruction>
+                    <Data>marker.txt</Data>
+                </Files>
+                <PayloadType>markers</PayloadType>
+
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey>67</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Project">
+                    <DbPKeySurrogate>sim_codominant_proj_02</DbPKeySurrogate>
+                    <DbPKey>9</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Experiment">
+                    <DbPKeySurrogate>sim_codominant_exp_04</DbPKeySurrogate>
+                    <DbPKey>14</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Dataset">
+                    <DbPKeySurrogate>sim_codominant_ds_05</DbPKeySurrogate>
+                    <DbPKey>15</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Mapset">
+                    <DbPKeySurrogate>Sim_codominant</DbPKeySurrogate>
+                    <DbPKey>7</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Platform">
+                    <DbPKeySurrogate>Affymetrix_Axiom</DbPKeySurrogate>
+                    <DbPKey>6</DbPKey>
+                </DbFkey>
+
+            </Scenario>
+
+            <Scenario>
+                <Name>sim_codominant_proj_02_sample</Name>
+                <Files>
+                    <Instruction>data_20180625_145439_daw279.json</Instruction>
+                    <Data>sample.txt</Data>
+                </Files>
+                <PayloadType>samples</PayloadType>
+
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey>67</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Project">
+                    <DbPKeySurrogate>sim_codominant_proj_02</DbPKeySurrogate>
+                    <DbPKey>9</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Experiment">
+                    <DbPKeySurrogate>sim_codominant_exp_04</DbPKeySurrogate>
+                    <DbPKey>14</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Dataset">
+                    <DbPKeySurrogate>sim_codominant_ds_05</DbPKeySurrogate>
+                    <DbPKey>15</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Mapset">
+                    <DbPKeySurrogate>Sim_codominant</DbPKeySurrogate>
+                    <DbPKey>7</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Platform">
+                    <DbPKeySurrogate>Affymetrix_Axiom</DbPKeySurrogate>
+                    <DbPKey>6</DbPKey>
+                </DbFkey>
+
+            </Scenario>
+
+            <Scenario>
+                <Name>sim_codominant_proj_02_dataset</Name>
+                <Files>
+                    <Instruction>data_20180625_145928_daw279.json</Instruction>
+                    <Data>matrix_CODOM.txt</Data>
+                </Files>
+                <PayloadType>matrix</PayloadType>
+
+                <DbFkey entity="Contact">
+                    <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
+                    <DbPKey>67</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Project">
+                    <DbPKeySurrogate>sim_codominant_proj_02</DbPKeySurrogate>
+                    <DbPKey>9</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Experiment">
+                    <DbPKeySurrogate>sim_codominant_exp_04</DbPKeySurrogate>
+                    <DbPKey>14</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Dataset">
+                    <DbPKeySurrogate>sim_codominant_ds_05</DbPKeySurrogate>
+                    <DbPKey>15</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Mapset">
+                    <DbPKeySurrogate>Sim_codominant</DbPKeySurrogate>
+                    <DbPKey>7</DbPKey>
+                </DbFkey>
+
+                <DbFkey entity="Platform">
+                    <DbPKeySurrogate>Affymetrix_Axiom</DbPKeySurrogate>
+                    <DbPKey>6</DbPKey>
+                </DbFkey>
+
+            </Scenario>
+
+        </Load>
+
+        <Extract>
+
+            <Scenario>
+                <Name>sim_codominant_extract_by_dataset</Name>
+                <ExtractType>WHOLE_DATASET</ExtractType>
+                <FileType>HAPMAP</FileType>
+
+                <Files>
+                    <Data>extract_files</Data>
+                </Files>
+
+                <Contact>gobii.dev@gmail.com</Contact>
+                <Mapsets>
+                    <Mapset/>
+                </Mapsets>
+
+                <Datasets>
+                    <Dataset>
+                        <DatasetName>sim_codominant_ds_05</DatasetName>
+                        <ExperimentName>sim_codominant_exp_04</ExperimentName>
+                        <ProjectName>sim_codominant_proj_02</ProjectName>
+                        <PIContact>gobii.dev@gmail.com</PIContact>
+                    </Dataset>
+
+                </Datasets>
+
+
+            </Scenario>
+
+        </Extract>
+
+    </Scenarios>
+
+</GobiiTestData>

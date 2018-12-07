@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../model/type-extract-format", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "../model/type-extractor-filter", "@ngrx/store", "../services/core/file-item-service", "rxjs/Observable"], function (exports_1, context_1) {
+System.register(["@angular/core", "../model/type-extract-format", "../model/gobii-file-item", "../model/type-process", "../model//type-extractor-item", "../model/type-extractor-filter", "@ngrx/store", "../services/core/file-item-service", "rxjs/Observable", "../services/core/view-id-generator-service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../model/gobi
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, type_extract_format_1, gobii_file_item_1, type_process_1, type_extractor_item_1, type_extractor_filter_1, store_1, file_item_service_1, Observable_1, ExportFormatComponent;
+    var core_1, type_extract_format_1, gobii_file_item_1, type_process_1, type_extractor_item_1, type_extractor_filter_1, store_1, file_item_service_1, Observable_1, view_id_generator_service_1, ExportFormatComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -39,13 +39,18 @@ System.register(["@angular/core", "../model/type-extract-format", "../model/gobi
             },
             function (Observable_1_1) {
                 Observable_1 = Observable_1_1;
+            },
+            function (view_id_generator_service_1_1) {
+                view_id_generator_service_1 = view_id_generator_service_1_1;
             }
         ],
         execute: function () {
             ExportFormatComponent = (function () {
-                function ExportFormatComponent(store, fileItemService) {
+                function ExportFormatComponent(store, fileItemService, viewIdGeneratorService) {
                     this.store = store;
                     this.fileItemService = fileItemService;
+                    this.viewIdGeneratorService = viewIdGeneratorService;
+                    this.gobiiExtractFormat = type_extract_format_1.GobiiExtractFormat;
                     this.onFormatSelected = new core_1.EventEmitter();
                     this.onError = new core_1.EventEmitter();
                 } // ctor
@@ -95,7 +100,7 @@ System.register(["@angular/core", "../model/type-extract-format", "../model/gobi
                         styleUrls: ["js/node_modules/primeng/resources/themes/omega/theme.css",
                             "js/node_modules/primeng/resources/primeng.css",
                             "js/node_modules/bootswatch/cerulean/bootstrap.min.css"],
-                        template: "\n        <form>\n            <label class=\"the-legend\">Select Format:&nbsp;</label>\n            <BR>\n            <div class=\"ui-g\" style=\"width:250px;margin-bottom:5px\">\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleFormatSelected($event)\"\n                            [ngModel]=\"(fileFormat$  | async).getItemId()\"\n                            name=\"fileFormat\"\n                            value=\"HAPMAP\"\n                            label=\"Hapmap\">\n                    </p-radioButton>\n                </div>\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleFormatSelected($event)\"\n                            [ngModel]=\"(fileFormat$  | async).getItemId()\"\n                            name=\"fileFormat\"\n                            label=\"Flapjack\"\n                            value=\"FLAPJACK\">\n                    </p-radioButton>\n                </div>\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleFormatSelected($event)\"\n                            [ngModel]=\"(fileFormat$  | async).getItemId()\"\n                            name=\"fileFormat\"\n                            label=\"Sample Metadata\"\n                            value=\"META_DATA_ONLY\">\n                    </p-radioButton>\n                </div>\n            </div>\n        </form>" // end template
+                        template: "\n        <form>\n            <label class=\"the-legend\">Select Format:&nbsp;</label>\n            <BR>\n            <div class=\"ui-g\" style=\"width:250px;margin-bottom:5px\">\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleFormatSelected($event)\"\n                            [ngModel]=\"(fileFormat$  | async).getItemId()\"\n                            name=\"fileFormat\"\n                            value=\"HAPMAP\"\n                            label=\"Hapmap\"\n                            [id]=\"viewIdGeneratorService.makeExportFormatRadioButtonId(gobiiExtractFormat.HAPMAP)\">\n                    </p-radioButton>\n                </div>\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleFormatSelected($event)\"\n                            [ngModel]=\"(fileFormat$  | async).getItemId()\"\n                            name=\"fileFormat\"\n                            label=\"Flapjack\"\n                            value=\"FLAPJACK\"\n                            [id]=\"viewIdGeneratorService.makeExportFormatRadioButtonId(gobiiExtractFormat.FLAPJACK)\">\n                    </p-radioButton>\n                </div>\n                <div class=\"ui-g-12\" style=\"height:30px\">\n                    <p-radioButton\n                            (ngModelChange)=\"handleFormatSelected($event)\"\n                            [ngModel]=\"(fileFormat$  | async).getItemId()\"\n                            name=\"fileFormat\"\n                            label=\"Sample Metadata\"\n                            value=\"META_DATA_ONLY\"\n                            [id]=\"viewIdGeneratorService.makeExportFormatRadioButtonId(gobiiExtractFormat.META_DATA_ONLY)\">\n                    </p-radioButton>\n                </div>\n            </div>\n        </form>" // end template
                     })
                     /**
                      * In the template you will notice some slight of hand to get the property value of the
@@ -112,7 +117,8 @@ System.register(["@angular/core", "../model/type-extract-format", "../model/gobi
                      */
                     ,
                     __metadata("design:paramtypes", [store_1.Store,
-                        file_item_service_1.FileItemService])
+                        file_item_service_1.FileItemService,
+                        view_id_generator_service_1.ViewIdGeneratorService])
                 ], ExportFormatComponent);
                 return ExportFormatComponent;
             }());

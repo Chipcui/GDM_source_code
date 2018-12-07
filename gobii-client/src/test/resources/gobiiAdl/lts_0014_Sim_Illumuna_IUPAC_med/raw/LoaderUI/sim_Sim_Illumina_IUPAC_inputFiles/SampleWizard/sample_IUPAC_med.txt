@@ -1,0 +1,101 @@
+germplasm_specie	germplasm_name	external_code	germplasm_subsp	germplasm_type	dnasample_name	dnasample_num	dnasample_platename	dnasample_ref_sample	dnasample_trial_name	dnarun_name
+Triticum urartu	sim_uratu:6831	sim_GID_uratu:6831	Undetermined	F2	sim_sample_uratu:6831	num_0	barcode_0.625215873968		trial_18	sim_run_uratu:6831
+Triticum urartu	sim_uratu:3417	sim_GID_uratu:3417	Triticum vavilovii var. vavilovii	F2	sim_sample_uratu:3417	num_1	barcode_0.257396734926	REF	trial_19	sim_run_uratu:3417
+Triticum urartu	sim_uratu:6065	sim_GID_uratu:6065	Triticum turgidum subsp. paleocolchicum		sim_sample_uratu:6065	num_2	barcode_0.190079241908		trial_17	sim_run_uratu:6065
+Triticum urartu	sim_uratu:1219	sim_GID_uratu:1219	Triticum vavilovii var. vavilovii	F1_hybrid	sim_sample_uratu:1219	num_3	barcode_0.685835641655	REF	trial_19	sim_run_uratu:1219
+Triticum urartu	sim_uratu:7091	sim_GID_uratu:7091	Zea diploperennis	F2	sim_sample_uratu:7091	num_4	barcode_0.329879572603		trial_17	sim_run_uratu:7091
+Triticum urartu	sim_uratu:5496	sim_GID_uratu:5496	Triticum zhukovskyi	F1_hybrid	sim_sample_uratu:5496	num_5	barcode_0.983693060065		trial_18	sim_run_uratu:5496
+Triticum urartu	sim_uratu:1549	sim_GID_uratu:1549	Triticum zhukovskyi	BC1F1	sim_sample_uratu:1549	num_6	barcode_0.763797085158		trial_19	sim_run_uratu:1549
+Triticum urartu	sim_uratu:9148	sim_GID_uratu:9148	Zea mays subsp. parviglumis	Inbred_line	sim_sample_uratu:9148	num_7	barcode_0.829277900672	REF	trial_17	sim_run_uratu:9148
+Triticum urartu	sim_uratu:1606	sim_GID_uratu:1606	Zea mays subsp. huehuetenangensis	F2	sim_sample_uratu:1606	num_8	barcode_0.28748394956	REF	trial_19	sim_run_uratu:1606
+Triticum urartu	sim_uratu:9109	sim_GID_uratu:9109	Zea diploperennis	BC1F1	sim_sample_uratu:9109	num_9	barcode_0.693728177456		trial_18	sim_run_uratu:9109
+Triticum urartu	sim_uratu:4319	sim_GID_uratu:4319	Zea mays subsp. mays	F1_hybrid	sim_sample_uratu:4319	num_10	barcode_0.77563728763		trial_19	sim_run_uratu:4319
+Triticum urartu	sim_uratu:3827	sim_GID_uratu:3827	Zea mays subsp. mays	F2	sim_sample_uratu:3827	num_11	barcode_0.913726375112	REF	trial_18	sim_run_uratu:3827
+Triticum urartu	sim_uratu:1891	sim_GID_uratu:1891	Zea diploperennis	F1_hybrid	sim_sample_uratu:1891	num_12	barcode_0.261196207464	REF	trial_19	sim_run_uratu:1891
+Triticum urartu	sim_uratu:226	sim_GID_uratu:226	Zea mays subsp. huehuetenangensis	BC1F1	sim_sample_uratu:226	num_13	barcode_0.760166667852		trial_17	sim_run_uratu:226
+Triticum urartu	sim_uratu:2100	sim_GID_uratu:2100	Triticum urartu	F2	sim_sample_uratu:2100	num_14	barcode_0.824048031001		trial_18	sim_run_uratu:2100
+Triticum urartu	sim_uratu:8316	sim_GID_uratu:8316	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_uratu:8316	num_15	barcode_0.21325980073		trial_19	sim_run_uratu:8316
+Triticum urartu	sim_uratu:9978	sim_GID_uratu:9978	Triticum turgidum subsp. turanicum		sim_sample_uratu:9978	num_16	barcode_0.920373594292		trial_19	sim_run_uratu:9978
+Triticum urartu	sim_uratu:4939	sim_GID_uratu:4939	Triticum turgidum subsp. durum	F1_hybrid	sim_sample_uratu:4939	num_17	barcode_0.351582070574		trial_18	sim_run_uratu:4939
+Triticum urartu	sim_uratu:3949	sim_GID_uratu:3949	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_uratu:3949	num_18	barcode_0.694990311197	REF	trial_17	sim_run_uratu:3949
+Triticum urartu	sim_uratu:341	sim_GID_uratu:341	Zea mays subsp. parviglumis		sim_sample_uratu:341	num_19	barcode_0.38016367623	REF	trial_18	sim_run_uratu:341
+Triticum urartu	sim_uratu:2672	sim_GID_uratu:2672	Triticum turgidum subsp. dicoccon		sim_sample_uratu:2672	num_20	barcode_0.79201953213	REF	trial_17	sim_run_uratu:2672
+Triticum urartu	sim_uratu:4435	sim_GID_uratu:4435		F2	sim_sample_uratu:4435	num_21	barcode_0.578873789215		trial_18	sim_run_uratu:4435
+Triticum urartu	sim_uratu:1206	sim_GID_uratu:1206	Triticum urartu	Inbred_line	sim_sample_uratu:1206	num_22	barcode_0.634756998494	REF	trial_17	sim_run_uratu:1206
+Triticum urartu	sim_uratu:1841	sim_GID_uratu:1841	Triticum turgidum subsp. dicoccon	F2	sim_sample_uratu:1841	num_23	barcode_0.852233852817	REF	trial_17	sim_run_uratu:1841
+Triticum urartu	sim_uratu:242	sim_GID_uratu:242	Triticum turgidum subsp. turanicum	F2	sim_sample_uratu:242	num_24	barcode_0.710533247037	REF	trial_17	sim_run_uratu:242
+Triticum urartu	sim_uratu:8847	sim_GID_uratu:8847	Triticum turgidum subsp. turgidum	Inbred_line	sim_sample_uratu:8847	num_25	barcode_0.236126680746	REF	trial_17	sim_run_uratu:8847
+Triticum urartu	sim_uratu:6749	sim_GID_uratu:6749	Triticum turgidum subsp. dicoccon	F1_hybrid	sim_sample_uratu:6749	num_26	barcode_0.423856834431		trial_17	sim_run_uratu:6749
+Triticum urartu	sim_uratu:9590	sim_GID_uratu:9590	Zea mays subsp. mexicana	F1_hybrid	sim_sample_uratu:9590	num_27	barcode_0.0617892661453		trial_18	sim_run_uratu:9590
+Triticum urartu	sim_uratu:5070	sim_GID_uratu:5070	Zea mays subsp. parviglumis		sim_sample_uratu:5070	num_28	barcode_0.279108985361	REF	trial_17	sim_run_uratu:5070
+Triticum urartu	sim_uratu:6852	sim_GID_uratu:6852	Triticum turgidum subsp. dicoccon	BC1F1	sim_sample_uratu:6852	num_29	barcode_0.107222724615	REF	trial_17	sim_run_uratu:6852
+Triticum urartu	sim_uratu:206	sim_GID_uratu:206	Zea mays subsp. mays	BC1F1	sim_sample_uratu:206	num_30	barcode_0.254737613662		trial_19	sim_run_uratu:206
+Triticum urartu	sim_uratu:4923	sim_GID_uratu:4923	Unknown	F1_hybrid	sim_sample_uratu:4923	num_31	barcode_0.568857326001		trial_18	sim_run_uratu:4923
+Triticum urartu	sim_uratu:810	sim_GID_uratu:810	Triticum zhukovskyi	F2	sim_sample_uratu:810	num_32	barcode_0.306029452484		trial_19	sim_run_uratu:810
+Triticum urartu	sim_uratu:7317	sim_GID_uratu:7317	Triticum zhukovskyi		sim_sample_uratu:7317	num_33	barcode_0.603734692042	REF	trial_17	sim_run_uratu:7317
+Triticum urartu	sim_uratu:9189	sim_GID_uratu:9189	Triticum turgidum subsp. turgidum	BC1F1	sim_sample_uratu:9189	num_34	barcode_0.319680197486	REF	trial_19	sim_run_uratu:9189
+Triticum urartu	sim_uratu:8252	sim_GID_uratu:8252	Triticum turgidum subsp. turanicum		sim_sample_uratu:8252	num_35	barcode_0.621262932527	REF	trial_17	sim_run_uratu:8252
+Triticum urartu	sim_uratu:3513	sim_GID_uratu:3513	Triticum urartu	F1_hybrid	sim_sample_uratu:3513	num_36	barcode_0.844848230414		trial_18	sim_run_uratu:3513
+Triticum urartu	sim_uratu:8042	sim_GID_uratu:8042	Triticum vavilovii var. vavilovii		sim_sample_uratu:8042	num_37	barcode_0.0985653169913		trial_18	sim_run_uratu:8042
+Triticum urartu	sim_uratu:7143	sim_GID_uratu:7143	Undetermined	BC1F1	sim_sample_uratu:7143	num_38	barcode_0.379787554991		trial_19	sim_run_uratu:7143
+Triticum urartu	sim_uratu:1880	sim_GID_uratu:1880	Triticum urartu	Inbred_line	sim_sample_uratu:1880	num_39	barcode_0.394507321085	REF	trial_19	sim_run_uratu:1880
+Triticum urartu	sim_uratu:5193	sim_GID_uratu:5193	Undetermined	Inbred_line	sim_sample_uratu:5193	num_40	barcode_0.191117481742		trial_19	sim_run_uratu:5193
+Triticum urartu	sim_uratu:9257	sim_GID_uratu:9257	Zea mays subsp. huehuetenangensis	F2	sim_sample_uratu:9257	num_41	barcode_0.661749102854	REF	trial_17	sim_run_uratu:9257
+Triticum urartu	sim_uratu:4848	sim_GID_uratu:4848	Undetermined spp.	F2	sim_sample_uratu:4848	num_42	barcode_0.588288847333	REF	trial_18	sim_run_uratu:4848
+Triticum urartu	sim_uratu:228	sim_GID_uratu:228	Zea mays subsp. parviglumis		sim_sample_uratu:228	num_43	barcode_0.73005457285		trial_17	sim_run_uratu:228
+Triticum urartu	sim_uratu:1761	sim_GID_uratu:1761	Triticum urartu	F1_hybrid	sim_sample_uratu:1761	num_44	barcode_0.841524465091		trial_19	sim_run_uratu:1761
+Triticum urartu	sim_uratu:9432	sim_GID_uratu:9432	Zea mays subsp. parviglumis	F2	sim_sample_uratu:9432	num_45	barcode_0.302263543734	REF	trial_19	sim_run_uratu:9432
+Triticum urartu	sim_uratu:2762	sim_GID_uratu:2762	Triticum vavilovii var. vavilovii		sim_sample_uratu:2762	num_46	barcode_0.735757522891	REF	trial_19	sim_run_uratu:2762
+Triticum urartu	sim_uratu:3503	sim_GID_uratu:3503		Inbred_line	sim_sample_uratu:3503	num_47	barcode_0.23382509221		trial_18	sim_run_uratu:3503
+Triticum urartu	sim_uratu:2459	sim_GID_uratu:2459	Zea mays subsp. huehuetenangensis	F2	sim_sample_uratu:2459	num_48	barcode_0.374131157892		trial_19	sim_run_uratu:2459
+Triticum urartu	sim_uratu:3631	sim_GID_uratu:3631	Undetermined spp.	F1_hybrid	sim_sample_uratu:3631	num_49	barcode_0.750133081132		trial_18	sim_run_uratu:3631
+Triticum urartu	sim_uratu:7953	sim_GID_uratu:7953		BC1F1	sim_sample_uratu:7953	num_50	barcode_0.98107679763		trial_17	sim_run_uratu:7953
+Triticum urartu	sim_uratu:5159	sim_GID_uratu:5159	Zea mays subsp. mays	BC1F1	sim_sample_uratu:5159	num_51	barcode_0.50017771702	REF	trial_18	sim_run_uratu:5159
+Triticum urartu	sim_uratu:8534	sim_GID_uratu:8534	Triticum urartu	BC1F1	sim_sample_uratu:8534	num_52	barcode_0.481815013603	REF	trial_19	sim_run_uratu:8534
+Triticum urartu	sim_uratu:6347	sim_GID_uratu:6347	Zea diploperennis	F2	sim_sample_uratu:6347	num_53	barcode_0.998290568826	REF	trial_18	sim_run_uratu:6347
+Triticum urartu	sim_uratu:3919	sim_GID_uratu:3919	Zea diploperennis		sim_sample_uratu:3919	num_54	barcode_0.409209603172	REF	trial_17	sim_run_uratu:3919
+Triticum urartu	sim_uratu:9108	sim_GID_uratu:9108	Zea mays subsp. huehuetenangensis	Inbred_line	sim_sample_uratu:9108	num_55	barcode_0.912659861329		trial_19	sim_run_uratu:9108
+Triticum urartu	sim_uratu:7271	sim_GID_uratu:7271	Zea mays subsp. mays	F1_hybrid	sim_sample_uratu:7271	num_56	barcode_0.816762910979		trial_17	sim_run_uratu:7271
+Triticum urartu	sim_uratu:5118	sim_GID_uratu:5118	Triticum zhukovskyi	F1_hybrid	sim_sample_uratu:5118	num_57	barcode_0.557571153129		trial_19	sim_run_uratu:5118
+Triticum urartu	sim_uratu:9224	sim_GID_uratu:9224	Zea diploperennis	BC1F1	sim_sample_uratu:9224	num_58	barcode_0.153842737983		trial_19	sim_run_uratu:9224
+Triticum urartu	sim_uratu:2110	sim_GID_uratu:2110	Undetermined spp.	Inbred_line	sim_sample_uratu:2110	num_59	barcode_0.0185001817484		trial_18	sim_run_uratu:2110
+Triticum urartu	sim_uratu:5768	sim_GID_uratu:5768	Zea mays subsp. parviglumis		sim_sample_uratu:5768	num_60	barcode_0.536816193688	REF	trial_17	sim_run_uratu:5768
+Triticum urartu	sim_uratu:8178	sim_GID_uratu:8178	Triticum turgidum subsp. turanicum	F2	sim_sample_uratu:8178	num_61	barcode_0.69668228431	REF	trial_17	sim_run_uratu:8178
+Triticum urartu	sim_uratu:4425	sim_GID_uratu:4425	Triticum turgidum subsp. turgidum	F2	sim_sample_uratu:4425	num_62	barcode_0.565453925437		trial_18	sim_run_uratu:4425
+Triticum urartu	sim_uratu:2322	sim_GID_uratu:2322	Undetermined	F1_hybrid	sim_sample_uratu:2322	num_63	barcode_0.905926173804	REF	trial_19	sim_run_uratu:2322
+Triticum urartu	sim_uratu:1003	sim_GID_uratu:1003	Triticum turgidum subsp. dicoccon	Inbred_line	sim_sample_uratu:1003	num_64	barcode_0.0409043838475		trial_17	sim_run_uratu:1003
+Triticum urartu	sim_uratu:549	sim_GID_uratu:549	Zea diploperennis	Inbred_line	sim_sample_uratu:549	num_65	barcode_0.799470733827		trial_19	sim_run_uratu:549
+Triticum urartu	sim_uratu:2334	sim_GID_uratu:2334	Triticum turgidum subsp. turgidum	F1_hybrid	sim_sample_uratu:2334	num_66	barcode_0.126387946807	REF	trial_17	sim_run_uratu:2334
+Triticum urartu	sim_uratu:929	sim_GID_uratu:929	Zea mays subsp. mexicana	F1_hybrid	sim_sample_uratu:929	num_67	barcode_0.740204522261	REF	trial_17	sim_run_uratu:929
+Triticum urartu	sim_uratu:7544	sim_GID_uratu:7544	Zea mays subsp. mexicana	F1_hybrid	sim_sample_uratu:7544	num_68	barcode_0.529098637724	REF	trial_18	sim_run_uratu:7544
+Triticum urartu	sim_uratu:4492	sim_GID_uratu:4492	Triticum urartu	F1_hybrid	sim_sample_uratu:4492	num_69	barcode_0.0103284290124	REF	trial_18	sim_run_uratu:4492
+Triticum urartu	sim_uratu:3455	sim_GID_uratu:3455	Unknown	F1_hybrid	sim_sample_uratu:3455	num_70	barcode_0.264051488162	REF	trial_17	sim_run_uratu:3455
+Triticum urartu	sim_uratu:8634	sim_GID_uratu:8634	Undetermined		sim_sample_uratu:8634	num_71	barcode_0.694715984908	REF	trial_17	sim_run_uratu:8634
+Triticum urartu	sim_uratu:8335	sim_GID_uratu:8335	Undetermined spp.	Inbred_line	sim_sample_uratu:8335	num_72	barcode_0.851387845183	REF	trial_17	sim_run_uratu:8335
+Triticum urartu	sim_uratu:9073	sim_GID_uratu:9073	Zea mays subsp. parviglumis	F2	sim_sample_uratu:9073	num_73	barcode_0.875525765881	REF	trial_19	sim_run_uratu:9073
+Triticum urartu	sim_uratu:7057	sim_GID_uratu:7057	Zea mays subsp. mays	Inbred_line	sim_sample_uratu:7057	num_74	barcode_0.97865195577	REF	trial_18	sim_run_uratu:7057
+Triticum urartu	sim_uratu:5807	sim_GID_uratu:5807	Triticum turgidum subsp. polonicum	F1_hybrid	sim_sample_uratu:5807	num_75	barcode_0.718422785088		trial_18	sim_run_uratu:5807
+Triticum urartu	sim_uratu:3027	sim_GID_uratu:3027	Undetermined	Inbred_line	sim_sample_uratu:3027	num_76	barcode_0.857183130857		trial_17	sim_run_uratu:3027
+Triticum urartu	sim_uratu:4303	sim_GID_uratu:4303	Triticum turgidum subsp. durum	F2	sim_sample_uratu:4303	num_77	barcode_0.484733772411	REF	trial_18	sim_run_uratu:4303
+Triticum urartu	sim_uratu:106	sim_GID_uratu:106	Zea mays subsp. parviglumis	BC1F1	sim_sample_uratu:106	num_78	barcode_0.142104007825		trial_19	sim_run_uratu:106
+Triticum urartu	sim_uratu:8811	sim_GID_uratu:8811	Triticum turgidum subsp. turgidum	F2	sim_sample_uratu:8811	num_79	barcode_0.827070550407		trial_19	sim_run_uratu:8811
+Triticum urartu	sim_uratu:5801	sim_GID_uratu:5801	Zea mays subsp. mays		sim_sample_uratu:5801	num_80	barcode_0.742783366113	REF	trial_17	sim_run_uratu:5801
+Triticum urartu	sim_uratu:6995	sim_GID_uratu:6995	Triticum urartu	BC1F1	sim_sample_uratu:6995	num_81	barcode_0.0592326878486		trial_19	sim_run_uratu:6995
+Triticum urartu	sim_uratu:2808	sim_GID_uratu:2808	Triticum turgidum subsp. durum	Inbred_line	sim_sample_uratu:2808	num_82	barcode_0.918275240242	REF	trial_19	sim_run_uratu:2808
+Triticum urartu	sim_uratu:9221	sim_GID_uratu:9221	Undetermined	F2	sim_sample_uratu:9221	num_83	barcode_0.361534185653		trial_17	sim_run_uratu:9221
+Triticum urartu	sim_uratu:5054	sim_GID_uratu:5054	Zea mays subsp. huehuetenangensis	F1_hybrid	sim_sample_uratu:5054	num_84	barcode_0.67711242074		trial_19	sim_run_uratu:5054
+Triticum urartu	sim_uratu:6762	sim_GID_uratu:6762	Triticum turgidum subsp. paleocolchicum		sim_sample_uratu:6762	num_85	barcode_0.639372632246		trial_17	sim_run_uratu:6762
+Triticum urartu	sim_uratu:5344	sim_GID_uratu:5344	Unknown	BC1F1	sim_sample_uratu:5344	num_86	barcode_0.377759427132		trial_19	sim_run_uratu:5344
+Triticum urartu	sim_uratu:6451	sim_GID_uratu:6451	Triticum turgidum subsp. paleocolchicum		sim_sample_uratu:6451	num_87	barcode_0.319100724647		trial_18	sim_run_uratu:6451
+Triticum urartu	sim_uratu:6950	sim_GID_uratu:6950	Zea diploperennis	F1_hybrid	sim_sample_uratu:6950	num_88	barcode_0.471309452406	REF	trial_17	sim_run_uratu:6950
+Triticum urartu	sim_uratu:2668	sim_GID_uratu:2668	Zea diploperennis	F1_hybrid	sim_sample_uratu:2668	num_89	barcode_0.644008832511		trial_19	sim_run_uratu:2668
+Triticum urartu	sim_uratu:3595	sim_GID_uratu:3595	Triticum turgidum subsp. durum	F2	sim_sample_uratu:3595	num_90	barcode_0.00537988189455		trial_17	sim_run_uratu:3595
+Triticum urartu	sim_uratu:8591	sim_GID_uratu:8591	Zea mays subsp. mexicana	F2	sim_sample_uratu:8591	num_91	barcode_0.693407546479	REF	trial_19	sim_run_uratu:8591
+Triticum urartu	sim_uratu:2442	sim_GID_uratu:2442	Triticum turgidum subsp. turanicum	Inbred_line	sim_sample_uratu:2442	num_92	barcode_0.27368856338	REF	trial_17	sim_run_uratu:2442
+Triticum urartu	sim_uratu:7198	sim_GID_uratu:7198	Zea mays subsp. parviglumis	F1_hybrid	sim_sample_uratu:7198	num_93	barcode_0.396253792904		trial_18	sim_run_uratu:7198
+Triticum urartu	sim_uratu:7590	sim_GID_uratu:7590	Zea mays subsp. parviglumis	Inbred_line	sim_sample_uratu:7590	num_94	barcode_0.808180457879	REF	trial_19	sim_run_uratu:7590
+Triticum urartu	sim_uratu:3290	sim_GID_uratu:3290	Triticum turgidum subsp. durum	F2	sim_sample_uratu:3290	num_95	barcode_0.591015770705		trial_17	sim_run_uratu:3290
+Triticum urartu	sim_uratu:585	sim_GID_uratu:585	Triticum turgidum subsp. paleocolchicum		sim_sample_uratu:585	num_96	barcode_0.488384378121	REF	trial_17	sim_run_uratu:585
+Triticum urartu	sim_uratu:3569	sim_GID_uratu:3569	Unknown		sim_sample_uratu:3569	num_97	barcode_0.636524349006		trial_19	sim_run_uratu:3569
+Triticum urartu	sim_uratu:7628	sim_GID_uratu:7628	Triticum turgidum subsp. paleocolchicum	BC1F1	sim_sample_uratu:7628	num_98	barcode_0.559286406875		trial_17	sim_run_uratu:7628
+Triticum urartu	sim_uratu:3531	sim_GID_uratu:3531	Zea mays subsp. parviglumis		sim_sample_uratu:3531	num_99	barcode_0.904426595426		trial_19	sim_run_uratu:3531

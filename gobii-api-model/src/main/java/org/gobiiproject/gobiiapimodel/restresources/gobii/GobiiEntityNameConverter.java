@@ -51,6 +51,11 @@ public class GobiiEntityNameConverter {
                             RestResourceId.GOBII_LINKAGEGROUP);
                     break;
 
+                case GERMPLASM:
+                    returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
+                            RestResourceId.GOBII_GERMPLASM);
+                    break;
+
                 case CV:
                     returnVal = GobiiUriFactory.resourceByUriIdParam(contextRoot,
                             RestResourceId.GOBII_CV);

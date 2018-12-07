@@ -108,7 +108,7 @@ public class DtoMapNameIdFetchPlatforms implements DtoMapNameIdFetch {
                         put("nameArray", nameIdDTOList);
                     }});
 
-            Integer resultSize = DtoMapNameIdUtil.getIdFromResultSet(nameIdDTOList, resultSet, "name", "platform_id");
+            Integer resultSize = DtoMapNameIdUtil.getIdsFromResultSet(nameIdDTOList, resultSet, "name", "platform_id");
 
         } catch (Exception e) {
             throw new GobiiDaoException(e);

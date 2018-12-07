@@ -5,6 +5,9 @@
 // are treated in the components and services
 export class FilterParamNames {
 
+    // WARNING: If you change the value of one of these variables, you will
+    // seriously break the Selenium unit tests: any changes to these values
+    // will have to be cascaded to the unit tests!!!
     public static UNKNOWN: string = "UNKNOWN";
     public static CONTACT_PI_HIERARCHY_ROOT: string = "Contact-PI-Hierarchy-Root";
     public static EXPERIMENTS: string = "Experiments";

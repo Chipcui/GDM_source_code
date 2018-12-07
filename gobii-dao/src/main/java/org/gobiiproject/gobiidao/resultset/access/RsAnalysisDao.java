@@ -14,6 +14,8 @@ public interface RsAnalysisDao {
     
 	ResultSet getAnalysisNames() throws GobiiDaoException;
 
+	ResultSet getNameIdsForAnalysisNames(Integer callLimit) throws GobiiDaoException;
+
     Integer createAnalysis(Map<String, Object> parameters) throws GobiiDaoException;
 
     void updateAnalysis(Map<String, Object> parameters) throws GobiiDaoException;

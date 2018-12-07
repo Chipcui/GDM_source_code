@@ -1,1126 +1,734 @@
-[ {
-  "columnsByTableName" : {
-    "dnasample_prop" : [ {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 2,
-      "name" : "dnasample_name",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 1,
-      "name" : "external_code",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 5,
-      "name" : "num",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "project_id",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "14",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "props",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "91:",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : "",
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 8,
-      "name" : "value1",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : true,
-      "subcolumnDelimiter" : "",
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "comma1",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : ",",
-      "index" : null,
-      "subcolumn" : true,
-      "subcolumnDelimiter" : "",
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "key2",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "86:",
-      "index" : null,
-      "subcolumn" : true,
-      "subcolumnDelimiter" : "",
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 9,
-      "name" : "value2",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : true,
-      "subcolumnDelimiter" : "",
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    } ],
-    "dnasample" : [ {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "project_id",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "14",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 5,
-      "name" : "num",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 2,
-      "name" : "name",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 1,
-      "name" : "external_code",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "status",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "57",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    } ],
-    "dnarun" : [ {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "project_id",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "14",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "experiment_id",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "32",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 5,
-      "name" : "num",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 2,
-      "name" : "dnasample_name",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 3,
-      "name" : "name",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    } ],
-    "germplasm" : [ {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "status",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "57",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 4,
-      "name" : "type_name",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 6,
-      "name" : "species_name",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 0,
-      "name" : "name",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 1,
-      "name" : "external_code",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    } ],
-    "germplasm_prop" : [ {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 1,
-      "name" : "external_code",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : null,
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CONSTANT",
-      "rCoord" : null,
-      "cCoord" : null,
-      "name" : "props",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : "50:",
-      "index" : null,
-      "subcolumn" : false,
-      "subcolumnDelimiter" : "",
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    }, {
-      "gobiiColumnType" : "CSV_COLUMN",
-      "rCoord" : 1,
-      "cCoord" : 7,
-      "name" : "value1",
-      "filterFrom" : null,
-      "filterTo" : null,
-      "findText" : null,
-      "replaceText" : null,
-      "constantValue" : null,
-      "index" : null,
-      "subcolumn" : true,
-      "subcolumnDelimiter" : "",
-      "dataSetType" : "IUPAC",
-      "dataSetOrientationType" : "MARKER_FAST",
-      "metaDataId" : null
-    } ]
+[
+  {
+    "columnsByTableName": {
+      "dnasample_prop": [
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 2,
+          "name": "dnasample_name",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 1,
+          "name": "external_code",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 5,
+          "name": "num",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "project_id",
+          "constantValue": "14",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "props",
+          "constantValue": "91:",
+          "subcolumn": false,
+          "subcolumnDelimiter": "",
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 8,
+          "name": "value1",
+          "subcolumn": true,
+          "subcolumnDelimiter": "",
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "comma1",
+          "constantValue": ",",
+          "subcolumn": true,
+          "subcolumnDelimiter": "",
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "key2",
+          "constantValue": "86:",
+          "subcolumn": true,
+          "subcolumnDelimiter": "",
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 9,
+          "name": "value2",
+          "subcolumn": true,
+          "subcolumnDelimiter": "",
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        }
+      ],
+      "dnasample": [
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "project_id",
+          "constantValue": "14",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 5,
+          "name": "num",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 2,
+          "name": "name",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 1,
+          "name": "external_code",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "status",
+          "constantValue": "57",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        }
+      ],
+      "dnarun": [
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "project_id",
+          "constantValue": "14",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "experiment_id",
+          "constantValue": "32",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 5,
+          "name": "num",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 2,
+          "name": "dnasample_name",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 3,
+          "name": "name",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        }
+      ],
+      "germplasm": [
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "status",
+          "constantValue": "57",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 4,
+          "name": "type_name",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 6,
+          "name": "species_name",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 0,
+          "name": "name",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 1,
+          "name": "external_code",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        }
+      ],
+      "germplasm_prop": [
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 1,
+          "name": "external_code",
+          "subcolumn": false,
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CONSTANT",
+          "name": "props",
+          "constantValue": "50:",
+          "subcolumn": false,
+          "subcolumnDelimiter": "",
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        },
+        {
+          "gobiiColumnType": "CSV_COLUMN",
+          "rCoord": 1,
+          "cCoord": 7,
+          "name": "value1",
+          "subcolumn": true,
+          "subcolumnDelimiter": "",
+          "dataSetType": "IUPAC",
+          "dataSetOrientationType": "MARKER_FAST"
+        }
+      ]
+    },
+    "jobPayloadType": "CV_PAYLOADTYPE_SAMPLES",
+    "gobiiFile": {
+      "source": "/data/gobii_bundle/crops/zoan/files/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "destination": "/data/gobii_bundle/crops/zoan/loader/digest/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "delimiter": "\\t",
+      "gobiiFileType": "GENERIC",
+      "requireDirectoriesToExist": false,
+      "createSource": false
+    },
+    "table": "germplasm",
+    "gobiiFileColumns": [
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "status",
+        "constantValue": "57",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 4,
+        "name": "type_name",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 6,
+        "name": "species_name",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 0,
+        "name": "name",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 1,
+        "name": "external_code",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      }
+    ],
+    "vcfParameters": {
+      "removeIndels": false,
+      "toIupac": false
+    },
+    "dataSetId": "8",
+    "gobiiCropType": "zoan",
+    "contactId": "67",
+    "contactEmail": "gobii.dev@gmail.com",
+    "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
+    "qcCheck": false,
+    "project": {
+      "id": "6",
+      "name": "sim_2letternuc_proj_01"
+    },
+    "platform": {
+      "id": "5",
+      "name": "Sequencing"
+    },
+    "dataSet": {
+      "id": "8",
+      "name": "sim_2letternuc_ds_01"
+    },
+    "datasetType": {
+      "id": 97,
+      "name": "NUCLEOTIDE_2_LETTER"
+    },
+    "mapset": {
+      "id": "5",
+      "name": "Test_Physical"
+    },
+    "experiment": {
+      "id": "7",
+      "name": "sim_2letternuc_exp_01"
+    }
   },
-  "jobPayloadType" : "CV_PAYLOADTYPE_SAMPLES",
-  "gobiiFile" : {
-    "source" : "/data/gobii_bundle/crops/dev/files/data_20180614_163714_daw279",
-    "destination" : "/data/gobii_bundle/crops/dev/loader/digest/data_20180614_163714_daw279",
-    "delimiter" : "\\t",
-    "gobiiFileType" : "GENERIC",
-    "requireDirectoriesToExist" : false,
-    "createSource" : false
+  {
+    "columnsByTableName": {},
+    "gobiiFile": {
+      "source": "/data/gobii_bundle/crops/zoan/files/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "destination": "/data/gobii_bundle/crops/zoan/loader/digest/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "delimiter": "\\t",
+      "gobiiFileType": "GENERIC",
+      "requireDirectoriesToExist": false,
+      "createSource": false
+    },
+    "table": "germplasm_prop",
+    "gobiiFileColumns": [
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 1,
+        "name": "external_code",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "props",
+        "constantValue": "50:",
+        "subcolumn": false,
+        "subcolumnDelimiter": "",
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 7,
+        "name": "value1",
+        "subcolumn": true,
+        "subcolumnDelimiter": "",
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      }
+    ],
+    "vcfParameters": {
+      "removeIndels": false,
+      "toIupac": false
+    },
+    "dataSetId": "8",
+    "gobiiCropType": "zoan",
+    "contactId": "67",
+    "contactEmail": "gobii.dev@gmail.com",
+    "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
+    "qcCheck": false,
+    "project": {
+      "id": "6",
+      "name": "sim_2letternuc_proj_01"
+    },
+    "platform": {
+      "id": "5",
+      "name": "Sequencing"
+    },
+    "dataSet": {
+      "id": "8",
+      "name": "sim_2letternuc_ds_01"
+    },
+    "datasetType": {
+      "id": 97,
+      "name": "NUCLEOTIDE_2_LETTER"
+    },
+    "mapset": {
+      "id": "5",
+      "name": "Test_Physical"
+    },
+    "experiment": {
+      "id": "7",
+      "name": "sim_2letternuc_exp_01"
+    }
   },
-  "table" : "germplasm",
-  "gobiiFileColumns" : [ {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "status",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "57",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 4,
-    "name" : "type_name",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 6,
-    "name" : "species_name",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 0,
-    "name" : "name",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 1,
-    "name" : "external_code",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  } ],
-  "vcfParameters" : {
-    "maf" : null,
-    "minQ" : null,
-    "minDp" : null,
-    "removeIndels" : false,
-    "toIupac" : false
+  {
+    "columnsByTableName": {},
+    "gobiiFile": {
+      "source": "/data/gobii_bundle/crops/zoan/files/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "destination": "/data/gobii_bundle/crops/zoan/loader/digest/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "delimiter": "\\t",
+      "gobiiFileType": "GENERIC",
+      "requireDirectoriesToExist": false,
+      "createSource": false
+    },
+    "table": "dnasample",
+    "gobiiFileColumns": [
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "project_id",
+        "constantValue": "6",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 5,
+        "name": "num",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 2,
+        "name": "name",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 1,
+        "name": "external_code",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "status",
+        "constantValue": "57",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      }
+    ],
+    "vcfParameters": {
+      "removeIndels": false,
+      "toIupac": false
+    },
+    "dataSetId": "8",
+    "gobiiCropType": "zoan",
+    "contactId": "67",
+    "contactEmail": "gobii.dev@gmail.com",
+    "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
+    "qcCheck": false,
+    "project": {
+      "id": "6",
+      "name": "sim_2letternuc_proj_01"
+    },
+    "platform": {
+      "id": "5",
+      "name": "Sequencing"
+    },
+    "dataSet": {
+      "id": "8",
+      "name": "sim_2letternuc_ds_01"
+    },
+    "datasetType": {
+      "id": 97,
+      "name": "NUCLEOTIDE_2_LETTER"
+    },
+    "mapset": {
+      "id": "5",
+      "name": "Test_Physical"
+    },
+    "experiment": {
+      "id": "7",
+      "name": "sim_2letternuc_exp_01"
+    }
   },
-  "dataSetId" : null,
-  "gobiiCropType" : "dev",
-  "contactId" : 19,
-  "contactEmail" : "daw279@cornell.edu",
-  "gobiiJobStatus" : "CV_PROGRESSSTATUS_NOSTATUS",
-  "logMessage" : null,
-  "qcCheck" : false,
-  "project" : {
-    "id" : 14,
-    "name" : "Deb_Proj1_FlexQuery"
+  {
+    "columnsByTableName": {},
+    "gobiiFile": {
+      "source": "/data/gobii_bundle/crops/zoan/files/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "destination": "/data/gobii_bundle/crops/zoan/loader/digest/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "delimiter": "\\t",
+      "gobiiFileType": "GENERIC",
+      "requireDirectoriesToExist": false,
+      "createSource": false
+    },
+    "table": "dnasample_prop",
+    "gobiiFileColumns": [
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 2,
+        "name": "dnasample_name",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 1,
+        "name": "external_code",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 5,
+        "name": "num",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "project_id",
+        "constantValue": "6",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "props",
+        "constantValue": "91:",
+        "subcolumn": false,
+        "subcolumnDelimiter": "",
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 8,
+        "name": "value1",
+        "subcolumn": true,
+        "subcolumnDelimiter": "",
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "comma1",
+        "constantValue": ",",
+        "subcolumn": true,
+        "subcolumnDelimiter": "",
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "key2",
+        "constantValue": "86:",
+        "subcolumn": true,
+        "subcolumnDelimiter": "",
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 9,
+        "name": "value2",
+        "subcolumn": true,
+        "subcolumnDelimiter": "",
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      }
+    ],
+    "vcfParameters": {
+      "removeIndels": false,
+      "toIupac": false
+    },
+    "dataSetId": "8",
+    "gobiiCropType": "zoan",
+    "contactId": "67",
+    "contactEmail": "gobii.dev@gmail.com",
+    "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
+    "qcCheck": false,
+    "project": {
+      "id": "6",
+      "name": "sim_2letternuc_proj_01"
+    },
+    "platform": {
+      "id": "5",
+      "name": "Sequencing"
+    },
+    "dataSet": {
+      "id": "8",
+      "name": "sim_2letternuc_ds_01"
+    },
+    "datasetType": {
+      "id": 97,
+      "name": "NUCLEOTIDE_2_LETTER"
+    },
+    "mapset": {
+      "id": "5",
+      "name": "Test_Physical"
+    },
+    "experiment": {
+      "id": "7",
+      "name": "sim_2letternuc_exp_01"
+    }
   },
-  "platform" : {
-    "id" : null,
-    "name" : null
-  },
-  "dataSet" : {
-    "id" : null,
-    "name" : null
-  },
-  "datasetType" : {
-    "id" : null,
-    "name" : null
-  },
-  "mapset" : {
-    "id" : null,
-    "name" : null
-  },
-  "experiment" : {
-    "id" : 32,
-    "name" : "Deb_Proj1_Exp3_rAmpSeq_FQ"
+  {
+    "columnsByTableName": {},
+    "gobiiFile": {
+      "source": "/data/gobii_bundle/crops/zoan/files/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "destination": "/data/gobii_bundle/crops/zoan/loader/digest/data_20180810_003206_sim_2letternuc_proj_01_sample",
+      "delimiter": "\\t",
+      "gobiiFileType": "GENERIC",
+      "requireDirectoriesToExist": false,
+      "createSource": false
+    },
+    "table": "dnarun",
+    "gobiiFileColumns": [
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "project_id",
+        "constantValue": "6",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CONSTANT",
+        "name": "experiment_id",
+        "constantValue": "7",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 5,
+        "name": "num",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 2,
+        "name": "dnasample_name",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      },
+      {
+        "gobiiColumnType": "CSV_COLUMN",
+        "rCoord": 1,
+        "cCoord": 3,
+        "name": "name",
+        "subcolumn": false,
+        "dataSetType": "IUPAC",
+        "dataSetOrientationType": "MARKER_FAST"
+      }
+    ],
+    "vcfParameters": {
+      "removeIndels": false,
+      "toIupac": false
+    },
+    "dataSetId": "8",
+    "gobiiCropType": "zoan",
+    "contactId": "67",
+    "contactEmail": "gobii.dev@gmail.com",
+    "gobiiJobStatus": "CV_PROGRESSSTATUS_NOSTATUS",
+    "qcCheck": false,
+    "project": {
+      "id": "6",
+      "name": "sim_2letternuc_proj_01"
+    },
+    "platform": {
+      "id": "5",
+      "name": "Sequencing"
+    },
+    "dataSet": {
+      "id": "8",
+      "name": "sim_2letternuc_ds_01"
+    },
+    "datasetType": {
+      "id": 97,
+      "name": "NUCLEOTIDE_2_LETTER"
+    },
+    "mapset": {
+      "id": "5",
+      "name": "Test_Physical"
+    },
+    "experiment": {
+      "id": "7",
+      "name": "sim_2letternuc_exp_01"
+    }
   }
-}, {
-  "columnsByTableName" : { },
-  "jobPayloadType" : null,
-  "gobiiFile" : {
-    "source" : "/data/gobii_bundle/crops/dev/files/data_20180614_163714_daw279",
-    "destination" : "/data/gobii_bundle/crops/dev/loader/digest/data_20180614_163714_daw279",
-    "delimiter" : "\\t",
-    "gobiiFileType" : "GENERIC",
-    "requireDirectoriesToExist" : false,
-    "createSource" : false
-  },
-  "table" : "germplasm_prop",
-  "gobiiFileColumns" : [ {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 1,
-    "name" : "external_code",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "props",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "50:",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : "",
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 7,
-    "name" : "value1",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : true,
-    "subcolumnDelimiter" : "",
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  } ],
-  "vcfParameters" : {
-    "maf" : null,
-    "minQ" : null,
-    "minDp" : null,
-    "removeIndels" : false,
-    "toIupac" : false
-  },
-  "dataSetId" : null,
-  "gobiiCropType" : null,
-  "contactId" : 19,
-  "contactEmail" : "daw279@cornell.edu",
-  "gobiiJobStatus" : "CV_PROGRESSSTATUS_NOSTATUS",
-  "logMessage" : null,
-  "qcCheck" : false,
-  "project" : {
-    "id" : null,
-    "name" : null
-  },
-  "platform" : {
-    "id" : null,
-    "name" : null
-  },
-  "dataSet" : {
-    "id" : null,
-    "name" : null
-  },
-  "datasetType" : {
-    "id" : null,
-    "name" : null
-  },
-  "mapset" : {
-    "id" : null,
-    "name" : null
-  },
-  "experiment" : {
-    "id" : null,
-    "name" : null
-  }
-}, {
-  "columnsByTableName" : { },
-  "jobPayloadType" : null,
-  "gobiiFile" : {
-    "source" : "/data/gobii_bundle/crops/dev/files/data_20180614_163714_daw279",
-    "destination" : "/data/gobii_bundle/crops/dev/loader/digest/data_20180614_163714_daw279",
-    "delimiter" : "\\t",
-    "gobiiFileType" : "GENERIC",
-    "requireDirectoriesToExist" : false,
-    "createSource" : false
-  },
-  "table" : "dnasample",
-  "gobiiFileColumns" : [ {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "project_id",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "14",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 5,
-    "name" : "num",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 2,
-    "name" : "name",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 1,
-    "name" : "external_code",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "status",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "57",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  } ],
-  "vcfParameters" : {
-    "maf" : null,
-    "minQ" : null,
-    "minDp" : null,
-    "removeIndels" : false,
-    "toIupac" : false
-  },
-  "dataSetId" : null,
-  "gobiiCropType" : "dev",
-  "contactId" : 19,
-  "contactEmail" : "daw279@cornell.edu",
-  "gobiiJobStatus" : "CV_PROGRESSSTATUS_NOSTATUS",
-  "logMessage" : null,
-  "qcCheck" : false,
-  "project" : {
-    "id" : 14,
-    "name" : "Deb_Proj1_FlexQuery"
-  },
-  "platform" : {
-    "id" : null,
-    "name" : null
-  },
-  "dataSet" : {
-    "id" : null,
-    "name" : null
-  },
-  "datasetType" : {
-    "id" : null,
-    "name" : null
-  },
-  "mapset" : {
-    "id" : null,
-    "name" : null
-  },
-  "experiment" : {
-    "id" : 32,
-    "name" : "Deb_Proj1_Exp3_rAmpSeq_FQ"
-  }
-}, {
-  "columnsByTableName" : { },
-  "jobPayloadType" : null,
-  "gobiiFile" : {
-    "source" : "/data/gobii_bundle/crops/dev/files/data_20180614_163714_daw279",
-    "destination" : "/data/gobii_bundle/crops/dev/loader/digest/data_20180614_163714_daw279",
-    "delimiter" : "\\t",
-    "gobiiFileType" : "GENERIC",
-    "requireDirectoriesToExist" : false,
-    "createSource" : false
-  },
-  "table" : "dnasample_prop",
-  "gobiiFileColumns" : [ {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 2,
-    "name" : "dnasample_name",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 1,
-    "name" : "external_code",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 5,
-    "name" : "num",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "project_id",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "14",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "props",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "91:",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : "",
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 8,
-    "name" : "value1",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : true,
-    "subcolumnDelimiter" : "",
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "comma1",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : ",",
-    "index" : null,
-    "subcolumn" : true,
-    "subcolumnDelimiter" : "",
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "key2",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "86:",
-    "index" : null,
-    "subcolumn" : true,
-    "subcolumnDelimiter" : "",
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 9,
-    "name" : "value2",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : true,
-    "subcolumnDelimiter" : "",
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  } ],
-  "vcfParameters" : {
-    "maf" : null,
-    "minQ" : null,
-    "minDp" : null,
-    "removeIndels" : false,
-    "toIupac" : false
-  },
-  "dataSetId" : null,
-  "gobiiCropType" : null,
-  "contactId" : 19,
-  "contactEmail" : "daw279@cornell.edu",
-  "gobiiJobStatus" : "CV_PROGRESSSTATUS_NOSTATUS",
-  "logMessage" : null,
-  "qcCheck" : false,
-  "project" : {
-    "id" : null,
-    "name" : null
-  },
-  "platform" : {
-    "id" : null,
-    "name" : null
-  },
-  "dataSet" : {
-    "id" : null,
-    "name" : null
-  },
-  "datasetType" : {
-    "id" : null,
-    "name" : null
-  },
-  "mapset" : {
-    "id" : null,
-    "name" : null
-  },
-  "experiment" : {
-    "id" : null,
-    "name" : null
-  }
-}, {
-  "columnsByTableName" : { },
-  "jobPayloadType" : null,
-  "gobiiFile" : {
-    "source" : "/data/gobii_bundle/crops/dev/files/data_20180614_163714_daw279",
-    "destination" : "/data/gobii_bundle/crops/dev/loader/digest/data_20180614_163714_daw279",
-    "delimiter" : "\\t",
-    "gobiiFileType" : "GENERIC",
-    "requireDirectoriesToExist" : false,
-    "createSource" : false
-  },
-  "table" : "dnarun",
-  "gobiiFileColumns" : [ {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "project_id",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "14",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CONSTANT",
-    "rCoord" : null,
-    "cCoord" : null,
-    "name" : "experiment_id",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : "32",
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 5,
-    "name" : "num",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 2,
-    "name" : "dnasample_name",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  }, {
-    "gobiiColumnType" : "CSV_COLUMN",
-    "rCoord" : 1,
-    "cCoord" : 3,
-    "name" : "name",
-    "filterFrom" : null,
-    "filterTo" : null,
-    "findText" : null,
-    "replaceText" : null,
-    "constantValue" : null,
-    "index" : null,
-    "subcolumn" : false,
-    "subcolumnDelimiter" : null,
-    "dataSetType" : "IUPAC",
-    "dataSetOrientationType" : "MARKER_FAST",
-    "metaDataId" : null
-  } ],
-  "vcfParameters" : {
-    "maf" : null,
-    "minQ" : null,
-    "minDp" : null,
-    "removeIndels" : false,
-    "toIupac" : false
-  },
-  "dataSetId" : null,
-  "gobiiCropType" : "dev",
-  "contactId" : 19,
-  "contactEmail" : "daw279@cornell.edu",
-  "gobiiJobStatus" : "CV_PROGRESSSTATUS_NOSTATUS",
-  "logMessage" : null,
-  "qcCheck" : false,
-  "project" : {
-    "id" : 14,
-    "name" : "Deb_Proj1_FlexQuery"
-  },
-  "platform" : {
-    "id" : null,
-    "name" : null
-  },
-  "dataSet" : {
-    "id" : null,
-    "name" : null
-  },
-  "datasetType" : {
-    "id" : null,
-    "name" : null
-  },
-  "mapset" : {
-    "id" : null,
-    "name" : null
-  },
-  "experiment" : {
-    "id" : 32,
-    "name" : "Deb_Proj1_Exp3_rAmpSeq_FQ"
-  }
-} ]
+]

@@ -9,6 +9,7 @@ import {Observable} from "rxjs/Observable";
 import * as fromRoot from '../store/reducers';
 import {Store} from "@ngrx/store";
 import {FileItemService} from "../services/core/file-item-service";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
 
 /***
  * The RadioButton module is not compatabile with font-awesome. So
@@ -37,7 +38,8 @@ import {FileItemService} from "../services/core/file-item-service";
                             [ngModel]="(sampleListType$ | async).getItemId()"
                             name="listType"
                             value="GERMPLASM_NAME"
-                            label="Germplasm Name">
+                            label="Germplasm Name"
+                            [id]="viewIdGeneratorService.makeSampleListTypeId(gobiiSampleListType.GERMPLASM_NAME)">
                     </p-radioButton>
                 </div>
                 <div class="ui-g-12" style="height:30px">
@@ -46,7 +48,9 @@ import {FileItemService} from "../services/core/file-item-service";
                             [ngModel]="(sampleListType$ | async).getItemId()"
                             name="listType"
                             value="EXTERNAL_CODE"
-                            label="External Code"></p-radioButton>
+                            label="External Code"
+                            [id]="viewIdGeneratorService.makeSampleListTypeId(gobiiSampleListType.EXTERNAL_CODE)">                        
+                    </p-radioButton>
                 </div>
                 <div class="ui-g-12" style="height:30px">
                     <p-radioButton
@@ -54,7 +58,9 @@ import {FileItemService} from "../services/core/file-item-service";
                             [ngModel]="(sampleListType$ | async).getItemId()"
                             name="listType"
                             value="DNA_SAMPLE"
-                            label="DNA Sample"></p-radioButton>
+                            label="DNA Sample"
+                            [id]="viewIdGeneratorService.makeSampleListTypeId(gobiiSampleListType.DNA_SAMPLE)">                        
+                    </p-radioButton>
                 </div>
             </div>
         </form>` // end template
@@ -63,9 +69,11 @@ import {FileItemService} from "../services/core/file-item-service";
 export class SampleListTypeComponent implements OnInit, OnChanges {
 
     constructor(private store: Store<fromRoot.State>,
-                private fileItemService: FileItemService) {
+                private fileItemService: FileItemService,
+                public viewIdGeneratorService: ViewIdGeneratorService) {
     } // ctor
 
+    public gobiiSampleListType: any = GobiiSampleListType;
     private onHeaderStatusMessage: EventEmitter<HeaderStatusMessage> = new EventEmitter();
     private gobiiExtractFilterType: GobiiExtractFilterType = GobiiExtractFilterType.UNKNOWN;
     public sampleListType$: Observable<GobiiFileItem> = this.store.select(fromRoot.getSelectedSampleType);

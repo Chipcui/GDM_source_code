@@ -1,0 +1,29 @@
+[ {
+  "dataSetExtracts" : [ {
+    "gobiiFileType" : "HAPMAP",
+    "accolate" : false,
+    "gobiiJobStatus" : null,
+    "extractDestinationDirectory" : "/data/gobii_bundle/crops/dev/extractor/output/daw279/hapmap/whole_dataset/2018_06_14_13_25_30",
+    "gobiiExtractFilterType" : "WHOLE_DATASET",
+    "markerList" : null,
+    "sampleList" : null,
+    "listFileName" : null,
+    "gobiiDatasetType" : null,
+    "principleInvestigator" : null,
+    "project" : null,
+    "dataSet" : {
+      "id" : 49,
+      "name" : "Deb_Proj1_Exp2_KASP_FlexQuery_codom_5-14_21-25_DS1"
+    },
+    "platforms" : [ ],
+    "gobiiSampleListType" : null,
+    "markerGroups" : null,
+    "extractedFiles" : [ ],
+    "logMessage" : null
+  } ],
+  "mapsetIds" : [ ],
+  "contactId" : 19,
+  "contactEmail" : "daw279@cornell.edu",
+  "gobiiCropType" : "dev",
+  "qcCheck" : false
+} ]

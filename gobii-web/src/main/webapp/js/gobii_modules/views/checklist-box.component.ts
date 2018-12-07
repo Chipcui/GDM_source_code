@@ -10,6 +10,8 @@ import {Store} from "@ngrx/store";
 import {Observable} from "rxjs/Observable";
 import {FileItemService} from "../services/core/file-item-service";
 import {FilterParamNames} from "../model/file-item-param-names";
+import {ViewIdGeneratorService} from "../services/core/view-id-generator-service";
+import {TypeControl} from "../services/core/type-control";
 
 
 @Component({
@@ -18,7 +20,8 @@ import {FilterParamNames} from "../model/file-item-param-names";
         'filterParamName'],
     outputs: ['onError'],
     template: `
-        <form>
+        <form
+                [id]="viewIdGeneratorService.makeCheckboxListBoxId(filterParamName)">
             <div style="overflow:auto; height: 80px; border: 1px solid #336699; padding-left: 5px">
                 <div *ngFor="let gobiiFileItem of gobiiFileItems$ | async"
                      (click)=handleItemSelected($event)>
@@ -34,18 +37,21 @@ import {FilterParamNames} from "../model/file-item-param-names";
 })
 
 
-export class CheckListBoxComponent  {
+export class CheckListBoxComponent {
 
     differ: any;
 
     constructor(private store: Store<fromRoot.State>,
-                private fileItemService:FileItemService,
-                private differs: KeyValueDiffers) {
+                private fileItemService: FileItemService,
+                private differs: KeyValueDiffers,
+                public viewIdGeneratorService: ViewIdGeneratorService) {
 
         this.differ = differs.find({}).create(null);
 
 
     } // ctor
+
+    public typeControl:any = TypeControl;
 
     ngOnInit(): any {
         this.gobiiFileItems$ = this.fileItemService.getForFilter(this.filterParamName);
@@ -55,12 +61,12 @@ export class CheckListBoxComponent  {
     private onError: EventEmitter<HeaderStatusMessage> = new EventEmitter();
 
 
-    private filterParamName:FilterParamNames;
-    public gobiiFileItems$: Observable< GobiiFileItem[]>;
+    public filterParamName: FilterParamNames;
+    public gobiiFileItems$: Observable<GobiiFileItem[]>;
 
     public handleItemChecked(arg) {
 
-        let currentFileItemUniqueId:string = arg.currentTarget.value;
+        let currentFileItemUniqueId: string = arg.currentTarget.value;
 
         if (arg.currentTarget.checked) {
             this.store.dispatch(new fileAction.AddToExtractByItemIdAction(currentFileItemUniqueId));

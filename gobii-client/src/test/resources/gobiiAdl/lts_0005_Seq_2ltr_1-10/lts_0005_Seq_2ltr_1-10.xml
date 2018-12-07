@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GobiiTestData>
+<?xml version="1.0" encoding="UTF-8"?><GobiiTestData>
     <Entities>
         <Organizations DbPKeysurrogate="Name">
             <Organization>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>35</DbPKey>
                 </Keys>
                 <Properties>
                     <Name>Cornell</Name>
@@ -16,10 +15,10 @@
         <Contacts DbPKeysurrogate="Email">
             <Contact>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>67</DbPKey>
                     <Fkey entity="Organization" fkproperty="organizationId">
                         <DbPKeySurrogate>Cornell</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>34</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -38,7 +37,7 @@
         <Platforms DbPKeysurrogate="PlatformName">
             <Platform>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </Keys>
                 <Properties>
                     <PlatformName>Sequencing</PlatformName>
@@ -53,10 +52,10 @@
         <Protocols DbPKeysurrogate="Name">
             <Protocol>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>36</DbPKey>
                     <Fkey entity="Platform" fkproperty="platformId">
                         <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>5</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -72,14 +71,14 @@
         <VendorProtocols DbPKeysurrogate="Name">
             <VendorProtocol>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>4</DbPKey>
                     <Fkey entity="Organization" fkproperty="organizationId">
                         <DbPKeySurrogate>Cornell</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>35</DbPKey>
                     </Fkey>
                     <Fkey entity="Protocol" fkproperty="protocolId">
                         <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>36</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -91,7 +90,7 @@
         <Mapsets DbPKeysurrogate="Name">
             <Mapset>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </Keys>
                 <Properties>
                     <Name>Test_Physical</Name>
@@ -106,10 +105,10 @@
         <Projects DbPKeysurrogate="ProjectName">
             <Project>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>6</DbPKey>
                     <Fkey entity="Contact" fkproperty="piContact">
                         <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>67</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -141,14 +140,14 @@
         <Experiments DbPKeysurrogate="ExperimentName">
             <Experiment>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>7</DbPKey>
                     <Fkey entity="Project" fkproperty="projectId">
                         <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>6</DbPKey>
                     </Fkey>
                     <Fkey entity="VendorProtocol" fkproperty="vendorProtocolId">
                         <DbPKeySurrogate>Cornell_Sequencing</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>4</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -161,7 +160,7 @@
         <Analyses DbPKeysurrogate="AnalysisName">
             <Analysis>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>4</DbPKey>
                 </Keys>
                 <Properties>
                     <AnalysisName>Test_Calling</AnalysisName>
@@ -181,14 +180,14 @@
         <Datasets DbPKeysurrogate="DatasetName">
             <Dataset>
                 <Keys>
-                    <DbPKey></DbPKey>
+                    <DbPKey>8</DbPKey>
                     <Fkey entity="Experiment" fkproperty="experimentId">
                         <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>7</DbPKey>
                     </Fkey>
                     <Fkey entity="Analysis" fkproperty="callingAnalysisId">
                         <DbPKeySurrogate>Test_Calling</DbPKeySurrogate>
-                        <DbPKey></DbPKey>
+                        <DbPKey>4</DbPKey>
                     </Fkey>
                 </Keys>
                 <Properties>
@@ -219,32 +218,32 @@
 
                 <DbFkey entity="Contact">
                     <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>67</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Project">
                     <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>6</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Experiment">
                     <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>7</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Dataset">
                     <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>8</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Mapset">
                     <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Platform">
                     <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </DbFkey>
 
             </Scenario>
@@ -259,32 +258,32 @@
 
                 <DbFkey entity="Contact">
                     <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>67</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Project">
                     <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>6</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Experiment">
                     <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>7</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Dataset">
                     <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>8</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Mapset">
                     <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Platform">
                     <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </DbFkey>
 
             </Scenario>
@@ -299,32 +298,32 @@
 
                 <DbFkey entity="Contact">
                     <DbPKeySurrogate>gobii.dev@gmail.com</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>67</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Project">
                     <DbPKeySurrogate>sim_2letternuc_proj_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>6</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Experiment">
                     <DbPKeySurrogate>sim_2letternuc_exp_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>7</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Dataset">
                     <DbPKeySurrogate>sim_2letternuc_ds_01</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>8</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Mapset">
                     <DbPKeySurrogate>Test_Physical</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </DbFkey>
 
                 <DbFkey entity="Platform">
                     <DbPKeySurrogate>Sequencing</DbPKeySurrogate>
-                    <DbPKey></DbPKey>
+                    <DbPKey>5</DbPKey>
                 </DbFkey>
 
             </Scenario>
@@ -344,7 +343,7 @@
 
                 <Contact>gobii.dev@gmail.com</Contact>
                 <Mapsets>
-                    <Mapset></Mapset>
+                    <Mapset/>
                 </Mapsets>
 
                 <Datasets>

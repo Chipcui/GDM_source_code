@@ -1,0 +1,29 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list />
+  </option>
+  <option name="httpMethod" value="POST" />
+  <option name="urlBase" value="http://localhost:8282" />
+  <option name="urlPath" value="/gobii-dev/brapi/v1/token" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list />
+  </option>
+  <option name="parametersEnabled" value="true" />
+  <option name="haveTextToSend" value="true" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="{&quot;client_id&quot;: &quot;client_id0&quot;,&quot;grant_type&quot;: &quot;grant_type0&quot;,&quot;password&quot;: &quot;reader&quot;,&quot;username&quot;: &quot;USER_READER&quot;}" />
+  <option name="filesToSend" value="C:/phil-source/IntelliJ/gobiiproject/gobii-client/src/test/resources/brapi/tests/calls/login/token.json" />
+</RestClientRequest>
