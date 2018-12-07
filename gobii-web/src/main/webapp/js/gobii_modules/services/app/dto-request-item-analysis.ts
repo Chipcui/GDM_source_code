@@ -37,7 +37,7 @@ export class DtoRequestItemAnalysis implements DtoRequestItem<Analysis> {
         //     let currentDomain:string = json.serverConfigs[crop].domain;
         //     let currentContextRoot:string = json.serverConfigs[crop].contextRoot;
         //     let currentPort:number = Number(json.serverConfigs[crop].port);
-        //     returnVal.push(new ServerConfigItem(currentCrop,
+        //     returnVal.push(new ServerConfig(currentCrop,
         //         currentDomain,
         //         currentContextRoot,
         //         currentPort));
