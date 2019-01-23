@@ -582,7 +582,8 @@ public class GobiiExtractor {
 		            rmIfExist(extendedMarkerFile);
 		            rmIfExist(samplePosFile);
 		            rmIfExist(extractDir + "mdeOut");//remove mde output file
-		            rmIfExist(extractDir + "position.file");
+		            rmIfExist(extractDir + "position.file");//probably not the right name
+		            rmIfExist(extractDir + "position.list");//probably is the right name
 
 		            if (extract.getListFileName() != null) {
 			            File listFile = new File(extract.getListFileName());

@@ -187,6 +187,9 @@ StringBuilder genoFileString=new StringBuilder();
         logDebug("MarkerList", "Accumulating markers into final genotype file");
         if(genoFileString.length() == 0){
             ErrorLogger.logError("HDF5Interface","No genotype data to extract");
+            for(String tempGenoFile:genoFileString.toString().split(" ")) {
+                rmIfExist(tempGenoFile);
+            }
             return null;
         }
         String genotypePartFileIdentifier=genoFileString.toString();
