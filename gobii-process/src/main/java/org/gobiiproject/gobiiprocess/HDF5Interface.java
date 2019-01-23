@@ -143,7 +143,7 @@ public class HDF5Interface {
             sampR=new BufferedReader(new FileReader(samplePosFile));
             samplePos=getSamplePosFromFile(samplePosFile);
         }
-StringBuilder genoFileString=new StringBuilder();
+        StringBuilder genoFileString=new StringBuilder();
         try{
             posR.readLine();//header
             if(sampR!=null)sampR.readLine();
@@ -169,7 +169,10 @@ StringBuilder genoFileString=new StringBuilder();
                 String genoFile=null;
                 if(!hasSampleList || (sampleList!=null)) {
                     genoFile = getHDF5Genotype(markerFast, errorFile, dsID, tempFolder, positionListFileLoc, sampleList);
-                    if(genoFile==null)return null;
+                    if(genoFile==null){
+                        rmFilesInGenoString(genoFileString);
+                        return null;
+                    }
                 }
                 else{
                     //We have a marker position but not a sample position. Do not create a genotype file in the first place
@@ -187,9 +190,6 @@ StringBuilder genoFileString=new StringBuilder();
         logDebug("MarkerList", "Accumulating markers into final genotype file");
         if(genoFileString.length() == 0){
             ErrorLogger.logError("HDF5Interface","No genotype data to extract");
-            for(String tempGenoFile:genoFileString.toString().split(" ")) {
-                rmIfExist(tempGenoFile);
-            }
             return null;
         }
         String genotypePartFileIdentifier=genoFileString.toString();
@@ -200,10 +200,20 @@ StringBuilder genoFileString=new StringBuilder();
         else{
             tryExec("cat" + genotypePartFileIdentifier, genoFile, errorFile);
         }
-        for(String tempGenoFile:genotypePartFileIdentifier.split(" ")) {
+        rmFilesInGenoString(genoFileString);
+        return genoFile;
+    }
+
+    /**
+     * RM's from disk all intermediate genotype files
+     * @param genoFileString list of genotype files
+     */
+    private static void rmFilesInGenoString(StringBuilder genoFileString){
+        if(genoFileString.length() == 0)return;
+        for(String tempGenoFile:genoFileString.toString().split(" ")) {
             rmIfExist(tempGenoFile);
         }
-        return genoFile;
+
     }
 
     /**
