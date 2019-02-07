@@ -24,7 +24,7 @@ export class NameIdService {
         let returnVal: string = null;
 
         if (nameIdRequestParams.getEntityType() === EntityType.CONTACT) {
-            if (nameIdRequestParams.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR) {
+            if (nameIdRequestParams.getEntitySubType() === EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR) {
                 returnVal = "PI";
             }
         } else if (nameIdRequestParams.getEntityType() === EntityType.CV) {

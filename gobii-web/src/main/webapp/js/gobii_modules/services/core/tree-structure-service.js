@@ -94,7 +94,7 @@ System.register(["@angular/core", "../../model/GobiiTreeNode", "../../model/type
                             .setChildren([
                             GobiiTreeNode_1.GobiiTreeNode.build(type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE, type_extractor_item_1.ExtractorItemType.ENTITY)
                                 .setEntityType(type_entity_1.EntityType.CONTACT)
-                                .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+                                .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
                                 .setContainerType(GobiiTreeNode_1.ContainerType.NONE),
                             GobiiTreeNode_1.GobiiTreeNode.build(type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE, type_extractor_item_1.ExtractorItemType.ENTITY)
                                 .setEntityType(type_entity_1.EntityType.PROJECT)

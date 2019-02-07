@@ -30,7 +30,7 @@ export class Labels {
         this.cvFilterNodeLabels[CvFilterType.DATASET_TYPE] = "Dataset Type";
         this.cvFilterNodeLabels[CvFilterType.JOB_STATUS] = "Job Status";
 
-        this.entitySubtypeNodeLabels[EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR] = "Principle Investigator";
+        this.entitySubtypeNodeLabels[EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR] = "Principal Investigator";
         this.entitySubtypeNodeLabels[EntitySubType.CONTACT_SUBMITED_BY] = "Submit As";
 
         this.extractorFilterTypeLabels[GobiiExtractFilterType.WHOLE_DATASET] = "By Dataset";

@@ -55,7 +55,7 @@ export class InstructionSubmissionService {
     private piContactCriterion: GobiiFileItemCriterion = new GobiiFileItemCriterion(new GobiiFileItemCompoundId(
         ExtractorItemType.ENTITY,
         EntityType.CONTACT,
-        EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR,
+        EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR,
         CvFilterType.UNKNOWN,
         null
     ), false);
@@ -391,14 +391,14 @@ export class InstructionSubmissionService {
                             dataTypeFileItem.getItemName(), EntityType.CV, null, null) : null;
 
 
-                        // ******** PRINCIPLE INVESTIGATOR CONCEPT
-                        let principleInvestigatorFileItem: GobiiFileItem = fileItems.find(item => {
+                        // ******** PRINCIPAL INVESTIGATOR CONCEPT
+                        let principalInvestigatorFileItem: GobiiFileItem = fileItems.find(item => {
                             return item.getEntityType() === EntityType.CONTACT
-                                && item.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR
+                                && item.getEntitySubType() === EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR
                         });
-                        let principleInvestigator: NameId = principleInvestigatorFileItem != null ? new NameId(principleInvestigatorFileItem.getItemId(), null,
-                            principleInvestigatorFileItem.getItemName(), EntityType.CONTACT, null, null) : null;
-                        this.expurgateZero(principleInvestigator);
+                        let principalInvestigator: NameId = principalInvestigatorFileItem != null ? new NameId(principalInvestigatorFileItem.getItemId(), null,
+                            principalInvestigatorFileItem.getItemName(), EntityType.CONTACT, null, null) : null;
+                        this.expurgateZero(principalInvestigator);
 
                         // ******** PROJECT
                         let projectFileItem: GobiiFileItem = fileItems.find(item => {
@@ -515,7 +515,7 @@ export class InstructionSubmissionService {
                                 sampleListType,
                                 datasetType,
                                 platforms,
-                                principleInvestigator,
+                                principalInvestigator,
                                 project,
                                 null,
                                 null));

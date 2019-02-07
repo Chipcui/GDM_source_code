@@ -43,7 +43,7 @@ System.register(["@angular/core", "./dto-request.service", "../../model/filter-t
                 NameIdService.prototype.getEntityFilterValue = function (nameIdRequestParams) {
                     var returnVal = null;
                     if (nameIdRequestParams.getEntityType() === type_entity_1.EntityType.CONTACT) {
-                        if (nameIdRequestParams.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR) {
+                        if (nameIdRequestParams.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR) {
                             returnVal = "PI";
                         }
                     }

@@ -9,7 +9,7 @@
     "sampleList" : null,
     "listFileName" : null,
     "gobiiDatasetType" : null,
-    "principleInvestigator" : null,
+    "principalInvestigator" : null,
     "project" : null,
     "dataSet" : {
       "id" : 77,

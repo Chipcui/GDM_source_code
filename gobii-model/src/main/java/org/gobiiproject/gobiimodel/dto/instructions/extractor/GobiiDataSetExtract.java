@@ -31,7 +31,7 @@ public class GobiiDataSetExtract {
     private List<String> sampleList = new ArrayList<>();
     private String listFileName;
     private PropNameId gobiiDatasetType = new PropNameId();
-    private PropNameId principleInvestigator = new PropNameId();
+    private PropNameId principalInvestigator = new PropNameId();
     private PropNameId project = new PropNameId();
     private PropNameId dataSet = new PropNameId();
     private List<PropNameId> platforms = new ArrayList<>();
@@ -129,12 +129,12 @@ public class GobiiDataSetExtract {
     }
 
 
-    public PropNameId getPrincipleInvestigator() {
-        return principleInvestigator;
+    public PropNameId getPrincipalInvestigator() {
+        return principalInvestigator;
     }
 
-    public void setPrincipleInvestigator(PropNameId principleInvestigator) {
-        this.principleInvestigator = principleInvestigator;
+    public void setPrincipalInvestigator(PropNameId principalInvestigator) {
+        this.principalInvestigator = principalInvestigator;
     }
 
     public PropNameId getProject() {

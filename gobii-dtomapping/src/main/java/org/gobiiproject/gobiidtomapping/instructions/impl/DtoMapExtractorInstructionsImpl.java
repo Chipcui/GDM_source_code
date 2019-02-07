@@ -183,7 +183,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                             .equals(GobiiExtractFilterType.BY_SAMPLE)) {
 
                         if ((currentGobiiDataSetExtract.getProject() == null)
-                                && (currentGobiiDataSetExtract.getPrincipleInvestigator() == null)
+                                && (currentGobiiDataSetExtract.getPrincipalInvestigator() == null)
                                 && (currentGobiiDataSetExtract.getListFileName() == null)
                                 && ((currentGobiiDataSetExtract.getSampleList() == null) ||
                                 (currentGobiiDataSetExtract.getSampleList().size() <= 0))) {
@@ -193,7 +193,7 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                     "The specified extract type is "
                                             + currentGobiiDataSetExtract.getGobiiExtractFilterType()
                                             + ". Please provide at least one of the following: " +
-                                            "Principle Investigator, Project, Sample list, or sample file.");
+                                            "Principal Investigator, Project, Sample list, or sample file.");
 
 
                         }
@@ -326,9 +326,9 @@ public class DtoMapExtractorInstructionsImpl implements DtoMapExtractorInstructi
                                 .stream()
                                 .filter(gei -> gei.getDataSetExtracts()
                                         .stream()
-                                        .filter(dse -> dse.getPrincipleInvestigator() != null
-                                                && dse.getPrincipleInvestigator().getId() != null
-                                                && dse.getPrincipleInvestigator().getId() > 0).count() > 0)
+                                        .filter(dse -> dse.getPrincipalInvestigator() != null
+                                                && dse.getPrincipalInvestigator().getId() != null
+                                                && dse.getPrincipalInvestigator().getId() > 0).count() > 0)
                                 .count() > 0;
 
                         boolean thereIsAPlatform = extractorInstructionFilesDTO

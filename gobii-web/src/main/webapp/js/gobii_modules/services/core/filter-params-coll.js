@@ -102,7 +102,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                         .setCvFilterType(cv_filter_type_1.CvFilterType.UNKNOWN)
                         .setIsDynamicFilterValue(true)
                         .setIsDynamicDataLoad(false)
-                        .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+                        .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
                         .setNameIdLabelType(name_id_label_type_1.NameIdLabelType.ALL)
                         .setIsExtractCriterion(true)
                         .setFilterType(filter_type_1.FilterType.NAMES_BY_TYPE_NAME)
@@ -110,7 +110,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                     this.addFilter(filter_params_1.FilterParams
                         .build(file_item_param_names_1.FilterParamNames.PROJECTS_BY_CONTACT, type_extractor_filter_1.GobiiExtractFilterType.BY_SAMPLE, type_entity_1.EntityType.PROJECT)
                         .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ENTITY)
-                        .setRelatedEntityUniqueId(new gobii_file_item_compound_id_1.GobiiFileItemCompoundId(type_extractor_item_1.ExtractorItemType.ENTITY, type_entity_1.EntityType.CONTACT, type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR, cv_filter_type_1.CvFilterType.UNKNOWN, null).setIsExtractCriterion(true))
+                        .setRelatedEntityUniqueId(new gobii_file_item_compound_id_1.GobiiFileItemCompoundId(type_extractor_item_1.ExtractorItemType.ENTITY, type_entity_1.EntityType.CONTACT, type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR, cv_filter_type_1.CvFilterType.UNKNOWN, null).setIsExtractCriterion(true))
                         .setIsDynamicFilterValue(false)
                         .setIsDynamicDataLoad(false)
                         .setNameIdLabelType(name_id_label_type_1.NameIdLabelType.ALL)
@@ -235,7 +235,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                         .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ENTITY)
                         .setIsDynamicFilterValue(true)
                         .setIsDynamicDataLoad(false)
-                        .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+                        .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
                         .setNameIdLabelType(name_id_label_type_1.NameIdLabelType.ALL)
                         .setIsExtractCriterion(false)
                         .setFilterType(filter_type_1.FilterType.NAMES_BY_TYPE_NAME)
@@ -279,7 +279,7 @@ System.register(["@angular/core", "../../model/type-entity", "../../model/type-e
                     var nameIdRequestParamsContactsPi = filter_params_1.FilterParams
                         .build(file_item_param_names_1.FilterParamNames.CONTACT_PI_HIERARCHY_ROOT, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET, type_entity_1.EntityType.CONTACT)
                         .setIsDynamicFilterValue(true)
-                        .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR);
+                        .setEntitySubType(type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR);
                     var nameIdRequestParamsExperiments = filter_params_1.FilterParams
                         .build(file_item_param_names_1.FilterParamNames.EXPERIMENTS_BY_PROJECT, type_extractor_filter_1.GobiiExtractFilterType.WHOLE_DATASET, type_entity_1.EntityType.EXPERIMENT)
                         .setIsDynamicFilterValue(true)

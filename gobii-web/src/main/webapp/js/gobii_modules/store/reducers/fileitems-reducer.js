@@ -425,7 +425,7 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     return (e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ENTITY
                         || e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.LABEL)
                         && e.getEntityType() === type_entity_1.EntityType.CONTACT
-                        && e.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR;
+                        && e.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR;
                 })
                     .map(function (fi) { return fi; });
                 return returnVal;
@@ -515,7 +515,7 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                     return ids.find(function (id) { return id === e.getFileItemUniqueId(); })
                         && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ENTITY
                         && e.getEntityType() === type_entity_1.EntityType.CONTACT
-                        && e.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR;
+                        && e.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR;
                 })
                     .map(function (fi) { return fi; });
             }));
@@ -666,7 +666,7 @@ System.register(["reselect", "../../model/gobii-file-item", "../actions/fileitem
                         && e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.ENTITY
                         || e.getExtractorItemType() === type_extractor_item_1.ExtractorItemType.LABEL)
                         && e.getEntityType() === type_entity_1.EntityType.CONTACT
-                        && e.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR;
+                        && e.getEntitySubType() === type_entity_1.EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR;
                 })
                     .map(function (fi) { return fi; });
                 return returnVal;

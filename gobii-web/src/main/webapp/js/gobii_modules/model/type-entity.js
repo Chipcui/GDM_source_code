@@ -90,7 +90,7 @@ System.register([], function (exports_1, context_1) {
             });
             (function (EntitySubType) {
                 EntitySubType[EntitySubType["UNKNOWN"] = 0] = "UNKNOWN";
-                EntitySubType[EntitySubType["CONTACT_PRINCIPLE_INVESTIGATOR"] = 1] = "CONTACT_PRINCIPLE_INVESTIGATOR";
+                EntitySubType[EntitySubType["CONTACT_PRINCIPAL_INVESTIGATOR"] = 1] = "CONTACT_PRINCIPAL_INVESTIGATOR";
                 EntitySubType[EntitySubType["CONTACT_SUBMITED_BY"] = 2] = "CONTACT_SUBMITED_BY";
             })(EntitySubType || (EntitySubType = {}));
             exports_1("EntitySubType", EntitySubType);

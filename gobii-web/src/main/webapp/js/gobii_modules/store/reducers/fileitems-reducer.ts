@@ -562,7 +562,7 @@ export const getPiContacts = createSelector(getFileItems, getUniqueIds, (fileIte
         (e.getExtractorItemType() === ExtractorItemType.ENTITY
             || e.getExtractorItemType() === ExtractorItemType.LABEL)
         && e.getEntityType() === EntityType.CONTACT
-        && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+        && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
         .map(fi => fi);
 
     return returnVal;
@@ -675,7 +675,7 @@ export const getSelectedPiContacts = createSelector(getFileItems, getUniqueIds, 
         ids.find(id => id === e.getFileItemUniqueId())
         && e.getExtractorItemType() === ExtractorItemType.ENTITY
         && e.getEntityType() === EntityType.CONTACT
-        && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+        && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
         .map(fi => fi);
 });
 
@@ -874,7 +874,7 @@ export const getPiContactsFilterOptional = createSelector(getFileItems, getGobii
             && e.getExtractorItemType() === ExtractorItemType.ENTITY
             || e.getExtractorItemType() === ExtractorItemType.LABEL)
         && e.getEntityType() === EntityType.CONTACT
-        && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+        && e.getEntitySubType() === EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
         .map(fi => fi);
 
     return returnVal;

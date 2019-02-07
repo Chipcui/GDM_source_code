@@ -233,7 +233,7 @@ System.register(["@angular/core", "@angular/router", "@ngrx/effects", "rxjs/add/
                     //                     GobiiExtractFilterType.WHOLE_DATASET,
                     //                     EntityType.CONTACT)
                     //                 .setIsDynamicFilterValue(true)
-                    //                 .setEntitySubType(EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR);
+                    //                 .setEntitySubType(EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR);
                     //
                     //                     this.nameIdService.get(nameIdRequestParamsToLoad)
                     //                         .subscribe(nameIds => {
