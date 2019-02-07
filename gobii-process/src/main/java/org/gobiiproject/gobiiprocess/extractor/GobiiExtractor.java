@@ -361,7 +361,7 @@ public class GobiiExtractor {
 
 				            String PITerm, projectTerm;
 				            PITerm = projectTerm = "";
-				            PropNameId PI = extract.getPrincipleInvestigator();
+				            PropNameId PI = extract.getPrincipalInvestigator();
 				            PropNameId project = extract.getProject();
 				            if (PI != null && PI.getId() != null) {
 					            PITerm = " --piId " + PI.getId();
@@ -429,7 +429,7 @@ public class GobiiExtractor {
 		            if (!mapName.equals(defaultMapName)) {
 			            esw.addItem("Mapset", mapName);
 		            }
-		            pm.addCriteria("Principal Investigator", extract.getPrincipleInvestigator());
+		            pm.addCriteria("Principal Investigator", extract.getPrincipalInvestigator());
 
 		            pm.addCriteria("Project", extract.getProject());
 		            pm.addCriteria("Dataset", extract.getDataSet());
@@ -445,7 +445,7 @@ public class GobiiExtractor {
 		            pm.addCriteria("Format", formatName);
 		            pm.addCriteria("Platforms", getPlatformNames(extract.getPlatforms()));
 
-		            esw.addItem("Principal Investigator", extract.getPrincipleInvestigator());
+		            esw.addItem("Principal Investigator", extract.getPrincipalInvestigator());
 		            esw.addItem("Project", extract.getProject());
 
 		            //turns /data/gobii_bundle/crops/zoan/extractor/instructions/2018_05_15_13_32_12_samples.txt into 2018_05_15_13_32_12_samples.txt

@@ -146,7 +146,7 @@ import {ViewIdGeneratorService} from "../services/core/view-id-generator-service
                         <!--<table class="table table-striped table-hover table-bordered">-->
                         <tbody>
                         <tr>
-                            <td><b>Principle Investigator</b></td>
+                            <td><b>Principal Investigator</b></td>
                             <td>
                                 {{ selectedDatasetDetailEntity ? selectedDatasetDetailEntity.piLastName + ", " + selectedDatasetDetailEntity.piFirstName : null}}
                             </td>

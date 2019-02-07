@@ -106,12 +106,12 @@ public class ProjectDTO extends DTOBaseAuditable {
 
 
 
-    private Map<String, String> principleInvestigators = null;
-    public Map<String, String> getPrincipleInvestigators() {
-        return principleInvestigators;
+    private Map<String, String> principalInvestigators = null;
+    public Map<String, String> getPrincipalInvestigators() {
+        return principalInvestigators;
     }
-    public void setPrincipleInvestigators(Map<String, String> principleInvestigators) {
-        this.principleInvestigators = principleInvestigators;
+    public void setPrincipalInvestigators(Map<String, String> principalInvestigators) {
+        this.principalInvestigators = principalInvestigators;
     }
 
     private List<EntityPropertyDTO> properties = new ArrayList<>();

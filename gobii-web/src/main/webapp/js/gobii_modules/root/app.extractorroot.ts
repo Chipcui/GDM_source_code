@@ -97,7 +97,7 @@ import {TypeControl} from "../services/core/type-control";
                                                                     <tbody>
                                                                     <tr>
                                                                         <td>
-                                                                            <label class="the-label">Principle
+                                                                            <label class="the-label">Principal
                                                                                 Investigator:</label><BR>
                                                                             <name-id-list-box
                                                                                     [gobiiExtractFilterType]="gobiiExtractFilterType"
@@ -142,7 +142,7 @@ import {TypeControl} from "../services/core/type-control";
                                                                 <h3 class="panel-title">Filters</h3>
                                                             </div>
                                                             <div class="panel-body">
-                                                                <label class="the-label">Principle Investigator:</label><BR>
+                                                                <label class="the-label">Principal Investigator:</label><BR>
                                                                 <name-id-list-box
                                                                         [gobiiExtractFilterType]="gobiiExtractFilterType"
                                                                         [filterParamName]="nameIdFilterParamTypes.CONTACT_PI_HIERARCHY_ROOT">

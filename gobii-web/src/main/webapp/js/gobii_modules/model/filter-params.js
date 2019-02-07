@@ -88,14 +88,14 @@ System.register(["./filter-type", "./type-entity", "./cv-filter-type", "./type-e
              *
              * Particular note should be taken of the way that the relatedEntityFilterValue value in the store works for the purpose of retrieving
              * names for a given entity when that entity must be filtered according to a foreign key.
-             * For example, when retrieving projects by contact_id (i.e., by principle investigator contact
+             * For example, when retrieving projects by contact_id (i.e., by principal investigator contact
              * id), the relatedEntityFilterValue of the filter in the store will be the value of the PI according to which the project names
              * should be filtered.
              *
              * In recent changes, better semantics have been added for expressing the entities to which FilterParam items
              * pertain and their respective filter values. Thus, the target unique ID references the compounduniqueid of the
              * entity filtered by the filter, whilst the related id is the compounduniqueid references the related entity.
-             * Thus, in the case of the project filter, the target is project, and the related id is for principle investigator
+             * Thus, in the case of the project filter, the target is project, and the related id is for principal investigator
              * contact. The target and related filter values in the store are the actual filter values for these things. See the comment on
              * makeFileActionsFromFilterParamName() in file item service for further details.
              *

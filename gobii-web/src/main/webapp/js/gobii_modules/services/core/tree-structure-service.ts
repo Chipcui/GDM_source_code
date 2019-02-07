@@ -76,7 +76,7 @@ export class TreeStructureService {
                 .setChildren([
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.ENTITY)
                         .setEntityType(EntityType.CONTACT)
-                        .setEntitySubType(EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+                        .setEntitySubType(EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
                         .setContainerType(ContainerType.NONE),
                     GobiiTreeNode.build(GobiiExtractFilterType.BY_SAMPLE, ExtractorItemType.ENTITY)
                         .setEntityType(EntityType.PROJECT)

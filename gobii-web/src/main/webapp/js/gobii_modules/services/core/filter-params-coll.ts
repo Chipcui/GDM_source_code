@@ -108,7 +108,7 @@ export class FilterParamsColl {
                 .setCvFilterType(CvFilterType.UNKNOWN)
                 .setIsDynamicFilterValue(true)
                 .setIsDynamicDataLoad(false)
-                .setEntitySubType(EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+                .setEntitySubType(EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
                 .setNameIdLabelType(NameIdLabelType.ALL)
                 .setIsExtractCriterion(true)
                 .setFilterType(FilterType.NAMES_BY_TYPE_NAME)
@@ -122,7 +122,7 @@ export class FilterParamsColl {
                 .setExtractorItemType(ExtractorItemType.ENTITY)
                 .setRelatedEntityUniqueId(new GobiiFileItemCompoundId(ExtractorItemType.ENTITY,
                     EntityType.CONTACT,
-                    EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR,
+                    EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR,
                     CvFilterType.UNKNOWN,
                     null).setIsExtractCriterion(true))
                 .setIsDynamicFilterValue(false)
@@ -375,7 +375,7 @@ export class FilterParamsColl {
                 .setExtractorItemType(ExtractorItemType.ENTITY)
                 .setIsDynamicFilterValue(true)
                 .setIsDynamicDataLoad(false)
-                .setEntitySubType(EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR)
+                .setEntitySubType(EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR)
                 .setNameIdLabelType(NameIdLabelType.ALL)
                 .setIsExtractCriterion(false)
                 .setFilterType(FilterType.NAMES_BY_TYPE_NAME)
@@ -458,7 +458,7 @@ export class FilterParamsColl {
                 GobiiExtractFilterType.WHOLE_DATASET,
                 EntityType.CONTACT)
             .setIsDynamicFilterValue(true)
-            .setEntitySubType(EntitySubType.CONTACT_PRINCIPLE_INVESTIGATOR);
+            .setEntitySubType(EntitySubType.CONTACT_PRINCIPAL_INVESTIGATOR);
 
 
         let nameIdRequestParamsExperiments: FilterParams = FilterParams

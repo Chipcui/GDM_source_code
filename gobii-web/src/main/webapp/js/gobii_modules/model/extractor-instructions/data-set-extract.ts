@@ -15,7 +15,7 @@ export class GobiiDataSetExtract {
                        public gobiiSampleListType: GobiiSampleListType,
                        public gobiiDatasetType: NameId,
                        public platforms: NameId[],
-                       public principleInvestigator: NameId,
+                       public principalInvestigator: NameId,
                        public project: NameId,
                        public dataSet: NameId,
                        public markerGroups: NameId[]) {
@@ -125,7 +125,7 @@ export class GobiiDataSetExtract {
         returnVal.gobiiSampleListType = this.gobiiSampleListType;
         returnVal.gobiiDatasetType = this.gobiiDatasetType;
         returnVal.platforms = this.platforms;
-        returnVal.principleInvestigator = this.principleInvestigator;
+        returnVal.principalInvestigator = this.principalInvestigator;
         returnVal.project = this.project;
         returnVal.dataSet = this.dataSet;
         returnVal.markerGroups = this.markerGroups;
@@ -147,7 +147,7 @@ export class GobiiDataSetExtract {
                 json.gobiiSampleListType,
                 json.gobiiDatasetType,
                 json.platforms,
-                json.principleInvestigator,
+                json.principalInvestigator,
                 json.project,
                 json.dataSet,
                 json.markerGroups);

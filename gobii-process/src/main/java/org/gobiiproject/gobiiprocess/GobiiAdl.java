@@ -2484,7 +2484,7 @@ public class GobiiAdl {
                         gobiiDataSetExtract.setGobiiExtractFilterType(gobiiExtractFilterType);
                         gobiiDataSetExtract.setGobiiFileType(gobiiFileType);
                         gobiiDataSetExtract.setAccolate(false);
-                        gobiiDataSetExtract.setPrincipleInvestigator(null);
+                        gobiiDataSetExtract.setPrincipalInvestigator(null);
                         gobiiDataSetExtract.setProject(null);
 
                         gobiiDataSetExtractsList.add(gobiiDataSetExtract);
