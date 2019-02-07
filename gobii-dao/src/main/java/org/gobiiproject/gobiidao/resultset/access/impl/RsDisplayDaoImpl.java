@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +31,8 @@ public class RsDisplayDaoImpl implements RsDisplayDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -62,6 +64,7 @@ public class RsDisplayDaoImpl implements RsDisplayDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsDisplay(), parameters);
             returnVal = spRunnerCallable.getResult();
 
@@ -81,6 +84,7 @@ public class RsDisplayDaoImpl implements RsDisplayDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdDisplay(), parameters);
 
         } catch (SQLGrammarException e) {

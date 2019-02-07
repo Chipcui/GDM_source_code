@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,8 +32,8 @@ public class RsMarkerDaoImpl implements RsMarkerDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -91,6 +93,7 @@ public class RsMarkerDaoImpl implements RsMarkerDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsMarker(), parameters);
             returnVal = spRunnerCallable.getResult();
 

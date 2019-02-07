@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +34,8 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
-
+    @PersistenceContext
+    protected EntityManager em;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -95,6 +96,7 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsMarkerGroup(), parameters);
             returnVal = spRunnerCallable.getResult();
 
@@ -194,6 +196,7 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsMarkerGroupMarkers(), parameters);
 
 
@@ -211,6 +214,7 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpDelMarkerGroupMarkerById(), parameters);
         } catch (SQLGrammarException  e) {
 
@@ -226,6 +230,7 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdMarkerGroup(), parameters);
         } catch (SQLGrammarException  e) {
 
@@ -241,6 +246,7 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdMarkerGroupName(), parameters);
 
 

@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +34,8 @@ public class RsDataSetDaoImpl implements RsDataSetDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -95,6 +97,7 @@ public class RsDataSetDaoImpl implements RsDataSetDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsDataSet(), parameters);
 
             returnVal = spRunnerCallable.getResult();
@@ -114,6 +117,7 @@ public class RsDataSetDaoImpl implements RsDataSetDao {
     public void updateDataSet(Map<String, Object> parameters) throws GobiiDaoException {
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdDataSet(), parameters);
         } catch (SQLGrammarException e) {
 

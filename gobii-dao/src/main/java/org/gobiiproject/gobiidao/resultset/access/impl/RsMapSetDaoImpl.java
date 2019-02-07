@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +33,8 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
     Logger LOGGER = LoggerFactory.getLogger(RsMapSetDaoImpl.class);
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
 
     @Autowired
@@ -119,6 +121,7 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsMapset(), parameters);
 
             returnVal = spRunnerCallable.getResult();
@@ -140,6 +143,7 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdMapset(), parameters);
 
         } catch (SQLGrammarException e) {
@@ -157,6 +161,7 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsMapsetProperties(), parameters);
             returnVal = spRunnerCallable.getResult();
 

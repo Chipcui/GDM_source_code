@@ -5,16 +5,11 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiclient.gobii.Helpers.GlobalPkValues;
+import org.gobiiproject.gobiiclient.gobii.Helpers.*;
 import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
-import org.gobiiproject.gobiiclient.gobii.Helpers.DtoRestRequestUtils;
-import org.gobiiproject.gobiiclient.gobii.Helpers.EntityParamValues;
-import org.gobiiproject.gobiiclient.gobii.Helpers.GlobalPkColl;
-import org.gobiiproject.gobiiclient.gobii.Helpers.TestDtoFactory;
-import org.gobiiproject.gobiiclient.gobii.Helpers.TestUtils;
 import org.gobiiproject.gobiimodel.cvnames.JobPayloadType;
 import org.gobiiproject.gobiimodel.cvnames.JobProgressStatusType;
 import org.gobiiproject.gobiimodel.cvnames.JobType;
@@ -297,15 +292,8 @@ public class DtoCrudRequestJobTest implements DtoCrudRequestTest {
             Thread.sleep(200);
         }
 
-        for (Future<Object> currentFuture : futures) {
-            String currentMessage = null;
-            if( currentFuture.get()!= null ) {
-                currentMessage = currentFuture.get().toString();
-            }
-
-            Assert.assertNull(currentMessage,
-                    currentMessage);
-        }
+        RapidMultiThreadEncapsulator rapidMultiThreadEncapsulator = new RapidMultiThreadEncapsulator();
+        rapidMultiThreadEncapsulator.checkMessages(futures);
     }
 
     @Test

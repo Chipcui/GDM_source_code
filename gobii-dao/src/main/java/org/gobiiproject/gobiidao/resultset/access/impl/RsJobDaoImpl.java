@@ -28,8 +28,8 @@ public class RsJobDaoImpl implements RsJobDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired()
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -40,6 +40,7 @@ public class RsJobDaoImpl implements RsJobDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsJobByCvTerms(), parameters);
             returnVal = spRunnerCallable.getResult();
 
@@ -53,9 +54,6 @@ public class RsJobDaoImpl implements RsJobDao {
         return returnVal;
     }
 
-
-    @PersistenceContext
-    protected EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRED
 //    ,isolation = Isolation.SERIALIZABLE

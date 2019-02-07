@@ -9,13 +9,11 @@ import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
+import org.gobiiproject.gobiiclient.gobii.Helpers.*;
 import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
-import org.gobiiproject.gobiiclient.gobii.Helpers.DtoRestRequestUtils;
-import org.gobiiproject.gobiiclient.gobii.Helpers.GlobalPkValues;
-import org.gobiiproject.gobiiclient.gobii.Helpers.TestUtils;
 import org.gobiiproject.gobiimodel.dto.entity.auditable.ProjectDTO;
 import org.gobiiproject.gobiimodel.dto.entity.children.EntityPropertyDTO;
 import org.gobiiproject.gobiiapimodel.payload.HeaderStatusMessage;
@@ -30,6 +28,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 public class DtoCrudRequestProjectTest implements DtoCrudRequestTest {
@@ -231,6 +233,60 @@ public class DtoCrudRequestProjectTest implements DtoCrudRequestTest {
         Assert.assertTrue(headerStatusMessages.get(0).getMessage().toLowerCase().contains("contact id"));
 
     } // testCreateProject()
+
+    private List<ProjectDTO> getProjectDtoInstancesToUpdate() throws Exception {
+
+        RestUri restUriProjectAll = GobiiClientContext.getInstance(null, false)
+                .getUriFactory()
+                .resourceColl(RestResourceId.GOBII_PROJECTS);
+        GobiiEnvelopeRestResource<ProjectDTO, ProjectDTO> gobiiEnvelopeRestResourceAll = new GobiiEnvelopeRestResource<>(restUriProjectAll);
+        PayloadEnvelope<ProjectDTO> resultEnvelopeForAll = gobiiEnvelopeRestResourceAll
+                .get(ProjectDTO.class);
+
+        Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForAll.getHeader()));
+        List<ProjectDTO> projectDTOList = resultEnvelopeForAll.getPayload().getData();
+
+        Assert.assertNotNull(projectDTOList);
+        Assert.assertTrue(projectDTOList.size() > 0);
+        Assert.assertNotNull(projectDTOList.get(0).getProjectName());
+
+        return projectDTOList;
+
+    }
+
+    @Test
+    public void rapidUpdateMultiThreaded() throws Exception {
+
+        Integer totalProjectUpdaters = 10;
+        (new GlobalPkColl<DtoCrudRequestProjectTest>())
+                .getFreshPkVals(DtoCrudRequestProjectTest.class,
+                        GobiiEntityNameType.PROJECT,
+                        totalProjectUpdaters);
+
+        List<ProjectDTO> allProjectsToUpdate = this.getProjectDtoInstancesToUpdate();
+        List<Callable<Object>> callableProjectUpdates = new ArrayList<>();
+
+        for (Integer idx = 0; idx < totalProjectUpdaters; idx++) {
+            callableProjectUpdates.add(new DtoCrudRequestProjectTestCallable(allProjectsToUpdate.get(idx)));
+        }
+
+        List<Future<Object>> futures = new ArrayList<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(totalProjectUpdaters);
+        for (Callable<Object> dtoCrudRequestProjectTestCallable : callableProjectUpdates) {
+            Future<Object> currentFuture = executorService.submit(dtoCrudRequestProjectTestCallable);
+            futures.add(currentFuture);
+        }
+
+        while (futures
+                .stream()
+                .filter(filter -> filter.isDone())
+                .count() != totalProjectUpdaters) {
+            Thread.sleep(200);
+        }
+
+        RapidMultiThreadEncapsulator rapidMultiThreadEncapsulator = new RapidMultiThreadEncapsulator();
+        rapidMultiThreadEncapsulator.checkMessages(futures);
+    }
 
     @Test
     @Override

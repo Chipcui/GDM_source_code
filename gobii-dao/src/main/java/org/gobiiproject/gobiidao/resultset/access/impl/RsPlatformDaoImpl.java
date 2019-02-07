@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +36,8 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
 
     @Override
@@ -139,6 +141,9 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
 
     } // getPlatformDetailsByPlatformId()
 
+    @Autowired
+    private SpRunnerCallable spRunnerCallable;
+
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Integer createPlatform(Map<String, Object> parameters) throws GobiiDaoException {
@@ -165,6 +170,7 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdPlatform(), parameters);
 
         } catch (SQLGrammarException e) {

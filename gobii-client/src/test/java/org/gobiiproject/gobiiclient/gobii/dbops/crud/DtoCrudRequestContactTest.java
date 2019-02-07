@@ -9,17 +9,12 @@ package org.gobiiproject.gobiiclient.gobii.dbops.crud;
 import org.gobiiproject.gobiiapimodel.hateos.Link;
 import org.gobiiproject.gobiiapimodel.hateos.LinkCollection;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
+import org.gobiiproject.gobiiclient.gobii.Helpers.*;
 import org.gobiiproject.gobiimodel.config.RestResourceId;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContext;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiClientContextAuth;
 import org.gobiiproject.gobiiclient.core.gobii.GobiiEnvelopeRestResource;
 import org.gobiiproject.gobiiapimodel.restresources.common.RestUri;
-import org.gobiiproject.gobiiclient.gobii.Helpers.DtoRestRequestUtils;
-import org.gobiiproject.gobiiclient.gobii.Helpers.EntityParamValues;
-import org.gobiiproject.gobiiclient.gobii.Helpers.GlobalPkColl;
-import org.gobiiproject.gobiiclient.gobii.Helpers.GlobalPkValues;
-import org.gobiiproject.gobiiclient.gobii.Helpers.TestDtoFactory;
-import org.gobiiproject.gobiiclient.gobii.Helpers.TestUtils;
 import org.gobiiproject.gobiimodel.dto.entity.auditable.ContactDTO;
 import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
@@ -31,6 +26,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class DtoCrudRequestContactTest implements DtoCrudRequestTest {
 
@@ -116,6 +115,62 @@ public class DtoCrudRequestContactTest implements DtoCrudRequestTest {
 //        Assert.assertTrue(contactDTOResponse.getContactId() > 0);
 //
 //    }
+
+    private List<ContactDTO> getContactDtoInstacesToUpdate() throws Exception {
+
+        RestUri restUriContactAll = GobiiClientContext.getInstance(null, false)
+                .getUriFactory()
+                .resourceColl(RestResourceId.GOBII_CONTACTS);
+        GobiiEnvelopeRestResource<ContactDTO, ContactDTO> gobiiEnvelopeRestResourceAll = new GobiiEnvelopeRestResource<>(restUriContactAll);
+        PayloadEnvelope<ContactDTO> resultEnvelopeForAll = gobiiEnvelopeRestResourceAll
+                .get(ContactDTO.class);
+
+        Assert.assertFalse(TestUtils.checkAndPrintHeaderMessages(resultEnvelopeForAll.getHeader()));
+        List<ContactDTO> contactDTOList = resultEnvelopeForAll.getPayload().getData();
+
+        Assert.assertNotNull(contactDTOList);
+        Assert.assertTrue(contactDTOList.size() > 0);
+        Assert.assertNotNull(contactDTOList.get(0).getEmail());
+
+
+        return contactDTOList;
+    }
+
+    @Test
+    public void rapidUpdateMultiThreaded() throws Exception {
+
+        Integer totalContactUpdaters = 10;
+        (new GlobalPkColl<DtoCrudRequestContactTest>())
+                .getFreshPkVals(DtoCrudRequestContactTest.class,
+                        GobiiEntityNameType.CONTACT,
+                        totalContactUpdaters);
+
+        List<ContactDTO> allContactsToUpdate = this.getContactDtoInstacesToUpdate();
+        List<Callable<Object>> callableContactUpdates = new ArrayList<>();
+
+        for (Integer idx = 0; idx < totalContactUpdaters; idx++) {
+            callableContactUpdates.add(new DtoCrudRequestContactTestCallable(allContactsToUpdate.get(idx)));
+        }
+
+        List<Future<Object>> futures = new ArrayList<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(totalContactUpdaters);
+        for (Callable<Object> dtoCrudRequestContactTestCallable : callableContactUpdates) {
+            Future<Object> currentFuture = executorService.submit(dtoCrudRequestContactTestCallable);
+            futures.add(currentFuture);
+        }
+
+        while (futures
+                .stream()
+                .filter(filter -> filter.isDone())
+                .count() != totalContactUpdaters) {
+            Thread.sleep(200);
+        }
+
+        RapidMultiThreadEncapsulator rapidMultiThreadEncapsulator = new RapidMultiThreadEncapsulator();
+        rapidMultiThreadEncapsulator.checkMessages(futures);
+
+    }
+
 
     @Test
     @Override

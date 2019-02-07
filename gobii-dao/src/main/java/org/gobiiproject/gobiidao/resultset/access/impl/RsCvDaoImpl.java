@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +37,8 @@ public class RsCvDaoImpl implements RsCvDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -170,6 +172,7 @@ public class RsCvDaoImpl implements RsCvDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsCv(), parameters);
             returnVal = spRunnerCallable.getResult();
 
@@ -188,6 +191,7 @@ public class RsCvDaoImpl implements RsCvDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdCv(), parameters);
 
         } catch (SQLGrammarException e) {
@@ -203,6 +207,8 @@ public class RsCvDaoImpl implements RsCvDao {
     public void deleteCv(Map<String, Object> parameters) throws GobiiDaoException {
 
         try {
+            
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpDelCv(), parameters);
 
         } catch (SQLGrammarException e) {

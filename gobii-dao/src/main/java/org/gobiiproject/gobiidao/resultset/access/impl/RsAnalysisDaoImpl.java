@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +33,8 @@ public class RsAnalysisDaoImpl implements RsAnalysisDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
     @Transactional
     @Override
@@ -119,6 +121,7 @@ public class RsAnalysisDaoImpl implements RsAnalysisDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsAnalysis(), parameters);
 
             returnVal = spRunnerCallable.getResult();
@@ -138,6 +141,7 @@ public class RsAnalysisDaoImpl implements RsAnalysisDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdAnalysis(), parameters);
 
         } catch (SQLGrammarException e) {
@@ -152,6 +156,8 @@ public class RsAnalysisDaoImpl implements RsAnalysisDao {
     public void createUpdateParameter(Map<String, Object> parameters) throws GobiiDaoException {
 
         try {
+
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsAnalysisParameters(), parameters);
 
         } catch (SQLGrammarException e) {

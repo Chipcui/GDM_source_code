@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.*;
 
@@ -29,8 +31,8 @@ public class RsProjectDaoImpl implements RsProjectDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -141,6 +143,7 @@ public class RsProjectDaoImpl implements RsProjectDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsProject(), parameters);
             returnVal = spRunnerCallable.getResult();
 
@@ -161,6 +164,7 @@ public class RsProjectDaoImpl implements RsProjectDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdProject(), parameters);
 
         } catch (SQLGrammarException e) {
@@ -179,6 +183,8 @@ public class RsProjectDaoImpl implements RsProjectDao {
         Integer returnVal;
 
         try {
+
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsProjectProperties(), parameters);
             returnVal = spRunnerCallable.getResult();
 

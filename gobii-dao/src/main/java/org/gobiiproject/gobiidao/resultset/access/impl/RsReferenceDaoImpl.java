@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +31,8 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -90,6 +92,7 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsReference(), parameters);
             returnVal = spRunnerCallable.getResult();
 
@@ -109,6 +112,7 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdReference(), parameters);
 
         } catch (SQLGrammarException e) {

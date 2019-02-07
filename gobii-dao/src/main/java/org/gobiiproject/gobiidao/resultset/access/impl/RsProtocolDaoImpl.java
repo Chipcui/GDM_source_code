@@ -28,6 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.util.HashMap;
@@ -42,8 +44,8 @@ public class RsProtocolDaoImpl implements RsProtocolDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired
-    private SpRunnerCallable spRunnerCallable;
+    @PersistenceContext
+    protected EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -51,6 +53,8 @@ public class RsProtocolDaoImpl implements RsProtocolDao {
         Integer returnVal = null;
 
         try {
+
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsProtocol(), paramaters);
             returnVal = spRunnerCallable.getResult();
         } catch (SQLGrammarException e) {
@@ -67,6 +71,7 @@ public class RsProtocolDaoImpl implements RsProtocolDao {
 
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdProtocol(), parameters);
 
         } catch (SQLGrammarException e) {
@@ -81,6 +86,7 @@ public class RsProtocolDaoImpl implements RsProtocolDao {
     public void updateVendorProtocol(Map<String, Object> parameters) throws GobiiDaoException {
         try {
 
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpUpdVendorProtocol(), parameters);
 
         } catch (SQLGrammarException e) {
@@ -198,6 +204,8 @@ public class RsProtocolDaoImpl implements RsProtocolDao {
         Integer returnVal;
 
         try {
+
+            SpRunnerCallable spRunnerCallable = new SpRunnerCallable(this.em);
             spRunnerCallable.run(new SpInsVendorProtocol(), parameters);
             returnVal = spRunnerCallable.getResult();
         } catch (SQLGrammarException e) {
