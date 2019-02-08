@@ -15,7 +15,7 @@ gobii-process ---> |        |               |
 The most important thing to know about the the module structure is that
 all business logic and data crunching should live in the domain layer. The
 lingua franca for data representation are the dto objects that are defined
-in the model project. In this application, pojos that represent actual database
+in the model project. In this application, POJOs that represent actual database
 entities are never exposed outside of the dao layer: when the data representation
 changes, the change should not cascade throughout the system. Therefore, it is the
 job of the dao layer to map the data representation from the data store into the
