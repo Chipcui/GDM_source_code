@@ -37,7 +37,7 @@ public class DtoCrudRequestAnalysisTest implements DtoCrudRequestTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        Assert.assertTrue(GobiiClientContextAuth.authenticate());
+        Assert.assertTrue("Problem with authentication", GobiiClientContextAuth.authenticate());
     }
 
     @AfterClass
