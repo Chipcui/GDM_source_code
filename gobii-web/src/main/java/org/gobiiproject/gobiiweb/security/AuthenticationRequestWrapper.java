@@ -2,7 +2,7 @@ package org.gobiiproject.gobiiweb.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.misc.IOUtils;
+//import sun.misc.IOUtils;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletInputStream;
