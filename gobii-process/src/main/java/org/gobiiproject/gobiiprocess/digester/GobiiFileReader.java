@@ -4,7 +4,9 @@ import java.io.*;
 import java.nio.file.*;
 import java.text.ParseException;
 import java.util.*;
+import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.cli.*;
 import org.gobiiproject.gobiiapimodel.payload.Header;
 import org.gobiiproject.gobiiapimodel.payload.PayloadEnvelope;
@@ -33,6 +35,8 @@ import org.gobiiproject.gobiiprocess.JobStatus;
 import org.gobiiproject.gobiiprocess.digester.HelperFunctions.*;
 import org.gobiiproject.gobiiprocess.digester.csv.CSVFileReaderV2;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.DigestFileValidator;
+import org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationConstants;
+import org.gobiiproject.gobiiprocess.digester.utils.validation.errorMessage.ValidationError;
 
 import static org.gobiiproject.gobiimodel.utils.FileSystemInterface.rm;
 import static org.gobiiproject.gobiimodel.utils.FileSystemInterface.rmIfExist;
@@ -372,7 +376,19 @@ public class GobiiFileReader {
         DigestFileValidator digestFileValidator = new DigestFileValidator(directory, baseConnectionString, user, password);
         digestFileValidator.performValidation();
         //Call validations here, update 'success' to false with any call to ErrorLogger.logError()
-
+        List<Path> pathList =
+                Files.list(Paths.get(directory))
+                        .filter(Files::isRegularFile).filter(path -> String.valueOf(path.getFileName()).endsWith(".json")).collect(Collectors.toList());
+        if (pathList.size() < 1) {
+            success = false;
+            //TODO: Mail content need to indicate it failed
+        }
+        ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
+        for (ValidationError status : fileErrors) {
+            if (status.status.equalsIgnoreCase(ValidationConstants.FAILURE)) {
+                success = false;
+            }
+        }
         if (success && ErrorLogger.success()) {
             jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_METADATALOAD.getCvName(), "Loading Metadata");
             errorPath = getLogName(zero, gobiiCropConfig, crop, "IFLs");

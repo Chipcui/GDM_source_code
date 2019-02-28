@@ -15,5 +15,5 @@ public class ValidationConstants {
     static final String YES = "YES";
     static final String NO = "NO";
     static final String SUCCESS = "SUCCESS";
-    static final String FAILURE = "FAILURE";
+    public static final String FAILURE = "FAILURE";
 }
