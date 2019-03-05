@@ -1,6 +1,7 @@
 package org.gobiiproject.gobiimodel.utils.email;
 
 
+//import com.sun.xml.internal.ws.developer.MemberSubmissionAddressing;
 import org.gobiiproject.gobiimodel.dto.entity.children.PropNameId;
 import org.gobiiproject.gobiimodel.utils.HelperFunctions;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -23,6 +24,7 @@ public class ProcessMessage extends MailMessage {
     private String entityLine;
     private String identifierLine;
     private String pathsLine;
+    private String validationLine;
     private String confidentialyMessage;
     File fPath;
     private String color;
@@ -33,11 +35,13 @@ public class ProcessMessage extends MailMessage {
     final String identifierLineWidth = "40";
     final String extractCriteriaLineWidth = "40";
     final String pathsLineWidth = "65";
+    final String validationLineWidth = "40";
     List<HTMLTableEntity> entries=new ArrayList<>();
     List<HTMLTableEntity> identifiers=new ArrayList<>();
     List<HTMLTableEntity> extractCriteria=new ArrayList<>();
     List<HTMLTableEntity> entities=new ArrayList<>();
     List<HTMLTableEntity> paths=new ArrayList<>();
+    List<HTMLTableEntity> validations=new ArrayList<>();
 
 
     /**
@@ -68,6 +72,10 @@ public class ProcessMessage extends MailMessage {
             entityLine = HTMLTableEntity.getHTMLTable(entities, entityLineWidth,"Type","Count");
             entities.clear();
         }
+        if(!validations.isEmpty()) {
+            validationLine = HTMLTableEntity.getHTMLTable(validations, validationLineWidth,"Info","Status","Reason","Column","Values");
+            validations.clear();
+        }
         if(!paths.isEmpty()) {
             pathsLine = HTMLTableEntity.getHTMLTable(paths, pathsLineWidth,"File Type","Path","Size");
             paths.clear();
@@ -91,14 +99,44 @@ public class ProcessMessage extends MailMessage {
         if(extractCriteriaLine!=null)body.append(extractCriteriaLine+line);
         if(entityLine!=null)body.append(entityLine+line);
         if(tableLine!=null)body.append(tableLine+line);
+        if(validationLine!=null)body.append(validationLine+line);
         if(pathsLine!=null)body.append(pathsLine+line);
         if(longError!=null)body.append(longError);
         body.append("</html>");
         this.setBody(body.toString());
         return this;
     }
-    
-    
+
+    /**
+     * Add entry to the validation results table FAILURE scenario
+     * @param fileName Validation JSON "fileName" : "dataset_dnarun"
+     * @param status "status" : "FAILURE",
+     * @param reason
+     * @param columns
+     * @param values
+     * @return
+     */
+    public ProcessMessage addValidateTableElement(String fileName, String status, String reason, List<String> columns, List<String> values){
+        if(reason.equals("")) {
+            validations.add(new HTMLTableEntity(fileName, status, "" , "" , ""));
+        }
+        else{
+            validations.add(new HTMLTableEntity(fileName, status, reason, (columns.isEmpty()) ? "" : String.join(", ", columns), (values.isEmpty()) ? "" : String.join(", ", values)));
+        }
+        return this;
+    }
+
+    /**
+     * Add entry to the validation results table SUCCESS scenario
+     * @param fileName
+     * @param status
+     * @return
+     */
+    public ProcessMessage addValidateTableElement(String fileName, String status){
+        addValidateTableElement(fileName, status, "" , null, null);
+        return this;
+    }
+
     /**
      * Add an entry to the intermediate File table
      * @param tableName Name of table
@@ -221,6 +259,9 @@ public class ProcessMessage extends MailMessage {
         if(!entities.isEmpty()) {
             entityLine = HTMLTableEntity.getHTMLTable(entities, entityLineWidth,"Type","Count");
         }
+        if(!validations.isEmpty()) {
+            validationLine = HTMLTableEntity.getHTMLTable(validations, validationLineWidth,"Info","Status","Reason","Column","Values");
+        }
         if(!paths.isEmpty()) {
             pathsLine = HTMLTableEntity.getHTMLTable(paths, pathsLineWidth,"File Type","Path","Size");
         }
@@ -242,6 +283,7 @@ public class ProcessMessage extends MailMessage {
         if(identifierLine!=null)body.append(identifierLine+line);
         if(entityLine!=null)body.append(entityLine+line);
         if(tableLine!=null)body.append(tableLine+line);
+        if(validationLine!=null)body.append(validationLine+line);
         if(pathsLine!=null)body.append(pathsLine+line);
         if(longError!=null)body.append(longError);
         body.append("</html>");
