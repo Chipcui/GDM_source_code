@@ -1,0 +1,37 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.marker",
+      "conditions": [
+        {
+          "columnName": "platform_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "name",
+          "required": "yes"
+        },
+        {
+          "columnName": "reference_name",
+          "required": "no",
+          "type": "DB",
+          "nullAllowed": "yes",
+          "typeName": "reference",
+          "fieldToCompare": [
+            "reference_name"
+          ]
+        },
+        {
+          "columnName": "strand_name",
+          "required": "no",
+          "type": "DB",
+          "nullAllowed": "yes",
+          "typeName": "CV",
+          "fieldToCompare": [
+            "strand_name"
+          ]
+        }
+      ]
+    }
+  ]
+}

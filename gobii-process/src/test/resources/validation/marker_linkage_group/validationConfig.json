@@ -1,0 +1,41 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.marker_linkage_group",
+      "conditions": [
+        {
+          "columnName": "platform_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "map_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "linkage_group_name",
+          "required": "yes",
+          "fileExistenceCheck": "digest.linkage_group",
+          "fileExists": "no",
+          "type": "DB",
+          "typeName": "linkage_group",
+          "foreignKey": "map_id",
+          "fieldToCompare": [
+            "linkage_group_name"
+          ]
+        },
+        {
+          "columnName": "marker_name",
+          "required": "yes",
+          "fileExistenceCheck": "digest.marker ",
+          "fileExists": "no",
+          "type": "DB",
+          "typeName": "marker",
+          "foreignKey": "platform_id",
+          "fieldToCompare": [
+            "marker_name"
+          ]
+        }
+      ]
+    }
+  ]
+}

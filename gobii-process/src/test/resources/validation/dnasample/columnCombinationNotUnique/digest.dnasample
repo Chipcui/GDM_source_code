@@ -1,0 +1,11 @@
+project_id	platename	well_row	well_col	num	name	external_code	status
+1	1	A	1	1	dnasamplename_dom_1	5555	57
+1	1	A	2	1	dnasamplename_dom_1	5555	57
+1	1	A	3	3	dnasamplename_dom_3	5556	57
+1	1	A	4	4	dnasamplename_dom_4	5556	57
+1	1	A	5	5	dnasamplename_dom_5	5557	57
+1	1	A	6	6	dnasamplename_dom_6	5558	57
+1	1	A	7	7	dnasamplename_dom_7	5559	57
+1	1	A	8	8	dnasamplename_dom_8	5560	57
+1	1	A	9	9	dnasamplename_dom_9	5561	57
+1	1	A	10	10	dnasamplename_dom_10	5562	57

@@ -1,0 +1,22 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.germplasm_prop",
+      "conditions": [
+        {
+          "columnName": "external_code",
+          "required": "yes",
+          "type": "File",
+          "fileShouldExist": "digest.germplasm",
+          "fieldColumns": [
+            "external_code"
+          ],
+          "typeName": "digest.germplasm",
+          "fieldToCompare": [
+            "external_code"
+          ]
+        }
+      ]
+    }
+  ]
+}

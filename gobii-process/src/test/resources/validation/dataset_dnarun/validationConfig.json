@@ -1,0 +1,33 @@
+{
+  "validations": [
+  {
+      "digestFileName": "digest.dataset_dnarun",
+      "conditions": [
+        {
+          "columnName": "experiment_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "dataset_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "dnarun_idx",
+          "required": "yes"
+        },
+        {
+          "columnName": "dnarun_name",
+          "required": "yes",
+          "fileExistenceCheck": "digest.dnarun",
+          "fileExists": "no",
+          "type": "DB",
+          "typeName": "dnarun",
+          "foreignKey": "experiment_id",
+          "fieldToCompare": [
+            "dnarun_name"
+          ]
+        }
+      ]
+    }
+  ]
+}

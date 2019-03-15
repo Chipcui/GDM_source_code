@@ -1,0 +1,18 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.marker_prop",
+      "conditions": [
+        {
+          "columnName": "platform_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "marker_name",
+          "required": "yes",
+          "fileShouldExist": "digest.marker"
+        }
+      ]
+    }
+  ]
+}

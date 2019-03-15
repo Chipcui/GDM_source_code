@@ -1,0 +1,33 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.dataset_marker",
+      "conditions": [
+        {
+          "columnName": "platform_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "dataset_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "marker_idx",
+          "required": "yes"
+        },
+        {
+          "columnName": "marker_name",
+          "required": "yes",
+          "fileExistenceCheck": "digest.marker ",
+          "fileExists": "no",
+          "type": "DB",
+          "typeName": "marker",
+          "foreignKey": "platform_id",
+          "fieldToCompare": [
+            "marker_name"
+          ]
+        }
+      ]
+    }
+  ]
+}

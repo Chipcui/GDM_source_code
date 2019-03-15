@@ -234,6 +234,26 @@
 
                     </execution>
 
+                    <!--gobii digest validation -->
+                    <execution>
+                        <configuration>
+                            <finalName>digestValidator</finalName>
+                            <!-- MainClass in mainfest make a executable jar -->
+                            <archive>
+                                <manifest>
+                                    <mainClass>org.gobiiproject.gobiiprocess.digester.utils.validation.DigestFileValidator</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                        <id>make-digestValidator</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+
+                    </execution>
+
 
                 </executions>
             </plugin>

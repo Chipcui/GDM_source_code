@@ -1,0 +1,56 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.dnasample",
+      "conditions": [
+        {
+          "columnName": "project_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "name",
+          "required": "yes"
+        },
+        {
+          "columnName": "num",
+          "required": "yes"
+        },
+        {
+          "columnName": "external_code",
+          "required": "yes",
+          "uniqueColumns": [
+            "name",
+            "external_code",
+            "num"
+          ]
+        },
+        {
+          "columnName": "external_code",
+          "required": "yes",
+          "fileExistenceCheck": "digest.germplasm",
+          "fileExists": "no",
+          "type": "DB",
+          "typeName": "external_code",
+          "fieldToCompare": [
+            "external_code"
+          ]
+        },
+        {
+          "columnName": "external_code",
+          "required": "yes",
+          "fileExistenceCheck": "digest.germplasm",
+          "fileExists": "yes",
+          "type": "File",
+          "fieldColumns": [
+            "external_code"
+          ],
+          "uniqueFileCheck": "yes",
+          "typeName": "digest.germplasm",
+          "fieldToCompare": [
+            "external_code"
+          ]
+        }
+      ]
+    }
+  ]
+}

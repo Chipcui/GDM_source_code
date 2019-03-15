@@ -1,0 +1,38 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.germplasm",
+      "conditions": [
+        {
+          "columnName": "name",
+          "required": "yes"
+        },
+        {
+          "columnName": "external_code",
+          "required": "yes",
+          "unique": "yes"
+        },
+        {
+          "columnName": "species_name",
+          "required": "no",
+          "type": "DB",
+          "nullAllowed": "yes",
+          "typeName": "CV",
+          "fieldToCompare": [
+            "species_name"
+          ]
+        },
+        {
+          "columnName": "type_name",
+          "required": "no",
+          "type": "DB",
+          "nullAllowed": "yes",
+          "typeName": "CV",
+          "fieldToCompare": [
+            "type_name"
+          ]
+        }
+      ]
+    }
+  ]
+}

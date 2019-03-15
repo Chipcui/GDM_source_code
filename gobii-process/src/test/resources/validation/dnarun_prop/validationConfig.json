@@ -1,0 +1,34 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.dnarun_prop",
+      "conditions": [
+        {
+          "columnName": "experiment_id",
+          "required": "yes",
+          "type": "File",
+          "fileShouldExist": "digest.dnarun",
+          "fieldColumns": [
+            "experiment_id"
+          ],
+          "typeName": "digest.dnarun",
+          "fieldToCompare": [
+            "experiment_id"
+          ]
+        },
+        {
+          "columnName": "dnarun_name",
+          "required": "yes",
+          "type": "File",
+          "fieldColumns": [
+            "dnarun_name"
+          ],
+          "typeName": "digest.dnarun",
+          "fieldToCompare": [
+            "name"
+          ]
+        }
+      ]
+    }
+  ]
+}

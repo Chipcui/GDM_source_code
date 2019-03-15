@@ -1,0 +1,103 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.dnarun",
+      "conditions": [
+        {
+          "columnName": "project_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "experiment_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "name",
+          "required": "yes"
+        },
+        {
+          "columnName": "dnasample_name",
+          "required": "no",
+          "nullAllowed": "no"
+        },
+        {
+          "columnName": "num",
+          "required": "no",
+          "nullAllowed": "no"
+        },
+        {
+          "columnName": "project_id",
+          "required": "yes",
+          "fileExistenceCheck": "digest.dnasample",
+          "fileExists": "yes",
+          "type": "File",
+          "fieldColumns": [
+            "project_id"
+          ],
+          "uniqueFileCheck": "yes",
+          "typeName": "digest.dnasample",
+          "fieldToCompare": [
+            "project_id"
+          ]
+        },
+        {
+          "columnName": "dnasample_name",
+          "required": "no",
+          "fileExistenceCheck": "digest.dnasample",
+          "fileExists": "yes",
+          "type": "File",
+          "fieldColumns": [
+            "dnasample_name"
+          ],
+          "uniqueFileCheck": "yes",
+          "typeName": "digest.dnasample",
+          "fieldToCompare": [
+            "name"
+          ]
+        },
+        {
+          "columnName": "num",
+          "required": "no",
+          "fileExistenceCheck": "digest.dnasample",
+          "fileExists": "yes",
+          "type": "File",
+          "fieldColumns": [
+            "dnasample_name",
+            "num"
+          ],
+          "uniqueFileCheck": "yes",
+          "typeName": "digest.dnasample",
+          "fieldToCompare": [
+            "name",
+            "num"
+          ]
+        },
+        {
+          "columnName": "num",
+          "required": "no",
+          "fileExistenceCheck": "digest.dnasample",
+          "fileExists": "no",
+          "type": "DB",
+          "typeName": "dnasample",
+          "foreignKey": "project_id",
+          "fieldToCompare": [
+            "dnasample_name"
+          ]
+        },
+        {
+          "columnName": "num",
+          "required": "no",
+          "fileExistenceCheck": "digest.dnasample",
+          "fileExists": "no",
+          "type": "DB",
+          "typeName": "sampleNameNum",
+          "foreignKey": "project_id",
+          "fieldToCompare": [
+            "dnasample_name",
+            "num"
+          ]
+        }
+      ]
+    }
+  ]
+}

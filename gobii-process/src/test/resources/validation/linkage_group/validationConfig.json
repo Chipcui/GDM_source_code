@@ -1,0 +1,17 @@
+{
+  "validations": [
+    {
+      "digestFileName": "digest.linkage_group",
+      "conditions": [
+        {
+          "columnName": "map_id",
+          "required": "yes"
+        },
+        {
+          "columnName": "name",
+          "required": "yes"
+        }
+      ]
+    }
+  ]
+}
