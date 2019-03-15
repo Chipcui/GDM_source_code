@@ -47,6 +47,11 @@ public class CSVFileReaderV2 implements CSVFileReaderInterface {
     private GobiiProcessedInstruction processedInstruction;
     private int maxLines = 0;
 
+    CSVFileReaderV2(){
+        //TODO - make this work too?
+        this.loaderScriptPath=null;
+    }
+
     CSVFileReaderV2(String loaderScriptPath) {
         this.loaderScriptPath = loaderScriptPath;
     }

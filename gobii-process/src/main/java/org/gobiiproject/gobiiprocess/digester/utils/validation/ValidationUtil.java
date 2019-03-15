@@ -421,7 +421,8 @@ class ValidationUtil {
                         for (List<String> name : ent.getValue()) {
                             NameIdDTO nameIdDTO = new NameIdDTO();
                             nameIdDTO.setName(name.get(0));
-                            nameIdDTO.getParameters().put(paramName, Integer.parseInt(name.get(1)));
+                            //TODO - what does this do?
+                            //TODO nameIdDTO.getParameters().put(paramName, Integer.parseInt(name.get(1)));
                             nameIdDTOList.add(nameIdDTO);
                         }
                         List<NameIdDTO> nameIdDTOListResponse = ValidationWebServicesUtil.getNamesByNameList(nameIdDTOList, GobiiEntityNameType.DNASAMPLE.toString(), ent.getKey(), failureList);

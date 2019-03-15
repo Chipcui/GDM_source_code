@@ -170,7 +170,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(1);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("1"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+            //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -179,7 +179,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(2);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("2"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -188,7 +188,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(3);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("3"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -197,7 +197,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(4);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("4"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -206,7 +206,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(5);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("5"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -215,7 +215,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(6);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("6"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -224,7 +224,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(7);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("7"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -233,7 +233,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(8);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("8"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -242,7 +242,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(9);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("9"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
         {
@@ -251,7 +251,7 @@ public class DnarunValidationTest {
             nameIdDTO.setId(10);
             DnaSampleDTO dnaSampleDTO = new DnaSampleDTO();
             dnaSampleDTO.setDnaSampleNum(Integer.parseInt("10"));
-            nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
+	        //TODO - NAMEIDDTO doesn't have a parameters nameIdDTO.getParameters().put("dnaSampleNum", dnaSampleDTO.getDnaSampleNum());
             nameIdDTOList.add(nameIdDTO);
         }
 
