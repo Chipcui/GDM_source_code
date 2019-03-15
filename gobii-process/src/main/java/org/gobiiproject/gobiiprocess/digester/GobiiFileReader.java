@@ -84,151 +84,154 @@ public class GobiiFileReader {
 	public static void main(String[] args) throws Exception {
 		//Section - Setup
 		Options o = new Options()
-         		.addOption("v", "verbose", false, "Verbose output")
-         		.addOption("e", "errlog", true, "Error log override location")
-         		.addOption("r", "rootDir", true, "Fully qualified path to gobii root directory")
-         		.addOption("c","config",true,"Fully qualified path to gobii configuration file")
-         		.addOption("h", "hdfFiles", true, "Fully qualified path to hdf files");
+				.addOption("v", "verbose", false, "Verbose output")
+				.addOption("e", "errlog", true, "Error log override location")
+				.addOption("r", "rootDir", true, "Fully qualified path to gobii root directory")
+				.addOption("c", "config", true, "Fully qualified path to gobii configuration file")
+				.addOption("h", "hdfFiles", true, "Fully qualified path to hdf files");
 		LoaderGlobalConfigs.addOptions(o);
-        ProcessMessage pm = new ProcessMessage();
+		ProcessMessage pm = new ProcessMessage();
 		CommandLineParser parser = new DefaultParser();
-        try{
-			CommandLine cli = parser.parse( o, args );
-            if(cli.hasOption("rootDir")) rootDir = cli.getOptionValue("rootDir");
-            if(cli.hasOption("verbose")) verbose=true;
-            if(cli.hasOption("errLog")) errorLogOverride = cli.getOptionValue("errLog");
-            if(cli.hasOption("config")) propertiesFile = cli.getOptionValue("config");
-            if(cli.hasOption("hdfFiles")) HDF5Interface.setPathToHDF5Files(cli.getOptionValue("hdfFiles"));
+		try {
+			CommandLine cli = parser.parse(o, args);
+			if (cli.hasOption("rootDir")) rootDir = cli.getOptionValue("rootDir");
+			if (cli.hasOption("verbose")) verbose = true;
+			if (cli.hasOption("errLog")) errorLogOverride = cli.getOptionValue("errLog");
+			if (cli.hasOption("config")) propertiesFile = cli.getOptionValue("config");
+			if (cli.hasOption("hdfFiles")) HDF5Interface.setPathToHDF5Files(cli.getOptionValue("hdfFiles"));
 			LoaderGlobalConfigs.setFromFlags(cli);
-            args=cli.getArgs();//Remaining args passed through
+			args = cli.getArgs();//Remaining args passed through
 
-		}catch(org.apache.commons.cli.ParseException exp ) {
-			new HelpFormatter().printHelp("java -jar Digester.jar ","Also accepts input file directly after arguments\n" +
-                		                  "Example: java -jar Digester.jar -c /home/jdl232/customConfig.properties -v /home/jdl232/testLoad.json",o,null,true);
-               System.exit(2);
+		} catch (org.apache.commons.cli.ParseException exp) {
+			new HelpFormatter().printHelp("java -jar Digester.jar ", "Also accepts input file directly after arguments\n" +
+					"Example: java -jar Digester.jar -c /home/jdl232/customConfig.properties -v /home/jdl232/testLoad.json", o, null, true);
+			System.exit(2);
 		}
 
-     	extractorScriptPath=rootDir+"extractors/";
-     	loaderScriptPath=rootDir+"loaders/";
-     	HDF5Interface.setPathToHDF5(loaderScriptPath+"hdf5/bin/");
+		extractorScriptPath = rootDir + "extractors/";
+		loaderScriptPath = rootDir + "loaders/";
+		HDF5Interface.setPathToHDF5(loaderScriptPath + "hdf5/bin/");
 
-    	if(propertiesFile==null)propertiesFile=rootDir+"config/gobii-web.xml";
+		if (propertiesFile == null) propertiesFile = rootDir + "config/gobii-web.xml";
 
-		boolean success=true;
-		Map<String,File> loaderInstructionMap = new HashMap<>();//Map of Key to filename
-		List<String> loaderInstructionList=new ArrayList<String>(); //Ordered list of loader instructions to execute, Keys to loaderInstructionMap
-		String dst=null;
-		DataSetOrientationType dso=null;
+		boolean success = true;
+		Map<String, File> loaderInstructionMap = new HashMap<>();//Map of Key to filename
+		List<String> loaderInstructionList = new ArrayList<String>(); //Ordered list of loader instructions to execute, Keys to loaderInstructionMap
+		String dst = null;
+		DataSetOrientationType dso = null;
 
-		ConfigSettings configuration=null;
+		ConfigSettings configuration = null;
 		try {
 			configuration = new ConfigSettings(propertiesFile);
-			ErrorLogger.logDebug("Config file path","Opened config settings at " + propertiesFile);
+			ErrorLogger.logDebug("Config file path", "Opened config settings at " + propertiesFile);
 
 		} catch (Exception e1) {
-            e1.printStackTrace();
-        }
+			e1.printStackTrace();
+		}
 
-        MailInterface mailInterface = new MailInterface(configuration);
+		MailInterface mailInterface = new MailInterface(configuration);
 
-        String instructionFile = null;
-        if (args.length == 0 || "".equals(args[0])) {
-            Scanner s = new Scanner(System.in);
-            System.out.println("Enter Loader Instruction File Location:");
-            instructionFile = s.nextLine();
-        } else {
-            instructionFile = args[0];
-        }
+		String instructionFile = null;
+		if (args.length == 0 || "".equals(args[0])) {
+			Scanner s = new Scanner(System.in);
+			System.out.println("Enter Loader Instruction File Location:");
+			instructionFile = s.nextLine();
+		} else {
+			instructionFile = args[0];
+		}
 
 		//Error logs go to a file based on crop (for human readability) and
-		pm.addPath("Instruction File",new File(instructionFile).getAbsolutePath(),true);
-        ErrorLogger.logInfo("Digester", "Beginning read of " + instructionFile);
-        List<GobiiLoaderInstruction> list = parseInstructionFile(instructionFile);
-		if(list==null || list.isEmpty()){
-			logError("Digester","No instruction for file "+instructionFile);
+		pm.addPath("Instruction File", new File(instructionFile).getAbsolutePath(), true);
+		ErrorLogger.logInfo("Digester", "Beginning read of " + instructionFile);
+		List<GobiiLoaderInstruction> list = parseInstructionFile(instructionFile);
+		if (list == null || list.isEmpty()) {
+			logError("Digester", "No instruction for file " + instructionFile);
 			return;
 		}
 
 
-		GobiiLoaderInstruction zero=list.iterator().next();
-		Integer dataSetId=zero.getDataSetId();
+		GobiiLoaderInstruction zero = list.iterator().next();
+		Integer dataSetId = zero.getDataSetId();
 
-		String crop=zero.getGobiiCropType();
-		if(crop==null) crop=divineCrop(instructionFile);
+		String crop = zero.getGobiiCropType();
+		if (crop == null) crop = divineCrop(instructionFile);
 
 		//Job Id is the 'name' part of the job file  /asd/de/name.json
-		String filename=new File(instructionFile).getName();
-		String jobFileName = filename.substring(0,filename.lastIndexOf('.'));
-		JobStatus jobStatus=null;
+		String filename = new File(instructionFile).getName();
+		String jobFileName = filename.substring(0, filename.lastIndexOf('.'));
+		JobStatus jobStatus = null;
 		try {
 			jobStatus = new JobStatus(configuration, crop, jobFileName);
-        } catch (Exception e) {
-            ErrorLogger.logError("GobiiFileReader", "Error Checking Status", e);
+		} catch (Exception e) {
+			ErrorLogger.logError("GobiiFileReader", "Error Checking Status", e);
 		}
 
-		pm.addIdentifier("Experiment",zero.getExperiment());
-		pm.addIdentifier("Dataset",zero.getDataSet());
-		pm.addIdentifier("Mapset",zero.getMapset());
-		pm.addIdentifier("Dataset Type",zero.getDatasetType());
+		pm.addIdentifier("Project",zero.getProject());
+		pm.addIdentifier("Platform",zero.getPlatform());
+		pm.addIdentifier("Experiment", zero.getExperiment());
+		pm.addIdentifier("Dataset", zero.getDataSet());
+		pm.addIdentifier("Mapset", zero.getMapset());
+		pm.addIdentifier("Dataset Type", zero.getDatasetType());
 
-		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_INPROGRESS.getCvName(),"Beginning Digest");
-		String dstFilePath= getDestinationFile(zero);//Intermediate 'file'
-		File dstDir=new File(dstFilePath);
-		if(!dstDir.isDirectory()){ //Note: if dstDir is a non-existant
-			dstDir=new File(dstFilePath.substring(0, dstFilePath.lastIndexOf("/")));
+		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_INPROGRESS.getCvName(), "Beginning Digest");
+		String dstFilePath = getDestinationFile(zero);//Intermediate 'file'
+		File dstDir = new File(dstFilePath);
+		if (!dstDir.isDirectory()) { //Note: if dstDir is a non-existant
+			dstDir = new File(dstFilePath.substring(0, dstFilePath.lastIndexOf("/")));
 		}
-		pm.addFolderPath("Destination Directory",dstDir.getAbsolutePath());//Convert to directory
-		pm.addFolderPath("Input Directory",zero.getGobiiFile().getSource());
+		pm.addFolderPath("Destination Directory", dstDir.getAbsolutePath());//Convert to directory
+		pm.addFolderPath("Input Directory", zero.getGobiiFile().getSource());
 
-		Path cropPath = Paths.get(rootDir+"crops/"+crop.toLowerCase());
+		Path cropPath = Paths.get(rootDir + "crops/" + crop.toLowerCase());
 		if (!(Files.exists(cropPath) &&
-			  Files.isDirectory(cropPath))) {
-			logError("Digester","Unknown Crop Type: "+crop);
+				Files.isDirectory(cropPath))) {
+			logError("Digester", "Unknown Crop Type: " + crop);
 			return;
 		}
 		GobiiCropConfig gobiiCropConfig = null;
 		try {
 			gobiiCropConfig = configuration.getCropConfig(crop);
 		} catch (Exception e) {
-			logError("Digester","Unknown loading error",e);
-			return;
-        }
-        if (gobiiCropConfig == null) {
-			logError("Digester","Unknown Crop Type: "+crop+" in the Configuration File");
+			logError("Digester", "Unknown loading error", e);
 			return;
 		}
-		if(HDF5Interface.getPathToHDF5Files() ==null) HDF5Interface.setPathToHDF5Files(cropPath.toString()+"/hdf5/");
+		if (gobiiCropConfig == null) {
+			logError("Digester", "Unknown Crop Type: " + crop + " in the Configuration File");
+			return;
+		}
+		if (HDF5Interface.getPathToHDF5Files() == null)
+			HDF5Interface.setPathToHDF5Files(cropPath.toString() + "/hdf5/");
 
-		String errorPath=getLogName(zero, gobiiCropConfig,crop);
+		String errorPath = getLogName(zero, gobiiCropConfig, crop);
 
 
-		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_VALIDATION.getCvName(),"Beginning Validation");
+		jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_VALIDATION.getCvName(), "Beginning Validation");
 		// Instruction file Validation
 		InstructionFileValidator instructionFileValidator = new InstructionFileValidator(list);
 		instructionFileValidator.processInstructionFile();
 		String validationStatus = instructionFileValidator.validateMarkerUpload();
-		if(validationStatus != null){
+		if (validationStatus != null) {
 			ErrorLogger.logError("Marker validation failed.", validationStatus);
 		}
 
 		validationStatus = instructionFileValidator.validateSampleUpload();
-		if(validationStatus != null){
-			ErrorLogger.logError("Sample validation failed.",validationStatus);
+		if (validationStatus != null) {
+			ErrorLogger.logError("Sample validation failed.", validationStatus);
 		}
 
 		validationStatus = instructionFileValidator.validate();
-		if(validationStatus != null){
-			ErrorLogger.logError("Validation failed.", validationStatus );
+		if (validationStatus != null) {
+			ErrorLogger.logError("Validation failed.", validationStatus);
 		}
 
 
-
-
 		//TODO: HACK - Job's name is
-		String jobName = getJobReadableIdentifier(crop,list);
-        String jobUser = zero.getContactEmail();
+		String jobName = getJobReadableIdentifier(crop, list);
+		String jobUser = zero.getContactEmail();
 		pm.setUser(jobUser);
-
+		String logDir=configuration.getFileSystemLog();
+		String logFile=null;
+		if(logDir!=null) {
 			String instructionName=new File(instructionFile).getName();
 			instructionName=instructionName.substring(0,instructionName.lastIndexOf('.'));
 			logFile=logDir+"/"+instructionName+".log";
@@ -311,25 +314,6 @@ public class GobiiFileReader {
         jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_VALIDATION.getCvName(), "Database Validation");
         databaseValidation(loaderInstructionMap, zero, gobiiCropConfig);
 
-		//If we're doing a DS upload and there is no DS_Marker
-		if(loaderInstructionMap.containsKey(VARIANT_CALL_TABNAME) && loaderInstructionMap.containsKey(DS_MARKER_TABNAME) && !loaderInstructionMap.containsKey(MARKER_TABNAME)) {
-			querier.checkMarkerInPlatform(loaderInstructionMap.get(DS_MARKER_TABNAME),zero.getPlatform().getId());
-		}
-		//If we're doing a DS upload and there is no DS_Sample
-		if(loaderInstructionMap.containsKey(VARIANT_CALL_TABNAME) && loaderInstructionMap.containsKey(DS_SAMPLE_TABNAME) && !loaderInstructionMap.containsKey(SAMPLE_TABNAME)) {
-			querier.checkDNARunInExperiment(loaderInstructionMap.get(DS_SAMPLE_TABNAME),zero.getExperiment().getId());
-		}
-
-
-		if(loaderInstructionMap.containsKey(MARKER_TABNAME)){
-			querier.checkMarkerExistence(loaderInstructionMap.get(MARKER_TABNAME));
-		}
-		if(loaderInstructionMap.containsKey(GERMPLASM_TABNAME)){
-			querier.checkGermplasmTypeExistence(loaderInstructionMap.get(GERMPLASM_TABNAME));
-			querier.checkGermplasmSpeciesExistence(loaderInstructionMap.get(GERMPLASM_TABNAME));
-		}
-		querier.close();
-
 		boolean sendQc= false;
 
 		boolean isFirstInstructionVCF=zero.getGobiiFile().getGobiiFileType().equals(GobiiFileType.VCF);
@@ -366,40 +350,10 @@ public class GobiiFileReader {
 			if (dst != null && inst.getTable().equals(VARIANT_CALL_TABNAME)) {
 				jobStatus.set(JobProgressStatusType.CV_PROGRESSSTATUS_TRANSFORMATION.getCvName(),"Data Matrix Transformation");
 				errorPath = getLogName(inst, gobiiCropConfig, crop, "Matrix_Processing"); //Temporary Error File Name
-				boolean transformStripsHeader = false;
-				MobileTransform mainTransform=null;
-				switch (dst.toUpperCase()) {
-					case "NUCLEOTIDE_2_LETTER":
-						mainTransform=MobileTransform.getSNPTransform("python " + loaderScriptPath + "etc/SNPSepRemoval.py",loaderScriptPath + "etc/missingIndicators.txt");
-						transformStripsHeader = true;
-                        break;
-                    case "IUPAC":
-                        mainTransform = MobileTransform.getIUPACToBI(loaderScriptPath);
-                        break;
-                    case "SSR_ALLELE_SIZE":
-                    case "DOMINANT_NON_NUCLEOTIDE":
-                    case "CO_DOMINANT_NON_NUCLEOTIDE":
-                        //No Translation Needed in these cases. Done before GOBII
-                        break;
-                    case "VCF":
-                        File markerFile = loaderInstructionMap.get(MARKER_TABNAME);
-						mainTransform=MobileTransform.getVCFTransform(markerFile);
-						break;
-					default:
-						ErrorLogger.logError("GobiiFileReader", "Unknown Data type " + dst);
-						break;
-				}
-				if (mainTransform != null) {
-					intermediateFile.transform(mainTransform);
-				}
-				if (!transformStripsHeader) {
-					intermediateFile.transform(MobileTransform.stripHeader);
-				}
-				boolean isSampleFast = false;
-				if (DataSetOrientationType.SAMPLE_FAST.equals(dso)) isSampleFast = true;
-				if (isSampleFast) {
+
+				if (DataSetOrientationType.SAMPLE_FAST.equals(dso)) {
 					//Rotate to marker fast before loading it - all data is marker fast in the system
-					File transposeDir=new File(new File(fromFile).getParentFile(),"transpose");
+					File transposeDir = new File(new File(fromFile).getParentFile(), "transpose");
 					intermediateFile.transform(MobileTransform.getTransposeMatrix(transposeDir.getPath()));
 				}
 			}
