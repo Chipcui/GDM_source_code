@@ -1,17 +1,12 @@
-System.register([], function (exports_1, context_1) {
+System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var EntityFilter;
+    var ENTITY_FILTER_CONTACT_PRINICPLE_INVESTIGATOR;
     return {
-        setters: [],
-        execute: function () {
-            (function (EntityFilter) {
-                EntityFilter[EntityFilter["NONE"] = 0] = "NONE";
-                EntityFilter[EntityFilter["BYTYPEID"] = 1] = "BYTYPEID";
-                EntityFilter[EntityFilter["BYTYPENAME"] = 2] = "BYTYPENAME";
-            })(EntityFilter || (EntityFilter = {}));
-            exports_1("EntityFilter", EntityFilter);
+        setters:[],
+        execute: function() {
+            exports_1("ENTITY_FILTER_CONTACT_PRINICPLE_INVESTIGATOR", ENTITY_FILTER_CONTACT_PRINICPLE_INVESTIGATOR = "PI");
         }
-    };
+    }
 });
 //# sourceMappingURL=type-entity-filter.js.map

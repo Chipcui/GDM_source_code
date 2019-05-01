@@ -31,6 +31,7 @@ public class SpGetPlatformDetailsByPlatformId implements Work {
         String sql = "select platform_id,\n" +
                 "name,\n" +
                 "code,\n" +
+                "vendor_id,\n" +
                 "description,\n" +
                 "created_by,\n" +
                 "created_date,\n" +

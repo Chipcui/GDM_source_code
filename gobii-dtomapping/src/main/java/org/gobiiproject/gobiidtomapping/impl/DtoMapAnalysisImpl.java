@@ -7,15 +7,17 @@ import org.gobiiproject.gobiidao.resultset.core.ResultColumnApplicator;
 import org.gobiiproject.gobiidtomapping.DtoMapAnalysis;
 import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 import org.gobiiproject.gobiidtomapping.core.EntityProperties;
-import org.gobiiproject.gobiimodel.headerlesscontainer.AnalysisDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.EntityPropertyDTO;
+import org.gobiiproject.gobiimodel.dto.container.AnalysisDTO;
+import org.gobiiproject.gobiimodel.dto.container.EntityPropertyDTO;
+import org.gobiiproject.gobiimodel.dto.container.ExperimentDTO;
+import org.gobiiproject.gobiimodel.dto.container.ProjectDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,51 +33,28 @@ public class DtoMapAnalysisImpl implements DtoMapAnalysis {
     @Autowired
     private RsAnalysisDao rsAnalysisDao;
 
-    public AnalysisDTO getAnalysisDetails(Integer analysisId) throws GobiiDtoMappingException {
+    public AnalysisDTO getAnalysisDetails(AnalysisDTO analysisDTO) throws GobiiDtoMappingException {
 
-        AnalysisDTO returnVal = new AnalysisDTO();
+        AnalysisDTO returnVal = analysisDTO;
 
         try {
 
-            ResultSet resultSet = rsAnalysisDao.getAnalysisDetailsByAnalysisId(analysisId);
+            ResultSet resultSet = rsAnalysisDao.getAnalysisDetailsByAnalysisId(analysisDTO.getAnalysisId());
 
             if (resultSet.next()) {
                 ResultColumnApplicator.applyColumnValues(resultSet, returnVal);
             }
 
-            ResultSet propertyResultSet = rsAnalysisDao.getParameters(returnVal.getAnalysisId());
+            ResultSet propertyResultSet = rsAnalysisDao.getParameters(analysisDTO.getAnalysisId());
             List<EntityPropertyDTO> entityPropertyDTOs =
-                    EntityProperties.resultSetToProperties(returnVal.getAnalysisId(), propertyResultSet);
+                    EntityProperties.resultSetToProperties(analysisDTO.getAnalysisId(), propertyResultSet);
 
-            returnVal.setParameters(entityPropertyDTOs);
+            analysisDTO.setParameters(entityPropertyDTOs);
 
 
-        } catch (SQLException e) {
-            LOGGER.error("Gobii Mapping Error", e);
-            throw new GobiiDtoMappingException(e);
-        }
-
-        return returnVal;
-
-    }
-
-    @Override
-    public List<AnalysisDTO> getAnalyses() throws GobiiDtoMappingException {
-
-        List<AnalysisDTO> returnVal = new ArrayList<>();
-
-        try {
-            ResultSet resultSet = rsAnalysisDao.getAnalysisNames();
-            while (resultSet.next()) {
-                AnalysisDTO currentAnalysisDTO = new AnalysisDTO();
-                currentAnalysisDTO.setAnalysisName(resultSet.getString("name"));
-                currentAnalysisDTO.setAnalysisId(resultSet.getInt("analysis_id"));
-                returnVal.add(currentAnalysisDTO);
-            }
-
-        } catch (SQLException e) {
-            LOGGER.error("Gobii Mapping Error", e);
-            throw new GobiiDtoMappingException(e);
+        } catch (Exception e) {
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error("Gobii Maping Error", e);
         }
 
         return returnVal;
@@ -111,22 +90,21 @@ public class DtoMapAnalysisImpl implements DtoMapAnalysis {
             upsertAnalysisProperties(analysisDTO.getAnalysisId(), analysisParameters);
 
         } catch (Exception e) {
-            LOGGER.error("Gobii Mapping Error", e);
-            throw new GobiiDtoMappingException(e);
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error("Gobii Maping Error", e);
         }
 
         return returnVal;
     }
 
     @Override
-    public AnalysisDTO replaceAnalysis(Integer analysisId, AnalysisDTO analysisDTO) throws GobiiDtoMappingException {
+    public AnalysisDTO updateAnalysis(AnalysisDTO analysisDTO) throws GobiiDtoMappingException {
 
         AnalysisDTO returnVal = analysisDTO;
 
         try {
 
             Map<String, Object> parameters = ParamExtractor.makeParamVals(returnVal);
-            parameters.put("analysisId", analysisId);
             rsAnalysisDao.updateAnalysis(parameters);
 
             if (null != analysisDTO.getParameters()) {
@@ -135,8 +113,8 @@ public class DtoMapAnalysisImpl implements DtoMapAnalysis {
             }
 
         } catch (Exception e) {
-            LOGGER.error("Gobii Mapping Error", e);
-            throw new GobiiDtoMappingException(e);
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error("Gobii Maping Error", e);
         }
 
         return returnVal;

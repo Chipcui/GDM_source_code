@@ -11,14 +11,7 @@ export class DtoRequestItemDataSet implements DtoRequestItem<DataSet> {
     }
 
     public getUrl():string {
-        let baseUrl:string = "gobii/v1/datasets";
-
-        let returnVal:string  = baseUrl;
-        if( this.dataSetId ) {
-            returnVal = baseUrl + "/" + this.dataSetId;
-        }
-
-        return returnVal;
+        return "load/dataset";
     } // getUrl()
 
     private processType:ProcessType = ProcessType.READ;
@@ -34,10 +27,10 @@ export class DtoRequestItemDataSet implements DtoRequestItem<DataSet> {
     public resultFromJson(json):DataSet {
 
         let returnVal:DataSet;
-        // console.log("*************ENTITY NAME: " + json.entityName);
-        // console.log(json.dtoHeaderResponse.succeeded ? "succeeded" : "error: " + json.dtoHeaderResponse.statusMessages)
-        // console.log(json.namesById);
-        //
+        console.log("*************ENTITY NAME: " + json.entityName);
+        console.log(json.dtoHeaderResponse.succeeded ? "succeeded" : "error: " + json.dtoHeaderResponse.statusMessages)
+        console.log(json.namesById);
+
         // let arrayOfIds = Object.keys(json.serverConfigs);
         // arrayOfIds.forEach(crop => {
         //     let currentCrop = crop;
@@ -50,19 +43,18 @@ export class DtoRequestItemDataSet implements DtoRequestItem<DataSet> {
         //         currentPort));
         // });
 
-        if( json.payload.data[0]) {
-            returnVal = new DataSet(json.payload.data[0].dataSetId,
-                json.payload.data[0].name,
-                json.payload.data[0].experimentId,
-                json.payload.data[0].callingAnalysisId,
-                json.payload.data[0].dataTable,
-                json.payload.data[0].dataFile,
-                json.payload.data[0].qualityTable,
-                json.payload.data[0].qualityFile,
-                json.payload.data[0].status,
-                json.payload.data[0].typeId,
-                json.payload.data[0].analysesIds);
-        }
+        returnVal = new DataSet(json.dataSetId,
+            json.name,
+            json.experimentId,
+            json.callingAnalysisId,
+            json.dataTable,
+            json.dataFile,
+            json.qualityTable,
+            json.qualityFile,
+            json.status,
+            json.typeId,
+            json.analysesIds);
+
 
         return returnVal;
         //return [new NameId(1, 'foo'), new NameId(2, 'bar')];

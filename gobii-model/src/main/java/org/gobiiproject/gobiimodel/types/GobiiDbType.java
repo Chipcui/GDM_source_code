@@ -6,6 +6,5 @@ package org.gobiiproject.gobiimodel.types;
 public enum GobiiDbType {
     // these must correspond to the jdbc driver name
     POSTGRESQL,
-    MONETDB,
-    UNKNOWN
+    MONETDB
 }

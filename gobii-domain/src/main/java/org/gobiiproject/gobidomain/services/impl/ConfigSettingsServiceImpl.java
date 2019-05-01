@@ -2,13 +2,10 @@ package org.gobiiproject.gobidomain.services.impl;
 
 import org.gobiiproject.gobidomain.services.ConfigSettingsService;
 import org.gobiiproject.gobiidtomapping.DtoMapConfigSettings;
-import org.gobiiproject.gobiimodel.config.GobiiException;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ConfigSettingsDTO;
+import org.gobiiproject.gobiimodel.dto.container.ConfigSettingsDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.gobiiproject.gobiimodel.types.GobiiProcessType.READ;
 
 /**
  * Created by Phil on 6/10/2016.
@@ -19,19 +16,24 @@ public class ConfigSettingsServiceImpl implements ConfigSettingsService {
     Logger LOGGER = LoggerFactory.getLogger(ConfigSettingsServiceImpl.class);
 
 
+
     @Autowired
     DtoMapConfigSettings dtoMapConfigSettings;
 
-
     @Override
-    public ConfigSettingsDTO getConfigSettings() throws GobiiException {
+    public ConfigSettingsDTO process(ConfigSettingsDTO configSettingsDTO) {
 
-        ConfigSettingsDTO returnVal = new ConfigSettingsDTO();
+        ConfigSettingsDTO returnVal = configSettingsDTO;
 
+        try {
 
-        returnVal = dtoMapConfigSettings.readSettings();
+            returnVal = dtoMapConfigSettings.readSettings(returnVal);
 
-        returnVal.getAllowedProcessTypes().add(READ);
+        } catch (Exception e) {
+
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error("Gobii service error", e);
+        }
 
         return returnVal;
     }

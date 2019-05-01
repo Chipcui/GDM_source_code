@@ -10,7 +10,6 @@ import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsPlatform;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdPlatform;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.*;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetPlatformDetailsByPlatformId;
-import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,6 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
     @Autowired
     private SpRunnerCallable spRunnerCallable;
 
-
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ResultSet getPlatformNames() throws GobiiDaoException {
@@ -47,9 +45,10 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
             storedProcExec.doWithConnection(spGetPlatformNames);
             returnVal = spGetPlatformNames.getResultSet();
 
-        } catch (SQLGrammarException e) {
-            LOGGER.error("Error getting platform names with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+        } catch (Exception e) {
+
+            LOGGER.error("Error retrieving platform names", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -74,9 +73,10 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
 
             returnVal = spGetPlatformNamesByTypeId.getResultSet();
 
-        } catch (SQLGrammarException e) {
-            LOGGER.error("Error getting platform names by type id with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+        } catch (Exception e) {
+
+            LOGGER.error("Error retrieving platform details", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -100,9 +100,10 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
 
             returnVal = spGetPlatformDetailsByPlatformId.getResultSet();
 
-        } catch (SQLGrammarException e) {
-            LOGGER.error("Error getting platform details by platform id with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+        } catch (Exception e) {
+
+            LOGGER.error("Error retrieving platform details", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -118,30 +119,40 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
 
         try {
 
-            spRunnerCallable.run(new SpInsPlatform(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            if (spRunnerCallable.run(new SpInsPlatform(), parameters)) {
 
-        } catch (SQLGrammarException e) {
-            LOGGER.error("Error creating platform with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+                returnVal = spRunnerCallable.getResult();
+
+            } else {
+
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+
+            }
+
+        } catch (Exception e) {
+
+            LOGGER.error("Error creating platform", e);
+            throw (new GobiiDaoException(e));
 
         }
 
         return returnVal;
     }
-
+    
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void updatePlatform(Map<String, Object> parameters) throws GobiiDaoException {
 
         try {
 
-            spRunnerCallable.run(new SpUpdPlatform(), parameters);
+            if (!spRunnerCallable.run(new SpUpdPlatform(), parameters)) {
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+            }
 
-        } catch (SQLGrammarException e) {
-            LOGGER.error("Error updating platform with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+        } catch (Exception e) {
 
+            LOGGER.error("Error updating platform", e);
+            throw (new GobiiDaoException(e));
         }
     }
 
@@ -157,13 +168,14 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
             spRunnerCallable.run(new SpInsPlatformProperties(), parameters);
             returnVal = spRunnerCallable.getResult();
 
-        } catch (SQLGrammarException e) {
-            LOGGER.error("Error updating platform property with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+        } catch (Exception e) {
+
+            LOGGER.error("Error updating project property", e);
+            throw (new GobiiDaoException(e));
 
         }
-        return returnVal;
 
+        return returnVal;
     } // createUpdatePlatformProperty
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -179,9 +191,10 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
             storedProcExec.doWithConnection(spGetPropertiesForPlatform);
             returnVal = spGetPropertiesForPlatform.getResultSet();
 
-        } catch (SQLGrammarException e) {
-            LOGGER.error("Error retrieving platform properties with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+        } catch (Exception e) {
+
+            LOGGER.error("Error retrieving project properties", e);
+            throw (new GobiiDaoException(e));
 
         }
 

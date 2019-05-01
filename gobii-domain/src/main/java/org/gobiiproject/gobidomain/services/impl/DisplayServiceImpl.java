@@ -2,17 +2,20 @@ package org.gobiiproject.gobidomain.services.impl;
 
 import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.services.DisplayService;
+import org.gobiiproject.gobidomain.services.NameIdListService;
 import org.gobiiproject.gobiidtomapping.DtoMapDisplay;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DisplayDTO;
-import org.gobiiproject.gobiimodel.types.GobiiProcessType;
-import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
+import org.gobiiproject.gobiidtomapping.DtoMapNameIdList;
+import org.gobiiproject.gobiidtomapping.DtoMapDisplay;
+import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
+import org.gobiiproject.gobiimodel.dto.container.DisplayDTO;
+import org.gobiiproject.gobiimodel.dto.container.NameIdListDTO;
+import org.gobiiproject.gobiimodel.dto.container.DisplayDTO;
+import org.gobiiproject.gobiimodel.dto.header.DtoHeaderResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Phil on 4/6/2016.
@@ -25,109 +28,40 @@ public class DisplayServiceImpl implements DisplayService {
     Logger LOGGER = LoggerFactory.getLogger(DisplayServiceImpl.class);
 
     @Override
-    public DisplayDTO createDisplay(DisplayDTO displayDTO) throws GobiiDomainException {
+    public DisplayDTO process(DisplayDTO displayDTO) {
 
-        DisplayDTO returnVal;
-
-        try {
-
-            displayDTO.setCreatedDate(new Date());
-            displayDTO.setModifiedDate(new Date());
-            returnVal = dtoMapDisplay.createDisplay(displayDTO);
-
-            // When we have roles and permissions, this will be set programmatically
-            returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
-            returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
-        } catch (Exception e) {
-
-            LOGGER.error("Gobii service error", e);
-            throw new GobiiDomainException(e);
-        }
-
-        return returnVal;
-    }
-
-    @Override
-    public DisplayDTO replaceDisplay(Integer displayId, DisplayDTO displayDTO) throws GobiiDomainException {
-
-        DisplayDTO returnVal;
+        DisplayDTO returnVal = displayDTO;
 
         try {
+            switch (displayDTO.getProcessType()) {
+                case READ:
+                    returnVal = dtoMapDisplay.getDisplayDetails(returnVal);
+                    break;
 
-            if(null == displayDTO.getDisplayId() ||
-                    displayDTO.getDisplayId().equals(displayId)) {
+                case CREATE:
+                    returnVal.setCreatedDate(new Date());
+                    returnVal.setModifiedDate(new Date());
+                    returnVal = dtoMapDisplay.createDisplay(returnVal);
+                    break;
 
-                DisplayDTO existingDisplayDTO = dtoMapDisplay.getDisplayDetails(displayId);
-                if(null != existingDisplayDTO.getDisplayId() && existingDisplayDTO.getDisplayId().equals(displayId)) {
+                case UPDATE:
+                    returnVal.setCreatedDate(new Date());
+                    returnVal.setModifiedDate(new Date());
+                    returnVal = dtoMapDisplay.updateDisplay(returnVal);
+                    break;
 
-                    returnVal = dtoMapDisplay.replaceDisplay(displayId, displayDTO);
-                    returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
-                    returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
+                default:
+                    returnVal.getDtoHeaderResponse().addStatusMessage(DtoHeaderResponse.StatusLevel.ERROR,
+                            DtoHeaderResponse.ValidationStatusType.BAD_REQUEST,
+                            "Unsupported proces type " + returnVal.getProcessType().toString());
+                    break;
 
-                } else {
-
-                    throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
-                            GobiiValidationStatusType.ENTITY_DOES_NOT_EXIST,
-                            "The specified displayId ("
-                                    + displayId
-                                    + ") does not match an existing display.");
-                }
-            } else {
-
-                throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
-                        GobiiValidationStatusType.BAD_REQUEST,
-                        "The displayId specified in the dto ("
-                                + displayDTO.getDisplayId()
-                                + ") does not match the displayId passed as a parameter "
-                                + "("
-                                + displayId
-                                + ")");
             }
 
-
         } catch (Exception e) {
 
+            returnVal.getDtoHeaderResponse().addException(e);
             LOGGER.error("Gobii service error", e);
-            throw new GobiiDomainException(e);
-        }
-
-        return returnVal;
-
-    }
-
-    @Override
-    public List<DisplayDTO> getDisplays() throws GobiiDomainException {
-
-        List<DisplayDTO> returnVal;
-
-        returnVal = dtoMapDisplay.getDisplays();
-        for(DisplayDTO currentDisplayDTO : returnVal) {
-            currentDisplayDTO.getAllowedProcessTypes().add(GobiiProcessType.READ);
-            currentDisplayDTO.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
-        }
-
-        if(null == returnVal) {
-            returnVal = new ArrayList<>();
-        }
-
-        return returnVal;
-    }
-
-    @Override
-    public DisplayDTO getDisplayById(Integer displayId) throws GobiiDomainException {
-
-        DisplayDTO returnVal;
-
-        returnVal = dtoMapDisplay.getDisplayDetails(displayId);
-        returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
-        returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
-
-        if (null == returnVal) {
-            throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
-                    GobiiValidationStatusType.ENTITY_DOES_NOT_EXIST,
-                    "The specified displayId ("
-                            + displayId
-                            + ") does not match an existing display ");
         }
 
         return returnVal;

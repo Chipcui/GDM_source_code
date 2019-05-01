@@ -4,8 +4,7 @@ export class GobiiExtractorInstruction {
 
     constructor(private dataSetExtracts:GobiiDataSetExtract[],
                 private contactId:number,
-                private contactEmail:string,
-                private mapsetIds:number[]) {
+                private contactEmail:string) {
 
         this.dataSetExtracts = dataSetExtracts;
     }
@@ -30,17 +29,8 @@ export class GobiiExtractorInstruction {
         this.contactEmail = contactEmail;
     }
 
-    public getContactEmail():string {
+    public getContactEmail(): string {
         return this.contactEmail;
-    }
-
-    public setMapsetIds(mapsetIds:number[]) {
-        this.mapsetIds = mapsetIds;
-    }
-
-
-    public getMapsetIds() {
-        return this.mapsetIds;
     }
 
     public getJson():any {
@@ -49,8 +39,6 @@ export class GobiiExtractorInstruction {
 
         returnVal.contactId = this.contactId;
         returnVal.contactEmail = this.contactEmail;
-
-        returnVal.mapsetIds = this.mapsetIds;
 
         returnVal.dataSetExtracts = [];
         this.dataSetExtracts.forEach(e => {
@@ -70,8 +58,7 @@ export class GobiiExtractorInstruction {
         let returnVal:GobiiExtractorInstruction = new GobiiExtractorInstruction(
             dataSetExtracts,
             json.contactId,
-            json.contactEmail,
-            json.mapsetIds
+            json.contactEmail
         );
 
         return returnVal;

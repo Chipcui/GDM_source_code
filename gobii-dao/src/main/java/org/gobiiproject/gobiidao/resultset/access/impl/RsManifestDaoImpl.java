@@ -8,7 +8,6 @@ import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsManifest;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdManifest;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetManifestNames;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetManifestDetailsByManifestId;
-import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class RsManifestDaoImpl implements RsManifestDao {
 
     @Autowired
     private SpRunnerCallable spRunnerCallable;
-
+    
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ResultSet getManifestNames() throws GobiiDaoException {
@@ -44,10 +43,10 @@ public class RsManifestDaoImpl implements RsManifestDao {
             storedProcExec.doWithConnection(spGetManifestNames);
             returnVal = spGetManifestNames.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving manifest names", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving manifest names", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -72,10 +71,10 @@ public class RsManifestDaoImpl implements RsManifestDao {
 
             returnVal = spGetManifestDetailsByManifestId.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving manifest details", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving manifest details", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -90,14 +89,20 @@ public class RsManifestDaoImpl implements RsManifestDao {
 
         try {
 
-            spRunnerCallable.run(new SpInsManifest(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            if (spRunnerCallable.run(new SpInsManifest(), parameters)) {
 
+                returnVal = spRunnerCallable.getResult();
 
-        } catch (SQLGrammarException e) {
+            } else {
 
-            LOGGER.error("Error creating manifest with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+
+            }
+
+        } catch (Exception e) {
+
+            LOGGER.error("Error creating manifest", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -110,12 +115,14 @@ public class RsManifestDaoImpl implements RsManifestDao {
 
         try {
 
-            spRunnerCallable.run(new SpUpdManifest(), parameters);
+            if (!spRunnerCallable.run(new SpUpdManifest(), parameters)) {
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+            }
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error creating manifest with SQL + " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error creating manifest", e);
+            throw (new GobiiDaoException(e));
         }
     }
 }

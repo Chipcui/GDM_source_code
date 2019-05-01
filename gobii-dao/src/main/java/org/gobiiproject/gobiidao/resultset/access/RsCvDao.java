@@ -13,8 +13,6 @@ public interface RsCvDao {
 
     ResultSet getCvTermsByGroup(String groupName) throws GobiiDaoException;
 
-	ResultSet getCvsByGroup(String groupName) throws GobiiDaoException;
-
 	ResultSet getCvGroups() throws GobiiDaoException;
 
 	ResultSet getCvNames() throws GobiiDaoException;

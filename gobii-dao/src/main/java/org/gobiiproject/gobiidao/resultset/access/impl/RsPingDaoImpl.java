@@ -9,7 +9,6 @@ import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetMarkerGroupDetai
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetRoleNames;
 import org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl;
 import org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl;
-import org.hibernate.exception.SQLGrammarException;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.jpa.HibernateEntityManagerFactory;
 import org.hibernate.jpa.internal.EntityManagerImpl;
@@ -63,10 +62,10 @@ public class RsPingDaoImpl implements RsPingDao {
                                     e -> e.toString()));
 
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving role names", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving role names", e);
+            throw (new GobiiDaoException(e));
 
         }
 

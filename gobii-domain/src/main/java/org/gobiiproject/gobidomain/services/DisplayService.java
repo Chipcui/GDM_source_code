@@ -5,18 +5,13 @@
 // ************************************************************************
 package org.gobiiproject.gobidomain.services;
 
-import org.gobiiproject.gobidomain.GobiiDomainException;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DisplayDTO;
-
-import java.util.List;
+import org.gobiiproject.gobiimodel.dto.container.DisplayDTO;
+import org.gobiiproject.gobiimodel.dto.container.NameIdListDTO;
 
 /**
  * Created by Phil on 3/24/2016.
  */
 public interface DisplayService {
 
-    List<DisplayDTO> getDisplays() throws GobiiDomainException;
-    DisplayDTO createDisplay(DisplayDTO displayDTO) throws GobiiDomainException;
-    DisplayDTO replaceDisplay(Integer displayId, DisplayDTO displayDTO) throws GobiiDomainException;
-    DisplayDTO getDisplayById(Integer displayId) throws GobiiDomainException;
+    DisplayDTO process(DisplayDTO displayDTO);
 }

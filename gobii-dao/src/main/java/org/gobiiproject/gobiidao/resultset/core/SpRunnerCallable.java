@@ -1,9 +1,7 @@
 package org.gobiiproject.gobiidao.resultset.core;
 
 
-import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.hibernate.Session;
-import org.hibernate.exception.SQLGrammarException;
 import org.hibernate.jdbc.Work;
 
 import javax.persistence.EntityManager;
@@ -38,64 +36,106 @@ public class SpRunnerCallable implements Work {
     private SpDef spDef = null;
     private Map<String, Object> paramVals = null;
 
+    List<String> errors = new ArrayList<>();
     Integer result = null;
+
+    public List<String> getErrors() {
+        return errors;
+    }
+
+    public String getErrorString() {
+        String returnVal = "";
+
+        for (String currentMessage : errors) {
+            returnVal += currentMessage + "; ";
+        }
+
+        return returnVal;
+    }
 
     public Integer getResult() {
         return result;
     }
 
-    public void run(SpDef spDef, Map<String, Object> paramVals) throws SQLGrammarException {
+    public boolean run(SpDef spDef, Map<String, Object> paramVals) {
 
-        try {
-            this.spDef = spDef;
-            this.paramVals = paramVals;
+        boolean returnVal = true;
+        errors.clear();
 
-            // first do validation checking
-            List<SpParamDef> paramDefs = spDef.getSpParamDefs();
-            for (int idx = 0; idx < paramDefs.size(); idx++) {
+//        if (spDef.getSpParamDefs().size() == paramVals.size()) {
 
-                SpParamDef currentParamDef = paramDefs.get(idx);
-                String currentParamName = currentParamDef.getParamName();
+            try {
+                this.spDef = spDef;
+                this.paramVals = paramVals;
 
-                if (paramVals.containsKey(currentParamName)) {
+                // first do validation checking
+                List<SpParamDef> paramDefs = spDef.getSpParamDefs();
+                for (int idx = 0; idx < paramDefs.size() && returnVal; idx++) {
 
-                    Object currentParamVal = paramVals.get(currentParamName);
-                    if (null == currentParamVal && !currentParamDef.isNullable()) {
-                        throw new GobiiDaoException("Parameter is not allowed to be null : " + currentParamName);
-                    } else if (null != currentParamVal && !currentParamVal.getClass().equals(currentParamDef.getParamType())) {
-                        throw new GobiiDaoException("Parameter " + currentParamName + " should be of type " + currentParamDef.getParamType() + "; ");
-                    } else {
-                        if (null != currentParamVal) {
-                            currentParamDef.setCurrentValue(currentParamVal);
+                    SpParamDef currentParamDef = paramDefs.get(idx);
+                    String currentParamName = currentParamDef.getParamName();
+
+                    if (paramVals.containsKey(currentParamName)) {
+
+                        Object currentParamVal = paramVals.get(currentParamName);
+                        if (null == currentParamVal && !currentParamDef.isNullable()) {
+                            errors.add("Parameter is not allowed to be null : " + currentParamName);
+                        } else if (null != currentParamVal && !currentParamVal.getClass().equals(currentParamDef.getParamType())) {
+                            errors.add("Parameter " + currentParamName + " should be of type " + currentParamDef.getParamType() + "; ");
                         } else {
-                            currentParamDef.setCurrentValue(currentParamDef.getDefaultValue());
+                            if (null != currentParamVal) {
+                                currentParamDef.setCurrentValue(currentParamVal);
+                            } else {
+                                currentParamDef.setCurrentValue(currentParamDef.getDefaultValue());
+                            }
                         }
+
+                    } else {
+                        returnVal = false;
+                        String message = "There is no value param entry for parameter " + currentParamName + ";";
+                        errors.add(message);
+                        LOGGER.error(message);
                     }
 
-                } else {
+                } // iterate param defs
 
-                    String message = "There is no value param entry for parameter " + currentParamName + ";";
-                    LOGGER.error(message);
-                    throw new GobiiDaoException(message);
+
+                returnVal = errors.size() == 0;
+
+                if (returnVal) {
+
+                    try {
+                        Session session = (Session) em.getDelegate();
+                        session.doWork(this);
+
+                    } catch (Exception e) {
+                        returnVal = false;
+                        String message = "Exception executing stored proc " + spDef.getCallString();
+                        errors.add(message + ": " + e.getMessage() + "; cased by: " + e.getCause());
+                        LOGGER.error(message, e);
+                    }
                 }
+            } catch (Exception e) {
+                LOGGER.error("Erro running stored procedure", e);
+                throw e;
+            } finally {
+                this.spDef = null;
+                this.paramVals = null;
+            }
+//        } else {
+//            returnVal = false;
+//            String message = "Param def size and input parameters size do not match";
+//            errors.add(message);
+//            LOGGER.error(message);
+//        }
 
-            } // iterate param defs
-
-            Session session = (Session) em.getDelegate();
-            session.doWork(this);
-
-
-        } finally {
-            this.spDef = null;
-            this.paramVals = null;
-        }
-
+        return returnVal;
 
     } // run()
 
 
     @Override
-    public void execute(Connection connection) throws SQLException, GobiiDaoException {
+    public void execute(Connection connection) throws SQLException {
 
 
         CallableStatement callableStatement = connection.prepareCall(spDef.getCallString());
@@ -151,9 +191,8 @@ public class SpRunnerCallable implements Work {
                 String message = "Error executing stored procedure " + spDef.getCallString() + " with " +
                         "Param Name: " + currentParamName + "; " +
                         "Param Value: " + currentParamValue + "; " +
-                        "Param Type: " + currentParamType.toString() + ": " +
-                        "Reported Exception: " +e.getMessage();
-                throw new GobiiDaoException(message);
+                        "Param Type: " + currentParamType.toString() + "; ";
+                throw new SQLException(message);
             }
         }
 

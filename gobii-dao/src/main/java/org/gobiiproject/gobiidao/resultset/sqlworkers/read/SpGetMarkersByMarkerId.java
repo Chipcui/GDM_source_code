@@ -29,16 +29,8 @@ public class SpGetMarkersByMarkerId implements Work {
     public void execute(Connection dbConnection) throws SQLException {
 
         String sql = "select m.marker_id,\n" +
-                "p.platform_id,\n" +
-                "m.variant_id, \n" +
                 "m.name \"marker_name\", \n" +
-                "m.code, \n" +
-                "m.ref, \n" +
-                "m.alts, \n" +
-                "m.sequence, \n" +
-                "m.reference_id, \n" +
-                "m.strand_id, \n" +
-                "m.status, \n" +
+                "p.platform_id,\n" +
                 "p.name \"platform_name\"\n" +
                 "from marker m\n" +
                 "join platform p on (m.platform_id=p.platform_id)\n" +

@@ -28,7 +28,7 @@ public class SpGetDatasetNames implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String sql = "select dataset_id, name from dataset order by lower(name)";
+        String sql = "select dataset_id, name from dataset";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
 

@@ -10,7 +10,6 @@ import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdReference;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetReferenceDetailsByReferenceId;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetPlatformNames;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetReferenceNames;
-import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,18 +39,9 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
 
         ResultSet returnVal = null;
 
-        try {
-
-            SpGetReferenceNames spGetReferenceNames = new SpGetReferenceNames();
-            storedProcExec.doWithConnection(spGetReferenceNames);
-            returnVal = spGetReferenceNames.getResultSet();
-
-        } catch (SQLGrammarException e) {
-
-            LOGGER.error("Error retrieving Reference names ", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
-
-        }
+        SpGetReferenceNames spGetReferenceNames = new SpGetReferenceNames();
+        storedProcExec.doWithConnection(spGetReferenceNames);
+        returnVal = spGetReferenceNames.getResultSet();
 
         return returnVal;
 
@@ -74,10 +64,10 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
 
             returnVal = spGetReferenceDetailsByReferenceId.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving reference details", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving reference details", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -92,13 +82,20 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
 
         try {
 
-            spRunnerCallable.run(new SpInsReference(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            if (spRunnerCallable.run(new SpInsReference(), parameters)) {
 
-        } catch (SQLGrammarException e) {
+                returnVal = spRunnerCallable.getResult();
 
-            LOGGER.error("Error creating reference with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            } else {
+
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+
+            }
+
+        } catch (Exception e) {
+
+            LOGGER.error("Error creating reference", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -111,12 +108,14 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
 
         try {
 
-            spRunnerCallable.run(new SpUpdReference(), parameters);
+            if (!spRunnerCallable.run(new SpUpdReference(), parameters)) {
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+            }
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error creating reference with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error creating reference", e);
+            throw (new GobiiDaoException(e));
         }
     }
 }

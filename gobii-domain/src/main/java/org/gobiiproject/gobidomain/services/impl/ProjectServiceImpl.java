@@ -3,18 +3,14 @@ package org.gobiiproject.gobidomain.services.impl;
 import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.services.ProjectService;
 import org.gobiiproject.gobiidtomapping.DtoMapProject;
+import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 
-import org.gobiiproject.gobiimodel.headerlesscontainer.ProjectDTO;
-import org.gobiiproject.gobiimodel.types.GobiiProcessType;
-import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
-import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
+import org.gobiiproject.gobiimodel.dto.container.ProjectDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -28,132 +24,47 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private DtoMapProject dtoMapProject = null;
 
-
     @Override
-    public List<ProjectDTO> getProjects() throws GobiiDomainException {
+    public ProjectDTO processProject(ProjectDTO projectDTO) {
 
-        List<ProjectDTO> returnVal;
-
-        try {
-            returnVal = dtoMapProject.getProjects();
-
-            for (ProjectDTO currentProjectDTO : returnVal) {
-                currentProjectDTO.getAllowedProcessTypes().add(GobiiProcessType.READ);
-                currentProjectDTO.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
-            }
-
-
-            if (null == returnVal) {
-                returnVal = new ArrayList<>();
-            }
-
-        } catch (Exception e) {
-
-            LOGGER.error("Gobii service error", e);
-            throw new GobiiDomainException(e);
-
-        }
-
-        return returnVal;
-    }
-
-    @Override
-    public ProjectDTO getProjectById(Integer projectId) throws GobiiDomainException {
-
-        ProjectDTO returnVal;
-
-        try {
-            returnVal = dtoMapProject.getProjectDetails(projectId);
-
-            returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
-            returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
-
-
-            if (null == returnVal) {
-                throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
-                        GobiiValidationStatusType.ENTITY_DOES_NOT_EXIST,
-                        "The specified projectId ("
-                                + projectId
-                                + ") does not match an existing project ");
-            }
-
-        } catch (Exception e) {
-
-            LOGGER.error("Gobii service error", e);
-            throw new GobiiDomainException(e);
-
-        }
-
-        return returnVal;
-    }
-
-    @Override
-    public ProjectDTO createProject(ProjectDTO projectDTO) throws GobiiDomainException {
-
-        ProjectDTO returnVal;
-
-        projectDTO.setCreatedDate(new Date());
-        projectDTO.setModifiedDate(new Date());
-        returnVal = dtoMapProject.createProject(projectDTO);
-
-        // When we have roles and permissions, this will be set programmatically
-        returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
-        returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
-
-        return returnVal;
-    }
-
-    @Override
-    public ProjectDTO replaceProject(Integer projectId, ProjectDTO projectDTO) throws GobiiDomainException {
-        ProjectDTO returnVal;
-
+        ProjectDTO returnVal = projectDTO;
         try {
 
-            if (null == projectDTO.getProjectId() ||
-                    projectDTO.getProjectId().equals(projectId)) {
+            switch (projectDTO.getProcessType()) {
 
+                case READ:
+                    returnVal = dtoMapProject.getProjectDetail(projectDTO);
+                    break;
 
-                ProjectDTO existingProjectDTO = dtoMapProject.getProjectDetails(projectId);
-
-                if (null != existingProjectDTO.getProjectId() && existingProjectDTO.getProjectId().equals(projectId)) {
-
-
+                case CREATE:
+                    projectDTO.setCreatedDate(new Date());
                     projectDTO.setModifiedDate(new Date());
-                    returnVal = dtoMapProject.replaceProject(projectId, projectDTO);
-                    returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
-                    returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
+                    returnVal = dtoMapProject.createProject(projectDTO);
+                    break;
 
-                } else {
+                case UPDATE:
+                    projectDTO.setModifiedDate(new Date());
+                    returnVal = dtoMapProject.updateProject(projectDTO);
+                    break;
 
-                    throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
-                            GobiiValidationStatusType.ENTITY_DOES_NOT_EXIST,
-                            "The specified projectId ("
-                                    + projectId
-                                    + ") does not match an existing project ");
-                }
+                default:
+                    GobiiDomainException gobiiDomainException = new GobiiDomainException("Unsupported process type: " + projectDTO.getProcessType().toString());
+                    returnVal.getDtoHeaderResponse().addException(gobiiDomainException);
+                    LOGGER.error(gobiiDomainException.getMessage());
+                    break;
 
-            } else {
-
-                throw new GobiiDomainException(GobiiStatusLevel.VALIDATION,
-                        GobiiValidationStatusType.BAD_REQUEST,
-                        "The projectId specified in the dto ("
-                                + projectDTO.getProjectId()
-                                + ") does not match the projectId passed as a parameter "
-                                + "("
-                                + projectId
-                                + ")");
-
-            }
+            } // switch
 
 
         } catch (Exception e) {
 
+            returnVal.getDtoHeaderResponse().addException(e);
             LOGGER.error("Gobii service error", e);
-            throw new GobiiDomainException(e);
         }
 
-
         return returnVal;
-    }
+
+    } // getProjectDetail
+
 
 } // ProjectServiceImpl

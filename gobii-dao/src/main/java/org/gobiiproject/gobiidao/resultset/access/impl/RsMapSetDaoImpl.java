@@ -8,11 +8,7 @@ import org.gobiiproject.gobiidao.resultset.core.StoredProcExec;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsMapsetProperties;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsMapset;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdMapset;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetMapNamesByTypeId;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetMapsetDetailsByMapsetId;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetPropertiesForMapset;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetMapSetNames;
-import org.hibernate.exception.SQLGrammarException;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.read.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +21,6 @@ import java.util.Map;
 
 /**
  * Created by Phil on 4/7/2016.
- * Modified by AVB on 9/30/2016.
  */
 public class RsMapSetDaoImpl implements RsMapSetDao {
 
@@ -38,30 +33,29 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public ResultSet getAllMapsetNames() throws GobiiDaoException {
-
+    @Transactional(propagation = Propagation.REQUIRED)
+    public ResultSet getMapNames() throws GobiiDaoException {
         ResultSet returnVal = null;
 
         try {
             SpGetMapSetNames spGetMapSetNames = new SpGetMapSetNames();
-
             storedProcExec.doWithConnection(spGetMapSetNames);
-
             returnVal = spGetMapSetNames.getResultSet();
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving mapset names", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving mapset names", e);
+            throw (new GobiiDaoException(e));
 
         }
 
+
         return returnVal;
+
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public ResultSet getMapNamesByTypeId(int typeId) throws GobiiDaoException {
         // TODO Auto-generated method stub
 
@@ -76,10 +70,10 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
             returnVal = spGetMapNamesByTypeId.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving map names", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving map names", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -101,10 +95,10 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
             returnVal = spGetMapsetDetailsByMapsetId.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving mapset details", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving mapset details", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -119,14 +113,20 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
         try {
 
-            spRunnerCallable.run(new SpInsMapset(), parameters);
+            if (spRunnerCallable.run(new SpInsMapset(), parameters)) {
 
-            returnVal = spRunnerCallable.getResult();
+                returnVal = spRunnerCallable.getResult();
 
-        } catch (SQLGrammarException e) {
+            } else {
 
-            LOGGER.error("Error creating contact with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+
+            }
+
+        } catch (Exception e) {
+
+            LOGGER.error("Error creating contact", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -140,12 +140,14 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
         try {
 
-            spRunnerCallable.run(new SpUpdMapset(), parameters);
+            if (!spRunnerCallable.run(new SpUpdMapset(), parameters)) {
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+            }
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error creating mapset with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error creating mapset", e);
+            throw (new GobiiDaoException(e));
         }
     }
 
@@ -160,10 +162,10 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
             spRunnerCallable.run(new SpInsMapsetProperties(), parameters);
             returnVal = spRunnerCallable.getResult();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error updating project property with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error updating project property", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -183,10 +185,10 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
             storedProcExec.doWithConnection(spGetPropertiesForMapset);
             returnVal = spGetPropertiesForMapset.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving project properties with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving project properties", e);
+            throw (new GobiiDaoException(e));
 
         }
 

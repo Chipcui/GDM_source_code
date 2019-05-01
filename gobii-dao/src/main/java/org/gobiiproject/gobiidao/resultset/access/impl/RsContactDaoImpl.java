@@ -6,8 +6,10 @@ import org.gobiiproject.gobiidao.resultset.core.SpRunnerCallable;
 import org.gobiiproject.gobiidao.resultset.core.StoredProcExec;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsContact;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpUpdContact;
-import org.gobiiproject.gobiidao.resultset.sqlworkers.read.*;
-import org.hibernate.exception.SQLGrammarException;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetContactNames;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetContactNamesByRoleName;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetContactsByRoleName;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetContactDetailsByContactId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +46,10 @@ public class RsContactDaoImpl implements RsContactDao {
             storedProcExec.doWithConnection(spGetContactNames);
 
             returnVal = spGetContactNames.getResultSet();
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving contact names", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving contact names", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -69,10 +71,10 @@ public class RsContactDaoImpl implements RsContactDao {
             storedProcExec.doWithConnection(spGetContactNamesByRoleName);
 
             returnVal = spGetContactNamesByRoleName.getResultSet();
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving contact names", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving contact names", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -97,62 +99,10 @@ public class RsContactDaoImpl implements RsContactDao {
 
             returnVal = spGetContactDetailsByContactId.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving contact details", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
-
-        }
-
-        return returnVal;
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    @Override
-    public ResultSet getContactDetailsByUsername(String username) throws GobiiDaoException {
-
-        ResultSet returnVal = null;
-
-        try {
-
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("username", username);
-            SpGetContactDetailsByUsername spGetContactDetailsByUsername = new SpGetContactDetailsByUsername(parameters);
-
-            storedProcExec.doWithConnection(spGetContactDetailsByUsername);
-
-            returnVal = spGetContactDetailsByUsername.getResultSet();
-
-        } catch (SQLGrammarException e) {
-
-            LOGGER.error("Error retrieving contact details", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
-
-        }
-
-        return returnVal;
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    @Override
-    public ResultSet getContactDetailsByEmail(String email) throws GobiiDaoException {
-
-        ResultSet returnVal = null;
-
-        try {
-
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("email", email);
-            SpGetContactDetailsByEmail spGetContactDetailsByEmail = new SpGetContactDetailsByEmail(parameters);
-
-            storedProcExec.doWithConnection(spGetContactDetailsByEmail);
-
-            returnVal = spGetContactDetailsByEmail.getResultSet();
-
-        } catch (SQLGrammarException e) {
-
-            LOGGER.error("Error retrieving contact details", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving contact details", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -167,13 +117,20 @@ public class RsContactDaoImpl implements RsContactDao {
 
         try {
 
-            spRunnerCallable.run(new SpInsContact(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            if (spRunnerCallable.run(new SpInsContact(), parameters)) {
 
-        } catch (SQLGrammarException e) {
+                returnVal = spRunnerCallable.getResult();
 
-            LOGGER.error("Error creating contact with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            } else {
+
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+
+            }
+
+        } catch (Exception e) {
+
+            LOGGER.error("Error creating contact", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -186,12 +143,14 @@ public class RsContactDaoImpl implements RsContactDao {
 
         try {
 
-            spRunnerCallable.run(new SpUpdContact(), parameters);
+            if (!spRunnerCallable.run(new SpUpdContact(), parameters)) {
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+            }
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error creating contact with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error creating contact", e);
+            throw (new GobiiDaoException(e));
         }
     }
 }

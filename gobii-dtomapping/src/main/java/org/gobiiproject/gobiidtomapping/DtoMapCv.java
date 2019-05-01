@@ -1,17 +1,15 @@
 package org.gobiiproject.gobiidtomapping;
 
-import org.gobiiproject.gobiimodel.headerlesscontainer.CvDTO;
-
-import java.util.List;
+import org.gobiiproject.gobiimodel.dto.container.CvDTO;
+import org.gobiiproject.gobiimodel.dto.container.DisplayDTO;
+import org.gobiiproject.gobiimodel.dto.container.NameIdListDTO;
 
 /**
  * Created by Angel on 4/29/2016.
  */
 public interface DtoMapCv {
-    CvDTO getCvDetails(Integer cvId) throws GobiiDtoMappingException;
-    List<CvDTO> getCvs() throws GobiiDtoMappingException;
-    List<CvDTO> getCvsByGroupName(String groupName) throws GobiiDtoMappingException;
+    CvDTO getCvDetails(CvDTO cvDTO) throws GobiiDtoMappingException;
     CvDTO createCv(CvDTO cvDTO) throws GobiiDtoMappingException;
-    CvDTO replaceCv(Integer cvId, CvDTO cvDTO) throws GobiiDtoMappingException;
+    CvDTO updateCv(CvDTO cvDTO) throws GobiiDtoMappingException;
     CvDTO deleteCv(CvDTO cvDTO) throws GobiiDtoMappingException;
 }

@@ -1,19 +1,13 @@
 package org.gobiiproject.gobidomain.services;
 
-import org.gobiiproject.gobidomain.GobiiDomainException;
-import org.gobiiproject.gobiimodel.headerlesscontainer.DataSetDTO;
-
-import java.util.List;
+import org.gobiiproject.gobiidtomapping.DtoMapDataSet;
+import org.gobiiproject.gobiimodel.dto.container.DataSetDTO;
 
 /**
  * Created by Phil on 4/21/2016.
  */
 public interface DataSetService {
 
-    DataSetDTO createDataSet(DataSetDTO dataSetDTO) throws GobiiDomainException;
-    DataSetDTO replaceDataSet(Integer dataSetId, DataSetDTO dataSetDTO) throws GobiiDomainException;
-    List<DataSetDTO> getDataSets() throws GobiiDomainException;
-    List<DataSetDTO> getDataSetsByTypeId(Integer typeId) throws GobiiDomainException;
-    DataSetDTO getDataSetById(Integer dataSetId) throws GobiiDomainException;
+    DataSetDTO processDataSet(DataSetDTO dataSetDTO);
 
 }

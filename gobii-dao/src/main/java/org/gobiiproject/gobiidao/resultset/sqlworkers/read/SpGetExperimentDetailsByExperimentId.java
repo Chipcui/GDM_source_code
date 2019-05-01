@@ -28,8 +28,9 @@ public class SpGetExperimentDetailsByExperimentId implements Work {
     @Override
     public void execute(Connection dbConnection) throws SQLException {
 
-        String Sql = "select e.*\n" +
+        String Sql = "select p.name \"platform_name\",e.*\n" +
                 "from experiment e\n" +
+                "join platform p on (e.platform_id=p.platform_id)\n" +
                 "where experiment_id = ?";
         PreparedStatement preparedStatement = dbConnection.prepareStatement(Sql);
         Integer experimentId = (Integer) parameters.get("experimentId");

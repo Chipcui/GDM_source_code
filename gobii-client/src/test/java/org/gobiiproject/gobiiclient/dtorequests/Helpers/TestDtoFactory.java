@@ -1,15 +1,12 @@
 package org.gobiiproject.gobiiclient.dtorequests.Helpers;
 
-import org.gobiiproject.gobiiclient.dtorequests.dbops.crud.*;
-import org.gobiiproject.gobiimodel.headerlesscontainer.*;
-import org.gobiiproject.gobiimodel.headerlesscontainer.OrganizationDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.ProtocolDTO;
-import org.gobiiproject.gobiimodel.types.GobiiEntityNameType;
-import org.gobiiproject.gobiimodel.types.GobiiProcessType;
-import org.gobiiproject.gobiimodel.utils.DateUtils;
+import org.gobiiproject.gobiimodel.dto.DtoMetaData;
+import org.gobiiproject.gobiimodel.dto.container.*;
 
-import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Phil on 4/27/2016.
@@ -28,24 +25,24 @@ public class TestDtoFactory {
         return returnVal;
     }
 
-    public static EntityParamValues makeConstrainedEntityParams(List<NameIdDTO> propNames,
+    public static EntityParamValues makeConstrainedEntityParams(List<String> propNames,
                                                                 Integer nameStem) {
 
         EntityParamValues returnVal = new EntityParamValues();
 
-        for (NameIdDTO currentPropName : propNames) {
+        for (String currentPropName : propNames) {
 
-            returnVal.add(currentPropName.getName(), "fooval " + (nameStem++));
+            returnVal.add(currentPropName, "fooval " + (nameStem++));
         }
 
         return returnVal;
     }
 
-    public static AnalysisDTO makePopulatedAnalysisDTO(GobiiProcessType gobiiProcessType,
+    public static AnalysisDTO makePopulatedAnalysisDTO(DtoMetaData.ProcessType processType,
                                                        Integer uniqueStem,
                                                        EntityParamValues entityParamValues) {
 
-        AnalysisDTO returnVal = new AnalysisDTO();
+        AnalysisDTO returnVal = new AnalysisDTO(processType);
 
         returnVal.setAnalysisName(uniqueStem + ": analysis");
         returnVal.setTimeExecuted(new Date());
@@ -56,11 +53,7 @@ public class TestDtoFactory {
         returnVal.setProgram(uniqueStem + ":  foo program");
         returnVal.setProgramVersion(uniqueStem + ":  foo version");
         returnVal.setAnlaysisTypeId(1);
-        returnVal.setStatusId(1);
-        returnVal.setCreatedBy(1);
-        returnVal.setModifiedBy(1);
-        returnVal.setCreatedDate(new Date());
-        returnVal.setModifiedDate(new Date());
+        returnVal.setStatus(1);
 
         returnVal.setParameters(entityParamValues.getProperties());
 
@@ -68,37 +61,23 @@ public class TestDtoFactory {
 
     }
 
-    public static MarkerDTO makeMarkerDTO(String markerName) throws Exception {
-
-        MarkerDTO returnVal = new MarkerDTO();
-
-        // required values
-        returnVal.setMarkerName(markerName);
-        Integer platformId = (new GlobalPkColl<DtoCrudRequestPlatformTest>())
-                .getAPkVal(DtoCrudRequestPlatformTest.class,
-                        GobiiEntityNameType.PLATFORMS);
-        returnVal.setPlatformId(platformId);
-        returnVal.setStatus(1);
-
-        return returnVal;
-    }
-
-    public static PlatformDTO makePopulatedPlatformDTO(GobiiProcessType gobiiProcessType,
+    public static PlatformDTO makePopulatedPlatformDTO(DtoMetaData.ProcessType processType,
                                                        Integer uniqueStem,
                                                        EntityParamValues entityParamValues) {
 
-        PlatformDTO returnVal = new PlatformDTO();
+        PlatformDTO returnVal = new PlatformDTO(processType);
 
         String uniqueStemString = uniqueStem.toString();
         // set the plain properties
-        returnVal.setStatusId(1);
+        returnVal.setStatus(1);
         returnVal.setModifiedBy(1);
         returnVal.setModifiedDate(new Date());
         returnVal.setCreatedBy(1);
         returnVal.setCreatedDate(new Date());
-        returnVal.setPlatformCode(uniqueStem + "dummy code");
-        returnVal.setPlatformDescription(uniqueStem + "dummy description");
-        returnVal.setPlatformName(uniqueStem + "New Platform");
+        returnVal.setPlatformCode(uniqueStem +"dummy code");
+        returnVal.setPlatformDescription(uniqueStem +"dummy description");
+        returnVal.setPlatformName(uniqueStem +"New Platform");
+        returnVal.setPlatformVendor(1);
         returnVal.setTypeId(1);
 
         returnVal.setProperties(entityParamValues.getProperties());
@@ -107,57 +86,45 @@ public class TestDtoFactory {
     }
 
 
-    public static CvDTO makePopulatedCvDTO(GobiiProcessType gobiiProcessType,
-                                           Integer uniqueStem) {
+public static CvDTO makePopulatedCvDTO(DtoMetaData.ProcessType processType,
+                                       Integer uniqueStem) {
 
-        CvDTO returnVal = new CvDTO();
-        returnVal.setGroupId(14);
+        CvDTO returnVal = new CvDTO(processType);
+        returnVal.setGroup(uniqueStem+"dummy cv name");
         returnVal.setTerm(UUID.randomUUID().toString());
-        returnVal.setDefinition(uniqueStem + "dummy definition");
+        returnVal.setDefinition(uniqueStem+"dummy definition");
         returnVal.setRank(1);
-        returnVal.setEntityStatus(1);
 
         return returnVal;
 
     }
 
-    public static DisplayDTO makePopulatedDisplayDTO(GobiiProcessType gobiiProcessType,
+    public static DisplayDTO makePopulatedDisplayDTO(DtoMetaData.ProcessType processType,
                                                      Integer uniqueStem) {
 
-        DisplayDTO returnVal = new DisplayDTO();
-        returnVal.setColumnName(uniqueStem + "dummy column");
+        DisplayDTO returnVal = new DisplayDTO(processType);
+        returnVal.setColumnName(uniqueStem+"dummy column");
         returnVal.setCreatedBy(1);
-        returnVal.setDisplayName(uniqueStem + "dummyDisplay");
+        returnVal.setDisplayName(uniqueStem+"dummyDisplay");
         returnVal.setCreatedDate(new Date());
         returnVal.setDisplayId(1);
         returnVal.setModifiedBy(1);
         returnVal.setModifiedDate(new Date());
-        returnVal.setTableName(uniqueStem + "dummy table");
+        returnVal.setTableName(uniqueStem+"dummy table");
         returnVal.setDisplayRank(uniqueStem);
 
 
         return returnVal;
-    }
-
-    public static String getFolderNameWithTimestamp(String folderName) {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String returnVal = folderName.replaceAll(" ", "_") + DateUtils.makeDateIdString();
-
-
-        return returnVal;
-    }
-
-    public static DataSetDTO makePopulatedDataSetDTO(Integer uniqueStem,
+}
+    public static DataSetDTO makePopulatedDataSetDTO(DtoMetaData.ProcessType processType,
+                                                     Integer uniqueStem,
                                                      Integer callingAnalysisId,
-                                                     List<Integer> analysisIds) throws Exception {
+                                                     List<Integer> analysisIds) {
 
-        DataSetDTO returnVal = new DataSetDTO();
+        DataSetDTO returnVal = new DataSetDTO(processType);
 
 
         // set the big-ticket items
-
-        Integer experimentId = (new GlobalPkColl<DtoCrudRequestExperimentTest>().getAPkVal(DtoCrudRequestExperimentTest.class, GobiiEntityNameType.EXPERIMENTS));
-
 
         returnVal.getScores().add(1);
         returnVal.getScores().add(2);
@@ -165,19 +132,17 @@ public class TestDtoFactory {
 
         // set the plain properties
         returnVal.setName(uniqueStem + ": foo name");
-        returnVal.setStatusId(1);
+        returnVal.setStatus(1);
         returnVal.setCreatedBy(1);
         returnVal.setCreatedDate(new Date());
         returnVal.setDataFile(uniqueStem + ": foo file");
         returnVal.setQualityFile(uniqueStem + ": foo quality file");
-        returnVal.setExperimentId(experimentId);
+        returnVal.setExperimentId(2);
         returnVal.setDataTable(uniqueStem + ": foo table");
         returnVal.setModifiedBy(1);
         returnVal.setModifiedDate(new Date());
         returnVal.setCallingAnalysisId(callingAnalysisId);
-        for (Integer currentAnalysisId : analysisIds) {
-            returnVal.getAnalysesIds().add(currentAnalysisId);
-        }
+        returnVal.setAnalysesIds(analysisIds);
         returnVal.setTypeId(93);
 
         return returnVal;
@@ -185,11 +150,11 @@ public class TestDtoFactory {
     }
 
 
-    public static MapsetDTO makePopulatedMapsetDTO(GobiiProcessType gobiiProcessType,
+    public static MapsetDTO makePopulatedMapsetDTO(DtoMetaData.ProcessType processType,
                                                    Integer uniqueStem,
                                                    EntityParamValues entityParamValues) {
 
-        MapsetDTO returnVal = new MapsetDTO();
+        MapsetDTO returnVal = new MapsetDTO(processType);
 
         String uniqueStemString = uniqueStem.toString();
         // set the plain properties
@@ -201,8 +166,8 @@ public class TestDtoFactory {
         returnVal.setMapType(1);
         returnVal.setModifiedBy(1);
         returnVal.setModifiedDate(new Date());
-        returnVal.setReferenceId(GlobalPkValues.getInstance().getAPkVal(GobiiEntityNameType.REFERENCES));
-        returnVal.setStatusId(1);
+        returnVal.setReferenceId(1);
+        returnVal.setStatus(1);
 
         returnVal.setProperties(entityParamValues.getProperties());
 
@@ -210,10 +175,10 @@ public class TestDtoFactory {
 
     }
 
-    public static ReferenceDTO makePopulatedReferenceDTO(GobiiProcessType gobiiProcessType,
+    public static ReferenceDTO makePopulatedReferenceDTO(DtoMetaData.ProcessType processType,
                                                          Integer uniqueStem) {
 
-        ReferenceDTO returnVal = new ReferenceDTO();
+        ReferenceDTO returnVal = new ReferenceDTO(processType);
 
         String uniqueStemString = uniqueStem.toString();
         returnVal.setName(uniqueStem + ": reference");
@@ -226,53 +191,28 @@ public class TestDtoFactory {
     }
 
 
-    public static OrganizationDTO makePopulatedOrganizationDTO(GobiiProcessType gobiiProcessType,
-                                                               Integer uniqueStem) {
+    public static OrganizationDTO makePopulatedOrganizationDTO(DtoMetaData.ProcessType processType,
+                                                       Integer uniqueStem) {
 
-        OrganizationDTO returnVal = new OrganizationDTO();
+        OrganizationDTO returnVal = new OrganizationDTO(processType);
 
-        String uniqueStemString = UUID.randomUUID().toString();
-        returnVal.setName(uniqueStemString + ": organization");
+        String uniqueStemString = uniqueStem.toString();
+        returnVal.setName(uniqueStem + ": reference");
         returnVal.setAddress("address:" + uniqueStem);
         returnVal.setWebsite(uniqueStem + ".com");
         returnVal.setCreatedBy(1);
         returnVal.setCreatedDate(new Date());
         returnVal.setModifiedBy(1);
         returnVal.setModifiedDate(new Date());
-        returnVal.setStatusId(1);
 
         return returnVal;
 
     }
 
-    public static ProtocolDTO makePopulatedProtocolDTO(GobiiProcessType gobiiProcessType,
-                                                       Integer uniqueStem) throws Exception {
-
-        ProtocolDTO returnVal = new ProtocolDTO();
-
-        Integer platformId = (new GlobalPkColl<DtoCrudRequestPlatformTest>())
-                .getAPkVal(DtoCrudRequestPlatformTest.class,
-                        GobiiEntityNameType.PLATFORMS);
-
-        String uniqueStemString = UUID.randomUUID().toString();
-        returnVal.setName(uniqueStemString + ": protocol");
-        returnVal.setDescription(uniqueStemString + ": dummy description");
-        returnVal.setTypeId(1);
-        returnVal.setCreatedBy(1);
-        returnVal.setCreatedDate(new Date());
-        returnVal.setModifiedBy(1);
-        returnVal.setModifiedDate(new Date());
-        returnVal.setPlatformId(platformId);
-        returnVal.setStatus(1);
-
-        return returnVal;
-
-    }
-
-    public static ManifestDTO makePopulatedManifestDTO(GobiiProcessType gobiiProcessType,
+    public static ManifestDTO makePopulatedManifestDTO(DtoMetaData.ProcessType processType,
                                                        Integer uniqueStem) {
 
-        ManifestDTO returnVal = new ManifestDTO();
+        ManifestDTO returnVal = new ManifestDTO(processType);
 
         String uniqueStemString = uniqueStem.toString();
         returnVal.setName(uniqueStem + ": reference");
@@ -287,16 +227,12 @@ public class TestDtoFactory {
 
     }
 
-    public static ContactDTO makePopulatedContactDTO(GobiiProcessType gobiiProcessType,
-                                                     String uniqueStem) throws Exception {
+    public static ContactDTO makePopulatedContactDTO(DtoMetaData.ProcessType processType,
+                                                     Integer uniqueStem) {
 
         String uniqueStemString = uniqueStem.toString();
-        ContactDTO returnVal = new ContactDTO();
+        ContactDTO returnVal = new ContactDTO(processType);
         // set the plain properties
-
-        Integer organizationId = (new GlobalPkColl<DtoCrudRequestOrganizationTest>()).getAPkVal(DtoCrudRequestOrganizationTest.class,
-                GobiiEntityNameType.ORGANIZATIONS);
-
 
         returnVal.setFirstName(uniqueStem + " new contact");
         returnVal.setLastName(uniqueStem + "new lastname");
@@ -306,47 +242,46 @@ public class TestDtoFactory {
         returnVal.setCreatedDate(new Date());
         returnVal.setModifiedBy(1);
         returnVal.setModifiedDate(new Date());
-        returnVal.setOrganizationId(organizationId);
+
         returnVal.getRoles().add(1);
         returnVal.getRoles().add(2);
-        returnVal.setUserName(uniqueStem + "new username");
 
         return returnVal;
 
     }
 
     public static List<MarkerGroupMarkerDTO> makeMarkerGroupMarkers(List<String> markerNames,
-                                                                    GobiiProcessType gobiiProcessType) {
+                                                                    DtoMetaData.ProcessType processType) {
 
         List<MarkerGroupMarkerDTO> returnVal = new ArrayList<>();
 
-        for (String currentMarkerName : markerNames) {
+        for(String currentMarkerName : markerNames ) {
 
             MarkerGroupMarkerDTO currentMarkerGroupMarker = new MarkerGroupMarkerDTO();
-            currentMarkerGroupMarker.setGobiiProcessType(gobiiProcessType);
+            currentMarkerGroupMarker.setProcessType(processType);
             currentMarkerGroupMarker.setMarkerName(currentMarkerName);
             currentMarkerGroupMarker.setFavorableAllele("G");
             returnVal.add(currentMarkerGroupMarker);
 
         }
 
-        return returnVal;
+        return  returnVal;
 
     }
 
-    public static MarkerGroupDTO makePopulatedMarkerGroupDTO(GobiiProcessType gobiiProcessType,
+    public static MarkerGroupDTO makePopulatedMarkerGroupDTO(DtoMetaData.ProcessType processType,
                                                              Integer uniqueStem,
                                                              List<MarkerGroupMarkerDTO> markerGroupMarkers) {
 
-        MarkerGroupDTO returnVal = new MarkerGroupDTO();
+        MarkerGroupDTO returnVal = new MarkerGroupDTO(processType);
 
         returnVal.setMarkers(markerGroupMarkers);
-        returnVal.setStatusId(1);
-        returnVal.setCode(uniqueStem + "_code");
+        returnVal.setStatus(1);
+        returnVal.setCode( uniqueStem + "_code");
         returnVal.setGermplasmGroup(uniqueStem + "_germplasmGroup");
         returnVal.setName(uniqueStem + "_name");
 
-        return returnVal;
+        return  returnVal;
 
     }
 
@@ -360,20 +295,5 @@ public class TestDtoFactory {
         return returnVal;
 
     }
-    public static QCInstructionsDTO makePopulatedQCInstructionsDTO() throws Exception {
 
-        QCInstructionsDTO returnVal = new QCInstructionsDTO();
-        Integer contactId = (new GlobalPkColl<DtoCrudRequestContactTest>()).getAPkVal(DtoCrudRequestContactTest.class,
-                GobiiEntityNameType.CONTACTS);
-        Integer datasetId = (new GlobalPkColl<DtoCrudRequestDataSetTest>()).getAPkVal(DtoCrudRequestDataSetTest.class,
-                GobiiEntityNameType.DATASETS);
-                returnVal.setContactId(contactId);
-        returnVal.setDatasetId(datasetId);
-        returnVal.setDataFileDirectory("E:/Gobii/dummyPath");
-        returnVal.setDataFileName(getFolderNameWithTimestamp("qcDataFile"));
-        returnVal.setQualityFileName("qualityFileName");
-
-        return returnVal;
-
-    }
 }

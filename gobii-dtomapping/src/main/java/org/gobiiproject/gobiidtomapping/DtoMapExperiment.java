@@ -1,17 +1,14 @@
 package org.gobiiproject.gobiidtomapping;
 
-import org.gobiiproject.gobiimodel.headerlesscontainer.ExperimentDTO;
-
-import java.util.List;
+import org.gobiiproject.gobiimodel.dto.container.DataSetDTO;
+import org.gobiiproject.gobiimodel.dto.container.ExperimentDTO;
 
 /**
  * Created by Angel on 4/19/2016.
  */
 public interface DtoMapExperiment {
-
-    List<ExperimentDTO> getExperiments() throws GobiiDtoMappingException;
-    ExperimentDTO getExperimentDetails(Integer experimentId) throws GobiiDtoMappingException;
+    ExperimentDTO getExperiment( ExperimentDTO experimentDTO) throws GobiiDtoMappingException;
     ExperimentDTO createExperiment(ExperimentDTO experimentDTO) throws GobiiDtoMappingException;
-    ExperimentDTO replaceExperiment(Integer experimentId, ExperimentDTO experimentDTO) throws GobiiDtoMappingException;
+    ExperimentDTO updateExperiment(ExperimentDTO experimentDTO) throws GobiiDtoMappingException;
 
 }

@@ -7,97 +7,53 @@ import org.gobiiproject.gobiidao.resultset.core.ResultColumnApplicator;
 import org.gobiiproject.gobiidtomapping.DtoMapMapset;
 import org.gobiiproject.gobiidtomapping.GobiiDtoMappingException;
 import org.gobiiproject.gobiidtomapping.core.EntityProperties;
-import org.gobiiproject.gobiimodel.headerlesscontainer.MapsetDTO;
-import org.gobiiproject.gobiimodel.headerlesscontainer.EntityPropertyDTO;
+import org.gobiiproject.gobiimodel.dto.container.MapsetDTO;
+import org.gobiiproject.gobiimodel.dto.container.EntityPropertyDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Phil on 4/21/2016.
- * Modified by AVB on 9/29/2016.
  */
 public class DtoMapMapsetImpl implements DtoMapMapset {
 
     Logger LOGGER = LoggerFactory.getLogger(DtoMapMapsetImpl.class);
 
+
     @Autowired
     private RsMapSetDao rsMapsetDao;
 
     @Override
-    public List<MapsetDTO> getAllMapsetNames() throws GobiiDtoMappingException {
+    public MapsetDTO getMapsetDetails(MapsetDTO mapsetDTO) throws GobiiDtoMappingException {
 
-        List<MapsetDTO> returnVal = new ArrayList<MapsetDTO>();
-
-        try {
-            ResultSet resultSet = rsMapsetDao.getAllMapsetNames();
-            while (resultSet.next()) {
-                MapsetDTO currentMapsetDTO = new MapsetDTO();
-                currentMapsetDTO.setName(resultSet.getString("name"));
-                currentMapsetDTO.setMapsetId(resultSet.getInt("mapset_id"));
-                returnVal.add(currentMapsetDTO);
-            }
-        } catch (Exception e) {
-            LOGGER.error("Gobii Maping Error", e);
-            throw new GobiiDtoMappingException(e);
-        }
-
-        return returnVal;
-    }
-
-
-    @Override
-    public List<MapsetDTO> getMapsets() throws GobiiDtoMappingException {
-
-        List<MapsetDTO> returnVal = new ArrayList<>();
-
-        try {
-            ResultSet resultSet = rsMapsetDao.getAllMapsetNames();
-            while (resultSet.next()) {
-                MapsetDTO currentMapsetDTO = new MapsetDTO();
-                currentMapsetDTO.setName(resultSet.getString("name"));
-                currentMapsetDTO.setMapsetId(resultSet.getInt("mapset_id"));
-                returnVal.add(currentMapsetDTO);
-            }
-
-        } catch (SQLException e) {
-            LOGGER.error("Gobii Mapping Error", e);
-            throw new GobiiDtoMappingException(e);
-        }
-
-        return returnVal;
-
-    }
-
-    @Override
-    public MapsetDTO getMapsetDetails(Integer mapsetId) throws GobiiDtoMappingException {
-
-        MapsetDTO returnVal = new MapsetDTO();
-
-        ResultSet resultSet = rsMapsetDao.getMapsetDetailsByMapsetId(mapsetId);
+        MapsetDTO returnVal = mapsetDTO;
 
         try {
 
-            if(resultSet.next()) {
+            ResultSet resultSet = rsMapsetDao.getMapsetDetailsByMapsetId(mapsetDTO.getMapsetId());
 
+            if (resultSet.next()) {
+
+                // apply dataset values
                 ResultColumnApplicator.applyColumnValues(resultSet, returnVal);
 
-                ResultSet propertyResultSet = rsMapsetDao.getProperties(returnVal.getMapsetId());
+                ResultSet propertyResultSet = rsMapsetDao.getProperties(mapsetDTO.getMapsetId());
                 List<EntityPropertyDTO> entityPropertyDTOs =
-                        EntityProperties.resultSetToProperties(returnVal.getMapsetId(), propertyResultSet);
+                        EntityProperties.resultSetToProperties(mapsetDTO.getMapsetId(), propertyResultSet);
 
-                returnVal.setProperties(entityPropertyDTOs);
-            }
+                mapsetDTO.setProperties(entityPropertyDTOs);
 
-        } catch (SQLException e) {
-            LOGGER.error("Error retrieving mapset details", e);
-            throw new GobiiDtoMappingException(e);
+            } // if result set has a row
+
+        } catch (Exception e) {
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error("Gobii Maping Error", e);
         }
 
         return returnVal;
@@ -105,19 +61,20 @@ public class DtoMapMapsetImpl implements DtoMapMapset {
 
     @Override
     public MapsetDTO createMapset(MapsetDTO mapsetDTO) throws GobiiDtoMappingException {
-
         MapsetDTO returnVal = mapsetDTO;
 
         try {
 
-            Map<String, Object> parameters = ParamExtractor.makeParamVals(returnVal);
+            Map<String, Object> parameters = ParamExtractor.makeParamVals(mapsetDTO);
             Integer mapsetId = rsMapsetDao.createMapset(parameters);
             returnVal.setMapsetId(mapsetId);
 
-        } catch (Exception e) {
+            List<EntityPropertyDTO> mapsetParameters = mapsetDTO.getProperties();
+            upsertMapsetProperties(mapsetDTO.getMapsetId(), mapsetParameters);
 
-            LOGGER.error("Gobii Mapping Error", e);
-            throw new GobiiDtoMappingException(e);
+        } catch (Exception e) {
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error("Gobii Maping Error", e);
         }
 
         return returnVal;
@@ -145,17 +102,23 @@ public class DtoMapMapsetImpl implements DtoMapMapset {
     }
 
     @Override
-    public MapsetDTO replaceMapset(Integer mapsetId, MapsetDTO mapsetDTO) throws GobiiDtoMappingException {
+    public MapsetDTO updateMapset(MapsetDTO mapsetDTO) throws GobiiDtoMappingException {
 
         MapsetDTO returnVal = mapsetDTO;
 
-        Map<String, Object> parameters = ParamExtractor.makeParamVals(returnVal);
-        parameters.put("mapsetId", mapsetId);
-        rsMapsetDao.updateMapset(parameters);
+        try {
 
-        if(null != mapsetDTO.getProperties()) {
-            upsertMapsetProperties(mapsetId,
-                    mapsetDTO.getProperties());
+            Map<String, Object> parameters = ParamExtractor.makeParamVals(returnVal);
+            rsMapsetDao.updateMapset(parameters);
+
+            if (null != mapsetDTO.getProperties()) {
+                upsertMapsetProperties(mapsetDTO.getMapsetId(),
+                        mapsetDTO.getProperties());
+            }
+
+        } catch (Exception e) {
+            returnVal.getDtoHeaderResponse().addException(e);
+            LOGGER.error("Gobii Maping Error", e);
         }
 
         return returnVal;

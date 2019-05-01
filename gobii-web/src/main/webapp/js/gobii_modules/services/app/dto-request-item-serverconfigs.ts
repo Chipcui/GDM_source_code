@@ -3,6 +3,7 @@ import {NameId} from "../../model/name-id";
 import {DtoRequestItem} from "./../core/dto-request-item";
 import {ProcessType} from "../../model/type-process";
 import {ServerConfig} from "../../model/server-config";
+import {GobiiCropType} from "../../model/type-crop"
 
 @Injectable()
 export class DtoRequestItemServerConfigs implements DtoRequestItem<ServerConfig[]> {
@@ -11,7 +12,7 @@ export class DtoRequestItemServerConfigs implements DtoRequestItem<ServerConfig[
     }
 
     public getUrl():string {
-        return "gobii/v1/configsettings";
+        return "load/configsettings";
     } // getUrl()
 
     private processType:ProcessType = ProcessType.READ;
@@ -26,14 +27,16 @@ export class DtoRequestItemServerConfigs implements DtoRequestItem<ServerConfig[
     public resultFromJson(json):ServerConfig[] {
 
         let returnVal:ServerConfig[] = [];
+        console.log("*************ENTITY NAME: " + json.entityName);
+        console.log(json.dtoHeaderResponse.succeeded ? "succeeded" : "error: " + json.dtoHeaderResponse.statusMessages)
+        console.log(json.namesById);
 
-        let serverConfigs:Object = json.payload.data[0].serverConfigs;
-        let arrayOfIds = Object.keys(serverConfigs);
+        let arrayOfIds = Object.keys(json.serverConfigs);
         arrayOfIds.forEach(crop => {
             let currentCrop = crop;
-            let currentDomain:string = serverConfigs[crop].domain;
-            let currentContextRoot:string = serverConfigs[crop].contextRoot;
-            let currentPort:number = Number(serverConfigs[crop].port);
+            let currentDomain:string = json.serverConfigs[crop].domain;
+            let currentContextRoot:string = json.serverConfigs[crop].contextRoot;
+            let currentPort:number = Number(json.serverConfigs[crop].port);
             returnVal.push(new ServerConfig(currentCrop,
                 currentDomain,
                 currentContextRoot,

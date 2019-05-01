@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
 /**
  * Created by Phil on 4/7/2016.
@@ -14,10 +13,7 @@ import java.util.Map;
  */
 public class SpGetTableDisplayDetailByDisplayId implements Work {
 
-    private Map<String, Object> parameters = null;
-
-    public SpGetTableDisplayDetailByDisplayId(Map<String, Object> parameters) {
-        this.parameters = parameters;
+    public SpGetTableDisplayDetailByDisplayId() {
     }
 
     private ResultSet resultSet = null;
@@ -31,12 +27,11 @@ public class SpGetTableDisplayDetailByDisplayId implements Work {
 
         String sql = "select *" +
                 "from display\n" +
-                " where display_id = ? \n " +
                 " order by lower(table_name), lower(column_name)";
 
         PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
-        Integer displayId = (Integer) parameters.get("displayId");
-        preparedStatement.setInt(1, displayId);
+//        String tableName = parameters.get("tableName").toString().toLowerCase();
+//        preparedStatement.setString(1, tableName);
         resultSet = preparedStatement.executeQuery();
 
     } // execute()

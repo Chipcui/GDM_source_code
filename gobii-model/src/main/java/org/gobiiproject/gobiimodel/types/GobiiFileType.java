@@ -7,6 +7,5 @@ public enum GobiiFileType {
     HAPMAP,
     FLAPJACK,
     GENERIC,
-    VCF,
-    META_DATA
+    VCF
 }

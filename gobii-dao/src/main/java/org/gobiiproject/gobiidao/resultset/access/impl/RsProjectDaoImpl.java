@@ -12,7 +12,6 @@ import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetProjecttNamesByC
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetPropertiesForProject;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetProjectDetailsByProjectId;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.SpGetProjectNames;
-import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,7 @@ public class RsProjectDaoImpl implements RsProjectDao {
     @Autowired
     private SpRunnerCallable spRunnerCallable;
 
+
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public ResultSet getProjectNamesForContactId(Integer contactId) throws GobiiDaoException {
@@ -51,10 +51,10 @@ public class RsProjectDaoImpl implements RsProjectDao {
 
             returnVal = spGetProjecttNamesByContactId.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving project names", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving project names", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -74,10 +74,10 @@ public class RsProjectDaoImpl implements RsProjectDao {
             SpGetProjectDetailsByProjectId spGetProjectDetailsByProjectId = new SpGetProjectDetailsByProjectId(parameters);
             storedProcExec.doWithConnection(spGetProjectDetailsByProjectId);
             returnVal = spGetProjectDetailsByProjectId.getResultSet();
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving project details", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving project details", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -100,10 +100,10 @@ public class RsProjectDaoImpl implements RsProjectDao {
             storedProcExec.doWithConnection(spGetPropertiesForProject);
             returnVal = spGetPropertiesForProject.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving project properties", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving project properties", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -126,10 +126,10 @@ public class RsProjectDaoImpl implements RsProjectDao {
             storedProcExec.doWithConnection(spGetProjectByNameAndPIContact);
             returnVal = spGetProjectByNameAndPIContact.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving projects", e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving projects", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -145,13 +145,20 @@ public class RsProjectDaoImpl implements RsProjectDao {
 
         try {
 
-            spRunnerCallable.run(new SpInsProject(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            if (spRunnerCallable.run(new SpInsProject(), parameters)) {
 
-        } catch (SQLGrammarException e) {
+                returnVal = spRunnerCallable.getResult();
 
-            LOGGER.error("Error creating project with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            } else {
+
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+
+            }
+
+        } catch (Exception e) {
+
+            LOGGER.error("Error creating project", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -165,12 +172,14 @@ public class RsProjectDaoImpl implements RsProjectDao {
 
         try {
 
-            spRunnerCallable.run(new SpUpdProject(), parameters);
+            if (!spRunnerCallable.run(new SpUpdProject(), parameters)) {
+                throw new GobiiDaoException(spRunnerCallable.getErrorString());
+            }
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error creating project with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error creating project", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -180,16 +189,16 @@ public class RsProjectDaoImpl implements RsProjectDao {
     @Override
     public Integer createUpdateProjectProperty(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal;
+        Integer returnVal = 0;
 
         try {
             spRunnerCallable.run(new SpInsProjectProperties(), parameters);
             returnVal = spRunnerCallable.getResult();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error updating project property with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error updating project property", e);
+            throw (new GobiiDaoException(e));
 
         }
 
@@ -212,10 +221,10 @@ public class RsProjectDaoImpl implements RsProjectDao {
 
             returnVal = spGetProjectNames.getResultSet();
 
-        } catch (SQLGrammarException e) {
+        } catch (Exception e) {
 
-            LOGGER.error("Error retrieving project names with SQL " + e.getSQL(), e.getSQLException());
-            throw (new GobiiDaoException(e.getSQLException()));
+            LOGGER.error("Error retrieving project names", e);
+            throw (new GobiiDaoException(e));
 
         }
 

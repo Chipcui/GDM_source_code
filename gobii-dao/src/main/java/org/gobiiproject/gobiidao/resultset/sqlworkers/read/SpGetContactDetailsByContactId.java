@@ -38,8 +38,7 @@ public class SpGetContactDetailsByContactId implements Work {
                 "c.created_by,\n" +
                 "c.created_date,\n" +
                 "c.modified_by,\n" +
-                "c.modified_date,\n" +
-                "c.username\n" +
+                "c.modified_date\n" +
                 " from contact c\n" +
                 " where contact_id=?\n";
 

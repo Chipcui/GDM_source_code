@@ -1,9 +1,6 @@
 package org.gobiiproject.gobiimodel.config;
 
-
-import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
-import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
-import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
+import org.gobiiproject.gobiimodel.dto.header.DtoHeaderResponse;
 
 /**
  * Created by Phil on 5/10/2016.
@@ -11,43 +8,38 @@ import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
 public class GobiiException extends RuntimeException {
 
 
-    private GobiiStatusLevel gobiiStatusLevel = GobiiStatusLevel.ERROR;
-    private GobiiValidationStatusType gobiiValidationStatusType = GobiiValidationStatusType.NONE;
-
-    public GobiiException(Exception e) {
-        super(e);
-    }
-
+    private DtoHeaderResponse.StatusLevel statusLevel;
+    private DtoHeaderResponse.ValidationStatusType validationStatusType;
 
     public GobiiException(String message) {
         super(message);
     }
 
-    public GobiiException(GobiiStatusLevel gobiiStatusLevel,
-                          GobiiValidationStatusType gobiiValidationStatusType,
+    public GobiiException(DtoHeaderResponse.StatusLevel statusLevel,
+                          DtoHeaderResponse.ValidationStatusType validationStatusType,
                           String message) {
 
         super(message);
-        this.gobiiStatusLevel = gobiiStatusLevel;
-        this.gobiiValidationStatusType = gobiiValidationStatusType;
+        this.statusLevel = statusLevel;
+        this.validationStatusType = validationStatusType;
 
     } //
 
 
-    public GobiiStatusLevel getGobiiStatusLevel() {
-        return gobiiStatusLevel;
+    public DtoHeaderResponse.StatusLevel getStatusLevel() {
+        return statusLevel;
     }
 
-    public void setGobiiStatusLevel(GobiiStatusLevel gobiiStatusLevel) {
-        this.gobiiStatusLevel = gobiiStatusLevel;
+    public void setStatusLevel(DtoHeaderResponse.StatusLevel statusLevel) {
+        this.statusLevel = statusLevel;
     }
 
-    public GobiiValidationStatusType getGobiiValidationStatusType() {
-        return gobiiValidationStatusType;
+    public DtoHeaderResponse.ValidationStatusType getValidationStatusType() {
+        return validationStatusType;
     }
 
-    public void setGobiiValidationStatusType(GobiiValidationStatusType gobiiValidationStatusType) {
-        this.gobiiValidationStatusType = gobiiValidationStatusType;
+    public void setValidationStatusType(DtoHeaderResponse.ValidationStatusType validationStatusType) {
+        this.validationStatusType = validationStatusType;
     }
 
 
