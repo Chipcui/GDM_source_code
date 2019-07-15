@@ -876,7 +876,7 @@ public class GobiiExtractor {
                                 }
                             }
                         }
-                        int qcDurationInSeconds = qcDuration * 60;
+                        int qcDurationInSeconds = qcDuration;//It is in seconds - JDLS GSD-524
                         if (status.equals("COMPLETED")) {
                             ErrorLogger.logInfo("QC", new StringBuilder("The QC job #").append(qcJobID).append(" has completed").toString());
                             qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDurationInSeconds, ErrorLogger.getFirstErrorReason(), true, ErrorLogger.getAllErrorStringsHTML());
