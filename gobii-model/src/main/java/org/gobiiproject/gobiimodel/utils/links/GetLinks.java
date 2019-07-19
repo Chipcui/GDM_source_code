@@ -99,6 +99,9 @@ public class GetLinks {
             ErrorLogger.logWarning("OWNCLOUD", "API request failed due to improper configurations",e);
         }
 
+        ErrorLogger.logWarning("OWNCLOUD_DEBUG","path: "+path);
+        ErrorLogger.logWarning("OWNCLOUD_DEBUG", "url: "+urlPath);
+
         return liveLink;
     }
 
