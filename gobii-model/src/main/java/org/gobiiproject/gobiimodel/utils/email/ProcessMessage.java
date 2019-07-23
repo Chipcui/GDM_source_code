@@ -47,6 +47,7 @@ public class ProcessMessage extends MailMessage {
      * Sets the BODY of the mail message with TABLEs
      * @param jobName Name of the JOB ([GOBII - Extractor]: crop - extraction of "xxxx") 
      * @param shortError error message, 100 or less charectors
+     * @param time duration (in milliseconds) to report to the user
      * @param success If the job is success/failed (true/false)
      * @param longError Long error message
      * @return handle to this object

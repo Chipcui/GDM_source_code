@@ -818,13 +818,13 @@ public class GobiiExtractor {
                     qcStatusPm.addIdentifier("QC Job Identifier", "", String.valueOf(qcJobID));
                     qcStatusPm.addIdentifier("Dataset Identifier", datasetName, String.valueOf(datasetId));
 
-                    int qcDuration = 0;
+                    long qcDurationMillis = 0;
                     if (jsonPayload == null) {
                         ErrorLogger.logInfo("QC", "Null JSON payload");
                     } else {
                         int start = jsonPayload.get("start").getAsInt();
                         int end = jsonPayload.get("end").getAsInt();
-                        qcDuration = end - start;
+                        qcDurationMillis = end - start;
                     }
 
                     if ((status.equals("COMPLETED")) || (status.equals("FAILED"))) {
@@ -876,13 +876,12 @@ public class GobiiExtractor {
                                 }
                             }
                         }
-                        int qcDurationInSeconds = qcDuration;//It is in seconds - JDLS GSD-524
                         if (status.equals("COMPLETED")) {
                             ErrorLogger.logInfo("QC", new StringBuilder("The QC job #").append(qcJobID).append(" has completed").toString());
-                            qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDurationInSeconds, ErrorLogger.getFirstErrorReason(), true, ErrorLogger.getAllErrorStringsHTML());
+                            qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDurationMillis, ErrorLogger.getFirstErrorReason(), true, ErrorLogger.getAllErrorStringsHTML());
                         } else if (status.equals("FAILED")) {
                             ErrorLogger.logError("QC", new StringBuilder("The QC job #").append(qcJobID).append(" has failed").toString());
-                            qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDurationInSeconds, ErrorLogger.getFirstErrorReason(), false, ErrorLogger.getAllErrorStringsHTML());
+                            qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDurationMillis, ErrorLogger.getFirstErrorReason(), false, ErrorLogger.getAllErrorStringsHTML());
                         }
                     }//endif Status=Completed || Failed
                     else {
@@ -894,7 +893,7 @@ public class GobiiExtractor {
                             ErrorLogger.logError("QC", new StringBuilder("The process time of the QC job #").append(qcJobID)
                                     .append(" exceeded the limit: ").append(configSettings.getGlobalServer(ServerType.KDC).getMaxStatusCheckMins()).append(" minutes").toString());
                         }
-                        qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDuration, ErrorLogger.getFirstErrorReason(), false, ErrorLogger.getAllErrorStringsHTML());
+                        qcStatusPm.setBody(new StringBuilder("[GOBII - QC]: job #").append(qcJobID).toString(), extractType, qcDurationMillis, ErrorLogger.getFirstErrorReason(), false, ErrorLogger.getAllErrorStringsHTML());
                     }
                     mailInterface.send(qcStatusPm);
 
