@@ -1,7 +1,9 @@
 package org.gobiiproject.gobiiprocess.digester.machine.log;
 
 import org.gobiiproject.gobiiprocess.digester.machine.DigesterState;
+import org.gobiiproject.gobiiprocess.machine.Component;
 
+@Component("Job State Log")
 public class JobStateLogEffect extends LogEffect {
 
 	@Override

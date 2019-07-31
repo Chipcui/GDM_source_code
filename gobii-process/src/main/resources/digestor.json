@@ -1,10 +1,12 @@
 {
-  "name": "base_config",
   "prototypes": {
     "base": {"sideEffects": ["log", {"effect":  "JobStatusLogEffect"}]},
     "log": {"sideEffects":  [{"effect": "InfoLogEffect"}, {"effect": "WarnLogEffect"}, {"effect": "ErrorLogEffect"}]},
   },
-  "transitions": [{"change":  "Setup",
-                   "prototypes": ["base", "log"],
-                   "sideEffects":  [{"effect": "StateLogEffect", "args": ["debug"]}]}],
+  "configs": {
+    "prod": {"transitions": [{"change":  "Setup",
+                              "prototypes": ["base", "log"],
+                              "sideEffects":  [{"effect": "StateLogEffect", "args": ["debug"]}]}]
+    }
+  }
 }

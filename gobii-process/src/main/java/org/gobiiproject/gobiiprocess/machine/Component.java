@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiprocess.machine;
 
-public interface Component<S> {
+public @interface Component {
 
-	S run(S s0);
+	String value();
 }
