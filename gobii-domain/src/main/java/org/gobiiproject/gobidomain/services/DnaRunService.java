@@ -13,5 +13,6 @@ public interface DnaRunService {
 
     DnaRunDTO getDnaRunById(Integer dnaRunId) throws GobiiDomainException;
     List<DnaRunDTO> getDnaRuns(Integer pageToken, Integer pageSize, DnaRunDTO dnaRunDTOFilter) throws GobiiDomainException;
-
+    String createSearchQuery(String searchQuery) throws GobiiDomainException;
+    List<DnaRunDTO> getDnaRunsFromSearch(String searchResultsDbId, Integer pageToken, Integer pageSize) throws GobiiDomainException;
 }

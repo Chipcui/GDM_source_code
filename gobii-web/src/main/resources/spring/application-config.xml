@@ -435,6 +435,9 @@
     <bean id="dtoMapDnaRun" class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapDnaRunImpl"/>
     <bean id="rsDnaRunDao" class="org.gobiiproject.gobiidao.resultset.access.impl.RsDnaRunDaoImpl"/>
 
+    <!-- *** SEARCH QUERY Beans ******************************** -->
+    <bean id="rsSearchQueryDao" class="org.gobiiproject.gobiidao.resultset.access.impl.RsSearchQueryDaoImpl"/>
+
     <!-- *** MARKER BRAPI BEANS ************* -->
     <bean id="markerBrapiService" class="org.gobiiproject.gobidomain.services.impl.MarkerBrapiServiceImpl"/>
     <bean id="dtoMapMarkerBrapi" class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapMarkerBrapiImpl"/>
@@ -511,7 +514,8 @@
 
     <bean id="listStatementDnaRunAll"
           class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementDnaRunAll"/>
-
+    <bean id="listStatementDnaRunSearch"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementDnaRunBySearch"/>
 
     <bean id="listStatementGenotypeCallsMarkerMetaData"
           class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementGenotypeCallsMarkerMetaData"/>
@@ -817,6 +821,16 @@
                         <constructor-arg value="org.gobiiproject.gobiimodel.dto.entity.noaudit.DnaRunDTO"/>
                         <constructor-arg ref="pageFramesTrackingCache"/>
                         <constructor-arg ref="listStatementDnaRunAll"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
+                <!-- DNA RUN SEARCH -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_DNARUN_SEARCH}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.entity.noaudit.DnaRunDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementDnaRunSearch"/>
                         <constructor-arg name="listStatementPaged"><null/></constructor-arg>
                     </bean>
                 </entry>

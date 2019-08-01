@@ -1142,6 +1142,96 @@ public class BRAPIIControllerV1 {
         }
     }
 
+
+    @RequestMapping(value="/search/callsets", method=RequestMethod.POST)
+    public ResponseEntity searchCallSets(
+            HttpEntity<String> searchQuery,
+            HttpServletRequest request) throws Exception {
+
+        String uuid = null;
+
+        if (searchQuery.hasBody()) {
+
+            uuid = dnaRunService.createSearchQuery(searchQuery.getBody());
+
+        }
+
+        HashMap<String, String> result = new HashMap<>();
+        result.put("searchResultsDbId", uuid);
+        BrApiMasterPayload brApiMasterPayload = new BrApiMasterPayload(result);
+
+        return ResponseEntity.ok(brApiMasterPayload);
+
+    }
+
+    @RequestMapping(value="/search/callsets/{searchResultsDbId}", method=RequestMethod.GET)
+    public @ResponseBody ResponseEntity getCallSetsBySearch(
+            @PathVariable("searchResultsDbId") String searchResultsDbId,
+            @RequestParam(value="pageToken", required = false) String pageTokenParam,
+            @RequestParam(value="pageSize", required = false) Integer pageSize
+    ){
+
+        try {
+
+            Integer pageToken = null;
+
+            if (pageTokenParam != null) {
+                try {
+                    pageToken = Integer.parseInt(pageTokenParam);
+                }
+                catch (Exception e) {
+                    throw new GobiiException(
+                            GobiiStatusLevel.ERROR,
+                            GobiiValidationStatusType.BAD_REQUEST,
+                            "Invalid Page Token"
+                    );
+                }
+            }
+
+            Integer maxPageSize = RestResourceLimits.getResourceLimit(
+                    RestResourceId.GOBII_DNARUN,
+                    RestMethodType.GET
+            );
+
+            if (maxPageSize == null) {
+                maxPageSize = 1000;
+            }
+
+            if (pageSize == null || pageSize > maxPageSize) {
+                pageSize = maxPageSize;
+            }
+
+            List<DnaRunDTO> dnaRunDTOList = dnaRunService.getDnaRunsFromSearch(searchResultsDbId, pageToken, pageSize);
+
+            BrApiResult result = new BrApiResult();
+            result.setData(dnaRunDTOList);
+            BrApiMasterPayload payload = new BrApiMasterPayload(result);
+
+            if (dnaRunDTOList.size() > 0) {
+                payload.getMetaData().getPagination().setPageSize(dnaRunDTOList.size());
+                if(dnaRunDTOList.size() >= pageSize) {
+                    payload.getMetaData().getPagination().setNextPageToken(
+                            dnaRunDTOList.get(dnaRunDTOList.size() - 1).getCallSetDbId().toString()
+                    );
+                }
+            }
+
+            return ResponseEntity.ok().contentType(
+                    MediaType.APPLICATION_JSON).body(payload);
+
+
+        } catch (GobiiException gE) {
+            throw gE;
+        } catch (Exception e) {
+            throw new GobiiException(
+                    GobiiStatusLevel.ERROR,
+                    GobiiValidationStatusType.UNKNOWN,
+                    "Internal Server Error" + e.getMessage()
+            );
+        }
+
+    }
+
     /**
      * Lists the variants by page size and page token
      *

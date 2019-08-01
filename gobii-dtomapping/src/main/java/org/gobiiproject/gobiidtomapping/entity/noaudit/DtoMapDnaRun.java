@@ -12,5 +12,6 @@ public interface DtoMapDnaRun {
 
     DnaRunDTO get(Integer dnaRunId) throws GobiiDtoMappingException;
     List<DnaRunDTO> getList(Integer pageToken, Integer pageSize, DnaRunDTO dnaRunDTOFilter) throws GobiiDtoMappingException;
-
+    String createSearchQuery(String searchQuery) throws GobiiDtoMappingException;
+    List<DnaRunDTO> getListFromSearch(String searchResultsDbId, Integer pageToken, Integer pageSize) throws GobiiDtoMappingException;
 }

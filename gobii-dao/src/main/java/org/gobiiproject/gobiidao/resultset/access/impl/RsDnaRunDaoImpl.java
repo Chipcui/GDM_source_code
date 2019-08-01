@@ -4,6 +4,7 @@ import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiidao.resultset.access.RsDnaRunDao;
 import org.gobiiproject.gobiidao.resultset.core.SpRunnerCallable;
 import org.gobiiproject.gobiidao.resultset.core.StoredProcExec;
+import org.gobiiproject.gobiidao.resultset.sqlworkers.modify.SpInsCallsetsSearch;
 import org.gobiiproject.gobiidao.resultset.sqlworkers.read.sp.SpGetDnaRunByDnaRunId;
 import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
@@ -43,6 +44,27 @@ public class RsDnaRunDaoImpl implements RsDnaRunDao {
         } catch (SQLGrammarException e) {
 
             LOGGER.error("Error retrieving dnarun", e.getSQL(), e.getSQLException());
+            throw (new GobiiDaoException(e.getSQLException()));
+        }
+
+        return returnVal;
+
+    }
+
+    @Override
+    public ResultSet createSearchQuery(Map<String, Object> parameters) throws GobiiDaoException {
+
+        ResultSet returnVal;
+
+        try {
+
+            SpInsCallsetsSearch spInsCallsetsSearch = new SpInsCallsetsSearch(parameters);
+            storedProcExec.doWithConnection(spInsCallsetsSearch);
+            returnVal = spInsCallsetsSearch.getResultSet();
+
+        } catch (SQLGrammarException e) {
+
+            LOGGER.error("Error creating search query", e.getSQL(), e.getSQLException());
             throw (new GobiiDaoException(e.getSQLException()));
         }
 

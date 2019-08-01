@@ -259,7 +259,7 @@ public class DtoMapDnaRunImpl implements DtoMapDnaRun {
 
     @Transactional
     @Override
-    public List<DnaRunDTO> getListFromSearch(String searchResultsDbId) throws GobiiDtoMappingException {
+    public List<DnaRunDTO> getListFromSearch(String searchResultsDbId, Integer pageToken, Integer pageSize) throws GobiiDtoMappingException {
 
         List<DnaRunDTO> returnVal = new ArrayList<>();
 
@@ -277,6 +277,13 @@ public class DtoMapDnaRunImpl implements DtoMapDnaRun {
 
                 sqlParams.put("searchQuery", searchQueryJson);
 
+                if (pageToken != null) {
+                    sqlParams.put("pageToken", pageToken);
+                }
+
+                if (pageSize != null) {
+                    sqlParams.put("pageSize", pageSize);
+                }
 
                 returnVal = (List<DnaRunDTO>) dtoListQueryColl.getList(
                         ListSqlId.QUERY_ID_DNARUN_SEARCH,
@@ -284,7 +291,58 @@ public class DtoMapDnaRunImpl implements DtoMapDnaRun {
                         sqlParams
                 );
 
-                System.out.print(searchQueryJson);
+                if (returnVal == null) {
+                    return new ArrayList<>();
+                }
+
+                List<CvDTO> germplasmPropsCv = dtoMapCv.getCvsByGroupName(CVGROUP_GERMPLASM_PROP.getCvGroupName());
+                List<CvDTO> samplePropsCv = dtoMapCv.getCvsByGroupName(CVGROUP_DNASAMPLE_PROP.getCvGroupName());
+
+                for(DnaRunDTO currentDnaRunDTO : returnVal) {
+
+                    if (currentDnaRunDTO.getDatasetDnarunIndex().size() > 0) {
+
+                        for (String dataSetId : currentDnaRunDTO.getDatasetDnarunIndex().keySet()) {
+
+                            if (dataSetId != null) {
+                                currentDnaRunDTO.getVariantSetIds().add(Integer.parseInt(dataSetId));
+                            }
+                        }
+                    }
+
+                    if (currentDnaRunDTO.getGermplasmProps().size() > 0) {
+
+                        for (String cvId : currentDnaRunDTO.getGermplasmProps().keySet()) {
+
+                            String propValue = currentDnaRunDTO.getGermplasmProps().get(cvId).toString();
+
+                            List<CvDTO> result = germplasmPropsCv.stream()
+                                    .filter(a -> Objects.equals(a.getCvId().toString(), cvId))
+                                    .collect(Collectors.toList());
+
+                            if (result.size() > 0 && propValue != null) {
+                                currentDnaRunDTO.getAdditionalInfo().put(result.get(0).getTerm(), propValue);
+                            }
+                        }
+                    }
+
+                    if (currentDnaRunDTO.getSampleProps().size() > 0) {
+
+                        for (String cvId : currentDnaRunDTO.getSampleProps().keySet()) {
+
+                            String propValue = currentDnaRunDTO.getSampleProps().get(cvId).toString();
+
+                            List<CvDTO> result = samplePropsCv.stream()
+                                    .filter(a -> Objects.equals(a.getCvId().toString(), cvId))
+                                    .collect(Collectors.toList());
+
+                            if (result.size() > 0 && propValue != null) {
+                                currentDnaRunDTO.getAdditionalInfo().put(result.get(0).getTerm(), propValue);
+                            }
+                        }
+
+                    }
+                }
 
 
             } else {
