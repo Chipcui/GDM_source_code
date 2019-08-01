@@ -191,6 +191,9 @@ public class DtoMapDnaRunImpl implements DtoMapDnaRun {
                 return new ArrayList<>();
             }
 
+            List<CvDTO> germplasmPropsCv = dtoMapCv.getCvsByGroupName(CVGROUP_GERMPLASM_PROP.getCvGroupName());
+            List<CvDTO> samplePropsCv = dtoMapCv.getCvsByGroupName(CVGROUP_DNASAMPLE_PROP.getCvGroupName());
+
             for(DnaRunDTO currentDnaRunDTO : returnVal) {
 
                 if (currentDnaRunDTO.getDatasetDnarunIndex().size() > 0) {
@@ -205,7 +208,6 @@ public class DtoMapDnaRunImpl implements DtoMapDnaRun {
 
                 if (currentDnaRunDTO.getGermplasmProps().size() > 0) {
 
-                    List<CvDTO> germplasmPropsCv = dtoMapCv.getCvsByGroupName(CVGROUP_GERMPLASM_PROP.getCvGroupName());
                     for (String cvId : currentDnaRunDTO.getGermplasmProps().keySet()) {
 
                         String propValue = currentDnaRunDTO.getGermplasmProps().get(cvId).toString();
@@ -222,7 +224,6 @@ public class DtoMapDnaRunImpl implements DtoMapDnaRun {
 
                 if (currentDnaRunDTO.getSampleProps().size() > 0) {
 
-                    List<CvDTO> samplePropsCv = dtoMapCv.getCvsByGroupName(CVGROUP_DNASAMPLE_PROP.getCvGroupName());
                     for (String cvId : currentDnaRunDTO.getSampleProps().keySet()) {
 
                         String propValue = currentDnaRunDTO.getSampleProps().get(cvId).toString();
