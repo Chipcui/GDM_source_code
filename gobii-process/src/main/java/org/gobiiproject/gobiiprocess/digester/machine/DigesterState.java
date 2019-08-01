@@ -4,14 +4,13 @@ import lombok.Getter;
 import lombok.experimental.Wither;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderProcedure;
 import org.gobiiproject.gobiiprocess.JobStatus;
-import org.gobiiproject.gobiiprocess.machine.State;
 
 import java.util.LinkedList;
 import java.util.List;
 
 @Getter
 @Wither
-public class DigesterState extends State {
+public class DigesterState {
 
 	private GobiiLoaderProcedure procedure;
 

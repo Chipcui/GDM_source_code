@@ -1,12 +1,26 @@
 {
   "prototypes": {
-    "base": {"sideEffects": ["log", {"effect":  "JobStatusLogEffect"}]},
-    "log": {"sideEffects":  [{"effect": "InfoLogEffect"}, {"effect": "WarnLogEffect"}, {"effect": "ErrorLogEffect"}]},
+    "log": {
+      "sideEffects": ["log/info", "log/warn", "log/error"]},
+    "jobStatusLog": {
+      "sideEffects": [
+        {"name": "log/state", "config": {"value": ["jobStatus"]}}
+      ]}
   },
-  "configs": {
-    "prod": {"transitions": [{"change":  "Setup",
-                              "prototypes": ["base", "log"],
-                              "sideEffects":  [{"effect": "StateLogEffect", "args": ["debug"]}]}]
+  "steps": {
+    "digest/setup": {
+      "transition": "digest/setup",
+      "validation":  "digest/setup"
+    },
+    "digest/instructionFileRead": {
+      "transition": "digest/instructionFileRead",
+      "validation": "digest/instructionFileRead"
+    }
+  },
+  "pipelines": {
+    "prod": {
+      "prototypes": ["log"],
+      "steps": ["digest/setup", "digest/instructionFileRead"]
     }
   }
 }

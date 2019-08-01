@@ -2,7 +2,7 @@ package org.gobiiproject.gobiiprocess.digester.machine.log;
 
 import org.gobiiproject.gobiiprocess.digester.machine.Digester;
 import org.gobiiproject.gobiiprocess.digester.machine.DigesterState;
-import org.gobiiproject.gobiiprocess.machine.SideEffect;
+import org.gobiiproject.gobiiprocess.machine.components.SideEffect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,8 +1,8 @@
 package org.gobiiproject.gobiiprocess.digester.machine;
 
-import org.gobiiproject.gobiiprocess.machine.StateMachine;
+import org.gobiiproject.gobiiprocess.machine.components.Pipeline;
 
-public class Digester extends StateMachine<DigesterState> {
+public class Digester extends Pipeline<DigesterState> {
 
 	public Digester() {
 

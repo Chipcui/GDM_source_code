@@ -1,8 +1,8 @@
 package org.gobiiproject.gobiiprocess.digester.machine;
 
-import org.gobiiproject.gobiiprocess.machine.Transition;
+import org.gobiiproject.gobiiprocess.machine.components.Transition;
 
-public abstract class DigesterTransition extends Transition<DigesterState> {
+public abstract class DigesterTransition implements Transition<DigesterState> {
 
 
 }
