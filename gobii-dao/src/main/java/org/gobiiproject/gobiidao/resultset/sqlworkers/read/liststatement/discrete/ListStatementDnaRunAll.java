@@ -126,9 +126,18 @@ public class ListStatementDnaRunAll implements ListStatement {
                     "s.name as sample_name, \n" +
                     "g.germplasm_id, \n" +
                     "g.name as germplasm_name,  \n" +
-                    "g.external_code as germplasm_external_code \n" +
+                    "g.external_code as germplasm_external_code, \n" +
+                    "s.num,\n" +
+                    "s.well_row,\n" +
+                    "s.well_col,\n" +
+                    "gtype.term as germplasm_type,\n" +
+                    "species.term as species,\n" +
+                    "s.props as sample_props,\n" +
+                    "g.props as germplasm_props\n" +
                 "FROM \n" +
                     "dnarun dr, dnasample s, germplasm g \n" +
+                    "LEFT JOIN cv as gtype on g.type_id = gtype.cv_id \n" +
+                    "LEFT JOIN cv as species on g.species_id = species.cv_id\n" +
                 "WHERE \n" +
                     "dr.dnasample_id = s.dnasample_id \n" +
                     "and g.germplasm_id = s.germplasm_id\n" +
