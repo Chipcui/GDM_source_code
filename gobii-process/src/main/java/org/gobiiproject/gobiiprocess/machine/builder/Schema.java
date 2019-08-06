@@ -2,6 +2,7 @@ package org.gobiiproject.gobiiprocess.machine.builder;
 
 public class Schema {
 
+	public static final String PACKAGES = "packages";
 	public static final String PROTOTYPES = "prototypes";
 	public static final String STEPS = "steps";
 	public static final String PIPELINES = "pipelines";
@@ -32,5 +33,21 @@ public class Schema {
 
 	public static class SideEffect {
 		public static final String NAME = "name";
+		public static final String CONFIG = "config";
+	}
+
+	public static class Validation {
+		public static final String NAME = "name";
+		public static final String CONFIG = "config";
+	}
+
+	public static class Failure {
+		public static final String NAME = "name";
+		public static final String CONFIG = "config";
+	}
+
+	public static class Component {
+		public static final String NAME = "name";
+		public static final String CONFIG = "config";
 	}
 }

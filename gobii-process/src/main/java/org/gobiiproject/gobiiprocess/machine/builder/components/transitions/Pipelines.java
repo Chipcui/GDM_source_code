@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiprocess.machine.builder.components;
+package org.gobiiproject.gobiiprocess.machine.builder.components.transitions;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +13,7 @@ import org.gobiiproject.gobiiprocess.machine.components.Transition;
 public class Pipelines<S> implements Transition<BuilderState<S>> {
 
 	@Override
-	public void run(BuilderState<S> s0) {
+	public void accept(BuilderState<S> s0) {
 
 		JsonNode schema = s0.getSchema();
 
@@ -24,7 +24,7 @@ public class Pipelines<S> implements Transition<BuilderState<S>> {
 		final JsonNode pipelines = schema.get(Schema.PIPELINES);
 
 		if (! pipelines.isObject()) {
-			s0.setException(new BuildException("Prototype Schema must be of type Object"));
+			s0.getExceptions().add(new BuildException("Prototype Schema must be of type Object"));
 			return;
 		}
 
@@ -38,8 +38,8 @@ public class Pipelines<S> implements Transition<BuilderState<S>> {
 
 		JsonNode prototypesSchema = pipelineSchema.get(Schema.Pipeline.PROTOTYPES);
 
-		for (JsonNode protoTypeSchema : prototypesSchema) {
-			Prototype<S> prototype = state.getPrototypes().get(prototypesSchema.asText());
+		for (JsonNode prototypeSchema : prototypesSchema) {
+			Prototype<S> prototype = state.getPrototypes().get(prototypeSchema.asText());
 			if (prototype != null) {
 				pipeline.getPrototypes().add(prototype);
 			}

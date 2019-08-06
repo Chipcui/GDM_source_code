@@ -1,0 +1,23 @@
+{
+  "packages": ["org.gobiiproject.gobiiprocess.machine.components.builder"],
+  "prototypes": {
+    "test": {
+      "sideEffects": ["sideEffect", {"name":  "sideEffect", "config":  {"value": "test"}}]
+    }
+  },
+  "steps": {
+    "step0": {
+      "prototypes": ["test"],
+      "transition": "transition",
+      "validation": "validate",
+      "sideEffects": [{"name": "sideEffect", "config": {"value": "test"}}],
+      "failure": "failure"
+    }
+  },
+  "pipelines": {
+    "test": {
+      "prototypes": ["test"],
+      "steps": ["step0"]
+    }
+  }
+}

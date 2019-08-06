@@ -1,7 +1,8 @@
 package org.gobiiproject.gobiiprocess.machine.components;
 
 
-public interface Transition<S> {
+import java.util.function.Consumer;
 
-	void run(S s0);
+public interface Transition<S> extends Consumer<S> {
+
 }

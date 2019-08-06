@@ -1,7 +1,9 @@
 package org.gobiiproject.gobiiprocess.machine.components;
 
-@FunctionalInterface
-public interface Reaction<S> {
+import java.util.function.Consumer;
+import java.util.function.Function;
 
-	void react(S s0);
+@FunctionalInterface
+public interface Reaction<S> extends Function<S,Consumer<S>> {
+
 }

@@ -8,8 +8,8 @@ import java.util.List;
 @Data
 public class Prototype<S> {
 
-	private Validation<S> validation = s -> true;
-	private Failure<S> failure = s -> {};
+	private Validation<S> validation = s0 -> s1 -> true;
+	private Failure<S> failure = s0 -> (s1 -> {});
 	private List<SideEffect<S>> sideEffects = new LinkedList<>();
 
 }

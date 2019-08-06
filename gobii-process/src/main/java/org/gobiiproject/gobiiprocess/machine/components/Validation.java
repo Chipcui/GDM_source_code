@@ -1,7 +1,9 @@
 package org.gobiiproject.gobiiprocess.machine.components;
 
-@FunctionalInterface
-public interface Validation<S> {
+import java.util.function.Function;
+import java.util.function.Predicate;
 
-	boolean validate(S s0);
+@FunctionalInterface
+public interface Validation<S> extends Function<S,Predicate<S>> {
+
 }

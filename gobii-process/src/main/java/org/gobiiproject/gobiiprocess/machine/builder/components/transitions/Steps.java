@@ -1,9 +1,10 @@
-package org.gobiiproject.gobiiprocess.machine.builder.components;
+package org.gobiiproject.gobiiprocess.machine.builder.components.transitions;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.gobiiproject.gobiiprocess.machine.builder.BuildException;
 import org.gobiiproject.gobiiprocess.machine.builder.BuilderState;
 import org.gobiiproject.gobiiprocess.machine.builder.Schema;
+import org.gobiiproject.gobiiprocess.machine.builder.components.Util;
 import org.gobiiproject.gobiiprocess.machine.components.Prototype;
 import org.gobiiproject.gobiiprocess.machine.components.Step;
 import org.gobiiproject.gobiiprocess.machine.components.Transition;
@@ -12,7 +13,7 @@ public class Steps<S> implements Transition<BuilderState<S>> {
 
 
 	@Override
-	public void run(BuilderState<S> s0) {
+	public void accept(BuilderState<S> s0) {
 
 		JsonNode schema = s0.getSchema();
 
@@ -39,7 +40,7 @@ public class Steps<S> implements Transition<BuilderState<S>> {
 		if (proto.has(Schema.Step.PROTOTYPES)) {
 			for (JsonNode name : proto.get(Schema.Step.PROTOTYPES)) {
 				if (name.isTextual()) {
-					Prototype<S> prototype = state.getPrototypes().get(proto.asText());
+					Prototype<S> prototype = state.getPrototypes().get(name.asText());
 					if (prototype != null) {
 						step.getPrototypes().add(prototype);
 					}

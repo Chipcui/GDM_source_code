@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiprocess.machine.components;
+package org.gobiiproject.gobiiprocess.machine.builder;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,4 +10,5 @@ import java.lang.annotation.Target;
 public @interface Component {
 
 	String value();
+
 }

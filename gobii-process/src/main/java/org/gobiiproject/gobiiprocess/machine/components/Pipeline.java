@@ -4,6 +4,8 @@ import lombok.Data;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 @Data
 public class Pipeline<S> implements Transition<S> {
@@ -12,29 +14,76 @@ public class Pipeline<S> implements Transition<S> {
 
 	private List<Step<S>> steps = new LinkedList<>();
 
-	public void run(S s0) {
+	public void accept(S s0) {
 
 		for (Step<S> step : steps) {
 
-			step.getTransition().run(s0);
+			Predicate<S> validator = buildValidator(s0, step, prototypes);
+			Consumer<S> sideEffect = buildSideEffect(s0, step, prototypes);
+			Consumer<S> failure = buildFailure(s0, step, prototypes);
 
-			boolean validation = step.getValidation().validate(s0);
+			step.getTransition().accept(s0);
 
-			for (Prototype<S> proto : step.getPrototypes()) {
-				validation &= proto.getValidation().validate(s0);
-				if (! validation) {
-					break;
-				}
+			if (validator.test(s0)) {
+				sideEffect.accept(s0);
 			}
-
-			if (! validation) {
-				step.getFailure().react(s0);
-				for (Prototype<S> proto : prototypes) {
-					proto.getFailure().react(s0);
-				}
-
-				return;
+			else {
+				failure.accept(s0);
+				break;
 			}
 		}
+	}
+
+	private Predicate<S> buildValidator(S s0, Step<S> step, List<Prototype<S>> prototypes) {
+
+		Predicate<S> validator = step.getValidation().apply(s0);
+
+		for (Prototype<S> proto : prototypes) {
+			validator = validator.and(proto.getValidation().apply(s0));
+		}
+
+		for (Prototype<S> proto : step.getPrototypes()) {
+			validator = validator.and(proto.getValidation().apply(s0));
+		}
+
+		return validator;
+	}
+
+	private Consumer<S> buildSideEffect(S s0, Step<S> step, List<Prototype<S>> prototypes) {
+
+		Consumer<S> sideEffect = s -> {};
+
+		for (SideEffect<S> se : step.getSideEffects()) {
+			sideEffect = sideEffect.andThen(se.apply(s0));
+		}
+
+		for (Prototype<S> proto : prototypes) {
+			for (SideEffect<S> se : proto.getSideEffects()) {
+				sideEffect = sideEffect.andThen(se.apply(s0));
+			}
+		}
+
+		for (Prototype<S> proto : step.getPrototypes()) {
+			for (SideEffect<S> se : proto.getSideEffects()) {
+				sideEffect = sideEffect.andThen(se.apply(s0));
+			}
+		}
+
+		return sideEffect;
+	}
+
+	private Consumer<S> buildFailure(S s0, Step<S> step, List<Prototype<S>> prototypes) {
+
+		Consumer<S> failure = step.getFailure().apply(s0);
+
+		for (Prototype<S> proto : prototypes) {
+			failure = failure.andThen(proto.getFailure().apply(s0));
+		}
+
+		for (Prototype<S> proto : step.getPrototypes()) {
+			failure = failure.andThen(proto.getFailure().apply(s0));
+		}
+
+		return failure;
 	}
 }

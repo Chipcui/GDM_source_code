@@ -27,7 +27,8 @@ public class Util {
 			Class<T> componentClass = classes.get(name);
 
 			try {
-				component = new ObjectMapper().treeToValue(componentSchema, componentClass);
+				JsonNode config = componentSchema.get(Schema.Component.CONFIG);
+				component = new ObjectMapper().treeToValue(config, componentClass);
 			} catch (JsonProcessingException e) {
 				String message = String.format(COMPONENT_BUILD_EXCEPTION_TEMPLATE_WITH_ARGUMENTS,
 						                       componentClass.toString(),
@@ -35,8 +36,10 @@ public class Util {
 				state.getExceptions().add(new Exception(message, e));
 			}
 		} else if (componentSchema.isTextual()) {
+
 			final String name = componentSchema.asText();
 			Class<T> componentClass = classes.get(name);
+
 			try {
 				component = componentClass.newInstance();
 			} catch (InstantiationException | IllegalAccessException e) {
