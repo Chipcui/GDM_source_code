@@ -1,4 +1,5 @@
 {
+  "packages": ["org.gobiiproject.gobiiprocess.digester.machine", "org.gobiiproject.gobiiprocess.commons.machine"],
   "prototypes": {
     "log": {
       "sideEffects": ["log/info", "log/warn", "log/error"]},
@@ -8,19 +9,27 @@
       ]}
   },
   "steps": {
-    "digest/setup": {
+    "digester/setup": {
       "transition": "digest/setup",
       "validation":  "digest/setup"
     },
-    "digest/instructionFileRead": {
+    "digester/instructionFileRead": {
       "transition": "digest/instructionFileRead",
       "validation": "digest/instructionFileRead"
     }
   },
   "pipelines": {
-    "prod": {
+    "pipeline/digester/prod": {
       "prototypes": ["log"],
-      "steps": ["digest/setup", "digest/instructionFileRead"]
+      "steps": ["pipeline/digester/instruction-loader", "pipeline/digester/core"]
+    },
+    "pipeline/digester/instruction-loadeer": {
+      "prototypes": ["log"],
+      "steps": ["digest"]
+    },
+    "pipeline/digester/core": {
+      "prototypes": ["log"],
+      "steps": ["digester/instructionFileRead"]
     }
   }
 }

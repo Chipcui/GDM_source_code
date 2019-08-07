@@ -1,5 +1,6 @@
-package org.gobiiproject.gobiiprocess.digester.machine.log;
+package org.gobiiproject.gobiiprocess.commons.machine.log;
 
+import org.gobiiproject.gobiiprocess.commons.machine.CommonState;
 import org.gobiiproject.gobiiprocess.digester.machine.Digester;
 import org.gobiiproject.gobiiprocess.digester.machine.DigesterState;
 import org.gobiiproject.gobiiprocess.machine.components.SideEffect;
@@ -7,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public abstract class LogEffect implements SideEffect<DigesterState> {
+public abstract class LogEffect<T extends CommonState> implements SideEffect<T> {
 
 	public enum LogLevel {
 		DEBUG, INFO, WARN, ERROR

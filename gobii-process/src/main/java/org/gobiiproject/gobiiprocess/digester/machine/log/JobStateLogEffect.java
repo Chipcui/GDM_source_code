@@ -1,13 +1,15 @@
-//package org.gobiiproject.gobiiprocess.digester.machine.log;
-//
-//import org.gobiiproject.gobiiprocess.digester.machine.DigesterState;
-//import org.gobiiproject.gobiiprocess.machine.builder.Component;
-//
-//@Component("log/jobState")
-//public class JobStateLogEffect extends LogEffect {
-//
-//	@Override
-//	public void react(DigesterState s0) {
-//
-//	}
-//}
+package org.gobiiproject.gobiiprocess.digester.machine.log;
+
+import org.gobiiproject.gobiiprocess.digester.machine.DigesterState;
+import org.gobiiproject.gobiiprocess.machine.builder.Component;
+
+import java.util.function.Consumer;
+
+@Component("log/jobState")
+public class JobStateLogEffect extends DigesterLogEffect {
+
+	@Override
+	public Consumer<DigesterState> apply(DigesterState s0) {
+		return null;
+	}
+}

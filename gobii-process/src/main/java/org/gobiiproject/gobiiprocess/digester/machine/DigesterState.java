@@ -1,26 +1,15 @@
 package org.gobiiproject.gobiiprocess.digester.machine;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Wither;
+import lombok.Data;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderProcedure;
 import org.gobiiproject.gobiiprocess.JobStatus;
+import org.gobiiproject.gobiiprocess.commons.machine.CommonState;
 
-import java.util.LinkedList;
-import java.util.List;
+@Data
+public class DigesterState extends CommonState {
 
-@Getter
-@Wither
-@NoArgsConstructor
-public class DigesterState {
+	private GobiiLoaderProcedure procedure;
 
-//	private GobiiLoaderProcedure procedure;
-//
-//	private JobStatus jobStatus;
-//
-//	private List<String> debugLog = new LinkedList<>();
-//	private List<String> infoLog = new LinkedList<>();
-//	private List<String> warningLog = new LinkedList<>();
-//	private List<String> errorLog = new LinkedList<>();
+	private JobStatus jobStatus;
 
 }
