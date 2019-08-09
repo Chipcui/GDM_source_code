@@ -15,7 +15,7 @@ public class Pipelines<S> implements Transition<BuilderState<S>> {
 	@Override
 	public void accept(BuilderState<S> s0) {
 
-		JsonNode schema = s0.getSchema();
+		final JsonNode schema = s0.getSchema();
 
 		if (! schema.has(Schema.PIPELINES)) {
 			return;
@@ -50,7 +50,7 @@ public class Pipelines<S> implements Transition<BuilderState<S>> {
 		for (JsonNode stepSchema : stepsSchema) {
 			final Step<S> step = state.getSteps().get(stepSchema.asText());
 			if (step != null) {
-				pipeline.getSteps().add(step);
+				pipeline.getPipes().add(step);
 			}
 		}
 

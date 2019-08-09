@@ -11,7 +11,7 @@
   "steps": {
     "digester/setup": {
       "transition": "digest/setup",
-      "validation":  "digest/setup"
+      "validation": "digest/setup"
     },
     "digester/instructionFileRead": {
       "transition": "digest/instructionFileRead",
@@ -23,7 +23,7 @@
       "prototypes": ["log"],
       "steps": ["pipeline/digester/instruction-loader", "pipeline/digester/core"]
     },
-    "pipeline/digester/instruction-loadeer": {
+    "pipeline/digester/instruction-loader": {
       "prototypes": ["log"],
       "steps": ["digest"]
     },

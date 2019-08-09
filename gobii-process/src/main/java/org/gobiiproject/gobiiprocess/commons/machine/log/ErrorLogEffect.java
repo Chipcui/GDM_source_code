@@ -6,10 +6,17 @@ import org.gobiiproject.gobiiprocess.machine.builder.Component;
 import java.util.function.Consumer;
 
 @Component("log/error")
-public class ErrorLogEffect extends LogEffect {
+public class ErrorLogEffect extends LogEffect<CommonState> {
 
 	@Override
 	public Consumer<CommonState> apply(CommonState s0) {
-		return null;
+
+		final int numErrors = s0.getErrorLog().size();
+		return s1 -> {
+			for (int i = numErrors ; i < s1.getErrorLog().size() ; i++) {
+
+			}
+		};
 	}
+
 }

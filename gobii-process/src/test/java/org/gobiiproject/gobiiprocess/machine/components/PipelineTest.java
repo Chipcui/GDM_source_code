@@ -31,7 +31,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -48,7 +48,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -72,7 +72,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -93,7 +93,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -114,7 +114,7 @@ public class PipelineTest {
 		step.setFailure(failure);
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		pipeline.accept(state);
 
@@ -132,7 +132,7 @@ public class PipelineTest {
 		step.getPrototypes().add(prototype);
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -151,7 +151,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 		pipeline.getPrototypes().add(prototype);
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -171,7 +171,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 		pipeline.getPrototypes().add(prototype);
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -190,7 +190,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 		pipeline.getPrototypes().add(prototype);
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -210,7 +210,7 @@ public class PipelineTest {
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
 		pipeline.getPrototypes().add(prototype);
-		pipeline.getSteps().add(step);
+		pipeline.getPipes().add(step);
 
 		TestState state = new TestState();
 
@@ -233,8 +233,8 @@ public class PipelineTest {
 		step1.setFailure(failure);
 
 		Pipeline<TestState> pipeline = new Pipeline<>();
-		pipeline.getSteps().add(step0);
-		pipeline.getSteps().add(step1);
+		pipeline.getPipes().add(step0);
+		pipeline.getPipes().add(step1);
 
 		TestState state = new TestState();
 
@@ -243,6 +243,53 @@ public class PipelineTest {
 		assertEquals(2, state.val);
 		assertTrue(state.sideEffectCalled);
 		assertTrue(state.failureCalled);
+	}
+
+	@Test
+	public void testFork() {
+
+		Transition<TestState> positiveTransition = s -> s.val = 10;
+		Transition<TestState> negativeTransition = s -> s.val = -10;
+
+		Step<TestState> positiveBranch = new Step<>();
+		positiveBranch.setTransition(positiveTransition);
+
+		Step<TestState> negativeBranch = new Step<>();
+		negativeBranch.setTransition(negativeTransition);
+
+		Gate<TestState> positiveGate = s -> s.val > 0;
+		Gate<TestState> negativeGate = s -> s.val < 0;
+
+		Fork<TestState> fork = new Fork<>();
+		fork.getBranches().put(positiveGate, positiveBranch);
+		fork.getBranches().put(negativeGate, negativeBranch);
+
+		Step<TestState> mainBranch = new Step<>();
+
+		Transition<TestState> incrementTransition = s -> s.val++;
+		Transition<TestState> decrementTransition = s -> s.val--;
+
+		Pipeline<TestState> pipeline = new Pipeline<>();
+		pipeline.getPipes().add(mainBranch);
+		pipeline.getPipes().add(fork);
+
+		TestState state = new TestState();
+
+		// Neither branch taken
+		pipeline.accept(state);
+		assertEquals(state.val, 0);
+
+		// Positive branch taken
+		state.val = 0;
+		mainBranch.setTransition(incrementTransition);
+		pipeline.accept(state);
+		assertEquals(state.val, 10);
+
+		// Negative branch taken
+		state.val = 0;
+		mainBranch.setTransition(decrementTransition);
+		pipeline.accept(state);
+
 	}
 
 	static class TestState {

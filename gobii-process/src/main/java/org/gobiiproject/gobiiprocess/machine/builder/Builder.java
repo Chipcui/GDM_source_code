@@ -2,10 +2,7 @@ package org.gobiiproject.gobiiprocess.machine.builder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.gobiiproject.gobiiprocess.machine.builder.components.failures.ExceptionFailure;
-import org.gobiiproject.gobiiprocess.machine.builder.components.transitions.Pipelines;
-import org.gobiiproject.gobiiprocess.machine.builder.components.transitions.Prototypes;
-import org.gobiiproject.gobiiprocess.machine.builder.components.transitions.Setup;
-import org.gobiiproject.gobiiprocess.machine.builder.components.transitions.Steps;
+import org.gobiiproject.gobiiprocess.machine.builder.components.transitions.*;
 import org.gobiiproject.gobiiprocess.machine.builder.components.validations.ExceptionValidator;
 import org.gobiiproject.gobiiprocess.machine.components.*;
 
@@ -33,21 +30,29 @@ public class Builder<S> {
 		Step<BuilderState<S>> prototypesStep = new Step<>();
 		prototypesStep.setTransition(new Prototypes<>());
 
+		Step<BuilderState<S>> forkInitializationStep = new Step<>();
+		forkInitializationStep.setTransition(new ForkInitialization<>());
+
 		Step<BuilderState<S>> stepsStep = new Step<>();
 		stepsStep.setTransition(new Steps<>());
 
 		Step<BuilderState<S>> pipelinesStep = new Step<>();
 		pipelinesStep.setTransition(new Pipelines<>());
 
+		Step<BuilderState<S>> forkFulfillmentStep = new Step<>();
+		forkFulfillmentStep.setTransition(new ForkFulfillment<>());
+
 		// Pipeline
 		Pipeline<BuilderState<S>> pipeline = new Pipeline<>();
 
 		pipeline.getPrototypes().add(exceptionHandlingPrototype);
 
-		pipeline.getSteps().add(setupStep);
-		pipeline.getSteps().add(prototypesStep);
-		pipeline.getSteps().add(stepsStep);
-		pipeline.getSteps().add(pipelinesStep);
+		pipeline.getPipes().add(setupStep);
+		pipeline.getPipes().add(prototypesStep);
+		pipeline.getPipes().add(forkInitializationStep);
+		pipeline.getPipes().add(stepsStep);
+		pipeline.getPipes().add(pipelinesStep);
+		pipeline.getPipes().add(forkFulfillmentStep);
 
 		return pipeline;
 	}

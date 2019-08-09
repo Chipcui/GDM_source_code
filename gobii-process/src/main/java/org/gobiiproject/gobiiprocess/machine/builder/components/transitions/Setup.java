@@ -8,6 +8,7 @@ import org.gobiiproject.gobiiprocess.machine.builder.Schema;
 import org.gobiiproject.gobiiprocess.machine.components.*;
 import org.reflections.Reflections;
 
+import java.lang.reflect.Field;
 import java.util.Set;
 
 @Data
@@ -25,6 +26,7 @@ public class Setup<S> implements Transition<BuilderState<S>> {
 			loadSideEffects(s0, pack.asText());
 			loadValidations(s0, pack.asText());
 			loadFailures(s0, pack.asText());
+			loadGates(s0, pack.asText());
 		}
 
 	}
@@ -73,6 +75,23 @@ public class Setup<S> implements Transition<BuilderState<S>> {
 			if (subtype.isAnnotationPresent(Component.class)) {
 				String name = subtype.getAnnotation(Component.class).value();
 				s0.getFailures().put(name, (Class<Failure<S>>) subtype);
+			}
+		}
+	}
+
+	private void loadGates(BuilderState<S> s0, String prefix) {
+
+		Set<Class<? extends Gate>> subtypes = new Reflections().getSubTypesOf(Gate.class);
+
+		for (Class<? extends Gate> subtype : subtypes) {
+			if (subtype.isAnnotationPresent(Component.class)) {
+				String name = subtype.getAnnotation(Component.class).value();
+				try {
+					Gate<S> gate = subtype.newInstance();
+					s0.getGates().put(name, gate);
+				} catch (Exception e) {
+					s0.getExceptions().add(e);
+				}
 			}
 		}
 	}

@@ -11,9 +11,7 @@ import org.reflections.Reflections;
 
 import java.io.*;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -33,10 +31,14 @@ public class BuilderTest {
 
 		Pipeline<TestState> pipeline = pipelines.get("test");
 
-		assertNotNull(pipeline);
-		assertFalse(pipeline.getSteps().isEmpty());
+		assertEquals(2, pipeline.getPipes().size());
 
-		Step<TestState> step0 = pipeline.getSteps().get(0);
+		assertNotNull(pipeline);
+		assertFalse(pipeline.getPipes().isEmpty());
+
+		assertTrue(pipeline.getPipes().get(0) instanceof Step);
+
+		Step<TestState> step0 = (Step<TestState>) pipeline.getPipes().get(0);
 
 		assertNotNull(step0.getTransition());
 		assertTrue(step0.getTransition() instanceof TestTransition);
@@ -68,6 +70,34 @@ public class BuilderTest {
 		assertNotNull(step0.getPrototypes().get(0).getSideEffects().get(1));
 		assertTrue(step0.getPrototypes().get(0).getSideEffects().get(1) instanceof TestSideEffect);
 		assertEquals("test", ((TestSideEffect) step0.getPrototypes().get(0).getSideEffects().get(1)).value);
+
+		assertTrue(pipeline.getPipes().get(1) instanceof Fork);
+
+		Fork<TestState> fork = (Fork<TestState>) pipeline.getPipes().get(1);
+
+		assertEquals(2, fork.getBranches().size());
+
+		List<Gate<TestState>> gates = new ArrayList<>();
+		List<Pipe<TestState>> pipes = new ArrayList<>();
+		fork.getBranches().forEach((gate, pipe) -> { gates.add((Gate<TestState>) gate); pipes.add(pipe);});
+
+		assertEquals(2, gates.size());
+		assertEquals(2, pipes.size());
+
+		assertTrue(gates.get(0) instanceof Gate0);
+		assertTrue(gates.get(1) instanceof Gate1);
+
+		assertTrue(pipes.get(0) instanceof Pipeline);
+
+		Pipeline<TestState> branch0Pipeline = (Pipeline<TestState>) pipes.get(0);
+
+		assertNotNull(branch0Pipeline);
+		assertNotNull(branch0Pipeline.getPipes());
+		assertEquals(1, branch0Pipeline.getPipes().size());
+		assertEquals(pipeline.getPipes().get(0), branch0Pipeline.getPipes().get(0));
+
+		assertTrue(pipes.get(1) instanceof Pipeline);
+		assertEquals(pipeline, pipes.get(1));
 
 		assertNotNull(pipeline.getPrototypes());
 		assertFalse(pipeline.getPrototypes().isEmpty());
@@ -146,4 +176,21 @@ public class BuilderTest {
 		}
 	}
 
+	@Component("gate0")
+	public static class Gate0 implements Gate<TestState> {
+
+		@Override
+		public boolean test(TestState testState) {
+			return false;
+		}
+	}
+
+	@Component("gate1")
+	public static class Gate1 implements Gate<TestState> {
+
+		@Override
+		public boolean test(TestState testState) {
+			return false;
+		}
+	}
 }

@@ -14,10 +14,16 @@
       "failure": "failure"
     }
   },
+  "forks": {
+    "fork0": {
+      "gate0": ["step0"],
+      "gate1": "test"
+    }
+  },
   "pipelines": {
     "test": {
       "prototypes": ["test"],
-      "steps": ["step0"]
+      "steps": ["step0", "fork0"]
     }
   }
 }

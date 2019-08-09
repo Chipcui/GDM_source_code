@@ -9,6 +9,5 @@ import java.util.List;
 public class Step<S> extends Prototype<S> {
 
 	private List<Prototype<S>> prototypes = new LinkedList<>();
-	private Transition<S> transition = s -> {};
 
 }

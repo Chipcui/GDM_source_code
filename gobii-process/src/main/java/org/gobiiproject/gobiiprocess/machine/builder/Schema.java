@@ -4,6 +4,7 @@ public class Schema {
 
 	public static final String PACKAGES = "packages";
 	public static final String PROTOTYPES = "prototypes";
+	public static final String FORKS = "forks";
 	public static final String STEPS = "steps";
 	public static final String PIPELINES = "pipelines";
 

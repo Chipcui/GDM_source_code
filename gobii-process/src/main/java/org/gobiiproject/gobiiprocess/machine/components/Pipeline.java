@@ -8,15 +8,27 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 @Data
-public class Pipeline<S> implements Transition<S> {
+public class Pipeline<S> implements Pipe<S> {
 
 	private List<Prototype<S>> prototypes = new LinkedList<>();
 
-	private List<Step<S>> steps = new LinkedList<>();
+	private List<Pipe<S>> pipes = new LinkedList<>();
 
 	public void accept(S s0) {
 
-		for (Step<S> step : steps) {
+		for (Pipe<S> pipe : pipes) {
+			if (runPipe(pipe, s0)) {
+				continue;
+			} else {
+				break;
+			}
+		}
+	}
+
+	private boolean runPipe(Pipe<S> pipe, S s0) {
+
+		if (pipe instanceof Step) {
+			Step<S> step = (Step<S>) pipe;
 
 			Predicate<S> validator = buildValidator(s0, step, prototypes);
 			Consumer<S> sideEffect = buildSideEffect(s0, step, prototypes);
@@ -26,12 +38,18 @@ public class Pipeline<S> implements Transition<S> {
 
 			if (validator.test(s0)) {
 				sideEffect.accept(s0);
-			}
-			else {
+			} else {
 				failure.accept(s0);
-				break;
+				return false;
 			}
+		} else if (pipe instanceof Fork) {
+			Fork<S> fork = (Fork<S>) pipe;
+
+			Pipe<S> forkPipe = fork.apply(s0);
+			return runPipe(forkPipe, s0);
 		}
+
+		return true;
 	}
 
 	private Predicate<S> buildValidator(S s0, Step<S> step, List<Prototype<S>> prototypes) {
