@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.gobiiproject.gobiiprocess.machine.builder.*;
-import org.gobiiproject.gobiiprocess.machine.components.Dependency;
+import org.gobiiproject.gobiiprocess.machine.builder.Dependency;
 import org.gobiiproject.gobiiprocess.machine.components.Fundamental;
 import org.gobiiproject.gobiiprocess.machine.exceptions.DependencyException;
 
@@ -13,7 +13,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -87,7 +86,7 @@ public class Util {
 
 			final String dependencyName = field.getAnnotation(Dependent.class).value();
 
-			Dependency dependency = null;
+			Object dependency = null;
 
 			if (s0.getDependencies().containsKey(dependencyName)) {
 				dependency = s0.getDependencies().get(dependencyName);
@@ -100,10 +99,13 @@ public class Util {
 								fundamental.getClass().getAnnotation(Component.class).value()));
 			}
 
-			if (! dependency.isValid()) {
-				dependency.initialize();
-				if (! dependency.isValid()) {
-					throw new DependencyException(String.format("Dependency of name %s could not be initialized", dependencyName));
+			if (dependency instanceof Dependency) {
+				Dependency d = (Dependency) dependency;
+				if (! d.isValid()) {
+					d.initialize();
+					if (! d.isValid()) {
+						throw new DependencyException(String.format("Dependency of name %s could not be initialized", dependencyName));
+					}
 				}
 			}
 

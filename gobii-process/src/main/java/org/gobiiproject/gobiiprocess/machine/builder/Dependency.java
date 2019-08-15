@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiprocess.machine.components;
+package org.gobiiproject.gobiiprocess.machine.builder;
 
 public interface Dependency {
 

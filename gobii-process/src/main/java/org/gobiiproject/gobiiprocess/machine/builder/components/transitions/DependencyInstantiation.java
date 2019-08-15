@@ -30,17 +30,9 @@ public class DependencyInstantiation<S> implements Transition<BuilderState<S>> {
 
 	}
 
-	private Dependency buildDependency(String name, JsonNode dependencySchema, BuilderState<S> s0) {
+	private Object buildDependency(String name, JsonNode dependencySchema, BuilderState<S> s0) {
 		Class<?> implementedClass = s0.getImplementedDependencies().get(name);
-		Object dependency = new ObjectMapper().convertValue(dependencySchema, implementedClass);
-
-		if (dependency instanceof Dependency) {
-			return (Dependency) dependency;
-		} else {
-			s0.getExceptions().add(
-					new BuildException(String.format("Dependency implementation must inherit from Dependency: %s", implementedClass)));
-			return null;
-		}
+		return new ObjectMapper().convertValue(dependencySchema, implementedClass);
 	}
 
 }
