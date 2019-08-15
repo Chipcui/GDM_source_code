@@ -14,9 +14,9 @@ public class Slf4jLogger implements @Implementation("logger") Logger {
 	public void log(LogLevel logLevel, String log) {
 
 		final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-		final String callingClass;
+		String callingClass = null;
 		if (stackTrace.length > 1) {
-			stackTrace[1].getClassName();
+			callingClass = stackTrace[1].getClassName();
 		} else {
 			callingClass = "";
 		}
