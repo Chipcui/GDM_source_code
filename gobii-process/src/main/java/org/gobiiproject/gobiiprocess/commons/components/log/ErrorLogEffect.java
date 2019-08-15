@@ -1,6 +1,6 @@
-package org.gobiiproject.gobiiprocess.commons.machine.log;
+package org.gobiiproject.gobiiprocess.commons.components.log;
 
-import org.gobiiproject.gobiiprocess.commons.machine.CommonState;
+import org.gobiiproject.gobiiprocess.commons.components.CommonState;
 import org.gobiiproject.gobiiprocess.machine.builder.Component;
 
 import java.util.function.Consumer;

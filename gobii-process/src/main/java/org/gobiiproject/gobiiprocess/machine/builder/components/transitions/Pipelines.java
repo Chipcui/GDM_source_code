@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gobiiproject.gobiiprocess.machine.builder.BuildException;
 import org.gobiiproject.gobiiprocess.machine.builder.BuilderState;
 import org.gobiiproject.gobiiprocess.machine.builder.Schema;
-import org.gobiiproject.gobiiprocess.machine.components.Pipeline;
-import org.gobiiproject.gobiiprocess.machine.components.Prototype;
-import org.gobiiproject.gobiiprocess.machine.components.Step;
-import org.gobiiproject.gobiiprocess.machine.components.Transition;
+import org.gobiiproject.gobiiprocess.machine.components.*;
 
 public class Pipelines<S> implements Transition<BuilderState<S>> {
 
@@ -48,9 +45,12 @@ public class Pipelines<S> implements Transition<BuilderState<S>> {
 		JsonNode stepsSchema = pipelineSchema.get(Schema.Pipeline.STEPS);
 
 		for (JsonNode stepSchema : stepsSchema) {
-			final Step<S> step = state.getSteps().get(stepSchema.asText());
-			if (step != null) {
-				pipeline.getPipes().add(step);
+			final Pipe<S> pipe = state.getPipe(stepSchema.asText());
+			if (pipe != null) {
+				pipeline.getPipes().add(pipe);
+			} else {
+				state.getExceptions().add(new BuildException("Pipe not found " + stepSchema.asText()));
+				return null;
 			}
 		}
 

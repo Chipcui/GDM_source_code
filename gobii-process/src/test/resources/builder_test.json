@@ -1,5 +1,15 @@
 {
   "packages": ["org.gobiiproject.gobiiprocess.machine.components.builder"],
+  "dependencies": {
+    "defaults": {
+      "dependency/test": "dependency/test/impl"
+    },
+    "implementations": {
+      "dependency/test/impl": {
+        "testField": "test"
+      }
+    }
+  },
   "prototypes": {
     "test": {
       "sideEffects": ["sideEffect", {"name":  "sideEffect", "config":  {"value": "test"}}]
@@ -12,6 +22,9 @@
       "validation": "validate",
       "sideEffects": [{"name": "sideEffect", "config": {"value": "test"}}],
       "failure": "failure"
+    },
+    "step1": {
+      "transition": "dependent"
     }
   },
   "forks": {
@@ -23,7 +36,7 @@
   "pipelines": {
     "test": {
       "prototypes": ["test"],
-      "steps": ["step0", "fork0"]
+      "steps": ["step0", "fork0", "step1"]
     }
   }
 }

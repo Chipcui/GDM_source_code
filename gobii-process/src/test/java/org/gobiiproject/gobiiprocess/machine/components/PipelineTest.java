@@ -1,6 +1,11 @@
 package org.gobiiproject.gobiiprocess.machine.components;
 
+import org.gobiiproject.gobiiprocess.machine.builder.Implementation;
 import org.junit.Test;
+import org.reflections.Reflections;
+
+import java.util.Set;
+import java.util.function.Consumer;
 
 import static org.junit.Assert.*;
 
@@ -35,7 +40,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertEquals(1, state.val);
 	}
@@ -52,7 +57,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.validationCalled);
 	}
@@ -76,7 +81,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.sideEffectCalled);
 		assertFalse(state.failureCalled);
@@ -97,7 +102,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.validationCalled);
 	}
@@ -116,7 +121,7 @@ public class PipelineTest {
 		Pipeline<TestState> pipeline = new Pipeline<>();
 		pipeline.getPipes().add(step);
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertFalse(state.sideEffectCalled);
 		assertTrue(state.failureCalled);
@@ -136,7 +141,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.sideEffectCalled);
 	}
@@ -155,7 +160,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.validationCalled);
 	}
@@ -175,7 +180,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.failureCalled);
 	}
@@ -194,7 +199,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.sideEffectCalled);
 	}
@@ -214,7 +219,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertTrue(state.failureCalled);
 	}
@@ -238,7 +243,7 @@ public class PipelineTest {
 
 		TestState state = new TestState();
 
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 		assertEquals(2, state.val);
 		assertTrue(state.sideEffectCalled);
@@ -276,19 +281,19 @@ public class PipelineTest {
 		TestState state = new TestState();
 
 		// Neither branch taken
-		pipeline.accept(state);
+		pipeline.apply(state);
 		assertEquals(state.val, 0);
 
 		// Positive branch taken
 		state.val = 0;
 		mainBranch.setTransition(incrementTransition);
-		pipeline.accept(state);
+		pipeline.apply(state);
 		assertEquals(state.val, 10);
 
 		// Negative branch taken
 		state.val = 0;
 		mainBranch.setTransition(decrementTransition);
-		pipeline.accept(state);
+		pipeline.apply(state);
 
 	}
 

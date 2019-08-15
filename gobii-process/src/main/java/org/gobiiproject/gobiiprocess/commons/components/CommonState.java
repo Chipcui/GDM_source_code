@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiprocess.commons.machine;
+package org.gobiiproject.gobiiprocess.commons.components;
 
 import lombok.Data;
 

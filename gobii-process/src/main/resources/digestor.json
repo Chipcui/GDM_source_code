@@ -1,5 +1,13 @@
 {
   "packages": ["org.gobiiproject.gobiiprocess.digester.machine", "org.gobiiproject.gobiiprocess.commons.machine"],
+  "dependencies": {
+    "logger": {
+      "class": "org.gobiiprocess.commons.dependencies.Logger",
+      "config": {
+        "target": "digester"
+      }
+    }
+  },
   "prototypes": {
     "log": {
       "sideEffects": ["log/info", "log/warn", "log/error"]},

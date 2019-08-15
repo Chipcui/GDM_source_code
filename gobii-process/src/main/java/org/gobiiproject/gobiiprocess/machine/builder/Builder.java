@@ -27,6 +27,12 @@ public class Builder<S> {
 		Step<BuilderState<S>> setupStep = new Step<>();
 		setupStep.setTransition(new Setup<>());
 
+		Step<BuilderState<S>> dependenciesInitializationStep = new Step<>();
+		dependenciesInitializationStep.setTransition(new DependencyInitialization<>());
+
+		Step<BuilderState<S>> dependenciesInstantiationStep = new Step<>();
+		dependenciesInstantiationStep.setTransition(new DependencyInstantiation<>());
+
 		Step<BuilderState<S>> prototypesStep = new Step<>();
 		prototypesStep.setTransition(new Prototypes<>());
 
@@ -48,6 +54,8 @@ public class Builder<S> {
 		pipeline.getPrototypes().add(exceptionHandlingPrototype);
 
 		pipeline.getPipes().add(setupStep);
+		pipeline.getPipes().add(dependenciesInitializationStep);
+		pipeline.getPipes().add(dependenciesInstantiationStep);
 		pipeline.getPipes().add(prototypesStep);
 		pipeline.getPipes().add(forkInitializationStep);
 		pipeline.getPipes().add(stepsStep);
@@ -63,7 +71,7 @@ public class Builder<S> {
 		BuilderState<S> state = new BuilderState<>();
 		state.setSchema(schema);
 
-		builderPipeline.accept(state);
+		builderPipeline.apply(state);
 
 		return state.getPipelines();
 	}

@@ -5,10 +5,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-public class BuildException extends Exception {
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Implementation {
 
-	public BuildException(String msg) {
-		super(msg);
-	}
-
+	String value();
 }

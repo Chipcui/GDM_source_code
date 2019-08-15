@@ -26,17 +26,17 @@ public class ForkFulfillment<S> implements Transition<BuilderState<S>> {
 		final JsonNode forks = schema.get(Schema.FORKS);
 
 		forks.fieldNames().forEachRemaining(
-				f -> s0.getForks().put(f, fulfillFork(forks.get(f), s0)));
+				f -> s0.getForks().put(f, fulfillFork(f, forks.get(f), s0)));
 	}
 
-	private Fork<S> fulfillFork(JsonNode forkSchema, BuilderState<S> s0) {
+	private Fork<S> fulfillFork(String name, JsonNode forkSchema, BuilderState<S> s0) {
 
 		if (! forkSchema.isObject()) {
 			s0.getExceptions().add(new BuildException("Branch Schema must be of type Object"));
 			return null;
 		}
 
-		Fork<S> fork = new Fork<S>();
+		Fork<S> fork = s0.getForks().get(name);
 
 		forkSchema.fieldNames().forEachRemaining(
 				f -> fork.getBranches().put(s0.getGates().get(f), buildBranch(s0, forkSchema.get(f))));

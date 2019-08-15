@@ -5,8 +5,7 @@ import org.gobiiproject.gobiiprocess.machine.builder.BuildException;
 import org.gobiiproject.gobiiprocess.machine.builder.BuilderState;
 import org.gobiiproject.gobiiprocess.machine.builder.Schema;
 import org.gobiiproject.gobiiprocess.machine.builder.components.Util;
-import org.gobiiproject.gobiiprocess.machine.components.Prototype;
-import org.gobiiproject.gobiiprocess.machine.components.Transition;
+import org.gobiiproject.gobiiprocess.machine.components.*;
 
 public class Prototypes<S> implements Transition<BuilderState<S>> {
 
@@ -34,21 +33,26 @@ public class Prototypes<S> implements Transition<BuilderState<S>> {
 
 		Prototype<S> prototype = new Prototype<>();
 
+		if (proto.has(Schema.Prototype.TRANSITION)) {
+			JsonNode transitionSchema = proto.get(Schema.Prototype.TRANSITION);
+			prototype.setTransition((Transition<S>) Util.buildComponent(state, state.getValidations(), transitionSchema));
+		}
+
 		if (proto.has(Schema.Prototype.SIDE_EFFECTS)) {
 			JsonNode sideEffectSchema = proto.get(Schema.Prototype.SIDE_EFFECTS);
 			for (JsonNode n : sideEffectSchema) {
-				prototype.getSideEffects().add(Util.buildComponent(state, state.getSideEffects(), n));
+				prototype.getSideEffects().add((SideEffect<S>) Util.buildComponent(state, state.getSideEffects(), n));
 			}
 		}
 
 		if (proto.has(Schema.Prototype.VALIDATION)) {
-			JsonNode sideEffectSchema = proto.get(Schema.Prototype.VALIDATION);
-			prototype.setValidation(Util.buildComponent(state, state.getValidations(), sideEffectSchema));
+			JsonNode validationSchema = proto.get(Schema.Prototype.VALIDATION);
+			prototype.setValidation((Validation<S>) Util.buildComponent(state, state.getValidations(), validationSchema));
 		}
 
 		if (proto.has(Schema.Prototype.FAILURE)) {
-			JsonNode sideEffectSchema = proto.get(Schema.Prototype.FAILURE);
-			prototype.setFailure(Util.buildComponent(state, state.getFailures(), sideEffectSchema));
+			JsonNode failureSchema = proto.get(Schema.Prototype.FAILURE);
+			prototype.setFailure((Failure<S>) Util.buildComponent(state, state.getFailures(), failureSchema));
 		}
 
 		return prototype;

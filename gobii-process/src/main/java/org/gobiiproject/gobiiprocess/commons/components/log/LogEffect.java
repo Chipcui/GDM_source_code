@@ -1,12 +1,10 @@
-package org.gobiiproject.gobiiprocess.commons.machine.log;
+package org.gobiiproject.gobiiprocess.commons.components.log;
 
-import org.gobiiproject.gobiiprocess.commons.machine.CommonState;
+import org.gobiiproject.gobiiprocess.commons.components.CommonState;
 import org.gobiiproject.gobiiprocess.digester.machine.Digester;
-import org.gobiiproject.gobiiprocess.digester.machine.DigesterState;
 import org.gobiiproject.gobiiprocess.machine.components.SideEffect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 public abstract class LogEffect<T extends CommonState> implements SideEffect<T> {
 

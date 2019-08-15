@@ -16,6 +16,12 @@ public class BuilderState<S> {
 
 	private Pipeline<S> stateMachine = new Pipeline<>();
 
+	private Map<String, Class<?>> abstractDependencies = new HashMap<>();
+	private Map<String, Class<?>> implementedDependencies = new HashMap<>();
+
+	private Map<String, String> defaultImplementations = new HashMap<>();
+	private Map<String, Dependency> dependencies = new HashMap<>();
+
 	private Map<String, Class<SideEffect<S>>> sideEffects = new HashMap<>();
 	private Map<String, Class<Transition<S>>> transitions = new HashMap<>();
 	private Map<String, Class<Failure<S>>> failures = new HashMap<>();
@@ -27,6 +33,7 @@ public class BuilderState<S> {
 	private Map<String, Step<S>> steps = new HashMap<>();
 	private Map<String, Pipeline<S>> pipelines = new HashMap<>();
 
+
 	private List<Exception> exceptions = new LinkedList<>();
 
 	public Pipe<S> getPipe(String name) {
@@ -35,6 +42,8 @@ public class BuilderState<S> {
 			return pipelines.get(name);
 		} else if (steps.containsKey(name)) {
 			return steps.get(name);
+		} else if (forks.containsKey(name)) {
+			return forks.get(name);
 		}
 
 		return null;

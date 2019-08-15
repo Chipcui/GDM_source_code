@@ -3,8 +3,7 @@ package org.gobiiproject.gobiiprocess.machine.components.builder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
-import org.gobiiproject.gobiiprocess.machine.builder.Builder;
-import org.gobiiproject.gobiiprocess.machine.builder.Component;
+import org.gobiiproject.gobiiprocess.machine.builder.*;
 import org.gobiiproject.gobiiprocess.machine.components.*;
 import org.junit.Test;
 import org.reflections.Reflections;
@@ -31,7 +30,7 @@ public class BuilderTest {
 
 		Pipeline<TestState> pipeline = pipelines.get("test");
 
-		assertEquals(2, pipeline.getPipes().size());
+		assertEquals(3, pipeline.getPipes().size());
 
 		assertNotNull(pipeline);
 		assertFalse(pipeline.getPipes().isEmpty());
@@ -113,6 +112,18 @@ public class BuilderTest {
 		assertNotNull(pipeline.getPrototypes().get(0).getSideEffects().get(1));
 		assertTrue(pipeline.getPrototypes().get(0).getSideEffects().get(1) instanceof TestSideEffect);
 		assertEquals("test", ((TestSideEffect) pipeline.getPrototypes().get(0).getSideEffects().get(1)).value);
+
+		assertTrue(pipeline.getPipes().get(2) instanceof Step);
+
+		Step<TestState> step1 = (Step<TestState>) pipeline.getPipes().get(2);
+		assertNotNull(step1);
+		assertTrue(step1.getTransition() instanceof DependentTest);
+
+		DependentTest dt = (DependentTest) step1.getTransition();
+
+		assertNotNull(dt.getA());
+		assertNotNull(dt.getB());
+		assertEquals(dt.getA(), dt.getB());
 	}
 
 	private String slurpResource(String path) throws Exception {
@@ -191,6 +202,71 @@ public class BuilderTest {
 		@Override
 		public boolean test(TestState testState) {
 			return false;
+		}
+	}
+
+	@Abstract("dependency/test")
+	public interface DependencyAbstract extends Dependency {
+
+	}
+
+	public static class DependencyImpl implements @Implementation("dependency/test/impl") DependencyAbstract {
+
+		private String testField;
+
+		public boolean wasInitialized = false;
+		public boolean wasValidated = false;
+		public boolean wasReleased = false;
+
+		public void setTestField(String s) {
+			this.testField = s;
+		}
+
+		@Override
+		public void initialize() {
+			wasInitialized = true;
+		}
+
+		@Override
+		public boolean isValid() {
+			wasValidated = true;
+			return true;
+		}
+
+		@Override
+		public void release() {
+			wasReleased = true;
+		}
+	}
+
+	@Component("dependent")
+	public static class DependentTest implements Transition<TestState> {
+
+		@Dependent("dependency/test")
+		DependencyImpl a;
+
+		@Dependent("dependency/test/impl")
+		DependencyImpl b;
+
+		public DependencyImpl getA() {
+			return a;
+		}
+
+		public void setA(DependencyImpl impl) {
+			this.a = impl;
+		}
+
+		public DependencyImpl getB() {
+			return b;
+		}
+
+		public void setB(DependencyImpl impl) {
+			this.b = impl;
+		}
+
+		@Override
+		public void accept(TestState testState) {
+
 		}
 	}
 }
