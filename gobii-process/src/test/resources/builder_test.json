@@ -2,12 +2,15 @@
   "packages": ["org.gobiiproject.gobiiprocess.machine.components.builder"],
   "dependencies": {
     "defaults": {
-      "dependency/test": "dependency/test/impl"
+      "dependency/test": "dependency/test/impl",
+      "union": ["union/impl0", "union/impl1"]
     },
     "implementations": {
       "dependency/test/impl": {
         "testField": "test"
-      }
+      },
+      "union/impl0": {},
+      "union/impl1": {}
     }
   },
   "prototypes": {

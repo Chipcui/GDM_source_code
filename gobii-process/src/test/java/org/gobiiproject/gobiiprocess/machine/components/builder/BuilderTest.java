@@ -3,6 +3,7 @@ package org.gobiiproject.gobiiprocess.machine.components.builder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
+import lombok.Setter;
 import org.gobiiproject.gobiiprocess.machine.builder.*;
 import org.gobiiproject.gobiiprocess.machine.components.*;
 import org.junit.Test;
@@ -29,10 +30,10 @@ public class BuilderTest {
 
 		Pipeline<TestState> pipeline = pipelines.get("test");
 
-		assertEquals(3, pipeline.getPipes().size());
-
 		assertNotNull(pipeline);
+		assertNotNull(pipeline.getPipes());
 		assertFalse(pipeline.getPipes().isEmpty());
+		assertEquals(3, pipeline.getPipes().size());
 
 		assertTrue(pipeline.getPipes().get(0) instanceof Step);
 
@@ -120,9 +121,14 @@ public class BuilderTest {
 
 		DependentTest dt = (DependentTest) step1.getTransition();
 
-		assertNotNull(dt.getA());
-		assertNotNull(dt.getB());
-		assertEquals(dt.getA(), dt.getB());
+		assertNotNull(dt.a);
+		assertNotNull(dt.b);
+		assertEquals(dt.a, dt.b);
+
+		UnionTest ut = ((DependentTest) step1.getTransition()).union;
+		ut.call();
+		assertTrue(UnionHolder.wasImpl0Called);
+		assertTrue(UnionHolder.wasImpl1Called);
 	}
 
 	private String slurpResource(String path) throws Exception {
@@ -207,15 +213,18 @@ public class BuilderTest {
 	@Abstract("dependency/test")
 	public interface DependencyAbstract extends Dependency {
 
+		void call();
 	}
 
-	public static class DependencyImpl implements @Implementation("dependency/test/impl") DependencyAbstract {
+	public static class DependencyImpl0 implements @Implementation("dependency/test/impl") DependencyAbstract {
 
+		@Setter
 		private String testField;
 
 		public boolean wasInitialized = false;
 		public boolean wasValidated = false;
 		public boolean wasReleased = false;
+		public boolean wasCalled = false;
 
 		public void setTestField(String s) {
 			this.testField = s;
@@ -236,32 +245,56 @@ public class BuilderTest {
 		public void release() {
 			wasReleased = true;
 		}
+
+
+		@Override
+		public void call() {
+			this.wasCalled = true;
+		}
+	}
+
+	public static class UnionHolder {
+		static boolean wasImpl0Called = false;
+		static boolean wasImpl1Called = false;
+	}
+
+	@Abstract("union")
+	public interface UnionTest {
+		void call();
+	}
+
+	public static class UnionTestImpl0 implements @Implementation("union/impl0") UnionTest {
+
+		@Override
+		public void call() {
+			UnionHolder.wasImpl0Called = true;
+		}
+
+	}
+
+	public static class UnionTestImpl1 implements @Implementation("union/impl1") UnionTest {
+
+		@Override
+		public void call() {
+			UnionHolder.wasImpl1Called = true;
+		}
+
 	}
 
 	@Component("dependent")
 	public static class DependentTest implements Transition<TestState> {
 
+		@Setter
 		@Dependent("dependency/test")
-		DependencyImpl a;
+		DependencyImpl0 a;
 
+		@Setter
 		@Dependent("dependency/test/impl")
-		DependencyImpl b;
+		DependencyImpl0 b;
 
-		public DependencyImpl getA() {
-			return a;
-		}
-
-		public void setA(DependencyImpl impl) {
-			this.a = impl;
-		}
-
-		public DependencyImpl getB() {
-			return b;
-		}
-
-		public void setB(DependencyImpl impl) {
-			this.b = impl;
-		}
+		@Setter
+		@Dependent("union")
+		UnionTest union;
 
 		@Override
 		public void accept(TestState testState) {

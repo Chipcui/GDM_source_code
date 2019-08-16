@@ -19,7 +19,7 @@ public class BuilderState<S> {
 	private Map<String, Class<?>> abstractDependencies = new HashMap<>();
 	private Map<String, Class<?>> implementedDependencies = new HashMap<>();
 
-	private Map<String, String> defaultImplementations = new HashMap<>();
+	private Map<String, List<String>> defaultImplementations = new HashMap<>();
 	private Map<String, Object> dependencies = new HashMap<>();
 
 	private Map<String, Class<SideEffect<S>>> sideEffects = new HashMap<>();

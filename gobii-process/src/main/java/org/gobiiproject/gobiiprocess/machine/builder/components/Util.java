@@ -9,12 +9,8 @@ import org.gobiiproject.gobiiprocess.machine.builder.Dependency;
 import org.gobiiproject.gobiiprocess.machine.components.Fundamental;
 import org.gobiiproject.gobiiprocess.machine.exceptions.DependencyException;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
+import java.lang.reflect.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Util {
@@ -86,14 +82,9 @@ public class Util {
 
 			final String dependencyName = field.getAnnotation(Dependent.class).value();
 
-			Object dependency = null;
+			Object dependency = resolveDependency(s0, dependencyName);
 
-			if (s0.getDependencies().containsKey(dependencyName)) {
-				dependency = s0.getDependencies().get(dependencyName);
-			} else if (s0.getDefaultImplementations().containsKey(dependencyName)
-			        && s0.getDependencies().containsKey(s0.getDefaultImplementations().get(dependencyName))) {
-				dependency = s0.getDependencies().get(s0.getDefaultImplementations().get(dependencyName));
-			} else {
+			if (dependency == null) {
 				throw new DependencyException(
 						String.format("Dependency: %s not defined, required by %s", dependencyName,
 								fundamental.getClass().getAnnotation(Component.class).value()));
@@ -113,17 +104,88 @@ public class Util {
 		}
 	}
 
+	public static Object resolveDependency(BuilderState<?> s0, String dependencyName) throws DependencyException {
+
+		if (s0.getDependencies().containsKey(dependencyName)) {
+			return s0.getDependencies().get(dependencyName);
+		} else if (s0.getDefaultImplementations().containsKey(dependencyName)) {
+
+			List<Object> dependencies = new LinkedList<>();
+			for (String s : s0.getDefaultImplementations().get(dependencyName)) {
+				Object dependency = s0.getDependencies().get(s);
+				if (dependency == null) {
+					throw new DependencyException(String.format("Dependency not defined: %s", s));
+				}
+				dependencies.add(dependency);
+			}
+
+			return dependencies.stream()
+					.reduce(Util::unionObjects)
+					.get();
+		}
+		return null;
+	}
+
+	private static boolean containsMethod(Class<?> c, Method method) {
+		return method.getDeclaringClass().isAssignableFrom(c);
+	}
+
+	private static Object invoker(Method method, Object target0, Object target1, Object[] args) throws InvocationTargetException, IllegalAccessException {
+
+
+		if (target0 == null || ! containsMethod(target0.getClass(), method)) {
+			return method.invoke(target1, args);
+		} else if (target1 == null || ! containsMethod(target1.getClass(), method)) {
+			return method.invoke(target0, args);
+		}
+
+		method.invoke(target0, args);
+		return method.invoke(target1, args);
+	}
+
+	public static <T> T unionObjects(T a, T b) {
+
+		InvocationHandler handler = (o, method, args) -> {
+			if (Void.TYPE.equals(method.getReturnType())) {
+				invoker(method, a, b, args);
+				return null;
+			} else {
+				return invoker(method, a, b, args);
+			}
+		};
+
+
+		Set<Class<?>> interfaces = new HashSet<>();
+		interfaces.addAll(Arrays.asList(a.getClass().getInterfaces()));
+		interfaces.addAll(Arrays.asList(b.getClass().getInterfaces()));
+
+		Class<?>[] interfacesArray = new Class<?>[interfaces.size()];
+
+		int i = 0;
+		for (Class<?> c : interfaces) {
+			interfacesArray[i++] = c;
+		}
+
+		return (T) Proxy.newProxyInstance(a.getClass().getClassLoader(), interfacesArray, handler);
+	}
+
 	public static Object setField(Object object, Field field, Object value) throws DependencyException {
+		String fieldName = field.getName();
+		String setterName = "set" + StringUtils.capitalize(fieldName);
 		try {
-			String fieldName = field.getName();
-			Method m = object.getClass().getMethod("set" + StringUtils.capitalize(fieldName), value.getClass());
-			m.invoke(object, value);
+			Object castedValue = field.getType().cast(value);
+			Method m = object.getClass().getMethod(setterName, field.getType());
+			m.invoke(object, castedValue);
 		} catch (NoSuchMethodException e) {
-			throw new DependencyException(String.format("No setter defined for %s in %s", field, value.getClass()));
+			throw new DependencyException(String.format("Dependency Injection: No setter defined for field [%s] in %s, looking for %s of type %s",
+															fieldName, object.getClass().getName(), setterName, field.getClass().getName()));
 		} catch (IllegalAccessException e) {
-			throw new DependencyException(String.format("Setter for dependency %s in %s is not accessible", field, value.getClass()));
+			throw new DependencyException(String.format("Dependency Injection: Setter for dependency %s in %s is not accessible", field, field.getClass().getName()));
 		} catch (InvocationTargetException e) {
-			throw new DependencyException(String.format("Exception when invoking setter for %s in %s", field, value.getClass()));
+			throw new DependencyException(String.format("Dependency Injection: Exception when invoking setter for %s in %s", field, value.getClass()));
+		} catch (ClassCastException e) {
+			throw new DependencyException(String.format("Dependency Injection: Cannot cast %s to %s for field %s in %s",
+															value.getClass(), field.getClass(), field.getName(), object.getClass()));
 		}
 
 		return object;
