@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiprocess.digester.machine;
+package org.gobiiproject.gobiiprocess.digester.machine.model;
 
 import lombok.Data;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderProcedure;

@@ -1,6 +1,6 @@
 package org.gobiiproject.gobiiprocess.digester.machine.log;
 
-import org.gobiiproject.gobiiprocess.digester.machine.DigesterState;
+import org.gobiiproject.gobiiprocess.digester.machine.model.DigesterState;
 import org.gobiiproject.gobiiprocess.machine.builder.Component;
 
 import java.util.function.Consumer;
