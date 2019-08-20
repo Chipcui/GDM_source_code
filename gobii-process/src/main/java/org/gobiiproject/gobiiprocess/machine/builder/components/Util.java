@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.gobiiproject.gobiiprocess.commons.model.CommonState;
+import org.gobiiproject.gobiiprocess.digester.machine.model.DigesterState;
 import org.gobiiproject.gobiiprocess.machine.builder.*;
 import org.gobiiproject.gobiiprocess.machine.builder.Dependency;
 import org.gobiiproject.gobiiprocess.machine.components.Fundamental;
@@ -12,6 +14,8 @@ import org.gobiiproject.gobiiprocess.machine.exceptions.DependencyException;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.gobiiproject.gobiiprocess.machine.Util.setField;
 
 public class Util {
 
@@ -100,7 +104,7 @@ public class Util {
 				}
 			}
 
-			setField(fundamental, field, dependency);
+			setDependency(fundamental, field, dependency);
 		}
 	}
 
@@ -169,25 +173,26 @@ public class Util {
 		return (T) Proxy.newProxyInstance(a.getClass().getClassLoader(), interfacesArray, handler);
 	}
 
-	public static Object setField(Object object, Field field, Object value) throws DependencyException {
+	public static Fundamental setDependency(Fundamental fundamental, Field field, Object dependency) throws DependencyException {
 		String fieldName = field.getName();
 		String setterName = "set" + StringUtils.capitalize(fieldName);
 		try {
-			Object castedValue = field.getType().cast(value);
-			Method m = object.getClass().getMethod(setterName, field.getType());
-			m.invoke(object, castedValue);
+			setField(fundamental, field, dependency);
 		} catch (NoSuchMethodException e) {
 			throw new DependencyException(String.format("Dependency Injection: No setter defined for field [%s] in %s, looking for %s of type %s",
-															fieldName, object.getClass().getName(), setterName, field.getClass().getName()));
+					fieldName, fundamental.getClass().getName(), setterName, field.getClass().getName()));
 		} catch (IllegalAccessException e) {
-			throw new DependencyException(String.format("Dependency Injection: Setter for dependency %s in %s is not accessible", field, field.getClass().getName()));
+			throw new DependencyException(String.format("Dependency Injection: Setter for dependency %s in %s is not accessible",
+					field, field.getClass().getName()));
 		} catch (InvocationTargetException e) {
-			throw new DependencyException(String.format("Dependency Injection: Exception when invoking setter for %s in %s", field, value.getClass()));
+			throw new DependencyException(String.format("Dependency Injection: Exception when invoking setter for %s in %s",
+					field, dependency.getClass()));
 		} catch (ClassCastException e) {
 			throw new DependencyException(String.format("Dependency Injection: Cannot cast %s to %s for field %s in %s",
-															value.getClass(), field.getClass(), field.getName(), object.getClass()));
+					dependency.getClass(), field.getClass(), field.getName(), fundamental.getClass()));
 		}
 
-		return object;
+		return fundamental;
 	}
+
 }
