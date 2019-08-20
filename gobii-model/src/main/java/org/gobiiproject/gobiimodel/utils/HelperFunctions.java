@@ -71,13 +71,10 @@ public class HelperFunctions {
         //Too clever by a half- if from and too are null, returns substring(0,-1);
     }
 
-    public static String readFile(String path) {
+    public static String readFile(String path) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines( Paths.get(path), StandardCharsets.UTF_8))  {
             stream.forEach(s -> contentBuilder.append(s).append("\n"));
-        }
-        catch (IOException e) {
-            return null;
         }
         return contentBuilder.toString();
     }

@@ -15,9 +15,12 @@ public class HelperFunctionsTest {
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("test_file_read.txt").getFile());
 
-
-		String test = HelperFunctions.readFile(file.getAbsolutePath());
-
-		assertEquals("asdfqwerzxcv\n", test);
+		try {
+			String test = HelperFunctions.readFile(file.getAbsolutePath());
+			assertEquals("asdfqwerzxcv\n", test);
+		} catch (Exception e) {
+			fail("Exception thrown in read file test");
+			e.printStackTrace();
+		}
 	}
 }
