@@ -12,9 +12,9 @@ import java.util.List;
 @Data
 public class CommonState {
 
-	private List<Debug> debugLog = new LinkedList<>();
-	private List<Info> infoLog = new LinkedList<>();
-	private List<Warning> warningLog = new LinkedList<>();
-	private List<Error> errorLog = new LinkedList<>();
+	private List<Debug> debug = new LinkedList<>();
+	private List<Info> info = new LinkedList<>();
+	private List<Warning> warning = new LinkedList<>();
+	private List<Error> error = new LinkedList<>();
 
 }

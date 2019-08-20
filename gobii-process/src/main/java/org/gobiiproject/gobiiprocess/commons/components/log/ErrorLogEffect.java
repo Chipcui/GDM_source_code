@@ -13,9 +13,9 @@ public class ErrorLogEffect extends LogEffect<CommonState> {
 
 	@Override
 	public Consumer<CommonState> apply(CommonState s0) {
-		final int numLogs = s0.getErrorLog().size();
+		final int numLogs = s0.getError().size();
 		return s1 -> {
-			List<Error> logs = s1.getErrorLog();
+			List<Error> logs = s1.getError();
 			for (int i = numLogs ; i < logs.size() ; i++) {
 				this.getLogger().error(logs.get(i).toString());
 			}

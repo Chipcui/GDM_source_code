@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.gobiiproject.gobiiprocess.commons.model.CommonState;
-import org.gobiiproject.gobiiprocess.digester.machine.model.DigesterState;
 import org.gobiiproject.gobiiprocess.machine.builder.*;
 import org.gobiiproject.gobiiprocess.machine.builder.Dependency;
 import org.gobiiproject.gobiiprocess.machine.components.Fundamental;

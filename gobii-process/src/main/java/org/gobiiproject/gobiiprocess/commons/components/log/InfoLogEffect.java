@@ -12,9 +12,9 @@ public class InfoLogEffect extends LogEffect<CommonState> {
 
 	@Override
 	public Consumer<CommonState> apply(CommonState s0) {
-		final int numLogs = s0.getInfoLog().size();
+		final int numLogs = s0.getInfo().size();
 		return s1 -> {
-			List<Info> logs = s1.getInfoLog();
+			List<Info> logs = s1.getInfo();
 			for (int i = numLogs ; i < logs.size() ; i++) {
 				this.getLogger().info(logs.get(i).toString());
 			}

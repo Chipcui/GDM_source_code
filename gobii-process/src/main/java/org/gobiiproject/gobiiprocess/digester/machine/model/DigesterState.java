@@ -8,8 +8,7 @@ import org.gobiiproject.gobiiprocess.commons.model.CommonState;
 @Data
 public class DigesterState extends CommonState {
 
-	private GobiiLoaderProcedure procedure;
-
 	private JobStatus jobStatus;
+	private GobiiLoaderProcedure procedure;
 
 }

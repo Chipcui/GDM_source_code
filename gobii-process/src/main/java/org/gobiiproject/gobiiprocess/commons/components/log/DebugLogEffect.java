@@ -12,9 +12,9 @@ public class DebugLogEffect extends LogEffect<CommonState> {
 
 	@Override
 	public Consumer<CommonState> apply(CommonState s0) {
-		final int numLogs = s0.getDebugLog().size();
+		final int numLogs = s0.getDebug().size();
 		return s1 -> {
-			List<Debug> logs = s1.getDebugLog();
+			List<Debug> logs = s1.getDebug();
 			for (int i = numLogs ; i < logs.size() ; i++) {
 				this.getLogger().debug(logs.get(i).toString());
 			}

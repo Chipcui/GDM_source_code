@@ -12,9 +12,9 @@ public class WarningLogEffect extends LogEffect<CommonState> {
 
 	@Override
 	public Consumer<CommonState> apply(CommonState s0) {
-		final int numLogs = s0.getWarningLog().size();
+		final int numLogs = s0.getWarning().size();
 		return s1 -> {
-			List<Warning> logs = s1.getWarningLog();
+			List<Warning> logs = s1.getWarning();
 			for (int i = numLogs ; i < logs.size() ; i++) {
 				this.getLogger().warn(logs.get(i).toString());
 			}

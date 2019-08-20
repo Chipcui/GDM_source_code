@@ -1,4 +1,4 @@
-package org.gobiiproject.gobiiprocess.digester.machine.log;
+package org.gobiiproject.gobiiprocess.digester.machine.commons.log;
 
 import org.gobiiproject.gobiiprocess.digester.machine.model.DigesterState;
 import org.gobiiproject.gobiiprocess.machine.builder.Component;
