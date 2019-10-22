@@ -1,2 +1,0 @@
-project_pi_contact,project_name,project_genotyping_purpose,project_date_sampled,project_division,project_study_name,experiment_name,platform_name,vendor_protocol_name,vendor_name,protocol_name,analysis_name,dataset_name,dataset_type
-GOBii Load User,sim_codominant_proj_01,FQ_genotyp_purp,06/01/2018,FQ_division,FQ_study_name,sim_codominant_exp_01,SSR,Cornell_SSR,Cornell,SSR,Test_Calling,sim_codominant_ds_02,co_dominant_non_nucleotide

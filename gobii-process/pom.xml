@@ -137,26 +137,6 @@
 
                     </execution>
 
-                    <!--gobii test data Execution -->
-                    <execution>
-                        <configuration>
-                            <finalName>gobiiadl</finalName>
-                            <!-- MainClass in mainfest make a executable jar -->
-                            <archive>
-                                <manifest>
-                                    <mainClass>org.gobiiproject.gobiiprocess.GobiiAdl</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                        <id>make-gobiiadl</id>
-                        <!-- bind to the packaging phase -->
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-
-                    </execution>
-
                     <!-- brapi integration tool execution -->
                     <execution>
                         <configuration>

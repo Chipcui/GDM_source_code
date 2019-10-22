@@ -1,8 +1,0 @@
-lts_0001_SSR_codom_1-10
-lts_0002_SSR_codom_11-20
-lts_0005_Seq_2ltr_1-10
-lts_0003_KASP_codom_5-14_21-25
-lts_0006_Seq_IUPAC_1-10
-lts_0007_Sim_Affy_codom_sm
-lts_0010_Sim_Sequencing_2ltr_sm
-SmokeTest_QC_SSR_codom_DS_1-5
