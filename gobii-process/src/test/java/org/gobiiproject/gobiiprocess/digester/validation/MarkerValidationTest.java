@@ -129,7 +129,7 @@ public class MarkerValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not marker", "marker", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not success", "SUCCESS", fileErrors[0].status);
+        assertEquals("Expected STATUS is not success", ValidationTestSuite.SUCCESS_TEXT, fileErrors[0].status);
     }
 
     /**
@@ -197,7 +197,7 @@ public class MarkerValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not marker", "marker", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not FAILURE", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not FAILURE", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 2, failures.size());
@@ -209,7 +209,7 @@ public class MarkerValidationTest {
                     assertEquals("Unexpected failure", "BOTTOM", failure.values.get(0));
                     break;
                 case "reference_name":
-                    assertEquals("Unexpected failure reason", "Undefined Reference value", failure.reason);
+                    assertEquals("Unexpected failure reason", "Reference value does not exist in DB", failure.reason);
                     assertEquals("Unexpected failure", "5fa68c87-6331-4fa7-a5f2-7a5428567eb5s", failure.values.get(0));
                     break;
                 default:
@@ -240,7 +240,7 @@ public class MarkerValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not marker", "marker", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not FAILURE", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not FAILURE", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 1, failures.size());
@@ -270,7 +270,7 @@ public class MarkerValidationTest {
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
 
         assertEquals("Expected file name is not marker", "marker", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not FAILURE", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not FAILURE", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 1, failures.size());

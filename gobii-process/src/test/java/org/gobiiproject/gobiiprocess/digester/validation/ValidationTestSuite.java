@@ -3,6 +3,8 @@ package org.gobiiproject.gobiiprocess.digester.validation;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         GermplasmValidationTest.class,
@@ -16,6 +18,7 @@ import org.junit.runners.Suite;
         MarkerLinkageGroupValidationTest.class,
         DatasetDnarunValidationTest.class,
         DatasetMarkerValidationTest.class})
-
 public class ValidationTestSuite {
+	public static final String SUCCESS_TEXT="PASSED";
+	public static final String FAILURE_TEXT="FAILED";
 }

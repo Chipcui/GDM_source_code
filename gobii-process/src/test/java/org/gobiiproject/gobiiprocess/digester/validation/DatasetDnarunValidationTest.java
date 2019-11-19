@@ -120,7 +120,7 @@ public class DatasetDnarunValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dataset_dnarun", "dataset_dnarun", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not success", "SUCCESS", fileErrors[0].status);
+        assertEquals("Expected STATUS is not success", ValidationTestSuite.SUCCESS_TEXT, fileErrors[0].status);
     }
 
     /**
@@ -187,11 +187,11 @@ public class DatasetDnarunValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dataset_dnarun", "dataset_dnarun", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not success", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not success", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 1, failures.size());
-        assertEquals("Unexpected failure reason", "Undefined dnarun_name value", failures.get(0).reason);
+        assertEquals("Unexpected failure reason", "dnarun_name does not exist in DB", failures.get(0).reason);
         assertEquals("Unexpected column name", "dnarun_name", failures.get(0).columnName.get(0));
         assertEquals("Unexpected dnarun_name", "dnarunname_doma_9", failures.get(0).values.get(0));
         assertEquals("Unexpected dnarun_name", "dnarunname_doma_10", failures.get(0).values.get(1));
@@ -261,7 +261,7 @@ public class DatasetDnarunValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dataset_dnarun", "dataset_dnarun", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is success", "SUCCESS", fileErrors[0].status);
+        assertEquals("Expected STATUS is success", ValidationTestSuite.SUCCESS_TEXT, fileErrors[0].status);
     }
 
     /**
@@ -316,7 +316,7 @@ public class DatasetDnarunValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dataset_dnarun", "dataset_dnarun", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not FAILURE", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not FAILURE", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 1, failures.size());
@@ -376,7 +376,7 @@ public class DatasetDnarunValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dataset_dnarun", "dataset_dnarun", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not FAILURE", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not FAILURE", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 1, failures.size());

@@ -86,7 +86,7 @@ public class DnaSampleValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dnasample", "dnasample", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not success", "SUCCESS", fileErrors[0].status);
+        assertEquals("Expected STATUS is not success", ValidationTestSuite.SUCCESS_TEXT, fileErrors[0].status);
     }
 
     /**
@@ -110,7 +110,7 @@ public class DnaSampleValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dnasample", "dnasample", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not FAILURE", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not FAILURE", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 2, failures.size());
@@ -141,7 +141,7 @@ public class DnaSampleValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dnasample", "dnasample", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not success", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not success", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 1, failures.size());
@@ -169,7 +169,7 @@ public class DnaSampleValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dnasample", "dnasample", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is not success", "FAILURE", fileErrors[0].status);
+        assertEquals("Expected STATUS is not success", ValidationTestSuite.FAILURE_TEXT, fileErrors[0].status);
 
         List<Failure> failures = fileErrors[0].failures;
         assertEquals("Failures are more than the expected", 1, failures.size());
@@ -252,6 +252,6 @@ public class DnaSampleValidationTest {
 
         ValidationError[] fileErrors = new ObjectMapper().readValue(pathList.get(0).toFile(), ValidationError[].class);
         assertEquals("Expected file name is not dnasample", "dnasample", fileErrors[0].fileName);
-        assertEquals("Expected STATUS is success", "SUCCESS", fileErrors[0].status);
+        assertEquals("Expected STATUS is success", ValidationTestSuite.SUCCESS_TEXT, fileErrors[0].status);
     }
 }
