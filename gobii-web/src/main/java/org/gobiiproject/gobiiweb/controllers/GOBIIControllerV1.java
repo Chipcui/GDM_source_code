@@ -3143,7 +3143,11 @@ public class GOBIIControllerV1 {
                                     + gobiiEntityNameType);
                 }
 
-                if (!LineUtils.isNullOrEmpty(filterValue)) {
+                if(GobiiFilterType.NAMES_BY_UUID_LIST == gobiiFilterType) {
+                    PayloadReader<NameIdDTO> payloadReader = new PayloadReader<>(NameIdDTO.class);
+                    nameIdDTOList = payloadReader.extractListOfItems(payloadEnvelope);
+                }
+                else if (!LineUtils.isNullOrEmpty(filterValue)) {
 
                     if (GobiiFilterType.NAMES_BY_TYPEID == gobiiFilterType) {
                         if (NumberUtils.isNumber(filterValue)) {
@@ -3179,10 +3183,6 @@ public class GOBIIControllerV1 {
                                         + gobiiEntityNameType);
                     }
 
-                }
-                else if(GobiiFilterType.NAMES_BY_UUID_LIST == gobiiFilterType) {
-                    PayloadReader<NameIdDTO> payloadReader = new PayloadReader<>(NameIdDTO.class);
-                    nameIdDTOList = payloadReader.extractListOfItems(payloadEnvelope);
                 }
                 else {
                     throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
