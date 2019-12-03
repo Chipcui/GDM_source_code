@@ -3161,7 +3161,9 @@ public class GOBIIControllerV1 {
                     } else if (GobiiFilterType.NAMES_BY_TYPE_NAME == gobiiFilterType) {
                         // there is nothing to test here -- the string could be anything
                         // add additional validation tests for other filter types
-                    } else if (GobiiFilterType.NAMES_BY_NAME_LIST == gobiiFilterType || GobiiFilterType.NAMES_BY_NAME_LIST_RETURN_ABSENT == gobiiFilterType || GobiiFilterType.NAMES_BY_NAME_LIST_RETURN_EXISTS == gobiiFilterType) {
+                    } else if (GobiiFilterType.NAMES_BY_NAME_LIST == gobiiFilterType
+                            || GobiiFilterType.NAMES_BY_NAME_LIST_RETURN_ABSENT == gobiiFilterType
+                            || GobiiFilterType.NAMES_BY_NAME_LIST_RETURN_EXISTS == gobiiFilterType) {
 
                         PayloadReader<NameIdDTO> payloadReader = new PayloadReader<>(NameIdDTO.class);
                         nameIdDTOList = payloadReader.extractListOfItems(payloadEnvelope);
@@ -3177,7 +3179,12 @@ public class GOBIIControllerV1 {
                                         + gobiiEntityNameType);
                     }
 
-                } else {
+                }
+                else if(GobiiFilterType.NAMES_BY_UUID_LIST == gobiiFilterType) {
+                    PayloadReader<NameIdDTO> payloadReader = new PayloadReader<>(NameIdDTO.class);
+                    nameIdDTOList = payloadReader.extractListOfItems(payloadEnvelope);
+                }
+                else {
                     throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                             GobiiValidationStatusType.NONE,
                             "A value was not supplied for filter: "

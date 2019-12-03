@@ -23,6 +23,7 @@ public class NameIdDTO extends DTOBase implements Comparable<NameIdDTO>{
     private Integer id = 0;
     private Integer fkId = 0;
     private String name = null;
+    private String uuid = null;
 
     public String getName() {
         return name;
@@ -87,4 +88,11 @@ public class NameIdDTO extends DTOBase implements Comparable<NameIdDTO>{
 
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }

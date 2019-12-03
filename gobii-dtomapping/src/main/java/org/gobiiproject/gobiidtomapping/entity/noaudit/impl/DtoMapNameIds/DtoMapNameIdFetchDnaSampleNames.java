@@ -36,7 +36,9 @@ public class DtoMapNameIdFetchDnaSampleNames implements DtoMapNameIdFetch {
 
     private Integer getDnaSamplesFromResultSet(List<NameIdDTO> nameIdDTOList, ResultSet resultSet, String columnName, String columnId, GobiiFilterType gobiiFilterType) throws SQLException {
 
-        Collections.sort(nameIdDTOList);
+        if(!gobiiFilterType.equals(GobiiFilterType.NAMES_BY_UUID_LIST)) {
+            Collections.sort(nameIdDTOList);
+        }
         Integer index;
         Integer nameId;
 
@@ -45,7 +47,9 @@ public class DtoMapNameIdFetchDnaSampleNames implements DtoMapNameIdFetch {
         while (resultSet.next()) {
 
             NameIdDTO searchNameDTO = new NameIdDTO();
+
             searchNameDTO.setName(resultSet.getString(columnName));
+
 
             searchNameDTO.getParameters().put("dnaSampleNum", resultSet.getString("num"));
 
@@ -58,7 +62,19 @@ public class DtoMapNameIdFetchDnaSampleNames implements DtoMapNameIdFetch {
                 String currentName = currentNameIdDTO.getName();
                 String searchName = searchNameDTO.getName();
 
-                if (currentNameIdDTO.getParameters().containsKey("dnaSampleNum")) {
+                if(gobiiFilterType.equals(GobiiFilterType.NAMES_BY_UUID_LIST)) {
+                    searchNameDTO.setUuid(resultSet.getString("uuid"));
+                    if(currentNameIdDTO.getUuid().equals(searchNameDTO.getUuid())){
+                        nameId = resultSet.getInt(columnId);
+
+                        nameIdDTOList.get(i).setId(nameId);
+
+                        nameIdDTOList.get(i).setName(searchNameDTO.getName());
+                        nameIdDTOList.get(i).setUuid(searchNameDTO.getUuid());
+
+                    }
+                }
+                else if (currentNameIdDTO.getParameters().containsKey("dnaSampleNum")) {
                     String currentNum = currentNameIdDTO.getParameters().get("dnaSampleNum").toString();
                     String searchNum = searchNameDTO.getParameters().get("dnaSampleNum").toString();
 
@@ -75,7 +91,8 @@ public class DtoMapNameIdFetchDnaSampleNames implements DtoMapNameIdFetch {
                             nameList.add(nameIdDTOList.get(i));
                         }
                     }
-                } else {
+                }
+                else {
                     if (currentName.equals(searchName)) {
 
                         nameId = resultSet.getInt(columnId);
@@ -114,7 +131,27 @@ public class DtoMapNameIdFetchDnaSampleNames implements DtoMapNameIdFetch {
                         put("nameArray", nameIdDTOList);
                     }});
 
-            Integer resultSize = getDnaSamplesFromResultSet(nameIdDTOList, resultSet, "name", "dnasample_id", gobiiFilterType);
+            Integer resultSize = getDnaSamplesFromResultSet(nameIdDTOList, resultSet,
+                    "name", "dnasample_id", gobiiFilterType);
+
+        } catch (Exception e) {
+            throw new GobiiDaoException(e);
+        }
+
+        return nameIdDTOList;
+    }
+
+    private List<NameIdDTO> getDnaSampleNamesByUuidList(List<NameIdDTO> nameIdDTOList, GobiiFilterType gobiiFilterType) {
+
+        try {
+
+            ResultSet resultSet = dtoListQueryColl.getResultSet(ListSqlId.QUERY_ID_DNASAMPLE_NAMES_BY_UUIDLIST, null,
+                    new HashMap<String, Object>() {{
+                        put("nameArray", nameIdDTOList);
+                    }});
+
+            Integer resultSize = getDnaSamplesFromResultSet(nameIdDTOList, resultSet,
+                    "name", "dnasample_id", gobiiFilterType);
 
         } catch (Exception e) {
             throw new GobiiDaoException(e);
@@ -171,7 +208,13 @@ public class DtoMapNameIdFetchDnaSampleNames implements DtoMapNameIdFetch {
 
             returnVal = this.getDnaSampleNamesByNameList(dtoMapNameIdParams.getNameIdDTOList(), dtoMapNameIdParams.getFilterValueAsString(), gobiiFilterType);
 
-        } else {
+        }
+        else if (GobiiFilterType.NAMES_BY_UUID_LIST == gobiiFilterType) {
+
+            returnVal = this.getDnaSampleNamesByUuidList(dtoMapNameIdParams.getNameIdDTOList(), gobiiFilterType);
+
+        }
+        else {
 
             throw new GobiiDtoMappingException(GobiiStatusLevel.ERROR,
                     GobiiValidationStatusType.NONE,

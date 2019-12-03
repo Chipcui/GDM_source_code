@@ -31,6 +31,26 @@ public class ListStatementUtil {
 
     }
 
+    public static String generateParsedUuidList(List<NameIdDTO> nameIdDTOList) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (NameIdDTO nameIdDTO : nameIdDTOList) {
+
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+
+            stringBuilder.append("'")
+                    .append(nameIdDTO.getUuid())
+                    .append("'");
+
+        }
+
+        return stringBuilder.toString();
+
+    }
+
 
     public static String generateParsedNameListForDnaSamples(List<NameIdDTO> nameIdDTOList) {
 
