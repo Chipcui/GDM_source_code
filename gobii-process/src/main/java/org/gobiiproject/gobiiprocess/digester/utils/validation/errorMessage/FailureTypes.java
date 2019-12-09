@@ -32,7 +32,11 @@ public class FailureTypes {
     public static final String EXCEPTION = "Exception";
     public static final String UNDEFINED_CONDITION_TYPE = "condition type does not exist in DB";
     public static final String UNDEFINED_PLATFORM_ID = "platform id does not exist in DB";
+    public static final String UNDEFINED_PROJECT_ID = "project id does not exist in DB";
+    public static final String UNDEFINED_MAP_ID = "mapset id does not exist in DB";
+    public static final String UNDEFINED_EXPERIMENT_ID = "experiment id does not exist in DB";
     public static final String MULTIPLE_PLATFORM_ID = "More than one platform id";
+    public static final String MULTIPLE_PROJECT_ID = "More than one project id";
     public static final String UNDEFINED_FOREIGN_KEY = "Undefined foreign key";
 
 }

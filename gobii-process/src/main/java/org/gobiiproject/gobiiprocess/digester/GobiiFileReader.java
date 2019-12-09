@@ -387,7 +387,7 @@ public class GobiiFileReader {
         boolean reportedValidationFailures = false;
         if(LoaderGlobalConfigs.getValidation()) {
             DigestFileValidator digestFileValidator = new DigestFileValidator(directory, baseConnectionString,user, password);
-            digestFileValidator.performValidation();
+            digestFileValidator.performValidation(gobiiCropConfig);
             //Call validations here, update 'success' to false with any call to ErrorLogger.logError()
             List<Path> pathList =
                     Files.list(Paths.get(directory))

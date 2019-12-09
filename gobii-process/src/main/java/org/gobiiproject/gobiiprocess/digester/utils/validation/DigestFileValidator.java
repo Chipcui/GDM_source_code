@@ -15,12 +15,13 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.io.FilenameUtils;
+import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiimodel.utils.error.Logger;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.errorMessage.Failure;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.errorMessage.FailureTypes;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.errorMessage.ValidationError;
 import static org.gobiiproject.gobiiprocess.digester.DigesterFileExtensions.allowedExtensions;
-import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationWebServicesUtil.loginIntoServer;
+import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationWebServicesUtil.loginToServer;
 
 public class DigestFileValidator {
 
@@ -49,10 +50,10 @@ public class DigestFileValidator {
         InputParameters inputParameters = new InputParameters();
         readInputParameters(args, inputParameters);
         DigestFileValidator digestFileValidator = new DigestFileValidator(inputParameters.rootDir, inputParameters.validationFile, inputParameters.url, inputParameters.userName, inputParameters.password);
-        digestFileValidator.performValidation();
+        digestFileValidator.performValidation(null);
     }
 
-    public void performValidation() {
+    public void performValidation(GobiiCropConfig cropConfig) {
         String validationOutput = rootDir + "/" + "ValidationResult-" + new SimpleDateFormat("hhmmss").format(new Date()) + ".json";
         /*
          * Read validation Rules
@@ -65,9 +66,9 @@ public class DigestFileValidator {
             ValidationError validationError = new ValidationError();
             validationError.fileName = FilenameUtils.getExtension(validations.get(0).getDigestFileName());
             List<Failure> failures = new ArrayList<>();
-            if (loginIntoServer(url, username, password, null, failures)) {
+            if (loginToServer(url, username, password, null, failures)) {
                 try {
-                    List<ValidationError> validationErrorList = doValidations(validations);
+                    List<ValidationError> validationErrorList = doValidations(validations, cropConfig);
                     writer.write(validationErrorList);
                 } catch (Exception e) {
                     validationError.status = ValidationConstants.FAILURE;
@@ -98,12 +99,12 @@ public class DigestFileValidator {
      *
      * @param validations validations
      */
-    private List<ValidationError> doValidations(List<ValidationUnit> validations) {
+    private List<ValidationError> doValidations(List<ValidationUnit> validations, GobiiCropConfig cropConfig) {
         List<ValidationError> validationErrorList = new ArrayList<>();
         for (ValidationUnit validation : validations) {
             ValidationError validationError = new ValidationError();
             validationError.fileName = FilenameUtils.getExtension(validation.getDigestFileName());
-            List<Failure> failureList = validate(validation);
+            List<Failure> failureList = validate(validation, cropConfig);
             if (failureList != null) {
                 if (failureList.size() > 0) {
                     validationError.status = ValidationConstants.FAILURE;
@@ -231,7 +232,7 @@ public class DigestFileValidator {
         return true;
     }
 
-    public List<Failure> validate(ValidationUnit validation) {
+    public List<Failure> validate(ValidationUnit validation, GobiiCropConfig cropConfig) {
         trimSpaces(validation);
         List<Failure> failureList = new ArrayList<>();
         switch (FilenameUtils.getExtension(validation.getDigestFileName())) {
@@ -247,7 +248,7 @@ public class DigestFileValidator {
             case "marker_linkage_group":
             case "dataset_dnarun":
             case "dataset_marker":
-                if (!new Validator().validate(validation, rootDir, failureList)) failureList = null;
+                if (!new Validator().validate(validation, rootDir, failureList, cropConfig)) failureList = null;
                 break;
             default:
                 try {

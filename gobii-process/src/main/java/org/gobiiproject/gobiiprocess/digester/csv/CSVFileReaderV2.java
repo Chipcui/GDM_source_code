@@ -7,10 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.function.BiFunction;
+
+
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiFileColumn;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderInstruction;
 import org.gobiiproject.gobiimodel.dto.instructions.loader.GobiiLoaderProcedure;
@@ -127,7 +127,7 @@ public class CSVFileReaderV2 extends CSVFileReaderInterface {
             if (file.isDirectory()) {
                 listFilesFromFolder(file, tempFileBufferedWriter, procedure, outputFile);
             } else {
-                writeToOutputFile(file, tempFileBufferedWriter, procedure, outputFile);
+                writeToOutputFile(file, tempFileBufferedWriter, procedure, outputFile, true);
             }
         } catch (FileNotFoundException e) {
             Logger.logError("CSVReader", "Unexpected Missing File", e);
@@ -150,11 +150,13 @@ public class CSVFileReaderV2 extends CSVFileReaderInterface {
             Logger.logWarning("CSVFileReader", "Read from null folder");
             return;
         }
+        boolean firstFile = true; //TODO - generation of metadata requires deduplication beyond 'dedup', placing here
         for (File file : folder.listFiles()) {
             // Sub folders are ignored
             if (file.isFile() & !file.getName().contains("digest")) {
                 try {
-                    writeToOutputFile(file, tempFileBufferedWriter, procedure, outputFile);
+                    writeToOutputFile(file, tempFileBufferedWriter, procedure, outputFile, firstFile);
+                    firstFile=false;
                 } catch (IOException e) {
                     Logger.logError("CSVReader", "Failure to write digest files", e);
                 }
@@ -172,16 +174,26 @@ public class CSVFileReaderV2 extends CSVFileReaderInterface {
      * @throws IOException when the requisite file is missing or cannot be read
      */
     private void writeToOutputFile(File file, BufferedWriter tempFileBufferedWriter,
-                                   GobiiLoaderProcedure procedure, File outputFile) throws IOException {
+                                   GobiiLoaderProcedure procedure, File outputFile, boolean firstFile) throws IOException {
 
         if (processedInstruction.hasCSV_ROW()) {
             processCSV_ROW(file, tempFileBufferedWriter, procedure);
         } else if (processedInstruction.hasCSV_COL()) {
+            if(!firstFile){
+                return; //TODO - assumption that this is a duplicated 'normal' oriented file.
+                //Multiple files are stacked 'vertically'. This "feature" is very jank, and this bit'll have to be ripped
+                //out while replacing it.
+            }
             processCSV_COL(file, tempFileBufferedWriter, procedure);
         } else if (processedInstruction.hasCSV_BOTH()) {
             RowColPair<Integer> matrixSize=processCSV_BOTH(file, tempFileBufferedWriter, procedure, outputFile);
-            CSVFileReaderInterface.lastMatrixSizeRowCol=matrixSize;//Terrible hack to pass back to main thread the size of the file if it's a matrix file. There should be at most
-            //One of these. It sucks, but passing it up the object chain doesn't make sense, as it goes through several layers of indirection.
+            //Terrible hack to return size of matrix. There _can be more than one of these_, in which case they're stacked vertically
+            if(CSVFileReaderInterface.lastMatrixSizeRowCol == null) {
+                CSVFileReaderInterface.lastMatrixSizeRowCol = matrixSize;
+            }
+            else{
+                CSVFileReaderInterface.lastMatrixSizeRowCol = CSVFileReaderInterface.lastMatrixSizeRowCol.operateRows(matrixSize,Integer::sum);
+            }
         }
     }
 
@@ -557,5 +569,8 @@ class RowColPair<I>{
     RowColPair(I row, I col){
         this.row=row;
         this.col=col;
+    }
+    public RowColPair<I> operateRows(RowColPair<I> other, BiFunction<I,I,I> function){
+        return new RowColPair<I>(function.apply(row,other.row),this.col);
     }
 }

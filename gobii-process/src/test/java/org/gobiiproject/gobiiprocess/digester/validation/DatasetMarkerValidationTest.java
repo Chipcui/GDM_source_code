@@ -74,7 +74,7 @@ public class DatasetMarkerValidationTest {
 
         PowerMockito.mockStatic(ValidationWebServicesUtil.class);
         PowerMockito
-                .when(ValidationWebServicesUtil.loginIntoServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
+                .when(ValidationWebServicesUtil.loginToServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
                 .thenReturn(true);
         Map<String, String> foreignKeyValueFromDBPlatformId = new HashMap<>();
         foreignKeyValueFromDBPlatformId.put("8", "Dart_clone");
@@ -106,7 +106,7 @@ public class DatasetMarkerValidationTest {
         }
 
         mockForTestCase(foreignKeyValueFromDBPlatformId, referenceResponse);
-        digestFileValidator.performValidation();
+        digestFileValidator.performValidation(null);
         List<Path> pathList =
                 Files.list(Paths.get(tempFolder.getRoot().getAbsolutePath() + "/allPass"))
                         .filter(Files::isRegularFile).filter(path -> String.valueOf(path.getFileName()).endsWith(".json")).collect(Collectors.toList());
@@ -125,7 +125,7 @@ public class DatasetMarkerValidationTest {
         DigestFileValidator digestFileValidator = new DigestFileValidator(tempFolder.getRoot().getAbsolutePath() + "/missingPlatformId", tempFolder.getRoot().getAbsolutePath() + "/validationConfig.json", "http://192.168.56.101:8081/gobii-dev/", "mcs397", "q");
         PowerMockito.mockStatic(ValidationWebServicesUtil.class);
         PowerMockito
-                .when(ValidationWebServicesUtil.loginIntoServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
+                .when(ValidationWebServicesUtil.loginToServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
                 .thenReturn(true);
         Map<String, String> foreignKeyValueFromDBPlatformId = new HashMap<>();
         foreignKeyValueFromDBPlatformId.put("81", "Dart_clone");
@@ -157,7 +157,7 @@ public class DatasetMarkerValidationTest {
         }
 
         mockForTestCase(foreignKeyValueFromDBPlatformId, referenceResponse);
-        digestFileValidator.performValidation();
+        digestFileValidator.performValidation(null);
         List<Path> pathList =
                 Files.list(Paths.get(tempFolder.getRoot().getAbsolutePath() + "/missingPlatformId"))
                         .filter(Files::isRegularFile).filter(path -> String.valueOf(path.getFileName()).endsWith(".json")).collect(Collectors.toList());
@@ -183,7 +183,7 @@ public class DatasetMarkerValidationTest {
 
         PowerMockito.mockStatic(ValidationWebServicesUtil.class);
         PowerMockito
-                .when(ValidationWebServicesUtil.loginIntoServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
+                .when(ValidationWebServicesUtil.loginToServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
                 .thenReturn(true);
         Map<String, String> foreignKeyValueFromDBPlatformId = new HashMap<>();
         foreignKeyValueFromDBPlatformId.put("8", "Dart_clone");
@@ -215,7 +215,7 @@ public class DatasetMarkerValidationTest {
         }
 
         mockForTestCase(foreignKeyValueFromDBPlatformId, referenceResponse);
-        digestFileValidator.performValidation();
+        digestFileValidator.performValidation(null);
         List<Path> pathList =
                 Files.list(Paths.get(tempFolder.getRoot().getAbsolutePath() + "/missingRequiredColumns"))
                         .filter(Files::isRegularFile).filter(path -> String.valueOf(path.getFileName()).endsWith(".json")).collect(Collectors.toList());
@@ -240,7 +240,7 @@ public class DatasetMarkerValidationTest {
 
         PowerMockito.mockStatic(ValidationWebServicesUtil.class);
         PowerMockito
-                .when(ValidationWebServicesUtil.loginIntoServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
+                .when(ValidationWebServicesUtil.loginToServer(eq("http://192.168.56.101:8081/gobii-dev/"), eq("mcs397"), eq("q"), eq(null), any()))
                 .thenReturn(true);
 
         Map<String, String> foreignKeyValueFromDBPlatformId = new HashMap<>();
@@ -273,7 +273,7 @@ public class DatasetMarkerValidationTest {
         }
 
         mockForTestCase(foreignKeyValueFromDBPlatformId, referenceResponse);
-        digestFileValidator.performValidation();
+        digestFileValidator.performValidation(null);
         List<Path> pathList =
                 Files.list(Paths.get(tempFolder.getRoot().getAbsolutePath() + "/markerNameFailTest"))
                         .filter(Files::isRegularFile).filter(path -> String.valueOf(path.getFileName()).endsWith(".json")).collect(Collectors.toList());
@@ -296,7 +296,7 @@ public class DatasetMarkerValidationTest {
             PowerMockito
                     .when(ValidationWebServicesUtil.validatePlatformId(eq("8"), any())).thenReturn(foreignKeyValueFromDBPlatformId);
             PowerMockito
-                    .when(ValidationWebServicesUtil.getNamesByNameList(Matchers.any(), eq("marker"), eq("8"), any()))
+                    .when(ValidationWebServicesUtil.getNamesByNameList(Matchers.any(), eq("marker"), eq("8"), any(),null))
                     .thenReturn(referenceResponse);
         } catch (MaximumErrorsValidationException e) {
             e.printStackTrace();
