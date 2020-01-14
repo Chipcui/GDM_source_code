@@ -517,15 +517,18 @@ System.register(["@angular/core", "../../model/type-entity", "../../views/entity
                                                 //.selectedFileItemId = "0";
                                             }
                                         }
-                                        var noneFileItem = gobii_file_item_1.GobiiFileItem
-                                            .build(gobiiExtractFilterType, type_process_1.ProcessType.DUMMY)
-                                            .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ENTITY)
-                                            .setEntityType(filterParamsToLoad.getEntityType())
-                                            .setItemId(_this.NONE_ITEM_ITEM_ID)
-                                            .setItemName("<none>")
-                                            .setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
-                                            .setParentItemId(filterValue);
-                                        fileItems.push(noneFileItem);
+                                        //With reference to GSD-70, Not loading None type just for marker groups.
+                                        if (filterParamsToLoad.getQueryName() !== file_item_param_names_1.FilterParamNames.MARKER_GROUPS) {
+                                            var noneFileItem = gobii_file_item_1.GobiiFileItem
+                                                .build(gobiiExtractFilterType, type_process_1.ProcessType.DUMMY)
+                                                .setExtractorItemType(type_extractor_item_1.ExtractorItemType.ENTITY)
+                                                .setEntityType(filterParamsToLoad.getEntityType())
+                                                .setItemId(_this.NONE_ITEM_ITEM_ID)
+                                                .setItemName("<none>")
+                                                .setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
+                                                .setParentItemId(filterValue);
+                                            fileItems.push(noneFileItem);
+                                        }
                                         var parentId = fileItems[0].getItemId();
                                         //filterParamsToLoad.setTargetEntityFilterValue(parentId && +parentId > 0 ? parentId : null);
                                         var targetEntityFilterValue = parentId && +parentId > 0 ? parentId : null;

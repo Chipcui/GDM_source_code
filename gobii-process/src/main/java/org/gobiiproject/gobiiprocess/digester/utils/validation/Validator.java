@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
 import org.gobiiproject.gobiiprocess.digester.GobiiFileReader;
 import org.gobiiproject.gobiiprocess.digester.LoaderGlobalConfigs;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.errorMessage.Failure;
@@ -15,7 +17,7 @@ import static org.gobiiproject.gobiiprocess.digester.utils.validation.Validation
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.processFileError;
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.validateColumnBetweenFiles;
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.validateColumns;
-import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.validateDataBasecalls;
+import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.validateDatabaseCalls;
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.validateFileExistenceCheck;
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.validateUniqueColumnListHelper;
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.validateUniqueColumns;
@@ -23,11 +25,11 @@ import static org.gobiiproject.gobiiprocess.digester.utils.validation.Validation
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.verifyEqualMatrixSizeMarker;
 
 class Validator {
-    boolean validate(ValidationUnit validationUnit, String dir, List<Failure> failureList) {
+    boolean validate(ValidationUnit validationUnit, String dir, List<Failure> failureList, GobiiCropConfig cropConfig) {
         try {
             if (checkForSingleFileExistence(dir, validationUnit.getDigestFileName(), failureList)) {
                 String filePath = dir + "/" + validationUnit.getDigestFileName();
-                List<Failure> failures = beginValidation(filePath, validationUnit);
+                List<Failure> failures = beginValidation(filePath, validationUnit, cropConfig);
                 failureList.addAll(failures);
                 return true;
             } else {
@@ -63,7 +65,7 @@ class Validator {
             return true;
     }
 
-    private List<Failure> beginValidation(String fileName, ValidationUnit validationUnit) throws MaximumErrorsValidationException {
+    private List<Failure> beginValidation(String fileName, ValidationUnit validationUnit, GobiiCropConfig cropConfig) throws MaximumErrorsValidationException {
         List<Failure> failureList = new ArrayList<>();
         List<String[]> inputFile = new ArrayList<>();
         if (!ValidationUtil.readFileIntoMemory(fileName, inputFile, failureList)) return failureList;
@@ -79,7 +81,7 @@ class Validator {
         failureList.addAll(validateOptionalNotNullColumns(fileName, validationUnit.getConditions(), input));
         failureList.addAll(validateUniqueColumnList(fileName, validationUnit));
         failureList.addAll(validateFileShouldExist(fileName, validationUnit));
-        failureList.addAll(validateColumnDBandFile(fileName, validationUnit));
+        failureList.addAll(validateColumnDBandFile(fileName, validationUnit, cropConfig));
         failureList.addAll(validateMatrixSizeColumns(fileName,validationUnit.getConditions()));
 
         return failureList;
@@ -266,18 +268,18 @@ class Validator {
      * @param filePath       File Path
      * @param validationUnit Validation Unit
      */
-    private List<Failure> validateColumnDBandFile(String filePath, ValidationUnit validationUnit) {
+    private List<Failure> validateColumnDBandFile(String filePath, ValidationUnit validationUnit, GobiiCropConfig cropConfig) {
         List<Failure> failures = new ArrayList<>();
         for (ConditionUnit condition : validationUnit.getConditions()) {
             List<Failure> failureList = new ArrayList<>();
             try {
                 if (condition.fileExistenceCheck != null) {
-                    validateFileExistenceCheck(filePath, condition, failureList);
+                    validateFileExistenceCheck(filePath, condition, failureList, cropConfig);
                 } else if (condition.type != null) {
                     if (condition.type.equalsIgnoreCase(ValidationConstants.FILE)) {
                         validateColumnBetweenFiles(filePath, condition, failureList);
                     } else if (condition.type.equalsIgnoreCase(ValidationConstants.DB)) {
-                        validateDataBasecalls(filePath, condition, failureList);
+                        validateDatabaseCalls(filePath, condition, failureList, cropConfig);
                     } else {
                         ValidationUtil.createFailure(FailureTypes.UNDEFINED_CONDITION_TYPE, Collections.singletonList(condition.type), failureList);
                     }

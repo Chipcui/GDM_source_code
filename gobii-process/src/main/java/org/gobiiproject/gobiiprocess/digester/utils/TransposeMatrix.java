@@ -18,7 +18,7 @@ import static org.gobiiproject.gobiiprocess.digester.utils.TransposeMatrix.trans
 
 public class TransposeMatrix {
     private static long startTime, endTime, duration;
-    public static void transposeMatrix (String sep, String iFile, String oFile, String dest) throws FileNotFoundException{
+    public static void transposeMatrix (String sep, String iFile, String oFile, String dest){
         if (!checkFileExistence(iFile)) {
             Logger.logError("Transpose Matrix", "Input file "+iFile+" provided does not exists.\n");
             return;
@@ -88,27 +88,32 @@ public class TransposeMatrix {
      * @return success
      */
     protected static boolean transposeMatrix(String sep, String iFile, String oFile){
-        int lineNumber = lineCount(iFile);
+        int estimatedNumberOfLines = lineCount(iFile);//Todo - line count doesn't equate to buffered read line list, wc -l could be more or less 'lines'
         int lineNo=0, colNo=0;
         String inLine;
         int columnNumber = getColumnNumber(iFile, sep);
         if(columnNumber < 0){
             Logger.logError("Transpose Matrix", "Input file does not contain any content.\n");
         }
-        String[][] Matrix = new String[columnNumber][lineNumber];
+        String[][] matrix = new String[columnNumber][estimatedNumberOfLines];
         try(BufferedWriter buffOut=new BufferedWriter(new FileWriter(oFile));
-            BufferedReader buffIn=new BufferedReader(new FileReader(iFile))){
-            while ((inLine = buffIn.readLine()) != null){
+            BufferedReader buffIn=new BufferedReader(new FileReader(iFile)))
+            { while ((inLine = buffIn.readLine()) != null){
                 String [] iBase = inLine.split(sep);
                 colNo = 0;
                 for (String base:iBase){
-                    Matrix[colNo][lineNo] = base;
+                    matrix[colNo][lineNo] = base;
                     colNo++;
                 }
                 lineNo++;
+                if(lineNo > estimatedNumberOfLines){
+                    //Turns out our estimate was short. Not enough space in the matrix for the transposition
+                    Logger.logError("TransposeMatrix", "Lines in file exceeded 'linecount' for file. Transposition failed.");
+                    break;
+                }
             }
             for (int i = 0; i < colNo; i++) {
-                buffOut.write(StringUtils.join(Matrix[i], sep));
+                buffOut.write(StringUtils.join(matrix[i], sep));
                 buffOut.newLine();
             }
             endTime = System.currentTimeMillis();

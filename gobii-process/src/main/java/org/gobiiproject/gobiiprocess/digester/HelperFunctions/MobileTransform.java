@@ -32,11 +32,7 @@ public abstract class MobileTransform {
     public static MobileTransform getTransposeMatrix(String dest) {
         return new MobileTransform() {
             public void transform(String fromFile, String toFile, String errorPath) {
-                try {
-                    transposeMatrix("tab", fromFile, toFile, dest);
-                } catch (FileNotFoundException e) {
-                    Logger.logError("Matrix Transpose", "Missing File", e);
-                }
+                transposeMatrix("tab", fromFile, toFile, dest);
             }
         };
     }

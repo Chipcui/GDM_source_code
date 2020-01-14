@@ -69,6 +69,7 @@
     </logger>
 
     <logger name="GOBii" level="${loggerLevel}" additivity="false">
+        <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 

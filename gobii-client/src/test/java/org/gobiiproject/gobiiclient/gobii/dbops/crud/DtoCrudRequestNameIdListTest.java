@@ -35,6 +35,8 @@ import java.util.*;
 /**
  * Created by VCalaminos on 1/15/2018.
  */
+
+@Ignore
 public class DtoCrudRequestNameIdListTest {
 
     private static Logger LOGGER = LoggerFactory.getLogger(DtoCrudRequestNameIdListTest.class);

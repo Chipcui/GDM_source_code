@@ -2055,12 +2055,7 @@ public class GobiiAdl {
                 writeToFile(document, fXmlFile);
 
                 //write to instruction file
-                if (entityName.equals("Dataset")) {
-                    entityName = "dataSet";
-                } else {
-                    entityName = entityName.toLowerCase();
-                }
-
+                entityName = entityName.toLowerCase();
                 // metadata
 
                 JsonObject metadata = (JsonObject) procedure.get("metadata");
@@ -2084,11 +2079,6 @@ public class GobiiAdl {
                 }
 
                 if (entityName.equals("dataset")) {
-                    if (metadata.has("dataset")) {
-                        JsonObject datasetPropNameId = new JsonObject();
-                        datasetPropNameId.addProperty("id", currentEntityId);
-                        metadata.add("datasetId", datasetPropNameId);
-                    }
 
                     // get datasetType ID
 
@@ -2101,7 +2091,6 @@ public class GobiiAdl {
                     checkStatus(resultEnvelopeForDatasetGet);
 
                     DataSetDTO dataSetDTOGetResponse = resultEnvelopeForDatasetGet.getPayload().getData().get(0);
-
                     // set datasetType fields in instruction file template
                     JsonObject datasetTypeObj = (JsonObject) metadata.get("datasetType");
                     datasetTypeObj.addProperty("name", dataSetDTOGetResponse.getDatatypeName().toUpperCase());
@@ -2120,6 +2109,10 @@ public class GobiiAdl {
                     JsonObject gobiiFileObject = (JsonObject) metadata.get("gobiiFile");
                     gobiiFileObject.addProperty("source", filesPath);
                     gobiiFileObject.addProperty("destination", digestPath);
+                    gobiiFileObject.addProperty("delimiter", "\\t");
+                    gobiiFileObject.addProperty("gobiiFileType", "GENERIC");
+                    gobiiFileObject.addProperty("requireDirectoriesToExist", false);
+                    gobiiFileObject.addProperty("createSource", false);
                     metadata.add("gobiiFile", gobiiFileObject);
                 }
 
@@ -2164,7 +2157,7 @@ public class GobiiAdl {
                                             }
                                             break;
                                         case "dataset_id":
-                                            if (entityName.equals("dataSet")) {
+                                            if (entityName.equals("dataset")) {
                                                 fileColumnObj.addProperty("constantValue", currentEntityId);
                                             }
                                             break;

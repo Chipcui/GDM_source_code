@@ -26,7 +26,7 @@ import java.util.UUID;
  * Created by Phil on 11/3/2016.
  */
 
-
+@Ignore
 public class TestGobiiConfig {
 
 

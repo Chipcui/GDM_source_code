@@ -27,6 +27,7 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+@Ignore
 public class GobiiAdlTest {
 
 

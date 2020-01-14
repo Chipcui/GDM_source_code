@@ -1,10 +1,14 @@
-package org.gobiiproject.gobiiprocess.digester.HelperFunctions;
+ package org.gobiiproject.gobiiprocess.digester.HelperFunctions;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.gobiiproject.gobiimodel.utils.FileSystemInterface;
 import org.gobiiproject.gobiimodel.utils.error.Logger;
@@ -37,6 +41,10 @@ public class PGArray {
     public void process(){
         try {
             Scanner input = new Scanner(new File(strMarkerFile));
+            if(!input.hasNext()){
+                Logger.logError("PGArray", "File " + strMarkerFile + " is missing or empty");
+                return;//Fail fast
+            }
             String strHeader = input.nextLine();
             String[] arrHeader = strHeader.split("\t");
             for(int i=0; i<arrHeader.length; i++){
@@ -58,7 +66,7 @@ public class PGArray {
             while(input.hasNextLine()){
                 String line = input.nextLine();
                 String[] arr = line.split("\t");
-                convertToArray(arr, columnIndex);
+                arr[columnIndex] = delimiterSeparatedStringToPgArrayString(arr[columnIndex]);
                 writer.write(StringUtils.join(arr, "\t"));
                 writer.newLine();
             }
@@ -72,9 +80,10 @@ public class PGArray {
         }
     }
 
-    private void convertToArray(String[] arr,int colIndex){
-        String col = arr[colIndex];
-        String newCol = "\"{\"\"" + col.replaceAll("[^A-Za-z\\-.]", "\"\",\"\"") + "\"\"}\"";
-        arr[colIndex] = newCol;
+    public static String delimiterSeparatedStringToPgArrayString(String dss){
+        return String.format("{%s}", Arrays.stream(dss.split("[^0-9A-Za-z\\-+.]"))
+                                           .filter(StringUtils::isNotEmpty)
+                                           .map(m -> String.format("\"\"%s\"\"", m))
+                                           .collect(Collectors.joining(",")));
     }
 }

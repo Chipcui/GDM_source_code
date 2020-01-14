@@ -634,17 +634,20 @@ export class FileItemService {
 
                                             }
 
+                                            //With reference to GSD-70, Not loading None type just for marker groups.
+                                            if(filterParamsToLoad.getQueryName() !== FilterParamNames.MARKER_GROUPS) {
 
-                                            let noneFileItem: GobiiFileItem = GobiiFileItem
-                                                .build(gobiiExtractFilterType, ProcessType.DUMMY)
-                                                .setExtractorItemType(ExtractorItemType.ENTITY)
-                                                .setEntityType(filterParamsToLoad.getEntityType())
-                                                .setItemId(this.NONE_ITEM_ITEM_ID)
-                                                .setItemName("<none>")
-                                                .setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
-                                                .setParentItemId(filterValue);
+                                                let noneFileItem: GobiiFileItem = GobiiFileItem
+                                                    .build(gobiiExtractFilterType, ProcessType.DUMMY)
+                                                    .setExtractorItemType(ExtractorItemType.ENTITY)
+                                                    .setEntityType(filterParamsToLoad.getEntityType())
+                                                    .setItemId(this.NONE_ITEM_ITEM_ID)
+                                                    .setItemName("<none>")
+                                                    .setIsExtractCriterion(filterParamsToLoad.getIsExtractCriterion())
+                                                    .setParentItemId(filterValue);
 
-                                            fileItems.push(noneFileItem);
+                                                fileItems.push(noneFileItem);
+                                            }
 
                                             let parentId: string = fileItems[0].getItemId();
                                             //filterParamsToLoad.setTargetEntityFilterValue(parentId && +parentId > 0 ? parentId : null);
