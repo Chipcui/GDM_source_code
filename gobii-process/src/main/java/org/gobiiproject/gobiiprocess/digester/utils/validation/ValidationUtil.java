@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -403,7 +404,17 @@ class ValidationUtil {
                                 } else printMissingFieldError("DB", "foreignKey", failureList);
                             }
                     } else printMissingFieldError("DB", "fieldToCompare", failureList);
-                } else printMissingFieldError("DB", "unsupported typeName", failureList);
+                }
+                else if(condition.typeName.equalsIgnoreCase(ValidationConstants.DNASAMPLE_UUID)){
+                    if(condition.fieldToCompare != null){
+                        if (checkForHeaderExistence(fileName, condition.fieldToCompare, condition.required, failureList)){
+                            if (condition.foreignKey != null) {
+                                validateDNASampleUUID(fileName, condition, failureList,cropConfig);
+                            } else printMissingFieldError("DB", "foreignKey", failureList);
+                        }
+                    }
+                }
+                else printMissingFieldError("DB", "unsupported typeName", failureList);
             } else printMissingFieldError("DB", "typeName", failureList);
         } catch (MaximumErrorsValidationException e) {
             ////Don't do any thing. This implies that particular error list is full.;
@@ -478,6 +489,44 @@ class ValidationUtil {
                         }
                         List<NameIdDTO> nameIdDTOListResponse = ValidationWebServicesUtil.getNamesByNameList(nameIdDTOList, GobiiEntityNameType.DNASAMPLE.toString(), ent.getKey(), failureList, cropConfig);
                         processResponseList(nameIdDTOListResponse, fieldToCompare, FailureTypes.UNDEFINED_DNASAMPLE_NAME_NUM_VALUE, failureList);
+                    } else undefinedForeignKey(condition, ent.getKey(), failureList);
+                }
+            }
+        }
+    }
+
+    private static void validateDNASampleUUID(String fileName, ConditionUnit condition, List<Failure> failureList, GobiiCropConfig cropConfig) throws MaximumErrorsValidationException {
+        List<String> fieldToCompare = condition.fieldToCompare;
+        Set<String> foreignKeyList = new HashSet<>();
+        if (readForeignKey(fileName, condition.foreignKey, foreignKeyList, failureList)) {
+            Map<String, Set<List<String>>> mapForeignkeyAndName = new HashMap<>();
+            if (createProjectIdSampleNameAndNumGroup(fileName, condition, mapForeignkeyAndName, failureList)) {
+                Map<String, String> foreignKeyValueFromDB;
+                if (foreignKeyList.size() != 1) {
+                    multipleProjectIdError(condition, failureList);
+                    return;
+                }
+                if (condition.typeName.equalsIgnoreCase(ValidationConstants.DNASAMPLE_UUID)) {
+                    String projectId = foreignKeyList.iterator().next();//There's only 1
+                    foreignKeyValueFromDB = ValidationWebServicesUtil.validateProjectId(projectId, failureList);
+                    if (foreignKeyValueFromDB.size() == 0) {
+                        undefinedForeignKey(condition, projectId, failureList);
+                        return;
+                    }
+                } else {
+                    createFailure(FailureTypes.UNDEFINED_FOREIGN_KEY, Collections.singletonList(condition.foreignKey), failureList);
+                    return;
+                }
+                for (Map.Entry<String, Set<List<String>>> ent : mapForeignkeyAndName.entrySet()) {
+                    if (foreignKeyValueFromDB.keySet().contains(ent.getKey())) {
+                        List<NameIdDTO> nameIdDTOList = new ArrayList<>();
+                        for (List<String> uuid : ent.getValue()) {
+                            NameIdDTO nameIdDTO = new NameIdDTO();
+                            nameIdDTO.setUuid(uuid.get(0));
+                            nameIdDTOList.add(nameIdDTO);
+                        }
+                        List<NameIdDTO> nameIdDTOListResponse = ValidationWebServicesUtil.getNamesByNameList(nameIdDTOList, GobiiEntityNameType.DNASAMPLE.toString(), ent.getKey(), failureList, cropConfig);
+                        elementExistenceResponseFailures(nameIdDTOListResponse, fieldToCompare, FailureTypes.DEFINED_DNASAMPLE_UUID_VALUE, NameIdDTO::getUuid,failureList);
                     } else undefinedForeignKey(condition, ent.getKey(), failureList);
                 }
             }
@@ -671,13 +720,31 @@ class ValidationUtil {
      * Process the DB response. If there is no id add it to the failure list
      */
     private static void processResponseList(List<NameIdDTO> nameIdDTOList, List<String> fieldToCompare, String reason, List<Failure> failureList) throws MaximumErrorsValidationException {
-        for (NameIdDTO nameIdDTO : nameIdDTOList)
-            if (nameIdDTO.getId() == 0) createFailure(reason, fieldToCompare, nameIdDTO.getName(), failureList);
+        for (NameIdDTO nameIdDTO : nameIdDTOList) {
+               if (nameIdDTO.getId() == 0) {
+                   createFailure(reason, fieldToCompare, nameIdDTO.getName(), failureList);
+               }
+        }
     }
     private static void processResponseList(List<NameIdDTO> nameIdDTOList, String fieldToCompare, String reason, List<Failure> failureList) throws MaximumErrorsValidationException {
         processResponseList(nameIdDTOList,Collections.singletonList(fieldToCompare),reason,failureList);
     }
 
+
+    /**
+     * Takes a list of NameIdDTOs where the expectation is these data elements are unmatched. Creates failures with the
+     * input reason for any entity that has an identifier.
+     */
+    private static void elementExistenceResponseFailures(List<NameIdDTO> nameIdDTOList, List<String> fieldToCompare, String reason, Function<NameIdDTO,String> fieldOperator, List<Failure> failureList) throws MaximumErrorsValidationException {
+        for (NameIdDTO nameIdDTO : nameIdDTOList) {
+            if (nameIdDTO.getId() != 0) { //NameIdDTO object was found by web services
+                createFailure(reason, fieldToCompare, fieldOperator.apply(nameIdDTO), failureList);
+            }
+        }
+    }
+    private static void elementExistenceResponseFailures(List<NameIdDTO> nameIdDTOList, String fieldToCompare, String reason, Function<NameIdDTO,String> fieldOperator, List<Failure> failureList) throws MaximumErrorsValidationException {
+        elementExistenceResponseFailures(nameIdDTOList,Collections.singletonList(fieldToCompare),reason,fieldOperator,failureList);
+    }
         /**
 		 * Reads specified key.
 		 * Can simplify while refactoring

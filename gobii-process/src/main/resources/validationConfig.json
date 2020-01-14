@@ -103,7 +103,11 @@
         },{
           "columnName": "uuid",
           "required": "yes",
-          "unique": "yes"
+          "unique": "yes",
+          "typeName":"sampleUuid",
+          "fieldToCompare":[
+            "uuid"
+          ]
         }
       ]
     },

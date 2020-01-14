@@ -29,6 +29,7 @@ public class FailureTypes {
     public static final String UNDEFINED_MARKER_NAME__VALUE = "marker does not exist in DB";
     public static final String UNDEFINED_DNASAMPLE_NAME_VALUE = "dnasample_name does not exist in DB";
     public static final String UNDEFINED_DNASAMPLE_NAME_NUM_VALUE = "dnasample_name and num combination does not exist in DB";
+    public static final String DEFINED_DNASAMPLE_UUID_VALUE = "dnasample_uuid already exists in DB";
     public static final String EXCEPTION = "Exception";
     public static final String UNDEFINED_CONDITION_TYPE = "condition type does not exist in DB";
     public static final String UNDEFINED_PLATFORM_ID = "platform id does not exist in DB";

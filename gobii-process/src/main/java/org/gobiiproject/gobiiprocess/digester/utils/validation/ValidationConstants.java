@@ -10,6 +10,7 @@ public class ValidationConstants {
     static final String DNASAMPLE = "dnasample";
     static final String DNASAMPLE_NAME = "dnasample_name";
     static final String DNASAMPLE_NAME_NUM = "sampleNameNum";
+    static final String DNASAMPLE_UUID = "sampleUuid";
     static final String DB = "DB";
     static final String FILE = "FILE";
     static final String YES = "YES";

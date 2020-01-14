@@ -291,7 +291,7 @@ public class ValidationWebServicesUtil {
      * @return Items list with id
      * @throws MaximumErrorsValidationException exception
      */
-    public static List<NameIdDTO> getNamesByShortNameList(List<NameIdDTO> nameIdDTOList, String gobiiEntityNameType, String filterValue, List<Failure> failureList) throws MaximumErrorsValidationException {
+    private static List<NameIdDTO> getNamesByShortNameList(List<NameIdDTO> nameIdDTOList, String gobiiEntityNameType, String filterValue, List<Failure> failureList) throws MaximumErrorsValidationException {
         List<NameIdDTO> nameIdDTOListResponse = new ArrayList<>();
         try {
             PayloadEnvelope<NameIdDTO> payloadEnvelope = new PayloadEnvelope<>();
@@ -338,5 +338,67 @@ public class ValidationWebServicesUtil {
             ValidationUtil.createFailure(FailureTypes.EXCEPTION, new ArrayList<>(), e.getMessage(), failureList);
         }
         return nameIdDTOListResponse;
+    }
+
+    private static List<NameIdDTO> getNamesByShortUUIDList(List<NameIdDTO> nameIdDTOList, String gobiiEntityNameType, String filterValue, List<Failure> failureList) throws MaximumErrorsValidationException {
+        List<NameIdDTO> nameIdDTOListResponse = new ArrayList<>();
+        try {
+            PayloadEnvelope<NameIdDTO> payloadEnvelope = new PayloadEnvelope<>();
+            payloadEnvelope.getHeader().setGobiiProcessType(GobiiProcessType.CREATE);
+            payloadEnvelope.getPayload().setData(nameIdDTOList);
+
+            RestUri namesUri = GobiiClientContext.getInstance(null, false)
+                    .getUriFactory()
+                    .nameIdListByQueryParams();
+            GobiiEnvelopeRestResource<NameIdDTO, NameIdDTO> gobiiEnvelopeRestResource = new GobiiEnvelopeRestResource<>(namesUri);
+            namesUri.setParamValue("entity", gobiiEntityNameType.toLowerCase());
+
+            namesUri.setParamValue("filterType", StringUtils.capitalize(GobiiFilterType.NAMES_BY_UUID_LIST.toString().toUpperCase()));
+            namesUri.setParamValue("filterValue", filterValue);
+
+            PayloadEnvelope<NameIdDTO> responsePayloadEnvelope = gobiiEnvelopeRestResource.post(NameIdDTO.class, payloadEnvelope);
+            Status status = responsePayloadEnvelope.getHeader().getStatus();
+            if (!status.isSucceeded()) {
+                Logger.logWarning("ValidtionWebServices", "Bad NameIdDTO request", new Exception());
+                ArrayList<HeaderStatusMessage> statusMessages = status.getStatusMessages();
+                for (HeaderStatusMessage message : statusMessages)
+                    ValidationUtil.createFailure(FailureTypes.DATABASE_ERROR, new ArrayList<>(), message.getMessage(), failureList);
+                return nameIdDTOListResponse;
+            }
+            nameIdDTOListResponse.addAll(responsePayloadEnvelope.getPayload().getData());
+        } catch (MaximumErrorsValidationException e) {
+            throw e;
+        } catch (Exception e) {
+            ValidationUtil.createFailure(FailureTypes.EXCEPTION, new ArrayList<>(), e.getMessage(), failureList);
+        }
+        return nameIdDTOListResponse;
+    }
+
+    /**
+     * Web service call to validate CV and reference type. Will batch over the arbitrary limit.
+     *
+     * @param nameIdDTOList       Items list
+     * @param gobiiEntityNameType CV or Reference
+     * @param filterValue         filter value
+     * @param failureList         failure list
+     * @return Items list with id
+     * @throws MaximumErrorsValidationException exception
+     */
+    public static List<NameIdDTO> getNamesByUUIDList(List<NameIdDTO> nameIdDTOList, String gobiiEntityNameType, String filterValue, List<Failure> failureList, GobiiCropConfig cropConfig) throws MaximumErrorsValidationException {
+        int numEntities = nameIdDTOList.size();
+        List<NameIdDTO> results = new ArrayList<>(numEntities);
+        int maxEntitiesPerCall = DEFAULT_MAX_NAMES_PER_CALL;
+
+        //Determine limit from configuration if possible
+        Integer limit = cropConfig != null ? getEntityLimit(gobiiEntityNameType,cropConfig):null;
+        if((limit!=null) && (limit > 0)){
+            maxEntitiesPerCall = limit;
+        }
+
+        for(int i=0;i < numEntities;i+=maxEntitiesPerCall){
+            List<NameIdDTO> sublist = getSubList(nameIdDTOList,i,i+maxEntitiesPerCall);
+            results.addAll(getNamesByShortUUIDList(sublist,gobiiEntityNameType,filterValue,failureList));
+        }
+        return results;
     }
 }
