@@ -11,10 +11,13 @@ import org.gobiiproject.gobiimodel.dto.instructions.extractor.GobiiDataSetExtrac
 import org.gobiiproject.gobiimodel.types.GobiiFileProcessDir;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
 import org.gobiiproject.gobiimodel.types.GobiiValidationStatusType;
+import org.gobiiproject.gobiimodel.utils.LineUtils;
 import org.gobiiproject.gobiimodel.utils.InstructionFileAccess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.UUID;
 
 
 /**
@@ -57,7 +60,8 @@ public class FileServiceImpl implements FilesService {
 
 
             } else {
-                throw new GobiiDomainException(GobiiStatusLevel.ERROR, GobiiValidationStatusType.NONE, "There is no instruction for the job ");
+                throw new GobiiDomainException(GobiiStatusLevel.ERROR,
+                        GobiiValidationStatusType.NONE, "There is no instruction for the job ");
             }
 
         } else if (gobiiFileProcessDir.equals(GobiiFileProcessDir.RAW_USER_FILES)) {
@@ -99,6 +103,24 @@ public class FileServiceImpl implements FilesService {
     }
 
     @Override
+    public String makeDirInProcessDir(String cropType,
+                                    String dirName,
+                                    GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
+
+
+        ConfigSettings configSettings = new ConfigSettings();
+
+        String processDir = configSettings.getProcessingPath(cropType, gobiiFileProcessDir);
+
+        String dirPath = LineUtils.terminateDirectoryPath(processDir) + dirName;
+
+        instructionFileAccess.makeDirectory(dirPath);
+
+        return dirPath;
+    }
+
+
+    @Override
     public void deleteFileFromProcessDir(String cropType,
                                          String fileName,
                                          GobiiFileProcessDir gobiiFileProcessDir) throws Exception {
@@ -113,14 +135,18 @@ public class FileServiceImpl implements FilesService {
 
 
     @Override
-    public void writeJobFileForCrop(String cropType,
+    public String writeJobFileForCrop(String cropType,
                                     String jobId,
                                     String fileName,
                                     GobiiFileProcessDir gobiiFileProcessDir,
                                     byte[] byteArray) throws GobiiException, Exception {
 
         String path = this.getFilePath(cropType, jobId, gobiiFileProcessDir);
+
         instructionFileAccess.writeFile(path, fileName, byteArray);
+
+        return path;
+
     }
 
     @Override
@@ -140,6 +166,44 @@ public class FileServiceImpl implements FilesService {
 
         return returnVal;
     }
+
+    /**
+     * Saves experiment data file.
+     * @param cropType
+     * @param fileName
+     * @param dataFileBytes
+     * @return Path where the file is saved
+     */
+    @Override
+    public String writeExperimentDataFile(String cropType, String fileName, byte[] dataFileBytes) {
+
+        try {
+
+            ConfigSettings configSettings = new ConfigSettings();
+
+            String rawUserFilesPath = configSettings.getProcessingPath(cropType, GobiiFileProcessDir.RAW_USER_FILES);
+
+            String experimentFolderName = UUID.randomUUID().toString().replace("-","");
+
+            String experimentFolderPath = (
+                    LineUtils.terminateDirectoryPath(rawUserFilesPath) +
+                            experimentFolderName);
+
+            return instructionFileAccess.writeFile(experimentFolderPath, fileName, dataFileBytes);
+
+
+        }
+        catch(Exception e) {
+
+            throw new GobiiDomainException(
+                    GobiiStatusLevel.ERROR,
+                    GobiiValidationStatusType.UNKNOWN,
+                    "Unable to save experiment data file.");
+        }
+
+    }
+
+
 
 
 } // ExtractorInstructionFileServiceImpl

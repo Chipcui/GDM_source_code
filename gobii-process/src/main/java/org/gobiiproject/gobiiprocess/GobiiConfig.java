@@ -53,6 +53,7 @@ public class GobiiConfig {
     private static String CONFIG_MARK_CROP_NOTACTIVE = "cD";
     private static String CONFIG_REMOVE_CROP = "cR";
     private static String CONFIG_GLOBAL_FILESYS_ROOT = "gR";
+    private static String CONFIG_GLOBAL_FILESYS_HDF5 = "gH5";
     private static String CONFIG_GLOBAL_FILESYS_LOG = "gL";
     private static String CONFIG_GLOBAL_PROVIDES_BACKEND = "gB";
 
@@ -226,6 +227,7 @@ public class GobiiConfig {
             setOption(options, CONFIG_MARK_CROP_NOTACTIVE, false, "Marks the specified crop inactive", "crop ID");
 
             setOption(options, CONFIG_GLOBAL_FILESYS_ROOT, true, "Absolute path to the gobii file system root (global)", "gobii root fqpn");
+            setOption(options, CONFIG_GLOBAL_FILESYS_HDF5, true, "Absolute path to the gobii file system hdf5 binary directory (global)", "gobii hdf5 fqpn");
             setOption(options, CONFIG_GLOBAL_FILESYS_LOG, true, "Log file directory (global)", "log directory");
             setOption(options, CONFIG_GLOBAL_PROVIDES_BACKEND, true, "Specifies whether or not (true|false) MDE functionality is supported", "backend provided");
 
@@ -785,7 +787,21 @@ public class GobiiConfig {
                         null);
 
 
-            } else if (commandLine.hasOption(CONFIG_GLOBAL_FILESYS_LOG)) {
+            }
+            else if (commandLine.hasOption(CONFIG_GLOBAL_FILESYS_HDF5)) {
+                String fileSysHDF5 = commandLine.getOptionValue(CONFIG_GLOBAL_FILESYS_HDF5);
+                configSettings.setFileSystemHDF5(fileSysHDF5);
+                configSettings.commit();
+
+                writeConfigSettingsMessage(options,
+                        ServerType.UNKNOWN,
+                        propFileFqpn,
+                        Arrays.asList(CONFIG_GLOBAL_FILESYS_HDF5),
+                        Arrays.asList(fileSysHDF5),
+                        null);
+
+            }
+            else if (commandLine.hasOption(CONFIG_GLOBAL_FILESYS_LOG)) {
                 String fileSysLog = commandLine.getOptionValue(CONFIG_GLOBAL_FILESYS_LOG);
                 configSettings.setFileSystemLog(fileSysLog);
                 configSettings.commit();

@@ -27,16 +27,22 @@ public class BrapiResponseMapCalls {
 
         List<BrapiResponseCallsItem> returnVal = new ArrayList<>();
 
-        returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
-                GobiiControllerType.BRAPI.getControllerPath(),
-                RestResourceId.BRAPI_LOGIN.getResourcePath()),
-                Arrays.asList(RestMethodType.POST),
-                Arrays.asList(BrapiDataTypes.JSON)));
+        //returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
+        //        GobiiControllerType.BRAPI.getControllerPath(),
+        //        RestResourceId.BRAPI_LOGIN.getResourcePath()),
+        //        Arrays.asList(RestMethodType.POST),
+        //        Arrays.asList(BrapiDataTypes.JSON)));
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
                 GobiiControllerType.BRAPI.getControllerPath(),
                 RestResourceId.BRAPI_CALLS.getResourcePath()),
-                Arrays.asList(RestMethodType.POST),
+                Arrays.asList(RestMethodType.GET),
+                Arrays.asList(BrapiDataTypes.JSON)));
+
+        returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,
+                GobiiControllerType.BRAPI.getControllerPath(),
+                RestResourceId.BRAPI_MAPS_CALLS.getResourcePath()),
+                Arrays.asList(RestMethodType.GET),
                 Arrays.asList(BrapiDataTypes.JSON)));
 
         returnVal.add(new BrapiResponseCallsItem(new RestUri(this.contextRoot,

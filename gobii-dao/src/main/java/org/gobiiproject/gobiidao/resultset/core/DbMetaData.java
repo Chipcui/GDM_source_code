@@ -5,6 +5,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl;
+import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.jpa.HibernateEntityManagerFactory;
 
@@ -23,15 +26,15 @@ public class DbMetaData {
 
 
         HibernateEntityManagerFactory entityManagerFactory = (HibernateEntityManagerFactory) em.getEntityManagerFactory();
-        SessionFactoryImpl sessionFactory = (SessionFactoryImpl) entityManagerFactory.getSessionFactory();
-        DatasourceConnectionProviderImpl datasourceConnectionProviderImplj = (DatasourceConnectionProviderImpl) sessionFactory.getConnectionProvider();
-        DataSource dataSource = datasourceConnectionProviderImplj.getDataSource();
+        SessionImplementor sessionFactory = (SessionImplementor) entityManagerFactory.getSessionFactory();
+        return sessionFactory.getJdbcConnectionAccess().obtainConnection().getMetaData().getURL();
+//        DataSource dataSource = datasourceConnectionProviderImplj.getDataSource();
 
 
 
-        returnVal = dataSource.getConnection().getMetaData().getURL();
+ //       returnVal = dataSource.getConnection().getMetaData().getURL();
 
-        return returnVal;
+   //     return returnVal;
     }
 }
 

@@ -12,12 +12,13 @@ import org.gobiiproject.gobiimodel.dto.entity.auditable.ProjectDTO;
 /**
  * Created by Phil on 3/24/2016.
  */
-public interface ProjectService {
+public interface ProjectService<T> {
 
-    ProjectDTO createProject(ProjectDTO projectDTO) throws GobiiDomainException;
-    ProjectDTO replaceProject(Integer projectId, ProjectDTO projectDTO) throws GobiiDomainException;
-    List<ProjectDTO> getProjects() throws GobiiDomainException;
-    ProjectDTO getProjectById(Integer projectId) throws GobiiDomainException;
-    List<ProjectDTO> getProjectsForLoadedDatasets() throws GobiiDomainException;
-    
+    T createProject(T projectDTO) throws GobiiDomainException;
+    T replaceProject(Integer projectId, T projectDTO) throws GobiiDomainException;
+    List<T> getProjects() throws GobiiDomainException;
+    T getProjectById(Integer projectId) throws GobiiDomainException;
+    List<T> getProjectsForLoadedDatasets() throws GobiiDomainException;
+    List<T> getProjects(Integer pageNum, Integer pageSize) throws GobiiDomainException;
+
 }

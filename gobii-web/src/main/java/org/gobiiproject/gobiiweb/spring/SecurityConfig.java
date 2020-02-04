@@ -14,6 +14,7 @@ import org.gobiiproject.gobiiweb.security.TokenAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -37,8 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ContactService contactService;
 
+    private static String CONFIG_FILE_LOCATION_PROP = "cfgFqpn";
 
-    private static ConfigSettings CONFIG_SETTINGS = new ConfigSettings();
+    private static ConfigSettings CONFIG_SETTINGS;
+
+    public SecurityConfig() {
+        String configFileLocation = System.getProperty(CONFIG_FILE_LOCATION_PROP);
+        this.CONFIG_SETTINGS = new ConfigSettings(configFileLocation);
+    }
 
     @Override
     @Bean(name = "restAuthenticationManager")
@@ -73,11 +80,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // the calling the calls call does not require authentication
         String brapiCallsUrl = RestResourceId.BRAPI_CALLS.getRequestUrl(null, GobiiControllerType.BRAPI.getControllerPath());
+        String brapiMapsUrl = RestResourceId.BRAPI_MAPS_CALLS.getRequestUrl(null, GobiiControllerType.BRAPI.getControllerPath()) + "/**";
         String gobiiFIlesUrl = RestResourceId.GOBII_FILES.getRequestUrl(null, GobiiControllerType.GOBII.getControllerPath()) + "/**";
 
         web.ignoring()
-                .antMatchers(brapiCallsUrl);
+                .antMatchers(brapiCallsUrl)
+                .antMatchers(brapiMapsUrl);
 //                .antMatchers(gobiiFIlesUrl);
+        web.ignoring().antMatchers(HttpMethod.OPTIONS);
     }
 
 
@@ -88,15 +98,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // but it is WRONG; this works fine
         String allGobiimethods = GobiiControllerType.GOBII.getControllerPath() + "/**";
         http.addFilterAfter(this.filterBean(), BasicAuthenticationFilter.class);
-        http.
-                csrf().disable().
-                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
-                and().
-                authorizeRequests().
-                antMatchers(allGobiimethods).permitAll().
-                anyRequest().authenticated().
-                and().
-                anonymous().disable();
+        http
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers(allGobiimethods).permitAll()
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .anonymous().disable();
 
     }
 
@@ -110,7 +121,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 
-        ConfigSettings configSettings = new ConfigSettings();
+        String configFileLocation = System.getProperty(CONFIG_FILE_LOCATION_PROP);
+        ConfigSettings configSettings = new ConfigSettings(configFileLocation);
         GobiiAuthenticationType gobiiAuthenticationType = configSettings.getGobiiAuthenticationType();
         if (gobiiAuthenticationType.equals(GobiiAuthenticationType.TEST)) {
 

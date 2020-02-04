@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import org.gobiiproject.gobiimodel.utils.error.Logger;
 
@@ -73,13 +74,54 @@ public class FileSystemInterface {
 		rmIfExist(f);
 	}
 	/**
-	 * As unix MV command.
-	 * @param from
-	 * @param to
+	 * Moves files, like the unix command, (but less powerful, see below).
+	 * @param from file to move
+	 * @param to file location to move to
+	 * @return true if move succeeded
 	 */
-	public static void mv(String from, String to){
-		HelperFunctions.tryExec("mv "+from + " " + to);
+	public static boolean 	mv(String from, String to) {
+			return mv(from,to,false);
 	}
+
+	/**
+	 * Moves a file to a new file location in the 'to' folder
+	 * @param from file to move
+	 * @param toFolder folder to move file to
+	 * @return true if move succeeded
+	 */
+	public static boolean mvToFolder(String from, String toFolder, boolean ignore) {
+		String toFilePath = String.format("%s/%s", toFolder,new File(from).getName());//Convert the folder path to a file path
+		return mv(from, toFilePath, ignore);
+	}
+	/**
+	 * As unix MV command, but only 'warns' on error
+	 * @param from Location of file to move
+	 * @param to Location of place to move to
+	 * @param ignore if true, only 'warn' on exception
+	 * @return true if move succeeded
+	 */
+	public static boolean mv(String from, String to,boolean ignore) {
+		try{
+			Files.move(new File(from).toPath(),new File(to).toPath(),(CopyOption)StandardCopyOption.REPLACE_EXISTING);
+		}
+		catch(IOException e){
+			String reason = "Failed move of " + from + " to " + to;
+
+			if(ignore){
+
+				Logger.logWarning("FileSystemInterface",reason,e);
+			}
+			else {
+				Logger.logError("FileSystemInterface", reason, e);
+			}
+			return false;
+		}
+
+		return true;
+	}
+
+
+
 
 	public static int lineCount(String file){
 		if(!new File(file).exists()){

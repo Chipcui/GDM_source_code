@@ -12,12 +12,13 @@ import org.gobiiproject.gobiimodel.dto.entity.auditable.ExperimentDTO;
 /**
  * Created by Angel on 4/19/2016.
  */
-public interface ExperimentService {
+public interface ExperimentService<T> {
 
-    ExperimentDTO createExperiment(ExperimentDTO experimentDTO) throws GobiiDomainException;
-    ExperimentDTO replaceExperiment(Integer experimentId, ExperimentDTO experimentDTO) throws GobiiDomainException;
-    List<ExperimentDTO> getExperiments() throws GobiiDomainException;
-    ExperimentDTO getExperimentById(Integer experimentId) throws GobiiDomainException;
-    List<ExperimentDTO> getExperimentsByProjectIdForLoadedDatasets(Integer projectId) throws GobiiDomainException;
+    T createExperiment(T experimentDTO) throws GobiiDomainException;
+    T replaceExperiment(Integer experimentId, T experimentDTO) throws GobiiDomainException;
+    List<T> getExperiments() throws GobiiDomainException;
+    T getExperimentById(Integer experimentId) throws GobiiDomainException;
+    List<T> getExperimentsByProjectIdForLoadedDatasets(Integer experimentId) throws GobiiDomainException;
+    boolean updateExperimentDataFile(Integer experimentId, String dataFilePath) throws GobiiDomainException;
 
 }

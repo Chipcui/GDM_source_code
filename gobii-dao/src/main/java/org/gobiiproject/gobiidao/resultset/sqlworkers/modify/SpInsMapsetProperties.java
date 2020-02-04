@@ -10,7 +10,7 @@ public class SpInsMapsetProperties extends SpDef {
 
     public SpInsMapsetProperties() {
 
-        super("{call upsertmapsetpropertybyname(?,?,?)}");
+        super("{call upsertmapsetpropertybyname(?,?,?)}", true);
 
         this.addParamDef(EntityPropertyParamNames.PROPPCOLARAMNAME_ENTITY_ID, Integer.class)
                 .setNullable(false);

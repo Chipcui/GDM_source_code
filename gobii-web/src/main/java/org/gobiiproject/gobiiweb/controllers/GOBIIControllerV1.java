@@ -111,13 +111,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -129,6 +123,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping(GobiiControllerType.SERVICE_PATH_GOBII)
 @Api()
+@CrossOrigin
 public class GOBIIControllerV1 {
 
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(GOBIIControllerV1.class);
@@ -137,7 +132,7 @@ public class GOBIIControllerV1 {
     private PingService pingService = null;
 
     @Autowired
-    private ProjectService projectService = null;
+    private ProjectService<ProjectDTO> projectService = null;
 
     @Autowired
     private ContactService contactService = null;
@@ -158,7 +153,7 @@ public class GOBIIControllerV1 {
     private OrganizationService organizationService = null;
 
     @Autowired
-    private ExperimentService experimentService = null;
+    private ExperimentService<ExperimentDTO> experimentService = null;
 
     @Autowired
     private NameIdListService nameIdListService = null;
@@ -938,13 +933,12 @@ public class GOBIIControllerV1 {
             params = {"email", "lastName", "firstName", "userName"},
             method = RequestMethod.GET)
     @ResponseBody
-    public PayloadEnvelope<ContactDTO> getContactsBySearch(
-            @ApiParam(value = "contact's email", required = true) @RequestParam("email") String email,
-            @ApiParam(value = "contact's last name", required = true) @RequestParam("lastName") String lastName,
-            @ApiParam(value = "contact's first name", required = true) @RequestParam("firstName") String firstName,
-            @ApiParam(value = "contact's user name", required = true) @RequestParam("userName") String userName,
-            HttpServletRequest request,
-            HttpServletResponse response) {
+    public PayloadEnvelope<ContactDTO> getContactsBySearch(@RequestParam(value = "email", required = false) String email,
+                                                           @RequestParam(value = "lastName", required = false) String lastName,
+                                                           @RequestParam(value = "firstName", required = false) String firstName,
+                                                           @RequestParam(value = "userName", required = false) String userName,
+                                                           HttpServletRequest request,
+                                                           HttpServletResponse response) {
 
         PayloadEnvelope<ContactDTO> returnVal = new PayloadEnvelope<>();
         try {
@@ -2154,7 +2148,8 @@ public class GOBIIControllerV1 {
             LoaderInstructionFilesDTO loaderInstructionFilesDTOToCreate = payloadReader.extractSingleItem(payloadEnvelope);
 
             String cropType = CropRequestAnalyzer.getGobiiCropType(request);
-            LoaderInstructionFilesDTO loaderInstructionFilesDTONew = loaderInstructionFilesService.createInstruction(cropType, loaderInstructionFilesDTOToCreate);
+            LoaderInstructionFilesDTO loaderInstructionFilesDTONew = loaderInstructionFilesService.createInstruction(
+                    cropType, loaderInstructionFilesDTOToCreate);
 
             PayloadWriter<LoaderInstructionFilesDTO> payloadWriter = new PayloadWriter<>(request, response,
                     LoaderInstructionFilesDTO.class);
@@ -3852,9 +3847,11 @@ public class GOBIIControllerV1 {
             HttpServletResponse response) {
 
         PayloadEnvelope<ProjectDTO> returnVal = new PayloadEnvelope<>();
+
         try {
 
             PayloadReader<ProjectDTO> payloadReader = new PayloadReader<>(ProjectDTO.class);
+
             ProjectDTO projectDTOToCreate = payloadReader.extractSingleItem(payloadEnvelope);
 
             ProjectDTO projectDTONew = projectService.createProject(projectDTOToCreate);

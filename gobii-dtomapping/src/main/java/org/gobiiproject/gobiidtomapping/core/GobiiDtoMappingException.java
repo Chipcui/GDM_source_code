@@ -24,4 +24,5 @@ public class GobiiDtoMappingException extends GobiiException {
                                     String message) {
         super(gobiiStatusLevel, gobiiValidationStatusType,message);
     }
+
 }

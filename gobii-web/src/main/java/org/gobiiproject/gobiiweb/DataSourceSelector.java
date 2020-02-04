@@ -46,6 +46,7 @@ public class DataSourceSelector extends AbstractRoutingDataSource {
     unnecessary to manage static configuration for each specific crop type.
      */
     private ThreadLocal<HttpServletRequest> currentRequest;
+
     public ThreadLocal<HttpServletRequest> getCurrentRequest() {
         return currentRequest;
     }
@@ -53,6 +54,7 @@ public class DataSourceSelector extends AbstractRoutingDataSource {
     public void setCurrentRequest(ThreadLocal<HttpServletRequest> currentRequest) {
         this.currentRequest = currentRequest;
     }
+
     @Override
     protected Object determineCurrentLookupKey() {
 
@@ -64,9 +66,7 @@ public class DataSourceSelector extends AbstractRoutingDataSource {
             } else {
                 returnVal = CropRequestAnalyzer.getGobiiCropType();
             }
-
         } catch( Exception e) {
-
             LOGGER.error("Error looking up lookup key",e);
         }
 

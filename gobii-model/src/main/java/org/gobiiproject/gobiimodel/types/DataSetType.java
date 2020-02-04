@@ -9,5 +9,6 @@ public enum DataSetType {
     SSR_ALLELE_SIZE,
     DOMINANT_NON_NUCLEOTIDE,
     CO_DOMINANT_NON_NUCLEOTIDE,
-    VCF
+    VCF,
+    NUCLEOTIDE_4_LETTER
 }

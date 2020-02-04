@@ -1,10 +1,16 @@
 package org.gobiiproject.gobiidao.resultset.core;
 
 
+import org.gobiiproject.gobiidao.GobiiDaoException;
+import org.hibernate.Session;
+import org.hibernate.exception.SQLGrammarException;
+import org.hibernate.jdbc.Work;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.lang.reflect.Type;
 import java.sql.Array;
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.time.LocalDate;
@@ -13,45 +19,30 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import org.gobiiproject.gobiidao.GobiiDaoException;
-import org.hibernate.Session;
-import org.hibernate.exception.SQLGrammarException;
-import org.hibernate.jdbc.Work;
+import org.gobiiproject.gobiidao.util.async.Promise;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Created by Phil on 4/18/2016.
  */
-public class SpRunnerCallable implements Work {
+public class SpRunnerCallable {
 
     Logger LOGGER = LoggerFactory.getLogger(SpRunnerCallable.class);
 
     public SpRunnerCallable() {}
 
-    public SpRunnerCallable(EntityManager entityManager) {
-        this.em = entityManager;
-    }
-
     @PersistenceContext
-    protected EntityManager em;
+    private EntityManager em;
 
-    private SpDef spDef = null;
-    private Map<String, Object> paramVals = null;
+    public Integer run(SpDef spDef, Map<String, Object> paramVals) throws SQLGrammarException {
 
-    Integer result = null;
+        Promise<Integer> result = new Promise<>();
 
-    public Integer getResult() {
-        return result;
-    }
-
-    public void run(SpDef spDef, Map<String, Object> paramVals) throws SQLGrammarException {
+        Session session = null;
 
         try {
-            this.spDef = spDef;
-            this.paramVals = paramVals;
 
             // first do validation checking
             List<SpParamDef> paramDefs = spDef.getSpParamDefs();
@@ -84,98 +75,96 @@ public class SpRunnerCallable implements Work {
 
             } // iterate param defs
 
-            Session session = (Session) em.getDelegate();
-            session.doWork(this);
-
-
+            session = em.getEntityManagerFactory().unwrap(SessionFactory.class).openSession();
+            session.doWork(createWorkFunction(spDef, result));
         } finally {
-            this.spDef = null;
-            this.paramVals = null;
-        }
 
-
-    } // run()
-
-
-    @Override
-    public void execute(Connection connection) throws SQLException, GobiiDaoException {
-
-//        System.out.println("===================: " + spDef.getCallString());
-//        System.out.println("Nu def object? " + System.identityHashCode(spDef));
-//        System.out.println("Nu this? " + System.identityHashCode(this));
-
-        CallableStatement callableStatement = connection.prepareCall(spDef.getCallString());
-
-        List<SpParamDef> paramDefs = spDef.getSpParamDefs();
-
-        for (SpParamDef currentParamDef : paramDefs) {
-
-            Integer currentParamIndex = currentParamDef.getOrderIdx();
-            String currentParamName = currentParamDef.getParamName();
-            Type currentParamType = currentParamDef.getParamType();
-            Object currentParamValue = currentParamDef.getCurrentValue();
-
-            try {
-                if (currentParamType.equals(String.class)) {
-                    if (null != currentParamValue) {
-                        callableStatement.setString(currentParamIndex, (String) currentParamValue);
-                    } else {
-                        callableStatement.setNull(currentParamIndex, Types.VARCHAR);
-                    }
-                } else if (currentParamType.equals(Integer.class)) {
-                    if (null != currentParamValue) {
-                        callableStatement.setInt(currentParamIndex, (Integer) currentParamValue);
-                    } else {
-                        callableStatement.setNull(currentParamIndex, Types.INTEGER);
-                    }
-                } else if (currentParamType.equals(Date.class)) {
-                    if (null != currentParamValue) {
-
-                        Date javaDateValue = (Date) currentParamValue;
-                        LocalDate localDate = javaDateValue.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
-                        callableStatement.setDate(currentParamIndex, sqlDate);
-                    } else {
-                        callableStatement.setNull(currentParamIndex, Types.DATE);
-                    }
-                } else if (currentParamType.equals(ArrayList.class)) {
-                    if (null != currentParamValue) {
-
-                        List<Integer> list = (List<Integer>) currentParamValue;
-                        Integer[] intArray = new Integer[list.size()];
-                        intArray = list.toArray(intArray);
-                        Array sqlArray = connection.createArrayOf("integer", intArray);
-                        callableStatement.setArray(currentParamIndex, sqlArray);
-                    } else {
-                        callableStatement.setNull(currentParamIndex, Types.ARRAY);
-                    }
-                } else {
-                    throw new SQLException("Unsupported param type: " + Type.class.toString());
-                }
-
-            } catch (Exception e) {
-                String message = "Error executing stored procedure " + spDef.getCallString() + " with " +
-                        "Param Name: " + currentParamName + "; " +
-                        "Param Value: " + currentParamValue + "; " +
-                        "Param Type: " + currentParamType.toString() + ": " +
-                        "Reported Exception: " +e.getMessage();
-                throw new GobiiDaoException(message);
+            if (session != null && session.isConnected()) {
+                session.close();
             }
         }
 
+        return result.get();
 
-        Integer resultOutParamIdx = paramDefs.size();
+    } // run()
 
-        if (spDef.isReturnsKey()) {
-            callableStatement.registerOutParameter(resultOutParamIdx, Types.INTEGER);
-        }
+    private Work createWorkFunction(final SpDef spDef, final Promise<Integer> promise)  {
 
-        callableStatement.executeUpdate();
+        return connection -> {
+            CallableStatement callableStatement = connection.prepareCall(spDef.getCallString());
 
-        if (spDef.isReturnsKey()) {
-            result = callableStatement.getInt(resultOutParamIdx);
-        }
+            List<SpParamDef> paramDefs = spDef.getSpParamDefs();
 
+            for (SpParamDef currentParamDef : paramDefs) {
+
+                Integer currentParamIndex = currentParamDef.getOrderIdx();
+                String currentParamName = currentParamDef.getParamName();
+                Type currentParamType = currentParamDef.getParamType();
+                Object currentParamValue = currentParamDef.getCurrentValue();
+
+                try {
+                    if (currentParamType.equals(String.class)) {
+                        if (null != currentParamValue) {
+                            callableStatement.setString(currentParamIndex, (String) currentParamValue);
+                        } else {
+                            callableStatement.setNull(currentParamIndex, Types.VARCHAR);
+                        }
+                    } else if (currentParamType.equals(Integer.class)) {
+                        if (null != currentParamValue) {
+                            callableStatement.setInt(currentParamIndex, (Integer) currentParamValue);
+                        } else {
+                            callableStatement.setNull(currentParamIndex, Types.INTEGER);
+                        }
+                    } else if (currentParamType.equals(Date.class)) {
+                        if (null != currentParamValue) {
+
+                            Date javaDateValue = (Date) currentParamValue;
+                            LocalDate localDate = javaDateValue.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                            java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+                            callableStatement.setDate(currentParamIndex, sqlDate);
+                        } else {
+                            callableStatement.setNull(currentParamIndex, Types.DATE);
+                        }
+                    } else if (currentParamType.equals(ArrayList.class)) {
+                        if (null != currentParamValue) {
+
+                            List<Integer> list = (List<Integer>) currentParamValue;
+                            Integer[] intArray = new Integer[list.size()];
+                            intArray = list.toArray(intArray);
+                            Array sqlArray = connection.createArrayOf("integer", intArray);
+                            callableStatement.setArray(currentParamIndex, sqlArray);
+                        } else {
+                            callableStatement.setNull(currentParamIndex, Types.ARRAY);
+                        }
+                    } else {
+                        throw new SQLException("Unsupported param type: " + Type.class.toString());
+                    }
+
+                } catch (Exception e) {
+                    String message = "Error executing stored procedure " + spDef.getCallString() + " with " +
+                            "Param Name: " + currentParamName + "; " +
+                            "Param Value: " + currentParamValue + "; " +
+                            "Param Type: " + currentParamType.toString() + ": " +
+                            "Reported Exception: " +e.getMessage();
+                    throw new GobiiDaoException(message);
+                }
+            }
+
+
+            Integer resultOutParamIdx = paramDefs.size();
+
+            if (spDef.isReturnsKey()) {
+                callableStatement.registerOutParameter(resultOutParamIdx, Types.INTEGER);
+            }
+
+            callableStatement.executeUpdate();
+
+            if (spDef.isReturnsKey()) {
+                promise.set(callableStatement.getInt(resultOutParamIdx));
+            } else {
+                promise.set(null);
+            }
+        };
 
     } // execute
 }

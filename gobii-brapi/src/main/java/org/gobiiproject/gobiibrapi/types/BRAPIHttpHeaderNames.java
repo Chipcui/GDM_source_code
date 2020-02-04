@@ -5,5 +5,5 @@ package org.gobiiproject.gobiibrapi.types;
  */
 public class BRAPIHttpHeaderNames {
 
-    public static final String HEADER_NAME_TOKEN = "authorization";
+    public static final String HEADER_NAME_TOKEN = "Authorization";
 }

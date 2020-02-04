@@ -11,14 +11,13 @@ import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 
 public class MarkerGroupMarkerDTO  {
 
-
     public MarkerGroupMarkerDTO() {
     }
 
     public MarkerGroupMarkerDTO(GobiiProcessType gobiiProcessType) {
-
         this.gobiiProcessType = gobiiProcessType;
     }
+
     private GobiiProcessType gobiiProcessType = GobiiProcessType.READ;
 
     public GobiiProcessType getGobiiProcessType() {
@@ -87,4 +86,5 @@ public class MarkerGroupMarkerDTO  {
     public void setFavorableAllele(String favorableAllele) {
         this.favorableAllele = favorableAllele;
     }
+
 }

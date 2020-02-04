@@ -1,5 +1,6 @@
 package org.gobiiproject.gobiibrapi.core.common;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.gobiiproject.gobiiapimodel.payload.Pagination;
 import org.gobiiproject.gobiiapimodel.payload.Status;
 
@@ -11,20 +12,31 @@ import java.util.Map;
 /**
  * Created by Phil on 12/15/2016.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrapiMetaData {
 
     public BrapiMetaData() {
 
     }
 
-    public BrapiMetaData(BrapiPagination pagination, List<BrapiStatus> status, List<String> datafiles) {
+    public BrapiMetaData(
+            BrapiPagination pagination,
+            List<BrapiStatus> status,
+            List<String> datafiles,
+            BrapiAsynchStatus asynchStatus) {
         this.pagination = pagination;
         this.status = status;
         this.datafiles = datafiles;
+        this.asynchStatus = asynchStatus;
+
     }
 
+    private BrapiAsynchStatus asynchStatus;
+
     BrapiPagination pagination = new BrapiPagination(0,0,0,0);
+
     List<BrapiStatus> status = new ArrayList<>();
+
     List<String> datafiles = new ArrayList<>();
 
     public BrapiPagination getPagination() {
@@ -61,5 +73,13 @@ public class BrapiMetaData {
 
     public void setDatafiles(List<String> datafiles) {
         this.datafiles = datafiles;
+    }
+
+    public BrapiAsynchStatus getAsynchStatus() {
+        return asynchStatus;
+    }
+
+    public void setAsynchStatus(BrapiAsynchStatus asynchStatus) {
+        this.asynchStatus = asynchStatus;
     }
 }

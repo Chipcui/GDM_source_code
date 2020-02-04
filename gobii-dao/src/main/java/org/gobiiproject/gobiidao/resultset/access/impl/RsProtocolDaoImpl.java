@@ -46,17 +46,17 @@ public class RsProtocolDaoImpl implements RsProtocolDao {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Integer createProtocol(Map<String, Object> paramaters) throws GobiiDaoException {
-        Integer returnVal = null;
 
         try {
-            spRunnerCallable.run(new SpInsProtocol(), paramaters);
-            returnVal = spRunnerCallable.getResult();
+
+            return spRunnerCallable.run(new SpInsProtocol(), paramaters);
+
         } catch (SQLGrammarException e) {
+
             LOGGER.error("Error creating dataset with SQL " + e.getSQL(), e.getSQLException());
             throw (new GobiiDaoException(e.getSQLException()));
-        }
 
-        return returnVal;
+        }
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -193,18 +193,17 @@ public class RsProtocolDaoImpl implements RsProtocolDao {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Integer createVendorProtocol(Map<String, Object> parameters) throws GobiiDaoException {
-        Integer returnVal;
 
         try {
-            spRunnerCallable.run(new SpInsVendorProtocol(), parameters);
-            returnVal = spRunnerCallable.getResult();
+
+            return spRunnerCallable.run(new SpInsVendorProtocol(), parameters);
+
         } catch (SQLGrammarException e) {
+
             LOGGER.error("Error creating vendor protocol record with SQL " + e.getSQL(), e.getSQLException());
             throw (new GobiiDaoException(e.getSQLException()));
+
         }
-
-        return returnVal;
-
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

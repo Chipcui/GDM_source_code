@@ -16,8 +16,6 @@ public class TableColDisplay {
 
 	private Integer rank;
 
-
-
 	public Integer getDisplayId() {
 		return displayId;
 	}

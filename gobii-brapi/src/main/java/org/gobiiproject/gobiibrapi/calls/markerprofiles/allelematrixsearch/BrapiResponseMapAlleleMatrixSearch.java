@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -58,9 +59,8 @@ public class BrapiResponseMapAlleleMatrixSearch {
         return new PropNameId(datasetTypeId.get(), datasetType.getDatasetTypeName());
     }
 
-    private BrapiMetaData createExtractorInstruction(String crop, GobiiDataSetExtract gobiiDataSetExtract) {
+    private String createExtractorInstruction(String crop, GobiiDataSetExtract gobiiDataSetExtract) {
 
-        BrapiMetaData brapiMetaData = new BrapiMetaData();
 
         ExtractorInstructionFilesDTO extractorInstructionFilesDTO = new ExtractorInstructionFilesDTO();
         GobiiExtractorInstruction gobiiExtractorInstruction = new GobiiExtractorInstruction();
@@ -75,12 +75,10 @@ public class BrapiResponseMapAlleleMatrixSearch {
         ExtractorInstructionFilesDTO extractorInstructionFilesDTONew = extractorInstructionFilesService
                 .createInstruction(crop, extractorInstructionFilesDTO);
 
-        brapiMetaData.addStatusMessage("asynchid", extractorInstructionFilesDTONew.getJobId());
-
-        return brapiMetaData;
+        return extractorInstructionFilesDTONew.getJobId();
     }
 
-    public BrapiMetaData searchByMatrixDbId(String crop, String matrixDbId) {
+    public String searchByMatrixDbId(String crop, String matrixDbId) {
 
         GobiiDataSetExtract gobiiDataSetExtract = new GobiiDataSetExtract();
         gobiiDataSetExtract.setGobiiFileType(GobiiFileType.FLAPJACK);
@@ -90,7 +88,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
         return createExtractorInstruction(crop, gobiiDataSetExtract);
     }
 
-    public BrapiMetaData searchByExternalCode(String crop, List<String> externalCodes) {
+    public String searchByExternalCode(String crop, List<String> externalCodes) {
 
         GobiiDataSetExtract gobiiDataSetExtract = new GobiiDataSetExtract();
         gobiiDataSetExtract.setGobiiFileType(GobiiFileType.FLAPJACK);
@@ -105,7 +103,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
         return createExtractorInstruction(crop, gobiiDataSetExtract);
     }
 
-    public BrapiMetaData searchByGermplasm(String crop, List<String> germplasmList) {
+    public String searchByGermplasm(String crop, List<String> germplasmList) {
 
         GobiiDataSetExtract gobiiDataSetExtract = new GobiiDataSetExtract();
         gobiiDataSetExtract.setGobiiFileType(GobiiFileType.FLAPJACK);
@@ -116,7 +114,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
         return createExtractorInstruction(crop, gobiiDataSetExtract);
     }
 
-    public BrapiMetaData searchByDNASample(String crop, List<String> dnaSamples) {
+    public String searchByDNASample(String crop, List<String> dnaSamples) {
 
         GobiiDataSetExtract gobiiDataSetExtract = new GobiiDataSetExtract();
         gobiiDataSetExtract.setGobiiFileType(GobiiFileType.FLAPJACK);
@@ -127,8 +125,81 @@ public class BrapiResponseMapAlleleMatrixSearch {
         return createExtractorInstruction(crop, gobiiDataSetExtract);
     }
 
-    public BrapiMetaData getStatus(String crop, String jobId, HttpServletRequest request) throws Exception {
-        BrapiMetaData brapiMetaData = new BrapiMetaData();
+    public String getStatus(String crop, String jobId, HttpServletRequest request) throws Exception {
+
+        ExtractorInstructionFilesDTO extractorInstructionFilesDTONew = extractorInstructionFilesService
+                .getStatus(crop, jobId);
+
+        String brapiAsynchStatus = null;
+
+        if ((extractorInstructionFilesDTONew
+                .getGobiiExtractorInstructions().size() > 0) &&
+                (extractorInstructionFilesDTONew
+                        .getGobiiExtractorInstructions().get(0).getDataSetExtracts().size() > 0)) {
+
+            GobiiDataSetExtract gobiiDataSetExtract = extractorInstructionFilesDTONew
+                    .getGobiiExtractorInstructions()
+                    .get(0)
+                    .getDataSetExtracts()
+                    .get(0);
+
+            JobProgressStatusType jobProgressStatus = gobiiDataSetExtract.getGobiiJobStatus();
+
+
+            brapiAsynchStatus =  getBrapiJobStatus(jobProgressStatus);
+
+            if (brapiAsynchStatus != null && brapiAsynchStatus.equals("FAILED")) {
+                throw new GobiiException(gobiiDataSetExtract.getLogMessage());
+            }
+        }
+
+
+        return brapiAsynchStatus;
+
+    }
+
+    private String getBrapiJobStatus(JobProgressStatusType jobProgressStatus) {
+
+        String brapiAsynchStatus = null;
+
+        switch (jobProgressStatus) {
+
+            case CV_PROGRESSSTATUS_PENDING:
+                brapiAsynchStatus = "PENDING";
+                break;
+
+            case CV_PROGRESSSTATUS_INPROGRESS:
+            case CV_PROGRESSSTATUS_METADATAEXTRACT:
+            case CV_PROGRESSSTATUS_FINALASSEMBLY:
+            case CV_PROGRESSSTATUS_QCPROCESSING:
+            case CV_PROGRESSSTATUS_TRANSFORMATION:
+            case CV_PROGRESSSTATUS_DIGEST:
+            case CV_PROGRESSSTATUS_NOSTATUS: // I _think_ this only occurs before the digester/extractor sees the instruction file
+                brapiAsynchStatus = "INPROCESS";
+                break;
+
+            case CV_PROGRESSSTATUS_COMPLETED:
+                brapiAsynchStatus = "FINISHED";
+                break;
+
+            case CV_PROGRESSSTATUS_FAILED:
+            case CV_PROGRESSSTATUS_ABORTED:
+            case CV_PROGRESSSTATUS_METADATALOAD: // these are load status that do not apply to extract TODO: Add an error message for this condition
+            case CV_PROGRESSSTATUS_MATRIXLOAD:
+            case CV_PROGRESSSTATUS_VALIDATION:
+                brapiAsynchStatus = "FAILED";
+                break;
+
+
+        }
+
+        return brapiAsynchStatus;
+    }
+
+    public List<String> getDatFiles(String crop, String jobId, HttpServletRequest request) throws Exception {
+
+
+        List<String> dataFiles = new ArrayList<>();
 
         ExtractorInstructionFilesDTO extractorInstructionFilesDTONew = extractorInstructionFilesService
                 .getStatus(crop, jobId);
@@ -144,45 +215,9 @@ public class BrapiResponseMapAlleleMatrixSearch {
                     .getDataSetExtracts()
                     .get(0);
 
-            JobProgressStatusType jobProgressStatus = gobiiDataSetExtract.getGobiiJobStatus();
-
-            String brapiAsynchStatus = null;
-            switch (jobProgressStatus) {
-
-                case CV_PROGRESSSTATUS_PENDING:
-                    brapiAsynchStatus = "PENDING";
-                    break;
-
-                case CV_PROGRESSSTATUS_INPROGRESS:
-                case CV_PROGRESSSTATUS_METADATAEXTRACT:
-                case CV_PROGRESSSTATUS_FINALASSEMBLY:
-                case CV_PROGRESSSTATUS_QCPROCESSING:
-                case CV_PROGRESSSTATUS_TRANSFORMATION:
-                case CV_PROGRESSSTATUS_DIGEST:
-                case CV_PROGRESSSTATUS_NOSTATUS: // I _think_ this only occurs before the digester/extractor sees the instruction file
-                        brapiAsynchStatus = "INPROCESS";
-                    break;
-
-                case CV_PROGRESSSTATUS_COMPLETED:
-                    brapiAsynchStatus = "FINISHED";
-                    break;
-
-                case CV_PROGRESSSTATUS_FAILED:
-                case CV_PROGRESSSTATUS_ABORTED:
-                case CV_PROGRESSSTATUS_METADATALOAD: // these are load status that do not apply to extract TODO: Add an error message for this condition
-                case CV_PROGRESSSTATUS_MATRIXLOAD:
-                case CV_PROGRESSSTATUS_VALIDATION:
-                    brapiAsynchStatus = "FAILED";
-                    break;
-
-
-            }
-
             if ((extractorInstructionFilesDTONew.getGobiiExtractorInstructions().size() > 0) &&
                     (extractorInstructionFilesDTONew.getGobiiExtractorInstructions().get(0).getDataSetExtracts().size() > 0)) {
 
-                // Add the extracted files to response only when job is completed.
-                if (brapiAsynchStatus.equals("FINISHED")) {
                     if (gobiiDataSetExtract.getExtractedFiles().size() > 0) {
 
                         for (File currentFile : gobiiDataSetExtract.getExtractedFiles()) {
@@ -197,7 +232,7 @@ public class BrapiResponseMapAlleleMatrixSearch {
                                         .addQueryParam("fileName", currentFile.getName());
 
                                 String fileUri = restUri.makeUrlComplete();
-                                brapiMetaData.getDatafiles().add(fileUri);
+                                dataFiles.add(fileUri);
                             }
 
                             // now the absolute path to the file
@@ -205,20 +240,17 @@ public class BrapiResponseMapAlleleMatrixSearch {
 //                            brapiMetaData.getDatafiles().add(filePath);
                         }
                     } else {
-                        brapiMetaData.addStatusMessage("error", "There are no extracted files for the directory: " + gobiiDataSetExtract.getExtractDestinationDirectory());
+                        throw new GobiiException(
+                                "There are no extracted files for the directory: " +
+                                        gobiiDataSetExtract.getExtractDestinationDirectory());
                     }
-                } else if (brapiAsynchStatus.equals("FAILED")) {
-                    brapiMetaData.addStatusMessage("error", gobiiDataSetExtract.getLogMessage());
-                }
             } else {
-                brapiMetaData.addStatusMessage("error", "There are not extractor instructions for job : " + jobId);
+                throw new GobiiException("There are not extractor instructions for job : " + jobId);
             }
-
-            brapiMetaData.addStatusMessage("asynchstatus", brapiAsynchStatus);
 
         }
 
-        return brapiMetaData;
+        return dataFiles;
 
     } // getStatus()
 

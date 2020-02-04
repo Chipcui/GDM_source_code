@@ -16,7 +16,7 @@ import java.util.List;
 public class BrapiResponseMapAlleleMatrices {
 
     @Autowired
-    private ExperimentService experimentService = null;
+    private ExperimentService<ExperimentDTO> experimentService = null;
 
     private List<BrapiResponseAlleleMatricesItem> getBrapiJsonResponseAlleleMatricesItems() {
 

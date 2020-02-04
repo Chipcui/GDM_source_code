@@ -321,6 +321,14 @@ public class ConfigSettings {
         this.configValues.setFileSystemRoot(fileSystemRoot);
     }
 
+    public String getFileSystemHDF5() {
+        return this.configValues.getHdf5ExePath();
+    }
+
+    public void setFileSystemHDF5(String fileSystemHDF5) {
+        this.configValues.sethdf5ExePath(fileSystemHDF5);
+    }
+
     public String getFileSystemLog() {
         return this.configValues.getFileSystemLog();
     }
@@ -388,9 +396,11 @@ public class ConfigSettings {
         this.configValues.setProvidesBackend(providesBackend);
     }
 
+    public String getHdf5ExePath() {
+        return this.configValues.getHdf5ExePath();
+    }
     public AuthType getEmailAuth(){return this.configValues.getEmailAuthEnum();}
 
     public void setEmailAuth(String auth){ this.configValues.setEmailAuthType(auth);}
-
 
 }

@@ -1,5 +1,0 @@
-# master document for generating html
-include::{generated}/overview.adoc[]
-include::{generated}/gobii-system.adoc[]
-include::{generated}/paths.adoc[]
-include::{generated}/definitions.adoc[]

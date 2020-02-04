@@ -24,6 +24,13 @@ public class UserContextLoader implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
+    public UserContextLoader(){
+        this.applicationContext = new ClassPathXmlApplicationContext("classpath:/spring/application-config.xml");
+    }
+
+    public UserContextLoader(String classPath) {
+        this.applicationContext = new ClassPathXmlApplicationContext(classPath);
+    }
 
 
     @Override
@@ -35,18 +42,13 @@ public class UserContextLoader implements ApplicationContextAware {
     //bean thingy (like whenyou you use @ContextConfiguraiton in unit testing)
     private void verifyContext() {
         if (null == applicationContext) {
-            applicationContext = new ClassPathXmlApplicationContext("classpath:/spring/application-config.xml");
+            applicationContext = new ClassPathXmlApplicationContext("classpath:/spring/test-config.xml");
         }
     }//verifyContext()
 
     //Test comment
     public void loadUser(String userName) {
 
-        verifyContext();
-
-//        InMemoryUserDetailsManager userDetailsService = applicationContext.getBean(InMemoryUserDetailsManager.class);
-//        UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-//        Authentication authToken = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
         UserDao userDao =((UserDao) applicationContext.getBean(UserDao.class));
         User user = userDao.getByLogin(userName);
 

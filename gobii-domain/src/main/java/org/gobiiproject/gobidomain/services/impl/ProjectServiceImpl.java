@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by Phil on 4/6/2016.
  */
-public class ProjectServiceImpl implements ProjectService {
+public class ProjectServiceImpl implements ProjectService<ProjectDTO> {
 
 
     Logger LOGGER = LoggerFactory.getLogger(ProjectServiceImpl.class);
@@ -51,6 +51,12 @@ public class ProjectServiceImpl implements ProjectService {
 
         }
 
+        return returnVal;
+    }
+
+    @Override
+    public List<ProjectDTO> getProjects(Integer pageToken, Integer pageSize) throws GobiiDomainException {
+        List<ProjectDTO> returnVal = null;
         return returnVal;
     }
 
@@ -91,7 +97,6 @@ public class ProjectServiceImpl implements ProjectService {
 
         returnVal = dtoMapProject.create(projectDTO);
 
-        // When we have roles and permissions, this will be set programmatically
         returnVal.getAllowedProcessTypes().add(GobiiProcessType.READ);
         returnVal.getAllowedProcessTypes().add(GobiiProcessType.UPDATE);
 

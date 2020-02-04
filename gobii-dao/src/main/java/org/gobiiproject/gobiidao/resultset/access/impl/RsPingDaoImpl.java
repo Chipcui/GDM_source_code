@@ -22,12 +22,8 @@ public class RsPingDaoImpl implements RsPingDao {
 
     Logger LOGGER = LoggerFactory.getLogger(RsPingDaoImpl.class);
 
-//    @PersistenceContext
-//    protected EntityManager em;
-
     @Autowired
     private StoredProcExec storedProcExec = null;
-
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)

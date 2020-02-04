@@ -128,7 +128,7 @@ public class PagerSql {
                     " ( " +
                     PARAM_NAME_COL_TABLE_ALIAS_DELIMITED + "." + PARAM_NAME_NAME_COL_DELIMITED + ", " +
                     PARAM_NAME_COL_TABLE_ALIAS_DELIMITED + "." + PARAM_NAME_ID_COL_DELIMITED +
-                    " ) >( " +
+                    " ) > ( " +
                     " '" + PARAM_NAME_NAME_COL_VAL_DELIMITED + "', " +
                     PARAM_NAME_ID_COL_VAL_DELIMITED +
                     " ) " +

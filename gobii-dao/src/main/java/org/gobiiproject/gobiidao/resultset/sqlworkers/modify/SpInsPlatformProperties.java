@@ -10,7 +10,7 @@ public class SpInsPlatformProperties extends SpDef {
 
     public SpInsPlatformProperties() {
 
-        super("{call upsertplatformpropertybyname(?,?,?)}",false);
+        super("{call upsertplatformpropertybyname(?,?,?)}",true);
 
         this.addParamDef(EntityPropertyParamNames.PROPPCOLARAMNAME_ENTITY_ID, Integer.class)
                 .setNullable(false);

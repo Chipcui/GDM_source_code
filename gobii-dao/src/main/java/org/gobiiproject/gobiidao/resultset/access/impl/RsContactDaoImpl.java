@@ -166,12 +166,9 @@ public class RsContactDaoImpl implements RsContactDao {
     @Override
     public Integer createContact(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsContact(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsContact(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -179,8 +176,6 @@ public class RsContactDaoImpl implements RsContactDao {
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

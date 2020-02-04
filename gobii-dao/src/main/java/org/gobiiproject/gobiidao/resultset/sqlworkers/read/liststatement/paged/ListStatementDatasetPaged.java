@@ -167,7 +167,9 @@ public class ListStatementDatasetPaged implements ListStatementPaged {
         sqlParamVals.put(PagerSql.PARAM_NAME_NAME_COL_VAL, pgItemNameVal);
 
         PagerSql pagerSql = new PagerSql(sqlParamVals);
+
         String pageFrameSql = pagerSql.makeSinglePageSql();
+
         PreparedStatement returnVal = dbConnection.prepareStatement(pageFrameSql);
 
         return returnVal;

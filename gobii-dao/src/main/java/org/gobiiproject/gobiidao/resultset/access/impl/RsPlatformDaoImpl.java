@@ -142,20 +142,15 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
     @Override
     public Integer createPlatform(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsPlatform(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsPlatform(), parameters);
 
         } catch (SQLGrammarException e) {
             LOGGER.error("Error creating platform with SQL " + e.getSQL(), e.getSQLException());
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -178,20 +173,15 @@ public class RsPlatformDaoImpl implements RsPlatformDao {
     @Override
     public Integer createUpdatePlatformProperty(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsPlatformProperties(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsPlatformProperties(), parameters);
 
         } catch (SQLGrammarException e) {
             LOGGER.error("Error updating platform property with SQL " + e.getSQL(), e.getSQLException());
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-        return returnVal;
-
     } // createUpdatePlatformProperty
 
     @Transactional(propagation = Propagation.REQUIRED)

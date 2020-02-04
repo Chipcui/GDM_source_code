@@ -114,13 +114,9 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
     @Override
     public Integer createMapset(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsMapset(), parameters);
-
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsMapset(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -128,8 +124,6 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     }
 
 
@@ -156,8 +150,7 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
 
         try {
 
-            spRunnerCallable.run(new SpInsMapsetProperties(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsMapsetProperties(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -165,8 +158,6 @@ public class RsMapSetDaoImpl implements RsMapSetDao {
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     } // createUpdateMapSetProperty
 
     @Transactional(propagation = Propagation.REQUIRED)

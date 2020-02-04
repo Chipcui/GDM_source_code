@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+    http://www.springframework.org/schema/tx 		
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean
+                        class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                        name="tableLastUpdateCache"/>
+                <bean
+                        class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                        name="tableRecordCountCache"/>
+                <bean
+                        class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                        name="parentChildCountCache"/>
+                <bean
+                        class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                        name="pageFramesCache"/>
+            </set>
+        </property>
+    </bean>
+    <bean id="tableTrackingCache"
+          class="org.gobiiproject.gobiidao.cache.TableTrackingCache"/>
+    <bean id="pageFramesTrackingCache"
+          class="org.gobiiproject.gobiidao.cache.PageFramesTrackingCache"/>
+
+    <!-- ******************** ****************************************** -->
+    <!-- ******************** explicitly defined beans **************** -->
+
+    <!-- **** Security Beans *************************************** -->
+    <bean id="UserDao"
+          class="org.gobiiproject.gobiidao.entity.access.impl.mock.UserDaoImpl"/>
+
+    <bean id="dtoMapProject" class="org.gobiiproject.gobiidtomapping.entity.auditable.impl.DtoMapProjectImpl"/>
+
+    <bean id="dtoMapSampleTrackingProject"
+          class="org.gobiiproject.gobiidtomapping.entity.auditable.impl.sampletracking.DtoMapProjectImpl"/>
+
+
+    <bean id="projectService"
+          class="org.gobiiproject.gobidomain.services.impl.ProjectServiceImpl"/>
+
+    <bean id="sampleTrackingProjectService"
+          class="org.gobiiproject.gobidomain.services.impl.sampletracking.ProjectServiceImpl"/>
+
+    <bean id="dtoMapDnaRun" class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapDnaRunImpl"/>
+    <bean id="dnaRunService"
+          class="org.gobiiproject.gobidomain.services.impl.DnaRunServiceImpl"/>
+
+    <bean id="dtoMapMarkerBrapi" class="org.gobiiproject.gobiidtomapping.entity.noaudit.impl.DtoMapMarkerBrapiImpl"/>
+    <bean id="markerBrapiService"
+          class="org.gobiiproject.gobidomain.services.impl.brapi.MarkerBrapiServiceImpl"/>
+
+    <!-- **** Helper Beans *************************************** -->
+    <bean id="storedProcExec" class="org.gobiiproject.gobiidao.resultset.core.StoredProcExec"/>
+    <bean id="spRunnerCallable"
+          class="org.gobiiproject.gobiidao.resultset.core.SpRunnerCallable"/>
+
+
+    <!-- **** Contact Beans *************************************** -->
+    <bean id="dtoMapContact" class="org.gobiiproject.gobiidtomapping.entity.auditable.impl.DtoMapContactImpl"/>
+    <bean id="contactService" class="org.gobiiproject.gobidomain.services.impl.ContactServiceImpl"/>
+
+    <bean id="rsContact"
+          class="org.gobiiproject.gobiidao.resultset.access.impl.RsContactDaoImpl"/>
+    <bean id="rsProject"
+          class="org.gobiiproject.gobiidao.resultset.access.impl.RsProjectDaoImpl"/>
+
+    <!-- **** Projects Beans *************************************** -->
+    <bean id="rsProjectDao"
+          class="org.gobiiproject.gobiidao.resultset.access.impl.RsProjectDaoImpl"/>
+
+    <bean id="rsSampleTrackingProjectDao"
+          class="org.gobiiproject.gobiidao.resultset.access.impl.sampletracking.RsProjectDaoImpl"/>
+
+    <!-- **** DNA Run Beans *************************************** -->
+    <bean id="rsDnaRunDao"
+          class="org.gobiiproject.gobiidao.resultset.access.impl.RsDnaRunDaoImpl"/>
+
+    <!-- **** BRAPI MARKER Beans ********************************** -->
+    <bean id="rsMarkerBrapiDao"
+          class="org.gobiiproject.gobiidao.resultset.access.impl.RsMarkerBrapiDaoImpl"/>
+
+    <bean id="listStatementProjectAll"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementProjectAll"/>
+    <bean id="listStatementProjectAllWithProperties"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.sampletracking.ListStatementProjectAll"/>
+
+    <bean id="listStatementDnaRunAll"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementDnaRunAll"/>
+
+    <bean id="listStatementMarkerBrapiAll"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.discrete.ListStatementMarkerBrapiAll"/>
+
+    <!-- **** ListStatement queries paged *************************************** -->
+    <bean id="listStatementDatasetAllPaged"
+          class="org.gobiiproject.gobiidao.resultset.sqlworkers.read.liststatement.paged.ListStatementDatasetPaged"/>
+
+    <bean id="dtoListQueryColl"
+          class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQueryColl">
+        <property name="listQueriesBySqlId">
+            <map>
+                <!--PROJECT -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_PROJECT_ALL}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.entity.auditable.ProjectDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementProjectAll"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
+                <!-- DNA RUN ALL -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_DNARUN_ALL}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.entity.noaudit.DnaRunDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementDnaRunAll"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
+                <!-- BRAPI MARKER ALL -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_MARKER_ALL_BRAPI}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.entity.noaudit.MarkerBrapiDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementMarkerBrapiAll"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+    <bean id="dtoListSampleTrackingQueryColl"
+          class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQueryColl">
+        <property name="listQueriesBySqlId">
+            <map>
+                <!--PROJECT -->
+                <entry key="#{T(org.gobiiproject.gobiidao.resultset.core.listquery.ListSqlId).QUERY_ID_PROJECT_ALL}">
+                    <bean class="org.gobiiproject.gobiidao.resultset.core.listquery.DtoListQuery">
+                        <constructor-arg ref="storedProcExec"/>
+                        <constructor-arg value="org.gobiiproject.gobiimodel.dto.entity.auditable.sampletracking.ProjectDTO"/>
+                        <constructor-arg ref="pageFramesTrackingCache"/>
+                        <constructor-arg ref="listStatementProjectAllWithProperties"/>
+                        <constructor-arg name="listStatementPaged"><null/></constructor-arg>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+
+    <context:component-scan base-package="org.gobiiproject.gobidomain.spring"/>
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceMulti"/>
+        <property name="packagesToScan" value="org.gobiiproject.gobiidao.entity"/>
+        <property name="mappingResources" value="META_INF/mapping.xml"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <tx:annotation-driven/>
+
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+
+
+</beans>

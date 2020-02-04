@@ -1,8 +1,9 @@
 package org.gobiiproject.gobiimodel.dto.base;
 
+import org.gobiiproject.gobiimodel.types.GobiiProcessType;
+
 import java.util.HashSet;
 import java.util.Set;
-import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 
 /**
  * Created by Phil on 9/25/2016.

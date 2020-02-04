@@ -1,0 +1,1296 @@
+FORMAT: 1A
+HOST: http://cbsugobiixvm11.biohpc.cornell.edu:8081
+
+# GDM Sample Tracking
+
+The GDM web service API provides a comprehensive set of RESTful methods for accomplishing the following core tasks in the GOBii Genomic Data Management (GDM) system. This manual explains GDM API's for Sample Tracking use cases.
+
+## Group Projects
+
+A project consists of a group of samples that are, or will be, genotyped. A project belongs to a Principal Investigator (PI), also called a PI contact.
+
+**Resource Description**
+
+Below table describes the Project Resource with their paramters name, type and
+description.
+
+Field | Type | Description
+------|------|------------
+projectId | Integer | Id of the Project in GDM.
+piContactId | Integer | Id of PI (Principal investigator) of the project in GDM system. The PI contact can be searched using /contacts API.
+projectName | String | Name of the project. The project name must be unique.
+projectDescription | String | Field to describe the project.
+properties | Object | An object with System defined properties and User defined properties. The System defined properties are non editable by the user. User can define their own properties using /projects/properties endpoint. (Endpoint description is not added yet in this document. It will be added later.) Below are the system defined properties, <ul><li>data\_sampled: The date or approximate date the tissue was sampled. Note, this is not a standard date field. It is important that the curators for the crop community define how dates are entered for this field.</li><li>division: The department or group where the project was initiated.</li><li>genotyping\_purpose: The purpose of the project. For example, MABC or MAIC. It is important that the crop community define standards for entering data into this field.</li><li>study\_name: The larger study name that the project is associated with.</li></ul>
+projectStatus | String | Denotes current status of the project. Will be one of the three values <ul><li>new</li><li>modified</li><li>deleted</li></ul>
+projectCode | String | GDM generated code for project.
+createdBy | Integer | Contact Id of the user who created the project.
+createdDate | String | Created date string in UTC
+modifiedBy | Integer | Contact Id of the user who modified the project.
+modifiedData | Integer | Modified date string in UTC
+
+<a name="projectresourceexample">**Resource Example**</a>
+
+```
+    {
+        "createdBy": 1,
+        "createdDate": "2019-07-25T04:00:00",
+        "modifiedBy": 1,
+        "projectId": 1,
+        "piContactId": 34,
+        "projectName": "foo_proj_01",
+        "projectStatus": "new",
+        "projectCode": "foo_proj_01",
+        "projectDescription": "foo 01 project",
+        "properties": {
+            "division": "bar_division",
+            "study_name": "bar_study_name",
+            "date_sampled": "06/01/2018",
+            "genotyping_purpose": "bar_genotyp_purp"
+        }
+    }
+```
+
+
+### Projects [/gobii-dev/sample-tracking/v1/projects]
+
+#### List all projects [GET /gobii-dev/sample-tracking/v1/projects{?pageToken,pageSize}]
+
+Lists all projects in the GDM. 
+
+**Request Parameters**
+
+Field | Type | Description
+------|------|------------
+pageToken | String | Page Token to fetch a page. nextPageToken form previous page's meta data should be used. If pageNumber is specified pageToken will be ignored. pageToken can be used to sequentially get pages faster. When an invalid pageToken is given the page will start from beginning.
+pageSize | String | Size of the page to be fetched. Default is 1000.
+pageNumber | Integer | Page number to be fetched based on page size.
+
+**Response Body**
+
+Field | Type | Description
+------|------|------------
+metaData | Object | Brapi Metadata with nextPage token if user chose to use pageToken to access data sequentially faster.
+result | Array | [List of [Project Resource](https://gdmsampletracking.docs.apiary.io/#reference/projects)]
+
++ Parameters
+
+    + pageToken (optional)
+    
+    + pageSize (optional)
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: 
+
++ Response 200
+
+    successful operation
+
+    + Attributes
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "createdBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "createdDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "modifiedBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "modifiedDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "projectId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "piContactId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "projectName": {
+                  "type": "string"
+                },
+                "projectStatus": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "projectCode": {
+                  "type": "string"
+                },
+                "projectDescription": {
+                  "type": "string"
+                },
+                "properties": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
+#### Create new project [POST]
+
+Creates a new project.
+
+**Request Body**
+
+Any fields other than the below fields will be ignored by the system.
+
+Field | Type | Required/Optioanl
+------|------|------------
+piContactId | Integer | **Required** 
+projectName | String | **Required** 
+projectDescription | String | *Optional* 
+properties | Object | <ul><li>data\_sampled: *Optioanl*</li><li>division: *Optional*</li><li>genotyping\_purpose: *Optional*</li><li>study\_name: *Optional*</li></ul>
+
+**Request Body Example**
+
+```
+    {
+        "piContactId": 34,
+        "projectName": "foo_proj_01",
+        "projectDescription": "foo 01 project",
+        "properties": {
+            "division": "bar_division",
+            "study_name": "bar_study_name",
+            "date_sampled": "06/01/2018",
+            "genotyping_purpose": "bar_genotyp_purp"
+        }
+    }
+```
+
+**Successful Operation** will return created [Project Resource](#projectresourceexample) with HTTP Status code 201
+
++ Request (application/json)
+
+    + Headers
+
+            X-Auth-Token: 
+
+    + Attributes
+
+    + Body
+   
+             {
+               "piContactId": 34,
+               "projectName": "foo_proj_01",
+               "projectCode": "foo_proj_01",
+               "projectDescription": "foo 01 project",
+               "properties": {
+               "division": "bar_division",
+                 "study_name": "bar_study_name",
+                 "date_sampled": "06/01/2018",
+                 "genotyping_purpose": "bar_genotyp_purp"
+               }
+             }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "createdBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "createdDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "modifiedBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "modifiedDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "projectId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "piContactId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "projectName": {
+                  "type": "string"
+                },
+                "projectStatus": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "projectCode": {
+                  "type": "string"
+                },
+                "projectDescription": {
+                  "type": "string"
+                },
+                "properties": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
+### Projects : projectId [/gobii-dev/sample-tracking/v1/projects/{projectId}]
+
+#### Get a project by projectId [GET]
+
+Retrieves the Project entity having the specified ID.
+
+**Response Body**
+
+Field | Type | Description
+------|------|------------
+result | Object | [Project Resource](https://gdmsampletracking.docs.apiary.io/#reference/projects)
+
++ Parameters
+
+    + projectId (required) - ID of the Project to be extracted
+
+## Group Experiments
+
+An experiment defines the protocol and vendor used to generate the genotyping data. More than one experiment can belong to a project.
+
+**Resource Desciption**
+
+Field | Type | Description
+------|------|------------
+experimentId | Integer | Id of the experiment
+name | String | Name of the experiment
+projectId | Integer | Project Id unde which experiment is created.
+vendorProtocolId | Integer | Id of the vendor protocol in GDM. The combination of the vendor and protocol used to generate the genotyping data.
+manifestId | Integer | A standard group of markers run as a unit. For example, an Illumina chip. New manifest can be added using /manifest endpoint
+dataFileUrl | String | Url to download dataFiles associated with the experiment.
+status | String | Denotes current status of the project. Will be one of the three values <ul><li>new</li><li>modified</li><li>deleted</li></ul>
+code | String | GDM generated code for experiment.
+createdBy | Integer | Contact Id of the user who created the experiment.
+createdDate | String | Created date string in UTC
+modifiedBy | Integer | Contact Id of the user who modified the experiment.
+modifiedData | Integer | Modified date string in UTC
+
+<a name="experimentresourceexample">**Resource Example**</a>
+
+```
+        {
+            "createdBy": 1,
+            "createdDate": "2019-07-26T04:00:00",
+            "modifiedBy": 1,
+            "modifiedData" : ""2019-07-29T04:00:00""
+            "name": "foo",
+            "code": "bar code",
+            "projectId": 7,
+            "vendorProtocolId": 4,
+            "status": "modified",
+            "experimentId": 8,
+            "manifestId": 7,
+            "dataFileUrl": "/experiment/8/foo.zip"
+        }
+```
+
+
+### Experiments [/gobii-dev/sample-tracking/v1/experiments]
+
+#### List all experiments [GET]
+
+List of all Experiments.
+
+**Request Parameters**
+
+Field | Type | Description
+------|------|------------
+pageToken | String | Page Token to fetch a page. nextPageToken form previous page's meta data should be used. If pageNumber is specified pageToken will be ignored. pageToken can be used to sequentially get pages faster. When an invalid pageToken is given the page will start from beginning.
+pageSize | String | Size of the page to be fetched. Default is 1000.
+pageNumber | Integer | Page number to be fetched based on page size.
+
+**Response Body**
+
+Field | Type | Description
+------|------|------------
+metaData | Object | Brapi Metadata with nextPage token if user chose to use pageToken to access data sequentially faster.
+result | Array | [List of [Experiment Resource](https://gdmsampletracking.docs.apiary.io/#reference/experiments)]
+
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: 
+
++ Response 200
+
+    successful operation
+
+    + Attributes
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "createdBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "createdDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "modifiedBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "modifiedDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "id": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "dataFileUrl": {
+                  "type": "string"
+                },
+                "projectId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "vendorProtocolId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "status": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+
+#### Create new experiment [POST]
+
+Creates a new experiment in the system.
+
+**Request Body**
+
+The Request content type is *multipart/form-data* with two feilds, 
+
+* experimentMetaData: **Required** field with following json fields. Any fields other than below fields will be ignored by the system.
+
+Field | Type | Description
+------|------|------------
+name | String | **Required** 
+projectId | Integer | **Required**
+vendorProtocolId | Integer | *Optional*
+manifestId | Integer | *Optional*
+
+* dataFile: *Optional* assciated data file to be uploaded
+
+**Form Data Example**
+
+```
+
+POST /gobii-dev/sample-tracking/v1/experiments HTTP/1.1 
+Host: http://cbsugobiixvm11.biohpc.cornell.edu:8081
+Content-Type: multipart/form-data;boundary="boundary" 
+
+--boundary 
+Content-Disposition: form-data; name="experimentMetaData"
+Content-Type: application/json
+
+        {
+            "name": "foo",
+            "code": "bar code",
+            "projectId": 7,
+            "vendorProtocolId": 4,
+            "manifestId": 8
+        }
+ 
+--boundary 
+Content-Disposition: form-data; name="dataFile"; filename="foo.txt" 
+
+... contents of foo.txt ...
+
+--boundary-
+
+
+```
+
+**Successful Operation** will return created [Experiment Resource](#experimentresourceexample) with HTTP Status code 201
+
++ Request (multipart/form-data)
+
+    + Headers
+
+            X-Auth-Token: 
+
+    + Attributes
+
+### Experiment : experimentId [/gobii-dev/sample-tracking/v1/experiments/{experimentId}]
+
+#### Get an experiment by experimentId [GET]
+
+Retrieves the Experiment entity having the specified ID.
+
+**Response Body**
+
+Field | Type | Description
+------|------|------------
+result | Object | [Experiment Resource](https://gdmsampletracking.docs.apiary.io/#reference/experiments)
+
+
++ Parameters
+
+    + experimentId (required)
+
+## Group Samples
+
+Samples are the unit of material to be genotyped by a vendor. Samples have germplasm metadata (higher level information on the germplasm such as accession name or pedigree), and sample metadata (plate or sample grouping information)
+
+<a name="sampleresource">**Sample Resource**</a>
+Field | Type | Description
+------|------|------------
+sampleId | Integer | Sample Id in the GDM system
+sampleUuid | String | Sample UUID for the sample
+sampleName | String | The name of the sample that gets sent to the lab for processing. We assume that the sample is in a plate or in tubes Note: A unique sample in the GOBII system is defined by the unique combination of the project_name, dnasample_name, and dnasample_number so the dnasample_name does not need to be unique within a project or across projects.
+sampleNum | String | Numerical order of the sample within a project. For example, 1-96 for a 96 well plate. Each sample needs to have a unique number within a project, unless the sample names are each unique within the project. Even in this case, it is always good practice to assign consecutive sample numbers to the samples in a project for ease of post-processing sorting.
+projectId | Integer | Project Id to which sample belongs
+germplasm | Object | Germplasm to which sample belongs to. [Germplasm Resouurce](#germplasmresource)
+plateName | String | The plate name that the sample is in. This can be a number (1,2,3,4, etc.), or a name given by the lab.
+wellCol | String | The plate column coordinates for the sample. For example, 1-12 for a 96 well plate.
+wellRow | String | The plate row coordinates for the sample. For example, A-H for a 96 well plate.
+properties | Object | An object with System defined properties and User defined properties. The System defined properties are non editable by the user. User can define their own properties using /samples/properties endpoint. (Endpoint description is not added yet in this document. It will be added later.) Below are the system defined properties, <ul><li>ref_sample: A standard "Reference" sample aginst which all other germplasms are compared. This is also called a "gold standard".</li><li>sample_group: The grouping of germplasm that has the utility to the breeder for analysis purposes. For example, a population and its parents that need to be grouped for data analysis.</li><li>sample_group_cycle: The cycle of germplasm grouping. For example, different generations of a population and its parents that allow for further grouping withing the germplasm group.</li><li>sample_parent_prop: This can be used to describe the type of parent, for example, female/male or DP/RP (donor/recurrent parent)</li><li>sample_type: The type of tissue sampled. For example, leaf, seed, bulk seed, or bulk plant</li><li>trial\_name: The trial name for the field experiment that the sample is coming from, or fieldbook.</li></ul>
+createdBy | Integer | Contact Id of the user who created the sample.
+createdDate | String | Created date string in UTC
+modifiedBy | Integer | Contact Id of the user who modified the sample.
+modifiedData | Integer | Modified date string in UTC
+
+<a name="germplasmresource">**Germplasm Resource**</a>
+Field | Type | Description
+------|------|------------
+germplasmId | Integer | Id of the germplasm in GDM system.
+germplasmName | String | The name most commonly used, or the default name. The germplasm table has a one to many relationship with the dnasample table. For example, many dnasamples can be associated with a single germplasm name.
+externalCode | String | The code used to identify the observational unit in adjacent breeding management or sample tracking database systems. For example, this could be a plot or plant ID. A germplasm name can have several external codes.
+speciesName | String Enum | Value should be one of the CV terms for species name in GDM. Could be obtained by GET "/germplasm/cvterms/speciesnames"
+typeName | String Enum | The type or generation of germplasm. Value should be one of the CV term for type name. Could be obtained by GET "/germplasm/cvterms/typename"
+properties | Object | An object with System defined properties and User defined properties. The System defined properties are non editable by the user. User can define their own properties using /samples/properties endpoint. (Endpoint description is not added yet in this document. It will be added later.) Below are the system defined properties, <ul><li>germplasm_heterotic_group: The germplasm groups within species. For example, NSS, SSS, A, or B for maize.</li><li>germplasm_id: A higher level of ID. For example, MGID.</li><li>germplasm_subsp: Sub species grouping of germplasm. This could be different for each crop, but, for example, would be dent, flint, sweet, or pop for maize, indica, and japonica for rice, breed wheat, durum wheat for wheat etc.</li><li>par1: The germplasm name for parent 1 of the germplasm (in a biparental cross this would be the female).</li><li>par2: The germplasm name for parent 2 of the germplasm (in a biparental cross this would be the male).</li><li>par3: The germplasm name for parent 3 of the germplasm.</li><li>par4: The germplasm name for parent 4 of the germplasm.</li><li>pedigree: The pedigree for the germplasm name.</li><li>seed_source_id: Seed source ID for the germplasm.</li></ul>
+
+<a name="sampleresourceexample">**Resource Example**</a>
+
+```
+    {
+        "sampleId": 7,
+        "sampleUuid": "fjksdbfbvhjbfhjhjfhj",
+        "sampleName": "foo",
+        "sampleNum": "23",
+        "projectId": 5,
+        "germplasm": {
+            "germplasmId": 7,
+            "germplasmName": "bar",
+            "externalCode": "bar external",
+            "speciesName": "Tripsacum intermedium",
+            "typeName": "f1_hybrid",
+            "properties": {
+                "germplasm_heterotic_group": "bar NSS",
+                "germplasm_id": "bar germplasm id",
+                "germplasm_subsp": "bar germplasm",
+                "par1": "bar par 1",
+                "par2": "bar par 2",
+                "par3": "bar par 3",
+                "par4": "bar par 4",
+                "pedigree": "bar pedigree",
+                "seed_source_id": "bar see"
+            },
+            "createdBy": 2,
+            "createdDate": "2019-07-25T04:00:00",
+            "modifiedBy": 3,
+            "modifiedData": "2019-07-29T04:00:00"
+        },
+        "plateName": "foo plate",
+        "wellCol": "1",
+        "wellRow": "2",
+        "properties": {
+            "ref_sample": "foo ref sample",
+            "sample_group_cycle": "foo sample group",
+            "sample_parent_prop": "foo sample parent",
+            "sample_type": "foo sample type"
+            "trial_name": "foo trial"
+        }
+        "createdBy": 2,
+        "createdDate": "2019-07-25T04:00:00",
+        "modifiedBy": 3,
+        "modifiedData": "2019-07-29T04:00:00"
+    }
+```
+
+### Samples [/gobii-dev/sample-tracking/v1/samples]
+
+#### Create new samples [POST]
+
+Creates new samples for a given project Id in the system.
+
+<h4>Request Body</h4>
+
+Any Fields Other than below described fields will be ignored,
+
+Field | Type | Description
+------|------|------------
+projectId | Integer | **Required** Id of the project under which the samples need to be added.
+samples | Array | **Required** List of *Sample Resources*. [Sample Resource Fields](#samplerequestfields) are below,
+
+<a name="samplerequestfields">**Sample Fields**</a>
+Field | Type | Required/Optional
+------|------|------------
+sampleUuid | String | **Required**
+sampleName | String | **Required**
+sampleNum | String | **Required**
+germplasm | Object | **Required** [Germplasm Resouurce Fields](#germplasmrequestfields) are in below table,
+plateName | String | *Optional*
+wellCol | String | *Optional*
+wellRow | String | *Optional*
+properties | Object | <ul><li>ref_sample: *Optional*</li><li>sample_group: *Optional*</li><li>sample_group_cycle: *Optional*</li><li>sample_parent_prop: *Optional*</li><li>sample_type: *Optional*</li><li>trial\_name: *Optional*</li></ul>
+
+<a name="germplasmrequestfields">**Germplasm Fields**</a>
+Field | Type | Required/Optional
+------|------|------------
+germplasmName | String | **Required**
+externalCode | String | **Required**
+speciesName | String Enum | *Optional*
+typeName | String Enum | *Optional*
+properties | Object | <ul><li>germplasm_heterotic_group: *Optional*</li><li>germplasm_id: *Optional*</li><li>germplasm_subsp: *Optional*</li><li>par1: *Optional*</li><li>par2: *Optional*</li><li>par3: *Optional*</li><li>par4: *Optional*</li><li>pedigree: *Optional*</li><li>seed_source_id: *Optional*</li></ul>
+
+**Request Body Example**
+
+```
+    {
+        "projectId": 4,
+        "samples": [
+           {
+               "sampleUuid": "fjksdbfbvhjbfhjhjfhj",
+               "sampleName": "foo",
+               "sampleNum": "23",
+               "germplasm": {
+                  "germplasmName": "bar",
+                  "externalCode": "bar external",
+                  "speciesName": "Tripsacum intermedium",
+                  "typeName": "f1_hybrid",
+                  "properties": {
+                      "germplasm_heterotic_group": "bar NSS",
+                      "germplasm_id": "bar germplasm id",
+                      "germplasm_subsp": "bar germplasm",
+                      "par1": "bar par 1",
+                      "par2": "bar par 2",
+                      "par3": "bar par 3",
+                      "par4": "bar par 4",
+                      "pedigree": "bar pedigree",
+                      "seed_source_id": "bar see"
+                  }
+               },
+               "plateName": "foo plate",
+               "wellCol": "1",
+               "wellRow": "2",
+               "properties": {
+                   "ref_sample": "foo ref sample",
+                   "sample_group_cycle": "foo sample group",
+                   "sample_parent_prop": "foo sample parent",
+                   "sample_type": "foo sample type"
+                   "trial_name": "foo trial"
+               }
+           },
+           {
+               "sampleUuid": "ekjdvhjfdhjkfjhfad",
+               "sampleName": "foofoo",
+               "sampleNum": "24",
+               "germplasm": {
+                  "germplasmName": "bar",
+                  "externalCode": "bar external",
+                  "speciesName": "Tripsacum intermedium",
+                  "typeName": "f1_hybrid",
+                  "properties": {
+                      "germplasm_heterotic_group": "bar NSS",
+                      "germplasm_id": "bar germplasm id",
+                      "germplasm_subsp": "bar germplasm",
+                      "par1": "bar par 1",
+                      "par2": "bar par 2",
+                      "par3": "bar par 3",
+                      "par4": "bar par 4",
+                      "pedigree": "bar pedigree",
+                      "seed_source_id": "bar see"
+                  }
+               },
+               "plateName": "foo plate",
+               "wellCol": "1",
+               "wellRow": "3",
+               "properties": {
+                   "ref_sample": "foo ref sample",
+                   "sample_group_cycle": "foo sample group",
+                   "sample_parent_prop": "foo sample parent",
+                   "sample_type": "foo sample type"
+                   "trial_name": "foo trial"
+               }
+           },
+        ]
+    }
+```
+
+**Successful Operation** will return a json response with HTTP Status code 200. The json response will have jobId. The status of the Job can obtained by GET "/jobs/jobId". Below is the example response,
+
+```
+    
+    {
+       "jobId" : "dd568nfdjskn94_7",
+       "destinationType" : "samples",
+       "projectId" : 4
+    }
+
+```
+
+
++ Request (application/json)
+
+    + Headers
+
+            X-Auth-Token: 
+
+    + Attributes
+
+    + Body
+
+            {
+              "projectId": 4,
+              "samples": [
+                {
+                  "sampleUuid": "fjksdbfbvhjbfhjhjfhj",
+                  "sampleName": "foo",
+                  "sampleNum": "23",
+                  "germplasm": {
+                    "germplasmName": "bar",
+                    "externalCode": "bar external",
+                    "speciesName": "Tripsacum intermedium",
+                    "typeName": "f1_hybrid",
+                    "properties": {
+                      "germplasm_heterotic_group": "bar NSS",
+                      "germplasm_id": "bar germplasm id",
+                      "germplasm_subsp": "bar germplasm",
+                      "par1": "bar par 1",
+                      "par2": "bar par 2",
+                      "par3": "bar par 3",
+                      "par4": "bar par 4",
+                      "pedigree": "bar pedigree",
+                      "seed_source_id": "bar see"
+                    }
+                  },
+                  "plateName": "foo plate",
+                  "wellCol": "1",
+                  "wellRow": "2",
+                  "properties": {
+                      "ref_sample": "foo ref sample",
+                      "sample_group_cycle": "foo sample group",
+                      "sample_parent_prop": "foo sample parent",
+                      "sample_type": "foo sample type"
+                      "trial_name": "foo trial"
+                  }
+                },
+                {
+                  "sampleUuid": "ekjdvhjfdhjkfjhfad",
+                  "sampleName": "foofoo",
+                  "sampleNum": "24",
+                  "germplasm": {
+                     "germplasmName": "bar",
+                     "externalCode": "bar external",
+                     "speciesName": "Tripsacum intermedium",
+                     "typeName": "f1_hybrid",
+                     "properties": {
+                         "germplasm_heterotic_group": "bar NSS",
+                         "germplasm_id": "bar germplasm id",
+                         "germplasm_subsp": "bar germplasm",
+                         "par1": "bar par 1",
+                         "par2": "bar par 2",
+                         "par3": "bar par 3",
+                         "par4": "bar par 4",
+                         "pedigree": "bar pedigree",
+                         "seed_source_id": "bar see"
+                     }
+                  },
+                  "plateName": "foo plate",
+                  "wellCol": "1",
+                  "wellRow": "3",
+                  "properties": {
+                      "ref_sample": "foo ref sample",
+                      "sample_group_cycle": "foo sample group",
+                      "sample_parent_prop": "foo sample parent",
+                      "sample_type": "foo sample type"
+                      "trial_name": "foo trial"
+                  }
+                },
+              ]
+            }
+        
+    + Schema
+
+            {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ProjectSamplesDTO"
+                }
+              ],
+              "definitions": {
+                "ProjectSamplesDTO": {
+                  "type": "object",
+                  "properties": {
+                    "projectId": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "samples": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/DnaSampleDTO"
+                      }
+                    }
+                  }
+                },
+                "DnaSampleDTO": {
+                  "type": "object",
+                  "properties": {
+                    "createdBy": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "createdDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "modifiedBy": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "modifiedDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "projectId": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "sampleUuid": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "plateName": {
+                      "type": "string"
+                    },
+                    "num": {
+                      "type": "string"
+                    },
+                    "wellRow": {
+                      "type": "string"
+                    },
+                    "wellCol": {
+                      "type": "string"
+                    },
+                    "germplasm": {
+                      "$ref": "#/definitions/GermplasmDTO"
+                    },
+                    "properties": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "GermplasmDTO": {
+                  "type": "object",
+                  "properties": {
+                    "createdBy": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "createdDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "modifiedBy": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "modifiedDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "externalCode": {
+                      "type": "string"
+                    },
+                    "speciesName": {
+                      "type": "string"
+                    },
+                    "typeName": {
+                      "type": "string"
+                    },
+                    "germplasmId": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+
+### Upload Samples [/gobii-dev/sample-tracking/v1/samples/upload]
+
+#### Upload new samples [POST]
+
+Creates a new samples in the system.
+
+The Request content type is *multipart/form-data* with two feilds, 
+
+* sampleMetaData: **Required** field with following json fields. Any fields other than below fields will be ignored by the system.
+
+Field | Type | Description
+------|------|------------
+projectId | Integer | **Required**
+map | Object | *Optional* Object mapping File header to the API Fields. Nested fields can be concatenated with '.' . For example, germplasm resource field germplasmName can be mapped with key, "germplasm.germplasmName". Also, properties resource field ref_sample can be mapped with key, "properties.ref\_sample". If map is not given, the headers will assumed as defined by the samples API. First row of the file will be assumed as header.
+
+* sampleFile: **Required** Sample file. Content Type: text/plain. File should be tab(\\t) delimited.
+
+**Form Data Example**
+
+```
+
+POST /gobii-dev/sample-tracking/v1/samples/upload HTTP/1.1 
+Host: http://cbsugobiixvm11.biohpc.cornell.edu:8081
+Content-Type: multipart/form-data;boundary="boundary" 
+
+--boundary 
+Content-Disposition: form-data; name="sampleMetaData"
+Content-Type: application/json
+
+        {
+            "projectId": 4,
+            "map": {
+                "sampleUuid": "sampleUUID",
+                "germplasm.germplasmName": "germplasmName",
+                "germplasm.properties.pedigree": "germplasmPedigree"
+                ....
+            }
+        }
+ 
+--boundary 
+Content-Disposition: form-data; Content-Type: text/plain; name="sampleFile"; filename="foo.txt" 
+
+sampleUuid\tgermplasmName\tgermplasmPedigree.....\n
+djsakndkjasdnk\tGermplasm1\tgermplasmPedigreeFoo....\n
+....
+
+--boundary-
+
+
+```
+
+**Successful Operation** will return a json response with HTTP Status code 200. The json response will have jobId. The status of the Job can obtained by GET "/jobs/jobId". Below is the example response,
+
+```
+    
+    {
+       "jobId" : "dd568nfdjskn4_7",
+       "destinationType" : "samples",
+       "projectId" : 7
+    }
+
+```
+
++ Request (multipart/form-data; boundary=--boundary)
+
+    + Headers
+
+            X-Auth-Token: 
+
+    + Attributes
+
+    + Body
+
+        --boundary 
+        Content-Disposition: form-data; name="sampleMetaData"
+        Content-Type: application/json
+
+            {
+               "projectId": 4,
+               "map": {
+                "sampleUuid": "sampleUUID",
+                "germplasm.germplasmName": "germplasmName",
+                "germplasm.properties.pedigree": "germplasmPedigree"
+                ....
+               }
+            }
+ 
+        --boundary 
+        Content-Disposition: form-data; Content-Type: text/plain; name="sampleFile"; filename="foo.txt" 
+ 
+        sampleUuid\tgermplasmName\tgermplasmPedigree.....\n
+        djsakndkjasdnk\tGermplasm1\tgermplasmPedigreeFoo....\n
+        ....
+
+        --boundary
+
+## Group Dataset
+
+A dataset belongs to an experiment and describes the suite of analyss applied to the vendor-delivered data to generate the dataset, as well as the dataset type.
+
+**Resource Description**
+
+Field | Type | Description
+------|------|------------
+datasetId | Integer | Id of the dataset in GDM
+experimentId | Integer | Experiment under which the dataset is created
+datasetName | String | The name of the dataset. The dataset name must be unique within an experiment.
+datasetType | String Enum | Describing the "type" of data within the dataset which refers to the text format of the genotypic data calls such as IUPAC or 2-letter nucleotide. It should be one of GDM dataset types. which can be obtained by GET "/dataset/datasetTypes"
+callingAnalysisId | String | Id of the genotype calling analysis applied to the genotyping data to produce the dataset. If the vendor has not applied any specific calling analysis, then you can use a generic calling analysis eg "none". New analysis can be created using POST "/analysis". Existing analyisis can be obtained using GET "/analysis"
+analysisIds | Array String | Id of the analysis that were applied to the data to generate the dataset for imputation or data cleaning steps. New analysis can be created using POST "/analysis". Old analysis can be created using GET "/analysis".
+createdBy | Integer | Contact Id of the user who created the experiment.
+createdDate | String | Created date string in UTC
+modifiedBy | Integer | Contact Id of the user who modified the experiment.
+modifiedData | Integer | Modified date string in UTC
+
+<a name="datasetresourceexample">**Resource Example**</a>
+
+```
+            {
+              "dataSetId": 1,
+              "datasetName": "foo",
+              "datatypeName": "foo type",
+              "experimentId": 1,
+              "callingAnalysisId": "4",
+              "createdBy": 2,
+              "createdDate": "2019-08-28T15:20:44",
+              "modifiedBy": 3,
+              "modifiedDate": "2019-08-28T15:20:44",
+              "analysisIds": [
+                4
+              ]
+            }
+```
+
+
+### Dataset [/gobii-dev/sample-tracking/v1/dataset]
+
+#### Create new dataset [POST]
+
+Creates a new dataset in the system.
+
+Content Type: application/json
+
+**Request Body**
+
+Any fields other than below fields will be ignored
+
+Field | Type | Required/Optional
+------|------|------------
+experimentId | String | **Required**
+datasetName | String | **Required**
+datasetType | String | **Required**
+callingAnalysisId | String | **Required**
+analysisIds | Array String | *Optional*
+
+**Request Body Example**
+
+```
+
+            {
+              "datasetName": "foo",
+              "datatypeName": "foo type",
+              "experimentId": 1,
+              "callingAnalysisId": "4",
+              "analysisIds": [
+                4
+              ]
+            }
+
+
+```
+
+**Successful Operation** will return a [Dataset Resource](#datasetresourceexample) with HTTP Status code 201
+
++ Request (application/json)
+
+    + Headers
+
+            X-Auth-Token: 
+
+    + Attributes
+
+    + Body
+
+            {
+              "datasetId": 1,
+              "datasetName": "foo",
+              "datatypeName": "foo type",
+              "experimentId": 1,
+              "callingAnalysisId": "4",
+              "createdBy": 2,
+              "createdDate": "2019-08-28T15:20:44",
+              "modifiedBy": 3,
+              "modifiedDate": "2019-08-28T15:20:44",
+              "analysisIds": [
+                4
+              ]
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "datasetId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "datasetName": {
+                  "type": "string"
+                },
+                "datatypeName": {
+                  "type": "string"
+                },
+                "experimentId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "callingAnalysisId": {
+                  "type": "string"
+                },
+                "createdBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "createdDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "modifiedBy": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "modifiedDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "analysisIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+
+### Upload Data [/gobii-dev/sample-tracking/v1/dataset/{datasetId}/data]
+
+#### Upload data to dataset [POST]
+
+Upload data to the dataset.
+
+The Request content type is *multipart/form-data* with two feilds, 
+
+* datasetMetaData: **Required** field with following json fields. Any fields other than below fields will be ignored by the system.
+
+Field | Type | Description
+------|------|------------
+datasetId | Integer | **Required**
+vendorFileUrls | Object | *Optional* if the data is uploaded as file. No data file and no vendor file urls will result in operation failure. The Vendorfile urls format and key values should be as per definitions in vendor protocol for this particular experiment. 
+
+* genotypeFile: *Optional* if vendor file urls are provided. No data file and no vendor file urls will result in operation failure. If more than one file are there, they should be zipped and uploaded as one file object.
+
+**Form Data Example**
+
+```
+
+POST /gobii-dev/sample-tracking/v1/dataset/{datasetId}/data HTTP/1.1 
+Host: http://cbsugobiixvm11.biohpc.cornell.edu:8081
+Content-Type: multipart/form-data;boundary="boundary" 
+
+--boundary 
+Content-Disposition: form-data; name="datasetMetaData"
+Content-Type: application/json
+
+        {
+            "datasetId": 4,
+            "vendorFileUrls": {
+                "genotypeFile": "https://www.examplevendor.org/files/genotype.csv",
+                "markerMap": "https://www.examplevendor.org/files/markermap.txt",
+                ...
+            }
+        }
+ 
+--boundary 
+Content-Disposition: form-data; name="genotypeFile"; Content-Type: application/zip; filename="genotypes.data.zip" 
+
+**..contents of zip file..\*\*
+....
+
+--boundary
+
+
+```
+
+**Successful Operation** will return a json response with HTTP Status code 200. The json response will have jobId. The status of the Job can obtained by GET "/jobs/jobId". Below is the example response,
+
+```
+    
+    {
+       "jobId" : "dd568nfdjskn4_7",
+       "destinationType" : "dataset",
+       "datasetId" : 4
+    }
+
+```
+
++ Request (multipart/form-data; boundary=--boundary)
+
+    + Headers
+
+            X-Auth-Token: 
+
+    + Attributes
+
+    + Body
+
+        --boundary 
+        Content-Disposition: form-data; name="datasetMetaData"
+        Content-Type: application/json
+
+        {
+            "datasetId": 4,
+            "vendorFileUrls": {
+                "genotypeFile": "https://www.examplevendor.org/files/genotype.csv",
+                "markerMap": "https://www.examplevendor.org/files/markermap.txt",
+                ...
+            }
+        }
+ 
+        --boundary 
+        Content-Disposition: form-data; Content-Type: application/zip; name="genotypeFile"; filename="genotypes.data.zip" 
+
+        **..contents of zip file..\*\*
+        ....
+
+        --boundary-
+
++ Parameters
+
+    + datasetId (required)
+
+
+## Data Structures
+
+### definitions/DnaSampleDTO
+
++ createdBy (number, optional)
++ createdDate (optional)
++ modifiedBy (number, optional)
++ modifiedDate (optional)
++ projectId (number, optional)
++ sampleUuid (optional)
++ name (optional)
++ code (optional)
++ plateName (optional)
++ num (optional)
++ wellRow (optional)
++ wellCol (optional)
++ germplasm (definitions/GermplasmDTO, optional)
++ properties (object, optional)
+
+### definitions/GermplasmDTO
+
++ createdBy (number, optional)
++ createdDate (optional)
++ modifiedBy (number, optional)
++ modifiedDate (optional)
++ name (optional)
++ externalCode (optional)
++ speciesName (optional)
++ typeName (optional)
++ germplasmId (number, optional)
+
+### definitions/ExperimentDTO
+
++ createdBy (number, optional)
++ createdDate (optional)
++ modifiedBy (number, optional)
++ modifiedDate (optional)
++ id (number, optional)
++ name (optional)
++ code (optional)
++ dataFile (optional)
++ projectId (number, optional)
++ vendorProtocolId (number, optional)
++ manifestId (number, optional)
++ status (number, optional)
+
+### definitions/ProjectDTO
+
++ createdBy (number, optional)
++ createdDate (optional)
++ modifiedBy (number, optional)
++ modifiedDate (optional)
++ projectId (number, optional)
++ piContactId (number, optional)
++ projectName (optional)
++ projectStatus (number, optional)
++ projectCode (optional)
++ projectDescription (optional)
++ properties (object, optional)
+
+### definitions/ProjectSamplesDTO
+
++ projectId (number, optional)
++ samples (array, optional)
+    + (definitions/DnaSampleDTO)
+
+### definitions/DataSetDTO
+
++ dataSetId (number, optional)
++ datasetName (optional)
++ datatypeName (optional)
++ experimentId (number, optional)
++ callingAnalysisName (optional)
++ dataLoadingJobId (number, optional)
++ createdBy (number, optional)
++ createdDate (optional)
++ modifiedBy (number, optional)
++ modifiedDate (optional)
++ analysisIds (array, optional)
+    + (number) - - Value must be of format 'int32'
++ vendorFileUrl (object, optional)
++ datasetId (number, optional)
+
+

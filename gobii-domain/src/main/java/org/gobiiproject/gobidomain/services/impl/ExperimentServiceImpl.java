@@ -5,6 +5,7 @@ import java.util.List;
 import org.gobiiproject.gobidomain.GobiiDomainException;
 import org.gobiiproject.gobidomain.services.ExperimentService;
 import org.gobiiproject.gobiidtomapping.entity.auditable.DtoMapExperiment;
+import org.gobiiproject.gobiimodel.config.GobiiException;
 import org.gobiiproject.gobiimodel.dto.entity.auditable.ExperimentDTO;
 import org.gobiiproject.gobiimodel.types.GobiiProcessType;
 import org.gobiiproject.gobiimodel.types.GobiiStatusLevel;
@@ -16,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by Angel on 4/19/2016.
  */
-public class ExperimentServiceImpl implements ExperimentService {
+public class ExperimentServiceImpl implements ExperimentService<ExperimentDTO> {
 
 
     Logger LOGGER = LoggerFactory.getLogger(ExperimentServiceImpl.class);
@@ -159,6 +160,12 @@ public class ExperimentServiceImpl implements ExperimentService {
         return returnVal;
 
 
+    }
+
+    @Override
+    public boolean updateExperimentDataFile(Integer experimentId, String dataFilePath) throws GobiiException {
+
+        return false;
     }
 
 

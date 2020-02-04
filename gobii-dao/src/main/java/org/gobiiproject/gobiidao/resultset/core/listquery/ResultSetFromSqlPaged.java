@@ -24,10 +24,12 @@ public class ResultSetFromSqlPaged<T> implements Work {
                                  Integer pageSize,
                                  Integer pageNo,
                                  PageFrameState pageFrameState) {
+
         this.listStatementPaged = listStatementPaged;
         this.pageSize = pageSize;
         this.pageNo = pageNo;
         this.pageFrameState = pageFrameState;
+
     }
 
 
@@ -52,14 +54,18 @@ public class ResultSetFromSqlPaged<T> implements Work {
         if (this.pageFrameState == null) {
 
             this.pageFrameState = new PageFrameState(this.pageSize);
+
             PreparedStatement preparedStatement = listStatementPaged.makePreparedStatementForPageFrames(
                     dbConnection,
                     pageSize
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
+
             this.pageFrameState = new PageFrameState(this.pageSize);
+
             while (resultSet.next()) {
+
                 Integer idColVal = resultSet.getInt(listStatementPaged.getIdColName());
                 String nameColVal = resultSet.getString(listStatementPaged.getNameColName());
                 Integer pageNumber = resultSet.getInt(listStatementPaged.getPageNumberColName());

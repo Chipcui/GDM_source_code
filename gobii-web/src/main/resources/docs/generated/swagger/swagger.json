@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "The GDM web service API provides a comprehensive set of RESTful methods for accomplishing the following core tasks in the GOBii Genomic Data Management (GDM) system. This manual explains the GDM web architecture and its web service operations.\n\n",
+    "description" : "The GDM web service API provides a comprehensive set of RESTful methods for accomplishing the following core tasks in the GOBii Genomic Data Management (GDM) system. This manual explains the GDM calls complying BrAPI Genotyping standards and its definitions..\n\n",
     "version" : "1.0",
     "title" : "Genomic Data Management (GDM)",
     "license" : {
@@ -15,8 +15,6 @@
     "name" : "Analyses"
   }, {
     "name" : "Authentication"
-  }, {
-    "name" : "BrAPI"
   }, {
     "name" : "ConfigSettings"
   }, {
@@ -64,309 +62,6 @@
   } ],
   "schemes" : [ "http" ],
   "paths" : {
-    "/brapi/v1/allelematrices" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "Get Allele Matrices",
-        "description" : "Get allele matrices by given study db id",
-        "operationId" : "getAlleleMatrices",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "studyDbId",
-          "in" : "query",
-          "description" : "Study DB Id",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "AlleleMatrices"
-      }
-    },
-    "/brapi/v1/allelematrix-search" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "Search Allele Matrix",
-        "description" : "Search allele matrix using marker profiles",
-        "operationId" : "getAlleleMatrix",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "matrixDbId",
-          "in" : "query",
-          "description" : "Matrix DB Id",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "markerprofileDbId",
-          "in" : "query",
-          "description" : "Marker Profile Id",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "AlleleMatrixSearch"
-      },
-      "post" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "Search Allele Matrix",
-        "description" : "Search allele matrix using marker profiles",
-        "operationId" : "postAlleleMatrix",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "matrixDbId",
-          "in" : "query",
-          "description" : "Matrix DB Id",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "markerprofileDbId",
-          "in" : "query",
-          "description" : "Marker Profile Id",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "AlleleMatrixSearch"
-      }
-    },
-    "/brapi/v1/allelematrix-search/status/{jobId}" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "Get Allele Matrix Job status",
-        "description" : "Get allele matrix Job status",
-        "operationId" : "getAlleleMatrixStatus",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "jobId",
-          "in" : "path",
-          "description" : "Job Id",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "AlleleMatrix.status : jobId"
-      }
-    },
-    "/brapi/v1/calls" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "List all calls.",
-        "description" : "List all calls",
-        "operationId" : "getCalls",
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-tag-description" : "BrAPI is standards api calls. Below section list all the BrAPI calls supported by GDM.",
-        "x-summary" : "Calls"
-      }
-    },
-    "/brapi/v1/files" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "List all files",
-        "description" : "List all the files in a given path.",
-        "operationId" : "getFile",
-        "produces" : [ "application/octet-stream" ],
-        "parameters" : [ {
-          "name" : "fqpn",
-          "in" : "query",
-          "description" : "Fully qualified path name",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
-          }
-        },
-        "x-summary" : "Files"
-      }
-    },
-    "/brapi/v1/germplasm/{studyDbId}" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "Get germplasm by study db id.",
-        "description" : "Get germplasm by study db id.",
-        "operationId" : "getGermplasmByDbId",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "studyDbId",
-          "in" : "path",
-          "description" : "Study DB Id",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "Germplasm : studyDbId"
-      }
-    },
-    "/brapi/v1/markerprofiles" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "List all Marker Profiles",
-        "description" : "List all Marker Profiles in given germplasm db..",
-        "operationId" : "getMarkerProfile",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "germplasmDbId",
-          "in" : "query",
-          "description" : "Germplasm DB Id",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "MarkerProfiles"
-      },
-      "post" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "List all Marker Profiles",
-        "description" : "List all Marker Profiles in given germplasm db..",
-        "operationId" : "postMarkerProfile",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "germplasmDbId",
-          "in" : "query",
-          "description" : "Germplasm DB Id",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "MarkerProfiles"
-      }
-    },
-    "/brapi/v1/studies-search" : {
-      "post" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "Search the studies.",
-        "description" : "Search studies.",
-        "operationId" : "getStudies",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "StudiesSearch"
-      }
-    },
-    "/brapi/v1/studies/{studyDbId}/observationVariables" : {
-      "get" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "List all observation variables for given study db id",
-        "description" : "List all observation variables for given study db id",
-        "operationId" : "getObservationVariables",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "studyDbId",
-          "in" : "path",
-          "description" : "Study DB Id",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "Studies.observationVariables"
-      }
-    },
-    "/brapi/v1/token" : {
-      "post" : {
-        "tags" : [ "BrAPI" ],
-        "summary" : "List all tokens.",
-        "description" : "List all tokens",
-        "operationId" : "postLogin",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        },
-        "x-summary" : "Tokens"
-      }
-    },
     "/gobii/v1/analyses" : {
       "get" : {
         "tags" : [ "Analyses" ],
@@ -566,26 +261,22 @@
         "parameters" : [ {
           "name" : "email",
           "in" : "query",
-          "description" : "contact's email",
-          "required" : true,
+          "required" : false,
           "type" : "string"
         }, {
           "name" : "lastName",
           "in" : "query",
-          "description" : "contact's last name",
-          "required" : true,
+          "required" : false,
           "type" : "string"
         }, {
           "name" : "firstName",
           "in" : "query",
-          "description" : "contact's first name",
-          "required" : true,
+          "required" : false,
           "type" : "string"
         }, {
           "name" : "userName",
           "in" : "query",
-          "description" : "contact's user name",
-          "required" : true,
+          "required" : false,
           "type" : "string"
         }, {
           "name" : "X-Auth-Token",
@@ -4656,7 +4347,7 @@
         },
         "datasetOrientationType" : {
           "type" : "string",
-          "enum" : [ "SAMPLE_FAST", "MARKER_FAST" ]
+          "enum" : [ "MARKER_FAST", "SAMPLE_FAST", "NONE" ]
         },
         "dataset" : {
           "$ref" : "#/definitions/PropNameId"
@@ -4769,7 +4460,7 @@
         },
         "gobiiValidationStatusType" : {
           "type" : "string",
-          "enum" : [ "NONE", "UNKNOWN", "VALIDATION_COMPOUND_UNIQUE", "VALIDATION_NOT_UNIQUE", "NONEXISTENT_FK_ENTITY", "BAD_REQUEST", "MISSING_REQUIRED_VALUE", "ENTITY_DOES_NOT_EXIST", "ENTITY_ALREADY_EXISTS", "UNKNOWN_ENUM_VALUE", "RESOURCE_LIMIT" ]
+          "enum" : [ "NONE", "UNKNOWN", "VALIDATION_COMPOUND_UNIQUE", "VALIDATION_NOT_UNIQUE", "NONEXISTENT_FK_ENTITY", "BAD_REQUEST", "MISSING_REQUIRED_VALUE", "ENTITY_DOES_NOT_EXIST", "ENTITY_ALREADY_EXISTS", "UNKNOWN_ENUM_VALUE", "RESOURCE_LIMIT", "UNIQUE_KEY_VIOLATION" ]
         },
         "message" : {
           "type" : "string"
@@ -4791,22 +4482,22 @@
         "open" : {
           "type" : "boolean"
         },
-        "uri" : {
-          "type" : "string",
-          "format" : "uri"
-        },
-        "filename" : {
-          "type" : "string"
-        },
-        "readable" : {
-          "type" : "boolean"
-        },
         "url" : {
           "type" : "string",
           "format" : "url"
         },
         "file" : {
           "type" : "file"
+        },
+        "readable" : {
+          "type" : "boolean"
+        },
+        "uri" : {
+          "type" : "string",
+          "format" : "uri"
+        },
+        "filename" : {
+          "type" : "string"
         }
       }
     },
@@ -6371,7 +6062,7 @@
         },
         "restResourceId" : {
           "type" : "string",
-          "enum" : [ "GOBII_AUTH", "GOBII_PING", "GOBII_PROJECTS", "GOBII_NAME_ID_LIST_DEPRECATED", "GOBII_NAMES", "GOBII_FILE_LOAD", "GOBII_FILE_LOAD_INSTRUCTIONS", "GOBII_FILE_EXTRACTOR_INSTRUCTIONS", "GOBII_FILE_EXTRACTOR_JOBS", "GOBII_FILE_LOADER_JOBS", "GOBII_DISPLAY", "GOBII_CV", "GOBII_CVGROUP", "GOBII_CONTACTS", "GOBII_CONTACT_SEARCH", "GOBII_ORGANIZATION_SEARCH", "GOBII_REFERENCE", "GOBII_EXPERIMENTS", "GOBII_DATASETS", "GOBII_DATASETTYPES", "GOBII_ANALYSIS", "GOBII_MARKERGROUP", "GOBII_MANIFEST", "GOBII_ORGANIZATION", "GOBII_PLATFORM", "GOBII_MAPSET", "GOBII_CONFIGSETTINGS", "GOBII_ROLES", "GOBII_MARKERS", "GOBII_MARKER_SEARCH", "GOBII_CALLS", "GOBII_GERMPLASM", "GOBII_OBSERVATION_VARIABLES", "GOBII_PROTOCOL", "GOBII_VENDORS", "GOBII_FILES", "GOBII_JOB", "GOBII_ENTITIES", "GOBII_COUNT", "GOBII_LAST_MODIFIED", "GOBII_VERTICES", "GOBII_VALUES", "GOBII_REST_PROFILES", "GOBII_DNASAMPLES", "GOBII_DNARUN", "GOBII_LINKAGEGROUP", "GOBII_JOB_DNASAMPLE", "BRAPI_ALLELE_MATRIX_SEARCH", "BRAPI_ALLELE_MATRIX_SEARCH_STATUS", "BRAPI_ALLELE_MATRICES", "KDC_START", "KDC_STATUS", "KDC_DOWNLOAD", "KDC_PURGE", "BRAPI_LOGIN", "BRAPI_STUDIES_SEARCH", "BRAPI_STUDIES", "BRAPI_CALLS" ]
+          "enum" : [ "GOBII_AUTH", "GOBII_PING", "GOBII_PROJECTS", "GOBII_GENOTYPE_CALLS", "GOBII_NAME_ID_LIST_DEPRECATED", "GOBII_NAMES", "GOBII_FILE_LOAD", "GOBII_FILE_LOAD_INSTRUCTIONS", "GOBII_FILE_EXTRACTOR_INSTRUCTIONS", "GOBII_FILE_EXTRACTOR_JOBS", "GOBII_FILE_LOADER_JOBS", "GOBII_DISPLAY", "GOBII_CV", "GOBII_CVGROUP", "GOBII_CONTACTS", "GOBII_CONTACT_SEARCH", "GOBII_ORGANIZATION_SEARCH", "GOBII_REFERENCE", "GOBII_EXPERIMENTS", "GOBII_DATASETS", "GOBII_DATASETTYPES", "GOBII_ANALYSIS", "GOBII_MARKERGROUP", "GOBII_MANIFEST", "GOBII_ORGANIZATION", "GOBII_PLATFORM", "GOBII_MAPSET", "GOBII_CONFIGSETTINGS", "GOBII_ROLES", "GOBII_MARKERS", "GOBII_MARKER_SEARCH", "GOBII_CALLS", "GOBII_GERMPLASM", "GOBII_OBSERVATION_VARIABLES", "GOBII_PROTOCOL", "GOBII_VENDORS", "GOBII_FILES", "GOBII_JOB", "GOBII_ENTITIES", "GOBII_COUNT", "GOBII_LAST_MODIFIED", "GOBII_VERTICES", "GOBII_VALUES", "GOBII_REST_PROFILES", "GOBII_DNASAMPLES", "GOBII_DNARUN", "GOBII_LINKAGEGROUP", "GOBII_JOB_DNASAMPLE", "BRAPI_ALLELE_MATRIX_SEARCH", "BRAPI_ALLELE_MATRIX_SEARCH_STATUS", "BRAPI_ALLELE_MATRICES", "KDC_START", "KDC_STATUS", "KDC_DOWNLOAD", "KDC_PURGE", "BRAPI_LOGIN", "BRAPI_STUDIES_SEARCH", "BRAPI_STUDIES", "BRAPI_CALLS", "BRAPI_MAPS_CALLS", "BRAPI_CALLSETS" ]
         },
         "restMethodType" : {
           "type" : "string",

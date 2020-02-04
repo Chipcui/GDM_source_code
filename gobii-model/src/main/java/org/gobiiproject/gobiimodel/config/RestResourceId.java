@@ -13,6 +13,7 @@ public enum RestResourceId {
     GOBII_AUTH("auth", ServerType.GOBII_WEB),
     GOBII_PING("ping", ServerType.GOBII_WEB),
     GOBII_PROJECTS("projects", ServerType.GOBII_WEB),
+    GOBII_GENOTYPE_CALLS("calls", ServerType.BRAPI),
     GOBII_NAME_ID_LIST_DEPRECATED("nameidlist", ServerType.GOBII_WEB),
     GOBII_NAMES("names", ServerType.GOBII_WEB),
     GOBII_FILE_LOAD("files/loader", ServerType.GOBII_WEB),
@@ -67,8 +68,9 @@ public enum RestResourceId {
     BRAPI_LOGIN("token", ServerType.BRAPI),
     BRAPI_STUDIES_SEARCH("studies-search", ServerType.BRAPI),
     BRAPI_STUDIES("studies", ServerType.BRAPI),
-    BRAPI_CALLS("calls", ServerType.BRAPI);
-
+    BRAPI_CALLS("calls", ServerType.BRAPI),
+    BRAPI_MAPS_CALLS("maps", ServerType.BRAPI),
+    BRAPI_CALLSETS("callsets", ServerType.BRAPI);
 
     private String requestPath;
     private ServerType serverType;

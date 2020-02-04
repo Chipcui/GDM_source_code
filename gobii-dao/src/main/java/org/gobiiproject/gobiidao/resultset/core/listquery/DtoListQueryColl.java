@@ -72,7 +72,7 @@ public class DtoListQueryColl {
         DtoListQuery dtoListQuery = listQueriesBySqlId.get(listSqlId);
 
         if (null != dtoListQuery ) {
-            returnVal = dtoListQuery.getDtoListPaged(pageSize,pageNo,pgQueryId);
+            returnVal = dtoListQuery.getDtoListPaged(pageSize, pageNo, pgQueryId);
         } else {
             throw new GobiiDaoException("Unknown query id " + listSqlId.toString());
         }

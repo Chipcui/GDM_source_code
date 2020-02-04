@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.gobiiproject.gobiimodel.config.GobiiCropConfig;
-import org.gobiiproject.gobiiprocess.digester.GobiiFileReader;
+import org.gobiiproject.gobiimodel.types.DatasetOrientationType;
 import org.gobiiproject.gobiiprocess.digester.LoaderGlobalConfigs;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.errorMessage.Failure;
 import org.gobiiproject.gobiiprocess.digester.utils.validation.errorMessage.FailureTypes;
@@ -25,6 +27,14 @@ import static org.gobiiproject.gobiiprocess.digester.utils.validation.Validation
 import static org.gobiiproject.gobiiprocess.digester.utils.validation.ValidationUtil.verifyEqualMatrixSizeMarker;
 
 class Validator {
+
+    @Getter @Setter
+    private DatasetOrientationType datasetOrientationType;
+
+    public Validator(DatasetOrientationType orientation) {
+        this.datasetOrientationType = orientation;
+    }
+
     boolean validate(ValidationUnit validationUnit, String dir, List<Failure> failureList, GobiiCropConfig cropConfig) {
         try {
             if (checkForSingleFileExistence(dir, validationUnit.getDigestFileName(), failureList)) {
@@ -69,7 +79,7 @@ class Validator {
         List<Failure> failureList = new ArrayList<>();
         List<String[]> inputFile = new ArrayList<>();
         if (!ValidationUtil.readFileIntoMemory(fileName, inputFile, failureList)) return failureList;
-        if(!LoaderGlobalConfigs.getValidation()) {//Validation is disabled
+        if(!LoaderGlobalConfigs.isEnableValidation()) {//Validation is disabled
             return failureList;//Stop processing here with no non-load related failures
         }
         // Copying of the list to avoid possible deletion of original data
@@ -145,8 +155,7 @@ class Validator {
     private List<Failure> validateMatrixSizeColumns(String fileName, List<ConditionUnit> conditions) {
         List<Failure> failureList = new ArrayList<>();
 
-        Boolean isMarkerFast= GobiiFileReader.isMarkerFast;//AUTHORS NOTE- this check will never run in stand-alone mode
-        if(isMarkerFast==null)return failureList;
+        if(datasetOrientationType == DatasetOrientationType.MARKER_FAST)return failureList;
         List<String> requiredMatrixMarkerSizeColumns = new ArrayList<>();
         List<String> requiredMatrixSampleSizeColumns = new ArrayList<>();
         for (ConditionUnit condition : conditions){
@@ -167,7 +176,7 @@ class Validator {
         if (requiredMatrixMarkerSizeColumns.size() > 0) {
             try {
                 List<String> matrixCols = getFileColumns(fileName, requiredMatrixMarkerSizeColumns, failureList);
-                verifyEqualMatrixSizeMarker(failureList, matrixCols, isMarkerFast);
+                verifyEqualMatrixSizeMarker(failureList, matrixCols, datasetOrientationType);
             } catch (MaximumErrorsValidationException e) {
                 //Don't do any thing. This implies that particular error list is full.
             }
@@ -176,7 +185,7 @@ class Validator {
         if (requiredMatrixSampleSizeColumns.size() > 0) {
             try {
                 List<String> matrixCols = getFileColumns(fileName, requiredMatrixSampleSizeColumns, failureList);
-                verifyEqualMatrixSizeDnarun(failureList, matrixCols, isMarkerFast);
+                verifyEqualMatrixSizeDnarun(failureList, matrixCols, datasetOrientationType);
             } catch (MaximumErrorsValidationException e) {
                 //Don't do any thing. This implies that particular error list is full.
             }

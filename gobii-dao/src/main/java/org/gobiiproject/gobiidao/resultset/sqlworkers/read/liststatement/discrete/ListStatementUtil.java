@@ -64,8 +64,8 @@ public class ListStatementUtil {
 
             if (nameIdDTO.getParameters().containsKey(paramName)) {
 
-                if (nameIdDTO.getParameters().get(paramName) == null || ! StringUtils.isNumeric(nameIdDTO.getParameters().get(paramName).toString())) {
-                    throw new GobiiDaoException("Required NameId parameter value is missing or not numeric: " + paramName);
+                if (nameIdDTO.getParameters().get(paramName) == null) {
+                    throw new GobiiDaoException("Required NameId parameter value is missing: " + paramName);
                 }
 
                 if (stringBuilder.length() > 0) {

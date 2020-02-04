@@ -1,8 +1,10 @@
 package org.gobiiproject.gobiimodel.dto.instructions.loader;
 
+import org.codehaus.jackson.map.util.BeanUtil;
 import org.gobiiproject.gobiimodel.types.DataSetType;
 import org.gobiiproject.gobiimodel.types.DatasetOrientationType;
 import org.gobiiproject.gobiimodel.types.GobiiColumnType;
+import org.springframework.beans.BeanUtils;
 
 /**
  * The definition of a single column in a single loader instruction. Contains all the relevant information for a column.
@@ -155,5 +157,9 @@ public class GobiiFileColumn {
     public GobiiFileColumn setReplaceText(String replaceText) {
         this.replaceText = replaceText;
         return this;
+    }
+
+    public static void copy(GobiiFileColumn source, GobiiFileColumn dest) {
+        BeanUtils.copyProperties(source, dest);
     }
 }

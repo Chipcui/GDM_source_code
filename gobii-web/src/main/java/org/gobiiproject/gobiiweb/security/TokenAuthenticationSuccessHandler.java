@@ -18,12 +18,15 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 public class TokenAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     @Override
-    protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response) {
+    protected String determineTargetUrl(HttpServletRequest request,
+                                        HttpServletResponse response) {
         return request.getServletPath();
     }
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        Authentication authentication) throws ServletException, IOException {
         request.getRequestDispatcher(request.getServletPath()).forward(request, response);
     }
 }

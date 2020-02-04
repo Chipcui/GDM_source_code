@@ -6,6 +6,7 @@ import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.gobiiproject.gobiimodel.config.ConfigSettings;
 import org.gobiiproject.gobiimodel.dto.entity.children.PropNameId;
 import org.gobiiproject.gobiimodel.types.ServerType;
@@ -44,6 +45,7 @@ public class ProcessMessage extends MailMessage {
     List<HTMLTableEntity> paths=new ArrayList<>();
     List<HTMLTableEntity> validations=new ArrayList<>();
 
+    private String environmentName = System.getProperty("org.gobii.environment.name");
 
     /**
      * Sets the BODY of the mail message with TABLEs
@@ -87,13 +89,16 @@ public class ProcessMessage extends MailMessage {
         body.append("<html><head><style>table{font-family:arial,sans-serif;border-collapse:collapse;width:60%;}th{background-color:" + color + ";border:1px solid #dddddd;text-align:left;padding:8px;}td{border:1px solid #dddddd;text-align:left;padding:8px;}tr:nth-child(even){background-color:lightblue;}</style></head><body>");
 
         if(type!=null){
-            body.append("<font size = 4><b>"+type+"</b></font> (Duration: "+(time>=1000?time/1000+"secs":time+"ms")+")<br/><br/>");
+            body.append("<font size = 4><b>"+type+"</b></font> Duration: "+(time>=1000?time/1000+" secs":time+" ms")+"<br/><br/>");
         }
         else{
             body.append("<br/><br/>");
         }
 
         body.append(statusLine+line);
+        if (StringUtils.isNotEmpty(environmentName)) {
+            body.append(String.format("<b>Environment Name: %s</b>", environmentName));
+        }
         if(errorLine!=null)body.append(errorLine+line);
         body.append(line);
         if(identifierLine!=null)body.append(identifierLine+line);

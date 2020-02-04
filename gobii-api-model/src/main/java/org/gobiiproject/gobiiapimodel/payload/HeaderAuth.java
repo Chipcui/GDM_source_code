@@ -3,11 +3,14 @@ package org.gobiiproject.gobiiapimodel.payload;
 
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 
 /**
  * Created by MrPhil on 6/18/2015.
  */
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class HeaderAuth implements Serializable {
 
 

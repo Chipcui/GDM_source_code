@@ -20,7 +20,7 @@ public class SpInsExperiment extends SpDef {
         this.addParamDef("experimentDataFile", String.class).setNullable(true);
         this.addParamDef("createdBy", Integer.class).setNullable(false);
         this.addParamDef("createdDate", Date.class).setNullable(false);
-        this.addParamDef("modifiedBy", Integer.class).setNullable(false);
+        this.addParamDef("modifiedBy", Integer.class).setNullable(true);
         this.addParamDef("modifiedDate", Date.class).setNullable(true);
         this.addParamDef("status", Integer.class).setNullable(false);
 

@@ -2,6 +2,7 @@ package org.gobiiproject.gobiimodel.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Phil on 4/4/2016.
@@ -34,5 +35,6 @@ public class LineUtils {
 
         return returnVal;
     }
+
 
 }

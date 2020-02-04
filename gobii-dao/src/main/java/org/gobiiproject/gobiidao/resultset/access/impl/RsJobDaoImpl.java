@@ -1,8 +1,6 @@
 package org.gobiiproject.gobiidao.resultset.access.impl;
 
 import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.gobiiproject.gobiidao.GobiiDaoException;
 import org.gobiiproject.gobiidao.resultset.access.RsJobDao;
 import org.gobiiproject.gobiidao.resultset.core.SpRunnerCallable;
@@ -26,20 +24,16 @@ public class RsJobDaoImpl implements RsJobDao {
     @Autowired
     private StoredProcExec storedProcExec = null;
 
-    @Autowired()
+    @Autowired
     private SpRunnerCallable spRunnerCallable;
-
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Integer createJobWithCvTerms(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsJobByCvTerms(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsJobByCvTerms(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -48,12 +42,7 @@ public class RsJobDaoImpl implements RsJobDao {
 
         }
 
-        return returnVal;
     }
-
-
-    @PersistenceContext
-    protected EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRED
 //    ,isolation = Isolation.SERIALIZABLE
@@ -63,7 +52,7 @@ public class RsJobDaoImpl implements RsJobDao {
 
         try {
 
-            (new SpRunnerCallable(this.em)).run(new SpUpdJobByCvTerms(), parameters);
+            spRunnerCallable.run(new SpUpdJobByCvTerms(), parameters);
 
         } catch (SQLGrammarException e) {
 

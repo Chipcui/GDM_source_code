@@ -25,7 +25,7 @@ import static org.gobiiproject.gobiimodel.types.NucIupacCodes.plusminus;
  * @author csarma on 27-11-2018
  * Converts IUPAC single code matrix to bi-allelic matrix. (WARNING: does not work with multi(2+)-allelic codes)
  */
-class IUPACmatrixToBi {
+class IUPACmatrixToBi implements RowProcessor{
 
     private Map<String, NucIupacCodes> hash;
 
@@ -61,7 +61,7 @@ class IUPACmatrixToBi {
         hash.put("N", NN);
     }
 
-    boolean process(int rowNo, List<String> inrow, List<String> outrow, MatrixErrorUtil matrixErrorUtil) {
+    public boolean process(int rowNo, List<String> inrow, List<String> outrow, MatrixErrorUtil matrixErrorUtil) {
         boolean returnStatus = true;
         for (String element : inrow) {
             if (element.length() > 1) {

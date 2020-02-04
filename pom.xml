@@ -17,11 +17,11 @@
         <gobii.version>GOBII Server 2.1_2019-08-23</gobii.version>
 
         <!-- Spring Version -->
-        <spring.version>4.2.2.RELEASE</spring.version>
+        <spring.version>4.3.0.RELEASE</spring.version>
         <aspectJ.version>1.7.4</aspectJ.version>
 
         <!-- Spring Secuirty -->
-        <spring-security.version>4.2.2.RELEASE</spring-security.version>
+        <spring-security.version>4.3.0.RELEASE</spring-security.version>
 
         <!-- Logging -->
         <logback.version>1.1.3</logback.version>
@@ -48,6 +48,7 @@
         <module>gobii-brapi</module>
         <module>gobii-client</module>
         <module>gobii-dao</module>
+        <module>gobii-sampletracking-dao</module>
         <module>gobii-dtomapping</module>
         <module>gobii-domain</module>
         <module>gobii-process</module>
@@ -68,6 +69,12 @@
             <dependency>
                 <groupId>org.gobiiproject</groupId>
                 <artifactId>gobii-dao</artifactId>
+                <version>${gobii.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.gobiiproject</groupId>
+                <artifactId>gobii-sampletracking-dao</artifactId>
                 <version>${gobii.version}</version>
             </dependency>
 
@@ -297,7 +304,7 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.5.1</version>
+                <version>2.9.8</version>
             </dependency>
             <!-- Jackson JSON Mapper -->
             <dependency>
@@ -334,8 +341,8 @@
             <!-- Hibernate -->
             <dependency>
                 <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>4.3.10.Final</version>
+                <artifactId>hibernate-core</artifactId>
+                <version>5.4.10.Final</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss.logging</groupId>
@@ -412,7 +419,7 @@
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging</artifactId>
-                <version>3.1.1.GA</version>
+                <version>3.3.0.Final</version>
             </dependency>
 
             <!-- HTTP Client -->
@@ -457,6 +464,12 @@
             </dependency>
 
 
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-c3p0</artifactId>
+                <version>5.3.6.Final</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -488,12 +501,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>io.github.swagger2markup</groupId>
-                <artifactId>swagger2markup-maven-plugin</artifactId>
-                <version>1.3.3</version>
-            </plugin>
-
         </plugins>
 
     </build>

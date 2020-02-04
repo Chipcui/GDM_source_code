@@ -325,7 +325,10 @@ public class ValidationWebServicesUtil {
             PayloadEnvelope<NameIdDTO> responsePayloadEnvelope = gobiiEnvelopeRestResource.post(NameIdDTO.class, payloadEnvelope);
             Status status = responsePayloadEnvelope.getHeader().getStatus();
             if (!status.isSucceeded()) {
-                Logger.logWarning("ValidtionWebServices","Bad NameIdDTO request",new Exception());
+                Logger.logWarning("ValidtionWebServices","Bad NameIdDTO request");
+                for (HeaderStatusMessage m : status.getStatusMessages()) {
+                    Logger.logWarning("ValidationWebServices", m.getMessage());
+                }
                 ArrayList<HeaderStatusMessage> statusMessages = status.getStatusMessages();
                 for (HeaderStatusMessage message : statusMessages)
                     ValidationUtil.createFailure(FailureTypes.DATABASE_ERROR, new ArrayList<>(), message.getMessage(), failureList);

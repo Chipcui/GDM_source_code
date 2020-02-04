@@ -94,12 +94,9 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
     @Override
     public Integer createMarkerGroup(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsMarkerGroup(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsMarkerGroup(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -107,8 +104,6 @@ public class RsMarkerGroupDaoImpl implements RsMarkerGroupDao {
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

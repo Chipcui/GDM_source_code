@@ -93,7 +93,12 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
@@ -183,7 +188,7 @@
                             <finalName>Digester</finalName>
                             <archive>
                                 <manifest>
-                                    <mainClass>org.gobiiproject.gobiiprocess.digester.GobiiFileReader</mainClass>
+                                    <mainClass>org.gobiiproject.gobiiprocess.digester.Digester</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

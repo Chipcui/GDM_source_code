@@ -36,6 +36,10 @@
             <artifactId>aspectjrt</artifactId>
             <version>${aspectJ.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.gobiiproject</groupId>
+            <artifactId>gobii-sampletracking-dao</artifactId>
+        </dependency>
 
 
     </dependencies>

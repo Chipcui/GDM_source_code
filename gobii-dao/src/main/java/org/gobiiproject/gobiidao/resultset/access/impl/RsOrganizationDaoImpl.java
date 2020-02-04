@@ -87,12 +87,9 @@ public class RsOrganizationDaoImpl implements RsOrganizationDao {
     @Override
     public Integer createOrganization(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsOrganization(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsOrganization(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -100,8 +97,6 @@ public class RsOrganizationDaoImpl implements RsOrganizationDao {
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

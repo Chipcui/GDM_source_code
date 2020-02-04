@@ -85,12 +85,9 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
     @Override
     public Integer createReference(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsReference(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsReference(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -98,8 +95,6 @@ public class RsReferenceDaoImpl implements RsReferenceDao {
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

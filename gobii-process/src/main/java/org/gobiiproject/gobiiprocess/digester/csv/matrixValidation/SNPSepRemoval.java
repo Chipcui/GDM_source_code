@@ -7,7 +7,7 @@ import java.util.List;
  * @author csarma
  * Removes separator from SNP
  */
-class SNPSepRemoval {
+class SNPSepRemoval implements RowProcessor {
 
     private List<String> alleles, missingAlts, missingFromFile;
 
@@ -33,7 +33,7 @@ class SNPSepRemoval {
         missingFromFile.remove("");//Just in case
     }
 
-    boolean process(int rowNo, List<String> inrow, List<String> outrow, MatrixErrorUtil matrixErrorUtil) {
+    public boolean process(int rowNo, List<String> inrow, List<String> outrow, MatrixErrorUtil matrixErrorUtil) {
         boolean returnStatus = true;
         for (String element : inrow) {
             if (element.length() < 1) {

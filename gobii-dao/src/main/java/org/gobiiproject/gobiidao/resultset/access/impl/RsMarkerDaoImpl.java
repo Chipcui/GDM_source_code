@@ -86,19 +86,14 @@ public class RsMarkerDaoImpl implements RsMarkerDao {
     @Override
     public Integer createMarker(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsMarker(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsMarker(), parameters);
 
         } catch (SQLGrammarException e) {
             LOGGER.error("Error creating marker with SQL " + e.getSQL(), e.getSQLException());
             throw new GobiiDaoException(e.getSQLException());
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

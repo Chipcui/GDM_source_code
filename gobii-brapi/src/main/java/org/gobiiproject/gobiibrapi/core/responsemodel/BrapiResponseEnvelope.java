@@ -1,14 +1,18 @@
 package org.gobiiproject.gobiibrapi.core.responsemodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.gobiiproject.gobiibrapi.core.common.BrapiMetaData;
 
 /**
  * Created by Phil on 5/1/2017.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrapiResponseEnvelope {
 
     private BrapiMetaData brapiMetaData = new BrapiMetaData();
+
+
     @JsonProperty("metadata")
     public BrapiMetaData getBrapiMetaData() {
         return brapiMetaData;
@@ -18,4 +22,6 @@ public class BrapiResponseEnvelope {
     public void setBrapiMetaData(BrapiMetaData brapiMetaData) {
         this.brapiMetaData = brapiMetaData;
     }
+
+
 }

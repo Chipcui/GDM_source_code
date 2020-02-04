@@ -108,21 +108,16 @@ public class RsExperimentDaoImpl implements RsExperimentDao {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Integer createExperiment(Map<String, Object> parameters) throws GobiiDaoException {
-        Integer returnVal = null;
 
         try {
 
-            spRunnerCallable.run(new SpInsExperiment(), parameters);
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsExperiment(), parameters);
 
         } catch (SQLGrammarException e) {
             LOGGER.error("Error creating dataset with SQL " + e.getSQL(), e.getSQLException());
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
-
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

@@ -6,7 +6,7 @@ public class MatrixErrorUtil {
     private static final int MAX_ERRORS = 20;
     private int errorCount;
 
-    MatrixErrorUtil() {
+    protected MatrixErrorUtil() {
         errorCount = 0;
     }
 

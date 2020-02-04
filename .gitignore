@@ -11,6 +11,7 @@ gobii-api-model/target
 gobii-brapi/target
 gobii-process/target
 gobii-web/target
+gobii-sampletracking-dao/target
 /bin/
 
 .settings

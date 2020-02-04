@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "datafiles": [],
+    "pagination": {
+      "currentPage": 0,
+      "pageSize": 2,
+      "totalCount": 103,
+      "totalPages": 52
+    },
+    "status": []
+  },
+  "result": {
+    "data": [
+      {
+        "call": "allelematrices",
+        "dataTypes": [
+          "application/json"
+        ],
+        "datatypes": [
+          "application/json"
+        ],
+        "methods": [
+          "GET"
+        ],
+        "versions": [
+          "1.0",
+          "1.1",
+          "1.2",
+          "1.3"
+        ]
+      },
+      {
+        "call": "allelematrices-search",
+        "dataTypes": [
+          "application/json"
+        ],
+        "datatypes": [
+          "application/json"
+        ],
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "versions": [
+          "1.2",
+          "1.3"
+        ]
+      }
+    ]
+  }
+}

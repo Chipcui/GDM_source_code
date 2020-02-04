@@ -85,13 +85,9 @@ public class RsManifestDaoImpl implements RsManifestDao {
     @Override
     public Integer createManifest(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsManifest(), parameters);
-            returnVal = spRunnerCallable.getResult();
-
+            return spRunnerCallable.run(new SpInsManifest(), parameters);
 
         } catch (SQLGrammarException e) {
 
@@ -99,8 +95,6 @@ public class RsManifestDaoImpl implements RsManifestDao {
             throw (new GobiiDaoException(e.getSQLException()));
 
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

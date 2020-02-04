@@ -118,21 +118,15 @@ public class RsAnalysisDaoImpl implements RsAnalysisDao {
     @Override
     public Integer createAnalysis(Map<String, Object> parameters) throws GobiiDaoException {
 
-        Integer returnVal = null;
-
         try {
 
-            spRunnerCallable.run(new SpInsAnalysis(), parameters);
-
-            returnVal = spRunnerCallable.getResult();
+            return spRunnerCallable.run(new SpInsAnalysis(), parameters);
 
         } catch (SQLGrammarException e) {
 
             LOGGER.error("Error creating analysis with SQL " + e.getSQL(), e.getSQLException());
             throw (new GobiiDaoException(e.getSQLException()));
         }
-
-        return returnVal;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
