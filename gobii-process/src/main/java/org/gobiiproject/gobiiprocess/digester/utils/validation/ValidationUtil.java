@@ -528,7 +528,7 @@ class ValidationUtil {
                             nameIdDTO.setUuid(uuid.get(0));
                             nameIdDTOList.add(nameIdDTO);
                         }
-                        List<NameIdDTO> nameIdDTOListResponse = ValidationWebServicesUtil.getNamesByNameList(nameIdDTOList, GobiiEntityNameType.DNASAMPLE.toString(), ent.getKey(), failureList, cropConfig);
+                        List<NameIdDTO> nameIdDTOListResponse = ValidationWebServicesUtil.getNamesByUUIDList(nameIdDTOList, GobiiEntityNameType.DNASAMPLE.toString(), ent.getKey(), failureList, cropConfig);
                         elementExistenceResponseFailures(nameIdDTOListResponse, fieldToCompare, FailureTypes.DEFINED_DNASAMPLE_UUID_VALUE, NameIdDTO::getUuid,failureList);
                     } else undefinedForeignKey(condition, ent.getKey(), failureList);
                 }
