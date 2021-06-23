@@ -32,7 +32,7 @@
         The javax media type definitions are used not only in gobii-client but also in
         gobii api model. if the javax version is not right, the jetty/jersey server
         used in unit unit test will not lot with a class not found error-->
-        <jetty-version>9.4.5.v20170502</jetty-version>
+        <jetty-version>9.4.41.v20210516</jetty-version>
         <jersey-version>2.26-b03</jersey-version>
 
         <!-- HTTP Client -->
